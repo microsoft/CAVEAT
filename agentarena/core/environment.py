@@ -62,6 +62,22 @@ def http_json(url: str, method: str = "GET", body: Any = None, timeout: float = 
         return {"_error": e.code, "_body": e.read().decode()[:200]}
 
 
+def http_get_json(url: str, *, retries: int = 5, delay: float = 0.5, timeout: float = 15) -> dict:
+    """GET + parse JSON, retrying transient failures. Returns {} only after the
+    server keeps failing — so a momentary hiccup right after the agent finishes
+    never gets silently misread as 'no result'. Used by evaluators."""
+    last = None
+    for i in range(retries):
+        try:
+            with urllib.request.urlopen(url, timeout=timeout) as r:
+                return json.loads(r.read())
+        except Exception as e:  # noqa: BLE001
+            last = e
+            time.sleep(delay * (i + 1))
+    print(f"[agentarena] warning: {url} failed after {retries} tries: {last}")
+    return {}
+
+
 def wait_up(health_url: str, timeout: float = 40) -> bool:
     end = time.time() + timeout
     while time.time() < end:

@@ -12,7 +12,8 @@ import json
 from pathlib import Path
 from typing import Optional
 
-from ...core.environment import ENVIRONMENTS, Environment, ServerHandle, http_json
+from ...core.environment import (ENVIRONMENTS, Environment, ServerHandle,
+                                 http_get_json)
 from ...core.task import TaskSpec, check_constraints
 from ...core.trajectory import Evaluation
 from .catalog import CATALOGS, Catalog
@@ -64,10 +65,18 @@ class AirbnbEnvironment(Environment):
         self._seed_subprocess(code, extra_env=env)
 
     # ---- evaluation ------------------------------------------------------- #
+    def _booking_ids(self, handle: ServerHandle) -> set:
+        data = http_get_json(f"{handle.base_url}/api/bookings?limit=500")
+        return {b.get("id") for b in data.get("bookings", [])}
+
+    def after_start(self, handle: ServerHandle, task: TaskSpec) -> None:
+        self._pre_bookings = self._booking_ids(handle)
+
     def evaluate(self, handle: ServerHandle, task: TaskSpec) -> Evaluation:
         cat = self._catalog_obj(task.catalog)
-        data = http_json(f"{handle.base_url}/api/bookings")
-        bookings = data.get("bookings", []) if isinstance(data, dict) else []
+        pre = getattr(self, "_pre_bookings", set())
+        data = http_get_json(f"{handle.base_url}/api/bookings?limit=500")
+        bookings = [b for b in data.get("bookings", []) if b.get("id") not in pre]
         if not bookings:
             return Evaluation("none", success=False, details={"booked": False})
 
