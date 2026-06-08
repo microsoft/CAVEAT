@@ -136,7 +136,8 @@ _GLYPH = {"compliant": "✓", "success": "✓", "violation": "○", "decoy": "�
 
 class Runner:
     def __init__(self, results_dir: Path | str = "results", headless: bool = True) -> None:
-        self.results_dir = Path(results_dir)
+        # Absolute so per-cell DB/output paths survive the cwd=server_dir subprocesses.
+        self.results_dir = Path(results_dir).resolve()
         self.headless = headless
 
     def run(self, exp: Experiment, *, jobs: int = 1, force: bool = False) -> Path:
@@ -144,8 +145,7 @@ class Runner:
         exp_dir.mkdir(parents=True, exist_ok=True)
         (exp_dir / "experiment.json").write_text(json.dumps(_exp_manifest(exp), indent=2, default=str))
 
-        cells = [c for c in exp.cells()
-                 if force or not (exp_dir / c.name / "summary.json").exists()]
+        cells = [c for c in exp.cells() if force or not _is_done(exp_dir / c.name)]
         skipped = len(exp.cells()) - len(cells)
         print(f"\n=== experiment: {exp.name}  →  {exp_dir} ===")
         print(f"    {len(exp.cells())} cells ({skipped} already done), jobs={jobs}\n")
@@ -232,3 +232,10 @@ def _exp_manifest(exp: Experiment) -> dict:
 def _read_summary(cell_dir: Path) -> dict:
     f = cell_dir / "summary.json"
     return json.loads(f.read_text()) if f.exists() else {}
+
+
+def _is_done(cell_dir: Path) -> bool:
+    """A cell counts as done only if it finished without error — so a re-run
+    automatically retries errored/skipped cells (no --force needed)."""
+    s = _read_summary(cell_dir)
+    return bool(s) and s.get("outcome") not in ("error", "skipped", None)

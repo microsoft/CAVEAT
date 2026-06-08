@@ -141,7 +141,10 @@ class Environment(ABC):
 
     # ---- lifecycle (shared) ----------------------------------------------- #
     def start(self, port: int, task: TaskSpec, *, work_dir: Path) -> ServerHandle:
-        work_dir = Path(work_dir)
+        # Resolve to absolute: the seed + server subprocesses run with cwd=server_dir,
+        # so a relative db path would be created in the wrong place (sqlite then fails
+        # with "unable to open database file").
+        work_dir = Path(work_dir).resolve()
         work_dir.mkdir(parents=True, exist_ok=True)
         db = work_dir / f"{self.name}_{port}.db"
         free_port(port)
