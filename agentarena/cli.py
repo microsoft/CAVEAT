@@ -65,7 +65,7 @@ def _build_experiment(cfg: dict):
 def cmd_run(args) -> int:
     import agentarena.envs   # noqa: F401  (register)
     import agentarena.scaffolds  # noqa: F401
-    from agentarena.core.experiment import Runner
+    from agentarena.core.experiment import Runner, auto_jobs
 
     cfg = _load_config(args.config) if args.config else {}
     for key, val in (("name", args.name), ("scaffolds", args.scaffolds),
@@ -76,8 +76,45 @@ def cmd_run(args) -> int:
     if args.env:
         cfg["envs"] = [args.env]
     exp = _build_experiment(cfg)
+    jobs = args.jobs if args.jobs is not None else auto_jobs()
+    if args.jobs is None:
+        print(f"(auto) jobs={jobs}  —  override with --jobs N")
     Runner(results_dir=args.results, headless=not args.no_headless).run(
-        exp, jobs=args.jobs, force=args.force)
+        exp, jobs=jobs, force=args.force)
+    return 0
+
+
+def cmd_clear(args) -> int:
+    import shutil
+
+    root = Path(__file__).resolve().parent
+    res = Path(args.results)
+    targets: list[Path] = []
+    if res.exists():
+        targets += [d for d in res.iterdir()] if args.keep_dir else [res]
+    # scratch the framework leaves around
+    if args.cache:
+        cache = root / "runs"
+        if cache.exists():
+            targets.append(cache)
+    for server in (root / "envs").glob("*/server"):
+        cat = server / "_catalogs"
+        if cat.exists():
+            targets.append(cat)
+        targets += list(server.glob("*.db"))
+    targets = [t for t in targets if t.exists()]
+    if not targets:
+        print("nothing to clear.")
+        return 0
+    print("will remove:")
+    for t in targets:
+        print("   ", t)
+    if not args.yes and input("proceed? [y/N] ").strip().lower() not in ("y", "yes"):
+        print("aborted.")
+        return 0
+    for t in targets:
+        shutil.rmtree(t, ignore_errors=True) if t.is_dir() else t.unlink(missing_ok=True)
+    print(f"cleared {len(targets)} item(s).")
     return 0
 
 
@@ -135,13 +172,22 @@ def main() -> int:
     r.add_argument("--name"); r.add_argument("--env")
     r.add_argument("--scaffolds", nargs="+"); r.add_argument("--models", nargs="+")
     r.add_argument("--tasks", nargs="+"); r.add_argument("--conditions", nargs="+")
-    r.add_argument("--jobs", type=int, default=1); r.add_argument("--results", default="results")
+    r.add_argument("--jobs", type=int, default=None,
+                   help="parallel cells (default: auto — sized to this machine)")
+    r.add_argument("--results", default="results")
     r.add_argument("--no-headless", action="store_true"); r.add_argument("--force", action="store_true")
     r.set_defaults(func=cmd_run)
 
     v = sub.add_parser("view", help="launch the trajectory viewer")
     v.add_argument("--results", default="results"); v.add_argument("--port", type=int, default=8800)
     v.set_defaults(func=cmd_view)
+
+    c = sub.add_parser("clear", help="delete previous runs' data (results + scratch)")
+    c.add_argument("--results", default="results", help="results dir to clear")
+    c.add_argument("--keep-dir", action="store_true", help="empty the results dir but keep the folder")
+    c.add_argument("--cache", action="store_true", help="also clear the cached model responses")
+    c.add_argument("-y", "--yes", action="store_true", help="skip the confirmation prompt")
+    c.set_defaults(func=cmd_clear)
 
     sub.add_parser("ls", help="list environments / scaffolds / tasks").set_defaults(func=cmd_ls)
     sub.add_parser("setup", help="build UIs + check the browser").set_defaults(func=cmd_setup)

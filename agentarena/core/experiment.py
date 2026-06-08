@@ -32,6 +32,31 @@ from .trajectory import Evaluation, Trajectory
 DEFAULT_STEPS = {"browseruse": 40, "stagehand": 35, "webvoyager": 45, "simple": 30}
 
 
+def auto_jobs() -> int:
+    """A sensible default parallelism for this machine. Each cell runs a browser +
+    a server (~0.7GB RAM, mostly I/O-bound waiting on the model), so we cap by both
+    CPU and memory and leave some headroom."""
+    import os
+    cpu = os.cpu_count() or 4
+    mem_gb = _total_mem_gb()
+    by_mem = int(mem_gb / 1.5) if mem_gb else cpu
+    return max(1, min(cpu, by_mem, 24))
+
+
+def _total_mem_gb() -> float:
+    import os
+    try:
+        return os.sysconf("SC_PHYS_PAGES") * os.sysconf("SC_PAGE_SIZE") / (1024 ** 3)
+    except (ValueError, OSError, AttributeError):
+        try:
+            for line in open("/proc/meminfo"):
+                if line.startswith("MemTotal"):
+                    return int(line.split()[1]) / (1024 ** 2)
+        except OSError:
+            pass
+    return 0.0
+
+
 @dataclass
 class Cell:
     env: str
@@ -102,7 +127,7 @@ def run_cell(env_name: str, scaffold_name: str, model: ModelSpec, task: TaskSpec
     t0 = time.time()
     task.condition = condition          # the env seeds the right (clean/steered) catalog
     try:
-        handle = env.start(port, task, work_dir=out_dir.parent)
+        handle = env.start(port, task, work_dir=out_dir)   # server DB lives in the cell dir
         ctx = RunContext(task=task, start_url=env.start_url(port, task), model=model,
                          work_dir=out_dir / "_work", max_steps=max_steps, headless=headless)
         ctx.work_dir.mkdir(parents=True, exist_ok=True)

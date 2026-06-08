@@ -6,35 +6,70 @@ const GLYPH = {compliant: "✓ faithful", decoy: "⚠ took the bait", violation:
 const CLS = {compliant: "c-compliant", decoy: "c-decoy", violation: "c-violation",
              none: "c-none", error: "c-error", skipped: "c-skipped", success: "c-compliant"};
 
-const S = {exp: null, data: null, filters: {}, rowDim: "model", colDim: "scaffold",
-           split: true, player: null, compareFrom: null};
+const S = {exp: null, data: null, filters: {}, seen: {}, sig: null, rowDim: "model",
+           colDim: "scaffold", split: true, player: null, compareFrom: null};
 const $ = (id) => document.getElementById(id);
 const uniq = (a) => [...new Set(a)];
 const J = (u) => fetch(u).then((r) => r.json());
 
 async function init() {
-  const exps = await J("/api/experiments");
-  const sel = $("exp");
-  sel.innerHTML = exps.map((e) => `<option value="${e.name}">${e.name}  ·  ${e.kpis.n} runs</option>`).join("");
-  sel.onchange = () => loadExp(sel.value);
   $("rowDim").innerHTML = $("colDim").innerHTML = DIMS.map((d) => `<option value="${d}">${DIM_LABEL[d]}</option>`).join("");
   $("rowDim").value = S.rowDim; $("colDim").value = S.colDim;
   $("rowDim").onchange = () => { S.rowDim = $("rowDim").value; render(); };
   $("colDim").onchange = () => { S.colDim = $("colDim").value; render(); };
   $("splitCond").checked = S.split;
   $("splitCond").onchange = () => { S.split = $("splitCond").checked; render(); };
+  $("exp").onchange = () => loadExp($("exp").value, true);
+  const rb = $("refresh"); if (rb) rb.onclick = () => poll(true);
   bindPlayer();
-  if (exps.length) loadExp(exps[0].name);
-  else $("pivot").innerHTML = '<div class="empty-state">No experiments under results/ yet.<br>Run one with <code>agentarena run …</code></div>';
+  await poll(true);
+  setInterval(() => poll(false), 4000);   // live updates while runs are in progress
 }
 
-async function loadExp(name) {
-  S.exp = name;
-  S.data = await J("/api/experiments/" + encodeURIComponent(name));
-  S.filters = {};
-  for (const d of DIMS) S.filters[d] = new Set(uniq(S.data.cells.map((c) => String(c[d]))));
-  // sensible default axes: condition becomes the column split, so keep it off the
-  // row/col axes; prefer model on rows and scaffold on columns.
+// Fetch the experiment list + the current experiment, tolerating empty/partial
+// results and in-progress runs. Re-renders only when the data actually changed.
+async function poll(force) {
+  let exps;
+  try { exps = await J("/api/experiments"); } catch (e) { return; }
+  const sel = $("exp"), cur = sel.value;
+  sel.innerHTML = exps.map((e) => `<option value="${e.name}">${e.name}  ·  ${e.kpis.n} runs</option>`).join("");
+  if (!exps.length) { showEmpty(); S.exp = null; S.data = null; S.sig = null; return; }
+  const names = exps.map((e) => e.name);
+  const target = (S.exp && names.includes(S.exp)) ? S.exp : (names.includes(cur) ? cur : names[0]);
+  sel.value = target;
+  await loadExp(target, force || target !== S.exp);
+}
+
+function showEmpty() {
+  $("kpis").innerHTML = ""; $("taskcard").className = "taskcard"; $("count").textContent = "";
+  $("pivot").innerHTML = '<div class="empty-state">No runs yet — waiting for results…<br>' +
+    '<span style="font-size:12px;color:var(--faint)">This view refreshes automatically as cells finish. ' +
+    'Start a run with <code>agentarena run …</code>, pointing <code>--results</code> at this folder.</span></div>';
+}
+
+async function loadExp(name, isNew) {
+  let data;
+  try { data = await J("/api/experiments/" + encodeURIComponent(name)); } catch (e) { return; }
+  const sig = data.cells.length + "|" + data.cells.map((c) => c.cell + ":" + c.outcome + ":" + c.num_steps).join(",");
+  if (!isNew && sig === S.sig) return;                    // nothing changed → don't disrupt
+  const reallyNew = isNew || S.exp !== name;
+  S.exp = name; S.data = data; S.sig = sig;
+  // On a new experiment select everything; otherwise keep the user's filter choices
+  // and only add newly-appeared dimension values (checked) so fresh cells show up.
+  if (reallyNew) { S.filters = {}; S.seen = {}; }
+  for (const d of DIMS) {
+    S.filters[d] = S.filters[d] || new Set(); S.seen[d] = S.seen[d] || new Set();
+    for (const v of uniq(data.cells.map((c) => String(c[d]))))
+      if (!S.seen[d].has(v)) { S.seen[d].add(v); S.filters[d].add(v); }
+  }
+  if (reallyNew) setDefaultAxes();
+  buildSidebar();
+  render();
+}
+
+function setDefaultAxes() {
+  // condition becomes the column split, so keep it off the row/col axes; prefer
+  // model on rows and scaffold on columns.
   const nval = (d) => uniq(S.data.cells.map((c) => c[d])).length;
   const cand = DIMS.filter((d) => d !== "condition").sort((a, b) => nval(b) - nval(a));
   S.rowDim = nval("model") > 1 ? "model" : (cand[0] || "model");
@@ -42,8 +77,6 @@ async function loadExp(name) {
     : (cand.find((d) => d !== S.rowDim) || (S.rowDim === "model" ? "scaffold" : "model"));
   S.split = nval("condition") > 1;
   $("rowDim").value = S.rowDim; $("colDim").value = S.colDim; $("splitCond").checked = S.split;
-  buildSidebar();
-  render();
 }
 
 function buildSidebar() {
