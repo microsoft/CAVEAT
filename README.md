@@ -51,9 +51,13 @@ gateway, …) — no auth setup needed.
 
 ```bash
 agentarena ls                              # list environments, scaffolds, tasks
-agentarena run examples/configs/laptops.yaml --jobs 4
-agentarena view                            # open http://localhost:8800
+agentarena run examples/configs/laptops.yaml      # --jobs defaults to auto (sized to your machine)
+agentarena view                            # http://localhost:8800 — live-updates as cells finish
+agentarena clear -y                        # delete previous runs' data (add --cache to drop the model cache)
 ```
+
+The viewer auto-refreshes, so you can open it before/while a run is in progress
+and watch cells fill in.
 
 …or from Python:
 
@@ -166,11 +170,13 @@ complete ~120-line reference.
 
 Each (env × scaffold × model × task × condition) **cell** runs in its own worker
 process with its own server + browser + port, so one crash can't poison the rest
-and the matrix is resumable (finished cells are skipped). Run `--jobs N` of them
-at once; native scaffolds additionally get the router's request concurrency.
+and the matrix is resumable (finished cells are skipped, and **errored cells
+auto-retry** on the next run). `--jobs` defaults to **auto** (sized to your
+CPU/RAM); native scaffolds additionally get the router's request concurrency.
 
 ```bash
-agentarena run examples/configs/laptops.yaml --jobs 8
+agentarena run examples/configs/laptops.yaml            # auto jobs
+agentarena run examples/configs/laptops.yaml --jobs 8   # or pin it
 ```
 
 ---
