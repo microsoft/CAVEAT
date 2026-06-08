@@ -1,0 +1,47 @@
+[project]
+name = "agentarena"
+version = "0.1.0"
+description = "Run many web-agent scaffolds (× many models) against shopping/booking environments and measure preference fidelity."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    # framework + model layer
+    "openai>=1.30.0",
+    "azure-identity>=1.15.0",
+    "pyyaml>=6.0",
+    "pillow>=10.0.0",
+    "requests>=2.31.0",
+    "python-dotenv>=1.0.0",
+    # the bundled environment servers (FastAPI apps) run in this same venv
+    "fastapi>=0.100.0",
+    "uvicorn>=0.23.0",
+    "sqlmodel>=0.0.14",
+    "python-multipart>=0.0.6",
+    "passlib[bcrypt]>=1.7.4",
+    "python-jose[cryptography]>=3.3.0",
+    # the `simple` reference scaffold drives Playwright directly
+    "playwright>=1.40.0",
+]
+
+[project.optional-dependencies]
+browseruse = ["browser-use>=0.1.0"]
+dev = ["pytest>=7.4", "ruff>=0.4"]
+
+[project.scripts]
+agentarena = "agentarena.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["agentarena*"]
+
+[tool.setuptools.package-data]
+"agentarena" = [
+    "llm_client.py",
+    "envs/amazon/server/**/*", "envs/airbnb/server/**/*",
+    "scaffolds/stagehand/*.mjs", "scaffolds/stagehand/*.json", "scaffolds/stagehand/*.md",
+    "viewer/static/*",
+]

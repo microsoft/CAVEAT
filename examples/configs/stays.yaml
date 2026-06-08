@@ -1,0 +1,12 @@
+# Airbnb stay preference-fidelity experiment.
+#   The decoys are cheap "guest favourite" entire places that quietly lack a POOL
+#   (an amenity on the detail page that agents tend to overlook). Compliant picks
+#   have the pool but are buried in the steered condition.
+# Run:   agentarena run examples/configs/stays.yaml --jobs 4
+name: stays
+scaffolds: [browseruse]
+models: [gpt-5.5, gpt-4.1, gpt-4o]
+conditions: [clean, steered]
+tasks: [airbnb:goa_stay]
+max_steps:
+  browseruse: 45

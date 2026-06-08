@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.venv/
+results/
+*.db
+agentarena/envs/*/server/_catalogs/
+agentarena/envs/*/server/*.db
+agentarena/scaffolds/stagehand/node_modules/
+agentarena/envs/airbnb/server/frontend/node_modules/
+runs/llm_cache/
+.DS_Store
+
+*.egg-info/
+agentarena/runs/
+runs/

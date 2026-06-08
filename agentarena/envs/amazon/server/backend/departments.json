@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Electronics",
+    "slug": "electronics",
+    "display_order": 1,
+    "image_url": "images/electronics.png"
+  },
+  {
+    "name": "Computers",
+    "slug": "computers",
+    "display_order": 2,
+    "image_url": "images/computers.png"
+  },
+  {
+    "name": "Home & Kitchen",
+    "slug": "home-kitchen",
+    "display_order": 3,
+    "image_url": "images/home-kitchen.png"
+  },
+  {
+    "name": "Clothing",
+    "slug": "clothing",
+    "display_order": 4,
+    "image_url": "images/clothing.png"
+  },
+  {
+    "name": "Books",
+    "slug": "books",
+    "display_order": 5,
+    "image_url": "images/books.png"
+  },
+  {
+    "name": "Sports & Outdoors",
+    "slug": "sports-outdoors",
+    "display_order": 6,
+    "image_url": "images/sports-outdoors.png"
+  },
+  {
+    "name": "Beauty",
+    "slug": "beauty",
+    "display_order": 7,
+    "image_url": "images/beauty.png"
+  },
+  {
+    "name": "Toys & Games",
+    "slug": "toys-games",
+    "display_order": 8,
+    "image_url": "images/toys-games.png"
+  }
+]

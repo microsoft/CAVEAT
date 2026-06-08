@@ -1,0 +1,15 @@
+# Bring-your-own model endpoint. Any OpenAI-compatible server works
+# (vLLM, Ollama's OpenAI shim, a gateway, real OpenAI, ...).
+# Secrets via `env:VARNAME` stay out of the file.
+name: byo-demo
+scaffolds: [simple]
+models:
+  - gpt-4.1                       # a routed TRAPI model (needs `az login`)
+  - name: my-local
+    provider: openai
+    base_url: http://localhost:8000/v1
+    api_key: env:MY_API_KEY
+    deployment: Qwen2.5-7B-Instruct
+    vision: false                 # text-only → simple/browseruse drop screenshots
+tasks: [amazon:laptop]
+conditions: [clean, steered]

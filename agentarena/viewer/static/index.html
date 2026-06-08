@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>agentarena · viewer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">agent<span>arena</span></div>
+    <label class="exp-pick">experiment <select id="exp"></select></label>
+    <div class="kpis" id="kpis"></div>
+    <div class="legend" id="legend">
+      <span><i class="c-compliant">✓</i>faithful</span>
+      <span><i class="c-decoy">⚠</i>took the bait</span>
+      <span><i class="c-violation">○</i>violation</span>
+      <span><i class="c-none">–</i>no purchase</span>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="main">
+      <div class="pivot-controls">
+        <label>rows <select id="rowDim"></select></label>
+        <label>columns <select id="colDim"></select></label>
+        <label><input type="checkbox" id="splitCond"> split columns by condition</label>
+        <span class="sp"></span>
+        <span id="count" style="color:var(--faint)"></span>
+      </div>
+      <div class="taskcard" id="taskcard"></div>
+      <div class="pivot" id="pivot"></div>
+    </main>
+  </div>
+
+  <!-- trajectory player -->
+  <div class="player" id="player" hidden>
+    <div class="player-card">
+      <div class="player-head">
+        <div class="crumbs" id="pHead"></div>
+        <button id="pCompare" title="Pin a second run side by side">⊟ compare</button>
+        <button class="x" id="pClose">✕ close</button>
+      </div>
+      <div class="player-body"><div class="panes" id="pPanes" style="display:flex;flex:1;min-height:0"></div></div>
+      <div class="filmstrip" id="pFilm"></div>
+      <div class="player-foot">
+        <button id="pFirst">⏮</button>
+        <button id="pPrev">◀</button>
+        <button id="pPlay">▶ play</button>
+        <button id="pNext">▶</button>
+        <button id="pLast">⏭</button>
+        <input type="range" id="pSlider" min="0" value="0">
+        <span class="pos" id="pPos"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- drill-down list for aggregated cells -->
+  <div class="drill" id="drill" hidden><div class="drill-card" id="drillCard"></div></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

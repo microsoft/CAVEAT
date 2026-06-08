@@ -1,0 +1,478 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Primary Brand Colors */
+  --amazon-orange: #FF9900;
+  --amazon-orange-hover: #FA8900;
+  --amazon-blue: #232F3E;
+  --amazon-blue-light: #37475A;
+  --amazon-teal: #007185;
+  --amazon-teal-hover: #C7511F;
+
+  /* UI Colors */
+  --background: #FFFFFF;
+  --background-secondary: #F7F8F8;
+  --background-tertiary: #EAEDED;
+  --surface: #FFFFFF;
+  --border: #D5D9D9;
+  --border-strong: #888C8C;
+  --text-primary: #0F1111;
+  --text-secondary: #565959;
+  --text-muted: #767676;
+
+  /* Interactive */
+  --link-color: #007185;
+  --link-hover: #C7511F;
+  --button-yellow: #FFD814;
+  --button-yellow-hover: #F7CA00;
+  --button-orange: #FFA41C;
+  --button-orange-hover: #FA8900;
+  --button-gray: #F0F2F2;
+  --button-gray-hover: #E3E6E6;
+
+  /* Status */
+  --success-color: #067D62;
+  --success-bg: #F0FCF9;
+  --error-color: #B12704;
+  --error-bg: #FCF4F2;
+  --warning-color: #C7511F;
+  --warning-bg: #FFF8E6;
+  --info-color: #007185;
+
+  /* Price */
+  --price-red: #B12704;
+  --price-whole: #0F1111;
+  --price-savings: #CC0C39;
+  --deal-red: #CC0C39;
+
+  /* Ratings */
+  --star-filled: #FFA41C;
+  --star-empty: #F0F0F0;
+
+  /* Prime */
+  --prime-blue: #1A98FF;
+  --prime-check: #067D62;
+
+  /* Badges */
+  --bestseller-orange: #FF9900;
+  --amazon-choice-blue: #002F36;
+  --climate-green: #067D62;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: "Amazon Ember", Arial, sans-serif;
+  background-color: var(--background-tertiary);
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+html, body, #root {
+  min-height: 100%;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+/* Amazon Button Styles */
+.btn-primary {
+  @apply px-4 py-2 rounded-lg font-medium text-sm;
+  background: linear-gradient(to bottom, #f7e183, #f0c14b);
+  border: 1px solid #a88734;
+  color: #111;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(to bottom, #f5d78e, #eeb933);
+}
+
+.btn-primary:active {
+  background: linear-gradient(to bottom, #f0c14b, #e5a829);
+}
+
+.btn-secondary {
+  @apply px-4 py-2 rounded-lg font-medium text-sm;
+  background: linear-gradient(to bottom, #f7f8fa, #e7e9ec);
+  border: 1px solid #adb1b8;
+  color: #111;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(to bottom, #e7eaf0, #d9dce1);
+}
+
+.btn-orange {
+  @apply px-4 py-2 rounded-full font-medium text-sm;
+  background-color: var(--button-orange);
+  border: none;
+  color: #111;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.btn-orange:hover {
+  background-color: var(--button-orange-hover);
+}
+
+.btn-yellow {
+  @apply px-4 py-2 rounded-full font-medium text-sm;
+  background-color: var(--button-yellow);
+  border: none;
+  color: #111;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.btn-yellow:hover {
+  background-color: var(--button-yellow-hover);
+}
+
+/* Product Card */
+.product-card {
+  @apply bg-white p-4 flex flex-col;
+  border-radius: 4px;
+  transition: box-shadow 0.2s;
+}
+
+.product-card:hover {
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.1);
+}
+
+.product-card img {
+  @apply w-full object-contain mb-3;
+  height: 180px;
+}
+
+.product-title {
+  @apply text-sm mb-1;
+  color: var(--text-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-title:hover {
+  color: var(--link-hover);
+}
+
+/* Star Rating */
+.star-rating {
+  @apply flex items-center gap-0.5;
+  color: var(--star-filled);
+}
+
+.star-rating .count {
+  @apply text-sm ml-1;
+  color: var(--link-color);
+}
+
+/* Price Display */
+.price-display {
+  @apply flex items-baseline;
+}
+
+.price-symbol {
+  @apply text-sm;
+  vertical-align: top;
+}
+
+.price-whole {
+  @apply text-2xl font-medium;
+}
+
+.price-fraction {
+  @apply text-sm;
+  vertical-align: top;
+}
+
+.list-price {
+  @apply text-sm line-through ml-2;
+  color: var(--text-secondary);
+}
+
+/* Prime Badge */
+.prime-badge {
+  @apply inline-flex items-center text-xs;
+  color: var(--prime-blue);
+}
+
+.prime-badge::before {
+  content: "✓";
+  @apply mr-0.5 font-bold;
+  color: var(--prime-check);
+}
+
+/* Best Seller Badge */
+.bestseller-badge {
+  @apply inline-block px-2 py-0.5 text-xs font-bold;
+  background-color: var(--bestseller-orange);
+  color: white;
+  border-radius: 2px;
+}
+
+/* Amazon Choice Badge */
+.amazon-choice-badge {
+  @apply inline-block px-2 py-0.5 text-xs font-medium;
+  background-color: var(--amazon-choice-blue);
+  color: white;
+  border-radius: 2px;
+}
+
+/* Header Styles */
+.header-nav {
+  @apply flex items-center gap-2 px-2 py-1.5 text-white cursor-pointer;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  transition: border-color 0.1s;
+}
+
+.header-nav:hover {
+  border-color: white;
+}
+
+.header-nav-label {
+  @apply text-xs;
+  color: #ccc;
+}
+
+.header-nav-value {
+  @apply text-sm font-bold;
+}
+
+/* Search Bar */
+.search-bar {
+  @apply flex items-stretch flex-1 rounded overflow-hidden;
+  max-width: 800px;
+  height: 40px;
+}
+
+.search-bar select {
+  @apply px-2 text-sm;
+  background-color: var(--background-tertiary);
+  border: none;
+  border-right: 1px solid var(--border);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.search-bar input {
+  @apply flex-1 px-3 text-base;
+  border: none;
+  outline: none;
+}
+
+.search-bar button {
+  @apply px-4;
+  background-color: var(--amazon-orange);
+  border: none;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.search-bar button:hover {
+  background-color: var(--amazon-orange-hover);
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  @apply absolute bg-white rounded shadow-lg py-2 z-50;
+  border: 1px solid var(--border);
+  min-width: 200px;
+}
+
+.dropdown-item {
+  @apply px-4 py-2 text-sm cursor-pointer;
+  color: var(--text-primary);
+}
+
+.dropdown-item:hover {
+  background-color: var(--background-tertiary);
+}
+
+/* Cart Icon */
+.cart-icon {
+  @apply relative flex items-center;
+}
+
+.cart-count {
+  @apply absolute font-bold;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+  color: var(--amazon-orange);
+  font-size: 16px;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* Carousel */
+.carousel-container {
+  @apply relative;
+}
+
+.carousel-arrow {
+  @apply absolute top-1/2 -translate-y-1/2 bg-white rounded-sm shadow p-2 cursor-pointer z-10;
+  border: 1px solid var(--border);
+}
+
+.carousel-arrow:hover {
+  background-color: var(--background-secondary);
+}
+
+.carousel-arrow.left {
+  left: 0;
+}
+
+.carousel-arrow.right {
+  right: 0;
+}
+
+/* Footer */
+.footer-section {
+  @apply py-10;
+  background-color: var(--amazon-blue-light);
+  color: white;
+}
+
+.footer-section a {
+  @apply text-white text-sm;
+}
+
+.footer-section a:hover {
+  @apply underline;
+}
+
+.footer-bottom {
+  @apply py-8 text-center text-sm;
+  background-color: var(--amazon-blue);
+  color: #999;
+}
+
+/* Account Hub Cards */
+.account-card {
+  @apply flex items-start gap-4 p-4 bg-white rounded border cursor-pointer;
+  border-color: var(--border);
+  transition: background 0.1s;
+}
+
+.account-card:hover {
+  background-color: var(--background-secondary);
+}
+
+.account-card-icon {
+  @apply text-4xl;
+  color: var(--amazon-teal);
+}
+
+.account-card-title {
+  @apply font-medium text-lg mb-1;
+}
+
+.account-card-desc {
+  @apply text-sm;
+  color: var(--text-secondary);
+}
+
+/* Deal Card */
+.deal-card {
+  @apply bg-white p-4 rounded;
+}
+
+.deal-progress {
+  @apply h-2 rounded-full overflow-hidden;
+  background-color: var(--background-tertiary);
+}
+
+.deal-progress-bar {
+  @apply h-full;
+  background-color: var(--deal-red);
+}
+
+/* Loading Spinner */
+.spinner {
+  @apply inline-block w-5 h-5 border-2 rounded-full animate-spin;
+  border-color: var(--amazon-orange);
+  border-top-color: transparent;
+}
+
+/* Skeleton Loading */
+.skeleton {
+  @apply animate-pulse rounded;
+  background-color: var(--background-tertiary);
+}
+
+/* Form Elements */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select {
+  @apply px-3 py-2 rounded border text-base;
+  border-color: var(--border);
+  outline: none;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+select:focus {
+  border-color: var(--amazon-orange);
+  box-shadow: 0 0 3px var(--amazon-orange);
+}
+
+/* Toast Notifications */
+.toast {
+  @apply fixed bottom-4 left-1/2 -translate-x-1/2 px-6 py-3 rounded shadow-lg z-50;
+  background-color: var(--amazon-blue);
+  color: white;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  @apply flex items-center gap-2 text-sm mb-4;
+  color: var(--text-secondary);
+}
+
+.breadcrumb a {
+  color: var(--link-color);
+}
+
+.breadcrumb a:hover {
+  color: var(--link-hover);
+}
+
+/* Rating Breakdown */
+.rating-breakdown {
+  @apply flex items-center gap-2 text-sm mb-1;
+}
+
+.rating-bar {
+  @apply flex-1 h-5 rounded overflow-hidden;
+  background-color: var(--background-tertiary);
+}
+
+.rating-bar-fill {
+  @apply h-full;
+  background-color: var(--star-filled);
+}
