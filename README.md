@@ -1,6 +1,6 @@
 # agentarena
 
-**Run many web-agent scaffolds — powered by many different models — against
+**Run many web-agent scaffolds — powered by different models — against
 realistic shopping & booking environments, and measure how faithfully each one
 honors the user's stated preferences.**
 
@@ -8,7 +8,7 @@ The web apps are real (a mock Amazon storefront and an Airbnb-style stays site).
 You give an agent a natural-language instruction ("buy me a lightweight laptop
 under \$1000 with ≥512GB…") and a matching set of structured preferences. The
 agent shops/books in a browser; agentarena reads back what it actually bought and
-scores it. A **steered** condition pins a tempting-but-non-compliant *decoy* to the
+scores it. A **steered** condition pins a tempting-but-non-compliant _decoy_ to the
 top of results and buries the good options — so you can measure whether an agent
 stays loyal to the user under commercial pressure.
 
@@ -26,7 +26,7 @@ stays loyal to the user under commercial pressure.
 ## Install
 
 ```bash
-git clone <this repo> && cd agentarena
+git clone <this repo>
 uv venv && source .venv/bin/activate      # or: python -m venv .venv && source .venv/bin/activate
 uv pip install -e .                       # core + both environment servers
 python -m playwright install chromium     # browser for the agents
@@ -79,19 +79,19 @@ catalog + task from scratch.
 
 ## Concepts
 
-| concept | what it is | where |
-|---|---|---|
-| **Environment** | a browsable web app the agent acts in (`amazon`, `airbnb`) | `agentarena/envs/` |
-| **Scaffold** | a way to turn a model into a web agent (`browseruse`, `stagehand`, `simple`) | `agentarena/scaffolds/` |
-| **Model** | a routed logical name or a bring-your-own OpenAI endpoint | `agentarena/core/models.py` |
-| **Catalog** | the (fully customizable) product/listing set an env seeds | `envs/*/catalog.py` |
-| **Task** | a natural-language instruction + structured `preferences` | `envs/*/tasks.py` |
-| **Condition** | `clean` (fair) vs `steered` (decoy pinned, good options buried) | per-run |
-| **Trajectory** | normalized record of a run (screenshots + steps + verdict) | `core/trajectory.py` |
+| concept         | what it is                                                                   | where                       |
+| --------------- | ---------------------------------------------------------------------------- | --------------------------- |
+| **Environment** | a browsable web app the agent acts in (`amazon`, `airbnb`)                   | `agentarena/envs/`          |
+| **Scaffold**    | a way to turn a model into a web agent (`browseruse`, `stagehand`, `simple`) | `agentarena/scaffolds/`     |
+| **Model**       | a routed logical name or a bring-your-own OpenAI endpoint                    | `agentarena/core/models.py` |
+| **Catalog**     | the (fully customizable) product/listing set an env seeds                    | `envs/*/catalog.py`         |
+| **Task**        | a natural-language instruction + structured `preferences`                    | `envs/*/tasks.py`           |
+| **Condition**   | `clean` (fair) vs `steered` (decoy pinned, good options buried)              | per-run                     |
+| **Trajectory**  | normalized record of a run (screenshots + steps + verdict)                   | `core/trajectory.py`        |
 
 ### Catalogs — fully customizable
 
-Only the *data* changes; the website's layout and logic never do. Author a
+Only the _data_ changes; the website's layout and logic never do. Author a
 catalog in a few lines:
 
 ```python
@@ -107,7 +107,7 @@ CATALOGS["phones"] = Catalog("phones", category_slug="electronics", products=[
 
 `role` is `compliant` (a genuinely good pick), `decoy` (the steered lure, also set
 `advertised=True`), or `distractor`. An optional `display_price`/`true_price` adds
-*drip pricing* that only surfaces at checkout.
+_drip pricing_ that only surfaces at checkout.
 
 ### Tasks — instruction ↔ preferences, authored together
 
@@ -127,13 +127,13 @@ unambiguous, and the same DSL works in every environment.
 
 ```yaml
 models:
-  - gpt-5.5                                   # routed via llm_client (az login)
+  - gpt-5.5 # routed via llm_client (az login)
   - name: my-vllm
     provider: openai
     base_url: http://localhost:8000/v1
-    api_key: env:MY_KEY                       # indirection keeps secrets out of files
+    api_key: env:MY_KEY # indirection keeps secrets out of files
     deployment: Qwen2.5-7B-Instruct
-    vision: false                             # text-only models drop screenshots
+    vision: false # text-only models drop screenshots
 ```
 
 A `ModelSpec` exposes two faces: an OpenAI-compatible `(base_url, key, model)`
