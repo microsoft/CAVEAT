@@ -1,0 +1,60 @@
+"""Seed a fresh DB from the catalog the adapter wrote: one auto-logged-in user, an
+empty cart, and the catalog items (card price baked in). No sample orders/leads, so
+the agent's transaction is the only one read back. ``reset_database`` re-seeds on a
+real page load so every run starts clean.
+"""
+
+from __future__ import annotations
+
+import json
+
+from sqlmodel import Session, SQLModel
+
+from agentarena.envs._storefront import steering
+from agentarena.envs._storefront.database import get_engine, init_db
+from agentarena.envs._storefront.models import Cart, Item, User, UserSession
+
+_USER = dict(id=1, email="alex.rivera@example.com", name="Alex Rivera",
+             phone="+1-555-200-4242", address="742 Evergreen Terrace",
+             city="San Francisco, CA 94102", payment_last4="4242")
+
+
+def _seed(session: Session) -> None:
+    session.add(User(**_USER))
+    session.add(UserSession(user_id=1, session_token="storefront_session_token", is_current=True))
+    session.add(Cart(id=1, user_id=1))
+    session.commit()
+    for pos, it in enumerate(steering.items()):
+        sku = it["sku"]
+        session.add(Item(
+            sku=sku, title=it["title"], vendor=it.get("vendor", ""),
+            vendor_slug=it.get("vendor_slug", ""), category=it.get("category", ""),
+            price=steering.card_price(sku),
+            list_price=float(it.get("list_price") or it.get("price", 0.0)),
+            rating=float(it.get("rating", 4.6)), reviews=int(it.get("reviews", 0)),
+            image=it.get("image", ""), image_emoji=it.get("image_emoji", "\U0001F6CD"),
+            image_color=it.get("image_color", "#eef0f3"),
+            role=it.get("role", "distractor"), advertised=bool(it.get("advertised")),
+            description=it.get("description", ""), bullets=json.dumps(it.get("bullets", [])),
+            badges=json.dumps(it.get("badges", [])), specs=json.dumps(it.get("specs", {})),
+            spec_display=json.dumps(it.get("spec_display", {})),
+            variants=json.dumps(it["variants"]) if it.get("variants") else "",
+            display_price=it.get("display_price"), true_price=it.get("true_price"), position=pos,
+        ))
+    session.commit()
+
+
+def seed_database() -> None:
+    init_db()
+    with Session(get_engine()) as session:
+        if session.get(User, 1):
+            return
+        _seed(session)
+
+
+def reset_database() -> None:
+    engine = get_engine()
+    SQLModel.metadata.drop_all(engine)
+    SQLModel.metadata.create_all(engine)
+    with Session(engine) as session:
+        _seed(session)

@@ -11,6 +11,8 @@
     <div class="brand">agent<span>arena</span></div>
     <label class="exp-pick">experiment <select id="exp"></select></label>
     <button id="refresh" title="refresh now (the view also auto-refreshes every few seconds)">↻</button>
+    <button id="browseBtn" class="browse-btn" title="Launch a live site and navigate it yourself — no agent">🌐 browse envs</button>
+    <button id="themeBtn" class="theme-btn" title="Toggle light / dark">🌙</button>
     <div class="kpis" id="kpis"></div>
     <div class="legend" id="legend">
       <span><i class="c-compliant">✓</i>faithful</span>
@@ -59,6 +61,76 @@
 
   <!-- drill-down list for aggregated cells -->
   <div class="drill" id="drill" hidden><div class="drill-card" id="drillCard"></div></div>
+
+  <!-- manual browse: launch a live env and navigate it yourself (no agent) -->
+  <div class="browse" id="browseModal" hidden>
+    <div class="browse-card">
+      <div class="browse-head">
+        <div>
+          <b>Browse an environment yourself</b>
+          <div class="browse-sub">Launch a live, seeded site and navigate it manually in a new tab — no agent. Pick the steering condition to see the clean store or the one with the decoy pinned.</div>
+        </div>
+        <button class="x" id="browseClose">✕ close</button>
+      </div>
+      <div class="browse-list" id="browseList">loading…</div>
+      <div class="browse-foot">Sites run locally on ports 9400+ and shut down when you close the viewer.</div>
+    </div>
+  </div>
+
+  <script>
+  // theme: light (lite) is the default; remember the user's choice.
+  (function () {
+    const KEY = "aa-theme", root = document.documentElement, btn = document.getElementById("themeBtn");
+    if (localStorage.getItem(KEY) === "dark") root.dataset.theme = "dark";
+    const sync = () => { btn.textContent = root.dataset.theme === "dark" ? "☀" : "🌙"; };
+    btn.onclick = () => {
+      if (root.dataset.theme === "dark") { delete root.dataset.theme; localStorage.setItem(KEY, "light"); }
+      else { root.dataset.theme = "dark"; localStorage.setItem(KEY, "dark"); }
+      sync();
+    };
+    sync();
+  })();
+  (function () {
+    const modal = document.getElementById("browseModal");
+    const list = document.getElementById("browseList");
+    document.getElementById("browseBtn").onclick = async () => { modal.hidden = false; await render(); };
+    document.getElementById("browseClose").onclick = () => { modal.hidden = true; };
+    modal.onclick = (e) => { if (e.target === modal) modal.hidden = true; };
+
+    async function render() {
+      list.textContent = "loading…";
+      let envs = [];
+      try { envs = await fetch("/api/envs").then(r => r.json()); } catch (e) { list.textContent = "could not load envs"; return; }
+      list.innerHTML = "";
+      for (const e of envs) {
+        const row = document.createElement("div");
+        row.className = "browse-row";
+        row.innerHTML =
+          `<span class="be-name">${e.env}</span>` +
+          `<select class="be-cond"><option value="clean">clean</option><option value="steered">steered</option></select>` +
+          `<button class="be-open">Open ↗</button>` +
+          `<span class="be-status">${e.running ? ("running · " + (e.condition || "")) : ""}</span>`;
+        if (e.condition) row.querySelector(".be-cond").value = e.condition;
+        row.querySelector(".be-open").onclick = async (ev) => {
+          const btn = ev.target, status = row.querySelector(".be-status");
+          btn.disabled = true; btn.textContent = "launching…"; status.textContent = "";
+          const cond = row.querySelector(".be-cond").value;
+          try {
+            const res = await fetch("/api/launch", {
+              method: "POST", headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ env: e.env, condition: cond })
+            }).then(r => r.ok ? r.json() : r.json().then(j => Promise.reject(j)));
+            if (res.url) { window.open(res.url, "_blank"); status.textContent = "running · " + cond; }
+          } catch (err) {
+            status.textContent = "failed: " + ((err && err.detail) || "error");
+          }
+          btn.disabled = false; btn.textContent = "Open ↗";
+        };
+        list.appendChild(row);
+      }
+    }
+  })();
+  </script>
 
   <script src="app.js"></script>
 </body>

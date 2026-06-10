@@ -1,0 +1,165 @@
+.heading{
+    display: flex;
+    background-size: contain;
+    background-repeat: repeat-x;
+    height: 200px;
+}
+
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.heading>span{
+    font-size: 30px;
+    display: inline-block;
+    font-weight: 500;
+    margin-top: 120px;
+    margin-left: 30px;
+}
+
+
+.products>div>div{
+    display: flex;
+    text-align: center;
+    width: 90%;
+    font-size: 15px;
+    margin: auto;
+    justify-content: space-around;
+}
+.products>div>div img{
+    width: 80%;
+    height: 60%;
+}
+.product_categories{
+    margin-top: 30px;
+    width: 80%;
+    display: flex;
+    margin-left: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+.product_categories>span{
+    background: #F6F7F8;
+    margin-right: 10px;
+    font-weight: 500;
+    padding: 1%;
+    border-radius: 25px;
+}
+
+#heading_div{
+    display: flex;
+    justify-content: left;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+#heading_div>div{
+    text-align: left;
+}
+#heading_div>div>p:nth-child(1){
+    font-size: 20px;
+}
+
+
+
+#heading_div img{
+    width: 6%;
+    border-radius: 50%;
+}
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 70%; 
+    height: 500px;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    overflow-y: scroll;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+
+@-webkit-keyframes animatetop {
+    from {top:-100px; opacity:0} 
+    to {top:0; opacity:1}
+  }
+
+@keyframes animatetop {
+    from {top: -100px; opacity: 0}
+    to {top: 0; opacity: 1}
+  }
+
+
+.display_content{
+    font-size: 25px;
+    font-weight: 500;
+}
+
+#cart_btn{
+    border: none;
+    color:white;
+    background: #0AAD0A;
+    padding: 15px 40px;
+    border-radius: 10px;
+}
+
+#qty{
+    width: 100px;
+    height: 40px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+}
+
+.recommended{
+    display: grid;
+    grid-template-columns: repeat(4,20%);
+    grid-gap: 60px;
+    margin-top: 30px;
+}
+
+.recommended button{
+    border: none;
+    color:white;
+    background: #0AAD0A;
+    padding: 5px 30px;
+    border-radius: 10px;
+}
+.recommended img{
+    width: 70%;
+    height: 70%;
+}
+
+

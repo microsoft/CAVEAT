@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instacart — Checkout</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #343538; background: #f6f7f8; }
+        nav { display: flex; align-items: center; padding: 12px 24px; background: #fff; border-bottom: 1px solid #e8e9eb; }
+        nav img { height: 30px; }
+        .wrap { max-width: 720px; margin: 30px auto; padding: 0 16px; }
+        .panel { background: #fff; border: 1px solid #e8e9eb; border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+        h1 { font-size: 24px; }
+        .row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f0f1f2; }
+        .total { display: flex; justify-content: space-between; font-weight: 700; font-size: 18px; padding-top: 12px; }
+        .place { width: 100%; background: #0aad0a; color: #fff; border: none; border-radius: 24px; padding: 16px; font-weight: 700; font-size: 16px; cursor: pointer; }
+        .deliver { color: #72767e; font-size: 14px; }
+        .ok { text-align: center; }
+        .ok .big { font-size: 56px; }
+    </style>
+</head>
+<body>
+    <nav><img src="https://www.instacart.com/image-server/180x36/www.instacart.com/assets/beetstrap/brand/instacart-logo-color%403x-586fdf73b07dc9ca4b2c9a57f85f82c46f35debd4fd1887227b83f68e41d4f87.png" alt="Instacart" /></nav>
+    <div class="wrap" id="wrap"></div>
+
+    <script>
+        const money = (n) => "$" + Number(n).toFixed(2);
+        const cart = JSON.parse(localStorage.getItem("ic_cart") || "[]");
+        const wrap = document.getElementById("wrap");
+
+        function renderCart() {
+            if (!cart.length) { wrap.innerHTML = '<div class="panel">Your cart is empty. <a href="../products.html">Browse groceries</a>.</div>'; return; }
+            const subtotal = cart.reduce((a, i) => a + i.price * i.quantity, 0);
+            wrap.innerHTML = `
+                <h1>Checkout</h1>
+                <div class="panel">
+                    <div class="deliver"><b>Deliver to</b> Alex Rivera · 742 Evergreen Terrace, San Francisco, CA</div>
+                    <div class="deliver" style="margin-top:6px"><b>Pay with</b> Visa ending in 4242</div>
+                </div>
+                <div class="panel">
+                    ${cart.map((i) => `<div class="row"><span>${i.title} × ${i.quantity}</span><span>${money(i.price * i.quantity)}</span></div>`).join("")}
+                    <div class="total"><span>Total</span><span>${money(subtotal)}</span></div>
+                </div>
+                <button class="place" id="place">Place order</button>`;
+            document.getElementById("place").addEventListener("click", placeOrder);
+        }
+
+        async function placeOrder() {
+            const btn = document.getElementById("place"); btn.disabled = true; btn.textContent = "Placing order…";
+            try {
+                const res = await fetch("/api/checkout", { method: "POST", headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ items: cart.map((i) => ({ sku: i.sku, quantity: i.quantity })) }) });
+                const o = await res.json();
+                localStorage.setItem("ic_cart", "[]");
+                wrap.innerHTML = `
+                    <div class="panel ok">
+                        <div class="big">✅</div>
+                        <h1 style="color:#0aad0a">Order placed!</h1>
+                        <p class="deliver">Order ${o.order_number}</p>
+                        <div style="text-align:left;margin-top:12px">
+                            ${(o.items || []).map((i) => `<div class="row"><span>${i.title} × ${i.quantity}</span><span>${money(i.total_price)}</span></div>`).join("")}
+                            <div class="total"><span>Total paid</span><span>${money(o.total)}</span></div>
+                        </div>
+                        <p style="margin-top:16px"><a href="../products.html">Continue shopping</a></p>
+                    </div>`;
+            } catch (e) { btn.disabled = false; btn.textContent = "Place order"; }
+        }
+        renderCart();
+    </script>
+</body>
+</html>

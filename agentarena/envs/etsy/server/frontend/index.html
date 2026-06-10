@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Etsy - Shop for handmade, vintage, custom, and unique gifts</title>
+    <link rel="stylesheet" href="/etsy.css" />
+    <link rel="stylesheet" href="/static/fa4/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet" />
+    <script src="/static/jquery.min.js"></script>
+    <style>
+        /* Real Etsy puts the photo on the left and the price + Add-to-cart on the right,
+           so checkout is visible without scrolling past a full-viewport image. */
+        .product-show { display:flex; flex-wrap:wrap; gap:36px; align-items:flex-start;
+            max-width:1120px; margin:24px auto; }
+        .product-show .carousel { flex:1 1 520px; max-width:560px; }
+        .product-show .carousel img { max-height:540px; width:100%; object-fit:contain;
+            background:#f7f5f2; border-radius:8px; }
+        .product-show .product-info { flex:1 1 360px; min-width:320px; }
+    </style>
+    <script>
+        // auto-logged-in user (mirrors the Rails root view's window.currentUser injection)
+        window.currentUser = { "id": 1, "fname": "Alex", "gender": "", "city": "San Francisco", "about": "", "birthday": "" };
+    </script>
+</head>
+<body>
+    <main id="root"></main>
+    <script src="/bundle.js"></script>
+</body>
+</html>

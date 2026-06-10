@@ -10,10 +10,42 @@ API
 
 from __future__ import annotations
 
-import json
+import atexit
+import importlib
+import tempfile
+import threading
 from pathlib import Path
 
+import json
+
 STATIC = Path(__file__).resolve().parent / "static"
+
+# --- manual "browse" mode: live env servers the user drives themselves (no agent) --- #
+BROWSE_ENVS = ["amazon", "airbnb", "doordash", "ebay", "etsy", "fiverr",
+               "instacart", "nike", "stockx", "zillow"]
+_BROWSE_PORT_BASE = 9400
+_live: dict[str, dict] = {}            # env -> {handle, url, condition}
+_live_lock = threading.Lock()
+
+
+def _alive(rec: dict) -> bool:
+    try:
+        return rec["handle"].proc.poll() is None
+    except Exception:
+        return False
+
+
+def _stop_all() -> None:
+    with _live_lock:
+        for rec in list(_live.values()):
+            try:
+                rec["handle"].stop()
+            except Exception:
+                pass
+        _live.clear()
+
+
+atexit.register(_stop_all)
 
 
 def _cells(exp_dir: Path) -> list[dict]:
@@ -93,6 +125,66 @@ def create_app(results_dir: str | Path):
         if not f.exists():
             raise HTTPException(404)
         return FileResponse(f, media_type="image/png")
+
+    # ---- manual browse: launch a live env to navigate by hand (no agent) ------ #
+    @app.get("/api/envs")
+    def browse_envs():
+        import agentarena.envs  # noqa: F401  (registers environments)
+        from agentarena.core.environment import ENVIRONMENTS
+        avail = set(ENVIRONMENTS.names())
+        with _live_lock:
+            return [{"env": e, "running": (e in _live and _alive(_live[e])),
+                     "url": _live.get(e, {}).get("url"),
+                     "condition": _live.get(e, {}).get("condition")}
+                    for e in BROWSE_ENVS if e in avail]
+
+    @app.post("/api/launch")
+    def browse_launch(body: dict):
+        import agentarena.envs  # noqa: F401
+        from dataclasses import replace
+
+        from agentarena.core.environment import ENVIRONMENTS
+        name = (body or {}).get("env")
+        condition = (body or {}).get("condition", "clean")
+        if name not in BROWSE_ENVS:
+            raise HTTPException(400, "unknown env")
+        with _live_lock:
+            cur = _live.get(name)
+            if cur and _alive(cur) and cur["condition"] == condition:
+                return {"env": name, "url": cur["url"], "condition": condition, "reused": True}
+            if cur:
+                try:
+                    cur["handle"].stop()
+                except Exception:
+                    pass
+                _live.pop(name, None)
+            try:
+                mod = importlib.import_module(f"agentarena.envs.{name}")
+                task = replace(mod.TASKS[0], condition=condition)
+                env = ENVIRONMENTS.create(name)
+                port = _BROWSE_PORT_BASE + BROWSE_ENVS.index(name)
+                handle = env.start(port, task, work_dir=Path(tempfile.mkdtemp(prefix=f"browse_{name}_")))
+            except Exception as e:  # noqa: BLE001
+                raise HTTPException(500, f"failed to launch {name}: {e}")
+            url = env.start_url(handle.port, task)
+            _live[name] = {"handle": handle, "url": url, "condition": condition}
+            return {"env": name, "url": url, "condition": condition, "reused": False}
+
+    @app.post("/api/stop")
+    def browse_stop(body: dict):
+        name = (body or {}).get("env")
+        with _live_lock:
+            cur = _live.pop(name, None)
+        if cur:
+            try:
+                cur["handle"].stop()
+            except Exception:
+                pass
+        return {"env": name, "stopped": bool(cur)}
+
+    @app.on_event("shutdown")
+    def _on_shutdown():
+        _stop_all()
 
     app.mount("/", StaticFiles(directory=str(STATIC), html=True), name="static")
     return app

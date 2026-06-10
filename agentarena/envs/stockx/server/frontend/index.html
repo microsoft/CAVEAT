@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>StockX - Buy and Sell Sneakers, Streetwear, Collectibles &amp; More</title>
+    <link rel="stylesheet" href="/stockx.css" />
+    <link rel="stylesheet" href="/static/fontawesome/css/all.min.css" />
+    <style>
+        /* --- homepage hero: keep the featured photo inside the banner (the clone used
+           width/height:fit-content, so a real 700px photo overflowed + overlapped the grid) --- */
+        .index-welcome { overflow:hidden; align-items:stretch; }
+        .indexaj1-pic { height:174px; width:auto; max-width:46%; object-fit:cover; align-self:stretch; }
+        /* --- product grid: uniform cards + photos (clone left image height unset) --- */
+        .index-body { height:auto; min-height:560px; padding-bottom:40px; overflow:hidden; }
+        .index-items-img { object-fit:cover; width:100%; height:210px; background:#fafafa; display:block; }
+        .index-one-item-div { border:1px solid #eee; border-radius:6px; overflow:hidden; transition:box-shadow .15s; }
+        .index-one-item-link:hover .index-one-item-div { box-shadow:0 3px 14px rgba(0,0,0,.10); }
+        /* --- detail: show full product photo (don't crop) on the large views --- */
+        .sneaker-show-body-img { background:#fafafa; display:flex; align-items:center; justify-content:center; }
+        .sneaker-show-body-img img { object-fit:contain; max-height:520px; width:100%; }
+        .listingitem-show-img img, .listing-show-left img, .listing-show-product img,
+        .listing-left-part-body img { object-fit:contain; background:#fafafa; max-height:460px; width:100%; }
+        /* listing/buy page: the clone painted the product panel green; StockX is white/clean */
+        .listing-left-part { background-color:#fafafa !important; border-right:1px solid #eee; }
+    </style>
+    <script src="/static/jquery.min.js"></script>
+    <script>
+        // Rails injected these image_url() globals + the logged-in user; we provide them
+        // (logo = clean StockX wordmark; hero tiles = real product photos).
+        window.coplogoURL = "/stockx/ph/StockX";
+        window.coplogowhiteURL = "/stockx/ph/StockX";
+        window.aj6URL = "/stockx/img/SX-JORDAN1";
+        window.indexaj1URL = "/stockx/img/SX-TRAVIS";
+        window.ajhomepageURL = "/stockx/img/SX-JORDAN1";
+        window.adidashomepageURL = "/stockx/img/SX-SAMBA";
+        window.nikehomepageURL = "/stockx/img/SX-DUNK-PANDA";
+        window.yeezyhomepageURL = "/stockx/img/SX-YEEZY350";
+        window.currentUser = { "id": 1, "email": "alex@example.com", "username": "Alex" };
+    </script>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="/bundle.js"></script>
+</body>
+</html>

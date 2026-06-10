@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instacart — Produce</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #343538; background: #fff; }
+        nav { display: flex; align-items: center; gap: 18px; padding: 12px 24px; border-bottom: 1px solid #e8e9eb; position: sticky; top: 0; background: #fff; z-index: 5; }
+        nav img.logo { height: 30px; }
+        nav .search { flex: 1; max-width: 640px; }
+        nav .search input { width: 100%; padding: 11px 16px; border-radius: 22px; border: none; background: #f6f7f8; font-size: 14px; }
+        .cartbtn { margin-left: auto; background: #0aad0a; color: #fff; border: none; border-radius: 22px; padding: 10px 18px; font-weight: 600; cursor: pointer; display: flex; gap: 8px; align-items: center; }
+        .wrap { max-width: 1200px; margin: 0 auto; padding: 24px; }
+        h1 { font-size: 26px; margin: 8px 0 4px; }
+        .sub { color: #72767e; margin-bottom: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+        @media (max-width: 1000px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+        .card { border: 1px solid #e8e9eb; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 6px; }
+        .thumb { height: 120px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 56px; overflow: hidden; }
+        .thumb-img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
+        .badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; width: fit-content; }
+        .badge.org { background: #eafaea; color: #0a7a0a; }
+        .badge.noorg { background: #fdecea; color: #c0392b; }
+        .badge.sp { background: #0aad0a; color: #fff; }
+        .price { font-size: 18px; font-weight: 700; }
+        .name { font-size: 14px; font-weight: 600; line-height: 1.2; }
+        .brand { font-size: 12px; color: #72767e; }
+        .add { margin-top: auto; background: #fff; border: 1px solid #0aad0a; color: #0aad0a; border-radius: 22px; padding: 8px; font-weight: 700; cursor: pointer; }
+        .add:hover { background: #0aad0a; color: #fff; }
+    </style>
+</head>
+<body>
+    <nav>
+        <img class="logo" src="https://www.instacart.com/image-server/180x36/www.instacart.com/assets/beetstrap/brand/instacart-logo-color%403x-586fdf73b07dc9ca4b2c9a57f85f82c46f35debd4fd1887227b83f68e41d4f87.png" alt="Instacart" />
+        <div class="search"><input placeholder="Search Whole Foods Market…" /></div>
+        <button class="cartbtn" id="cartbtn"><i class="fa fa-shopping-cart"></i> Cart (<span id="cartcount">0</span>) — Checkout</button>
+    </nav>
+    <div class="wrap">
+        <h1>Produce — Salad Greens</h1>
+        <div class="sub">Fresh greens delivered in as fast as an hour</div>
+        <div class="grid" id="grid"></div>
+    </div>
+
+    <script>
+        const money = (n) => "$" + Number(n).toFixed(2);
+        function getCart() { return JSON.parse(localStorage.getItem("ic_cart") || "[]"); }
+        function setCart(c) { localStorage.setItem("ic_cart", JSON.stringify(c)); document.getElementById("cartcount").textContent = c.reduce((a, i) => a + i.quantity, 0); }
+        setCart(getCart());
+        document.getElementById("cartbtn").addEventListener("click", () => { window.location.href = "./checkout/checkout.html"; });
+
+        fetch("/api/products").then((r) => r.json()).then(({ products }) => {
+            const grid = document.getElementById("grid");
+            grid.innerHTML = "";
+            (products || []).forEach((p) => {
+                const organic = p.specs && p.specs.organic;
+                const sponsored = (p.badges || []).indexOf("Sponsored") >= 0;
+                const card = document.createElement("div");
+                card.className = "card";
+                card.innerHTML = `
+                    <div class="thumb" style="background:${p.image_color || '#eafaea'}">${p.image ? `<img class="thumb-img" src="${p.image}" alt="${p.title}"/>` : (p.image_emoji || '🥬')}</div>
+                    ${sponsored ? '<span class="badge sp">Sponsored</span>' : ''}
+                    <span class="badge ${organic ? 'org' : 'noorg'}">${organic ? 'USDA Organic' : 'Not organic'}</span>
+                    <div class="price">${money(p.price)}</div>
+                    <div class="name">${p.title}</div>
+                    <div class="brand">${p.vendor} · ${(p.specs && p.specs.size) || ''}</div>
+                    <button class="add">Add to cart</button>`;
+                card.querySelector(".add").addEventListener("click", () => {
+                    const cart = getCart();
+                    const ex = cart.find((i) => i.sku === p.sku);
+                    if (ex) ex.quantity += 1; else cart.push({ sku: p.sku, title: p.title, price: p.price, quantity: 1 });
+                    setCart(cart);
+                    const b = card.querySelector(".add"); b.textContent = "Added ✓"; setTimeout(() => (b.textContent = "Add to cart"), 1000);
+                });
+                grid.append(card);
+            });
+        });
+    </script>
+</body>
+</html>

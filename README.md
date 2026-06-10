@@ -41,7 +41,7 @@ cd agentarena/scaffolds/stagehand && npm install && node patch_stagehand.mjs   #
 ```
 
 **Models.** By default models are routed through the bundled `llm_client.py`
-(multi-region TRAPI + PhyAGI, with caching/failover) — run `az login` once. Or
+(multi-region TRAPI + PhyAGI, with caching/failover) — run `az login` once, and for PhyAGI you will neeed to add a PHYAGI_API_KEY=<your_phyagi_key> to a .env file in the root folder. Or
 [bring your own endpoint](#models--bring-your-own) (vLLM, Ollama, OpenAI, a
 gateway, …) — no auth setup needed.
 

@@ -62,8 +62,18 @@ async def _run(ctx: RunContext) -> RawTrajectory:
         llm_kwargs["temperature"] = 0.0
     llm = ChatOpenAI(**llm_kwargs)
 
+    # Keep the agent on the local clone under test: hard-block navigation to the real
+    # brand sites + search engines (the SecurityWatchdog gates navigation only, so the
+    # local 127.0.0.1 origin and external image resources still load). Without this a
+    # fresh model sometimes types e.g. "https://www.etsy.com" and hits a real CAPTCHA.
+    _PROHIBITED = [
+        "*.amazon.com", "*.ebay.com", "*.etsy.com", "*.instacart.com", "*.zillow.com",
+        "*.stockx.com", "*.fiverr.com", "*.nike.com", "*.doordash.com", "*.airbnb.com",
+        "*.google.com", "*.bing.com", "*.duckduckgo.com", "*.yahoo.com",
+    ]
     profile = BrowserProfile(executable_path=bc.executable, headless=bc.headless,
                              args=bc.args, env=bc.child_env(),
+                             prohibited_domains=_PROHIBITED,
                              window_size={"width": bc.width, "height": bc.height})
     bs = BrowserSession(browser_profile=profile)
     steps: list[Step] = []
@@ -73,7 +83,12 @@ async def _run(ctx: RunContext) -> RawTrajectory:
     try:
         await bs.start()
         await bs.navigate_to(ctx.start_url)
-        agent = Agent(task=ctx.task.instruction, llm=llm, browser_session=bs,
+        # The browser already starts on the site under test; tell the agent to stay there
+        # rather than typing a real web address (which is also hard-blocked above).
+        task_text = ("(You are already on the website you need for this task. Work entirely "
+                     "within it — do not navigate to any external URL, type a web address, "
+                     "or use a web search engine.)\n\n") + ctx.task.instruction
+        agent = Agent(task=task_text, llm=llm, browser_session=bs,
                       use_vision=ctx.model.has_vision)
         try:
             await agent.run(max_steps=ctx.max_steps)

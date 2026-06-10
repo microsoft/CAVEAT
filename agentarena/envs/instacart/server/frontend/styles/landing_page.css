@@ -1,0 +1,483 @@
+.categories{
+    display: flex;
+    margin-top: 30px;
+    margin-left: 30px;
+    justify-content: space-between;
+    width: 80%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    font-weight: 400;
+}
+.categories img{
+    height: 70px;
+    width: 70px;
+}
+
+
+/* Dhruv's work from here */
+
+#slide{
+    width: 97%;
+    height: 250px;
+    margin: 3% auto;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+#slide img{
+    border-radius: 10px;
+}
+#slot1{
+    width: 95%;
+    display: grid;
+    margin: auto;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 150px;
+    grid-gap: 30px;
+}
+#slot2{
+    width: 95%;
+    display: grid;
+    margin: auto;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 150px;
+    grid-gap: 30px;
+}
+#slot3{
+    width: 95%;
+    display: grid;
+    margin: auto;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 150px;
+    grid-gap: 30px;
+}
+#slot4{
+    width: 95%;
+    display: grid;
+    margin: auto;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 150px;
+    grid-gap: 30px;
+}
+#slot5{
+    width: 95%;
+    display: grid;
+    margin: auto;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 150px;
+    grid-gap: 30px;
+}
+#slot6{
+    width: 95%;
+    display: grid;
+    margin: auto;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 150px;
+    grid-gap: 30px;
+}
+#slot7{
+    width: 95%;
+    display: grid;
+    margin: auto;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 150px;
+    grid-gap: 30px;
+}
+#slot8{
+    width: 95%;
+    display: grid;
+    margin: auto;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 150px;
+    grid-gap: 30px;
+}
+#slot9{
+    width: 95%;
+    display: grid;
+    margin: auto;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 150px;
+    grid-gap: 30px;
+}
+#slot10{
+    width: 95%;
+    display: grid;
+    margin: auto;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 150px;
+    grid-gap: 30px;
+}
+#slot11{
+    width: 95%;
+    display: grid;
+    margin: auto;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 150px;
+    grid-gap: 30px;
+}
+#slot12{
+    width: 95%;
+    display: grid;
+    margin: auto;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 150px;
+    grid-gap: 30px;
+}
+h2{
+    margin-left: 3%;
+    font-family: Eina, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+#slot1 > div{
+    /* border: 1px solid yellow; */
+    display: flex;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+#slot2 > div{
+    /* border: 1px solid yellow; */
+    display: flex;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+#slot3 > div{
+    /* border: 1px solid yellow; */
+    display: flex;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+#slot4 > div{
+    /* border: 1px solid yellow; */
+    display: flex;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+#slot5 > div{
+    /* border: 1px solid yellow; */
+    display: flex;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+#slot6 > div{
+    /* border: 1px solid yellow; */
+    display: flex;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+#slot7 > div{
+    /* border: 1px solid yellow; */
+    display: flex;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+#slot8 > div{
+    /* border: 1px solid yellow; */
+    display: flex;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+#slot9 > div{
+    /* border: 1px solid yellow; */
+    display: flex;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+#slot10 > div{
+    /* border: 1px solid yellow; */
+    display: flex;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+#slot11 > div{
+    /* border: 1px solid yellow; */
+    display: flex;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+#slot12 > div{
+    /* border: 1px solid yellow; */
+    display: flex;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+/*  */
+#slot1 > div:hover{
+    cursor: pointer;
+}
+#slot2 > div:hover{
+    cursor: pointer;
+}
+#slot3 > div:hover{
+    cursor: pointer;
+}
+#slot4 > div:hover{
+    cursor: pointer;
+}
+#slot5 > div:hover{
+    cursor: pointer;
+}
+#slot6 > div:hover{
+    cursor: pointer;
+}
+#slot7 > div:hover{
+    cursor: pointer;
+}
+#slot8 > div:hover{
+    cursor: pointer;
+}
+#slot9 > div:hover{
+    cursor: pointer;
+}
+#slot10 > div:hover{
+    cursor: pointer;
+}
+#slot11 > div:hover{
+    cursor: pointer;
+}
+#slot12 > div:hover{
+    cursor: pointer;
+}
+/*  */
+#slot1 > div > div{
+    margin-left: 5%;
+    margin-right: 4%;
+}
+#slot2 > div > div{
+    margin-left: 5%;
+    margin-right: 4%;
+}
+#slot3 > div > div{
+    margin-left: 5%;
+    margin-right: 4%;
+}
+#slot4 > div > div{
+    margin-left: 5%;
+    margin-right: 4%;
+}
+#slot5 > div > div{
+    margin-left: 5%;
+    margin-right: 4%;
+}
+#slot6 > div > div{
+    margin-left: 5%;
+    margin-right: 4%;
+}
+#slot7 > div > div{
+    margin-left: 5%;
+    margin-right: 4%;
+}
+#slot8 > div > div{
+    margin-left: 5%;
+    margin-right: 4%;
+}
+#slot9 > div > div{
+    margin-left: 5%;
+    margin-right: 4%;
+}
+#slot10 > div > div{
+    margin-left: 5%;
+    margin-right: 4%;
+}
+#slot11 > div > div{
+    margin-left: 5%;
+    margin-right: 4%;
+}
+#slot12 > div > div{
+    margin-left: 5%;
+    margin-right: 4%;
+}
+/*  */
+#slot1 p{
+    color: #0aad0a;
+    font-family: Eina, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin-top: 0px;
+    margin-left: 5%;
+}
+#slot2 p{
+    color: #0aad0a;
+    font-family: Eina, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin-top: 0px;
+    margin-left: 5%;
+}
+#slot3 p{
+    color: #0aad0a;
+    font-family: Eina, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin-top: 0px;
+    margin-left: 5%;
+}
+#slot4 p{
+    color: #0aad0a;
+    font-family: Eina, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin-top: 0px;
+    margin-left: 5%;
+}
+#slot5 p{
+    color: #0aad0a;
+    font-family: Eina, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin-top: 0px;
+    margin-left: 5%;
+}
+#slot6 p{
+    color: #0aad0a;
+    font-family: Eina, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin-top: 0px;
+    margin-left: 5%;
+}
+#slot7 p{
+    color: #0aad0a;
+    font-family: Eina, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin-top: 0px;
+    margin-left: 5%;
+}
+#slot8 p{
+    color: #0aad0a;
+    font-family: Eina, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin-top: 0px;
+    margin-left: 5%;
+}
+#slot9 p{
+    color: #0aad0a;
+    font-family: Eina, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin-top: 0px;
+    margin-left: 5%;
+}
+#slot10 p{
+    color: #0aad0a;
+    font-family: Eina, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin-top: 0px;
+    margin-left: 5%;
+}
+#slot11 p{
+    color: #0aad0a;
+    font-family: Eina, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin-top: 0px;
+    margin-left: 5%;
+}
+#slot12 p{
+    color: #0aad0a;
+    font-family: Eina, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin-top: 0px;
+    margin-left: 5%;
+}
+#slot1 h2{
+    font-size: 22px;
+    margin-top: 15%;
+    margin-bottom: 5px;
+}
+#slot2 h2{
+    font-size: 22px;
+    margin-top: 15%;
+    margin-bottom: 5px;
+}
+#slot3 h2{
+    font-size: 22px;
+    margin-top: 15%;
+    margin-bottom: 5px;
+}
+#slot4 h2{
+    font-size: 22px;
+    margin-top: 15%;
+    margin-bottom: 5px;
+}
+#slot5 h2{
+    font-size: 22px;
+    margin-top: 15%;
+    margin-bottom: 5px;
+}
+#slot6 h2{
+    font-size: 22px;
+    margin-top: 15%;
+    margin-bottom: 5px;
+}
+#slot7 h2{
+    font-size: 22px;
+    margin-top: 15%;
+    margin-bottom: 5px;
+}
+#slot8 h2{
+    font-size: 22px;
+    margin-top: 15%;
+    margin-bottom: 5px;
+}
+#slot9 h2{
+    font-size: 22px;
+    margin-top: 15%;
+    margin-bottom: 5px;
+}
+#slot10 h2{
+    font-size: 22px;
+    margin-top: 15%;
+    margin-bottom: 5px;
+}
+#slot11 h2{
+    font-size: 22px;
+    margin-top: 15%;
+    margin-bottom: 5px;
+}
+#slot12 h2{
+    font-size: 22px;
+    margin-top: 15%;
+    margin-bottom: 5px;
+}
+#slot1 > div > div > img{
+    margin: 45% 0%;
+    border: 0.5px solid rgb(179, 179, 179);
+    border-radius: 50%;
+}
+#slot3 > div > div > img{
+    margin: 45% 0%;
+    border: 0.5px solid rgb(179, 179, 179);
+    border-radius: 50%;
+}
+#slot2 > div > div > img{
+    margin: 45% 0%;
+    border: 0.5px solid rgb(179, 179, 179);
+    border-radius: 50%;
+}
+#slot4 > div > div > img{
+    margin: 45% 0%;
+    border: 0.5px solid rgb(179, 179, 179);
+    border-radius: 50%;
+}
+#slot5 > div > div > img{
+    margin: 45% 0%;
+    border: 0.5px solid rgb(179, 179, 179);
+    border-radius: 50%;
+}
+#slot6 > div > div > img{
+    margin: 45% 0%;
+    border: 0.5px solid rgb(179, 179, 179);
+    border-radius: 50%;
+}
+#slot7 > div > div > img{
+    margin: 45% 0%;
+    border: 0.5px solid rgb(179, 179, 179);
+    border-radius: 50%;
+}
+#slot8 > div > div > img{
+    margin: 45% 0%;
+    border: 0.5px solid rgb(179, 179, 179);
+    border-radius: 50%;
+}
+#slot9 > div > div > img{
+    margin: 45% 0%;
+    border: 0.5px solid rgb(179, 179, 179);
+    border-radius: 50%;
+}
+#slot10 > div > div > img{
+    margin: 45% 0%;
+    border: 0.5px solid rgb(179, 179, 179);
+    border-radius: 50%;
+}
+#slot11 > div > div > img{
+    margin: 45% 0%;
+    border: 0.5px solid rgb(179, 179, 179);
+    border-radius: 50%;
+}
+#slot12 > div > div > img{
+    margin: 45% 0%;
+    border: 0.5px solid rgb(179, 179, 179);
+    border-radius: 50%;
+}
+#info{
+    width: 50%;
+}

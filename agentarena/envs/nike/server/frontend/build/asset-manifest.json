@@ -1,0 +1,42 @@
+{
+  "files": {
+    "main.css": "/static/css/main.ee4b82aa.css",
+    "main.js": "/static/js/main.55ffceb3.js",
+    "static/media/clip.mp4": "/static/media/clip.f408178c216aef647b73.mp4",
+    "static/media/product10.png": "/static/media/product10.5cf07402a4a3aee66e1d.png",
+    "static/media/product1.png": "/static/media/product1.d2d46288b3f964c06841.png",
+    "static/media/product6.png": "/static/media/product6.13e09cbb4804c9190959.png",
+    "static/media/product8.png": "/static/media/product8.712eea95c502c9cdafa2.png",
+    "static/media/product5.png": "/static/media/product5.7d40cbdf8faccc476e00.png",
+    "static/media/product3.png": "/static/media/product3.cc141b8c1df4a8ca9180.png",
+    "static/media/product11.png": "/static/media/product11.e632016cd8c0a3f073ca.png",
+    "static/media/sneaker.png": "/static/media/sneaker.898a3f472f931263efaa.png",
+    "static/media/product7.png": "/static/media/product7.1cc87ac050a19ea744b2.png",
+    "static/media/product4.png": "/static/media/product4.30bd525967e89d1acf92.png",
+    "static/media/product9.png": "/static/media/product9.be6ae655d7286d1712c0.png",
+    "static/media/product2.png": "/static/media/product2.5f4b6da9e126aac0ec4f.png",
+    "static/media/nike-air-red.png": "/static/media/nike-air-red.30c67f98db94a72aee5b.png",
+    "static/media/hightlightimg.png": "/static/media/hightlightimg.276fe1da9cf510cc437e.png",
+    "static/media/hero.png": "/static/media/hero.595fcef1e71d84640c75.png",
+    "static/media/nike-adapt-bb-smart.png": "/static/media/nike-adapt-bb-smart.3ea6a0215b55e4b50817.png",
+    "static/media/product12.png": "/static/media/product12.2723ee864e6d23664a2b.png",
+    "static/media/nike-adapt-bb.png": "/static/media/nike-adapt-bb.52daf82e7f2d986c15dd.png",
+    "static/media/vcover3.png": "/static/media/vcover3.3cda76a3c0bafdb5b293.png",
+    "static/media/vcover1.png": "/static/media/vcover1.a74d616787a46c7681bf.png",
+    "static/media/emptybag.png": "/static/media/emptybag.cace10dfcc6ced9dfb9b.png",
+    "static/media/vcover2.png": "/static/media/vcover2.93f20b457a6a2a953877.png",
+    "static/media/logo.png": "/static/media/logo.aa3419b8b2c6dda5adad.png",
+    "static/media/instagram.svg": "/static/media/instagram.dcebfd64ac5fde47507d605c0aa14634.svg",
+    "static/media/twitter.svg": "/static/media/twitter.0ba897192d33c49eac3d890b0ef37291.svg",
+    "index.html": "/index.html",
+    "static/media/youtube.svg": "/static/media/youtube.3373e38b831ef22ee49cba59e9aea50c.svg",
+    "static/media/messenger.svg": "/static/media/messenger.caa8584e29cb21f09c8f464ca6c7dab9.svg",
+    "static/media/facebook.svg": "/static/media/facebook.449a424f959807f71a24bba589c298e5.svg",
+    "main.ee4b82aa.css.map": "/static/css/main.ee4b82aa.css.map",
+    "main.55ffceb3.js.map": "/static/js/main.55ffceb3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ee4b82aa.css",
+    "static/js/main.55ffceb3.js"
+  ]
+}
