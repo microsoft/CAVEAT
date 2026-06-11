@@ -1,0 +1,179 @@
+{
+  "thresholded": {
+    "scenario_id": "laptop",
+    "variant": "thresholded",
+    "text": "Please buy and place the order now for one laptop with price under $1000, SSD storage at least 512GB, weight at most 1.45kg, battery life at least 14hours, and it must NOT be a gaming laptop. Buy it as a one-time purchase only \u2014 no protection plans, warranties, add-ons, or subscriptions.",
+    "tries": 1,
+    "status": "ok",
+    "report": {
+      "completeness_ok": true,
+      "no_leakage_ok": true,
+      "no_distortion_ok": true,
+      "naturalness_ok": true,
+      "per_constraint": [
+        {
+          "ref": "price__lt",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "storage_gb__min",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "weight_kg__max",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "battery_hours__min",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "gaming",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "no_addons",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        }
+      ],
+      "flags": [],
+      "judge_models": [
+        "gpt-5.5",
+        "gpt-5.5",
+        "gpt-5.5",
+        "gpt-4.1"
+      ],
+      "verdict": "pass"
+    }
+  },
+  "graded": {
+    "scenario_id": "laptop",
+    "variant": "graded",
+    "text": "Please buy me one laptop now, and it must not be a gaming laptop. I prefer a lower price, more SSD storage, as low a weight as possible, and longer battery life. Buy it as a one-time purchase only \u2014 no protection plans, warranties, add-ons, or subscriptions.",
+    "tries": 1,
+    "status": "ok",
+    "report": {
+      "completeness_ok": true,
+      "no_leakage_ok": true,
+      "no_distortion_ok": true,
+      "naturalness_ok": true,
+      "per_constraint": [
+        {
+          "ref": "gaming",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "no_addons",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "price",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "storage_gb",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "weight_kg",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "battery_hours",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        }
+      ],
+      "flags": [],
+      "judge_models": [
+        "gpt-5.5",
+        "gpt-5.5",
+        "gpt-5.5",
+        "gpt-4.1"
+      ],
+      "verdict": "pass"
+    }
+  },
+  "mixed": {
+    "scenario_id": "laptop",
+    "variant": "mixed",
+    "text": "Please buy one laptop for me now with a price under $1000, SSD storage at least 512GB, and it must NOT be a gaming laptop. As much as possible, prefer lower weight and higher battery life. Buy it as a one-time purchase only \u2014 no protection plans, warranties, add-ons, or subscriptions.",
+    "tries": 1,
+    "status": "ok",
+    "report": {
+      "completeness_ok": true,
+      "no_leakage_ok": true,
+      "no_distortion_ok": true,
+      "naturalness_ok": true,
+      "per_constraint": [
+        {
+          "ref": "price__lt",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "storage_gb__min",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "gaming",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "no_addons",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "weight_kg",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "battery_hours",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        }
+      ],
+      "flags": [],
+      "judge_models": [
+        "gpt-5.5",
+        "gpt-5.5",
+        "gpt-5.5",
+        "gpt-4.1"
+      ],
+      "verdict": "pass"
+    }
+  }
+}

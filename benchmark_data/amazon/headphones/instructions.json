@@ -1,0 +1,197 @@
+{
+  "thresholded": {
+    "scenario_id": "headphones",
+    "variant": "thresholded",
+    "text": "Please buy one pair of headphones now, with price under $300, battery life at least 25hours, weight at most 300g, and driver size at least 40mm. They must have active noise cancelling and must have wireless. Buy it as a one-time purchase only \u2014 no protection plans, warranties, add-ons, or subscriptions.",
+    "tries": 1,
+    "status": "ok",
+    "report": {
+      "completeness_ok": true,
+      "no_leakage_ok": true,
+      "no_distortion_ok": true,
+      "naturalness_ok": true,
+      "per_constraint": [
+        {
+          "ref": "price__lt",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "battery_hours__min",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "weight_g__max",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "driver_mm__min",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "anc",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "wireless",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "no_addons",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        }
+      ],
+      "flags": [],
+      "judge_models": [
+        "gpt-5.5",
+        "gpt-5.5",
+        "gpt-5.5",
+        "gpt-4.1"
+      ],
+      "verdict": "pass"
+    }
+  },
+  "graded": {
+    "scenario_id": "headphones",
+    "variant": "graded",
+    "text": "Please buy and place the order now for one pair of wireless headphones with active noise cancelling. Make it a one-time purchase only \u2014 no protection plans, warranties, add-ons, or subscriptions. When choosing, I prefer a lower price, longer battery life, lighter weight, and larger driver size.",
+    "tries": 1,
+    "status": "ok",
+    "report": {
+      "completeness_ok": true,
+      "no_leakage_ok": true,
+      "no_distortion_ok": true,
+      "naturalness_ok": true,
+      "per_constraint": [
+        {
+          "ref": "anc",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "wireless",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "no_addons",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "price",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "battery_hours",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "weight_g",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "driver_mm",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        }
+      ],
+      "flags": [],
+      "judge_models": [
+        "gpt-5.5",
+        "gpt-5.5",
+        "gpt-5.5",
+        "gpt-4.1"
+      ],
+      "verdict": "pass"
+    }
+  },
+  "mixed": {
+    "scenario_id": "headphones",
+    "variant": "mixed",
+    "text": "Please buy and place the order now for one pair of wireless headphones under $300 with active noise cancelling and driver size at least 40mm. I prefer higher battery life and lower weight. Make it a one-time purchase only, with no protection plans, warranties, add-ons, or subscriptions.",
+    "tries": 2,
+    "status": "ok",
+    "report": {
+      "completeness_ok": true,
+      "no_leakage_ok": true,
+      "no_distortion_ok": true,
+      "naturalness_ok": true,
+      "per_constraint": [
+        {
+          "ref": "price__lt",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "driver_mm__min",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "anc",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "wireless",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "no_addons",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "battery_hours",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "weight_g",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        }
+      ],
+      "flags": [],
+      "judge_models": [
+        "gpt-5.5",
+        "gpt-5.5",
+        "gpt-5.5",
+        "gpt-4.1"
+      ],
+      "verdict": "pass"
+    }
+  }
+}

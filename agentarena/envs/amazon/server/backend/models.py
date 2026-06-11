@@ -244,6 +244,7 @@ class CartItem(SQLModel, table=True):
     is_gift: bool = False
     gift_message: Optional[str] = None
     saved_for_later: bool = False
+    selected: bool = True          # cart checkbox: only selected items are ordered
     added_at: datetime = Field(default_factory=datetime.utcnow)
 
 
@@ -268,6 +269,7 @@ class Order(SQLModel, table=True):
     shipping_cost: float = 0.0
     tax: float = 0.0
     discount: float = 0.0
+    service_fee: float = 0.0       # mandatory drip fee, disclosed at checkout (steered)
     total: float
     currency: str = "USD"
 

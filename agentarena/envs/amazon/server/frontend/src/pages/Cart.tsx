@@ -47,6 +47,15 @@ export function Cart({ cart, onCartUpdate }: CartProps) {
     }
   };
 
+  const handleSelectChange = async (itemId: number, selected: boolean) => {
+    try {
+      await api.updateCartItem(itemId, undefined, undefined, selected);
+      onCartUpdate();
+    } catch (error) {
+      console.error('Failed to update selection:', error);
+    }
+  };
+
   const handleRemove = async (itemId: number) => {
     setLoading(itemId);
     try {
@@ -121,8 +130,13 @@ export function Cart({ cart, onCartUpdate }: CartProps) {
                 <div className="space-y-4">
                   {cart.items.map((item) => (
                     <div key={item.id} className="flex gap-4 py-4 border-b">
-                      {/* Checkbox */}
-                      <input type="checkbox" defaultChecked className="mt-2" />
+                      {/* Checkbox — unchecking removes the item from the order */}
+                      <input
+                        type="checkbox"
+                        className="mt-2"
+                        checked={item.selected !== false}
+                        onChange={(e) => handleSelectChange(item.id, e.target.checked)}
+                      />
 
                       {/* Product Image */}
                       <Link to={`/dp/${item.product_asin}`} className="flex-shrink-0">
@@ -278,10 +292,18 @@ export function Cart({ cart, onCartUpdate }: CartProps) {
                   <span>Your order qualifies for FREE Shipping.</span>
                 </div>
 
-                <p className="text-lg mb-4">
+                <p className="text-lg">
                   Subtotal ({cart.item_count} {cart.item_count === 1 ? 'item' : 'items'}):{' '}
                   <span className="font-bold">${cart.subtotal.toFixed(2)}</span>
                 </p>
+                {!!cart.service_fee && cart.service_fee > 0 && (
+                  <p className="text-sm text-[var(--text-secondary)] mb-2">
+                    + {cart.fee_label || 'Service fee'}:{' '}
+                    <span className="font-medium">${cart.service_fee.toFixed(2)}</span>
+                    <span className="block text-xs">Order total before tax: ${(cart.total ?? cart.subtotal).toFixed(2)}</span>
+                  </p>
+                )}
+                <div className="mb-4" />
 
                 <label className="flex items-center gap-2 mb-4 text-sm cursor-pointer">
                   <input

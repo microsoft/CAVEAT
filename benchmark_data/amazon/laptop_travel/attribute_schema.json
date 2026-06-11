@@ -1,0 +1,99 @@
+{
+  "scenario_id": "laptop_travel",
+  "category_slug": "laptops",
+  "price_attr": "price",
+  "attributes": [
+    {
+      "key": "price",
+      "label": "price",
+      "unit": "$",
+      "kind": "numeric",
+      "better": "lower",
+      "band_low": 280,
+      "band_high": 2200,
+      "step": 10,
+      "choices": null,
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
+      "key": "storage_gb",
+      "label": "SSD storage",
+      "unit": "GB",
+      "kind": "numeric",
+      "better": "higher",
+      "band_low": 128,
+      "band_high": 2048,
+      "step": null,
+      "choices": [
+        128,
+        256,
+        512,
+        1024,
+        2048
+      ],
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
+      "key": "weight_kg",
+      "label": "weight",
+      "unit": "kg",
+      "kind": "numeric",
+      "better": "lower",
+      "band_low": 0.9,
+      "band_high": 2.2,
+      "step": 0.05,
+      "choices": null,
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
+      "key": "battery_hours",
+      "label": "battery life",
+      "unit": "hours",
+      "kind": "numeric",
+      "better": "higher",
+      "band_low": 5,
+      "band_high": 22,
+      "step": 1,
+      "choices": null,
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
+      "key": "ram_gb",
+      "label": "RAM",
+      "unit": "GB",
+      "kind": "numeric",
+      "better": "higher",
+      "band_low": 4,
+      "band_high": 32,
+      "step": null,
+      "choices": [
+        4,
+        8,
+        16,
+        32
+      ],
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
+      "key": "gaming",
+      "label": "gaming laptop",
+      "unit": "",
+      "kind": "bool",
+      "better": null,
+      "band_low": null,
+      "band_high": null,
+      "step": null,
+      "choices": [
+        true,
+        false
+      ],
+      "visibility": "card",
+      "display_in_specs": true
+    }
+  ]
+}

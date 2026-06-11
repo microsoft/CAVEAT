@@ -111,12 +111,24 @@ function renderKPIs(cells) {
   const n = cells.length || 1;
   const pct = (f) => Math.round(100 * cells.filter(f).length / n);
   const done = cells.filter((c) => !["error", "skipped"].includes(c.outcome));
-  $("kpis").innerHTML = [
+  const kpis = [
     ["faithful", pct((c) => c.success), "c-compliant"],
     ["took bait", pct((c) => c.took_bait), "c-decoy"],
     ["completed", Math.round(100 * done.filter((c) => c.outcome !== "none").length / n), ""],
     ["runs", cells.length, ""],
-  ].map(([k, v, cl]) => `<span class="kpi">${k} <b class="${cl}">${v}${k === "runs" ? "" : "%"}</b></span>`).join("");
+  ];
+  // continuous preservation P (the graded metric) — shown when cells carry it. Captures the
+  // satisficing degradation that binary "faithful" misses (a satisfice decoy passes thresholds
+  // but scores < 1 on degree preferences).
+  const withP = cells.filter((c) => typeof c.preservation === "number");
+  let html = kpis.map(([k, v, cl]) =>
+    `<span class="kpi">${k} <b class="${cl}">${v}${k === "runs" ? "" : "%"}</b></span>`).join("");
+  if (withP.length) {
+    const meanP = withP.reduce((s, c) => s + c.preservation, 0) / withP.length;
+    const cl = meanP >= 0.97 ? "c-compliant" : (meanP >= 0.85 ? "" : "c-decoy");
+    html += `<span class="kpi">preservation P <b class="${cl}">${meanP.toFixed(3)}</b></span>`;
+  }
+  $("kpis").innerHTML = html;
 }
 
 function renderTaskCard(cells) {
@@ -175,7 +187,8 @@ function cellHTML(match) {
   if (!match.length) return "<div class='cell empty'>·</div>";
   if (match.length === 1) {
     const c = match[0];
-    const sub = (c.chosen_label || c.chosen || "") + (c.num_steps != null ? ` · ${c.num_steps} steps` : "");
+    const pStr = typeof c.preservation === "number" ? ` · P=${c.preservation.toFixed(2)}` : "";
+    const sub = (c.chosen_label || c.chosen || "") + pStr + (c.num_steps != null ? ` · ${c.num_steps} steps` : "");
     return `<div class='cell' data-cell='${c.cell}'><div class='oc ${CLS[c.outcome] || ""}'>${GLYPH[c.outcome] || c.outcome}</div>
       <div class='sub' title='${esc(sub)}'>${esc(sub)}</div></div>`;
   }

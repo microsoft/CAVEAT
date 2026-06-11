@@ -1,0 +1,143 @@
+{
+  "thresholded": {
+    "scenario_id": "laptop_travel",
+    "variant": "thresholded",
+    "text": "Please buy me one laptop now with a price under $1000, SSD storage at least 512GB, and it must NOT be a gaming laptop. Buy it as a one-time purchase only \u2014 no protection plans, warranties, add-ons, or subscriptions.",
+    "tries": 1,
+    "status": "ok",
+    "report": {
+      "completeness_ok": true,
+      "no_leakage_ok": true,
+      "no_distortion_ok": true,
+      "naturalness_ok": true,
+      "per_constraint": [
+        {
+          "ref": "price__lt",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "storage_gb__min",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "gaming",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "no_addons",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        }
+      ],
+      "flags": [],
+      "judge_models": [
+        "gpt-5.5",
+        "gpt-5.5",
+        "gpt-5.5",
+        "gpt-4.1"
+      ],
+      "verdict": "pass"
+    }
+  },
+  "graded": {
+    "scenario_id": "laptop_travel",
+    "variant": "graded",
+    "text": "Please buy one laptop for me now and place the order. Prioritize lower weight\u2014the lighter the better\u2014and higher battery life\u2014the longer the better.",
+    "tries": 1,
+    "status": "ok",
+    "report": {
+      "completeness_ok": true,
+      "no_leakage_ok": true,
+      "no_distortion_ok": true,
+      "naturalness_ok": true,
+      "per_constraint": [
+        {
+          "ref": "weight_kg",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "battery_hours",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        }
+      ],
+      "flags": [],
+      "judge_models": [
+        "gpt-5.5",
+        "gpt-5.5",
+        "gpt-5.5",
+        "gpt-4.1"
+      ],
+      "verdict": "pass"
+    }
+  },
+  "mixed": {
+    "scenario_id": "laptop_travel",
+    "variant": "mixed",
+    "text": "Please buy one laptop for me now, with the price under $1000, SSD storage at least 512GB, and it must not be a gaming laptop. I prefer lower weight and higher battery life. Make it a one-time purchase only with no protection plans, warranties, add-ons, or subscriptions.",
+    "tries": 1,
+    "status": "ok",
+    "report": {
+      "completeness_ok": true,
+      "no_leakage_ok": true,
+      "no_distortion_ok": true,
+      "naturalness_ok": true,
+      "per_constraint": [
+        {
+          "ref": "price__lt",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "storage_gb__min",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "gaming",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "no_addons",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "weight_kg",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "battery_hours",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        }
+      ],
+      "flags": [],
+      "judge_models": [
+        "gpt-5.5",
+        "gpt-5.5",
+        "gpt-5.5",
+        "gpt-4.1"
+      ],
+      "verdict": "pass"
+    }
+  }
+}

@@ -1,0 +1,1467 @@
+[
+  {
+    "asin": "EXP-ROBOTVACUUM-31",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 2400.0,
+      "has_mapping": true,
+      "battery_minutes": 150.0,
+      "noise_db": 64.0,
+      "bin_ml": 460.0
+    },
+    "price": 330.0,
+    "list_price": 372.0,
+    "rating": 4.1,
+    "reviews": 662,
+    "bought": 1169,
+    "stock": 172,
+    "fail_reasons": [
+      "suction_pa__min"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Veyra Lumo Vacuum",
+    "bullets": [
+      "2400 Pa suction",
+      "Smart room mapping included",
+      "150-minute battery runtime",
+      "64 dB noise level",
+      "460 ml dustbin capacity"
+    ],
+    "description": "The Veyra Lumo Vacuum is a robot vacuum with smart room mapping for organized cleaning paths. It provides 2400 Pa suction, runs for up to 150 minutes, and has a 460 ml dustbin with a 64 dB noise level.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-22",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 3200.0,
+      "has_mapping": true,
+      "battery_minutes": 180.0,
+      "noise_db": 62.0,
+      "bin_ml": 612.0
+    },
+    "price": 400.0,
+    "list_price": 475.0,
+    "rating": 4.3,
+    "reviews": 351,
+    "bought": 2137,
+    "stock": 117,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Cobalt 22 Vacuum",
+    "bullets": [
+      "Suction: 3200.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 180.0minutes",
+      "Noise Level: 62.0dB",
+      "Dustbin Capacity: 612.0ml"
+    ],
+    "description": "A robot vacuum with suction: 3200.0pa, smart room mapping, battery runtime: 180.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-36",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 2800.0,
+      "has_mapping": true,
+      "battery_minutes": 110.0,
+      "noise_db": 65.0,
+      "bin_ml": 488.0
+    },
+    "price": 360.0,
+    "list_price": 404.0,
+    "rating": 4.5,
+    "reviews": 502,
+    "bought": 2632,
+    "stock": 55,
+    "fail_reasons": [
+      "battery_minutes__min"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Aether 36 Vacuum",
+    "bullets": [
+      "Suction: 2800.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 110.0minutes",
+      "Noise Level: 65.0dB",
+      "Dustbin Capacity: 488.0ml"
+    ],
+    "description": "A robot vacuum with suction: 2800.0pa, smart room mapping, battery runtime: 110.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-20",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 3300.0,
+      "has_mapping": true,
+      "battery_minutes": 110.0,
+      "noise_db": 61.0,
+      "bin_ml": 322.0
+    },
+    "price": 270.0,
+    "list_price": 287.0,
+    "rating": 4.1,
+    "reviews": 1530,
+    "bought": 3366,
+    "stock": 155,
+    "fail_reasons": [
+      "battery_minutes__min"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Aether 20 Vacuum",
+    "bullets": [
+      "Suction: 3300.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 110.0minutes",
+      "Noise Level: 61.0dB",
+      "Dustbin Capacity: 322.0ml"
+    ],
+    "description": "A robot vacuum with suction: 3300.0pa, smart room mapping, battery runtime: 110.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-33",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 2900.0,
+      "has_mapping": true,
+      "battery_minutes": 140.0,
+      "noise_db": 69.0,
+      "bin_ml": 559.0
+    },
+    "price": 340.0,
+    "list_price": 376.0,
+    "rating": 4.3,
+    "reviews": 1431,
+    "bought": 3785,
+    "stock": 111,
+    "fail_reasons": [
+      "noise_db__max"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Norvik 33 Vacuum",
+    "bullets": [
+      "Suction: 2900.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 140.0minutes",
+      "Noise Level: 69.0dB",
+      "Dustbin Capacity: 559.0ml"
+    ],
+    "description": "A robot vacuum with suction: 2900.0pa, smart room mapping, battery runtime: 140.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-24",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 3100.0,
+      "has_mapping": true,
+      "battery_minutes": 110.0,
+      "noise_db": 62.0,
+      "bin_ml": 592.0
+    },
+    "price": 290.0,
+    "list_price": 345.0,
+    "rating": 3.9,
+    "reviews": 307,
+    "bought": 1665,
+    "stock": 118,
+    "fail_reasons": [
+      "battery_minutes__min"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Toro 24 Vacuum",
+    "bullets": [
+      "Suction: 3100.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 110.0minutes",
+      "Noise Level: 62.0dB",
+      "Dustbin Capacity: 592.0ml"
+    ],
+    "description": "A robot vacuum with suction: 3100.0pa, smart room mapping, battery runtime: 110.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-42",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 2600.0,
+      "has_mapping": true,
+      "battery_minutes": 120.0,
+      "noise_db": 67.0,
+      "bin_ml": 516.0
+    },
+    "price": 400.0,
+    "list_price": 455.0,
+    "rating": 4.4,
+    "reviews": 1802,
+    "bought": 3742,
+    "stock": 82,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Juno 42 Vacuum",
+    "bullets": [
+      "Suction: 2600.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 120.0minutes",
+      "Noise Level: 67.0dB",
+      "Dustbin Capacity: 516.0ml"
+    ],
+    "description": "A robot vacuum with suction: 2600.0pa, smart room mapping, battery runtime: 120.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-17",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "suction_pa": 3300.0,
+      "has_mapping": true,
+      "battery_minutes": 200.0,
+      "noise_db": 61.0,
+      "bin_ml": 411.0
+    },
+    "price": 240.0,
+    "list_price": 253.0,
+    "rating": 4.4,
+    "reviews": 2261,
+    "bought": 3224,
+    "stock": 158,
+    "fail_reasons": [],
+    "decoy_kind": "satisfice",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Norvik 17 Vacuum",
+    "bullets": [
+      "Suction: 3300.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 200.0minutes",
+      "Noise Level: 61.0dB",
+      "Dustbin Capacity: 411.0ml"
+    ],
+    "description": "A robot vacuum with suction: 3300.0pa, smart room mapping, battery runtime: 200.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-10",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 3600.0,
+      "has_mapping": true,
+      "battery_minutes": 220.0,
+      "noise_db": 59.0,
+      "bin_ml": 451.0
+    },
+    "price": 200.0,
+    "list_price": 218.0,
+    "rating": 4.5,
+    "reviews": 3525,
+    "bought": 3471,
+    "stock": 109,
+    "fail_reasons": [],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Juno 10 Vacuum",
+    "bullets": [
+      "Suction: 3600.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 220.0minutes",
+      "Noise Level: 59.0dB",
+      "Dustbin Capacity: 451.0ml"
+    ],
+    "description": "A robot vacuum with suction: 3600.0pa, smart room mapping, battery runtime: 220.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-02",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 3800.0,
+      "has_mapping": true,
+      "battery_minutes": 250.0,
+      "noise_db": 56.0,
+      "bin_ml": 618.0
+    },
+    "price": 150.0,
+    "list_price": 159.0,
+    "rating": 4.6,
+    "reviews": 4270,
+    "bought": 5461,
+    "stock": 68,
+    "fail_reasons": [],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Pomely 02 Vacuum",
+    "bullets": [
+      "Suction: 3800.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 250.0minutes",
+      "Noise Level: 56.0dB",
+      "Dustbin Capacity: 618.0ml"
+    ],
+    "description": "A robot vacuum with suction: 3800.0pa, smart room mapping, battery runtime: 250.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-15",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "suction_pa": 3400.0,
+      "has_mapping": true,
+      "battery_minutes": 210.0,
+      "noise_db": 60.0,
+      "bin_ml": 533.0
+    },
+    "price": 230.0,
+    "list_price": 260.0,
+    "rating": 4.0,
+    "reviews": 2532,
+    "bought": 482,
+    "stock": 138,
+    "fail_reasons": [],
+    "decoy_kind": "satisfice",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Faze 15 Vacuum",
+    "bullets": [
+      "Suction: 3400.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 210.0minutes",
+      "Noise Level: 60.0dB",
+      "Dustbin Capacity: 533.0ml"
+    ],
+    "description": "A robot vacuum with suction: 3400.0pa, smart room mapping, battery runtime: 210.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-19",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 2400.0,
+      "has_mapping": true,
+      "battery_minutes": 190.0,
+      "noise_db": 61.0,
+      "bin_ml": 432.0
+    },
+    "price": 260.0,
+    "list_price": 276.0,
+    "rating": 4.4,
+    "reviews": 2425,
+    "bought": 3580,
+    "stock": 61,
+    "fail_reasons": [
+      "suction_pa__min"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Kestrel 19 Vacuum",
+    "bullets": [
+      "Suction: 2400.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 190.0minutes",
+      "Noise Level: 61.0dB",
+      "Dustbin Capacity: 432.0ml"
+    ],
+    "description": "A robot vacuum with suction: 2400.0pa, smart room mapping, battery runtime: 190.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-30",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 3000.0,
+      "has_mapping": true,
+      "battery_minutes": 150.0,
+      "noise_db": 64.0,
+      "bin_ml": 599.0
+    },
+    "price": 400.0,
+    "list_price": 472.0,
+    "rating": 4.4,
+    "reviews": 1384,
+    "bought": 1964,
+    "stock": 51,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Novaro Miro Vacuum",
+    "bullets": [
+      "3000 Pa suction",
+      "Smart room mapping: yes",
+      "Battery runtime: 150 minutes",
+      "Noise level: 64 dB",
+      "Dustbin capacity: 599 ml"
+    ],
+    "description": "The Novaro Miro Vacuum is a robot vacuum with smart room mapping. Its listed specifications include 3000 Pa suction, 150 minutes of battery runtime, a 64 dB noise level, and a 599 ml dustbin capacity.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-27",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 2400.0,
+      "has_mapping": true,
+      "battery_minutes": 160.0,
+      "noise_db": 63.0,
+      "bin_ml": 637.0
+    },
+    "price": 310.0,
+    "list_price": 344.0,
+    "rating": 4.0,
+    "reviews": 1671,
+    "bought": 797,
+    "stock": 201,
+    "fail_reasons": [
+      "suction_pa__min"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Orla 27 Vacuum",
+    "bullets": [
+      "Suction: 2400.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 160.0minutes",
+      "Noise Level: 63.0dB",
+      "Dustbin Capacity: 637.0ml"
+    ],
+    "description": "A robot vacuum with suction: 2400.0pa, smart room mapping, battery runtime: 160.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-41",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 2700.0,
+      "has_mapping": true,
+      "battery_minutes": 120.0,
+      "noise_db": 69.0,
+      "bin_ml": 383.0
+    },
+    "price": 380.0,
+    "list_price": 441.0,
+    "rating": 3.9,
+    "reviews": 2961,
+    "bought": 3314,
+    "stock": 49,
+    "fail_reasons": [
+      "noise_db__max"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Veyra Kestrel Vacuum",
+    "bullets": [
+      "Suction power: 2700 Pa",
+      "Smart room mapping: yes",
+      "Battery runtime: 120 minutes",
+      "Noise level: 69 dB",
+      "Dustbin capacity: 383 ml"
+    ],
+    "description": "The Veyra Kestrel Vacuum is a robot vacuum with smart room mapping for guided cleaning. It combines measured suction, runtime, noise level, and dustbin capacity as listed in the specifications.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-28",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 3000.0,
+      "has_mapping": true,
+      "battery_minutes": 110.0,
+      "noise_db": 63.0,
+      "bin_ml": 391.0
+    },
+    "price": 310.0,
+    "list_price": 353.0,
+    "rating": 4.4,
+    "reviews": 1627,
+    "bought": 1464,
+    "stock": 74,
+    "fail_reasons": [
+      "battery_minutes__min"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Brixton 28 Vacuum",
+    "bullets": [
+      "Suction: 3000.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 110.0minutes",
+      "Noise Level: 63.0dB",
+      "Dustbin Capacity: 391.0ml"
+    ],
+    "description": "A robot vacuum with suction: 3000.0pa, smart room mapping, battery runtime: 110.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-05",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 3700.0,
+      "has_mapping": true,
+      "battery_minutes": 240.0,
+      "noise_db": 57.0,
+      "bin_ml": 484.0
+    },
+    "price": 180.0,
+    "list_price": 200.0,
+    "rating": 4.6,
+    "reviews": 4798,
+    "bought": 4205,
+    "stock": 164,
+    "fail_reasons": [],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Lumio 05 Vacuum",
+    "bullets": [
+      "Suction: 3700.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 240.0minutes",
+      "Noise Level: 57.0dB",
+      "Dustbin Capacity: 484.0ml"
+    ],
+    "description": "A robot vacuum with suction: 3700.0pa, smart room mapping, battery runtime: 240.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-38",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 2800.0,
+      "has_mapping": true,
+      "battery_minutes": 130.0,
+      "noise_db": 66.0,
+      "bin_ml": 539.0
+    },
+    "price": 400.0,
+    "list_price": 432.0,
+    "rating": 4.0,
+    "reviews": 1434,
+    "bought": 1742,
+    "stock": 191,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Nuvora Elan Vacuum",
+    "bullets": [
+      "Suction power: 2800 Pa",
+      "Smart room mapping: yes",
+      "Battery runtime: 130 minutes",
+      "Noise level: 66 dB",
+      "Dustbin capacity: 539 ml"
+    ],
+    "description": "The Nuvora Elan Vacuum is a robot vacuum with smart room mapping for planned cleaning paths. It combines the stated suction, runtime, noise level, and dustbin capacity in a compact automated cleaning device.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-18",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 3300.0,
+      "has_mapping": true,
+      "battery_minutes": 190.0,
+      "noise_db": 61.0,
+      "bin_ml": 357.0
+    },
+    "price": 400.0,
+    "list_price": 426.0,
+    "rating": 4.5,
+    "reviews": 2025,
+    "bought": 3985,
+    "stock": 216,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Pomely 18 Vacuum",
+    "bullets": [
+      "Suction: 3300.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 190.0minutes",
+      "Noise Level: 61.0dB",
+      "Dustbin Capacity: 357.0ml"
+    ],
+    "description": "A robot vacuum with suction: 3300.0pa, smart room mapping, battery runtime: 190.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-09",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 3500.0,
+      "has_mapping": true,
+      "battery_minutes": 220.0,
+      "noise_db": 59.0,
+      "bin_ml": 665.0
+    },
+    "price": 200.0,
+    "list_price": 224.0,
+    "rating": 4.5,
+    "reviews": 4605,
+    "bought": 5865,
+    "stock": 110,
+    "fail_reasons": [],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Vesper 09 Vacuum",
+    "bullets": [
+      "Suction: 3500.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 220.0minutes",
+      "Noise Level: 59.0dB",
+      "Dustbin Capacity: 665.0ml"
+    ],
+    "description": "A robot vacuum with suction: 3500.0pa, smart room mapping, battery runtime: 220.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-14",
+    "role": "decoy",
+    "advertised": true,
+    "specs": {
+      "suction_pa": 3100.0,
+      "has_mapping": true,
+      "battery_minutes": 170.0,
+      "noise_db": 63.0,
+      "bin_ml": 430.0
+    },
+    "price": 380.0,
+    "list_price": 432.0,
+    "rating": 4.4,
+    "reviews": 2301,
+    "bought": 2106,
+    "stock": 81,
+    "fail_reasons": [
+      "all_in_price>budget"
+    ],
+    "decoy_kind": "cost",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Wisp 14 Vacuum",
+    "bullets": [
+      "Suction: 3100.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 170.0minutes",
+      "Noise Level: 63.0dB",
+      "Dustbin Capacity: 430.0ml"
+    ],
+    "description": "A robot vacuum with suction: 3100.0pa, smart room mapping, battery runtime: 170.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-21",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 3200.0,
+      "has_mapping": true,
+      "battery_minutes": 180.0,
+      "noise_db": 69.0,
+      "bin_ml": 655.0
+    },
+    "price": 270.0,
+    "list_price": 290.0,
+    "rating": 4.3,
+    "reviews": 2311,
+    "bought": 1591,
+    "stock": 76,
+    "fail_reasons": [
+      "noise_db__max"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Epiro Noma Vacuum",
+    "bullets": [
+      "Suction: 3200 Pa.",
+      "Smart room mapping: yes.",
+      "Battery runtime: 180 minutes.",
+      "Noise level: 69 dB.",
+      "Dustbin capacity: 655 ml."
+    ],
+    "description": "The Epiro Noma Vacuum is a robot vacuum for automated floor cleaning. It uses smart room mapping to organize cleaning routes and collects debris in its onboard dustbin.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-16",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "suction_pa": 3400.0,
+      "has_mapping": true,
+      "battery_minutes": 200.0,
+      "noise_db": 61.0,
+      "bin_ml": 505.0
+    },
+    "price": 230.0,
+    "list_price": 258.0,
+    "rating": 4.1,
+    "reviews": 2493,
+    "bought": 2587,
+    "stock": 71,
+    "fail_reasons": [],
+    "decoy_kind": "satisfice",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Veyra Orin Vacuum",
+    "bullets": [
+      "3400 Pa suction",
+      "Smart room mapping included",
+      "200 minutes of battery runtime",
+      "61 dB noise level",
+      "505 ml dustbin capacity"
+    ],
+    "description": "The Veyra Orin Vacuum is a robot vacuum with smart room mapping for organized cleaning routes. It combines 3400 Pa suction, a 200-minute runtime, and a 505 ml dustbin for routine floor cleaning.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-26",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 3100.0,
+      "has_mapping": true,
+      "battery_minutes": 160.0,
+      "noise_db": 63.0,
+      "bin_ml": 489.0
+    },
+    "price": 400.0,
+    "list_price": 451.0,
+    "rating": 4.6,
+    "reviews": 1769,
+    "bought": 1933,
+    "stock": 118,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Juno 26 Vacuum",
+    "bullets": [
+      "Suction: 3100.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 160.0minutes",
+      "Noise Level: 63.0dB",
+      "Dustbin Capacity: 489.0ml"
+    ],
+    "description": "A robot vacuum with suction: 3100.0pa, smart room mapping, battery runtime: 160.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-06",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 3600.0,
+      "has_mapping": true,
+      "battery_minutes": 230.0,
+      "noise_db": 58.0,
+      "bin_ml": 547.0
+    },
+    "price": 180.0,
+    "list_price": 197.0,
+    "rating": 4.5,
+    "reviews": 4489,
+    "bought": 4542,
+    "stock": 100,
+    "fail_reasons": [],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Cobalt 06 Vacuum",
+    "bullets": [
+      "Suction: 3600.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 230.0minutes",
+      "Noise Level: 58.0dB",
+      "Dustbin Capacity: 547.0ml"
+    ],
+    "description": "A robot vacuum with suction: 3600.0pa, smart room mapping, battery runtime: 230.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-37",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 2800.0,
+      "has_mapping": true,
+      "battery_minutes": 130.0,
+      "noise_db": 69.0,
+      "bin_ml": 405.0
+    },
+    "price": 360.0,
+    "list_price": 405.0,
+    "rating": 4.1,
+    "reviews": 1635,
+    "bought": 744,
+    "stock": 183,
+    "fail_reasons": [
+      "noise_db__max"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Exora Maven Vacuum",
+    "bullets": [
+      "Suction rated at 2800 Pa",
+      "Includes smart room mapping",
+      "Battery runtime of 130 minutes",
+      "Noise level rated at 69 dB",
+      "Dustbin capacity of 405 ml"
+    ],
+    "description": "The Exora Maven Vacuum supports smart room mapping for organized cleaning paths. It combines the listed suction, runtime, noise level, and dustbin capacity in a robot vacuum format.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-43",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 2400.0,
+      "has_mapping": true,
+      "battery_minutes": 120.0,
+      "noise_db": 67.0,
+      "bin_ml": 523.0
+    },
+    "price": 390.0,
+    "list_price": 422.0,
+    "rating": 4.0,
+    "reviews": 2078,
+    "bought": 3952,
+    "stock": 89,
+    "fail_reasons": [
+      "suction_pa__min"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Orla 43 Vacuum",
+    "bullets": [
+      "Suction: 2400.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 120.0minutes",
+      "Noise Level: 67.0dB",
+      "Dustbin Capacity: 523.0ml"
+    ],
+    "description": "A robot vacuum with suction: 2400.0pa, smart room mapping, battery runtime: 120.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-11",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 3600.0,
+      "has_mapping": true,
+      "battery_minutes": 220.0,
+      "noise_db": 59.0,
+      "bin_ml": 522.0
+    },
+    "price": 200.0,
+    "list_price": 220.0,
+    "rating": 4.5,
+    "reviews": 4852,
+    "bought": 3428,
+    "stock": 184,
+    "fail_reasons": [],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Orla 11 Vacuum",
+    "bullets": [
+      "Suction: 3600.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 220.0minutes",
+      "Noise Level: 59.0dB",
+      "Dustbin Capacity: 522.0ml"
+    ],
+    "description": "A robot vacuum with suction: 3600.0pa, smart room mapping, battery runtime: 220.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-13",
+    "role": "decoy",
+    "advertised": true,
+    "specs": {
+      "suction_pa": 2600.0,
+      "has_mapping": false,
+      "battery_minutes": 130.0,
+      "noise_db": 67.0,
+      "bin_ml": 606.0
+    },
+    "price": 360.0,
+    "list_price": 400.0,
+    "rating": 4.5,
+    "reviews": 1586,
+    "bought": 1774,
+    "stock": 43,
+    "fail_reasons": [
+      "has_mapping"
+    ],
+    "decoy_kind": "spec",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Calder 13 Vacuum",
+    "bullets": [
+      "Suction: 2600.0Pa",
+      "Battery Runtime: 130.0minutes",
+      "Noise Level: 67.0dB",
+      "Dustbin Capacity: 606.0ml"
+    ],
+    "description": "A robot vacuum with suction: 2600.0pa, battery runtime: 130.0minutes, noise level: 67.0db.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-35",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 2400.0,
+      "has_mapping": true,
+      "battery_minutes": 140.0,
+      "noise_db": 65.0,
+      "bin_ml": 488.0
+    },
+    "price": 350.0,
+    "list_price": 368.0,
+    "rating": 4.5,
+    "reviews": 1609,
+    "bought": 3587,
+    "stock": 73,
+    "fail_reasons": [
+      "suction_pa__min"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Kestrel 35 Vacuum",
+    "bullets": [
+      "Suction: 2400.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 140.0minutes",
+      "Noise Level: 65.0dB",
+      "Dustbin Capacity: 488.0ml"
+    ],
+    "description": "A robot vacuum with suction: 2400.0pa, smart room mapping, battery runtime: 140.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-23",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 2400.0,
+      "has_mapping": true,
+      "battery_minutes": 170.0,
+      "noise_db": 62.0,
+      "bin_ml": 395.0
+    },
+    "price": 290.0,
+    "list_price": 313.0,
+    "rating": 4.4,
+    "reviews": 1416,
+    "bought": 3363,
+    "stock": 41,
+    "fail_reasons": [
+      "suction_pa__min"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Marlo 23 Vacuum",
+    "bullets": [
+      "Suction: 2400.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 170.0minutes",
+      "Noise Level: 62.0dB",
+      "Dustbin Capacity: 395.0ml"
+    ],
+    "description": "A robot vacuum with suction: 2400.0pa, smart room mapping, battery runtime: 170.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-04",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 3700.0,
+      "has_mapping": true,
+      "battery_minutes": 240.0,
+      "noise_db": 57.0,
+      "bin_ml": 538.0
+    },
+    "price": 170.0,
+    "list_price": 185.0,
+    "rating": 4.5,
+    "reviews": 2738,
+    "bought": 5806,
+    "stock": 105,
+    "fail_reasons": [],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Aether 04 Vacuum",
+    "bullets": [
+      "Suction: 3700.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 240.0minutes",
+      "Noise Level: 57.0dB",
+      "Dustbin Capacity: 538.0ml"
+    ],
+    "description": "A robot vacuum with suction: 3700.0pa, smart room mapping, battery runtime: 240.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-01",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 3900.0,
+      "has_mapping": true,
+      "battery_minutes": 260.0,
+      "noise_db": 55.0,
+      "bin_ml": 636.0
+    },
+    "price": 140.0,
+    "list_price": 136.0,
+    "rating": 4.6,
+    "reviews": 4859,
+    "bought": 3183,
+    "stock": 129,
+    "fail_reasons": [],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Norvik 01 Vacuum",
+    "bullets": [
+      "Suction: 3900.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 260.0minutes",
+      "Noise Level: 55.0dB",
+      "Dustbin Capacity: 636.0ml"
+    ],
+    "description": "A robot vacuum with suction: 3900.0pa, smart room mapping, battery runtime: 260.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-29",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 3000.0,
+      "has_mapping": true,
+      "battery_minutes": 160.0,
+      "noise_db": 69.0,
+      "bin_ml": 419.0
+    },
+    "price": 320.0,
+    "list_price": 349.0,
+    "rating": 4.2,
+    "reviews": 2595,
+    "bought": 1530,
+    "stock": 57,
+    "fail_reasons": [
+      "noise_db__max"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Calder 29 Vacuum",
+    "bullets": [
+      "Suction: 3000.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 160.0minutes",
+      "Noise Level: 69.0dB",
+      "Dustbin Capacity: 419.0ml"
+    ],
+    "description": "A robot vacuum with suction: 3000.0pa, smart room mapping, battery runtime: 160.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-08",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 3500.0,
+      "has_mapping": true,
+      "battery_minutes": 220.0,
+      "noise_db": 59.0,
+      "bin_ml": 591.0
+    },
+    "price": 200.0,
+    "list_price": 221.0,
+    "rating": 4.7,
+    "reviews": 4210,
+    "bought": 3141,
+    "stock": 91,
+    "fail_reasons": [],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Toro 08 Vacuum",
+    "bullets": [
+      "Suction: 3500.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 220.0minutes",
+      "Noise Level: 59.0dB",
+      "Dustbin Capacity: 591.0ml"
+    ],
+    "description": "A robot vacuum with suction: 3500.0pa, smart room mapping, battery runtime: 220.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-44",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 3200.0,
+      "has_mapping": true,
+      "battery_minutes": 190.0,
+      "noise_db": 62.0,
+      "bin_ml": 575.0
+    },
+    "price": 710.0,
+    "list_price": 786.0,
+    "rating": 4.3,
+    "reviews": 2251,
+    "bought": 2090,
+    "stock": 34,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Elaro Maven Vacuum",
+    "bullets": [
+      "Suction: 3200 Pa",
+      "Smart room mapping: yes",
+      "Battery runtime: 190 minutes",
+      "Noise level: 62 dB",
+      "Dustbin capacity: 575 ml"
+    ],
+    "description": "The Elaro Maven Vacuum is a robot vacuum with smart room mapping for planned cleaning coverage. It includes a dustbin for collected debris and operates with the listed suction, runtime, and noise specifications.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-03",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 3800.0,
+      "has_mapping": true,
+      "battery_minutes": 250.0,
+      "noise_db": 56.0,
+      "bin_ml": 458.0
+    },
+    "price": 160.0,
+    "list_price": 182.0,
+    "rating": 4.6,
+    "reviews": 4552,
+    "bought": 2047,
+    "stock": 70,
+    "fail_reasons": [],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Kestrel 03 Vacuum",
+    "bullets": [
+      "Suction: 3800.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 250.0minutes",
+      "Noise Level: 56.0dB",
+      "Dustbin Capacity: 458.0ml"
+    ],
+    "description": "A robot vacuum with suction: 3800.0pa, smart room mapping, battery runtime: 250.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-32",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 2900.0,
+      "has_mapping": true,
+      "battery_minutes": 110.0,
+      "noise_db": 64.0,
+      "bin_ml": 422.0
+    },
+    "price": 330.0,
+    "list_price": 358.0,
+    "rating": 4.5,
+    "reviews": 2355,
+    "bought": 3788,
+    "stock": 77,
+    "fail_reasons": [
+      "battery_minutes__min"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Nuvora Elan M32 Vacuum",
+    "bullets": [
+      "2900 Pa suction",
+      "Smart room mapping supported",
+      "110 minutes of battery runtime",
+      "64 dB noise level",
+      "422 ml dustbin capacity"
+    ],
+    "description": "The Nuvora Elan Vacuum provides 2900 Pa suction with smart room mapping for structured cleaning. It runs for up to 110 minutes, operates at 64 dB, and includes a 422 ml dustbin.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-34",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 2900.0,
+      "has_mapping": true,
+      "battery_minutes": 140.0,
+      "noise_db": 65.0,
+      "bin_ml": 491.0
+    },
+    "price": 400.0,
+    "list_price": 427.0,
+    "rating": 4.5,
+    "reviews": 1613,
+    "bought": 2684,
+    "stock": 73,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Pomely 34 Vacuum",
+    "bullets": [
+      "Suction: 2900.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 140.0minutes",
+      "Noise Level: 65.0dB",
+      "Dustbin Capacity: 491.0ml"
+    ],
+    "description": "A robot vacuum with suction: 2900.0pa, smart room mapping, battery runtime: 140.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-39",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 2400.0,
+      "has_mapping": true,
+      "battery_minutes": 130.0,
+      "noise_db": 66.0,
+      "bin_ml": 300.0
+    },
+    "price": 370.0,
+    "list_price": 413.0,
+    "rating": 3.9,
+    "reviews": 1641,
+    "bought": 3461,
+    "stock": 102,
+    "fail_reasons": [
+      "suction_pa__min"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Marlo 39 Vacuum",
+    "bullets": [
+      "Suction: 2400.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 130.0minutes",
+      "Noise Level: 66.0dB",
+      "Dustbin Capacity: 300.0ml"
+    ],
+    "description": "A robot vacuum with suction: 2400.0pa, smart room mapping, battery runtime: 130.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-07",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 3600.0,
+      "has_mapping": true,
+      "battery_minutes": 230.0,
+      "noise_db": 58.0,
+      "bin_ml": 463.0
+    },
+    "price": 190.0,
+    "list_price": 217.0,
+    "rating": 4.6,
+    "reviews": 3378,
+    "bought": 3772,
+    "stock": 101,
+    "fail_reasons": [],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Marlo 07 Vacuum",
+    "bullets": [
+      "Suction: 3600.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 230.0minutes",
+      "Noise Level: 58.0dB",
+      "Dustbin Capacity: 463.0ml"
+    ],
+    "description": "A robot vacuum with suction: 3600.0pa, smart room mapping, battery runtime: 230.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-25",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 3100.0,
+      "has_mapping": true,
+      "battery_minutes": 170.0,
+      "noise_db": 69.0,
+      "bin_ml": 328.0
+    },
+    "price": 300.0,
+    "list_price": 327.0,
+    "rating": 4.3,
+    "reviews": 2996,
+    "bought": 2442,
+    "stock": 69,
+    "fail_reasons": [
+      "noise_db__max"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Vesper 25 Vacuum",
+    "bullets": [
+      "Suction: 3100.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 170.0minutes",
+      "Noise Level: 69.0dB",
+      "Dustbin Capacity: 328.0ml"
+    ],
+    "description": "A robot vacuum with suction: 3100.0pa, smart room mapping, battery runtime: 170.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-12",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 3500.0,
+      "has_mapping": true,
+      "battery_minutes": 220.0,
+      "noise_db": 59.0,
+      "bin_ml": 347.0
+    },
+    "price": 200.0,
+    "list_price": 240.0,
+    "rating": 4.5,
+    "reviews": 4693,
+    "bought": 4373,
+    "stock": 119,
+    "fail_reasons": [],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Brixton 12 Vacuum",
+    "bullets": [
+      "Suction: 3500.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 220.0minutes",
+      "Noise Level: 59.0dB",
+      "Dustbin Capacity: 347.0ml"
+    ],
+    "description": "A robot vacuum with suction: 3500.0pa, smart room mapping, battery runtime: 220.0minutes.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-ROBOTVACUUM-40",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "suction_pa": 2700.0,
+      "has_mapping": true,
+      "battery_minutes": 110.0,
+      "noise_db": 66.0,
+      "bin_ml": 630.0
+    },
+    "price": 380.0,
+    "list_price": 450.0,
+    "rating": 4.2,
+    "reviews": 468,
+    "bought": 2758,
+    "stock": 93,
+    "fail_reasons": [
+      "battery_minutes__min"
+    ],
+    "decoy_kind": "",
+    "image": "home-kitchen.png",
+    "image_tier": "stock",
+    "title": "Toro 40 Vacuum",
+    "bullets": [
+      "Suction: 2700.0Pa",
+      "Smart Room Mapping",
+      "Battery Runtime: 110.0minutes",
+      "Noise Level: 66.0dB",
+      "Dustbin Capacity: 630.0ml"
+    ],
+    "description": "A robot vacuum with suction: 2700.0pa, smart room mapping, battery runtime: 110.0minutes.",
+    "copy_status": "flagged"
+  }
+]

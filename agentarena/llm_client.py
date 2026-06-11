@@ -46,6 +46,7 @@ Smoke test
 from __future__ import annotations
 
 import asyncio
+import base64
 import hashlib
 import json
 import os
@@ -59,7 +60,7 @@ from pathlib import Path
 from typing import Any
 
 from azure.identity import AzureCliCredential, get_bearer_token_provider
-from openai import AsyncOpenAI
+from openai import AsyncOpenAI, BadRequestError
 
 __all__ = ["LLMClient", "ChatResult", "Accounting", "Router",
            "create_client", "create_phyagi_client"]
@@ -270,6 +271,73 @@ def create_phyagi_client(
         extra_body={"session_id": session_id, "strict_session": bool(strict_session)},
     )
     return client, model
+
+
+# --------------------------------------------------------------------------- #
+# Image generation  (Responses API + the built-in `image_generation` tool)
+# --------------------------------------------------------------------------- #
+async def generate_image(
+    prompt: str,
+    *,
+    model: str = "gpt-5.5",
+    image_model: str = "gpt-image-1",
+    size: str = "1024x1024",
+    out_path: str | Path | None = None,
+    client: AsyncOpenAI | None = None,
+    **image_tool_kwargs: Any,
+) -> bytes:
+    """Generate an image over TRAPI and return the decoded image bytes.
+
+    Prefers the OpenAI Responses flow on ``model`` (gpt-5.5 +
+    ``tools=[{"type":"image_generation"}]``, exactly like the upstream snippet). TRAPI's
+    gpt-5.5 deployment does not currently expose that built-in tool (it 400s), so this
+    falls back to TRAPI's dedicated Images API on ``image_model`` (``gpt-image-1``), which
+    works today. When TRAPI enables the tool on gpt-5.5, the Responses path is used
+    automatically. Auth is the same az-cli bearer token as the rest of this module
+    (run ``az login`` first); ``out_path`` optionally also writes the file.
+
+        png = await generate_image(
+            "a gray tabby cat hugging an otter with an orange scarf",
+            out_path="cat_and_otter.png",
+        )
+    """
+    deploy = TRAPI_DEPLOY.get(_logical(model), model)
+    own = client is None
+    if own:
+        client, deploy = create_client(model=deploy)
+    try:
+        # 1) preferred: gpt-5.5 + the built-in image_generation tool (Responses API).
+        try:
+            resp = await client.responses.create(
+                model=deploy,
+                input=prompt,
+                tools=[{"type": "image_generation", "size": size, **image_tool_kwargs}],
+            )
+            b64 = next((o.result for o in resp.output
+                        if o.type == "image_generation_call"), None)
+        except BadRequestError:
+            b64 = None   # tool not enabled on this deployment -> fall back
+
+        # 2) fallback: TRAPI's dedicated Images API (gpt-image-1).
+        if b64 is None:
+            img_deploy = TRAPI_DEPLOY.get(_logical(image_model), image_model)
+            r = await client.images.generate(model=img_deploy, prompt=prompt, size=size)
+            b64 = r.data[0].b64_json
+    finally:
+        if own:
+            await client.close()
+
+    if not b64:
+        raise RuntimeError(f"{model}/{image_model}: no image returned")
+    data = base64.b64decode(b64)
+    if out_path is not None:
+        Path(out_path).write_bytes(data)
+    return data
+
+
+def generate_image_sync(prompt: str, **kwargs: Any) -> bytes:
+    """Blocking convenience wrapper around :func:`generate_image`."""
+    return asyncio.run(generate_image(prompt, **kwargs))
 
 
 # --------------------------------------------------------------------------- #

@@ -49,6 +49,8 @@ export function Checkout({ user }: CheckoutProps) {
   const [shippingCost, setShippingCost] = useState(0);
   const [tax, setTax] = useState(0);
   const [total, setTotal] = useState(0);
+  const [serviceFee, setServiceFee] = useState(0);
+  const [feeLabel, setFeeLabel] = useState<string | null>(null);
 
   useEffect(() => {
     if (!user) {
@@ -71,8 +73,9 @@ export function Checkout({ user }: CheckoutProps) {
         api.getShippingOptions(),
       ]);
 
-      // Get cart items (filter out saved for later) and map to CheckoutItem format
-      const cartItems = (cartRes?.items || []).filter((item: any) => !item.saved_for_later);
+      // Get cart items (only those selected / not saved for later) and map to CheckoutItem
+      const cartItems = (cartRes?.items || []).filter(
+        (item: any) => !item.saved_for_later && item.selected !== false);
       const checkoutItems: CheckoutItem[] = cartItems.map((item: any) => ({
         id: item.id,
         product_id: item.product_id,
@@ -84,16 +87,19 @@ export function Checkout({ user }: CheckoutProps) {
       }));
       setItems(checkoutItems);
 
-      // Calculate subtotal from the mapped checkout items (the cart API returns
-      // `product_price`, which checkoutItems already maps to `unit_price`; the
-      // previous code read item.unit_price/item.product.price off the raw cart
-      // items — neither field exists there — so the subtotal was always $0 until
-      // the payment step fetched /checkout/summary).
-      const calculatedSubtotal = checkoutItems.reduce(
-        (sum: number, item) => sum + (item.unit_price || 0) * item.quantity,
-        0
-      );
-      setSubtotal(calculatedSubtotal);
+      // Pull the authoritative summary now (checkout was started above) so any mandatory
+      // fee is shown as a line item up-front — not revealed only after placing the order.
+      try {
+        const summary = await api.getCheckoutSummary();
+        setSubtotal(summary.subtotal);
+        setServiceFee(summary.service_fee || 0);
+        setFeeLabel(summary.fee_label || null);
+        setShippingCost(summary.shipping_cost);
+        setTax(summary.tax);
+        setTotal(summary.total);
+      } catch {
+        setSubtotal(checkoutItems.reduce((s: number, it) => s + (it.unit_price || 0) * it.quantity, 0));
+      }
 
       setAddresses(addressRes.addresses || []);
       setPaymentMethods(paymentRes.payment_methods || []);
@@ -150,6 +156,8 @@ export function Checkout({ user }: CheckoutProps) {
       // Get final summary
       const summary = await api.getCheckoutSummary();
       setSubtotal(summary.subtotal);
+      setServiceFee(summary.service_fee || 0);
+      setFeeLabel(summary.fee_label || null);
       setShippingCost(summary.shipping_cost);
       setTax(summary.tax);
       setTotal(summary.total);
@@ -497,13 +505,19 @@ export function Checkout({ user }: CheckoutProps) {
                     <span>Items ({items.reduce((sum, i) => sum + i.quantity, 0)}):</span>
                     <span>${subtotal.toFixed(2)}</span>
                   </div>
+                  {serviceFee > 0 && (
+                    <div className="flex justify-between text-[var(--price-color)]">
+                      <span>{feeLabel || 'Service fee'}:</span>
+                      <span>${serviceFee.toFixed(2)}</span>
+                    </div>
+                  )}
                   <div className="flex justify-between">
                     <span>Shipping & handling:</span>
                     <span>${shippingCost.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between border-t pt-2">
                     <span>Total before tax:</span>
-                    <span>${(subtotal + shippingCost).toFixed(2)}</span>
+                    <span>${(subtotal + serviceFee + shippingCost).toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Estimated tax:</span>
@@ -513,7 +527,7 @@ export function Checkout({ user }: CheckoutProps) {
 
                 <div className="flex justify-between font-bold text-lg mt-4 pt-4 border-t text-[var(--price-color)]">
                   <span>Order total:</span>
-                  <span>${(total || (subtotal + shippingCost + tax)).toFixed(2)}</span>
+                  <span>${(total || (subtotal + serviceFee + shippingCost + tax)).toFixed(2)}</span>
                 </div>
               </div>
             </div>

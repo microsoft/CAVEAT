@@ -1,0 +1,179 @@
+{
+  "thresholded": {
+    "scenario_id": "monitor",
+    "variant": "thresholded",
+    "text": "Please buy one monitor for me now with a price under $300, sRGB color coverage at least 95%, brightness at least 300nits, vertical resolution at least 1440p, and panel type must be IPS. Place the order as a one-time purchase only \u2014 no protection plans, warranties, add-ons, or subscriptions.",
+    "tries": 1,
+    "status": "ok",
+    "report": {
+      "completeness_ok": true,
+      "no_leakage_ok": true,
+      "no_distortion_ok": true,
+      "naturalness_ok": true,
+      "per_constraint": [
+        {
+          "ref": "price__lt",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "srgb_pct__min",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "brightness_nits__min",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "resolution_p__min",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "panel",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "no_addons",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        }
+      ],
+      "flags": [],
+      "judge_models": [
+        "gpt-5.5",
+        "gpt-5.5",
+        "gpt-5.5",
+        "gpt-4.1"
+      ],
+      "verdict": "pass"
+    }
+  },
+  "graded": {
+    "scenario_id": "monitor",
+    "variant": "graded",
+    "text": "Please buy and place the order now for one monitor with vertical resolution at least 1440p and an IPS panel. I prefer a lower price, as much sRGB color coverage as possible, and higher brightness. Buy it as a one-time purchase only \u2014 no protection plans, warranties, add-ons, or subscriptions.",
+    "tries": 1,
+    "status": "ok",
+    "report": {
+      "completeness_ok": true,
+      "no_leakage_ok": true,
+      "no_distortion_ok": true,
+      "naturalness_ok": true,
+      "per_constraint": [
+        {
+          "ref": "resolution_p__min",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "panel",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "no_addons",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "price",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "srgb_pct",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "brightness_nits",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        }
+      ],
+      "flags": [],
+      "judge_models": [
+        "gpt-5.5",
+        "gpt-5.5",
+        "gpt-5.5",
+        "gpt-4.1"
+      ],
+      "verdict": "pass"
+    }
+  },
+  "mixed": {
+    "scenario_id": "monitor",
+    "variant": "mixed",
+    "text": "Please buy one monitor for me now with a price under $300, vertical resolution at least 1440p, and an IPS panel. Prefer sRGB color coverage where higher is better, and prefer brightness where higher is better. Make it a one-time purchase only, with no protection plans, warranties, add-ons, or subscriptions.",
+    "tries": 1,
+    "status": "ok",
+    "report": {
+      "completeness_ok": true,
+      "no_leakage_ok": true,
+      "no_distortion_ok": true,
+      "naturalness_ok": true,
+      "per_constraint": [
+        {
+          "ref": "price__lt",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "resolution_p__min",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "panel",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "no_addons",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "srgb_pct",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        },
+        {
+          "ref": "brightness_nits",
+          "present": true,
+          "distorted": false,
+          "note": ""
+        }
+      ],
+      "flags": [],
+      "judge_models": [
+        "gpt-5.5",
+        "gpt-5.5",
+        "gpt-5.5",
+        "gpt-4.1"
+      ],
+      "verdict": "pass"
+    }
+  }
+}

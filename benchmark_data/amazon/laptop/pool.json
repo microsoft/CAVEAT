@@ -1,0 +1,1468 @@
+[
+  {
+    "asin": "EXP-LAPTOP-15",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.15,
+      "battery_hours": 17.0,
+      "ram_gb": 32.0,
+      "gaming": false
+    },
+    "price": 560.0,
+    "list_price": 616.0,
+    "rating": 4.6,
+    "reviews": 1733,
+    "bought": 2234,
+    "stock": 77,
+    "fail_reasons": [],
+    "decoy_kind": "satisfice",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expara Maven Laptop",
+    "bullets": [
+      "SSD storage: 1024.0 GB",
+      "RAM: 32.0 GB",
+      "Weight: 1.15 kg",
+      "Battery life: 17.0 hours",
+      "Gaming laptop: no"
+    ],
+    "description": "The Expara Maven Laptop includes 32.0 GB RAM and 1024.0 GB SSD storage. It weighs 1.15 kg and has a battery life of 17.0 hours. This model is not a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-24",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.25,
+      "battery_hours": 13.0,
+      "ram_gb": 8.0,
+      "gaming": false
+    },
+    "price": 680.0,
+    "list_price": 726.0,
+    "rating": 4.2,
+    "reviews": 2856,
+    "bought": 812,
+    "stock": 190,
+    "fail_reasons": [
+      "battery_hours__min"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expora Venn Laptop",
+    "bullets": [
+      "1024.0 GB SSD storage",
+      "8.0 GB RAM",
+      "1.25 kg weight",
+      "13.0 hours battery life",
+      "Not classified as a gaming laptop"
+    ],
+    "description": "The Expora Venn Laptop includes 1024.0 GB of SSD storage and 8.0 GB of RAM. It weighs 1.25 kg, has 13.0 hours of battery life, and is not classified as a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-19",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 256.0,
+      "weight_kg": 1.2,
+      "battery_hours": 16.0,
+      "ram_gb": 8.0,
+      "gaming": false
+    },
+    "price": 620.0,
+    "list_price": 678.0,
+    "rating": 4.0,
+    "reviews": 324,
+    "bought": 1904,
+    "stock": 77,
+    "fail_reasons": [
+      "storage_gb__min"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Evoxa Meridian Laptop",
+    "bullets": [
+      "256.0 GB SSD storage",
+      "8.0 GB RAM",
+      "1.2 kg weight",
+      "16.0 hours battery life",
+      "Not a gaming laptop"
+    ],
+    "description": "This laptop includes 8.0 GB RAM and 256.0 GB SSD storage. It weighs 1.2 kg and has a battery life of 16.0 hours. It is not classified as a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-40",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 512.0,
+      "weight_kg": 1.4,
+      "battery_hours": 13.0,
+      "ram_gb": 4.0,
+      "gaming": false
+    },
+    "price": 880.0,
+    "list_price": 935.0,
+    "rating": 3.9,
+    "reviews": 721,
+    "bought": 1099,
+    "stock": 155,
+    "fail_reasons": [
+      "battery_hours__min"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Novara Elen Laptop",
+    "bullets": [
+      "512.0 GB SSD storage",
+      "4.0 GB RAM",
+      "Battery life: 13.0 hours",
+      "Weight: 1.4 kg",
+      "Gaming laptop: no"
+    ],
+    "description": "The Novara Elen Laptop is configured with SSD storage, RAM, battery life, and weight as listed. It is not classified as a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-16",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.15,
+      "battery_hours": 17.0,
+      "ram_gb": 4.0,
+      "gaming": false
+    },
+    "price": 600.0,
+    "list_price": 690.0,
+    "rating": 4.5,
+    "reviews": 1330,
+    "bought": 1146,
+    "stock": 140,
+    "fail_reasons": [],
+    "decoy_kind": "satisfice",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Novera Expanse Laptop",
+    "bullets": [
+      "1024.0 GB SSD storage",
+      "4.0 GB RAM",
+      "1.15 kg weight",
+      "17.0 hours battery life",
+      "Gaming laptop: no"
+    ],
+    "description": "This laptop includes SSD storage, basic memory, and a portable weight. It offers long battery life and is not specified as a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-22",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.2,
+      "battery_hours": 16.0,
+      "ram_gb": 4.0,
+      "gaming": false
+    },
+    "price": 1000.0,
+    "list_price": 1124.0,
+    "rating": 4.5,
+    "reviews": 685,
+    "bought": 868,
+    "stock": 91,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expora Vale Laptop",
+    "bullets": [
+      "1024.0 GB SSD storage",
+      "4.0 GB RAM",
+      "1.2 kg weight",
+      "16.0 hours battery life",
+      "Not a gaming laptop"
+    ],
+    "description": "The Expora Vale Laptop is configured with SSD storage, RAM, and battery life for everyday computing needs. Its stated weight supports portable use, and it is not classified as a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-03",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.0,
+      "battery_hours": 18.0,
+      "ram_gb": 32.0,
+      "gaming": false
+    },
+    "price": 380.0,
+    "list_price": 438.0,
+    "rating": 4.7,
+    "reviews": 2073,
+    "bought": 4881,
+    "stock": 111,
+    "fail_reasons": [],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Plume Laptop",
+    "bullets": [
+      "1024.0 GB SSD storage",
+      "32.0 GB RAM",
+      "1.0 kg weight",
+      "18.0 hours battery life",
+      "Not a gaming laptop"
+    ],
+    "description": "The Exora Plume Laptop includes 1024.0 GB SSD storage and 32.0 GB RAM. It weighs 1.0 kg and provides up to 18.0 hours of battery life. This model is not a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-09",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.1,
+      "battery_hours": 18.0,
+      "ram_gb": 32.0,
+      "gaming": false
+    },
+    "price": 510.0,
+    "list_price": 557.0,
+    "rating": 4.7,
+    "reviews": 2811,
+    "bought": 3793,
+    "stock": 165,
+    "fail_reasons": [],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Maven Laptop",
+    "bullets": [
+      "1024.0 GB SSD storage",
+      "32.0 GB RAM",
+      "1.1 kg weight",
+      "18.0 hours battery life",
+      "Gaming laptop: no"
+    ],
+    "description": "The Exora Maven Laptop includes 1024.0 GB SSD storage and 32.0 GB RAM. It weighs 1.1 kg and provides up to 18.0 hours of battery life. This model is not configured as a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-21",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.2,
+      "battery_hours": 16.0,
+      "ram_gb": 8.0,
+      "gaming": true
+    },
+    "price": 640.0,
+    "list_price": 675.0,
+    "rating": 4.5,
+    "reviews": 1816,
+    "bought": 598,
+    "stock": 192,
+    "fail_reasons": [
+      "gaming"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expora Nilo Laptop",
+    "bullets": [
+      "SSD storage: 1024.0 GB",
+      "RAM: 8.0 GB",
+      "Battery life: 16.0 hours",
+      "Weight: 1.2 kg",
+      "Gaming laptop: Yes"
+    ],
+    "description": "This laptop is specified as a gaming laptop with SSD storage and RAM listed in the product details. Its stated battery life and weight are included for reference.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-12",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.1,
+      "battery_hours": 18.0,
+      "ram_gb": 32.0,
+      "gaming": false
+    },
+    "price": 510.0,
+    "list_price": 589.0,
+    "rating": 4.6,
+    "reviews": 4476,
+    "bought": 5592,
+    "stock": 111,
+    "fail_reasons": [],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Maven M12 Laptop",
+    "bullets": [
+      "SSD storage: 1024.0 GB",
+      "RAM: 32.0 GB",
+      "Weight: 1.1 kg",
+      "Battery life: 18.0 hours",
+      "Gaming laptop: no"
+    ],
+    "description": "This laptop is configured with the listed SSD storage, RAM, battery life, and weight. It is a non-gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-05",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.05,
+      "battery_hours": 18.0,
+      "ram_gb": 16.0,
+      "gaming": false
+    },
+    "price": 420.0,
+    "list_price": 453.0,
+    "rating": 4.5,
+    "reviews": 4633,
+    "bought": 2015,
+    "stock": 154,
+    "fail_reasons": [],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Vale Laptop",
+    "bullets": [
+      "1024.0 GB SSD storage",
+      "16.0 GB RAM",
+      "1.05 kg weight",
+      "18.0 hours battery life",
+      "Not a gaming laptop"
+    ],
+    "description": "The Exora Vale Laptop includes 1024.0 GB SSD storage and 16.0 GB RAM. It weighs 1.05 kg and provides up to 18.0 hours of battery life. This model is not a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-35",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 256.0,
+      "weight_kg": 1.35,
+      "battery_hours": 14.0,
+      "ram_gb": 32.0,
+      "gaming": false
+    },
+    "price": 820.0,
+    "list_price": 954.0,
+    "rating": 4.1,
+    "reviews": 1380,
+    "bought": 594,
+    "stock": 146,
+    "fail_reasons": [
+      "storage_gb__min"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Vale M35 Laptop",
+    "bullets": [
+      "256.0 GB SSD storage",
+      "32.0 GB RAM",
+      "1.35 kg weight",
+      "14.0 hours battery life",
+      "Not a gaming laptop"
+    ],
+    "description": "This laptop is configured with SSD storage, high RAM capacity, and a portable weight. It is not designated as a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-18",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.2,
+      "battery_hours": 16.0,
+      "ram_gb": 8.0,
+      "gaming": false
+    },
+    "price": 1000.0,
+    "list_price": 1069.0,
+    "rating": 4.3,
+    "reviews": 2766,
+    "bought": 3142,
+    "stock": 84,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Novexa Orin Laptop",
+    "bullets": [
+      "SSD storage: 1024.0 GB",
+      "RAM: 8.0 GB",
+      "Weight: 1.2 kg",
+      "Battery life: 16.0 hours",
+      "Gaming laptop: no"
+    ],
+    "description": "The Novexa Orin Laptop includes 1024.0 GB of SSD storage and 8.0 GB of RAM. It weighs 1.2 kg and has a battery life of 16.0 hours. This is not a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-17",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.2,
+      "battery_hours": 17.0,
+      "ram_gb": 16.0,
+      "gaming": false
+    },
+    "price": 610.0,
+    "list_price": 686.0,
+    "rating": 4.5,
+    "reviews": 1030,
+    "bought": 3564,
+    "stock": 47,
+    "fail_reasons": [],
+    "decoy_kind": "satisfice",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Vale M17 Laptop",
+    "bullets": [
+      "1024.0 GB SSD storage",
+      "16.0 GB RAM",
+      "1.2 kg weight",
+      "17.0 hours battery life",
+      "Not a gaming laptop"
+    ],
+    "description": "The Exora Vale Laptop includes 1024.0 GB SSD storage and 16.0 GB RAM. It weighs 1.2 kg and has a battery life of 17.0 hours. This model is not a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-42",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 512.0,
+      "weight_kg": 1.4,
+      "battery_hours": 14.0,
+      "ram_gb": 4.0,
+      "gaming": false
+    },
+    "price": 1000.0,
+    "list_price": 1137.0,
+    "rating": 4.3,
+    "reviews": 1263,
+    "bought": 1715,
+    "stock": 148,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expara Vellum Laptop",
+    "bullets": [
+      "512.0 GB SSD storage",
+      "4.0 GB RAM",
+      "1.4 kg weight",
+      "14.0 hours battery life",
+      "Not a gaming laptop"
+    ],
+    "description": "The Expara Vellum Laptop includes SSD storage, RAM, stated battery life, and weight as listed. It is not configured as a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-13",
+    "role": "decoy",
+    "advertised": true,
+    "specs": {
+      "storage_gb": 512.0,
+      "weight_kg": 1.5,
+      "battery_hours": 14.0,
+      "ram_gb": 4.0,
+      "gaming": false
+    },
+    "price": 910.0,
+    "list_price": 1051.0,
+    "rating": 4.3,
+    "reviews": 1126,
+    "bought": 2420,
+    "stock": 118,
+    "fail_reasons": [
+      "weight_kg__max"
+    ],
+    "decoy_kind": "spec",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expara Venn Laptop",
+    "bullets": [
+      "512.0 GB SSD storage",
+      "4.0 GB RAM",
+      "Weighs 1.5 kg",
+      "Battery life of 14.0 hours",
+      "Not a gaming laptop"
+    ],
+    "description": "The Expara Venn Laptop includes 512.0 GB SSD storage and 4.0 GB RAM. It weighs 1.5 kg and has a battery life of 14.0 hours. This model is not a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-23",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 256.0,
+      "weight_kg": 1.25,
+      "battery_hours": 16.0,
+      "ram_gb": 32.0,
+      "gaming": false
+    },
+    "price": 670.0,
+    "list_price": 720.0,
+    "rating": 4.4,
+    "reviews": 1138,
+    "bought": 592,
+    "stock": 55,
+    "fail_reasons": [
+      "storage_gb__min"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expora Vela Laptop",
+    "bullets": [
+      "256.0 GB SSD storage",
+      "32.0 GB RAM",
+      "Battery life up to 16.0 hours",
+      "Weight: 1.25 kg",
+      "Not a gaming laptop"
+    ],
+    "description": "The Expora Vela Laptop includes 256.0 GB SSD storage and 32.0 GB RAM. It weighs 1.25 kg, has up to 16.0 hours of battery life, and is not a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-20",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.2,
+      "battery_hours": 13.0,
+      "ram_gb": 4.0,
+      "gaming": false
+    },
+    "price": 630.0,
+    "list_price": 665.0,
+    "rating": 4.6,
+    "reviews": 209,
+    "bought": 1016,
+    "stock": 80,
+    "fail_reasons": [
+      "battery_hours__min"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Veyra Coda Laptop",
+    "bullets": [
+      "1024.0 GB SSD storage",
+      "4.0 GB RAM",
+      "1.2 kg weight",
+      "13.0 hours battery life",
+      "Gaming laptop: no"
+    ],
+    "description": "The Veyra Coda Laptop includes SSD storage, RAM, battery life, and weight specifications as listed. It is not classified as a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-36",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 512.0,
+      "weight_kg": 1.35,
+      "battery_hours": 13.0,
+      "ram_gb": 32.0,
+      "gaming": false
+    },
+    "price": 830.0,
+    "list_price": 911.0,
+    "rating": 4.1,
+    "reviews": 367,
+    "bought": 3872,
+    "stock": 45,
+    "fail_reasons": [
+      "battery_hours__min"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Plen Laptop",
+    "bullets": [
+      "512.0 GB SSD storage",
+      "32.0 GB RAM",
+      "1.35 kg weight",
+      "13.0 hours battery life",
+      "Not a gaming laptop"
+    ],
+    "description": "The Exora Plen Laptop includes 512.0 GB SSD storage and 32.0 GB RAM. It weighs 1.35 kg, provides up to 13.0 hours of battery life, and is not a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-08",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.1,
+      "battery_hours": 18.0,
+      "ram_gb": 32.0,
+      "gaming": false
+    },
+    "price": 490.0,
+    "list_price": 539.0,
+    "rating": 4.6,
+    "reviews": 2968,
+    "bought": 5020,
+    "stock": 157,
+    "fail_reasons": [],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Veyra Laptop",
+    "bullets": [
+      "1024.0 GB SSD storage",
+      "1.1 kg weight",
+      "18.0 hours battery life",
+      "32.0 GB RAM",
+      "Not a gaming laptop"
+    ],
+    "description": "The Exora Veyra Laptop includes 32.0 GB of RAM and 1024.0 GB of SSD storage. It weighs 1.1 kg, offers 18.0 hours of battery life, and is not classified as a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-34",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 512.0,
+      "weight_kg": 1.35,
+      "battery_hours": 15.0,
+      "ram_gb": 32.0,
+      "gaming": false
+    },
+    "price": 1000.0,
+    "list_price": 1134.0,
+    "rating": 4.4,
+    "reviews": 1051,
+    "bought": 1714,
+    "stock": 41,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Glide Laptop",
+    "bullets": [
+      "512.0 GB SSD storage",
+      "32.0 GB RAM",
+      "1.35 kg weight",
+      "15.0 hours battery life",
+      "Not a gaming laptop"
+    ],
+    "description": "The Exora Glide Laptop includes 512.0 GB SSD storage and 32.0 GB RAM. It weighs 1.35 kg and provides up to 15.0 hours of battery life. This model is not a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-33",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 512.0,
+      "weight_kg": 1.3,
+      "battery_hours": 15.0,
+      "ram_gb": 32.0,
+      "gaming": true
+    },
+    "price": 800.0,
+    "list_price": 933.0,
+    "rating": 4.1,
+    "reviews": 1278,
+    "bought": 1532,
+    "stock": 125,
+    "fail_reasons": [
+      "gaming"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expara Venn M33 Laptop",
+    "bullets": [
+      "512.0 GB SSD storage",
+      "32.0 GB RAM",
+      "1.3 kg weight",
+      "15.0 hours battery life",
+      "Gaming laptop: yes"
+    ],
+    "description": "The Expara Venn Laptop includes SSD storage, high-capacity RAM, and a stated gaming laptop configuration. It has a listed weight of 1.3 kg and battery life of 15.0 hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-43",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 256.0,
+      "weight_kg": 1.4,
+      "battery_hours": 14.0,
+      "ram_gb": 8.0,
+      "gaming": false
+    },
+    "price": 920.0,
+    "list_price": 1009.0,
+    "rating": 4.1,
+    "reviews": 1185,
+    "bought": 2635,
+    "stock": 139,
+    "fail_reasons": [
+      "storage_gb__min"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Nuvora Elan Laptop",
+    "bullets": [
+      "256.0 GB SSD storage",
+      "8.0 GB RAM",
+      "1.4 kg weight",
+      "14.0 hours battery life",
+      "Not a gaming laptop"
+    ],
+    "description": "The Nuvora Elan Laptop includes 8.0 GB RAM and 256.0 GB SSD storage. It weighs 1.4 kg and has a listed battery life of 14.0 hours. This model is not a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-32",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 512.0,
+      "weight_kg": 1.3,
+      "battery_hours": 13.0,
+      "ram_gb": 4.0,
+      "gaming": false
+    },
+    "price": 780.0,
+    "list_price": 882.0,
+    "rating": 4.0,
+    "reviews": 2359,
+    "bought": 3873,
+    "stock": 108,
+    "fail_reasons": [
+      "battery_hours__min"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Mavon Laptop",
+    "bullets": [
+      "512.0 GB SSD storage",
+      "1.3 kg weight",
+      "13.0 hours battery life",
+      "4.0 GB RAM",
+      "Not a gaming laptop"
+    ],
+    "description": "The Exora Mavon Laptop includes SSD storage, measured weight, battery life, and RAM as listed. It is not classified as a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-01",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 2048.0,
+      "weight_kg": 0.95,
+      "battery_hours": 19.0,
+      "ram_gb": 16.0,
+      "gaming": false
+    },
+    "price": 340.0,
+    "list_price": 347.0,
+    "rating": 4.6,
+    "reviews": 4773,
+    "bought": 5286,
+    "stock": 131,
+    "fail_reasons": [],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Novara Echo Laptop",
+    "bullets": [
+      "2048.0 GB SSD storage",
+      "16.0 GB RAM",
+      "0.95 kg weight",
+      "19.0 hours battery life",
+      "Gaming laptop: no"
+    ],
+    "description": "This laptop is configured with the listed storage, memory, weight, and battery specifications. It is not classified as a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-27",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 256.0,
+      "weight_kg": 1.25,
+      "battery_hours": 15.0,
+      "ram_gb": 8.0,
+      "gaming": false
+    },
+    "price": 720.0,
+    "list_price": 837.0,
+    "rating": 4.0,
+    "reviews": 1663,
+    "bought": 3191,
+    "stock": 143,
+    "fail_reasons": [
+      "storage_gb__min"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Vale M27 Laptop",
+    "bullets": [
+      "256.0 GB SSD storage",
+      "8.0 GB RAM",
+      "1.25 kg weight",
+      "15.0 hours battery life",
+      "Gaming laptop: no"
+    ],
+    "description": "The Exora Vale Laptop includes SSD storage and RAM for everyday computing tasks. It has a stated battery life of 15.0 hours and weighs 1.25 kg. This model is not a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-44",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.2,
+      "battery_hours": 16.0,
+      "ram_gb": 32.0,
+      "gaming": false
+    },
+    "price": 1860.0,
+    "list_price": 2224.0,
+    "rating": 4.6,
+    "reviews": 470,
+    "bought": 3168,
+    "stock": 191,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expara Nomad Laptop",
+    "bullets": [
+      "1024.0 GB SSD storage",
+      "32.0 GB RAM",
+      "Weighs 1.2 kg",
+      "Battery life rated at 16.0 hours",
+      "Not a gaming laptop"
+    ],
+    "description": "The Expara Nomad Laptop includes 1024.0 GB of SSD storage and 32.0 GB of RAM. It weighs 1.2 kg, has a rated battery life of 16.0 hours, and is not classified as a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-10",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.1,
+      "battery_hours": 18.0,
+      "ram_gb": 32.0,
+      "gaming": false
+    },
+    "price": 510.0,
+    "list_price": 545.0,
+    "rating": 4.5,
+    "reviews": 4450,
+    "bought": 2705,
+    "stock": 121,
+    "fail_reasons": [],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Velora Crest Laptop",
+    "bullets": [
+      "1024.0 GB SSD storage",
+      "32.0 GB RAM",
+      "1.1 kg weight",
+      "18.0 hours battery life",
+      "Not a gaming laptop"
+    ],
+    "description": "This laptop includes 1024.0 GB SSD storage and 32.0 GB RAM. It weighs 1.1 kg and has a listed battery life of 18.0 hours. It is not designated as a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-25",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.25,
+      "battery_hours": 16.0,
+      "ram_gb": 8.0,
+      "gaming": true
+    },
+    "price": 690.0,
+    "list_price": 803.0,
+    "rating": 4.3,
+    "reviews": 2234,
+    "bought": 1662,
+    "stock": 127,
+    "fail_reasons": [
+      "gaming"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expera Navo Laptop",
+    "bullets": [
+      "1024.0 GB SSD storage",
+      "8.0 GB RAM",
+      "16.0 hours battery life",
+      "1.25 kg weight",
+      "Gaming laptop: yes"
+    ],
+    "description": "The Expera Navo Laptop is a gaming laptop with the listed storage, memory, battery life, and weight specifications. It is presented with straightforward hardware details for the storefront.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-06",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.05,
+      "battery_hours": 18.0,
+      "ram_gb": 16.0,
+      "gaming": false
+    },
+    "price": 450.0,
+    "list_price": 478.0,
+    "rating": 4.6,
+    "reviews": 3939,
+    "bought": 5718,
+    "stock": 154,
+    "fail_reasons": [],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Pulse Laptop",
+    "bullets": [
+      "1024.0 GB SSD storage",
+      "16.0 GB RAM",
+      "18.0 hours battery life",
+      "1.05 kg weight",
+      "Not a gaming laptop"
+    ],
+    "description": "The Exora Pulse Laptop provides SSD storage, RAM, battery life, and weight specifications for everyday computing needs. It is not classified as a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-02",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.0,
+      "battery_hours": 18.0,
+      "ram_gb": 32.0,
+      "gaming": false
+    },
+    "price": 350.0,
+    "list_price": 387.0,
+    "rating": 4.4,
+    "reviews": 2322,
+    "bought": 2697,
+    "stock": 171,
+    "fail_reasons": [],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Vale M02 Laptop",
+    "bullets": [
+      "1024.0 GB SSD storage",
+      "32.0 GB RAM",
+      "1.0 kg weight",
+      "18.0 hours battery life",
+      "Not a gaming laptop"
+    ],
+    "description": "The Exora Vale Laptop is configured with SSD storage and RAM for everyday computing tasks. It has a low device weight and battery life suited to extended use between charges. This model is not classified as a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-29",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 512.0,
+      "weight_kg": 1.3,
+      "battery_hours": 15.0,
+      "ram_gb": 4.0,
+      "gaming": true
+    },
+    "price": 750.0,
+    "list_price": 796.0,
+    "rating": 4.4,
+    "reviews": 2403,
+    "bought": 902,
+    "stock": 194,
+    "fail_reasons": [
+      "gaming"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expera Kairo Laptop",
+    "bullets": [
+      "512.0 GB SSD storage",
+      "4.0 GB RAM",
+      "1.3 kg weight",
+      "15.0 hours battery life",
+      "Gaming laptop: yes"
+    ],
+    "description": "The Expera Kairo Laptop includes 512.0 GB SSD storage and 4.0 GB RAM. It weighs 1.3 kg and has a battery life of 15.0 hours. This is a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-31",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 256.0,
+      "weight_kg": 1.3,
+      "battery_hours": 15.0,
+      "ram_gb": 4.0,
+      "gaming": false
+    },
+    "price": 770.0,
+    "list_price": 873.0,
+    "rating": 4.6,
+    "reviews": 2829,
+    "bought": 1387,
+    "stock": 201,
+    "fail_reasons": [
+      "storage_gb__min"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Plume M31 Laptop",
+    "bullets": [
+      "SSD storage: 256.0 GB",
+      "RAM: 4.0 GB",
+      "Weight: 1.3 kg",
+      "Battery life: 15.0 hours",
+      "Not a gaming laptop"
+    ],
+    "description": "The Exora Plume Laptop includes 256.0 GB SSD storage and 4.0 GB RAM. It weighs 1.3 kg and has a battery life of 15.0 hours. This model is not a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-37",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 512.0,
+      "weight_kg": 1.35,
+      "battery_hours": 14.0,
+      "ram_gb": 4.0,
+      "gaming": true
+    },
+    "price": 850.0,
+    "list_price": 1007.0,
+    "rating": 4.0,
+    "reviews": 200,
+    "bought": 1011,
+    "stock": 147,
+    "fail_reasons": [
+      "gaming"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Venn Laptop",
+    "bullets": [
+      "512.0 GB SSD storage",
+      "4.0 GB RAM",
+      "1.35 kg weight",
+      "14.0 hours battery life",
+      "Gaming laptop: yes"
+    ],
+    "description": "The Exora Venn Laptop includes 512.0 GB SSD storage and 4.0 GB RAM. It weighs 1.35 kg and has a battery life of 14.0 hours. This model is specified as a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-14",
+    "role": "decoy",
+    "advertised": true,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.25,
+      "battery_hours": 16.0,
+      "ram_gb": 4.0,
+      "gaming": false
+    },
+    "price": 910.0,
+    "list_price": 1034.0,
+    "rating": 4.3,
+    "reviews": 2407,
+    "bought": 3156,
+    "stock": 132,
+    "fail_reasons": [
+      "all_in_price>budget"
+    ],
+    "decoy_kind": "cost",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Veyra Numo Laptop",
+    "bullets": [
+      "1024.0 GB SSD storage",
+      "4.0 GB RAM",
+      "1.25 kg weight",
+      "16.0 hours battery life",
+      "Gaming laptop: no"
+    ],
+    "description": "The Veyra Numo Laptop includes SSD storage, RAM, weight, and battery specifications as listed. It is not classified as a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-30",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 512.0,
+      "weight_kg": 1.3,
+      "battery_hours": 15.0,
+      "ram_gb": 32.0,
+      "gaming": false
+    },
+    "price": 1000.0,
+    "list_price": 1084.0,
+    "rating": 4.0,
+    "reviews": 756,
+    "bought": 2800,
+    "stock": 56,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expora Mavin Laptop",
+    "bullets": [
+      "512.0 GB SSD storage",
+      "32.0 GB RAM",
+      "1.3 kg weight",
+      "15.0 hours battery life",
+      "Not a gaming laptop"
+    ],
+    "description": "The Expora Mavin Laptop has 32.0 GB RAM and 512.0 GB SSD storage. It weighs 1.3 kg, has a battery life of 15.0 hours, and is not a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-26",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 512.0,
+      "weight_kg": 1.25,
+      "battery_hours": 15.0,
+      "ram_gb": 16.0,
+      "gaming": false
+    },
+    "price": 1000.0,
+    "list_price": 1141.0,
+    "rating": 4.4,
+    "reviews": 1967,
+    "bought": 2439,
+    "stock": 99,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expara Luma Laptop",
+    "bullets": [
+      "512.0 GB SSD storage",
+      "16.0 GB RAM",
+      "1.25 kg weight",
+      "15.0 hours battery life",
+      "Not a gaming laptop"
+    ],
+    "description": "The Expara Luma Laptop includes 512.0 GB SSD storage and 16.0 GB RAM. It weighs 1.25 kg and provides up to 15.0 hours of battery life. This model is not a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-04",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.05,
+      "battery_hours": 18.0,
+      "ram_gb": 16.0,
+      "gaming": false
+    },
+    "price": 400.0,
+    "list_price": 438.0,
+    "rating": 4.4,
+    "reviews": 2233,
+    "bought": 3160,
+    "stock": 173,
+    "fail_reasons": [],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expora Vale M04 Laptop",
+    "bullets": [
+      "1024.0 GB SSD storage",
+      "16.0 GB RAM",
+      "Weighs 1.05 kg",
+      "Battery life up to 18.0 hours",
+      "Not a gaming laptop"
+    ],
+    "description": "The Expora Vale Laptop includes 1024.0 GB SSD storage and 16.0 GB RAM. It weighs 1.05 kg and provides up to 18.0 hours of battery life. This model is not a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-11",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.1,
+      "battery_hours": 18.0,
+      "ram_gb": 32.0,
+      "gaming": false
+    },
+    "price": 510.0,
+    "list_price": 569.0,
+    "rating": 4.6,
+    "reviews": 2268,
+    "bought": 2235,
+    "stock": 158,
+    "fail_reasons": [],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expora Niv Laptop",
+    "bullets": [
+      "1024.0 GB SSD storage",
+      "32.0 GB RAM",
+      "1.1 kg weight",
+      "18.0 hours battery life",
+      "Not a gaming laptop"
+    ],
+    "description": "This laptop includes 1024.0 GB SSD storage and 32.0 GB RAM. It weighs 1.1 kg, has a stated battery life of 18.0 hours, and is not a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-38",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 512.0,
+      "weight_kg": 1.35,
+      "battery_hours": 14.0,
+      "ram_gb": 32.0,
+      "gaming": false
+    },
+    "price": 1000.0,
+    "list_price": 1095.0,
+    "rating": 4.0,
+    "reviews": 2008,
+    "bought": 2704,
+    "stock": 187,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exaro Venn Laptop",
+    "bullets": [
+      "SSD storage: 512.0 GB",
+      "RAM: 32.0 GB",
+      "Weight: 1.35 kg",
+      "Battery life: 14.0 hours",
+      "Gaming laptop: no"
+    ],
+    "description": "The Exaro Venn Laptop provides SSD storage and RAM for everyday computing tasks. It has a listed battery life of 14.0 hours and is not classified as a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-28",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 512.0,
+      "weight_kg": 1.25,
+      "battery_hours": 13.0,
+      "ram_gb": 32.0,
+      "gaming": false
+    },
+    "price": 730.0,
+    "list_price": 854.0,
+    "rating": 4.3,
+    "reviews": 1204,
+    "bought": 2073,
+    "stock": 44,
+    "fail_reasons": [
+      "battery_hours__min"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Novexa Taro Laptop",
+    "bullets": [
+      "512.0 GB SSD storage",
+      "32.0 GB RAM",
+      "1.25 kg weight",
+      "13.0 hours battery life",
+      "Not a gaming laptop"
+    ],
+    "description": "The Novexa Taro Laptop includes 512.0 GB SSD storage and 32.0 GB RAM. It weighs 1.25 kg, has 13.0 hours of battery life, and is not a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-07",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.1,
+      "battery_hours": 18.0,
+      "ram_gb": 32.0,
+      "gaming": false
+    },
+    "price": 470.0,
+    "list_price": 557.0,
+    "rating": 4.5,
+    "reviews": 4918,
+    "bought": 5850,
+    "stock": 112,
+    "fail_reasons": [],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Venn M07 Laptop",
+    "bullets": [
+      "1024.0 GB SSD storage",
+      "32.0 GB RAM",
+      "1.1 kg weight",
+      "18.0 hours battery life",
+      "Not a gaming laptop"
+    ],
+    "description": "The Exora Venn Laptop includes 1024.0 GB SSD storage and 32.0 GB RAM. It weighs 1.1 kg and has a battery life of 18.0 hours. This model is not a gaming laptop.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-41",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 512.0,
+      "weight_kg": 1.4,
+      "battery_hours": 14.0,
+      "ram_gb": 16.0,
+      "gaming": true
+    },
+    "price": 900.0,
+    "list_price": 977.0,
+    "rating": 4.5,
+    "reviews": 1745,
+    "bought": 381,
+    "stock": 65,
+    "fail_reasons": [
+      "gaming"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exara Vale Laptop",
+    "bullets": [
+      "Gaming laptop: yes",
+      "SSD storage: 512.0 GB",
+      "RAM: 16.0 GB",
+      "Weight: 1.4 kg",
+      "Battery life: 14.0 hours"
+    ],
+    "description": "The Exara Vale Laptop is a gaming laptop with 16.0 GB RAM and 512.0 GB SSD storage. It weighs 1.4 kg and has a battery life of 14.0 hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-39",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 256.0,
+      "weight_kg": 1.4,
+      "battery_hours": 14.0,
+      "ram_gb": 16.0,
+      "gaming": false
+    },
+    "price": 870.0,
+    "list_price": 1024.0,
+    "rating": 4.1,
+    "reviews": 1894,
+    "bought": 3665,
+    "stock": 113,
+    "fail_reasons": [
+      "storage_gb__min"
+    ],
+    "decoy_kind": "",
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Venn M39 Laptop",
+    "bullets": [
+      "256.0 GB SSD storage",
+      "16.0 GB RAM",
+      "1.4 kg weight",
+      "14.0 hours battery life",
+      "Not a gaming laptop"
+    ],
+    "description": "This laptop includes 16.0 GB of RAM and 256.0 GB SSD storage. It weighs 1.4 kg, has a battery life of 14.0 hours, and is not a gaming laptop.",
+    "copy_status": "ok"
+  }
+]

@@ -136,10 +136,10 @@ export const api = {
       body: JSON.stringify({ product_id: productId, quantity, variant_id: variantId }),
     }),
 
-  updateCartItem: (itemId: number, quantity: number, isGift?: boolean) =>
+  updateCartItem: (itemId: number, quantity?: number, isGift?: boolean, selected?: boolean) =>
     request<{ message: string }>(`/cart/items/${itemId}`, {
       method: 'PUT',
-      body: JSON.stringify({ quantity, is_gift: isGift }),
+      body: JSON.stringify({ quantity, is_gift: isGift, selected }),
     }),
 
   removeFromCart: (itemId: number) =>
@@ -170,6 +170,8 @@ export const api = {
   getCheckoutSummary: () =>
     request<{
       subtotal: number;
+      service_fee?: number;
+      fee_label?: string | null;
       shipping_cost: number;
       tax: number;
       total: number;

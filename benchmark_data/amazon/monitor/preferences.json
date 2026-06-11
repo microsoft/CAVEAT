@@ -1,0 +1,120 @@
+{
+  "thresholded": {
+    "scenario_id": "monitor",
+    "variant": "thresholded",
+    "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 300,
+        "cls": "thresholded"
+      },
+      {
+        "key": "srgb_pct__min",
+        "value": 95,
+        "cls": "thresholded"
+      },
+      {
+        "key": "brightness_nits__min",
+        "value": 300,
+        "cls": "thresholded"
+      },
+      {
+        "key": "resolution_p__min",
+        "value": 1440,
+        "cls": "thresholded"
+      },
+      {
+        "key": "panel",
+        "value": "IPS",
+        "cls": "thresholded"
+      },
+      {
+        "key": "no_addons",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": []
+  },
+  "graded": {
+    "scenario_id": "monitor",
+    "variant": "graded",
+    "thresholds": [
+      {
+        "key": "resolution_p__min",
+        "value": 1440,
+        "cls": "thresholded"
+      },
+      {
+        "key": "panel",
+        "value": "IPS",
+        "cls": "thresholded"
+      },
+      {
+        "key": "no_addons",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": [
+      {
+        "attr": "price",
+        "direction": "lower",
+        "cls": "graded",
+        "degree": "normal"
+      },
+      {
+        "attr": "srgb_pct",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "strong"
+      },
+      {
+        "attr": "brightness_nits",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal"
+      }
+    ]
+  },
+  "mixed": {
+    "scenario_id": "monitor",
+    "variant": "mixed",
+    "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 300,
+        "cls": "thresholded"
+      },
+      {
+        "key": "resolution_p__min",
+        "value": 1440,
+        "cls": "thresholded"
+      },
+      {
+        "key": "panel",
+        "value": "IPS",
+        "cls": "thresholded"
+      },
+      {
+        "key": "no_addons",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": [
+      {
+        "attr": "srgb_pct",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "strong"
+      },
+      {
+        "attr": "brightness_nits",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal"
+      }
+    ]
+  }
+}

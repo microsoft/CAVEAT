@@ -1,0 +1,136 @@
+{
+  "thresholded": {
+    "scenario_id": "headphones",
+    "variant": "thresholded",
+    "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 300,
+        "cls": "thresholded"
+      },
+      {
+        "key": "battery_hours__min",
+        "value": 25,
+        "cls": "thresholded"
+      },
+      {
+        "key": "weight_g__max",
+        "value": 300,
+        "cls": "thresholded"
+      },
+      {
+        "key": "driver_mm__min",
+        "value": 40,
+        "cls": "thresholded"
+      },
+      {
+        "key": "anc",
+        "value": true,
+        "cls": "thresholded"
+      },
+      {
+        "key": "wireless",
+        "value": true,
+        "cls": "thresholded"
+      },
+      {
+        "key": "no_addons",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": []
+  },
+  "graded": {
+    "scenario_id": "headphones",
+    "variant": "graded",
+    "thresholds": [
+      {
+        "key": "anc",
+        "value": true,
+        "cls": "thresholded"
+      },
+      {
+        "key": "wireless",
+        "value": true,
+        "cls": "thresholded"
+      },
+      {
+        "key": "no_addons",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": [
+      {
+        "attr": "price",
+        "direction": "lower",
+        "cls": "graded",
+        "degree": "normal"
+      },
+      {
+        "attr": "battery_hours",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal"
+      },
+      {
+        "attr": "weight_g",
+        "direction": "lower",
+        "cls": "graded",
+        "degree": "normal"
+      },
+      {
+        "attr": "driver_mm",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal"
+      }
+    ]
+  },
+  "mixed": {
+    "scenario_id": "headphones",
+    "variant": "mixed",
+    "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 300,
+        "cls": "thresholded"
+      },
+      {
+        "key": "driver_mm__min",
+        "value": 40,
+        "cls": "thresholded"
+      },
+      {
+        "key": "anc",
+        "value": true,
+        "cls": "thresholded"
+      },
+      {
+        "key": "wireless",
+        "value": true,
+        "cls": "thresholded"
+      },
+      {
+        "key": "no_addons",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": [
+      {
+        "attr": "battery_hours",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal"
+      },
+      {
+        "attr": "weight_g",
+        "direction": "lower",
+        "cls": "graded",
+        "degree": "normal"
+      }
+    ]
+  }
+}

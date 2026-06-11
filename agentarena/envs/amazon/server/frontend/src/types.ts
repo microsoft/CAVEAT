@@ -137,6 +137,7 @@ export interface CartItem {
   quantity: number;
   is_gift: boolean;
   gift_message?: string;
+  selected?: boolean;
   subtotal: number;
 }
 
@@ -146,6 +147,9 @@ export interface Cart {
   saved_for_later: CartItem[];
   item_count: number;
   subtotal: number;
+  service_fee?: number;
+  fee_label?: string | null;
+  total?: number;
 }
 
 export interface OrderItem {

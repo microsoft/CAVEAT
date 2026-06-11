@@ -67,7 +67,13 @@ def mount_static(app: FastAPI, static_path: Path):
                     reset_database()
                 except Exception as e:  # never 500 the page over a reset
                     print(f"[reset_on_load] reset failed: {e}")
-            return FileResponse(static_dir / "index.html")
+            # The SPA shell must never be cached: its content-hashed asset references change on
+            # every rebuild, so a stale cached index.html would load a deleted bundle (or show
+            # old behavior). Assets under /assets keep their long-cache default (hashed names).
+            return FileResponse(
+                static_dir / "index.html",
+                headers={"Cache-Control": "no-cache, no-store, must-revalidate"},
+            )
 
 
 app = create_app()

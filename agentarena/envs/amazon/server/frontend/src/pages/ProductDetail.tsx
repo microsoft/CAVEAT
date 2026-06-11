@@ -74,6 +74,17 @@ export function ProductDetail({ user, onAddToCart }: ProductDetailProps) {
     }
   };
 
+  const handleBuyNow = async () => {
+    if (!product) return;
+    try {
+      await api.addToCart(product.id, quantity);
+    } catch (error) {
+      console.error('Buy Now failed to add to cart:', error);
+      return;                       // don't proceed to checkout if the add failed
+    }
+    navigate('/gp/buy/spc');        // the Checkout route (NOT /checkout, which doesn't exist)
+  };
+
   const handleAddAllToCart = () => {
     if (product) {
       // Add the main product
@@ -354,10 +365,10 @@ export function ProductDetail({ user, onAddToCart }: ProductDetailProps) {
                     {addedToCart ? 'Added to Cart!' : 'Add to Cart'}
                   </button>
 
-                  {/* Buy Now */}
-                  <Link to="/gp/cart" className="btn-orange w-full block text-center">
+                  {/* Buy Now — add this item and go straight to checkout */}
+                  <button onClick={handleBuyNow} className="btn-orange w-full block text-center">
                     Buy Now
-                  </Link>
+                  </button>
                 </>
               )}
 

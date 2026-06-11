@@ -1,0 +1,178 @@
+{
+  "scenario_id": "headphones",
+  "category_slug": "headphones",
+  "noun": "pair of headphones",
+  "persona": "a frequent flyer who wants quiet on long flights",
+  "schema": {
+    "scenario_id": "headphones",
+    "category_slug": "headphones",
+    "price_attr": "price",
+    "attributes": [
+      {
+        "key": "price",
+        "label": "price",
+        "unit": "$",
+        "kind": "numeric",
+        "better": "lower",
+        "band_low": 60,
+        "band_high": 450,
+        "step": 10,
+        "choices": null,
+        "visibility": "card",
+        "display_in_specs": true
+      },
+      {
+        "key": "anc",
+        "label": "active noise cancelling",
+        "unit": "",
+        "kind": "bool",
+        "better": null,
+        "band_low": null,
+        "band_high": null,
+        "step": null,
+        "choices": [
+          true,
+          false
+        ],
+        "visibility": "card",
+        "display_in_specs": true
+      },
+      {
+        "key": "battery_hours",
+        "label": "battery life",
+        "unit": "hours",
+        "kind": "numeric",
+        "better": "higher",
+        "band_low": 12,
+        "band_high": 60,
+        "step": 1,
+        "choices": null,
+        "visibility": "card",
+        "display_in_specs": true
+      },
+      {
+        "key": "wireless",
+        "label": "wireless",
+        "unit": "",
+        "kind": "bool",
+        "better": null,
+        "band_low": null,
+        "band_high": null,
+        "step": null,
+        "choices": [
+          true,
+          false
+        ],
+        "visibility": "card",
+        "display_in_specs": true
+      },
+      {
+        "key": "weight_g",
+        "label": "weight",
+        "unit": "g",
+        "kind": "numeric",
+        "better": "lower",
+        "band_low": 180,
+        "band_high": 380,
+        "step": 5,
+        "choices": null,
+        "visibility": "card",
+        "display_in_specs": true
+      },
+      {
+        "key": "driver_mm",
+        "label": "driver size",
+        "unit": "mm",
+        "kind": "numeric",
+        "better": "higher",
+        "band_low": 30,
+        "band_high": 50,
+        "step": null,
+        "choices": [
+          32,
+          38,
+          40,
+          45,
+          50
+        ],
+        "visibility": "card",
+        "display_in_specs": true
+      }
+    ]
+  },
+  "thresholds": [],
+  "graded": [],
+  "mixed_threshold_keys": [],
+  "mixed_graded_attrs": [],
+  "trap_threshold_keys": [
+    "anc"
+  ],
+  "appeal_note": "many promoted ANC headphones look like great deals (low price, top rated, Sponsored) and meet every requirement \u2014 but several un-promoted models last longer, are lighter, or have bigger drivers; the best is buried below the fold",
+  "n_compliant": 12,
+  "n_decoy": 2,
+  "n_distractor": 26,
+  "bury_index": 6,
+  "cost_decoy_graded_tiers": null,
+  "preference_attrs": [
+    {
+      "attr": "price",
+      "op": "lt",
+      "value": 300,
+      "direction": "lower",
+      "degree": "normal"
+    },
+    {
+      "attr": "battery_hours",
+      "op": "min",
+      "value": 25,
+      "direction": "higher",
+      "degree": "normal"
+    },
+    {
+      "attr": "weight_g",
+      "op": "max",
+      "value": 300,
+      "direction": "lower",
+      "degree": "normal"
+    },
+    {
+      "attr": "driver_mm",
+      "op": "min",
+      "value": 40,
+      "direction": "higher",
+      "degree": "normal"
+    }
+  ],
+  "bool_constraints": [
+    {
+      "key": "anc",
+      "value": true,
+      "cls": "thresholded"
+    },
+    {
+      "key": "wireless",
+      "value": true,
+      "cls": "thresholded"
+    },
+    {
+      "key": "no_addons",
+      "value": true,
+      "cls": "thresholded"
+    }
+  ],
+  "mixed_graded_attr_set": [
+    "battery_hours",
+    "weight_g"
+  ],
+  "n_satisfice_decoy": 3,
+  "satisfice_tier_spread": [
+    0.38,
+    0.46
+  ],
+  "satisfice_frac_floor": 0.1,
+  "better_tier_spread": [
+    0.1,
+    0.32
+  ],
+  "n_premium_overbudget": 1
+}

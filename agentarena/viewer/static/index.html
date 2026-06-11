@@ -67,11 +67,26 @@
     <div class="browse-card">
       <div class="browse-head">
         <div>
-          <b>Browse an environment yourself</b>
-          <div class="browse-sub">Launch a live, seeded site and navigate it manually in a new tab — no agent. Pick the steering condition to see the clean store or the one with the decoy pinned.</div>
+          <b>Shop it yourself — no agent</b>
+          <div class="browse-sub">Launch a live, seeded store in a new tab and try to buy faithfully while a steering manipulation pushes you toward the decoy. Read the task, then see whether the steering fools you.</div>
         </div>
         <button class="x" id="browseClose">✕ close</button>
       </div>
+
+      <!-- steering sandbox: a generated scenario under any one steering condition -->
+      <div class="sandbox" id="sandbox" hidden>
+        <div class="sb-title">🧪 Steering sandbox · Amazon</div>
+        <div class="sb-row">
+          <label>scenario <select id="sbScenario"></select></label>
+          <label>your preference <select id="sbVariant"></select></label>
+          <label>steering <select id="sbCondition"></select></label>
+          <button class="be-open" id="sbOpen">Open store ↗</button>
+          <span class="be-status" id="sbStatus"></span>
+        </div>
+        <div class="sb-look" id="sbLook"></div>
+      </div>
+
+      <div class="browse-sub" style="margin:16px 0 7px">Or launch any environment's built-in example task (clean vs. steered):</div>
       <div class="browse-list" id="browseList">loading…</div>
       <div class="browse-foot">Sites run locally on ports 9400+ and shut down when you close the viewer.</div>
     </div>
@@ -93,39 +108,84 @@
   (function () {
     const modal = document.getElementById("browseModal");
     const list = document.getElementById("browseList");
-    document.getElementById("browseBtn").onclick = async () => { modal.hidden = false; await render(); };
+    let BENCH = null;
+    const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g,
+      (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+    document.getElementById("browseBtn").onclick = async () => {
+      modal.hidden = false; await Promise.all([renderSandbox(), renderList()]);
+    };
     document.getElementById("browseClose").onclick = () => { modal.hidden = true; };
     modal.onclick = (e) => { if (e.target === modal) modal.hidden = true; };
 
-    async function render() {
+    async function launch(body, btn, status) {
+      const orig = btn.textContent;
+      btn.disabled = true; btn.textContent = "launching…"; status.textContent = "";
+      try {
+        const res = await fetch("/api/launch", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        }).then((r) => r.ok ? r.json() : r.json().then((j) => Promise.reject(j)));
+        if (res.url) { window.open(res.url, "_blank"); status.textContent = "running ✓"; }
+      } catch (err) { status.textContent = "failed: " + ((err && err.detail) || "error"); }
+      btn.disabled = false; btn.textContent = orig;
+    }
+
+    // ---- steering sandbox (generated scenarios) ----
+    async function renderSandbox() {
+      const box = document.getElementById("sandbox");
+      try { BENCH = await fetch("/api/benchmark").then((r) => r.json()); }
+      catch (e) { box.hidden = true; return; }
+      if (!BENCH || !(BENCH.scenarios || []).length) { box.hidden = true; return; }
+      box.hidden = false;
+      const scSel = document.getElementById("sbScenario");
+      const vSel = document.getElementById("sbVariant");
+      const cSel = document.getElementById("sbCondition");
+      scSel.innerHTML = BENCH.scenarios.map((s) => `<option>${s.id}</option>`).join("");
+      cSel.innerHTML = BENCH.conditions.map((c) => `<option>${c}</option>`).join("");
+      const fillVariants = () => {
+        const s = BENCH.scenarios.find((x) => x.id === scSel.value);
+        vSel.innerHTML = Object.keys(s.variants).map((v) => `<option>${v}</option>`).join("");
+      };
+      const look = () => {
+        const s = BENCH.scenarios.find((x) => x.id === scSel.value);
+        const instr = s.variants[vSel.value] || "";
+        const note = (BENCH.notes || {})[cSel.value] || "";
+        const titles = (arr) => arr.map((p) => esc(p.title)).join(" · ") || "—";
+        document.getElementById("sbLook").innerHTML =
+          `<div class="sb-task"><span class="sb-k">your task (${esc(vSel.value)})</span>${esc(instr)}</div>` +
+          `<div class="sb-hint"><span class="c-compliant">✓ faithful picks</span> ${titles(s.compliant)}</div>` +
+          `<div class="sb-hint"><span class="c-decoy">⚠ the decoy (trap)</span> ${titles(s.decoy)}</div>` +
+          `<div class="sb-note"><span class="sb-k">steering “${esc(cSel.value)}”</span>${esc(note)}</div>`;
+      };
+      scSel.onchange = () => { fillVariants(); look(); };
+      vSel.onchange = look; cSel.onchange = look;
+      fillVariants(); look();
+      document.getElementById("sbOpen").onclick = (ev) =>
+        launch({ env: "amazon", catalog: scSel.value, condition: cSel.value },
+               ev.target, document.getElementById("sbStatus"));
+    }
+
+    // ---- generic env list (built-in example tasks) ----
+    async function renderList() {
       list.textContent = "loading…";
       let envs = [];
-      try { envs = await fetch("/api/envs").then(r => r.json()); } catch (e) { list.textContent = "could not load envs"; return; }
+      try { envs = await fetch("/api/envs").then((r) => r.json()); }
+      catch (e) { list.textContent = "could not load envs"; return; }
       list.innerHTML = "";
       for (const e of envs) {
         const row = document.createElement("div");
         row.className = "browse-row";
+        const isBench = e.running && e.catalog;
         row.innerHTML =
           `<span class="be-name">${e.env}</span>` +
           `<select class="be-cond"><option value="clean">clean</option><option value="steered">steered</option></select>` +
           `<button class="be-open">Open ↗</button>` +
-          `<span class="be-status">${e.running ? ("running · " + (e.condition || "")) : ""}</span>`;
-        if (e.condition) row.querySelector(".be-cond").value = e.condition;
-        row.querySelector(".be-open").onclick = async (ev) => {
-          const btn = ev.target, status = row.querySelector(".be-status");
-          btn.disabled = true; btn.textContent = "launching…"; status.textContent = "";
-          const cond = row.querySelector(".be-cond").value;
-          try {
-            const res = await fetch("/api/launch", {
-              method: "POST", headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ env: e.env, condition: cond })
-            }).then(r => r.ok ? r.json() : r.json().then(j => Promise.reject(j)));
-            if (res.url) { window.open(res.url, "_blank"); status.textContent = "running · " + cond; }
-          } catch (err) {
-            status.textContent = "failed: " + ((err && err.detail) || "error");
-          }
-          btn.disabled = false; btn.textContent = "Open ↗";
-        };
+          `<span class="be-status">${(e.running && !isBench) ? ("running · " + (e.condition || "")) : ""}</span>`;
+        if (e.condition && !isBench) row.querySelector(".be-cond").value = e.condition;
+        row.querySelector(".be-open").onclick = (ev) =>
+          launch({ env: e.env, condition: row.querySelector(".be-cond").value },
+                 ev.target, row.querySelector(".be-status"));
         list.appendChild(row);
       }
     }

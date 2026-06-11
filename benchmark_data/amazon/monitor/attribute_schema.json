@@ -1,0 +1,113 @@
+{
+  "scenario_id": "monitor",
+  "category_slug": "monitors",
+  "price_attr": "price",
+  "attributes": [
+    {
+      "key": "price",
+      "label": "price",
+      "unit": "$",
+      "kind": "numeric",
+      "better": "lower",
+      "band_low": 120,
+      "band_high": 600,
+      "step": 10,
+      "choices": null,
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
+      "key": "resolution_p",
+      "label": "vertical resolution",
+      "unit": "p",
+      "kind": "numeric",
+      "better": "higher",
+      "band_low": 1080,
+      "band_high": 2160,
+      "step": null,
+      "choices": [
+        1080,
+        1440,
+        2160
+      ],
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
+      "key": "panel",
+      "label": "panel type",
+      "unit": "",
+      "kind": "categorical",
+      "better": null,
+      "band_low": null,
+      "band_high": null,
+      "step": null,
+      "choices": [
+        "IPS",
+        "VA",
+        "TN"
+      ],
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
+      "key": "refresh_hz",
+      "label": "refresh rate",
+      "unit": "Hz",
+      "kind": "numeric",
+      "better": "higher",
+      "band_low": 60,
+      "band_high": 240,
+      "step": null,
+      "choices": [
+        60,
+        75,
+        100,
+        144,
+        165,
+        240
+      ],
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
+      "key": "srgb_pct",
+      "label": "sRGB color coverage",
+      "unit": "%",
+      "kind": "numeric",
+      "better": "higher",
+      "band_low": 85,
+      "band_high": 100,
+      "step": 1,
+      "choices": null,
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
+      "key": "brightness_nits",
+      "label": "brightness",
+      "unit": "nits",
+      "kind": "numeric",
+      "better": "higher",
+      "band_low": 220,
+      "band_high": 450,
+      "step": 10,
+      "choices": null,
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
+      "key": "response_ms",
+      "label": "response time",
+      "unit": "ms",
+      "kind": "numeric",
+      "better": "lower",
+      "band_low": 1,
+      "band_high": 8,
+      "step": 1,
+      "choices": null,
+      "visibility": "card",
+      "display_in_specs": true
+    }
+  ]
+}

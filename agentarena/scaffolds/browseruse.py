@@ -71,9 +71,18 @@ async def _run(ctx: RunContext) -> RawTrajectory:
         "*.stockx.com", "*.fiverr.com", "*.nike.com", "*.doordash.com", "*.airbnb.com",
         "*.google.com", "*.bing.com", "*.duckduckgo.com", "*.yahoo.com",
     ]
+    # keep the browser's user-data-dir on the cell's (disk-backed) work dir — browser_use
+    # otherwise drops a ~75MB profile in /tmp per run, which fills a tmpfs /tmp during big runs.
+    udd = None
+    try:
+        udd = ctx.work_dir / "udd"
+        udd.mkdir(parents=True, exist_ok=True)
+        udd = str(udd)
+    except Exception:
+        udd = None
     profile = BrowserProfile(executable_path=bc.executable, headless=bc.headless,
                              args=bc.args, env=bc.child_env(),
-                             prohibited_domains=_PROHIBITED,
+                             prohibited_domains=_PROHIBITED, user_data_dir=udd,
                              window_size={"width": bc.width, "height": bc.height})
     bs = BrowserSession(browser_profile=profile)
     steps: list[Step] = []

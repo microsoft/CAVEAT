@@ -41,3 +41,6 @@ agentarena/envs/nike/server/frontend/*
 !agentarena/envs/nike/server/frontend/build
 agentarena/envs/fiverr/server/frontend/*
 !agentarena/envs/fiverr/server/frontend/dist
+
+# local scratch/testing (image-gen experiments, etc.)
+playground/

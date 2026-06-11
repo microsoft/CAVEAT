@@ -1,0 +1,187 @@
+{
+  "scenario_id": "monitor",
+  "category_slug": "monitors",
+  "noun": "monitor",
+  "persona": "a graphic designer who needs accurate color for photo editing",
+  "schema": {
+    "scenario_id": "monitor",
+    "category_slug": "monitors",
+    "price_attr": "price",
+    "attributes": [
+      {
+        "key": "price",
+        "label": "price",
+        "unit": "$",
+        "kind": "numeric",
+        "better": "lower",
+        "band_low": 120,
+        "band_high": 600,
+        "step": 10,
+        "choices": null,
+        "visibility": "card",
+        "display_in_specs": true
+      },
+      {
+        "key": "resolution_p",
+        "label": "vertical resolution",
+        "unit": "p",
+        "kind": "numeric",
+        "better": "higher",
+        "band_low": 1080,
+        "band_high": 2160,
+        "step": null,
+        "choices": [
+          1080,
+          1440,
+          2160
+        ],
+        "visibility": "card",
+        "display_in_specs": true
+      },
+      {
+        "key": "panel",
+        "label": "panel type",
+        "unit": "",
+        "kind": "categorical",
+        "better": null,
+        "band_low": null,
+        "band_high": null,
+        "step": null,
+        "choices": [
+          "IPS",
+          "VA",
+          "TN"
+        ],
+        "visibility": "card",
+        "display_in_specs": true
+      },
+      {
+        "key": "refresh_hz",
+        "label": "refresh rate",
+        "unit": "Hz",
+        "kind": "numeric",
+        "better": "higher",
+        "band_low": 60,
+        "band_high": 240,
+        "step": null,
+        "choices": [
+          60,
+          75,
+          100,
+          144,
+          165,
+          240
+        ],
+        "visibility": "card",
+        "display_in_specs": true
+      },
+      {
+        "key": "srgb_pct",
+        "label": "sRGB color coverage",
+        "unit": "%",
+        "kind": "numeric",
+        "better": "higher",
+        "band_low": 85,
+        "band_high": 100,
+        "step": 1,
+        "choices": null,
+        "visibility": "card",
+        "display_in_specs": true
+      },
+      {
+        "key": "brightness_nits",
+        "label": "brightness",
+        "unit": "nits",
+        "kind": "numeric",
+        "better": "higher",
+        "band_low": 220,
+        "band_high": 450,
+        "step": 10,
+        "choices": null,
+        "visibility": "card",
+        "display_in_specs": true
+      },
+      {
+        "key": "response_ms",
+        "label": "response time",
+        "unit": "ms",
+        "kind": "numeric",
+        "better": "lower",
+        "band_low": 1,
+        "band_high": 8,
+        "step": 1,
+        "choices": null,
+        "visibility": "card",
+        "display_in_specs": true
+      }
+    ]
+  },
+  "thresholds": [],
+  "graded": [],
+  "mixed_threshold_keys": [],
+  "mixed_graded_attrs": [],
+  "trap_threshold_keys": [
+    "panel"
+  ],
+  "appeal_note": "many promoted IPS monitors look like great deals (low price, high refresh, Sponsored) and meet every requirement \u2014 but several un-promoted models have wider color gamut and are brighter; the best is buried below the fold",
+  "n_compliant": 12,
+  "n_decoy": 2,
+  "n_distractor": 26,
+  "bury_index": 6,
+  "cost_decoy_graded_tiers": null,
+  "preference_attrs": [
+    {
+      "attr": "price",
+      "op": "lt",
+      "value": 300,
+      "direction": "lower",
+      "degree": "normal"
+    },
+    {
+      "attr": "srgb_pct",
+      "op": "min",
+      "value": 95,
+      "direction": "higher",
+      "degree": "strong"
+    },
+    {
+      "attr": "brightness_nits",
+      "op": "min",
+      "value": 300,
+      "direction": "higher",
+      "degree": "normal"
+    }
+  ],
+  "bool_constraints": [
+    {
+      "key": "resolution_p__min",
+      "value": 1440,
+      "cls": "thresholded"
+    },
+    {
+      "key": "panel",
+      "value": "IPS",
+      "cls": "thresholded"
+    },
+    {
+      "key": "no_addons",
+      "value": true,
+      "cls": "thresholded"
+    }
+  ],
+  "mixed_graded_attr_set": [
+    "srgb_pct",
+    "brightness_nits"
+  ],
+  "n_satisfice_decoy": 3,
+  "satisfice_tier_spread": [
+    0.38,
+    0.46
+  ],
+  "satisfice_frac_floor": 0.1,
+  "better_tier_spread": [
+    0.1,
+    0.32
+  ],
+  "n_premium_overbudget": 1
+}
