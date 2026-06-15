@@ -85,6 +85,19 @@
         "display_in_specs": true
       },
       {
+        "key": "brightness_nits",
+        "label": "screen brightness",
+        "unit": "nits",
+        "kind": "numeric",
+        "better": "higher",
+        "band_low": 200,
+        "band_high": 600,
+        "step": 10,
+        "choices": null,
+        "visibility": "card",
+        "display_in_specs": true
+      },
+      {
         "key": "gaming",
         "label": "gaming laptop",
         "unit": "",
@@ -110,9 +123,9 @@
     "weight_kg__max"
   ],
   "appeal_note": "many promoted models look like great deals (low price, top rated, Sponsored) and meet every requirement \u2014 but several un-promoted models are lighter, longer-battery, or higher-storage; the very best is buried below the fold",
-  "n_compliant": 12,
+  "n_compliant": 1,
   "n_decoy": 2,
-  "n_distractor": 26,
+  "n_distractor": 33,
   "bury_index": 6,
   "cost_decoy_graded_tiers": null,
   "preference_attrs": [
@@ -121,28 +134,48 @@
       "op": "lt",
       "value": 1000,
       "direction": "lower",
-      "degree": "normal"
+      "degree": "normal",
+      "always_hard": true
     },
     {
       "attr": "storage_gb",
       "op": "min",
       "value": 512,
       "direction": "higher",
-      "degree": "normal"
+      "degree": "normal",
+      "always_hard": true
     },
     {
       "attr": "weight_kg",
       "op": "max",
       "value": 1.45,
       "direction": "lower",
-      "degree": "strong"
+      "degree": "strong",
+      "always_hard": false
     },
     {
       "attr": "battery_hours",
       "op": "min",
       "value": 14,
       "direction": "higher",
-      "degree": "normal"
+      "degree": "normal",
+      "always_hard": false
+    },
+    {
+      "attr": "rating",
+      "op": "min",
+      "value": 4.0,
+      "direction": "higher",
+      "degree": "normal",
+      "always_hard": false
+    },
+    {
+      "attr": "brightness_nits",
+      "op": "min",
+      "value": 250,
+      "direction": "higher",
+      "degree": "normal",
+      "always_hard": false
     }
   ],
   "bool_constraints": [
@@ -158,10 +191,9 @@
     }
   ],
   "mixed_graded_attr_set": [
-    "weight_kg",
     "battery_hours"
   ],
-  "n_satisfice_decoy": 3,
+  "n_satisfice_decoy": 6,
   "satisfice_tier_spread": [
     0.38,
     0.46
@@ -171,5 +203,173 @@
     0.1,
     0.32
   ],
-  "n_premium_overbudget": 1
+  "n_premium_overbudget": 1,
+  "config_drip_attr": "storage_gb",
+  "catalog_items": [
+    {
+      "role": "compliant",
+      "kind": "",
+      "price": 850,
+      "rating": 4.7,
+      "reviews": 8200,
+      "configs": null,
+      "specs": {
+        "storage_gb": 1024,
+        "weight_kg": 0.95,
+        "battery_hours": 19,
+        "ram_gb": 16,
+        "gaming": false,
+        "brightness_nits": 600
+      }
+    },
+    {
+      "role": "satisfice",
+      "kind": "midpack",
+      "price": 890,
+      "rating": 4.0,
+      "reviews": 3000,
+      "configs": null,
+      "specs": {
+        "storage_gb": 1024,
+        "weight_kg": 1.42,
+        "battery_hours": 14,
+        "ram_gb": 16,
+        "gaming": false,
+        "brightness_nits": 250
+      }
+    },
+    {
+      "role": "satisfice",
+      "kind": "midpack",
+      "price": 790,
+      "rating": 4.0,
+      "reviews": 4200,
+      "configs": null,
+      "specs": {
+        "storage_gb": 1024,
+        "weight_kg": 1.4,
+        "battery_hours": 14,
+        "ram_gb": 16,
+        "gaming": false,
+        "brightness_nits": 250
+      }
+    },
+    {
+      "role": "satisfice",
+      "kind": "midpack",
+      "price": 810,
+      "rating": 4.0,
+      "reviews": 3800,
+      "configs": null,
+      "specs": {
+        "storage_gb": 1024,
+        "weight_kg": 1.42,
+        "battery_hours": 14,
+        "ram_gb": 16,
+        "gaming": false,
+        "brightness_nits": 250
+      }
+    },
+    {
+      "role": "satisfice",
+      "kind": "midpack",
+      "price": 760,
+      "rating": 4.1,
+      "reviews": 5300,
+      "configs": null,
+      "specs": {
+        "storage_gb": 512,
+        "weight_kg": 1.42,
+        "battery_hours": 14,
+        "ram_gb": 16,
+        "gaming": false,
+        "brightness_nits": 260
+      }
+    },
+    {
+      "role": "satisfice",
+      "kind": "midpack",
+      "price": 830,
+      "rating": 4.0,
+      "reviews": 3100,
+      "configs": null,
+      "specs": {
+        "storage_gb": 1024,
+        "weight_kg": 1.38,
+        "battery_hours": 14,
+        "ram_gb": 16,
+        "gaming": false,
+        "brightness_nits": 250
+      }
+    },
+    {
+      "role": "satisfice",
+      "kind": "spec_battery",
+      "price": 800,
+      "rating": 4.0,
+      "reviews": 4400,
+      "configs": null,
+      "specs": {
+        "storage_gb": 1024,
+        "weight_kg": 1.4,
+        "battery_hours": 13,
+        "ram_gb": 16,
+        "gaming": false,
+        "brightness_nits": 250
+      }
+    },
+    {
+      "role": "satisfice",
+      "kind": "config",
+      "price": 780,
+      "rating": 4.0,
+      "reviews": 3900,
+      "configs": [
+        [
+          256,
+          780
+        ],
+        [
+          512,
+          1040
+        ],
+        [
+          1024,
+          1180
+        ]
+      ],
+      "specs": {
+        "storage_gb": 256,
+        "weight_kg": 1.41,
+        "battery_hours": 14,
+        "ram_gb": 16,
+        "gaming": false,
+        "brightness_nits": 250
+      }
+    },
+    {
+      "role": "decoy",
+      "kind": "cost",
+      "price": 900,
+      "rating": 4.1,
+      "reviews": 3500,
+      "configs": null,
+      "specs": {
+        "storage_gb": 1024,
+        "weight_kg": 1.4,
+        "battery_hours": 14,
+        "ram_gb": 16,
+        "gaming": false,
+        "brightness_nits": 260
+      }
+    }
+  ],
+  "n_explicit_distractor": 61,
+  "title_specs": [
+    "ram_gb",
+    "storage_gb",
+    "weight_kg",
+    "battery_hours",
+    "gaming"
+  ]
 }

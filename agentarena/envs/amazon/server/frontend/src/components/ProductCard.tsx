@@ -106,17 +106,27 @@ export function ProductCard({ product, showAddToCart = false, onAddToCart }: Pro
           FREE delivery <span className="font-bold">Tomorrow</span>
         </p>
 
-        {/* Add to Cart */}
+        {/* Add to Cart — or, for a configurable product, route to the detail page to choose a
+            storage configuration (each config has its own price). */}
         {showAddToCart && onAddToCart && (
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              onAddToCart(product.id);
-            }}
-            className="btn-yellow mt-3 w-full"
-          >
-            Add to cart
-          </button>
+          product.has_variants ? (
+            <Link
+              to={`/dp/${product.asin}`}
+              className="btn-yellow mt-3 w-full block text-center"
+            >
+              See options
+            </Link>
+          ) : (
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                onAddToCart(product.id);
+              }}
+              className="btn-yellow mt-3 w-full"
+            >
+              Add to cart
+            </button>
+          )
         )}
       </div>
     </div>

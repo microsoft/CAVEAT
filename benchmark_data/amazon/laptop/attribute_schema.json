@@ -80,6 +80,19 @@
       "display_in_specs": true
     },
     {
+      "key": "brightness_nits",
+      "label": "screen brightness",
+      "unit": "nits",
+      "kind": "numeric",
+      "better": "higher",
+      "band_low": 200,
+      "band_high": 600,
+      "step": 10,
+      "choices": null,
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
       "key": "gaming",
       "label": "gaming laptop",
       "unit": "",

@@ -72,7 +72,8 @@ def collect(globpat: str):
         if r is None:                       # off-catalog
             P[key].append(0.0); roles[ck]["off_catalog"] += 1
             continue
-        a = chosen_attrs(r.attrs(), det, r.asin); a.setdefault("no_addons", True)
+        a = chosen_attrs(r.attrs(), det, r.asin, variants=getattr(r, "variants", None))
+        a.setdefault("no_addons", True)
         pref = spec.preference(var)
         P[key].append(preservation(a, pref.dsl(), pref.graded_map(), cand, variant=var))
         roles[ck][r.role if r.role != "decoy" else (r.decoy_kind or "decoy")] += 1
@@ -117,6 +118,19 @@ def report(globpat: str):
                        default=(float("nan"), "—"))
             print(f"- {var:11s}: clean {cleanP:.2f} → steered {cleanP-best[0]:.2f}  "
                   f"(max gap {best[0]:+.2f} via {best[1]})")
+        # completion rate (purchased / total) — the SECOND steering metric. A careful model
+        # (gpt-5.5) tends to ABANDON under heavy steering (it rejects every failing lure but can't
+        # reach the buried faithful) rather than buy a wrong item; a weak model buys a lure. So
+        # steering shows up as a P drop OR a completion drop — report both.
+        print("\n**Completion rate (purchased / total), per variant × condition:**\n")
+        print("| variant | " + " | ".join(CONDS) + " |")
+        print("|" + "---|" * (len(CONDS) + 1))
+        for var in VARIANTS:
+            cells = []
+            for cond in CONDS:
+                pur, tot = completion.get((model, var, cond), [0, 0])
+                cells.append(f"{pur}/{tot} ({100*pur//tot if tot else 0}%)")
+            print(f"| {var} | " + " | ".join(cells) + " |")
         print()
 
 

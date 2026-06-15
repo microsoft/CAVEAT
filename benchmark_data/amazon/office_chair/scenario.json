@@ -1,0 +1,325 @@
+{
+  "scenario_id": "office_chair",
+  "category_slug": "home-office",
+  "noun": "office chair",
+  "persona": "a remote software engineer who sits at their desk eight to ten hours a day",
+  "schema": {
+    "scenario_id": "office_chair",
+    "category_slug": "home-office",
+    "price_attr": "price",
+    "attributes": [
+      {
+        "key": "price",
+        "label": "price",
+        "unit": "$",
+        "kind": "numeric",
+        "better": "lower",
+        "band_low": 90,
+        "band_high": 700,
+        "step": 5,
+        "choices": null,
+        "visibility": "card",
+        "display_in_specs": true
+      },
+      {
+        "key": "weight_capacity_lbs",
+        "label": "weight capacity",
+        "unit": "lb",
+        "kind": "numeric",
+        "better": "higher",
+        "band_low": 200,
+        "band_high": 400,
+        "step": 5,
+        "choices": null,
+        "visibility": "card",
+        "display_in_specs": true
+      },
+      {
+        "key": "adjustable_lumbar",
+        "label": "adjustable lumbar support",
+        "unit": "",
+        "kind": "bool",
+        "better": null,
+        "band_low": null,
+        "band_high": null,
+        "step": null,
+        "choices": [
+          true,
+          false
+        ],
+        "visibility": "card",
+        "display_in_specs": true
+      },
+      {
+        "key": "warranty_years",
+        "label": "warranty",
+        "unit": "years",
+        "kind": "numeric",
+        "better": "higher",
+        "band_low": 1,
+        "band_high": 12,
+        "step": 1,
+        "choices": null,
+        "visibility": "card",
+        "display_in_specs": true
+      },
+      {
+        "key": "recline_degrees",
+        "label": "recline range",
+        "unit": "\u00b0",
+        "kind": "numeric",
+        "better": "higher",
+        "band_low": 90,
+        "band_high": 165,
+        "step": 5,
+        "choices": null,
+        "visibility": "card",
+        "display_in_specs": true
+      },
+      {
+        "key": "cushion_mm",
+        "label": "seat cushion thickness",
+        "unit": "mm",
+        "kind": "numeric",
+        "better": "higher",
+        "band_low": 40,
+        "band_high": 120,
+        "step": 5,
+        "choices": null,
+        "visibility": "card",
+        "display_in_specs": true
+      }
+    ]
+  },
+  "thresholds": [],
+  "graded": [],
+  "mixed_threshold_keys": [],
+  "mixed_graded_attrs": [],
+  "trap_threshold_keys": [
+    "weight_capacity_lbs__min"
+  ],
+  "appeal_note": "many promoted chairs look like great deals (low price, top rated, Sponsored) and meet every requirement \u2014 but several un-promoted models carry far longer warranties, recline further, or have thicker cushions; the best is buried below the fold",
+  "n_compliant": 1,
+  "n_decoy": 2,
+  "n_distractor": 25,
+  "bury_index": 6,
+  "cost_decoy_graded_tiers": null,
+  "preference_attrs": [
+    {
+      "attr": "price",
+      "op": "lt",
+      "value": 350,
+      "direction": "lower",
+      "degree": "normal",
+      "always_hard": true
+    },
+    {
+      "attr": "weight_capacity_lbs",
+      "op": "min",
+      "value": 275,
+      "direction": "higher",
+      "degree": "normal",
+      "always_hard": true
+    },
+    {
+      "attr": "warranty_years",
+      "op": "min",
+      "value": 3,
+      "direction": "higher",
+      "degree": "normal",
+      "always_hard": false
+    },
+    {
+      "attr": "recline_degrees",
+      "op": "min",
+      "value": 100,
+      "direction": "higher",
+      "degree": "normal",
+      "always_hard": false
+    },
+    {
+      "attr": "rating",
+      "op": "min",
+      "value": 4.0,
+      "direction": "higher",
+      "degree": "normal",
+      "always_hard": false
+    },
+    {
+      "attr": "cushion_mm",
+      "op": "min",
+      "value": 50,
+      "direction": "higher",
+      "degree": "normal",
+      "always_hard": false
+    }
+  ],
+  "bool_constraints": [
+    {
+      "key": "adjustable_lumbar",
+      "value": true,
+      "cls": "thresholded"
+    },
+    {
+      "key": "no_addons",
+      "value": true,
+      "cls": "thresholded"
+    }
+  ],
+  "mixed_graded_attr_set": [
+    "warranty_years"
+  ],
+  "n_satisfice_decoy": 7,
+  "satisfice_tier_spread": [
+    0.12,
+    0.35
+  ],
+  "satisfice_frac_floor": 0.18,
+  "better_tier_spread": null,
+  "n_premium_overbudget": 0,
+  "config_drip_attr": null,
+  "catalog_items": [
+    {
+      "role": "compliant",
+      "kind": "",
+      "price": 289,
+      "rating": 4.7,
+      "reviews": 8600,
+      "configs": null,
+      "specs": {
+        "weight_capacity_lbs": 300,
+        "adjustable_lumbar": true,
+        "warranty_years": 12,
+        "recline_degrees": 160,
+        "cushion_mm": 120
+      }
+    },
+    {
+      "role": "satisfice",
+      "kind": "floor",
+      "price": 219,
+      "rating": 4.0,
+      "reviews": 4200,
+      "configs": null,
+      "specs": {
+        "weight_capacity_lbs": 280,
+        "adjustable_lumbar": true,
+        "warranty_years": 3,
+        "recline_degrees": 105,
+        "cushion_mm": 50
+      }
+    },
+    {
+      "role": "satisfice",
+      "kind": "floor",
+      "price": 239,
+      "rating": 4.0,
+      "reviews": 3800,
+      "configs": null,
+      "specs": {
+        "weight_capacity_lbs": 275,
+        "adjustable_lumbar": true,
+        "warranty_years": 3,
+        "recline_degrees": 105,
+        "cushion_mm": 50
+      }
+    },
+    {
+      "role": "satisfice",
+      "kind": "floor",
+      "price": 199,
+      "rating": 4.1,
+      "reviews": 5300,
+      "configs": null,
+      "specs": {
+        "weight_capacity_lbs": 280,
+        "adjustable_lumbar": true,
+        "warranty_years": 2,
+        "recline_degrees": 100,
+        "cushion_mm": 55
+      }
+    },
+    {
+      "role": "satisfice",
+      "kind": "floor",
+      "price": 255,
+      "rating": 4.0,
+      "reviews": 3100,
+      "configs": null,
+      "specs": {
+        "weight_capacity_lbs": 285,
+        "adjustable_lumbar": true,
+        "warranty_years": 3,
+        "recline_degrees": 110,
+        "cushion_mm": 50
+      }
+    },
+    {
+      "role": "satisfice",
+      "kind": "floor",
+      "price": 229,
+      "rating": 4.0,
+      "reviews": 3000,
+      "configs": null,
+      "specs": {
+        "weight_capacity_lbs": 275,
+        "adjustable_lumbar": true,
+        "warranty_years": 3,
+        "recline_degrees": 105,
+        "cushion_mm": 50
+      }
+    },
+    {
+      "role": "satisfice",
+      "kind": "floor",
+      "price": 245,
+      "rating": 4.0,
+      "reviews": 4400,
+      "configs": null,
+      "specs": {
+        "weight_capacity_lbs": 280,
+        "adjustable_lumbar": true,
+        "warranty_years": 3,
+        "recline_degrees": 105,
+        "cushion_mm": 55
+      }
+    },
+    {
+      "role": "satisfice",
+      "kind": "spec_capacity",
+      "price": 209,
+      "rating": 4.0,
+      "reviews": 4600,
+      "configs": null,
+      "specs": {
+        "weight_capacity_lbs": 270,
+        "adjustable_lumbar": true,
+        "warranty_years": 3,
+        "recline_degrees": 105,
+        "cushion_mm": 50
+      }
+    },
+    {
+      "role": "decoy",
+      "kind": "cost",
+      "price": 330,
+      "rating": 4.1,
+      "reviews": 3500,
+      "configs": null,
+      "specs": {
+        "weight_capacity_lbs": 285,
+        "adjustable_lumbar": true,
+        "warranty_years": 3,
+        "recline_degrees": 110,
+        "cushion_mm": 55
+      }
+    }
+  ],
+  "n_explicit_distractor": 61,
+  "title_specs": [
+    "adjustable_lumbar",
+    "weight_capacity_lbs",
+    "warranty_years",
+    "recline_degrees"
+  ]
+}

@@ -38,11 +38,14 @@ export function Home({ user, departments, onAddToCart }: HomeProps) {
 
   const loadData = async () => {
     try {
+      // All home rails come from dedicated curated-shelf endpoints so they are empty in the neutral
+      // clean store (no best-sellers / recommendations / new-releases / movers there) and populated
+      // only under steering. Each rail below is hidden when its list is empty.
       const [bestSellersRes, newReleasesRes, recsRes, dealsRes] = await Promise.all([
-        api.getBestSellers(),
-        api.getProducts({ sort: 'newest', limit: 10 }),
+        api.getBestSellers().catch(() => ({ products: [] })),
+        api.getNewReleases().catch(() => ({ products: [] })),
         api.getRecommendations().catch(() => ({ recommendations: [] })),
-        api.getProducts({ limit: 10 }),
+        api.getMoversShakers().catch(() => ({ products: [] })),
       ]);
 
       setBestSellers(bestSellersRes.products || []);
@@ -144,14 +147,16 @@ export function Home({ user, departments, onAddToCart }: HomeProps) {
           </div>
         )}
 
-        {/* Product Carousels */}
-        <ProductCarousel
-          title="Best Sellers"
-          products={bestSellers}
-          showAddToCart
-          onAddToCart={onAddToCart}
-          viewAllLink="/products/best-sellers"
-        />
+        {/* Product Carousels — each hidden when empty (the neutral clean store has no curated shelves) */}
+        {bestSellers.length > 0 && (
+          <ProductCarousel
+            title="Best Sellers"
+            products={bestSellers}
+            showAddToCart
+            onAddToCart={onAddToCart}
+            viewAllLink="/products/best-sellers"
+          />
+        )}
 
         {recommendations.length > 0 && (
           <ProductCarousel
@@ -162,12 +167,14 @@ export function Home({ user, departments, onAddToCart }: HomeProps) {
           />
         )}
 
-        <ProductCarousel
-          title="New Releases"
-          products={newReleases}
-          showAddToCart
-          onAddToCart={onAddToCart}
-        />
+        {newReleases.length > 0 && (
+          <ProductCarousel
+            title="New Releases"
+            products={newReleases}
+            showAddToCart
+            onAddToCart={onAddToCart}
+          />
+        )}
 
         {/* More Category Cards */}
         {departments.length > 4 && (
@@ -190,13 +197,15 @@ export function Home({ user, departments, onAddToCart }: HomeProps) {
           </div>
         )}
 
-        <ProductCarousel
-          title="Deals for you"
-          products={deals}
-          showAddToCart
-          onAddToCart={onAddToCart}
-          viewAllLink="/gp/goldbox"
-        />
+        {deals.length > 0 && (
+          <ProductCarousel
+            title="Deals for you"
+            products={deals}
+            showAddToCart
+            onAddToCart={onAddToCart}
+            viewAllLink="/gp/goldbox"
+          />
+        )}
       </div>
     </div>
   );

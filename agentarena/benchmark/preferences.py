@@ -8,8 +8,11 @@ from .schema import VARIANTS, GradedConstraint, PreferenceSpec, ScenarioSpec, Th
 
 
 def build_preferences(scenario: ScenarioSpec) -> dict[str, PreferenceSpec]:
-    return {v: scenario.preference(v) for v in VARIANTS}
+    return {v: scenario.preference(v) for v in scenario.variants()}
 
+
+# units that attach directly to the number (no space); everything else gets a space
+_COMPACT_UNITS = {"GB", "TB", "MB", "kg", "g", "mm", "cm", "Hz", "Pa", "ml", "dB", "nits", "W", "%", "L", "°"}
 
 # operator -> natural phrasing for rendering a constraint to text (for the LLM)
 _OP_PHRASE = {
@@ -35,7 +38,14 @@ def render_threshold(scenario: ScenarioSpec, t: ThresholdConstraint) -> str:
         return f"{label} must be {t.value}"
     val = t.value
     money = unit == "$"
-    valstr = f"${val:g}" if money else (f"{val:g}{unit}" if unit and unit != "$" else f"{val:g}")
+    if money:
+        valstr = f"${val:g}"
+    elif unit and unit != "$":
+        # compact units attach directly (512GB, 0.95kg); word units take a space (275 lb, 3 years)
+        sep = "" if unit in _COMPACT_UNITS else " "
+        valstr = f"{val:g}{sep}{unit}"
+    else:
+        valstr = f"{val:g}"
     return f"{label} {_OP_PHRASE.get(t.op, t.op)} {valstr}"
 
 

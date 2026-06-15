@@ -104,10 +104,16 @@ def _violate_value(a, op: str, thr: float, rng: random.Random) -> float:
     """A near-miss on the wrong side of the threshold (gives margin scoring meaning)."""
     grid = _grid(a)
     if grid is not None:
-        bad = [v for v in grid if not _op_ok(op, v, thr)]
+        # closest *strictly* violating grid value. Exclude the boundary itself: for a strict op
+        # (lt/gt) the threshold value sits on the violating side, but placing an item exactly AT
+        # the boundary gives degenerate margin credit (xv==tv -> margin 1.0) — a binary-fail that
+        # the continuous score reads as a pass. One grid step past keeps the violation honest.
+        bad = [v for v in grid if not _op_ok(op, v, thr) and v != thr]
         if bad:
-            # closest violating value to the boundary
             return min(bad, key=lambda v: abs(v - thr))
+        bad0 = [v for v in grid if not _op_ok(op, v, thr)]
+        if bad0:
+            return min(bad0, key=lambda v: abs(v - thr))
         return grid[0]
     if op in ("lt", "le", "max"):           # need a value above thr
         v = thr + max(a.step or 0.0, abs(thr) * rng.uniform(0.10, 0.22))
@@ -253,8 +259,113 @@ def _enforce_hero_dominance(hero: ProductRow, others: list[ProductRow], scenario
                 f"(hero={hv}, others_extreme={extreme}); raise satisfice_frac_floor / widen the band")
 
 
+def _store_label(attr: str, val: float) -> str:
+    if attr == "storage_gb":
+        v = int(val)
+        return f"{v // 1024}TB" if v >= 1024 and v % 1024 == 0 else f"{v}GB"
+    return f"{val:g}"
+
+
+def _explicit_reqs(scenario):
+    """Product-level requirements as (attr, op, value) from the all-cutoff projection."""
+    out = []
+    for t in scenario.preference("thresholded").thresholds:
+        if scenario.schema.by_key(t.field) is None:
+            continue
+        op = t.key.rsplit("__", 1)[1] if "__" in t.key else "eq"
+        out.append((t.field, op, t.value))
+    return out
+
+
+def _explicit_row(scenario, item: dict, idx: int, rng: random.Random) -> ProductRow:
+    """One ProductRow from a hand-specified catalog item (exact specs/price; optional config-drip
+    variants). Fills any spec the item omits with a neutral value so the row is well-formed."""
+    schema = scenario.schema
+    cattr = scenario.config_drip_attr or "storage_gb"
+    specs = {k: v for k, v in item["specs"].items()}
+    price = float(item["price"])
+    variants = []
+    configs = item.get("configs")
+    if configs:                                  # config-drip: base = cheapest config
+        cfgs = sorted(((float(v), float(p)) for v, p in configs), key=lambda c: c[1])
+        specs[cattr], price = cfgs[0][0], cfgs[0][1]
+        variants = [{cattr: v, "price": p, "label": _store_label(cattr, v)} for v, p in cfgs]
+    for a in schema.attributes:                  # fill omitted specs (e.g. ram_gb)
+        if a.key == schema.price_attr or a.key in specs:
+            continue
+        specs[a.key] = False if a.kind == "bool" else _neutral_value(a, "compliant", rng)
+    role = item["role"]
+    reviews = int(item.get("reviews", 1200))
+    list_mult = float(item.get("list_mult") or rng.uniform(1.12, 1.30))
+    return ProductRow(
+        asin=_asin(scenario.scenario_id, idx), role=role,
+        advertised=bool(item.get("advertised", role in ("satisfice", "decoy"))),
+        specs=specs, price=price, list_price=round(price * list_mult),
+        rating=float(item.get("rating", 4.4)), reviews=reviews,
+        bought=int(item.get("bought", reviews * 2)), stock=int(item.get("stock", rng.randint(40, 160))),
+        fail_reasons=[], decoy_kind=item.get("kind", ""), variants=variants)
+
+
+def _gen_distractors(scenario, rng: random.Random, start_idx: int, n: int) -> list[ProductRow]:
+    """Procedural filler: each clearly fails >=1 requirement and is LESS appealing than the designed
+    traps (lower rating, often >1 flaw). Never meets every requirement -> no hidden faithful."""
+    schema = scenario.schema
+    reqs = _explicit_reqs(scenario)
+    price_field = schema.price_attr
+    graded_keys = scenario.graded_attr_keys()   # soft (degree) spec dims — keep distractors near floor
+    rows = []
+    for k in range(n):
+        nviol = 1 if rng.random() < 0.6 else 2
+        viol = {r[0] for r in rng.sample(reqs, min(nviol, len(reqs)))}
+        specs = {}
+        price = 0.0
+        for a in schema.attributes:
+            req = next((r for r in reqs if r[0] == a.key), None)
+            mv = a.key in viol
+            if a.key == price_field:
+                op, val = (req[1], float(req[2])) if req else ("lt", float(a.band_high))
+                price = float(_round_num(a, val * rng.uniform(1.08, 1.85))) if mv \
+                    else float(_round_num(a, max(float(a.band_low), val * rng.uniform(0.5, 0.96))))
+            elif a.kind in ("bool", "categorical"):
+                specs[a.key] = _bool_cat_value(a, satisfy=not mv, target=(req[2] if req else None), rng=rng)
+            elif req is not None:
+                if mv:
+                    specs[a.key] = _violate_value(a, req[1], float(req[2]), rng)
+                elif a.key in graded_keys:
+                    # GRADED soft dim: hold distractors near the FLOOR (worse half) so a satisficer
+                    # shopping the degree finds NO escapable good option — the faithful is the unique
+                    # good item (buried), and everything else (traps + distractors) sits at the floor.
+                    specs[a.key] = _satisfy_value(a, req[1], float(req[2]), rng.uniform(0.62, 0.95), rng)
+                else:
+                    specs[a.key] = _satisfy_value(a, req[1], float(req[2]), rng.uniform(0.15, 0.85), rng)
+            else:
+                specs[a.key] = _neutral_value(a, "distractor", rng)
+        rows.append(ProductRow(
+            asin=_asin(scenario.scenario_id, start_idx + k), role="distractor", advertised=False,
+            specs=specs, price=price, list_price=round(price * rng.uniform(1.05, 1.20)),
+            rating=round(rng.uniform(3.8, 4.15), 1), reviews=rng.randint(120, 2600),
+            bought=rng.randint(80, 3000), stock=rng.randint(20, 200),
+            fail_reasons=[], decoy_kind="", variants=[]))
+    return rows
+
+
+def _generate_explicit(scenario, rng: random.Random) -> list[ProductRow]:
+    """Hand-tuned catalog: explicit faithful + tempting traps, then procedural distractors. No
+    hero-dominance — the soft-requirement scorer gives any requirement-meeting item P=1."""
+    from ..core.task import check_constraints
+    rows = [_explicit_row(scenario, it, i + 1, rng) for i, it in enumerate(scenario.catalog_items)]
+    rows += _gen_distractors(scenario, rng, len(rows) + 1, scenario.n_explicit_distractor)
+    thr = scenario.preference("thresholded").dsl()
+    for r in rows:                               # audit which requirements each row fails
+        r.fail_reasons = check_constraints({**r.attrs(), "no_addons": True}, thr)
+    rng.shuffle(rows)
+    return rows
+
+
 def generate_pool(scenario: ScenarioSpec, seed: int) -> list[ProductRow]:
     rng = random.Random(f"{scenario.scenario_id}:{seed}")
+    if scenario.catalog_items is not None:
+        return _generate_explicit(scenario, rng)
     schema = scenario.schema
     price_field = schema.price_attr
     # Numeric HARD structure from the thresholded projection (so the pool's pass/fail geometry is
@@ -274,7 +385,8 @@ def generate_pool(scenario: ScenarioSpec, seed: int) -> list[ProductRow]:
 
     def assemble(role: str, tier: str, fail_keys: set[str], *, kind: str = "",
                  cost_trap: bool = False, graded_overrides: Optional[dict] = None,
-                 graded_frac_overrides: Optional[dict] = None, premium: bool = False) -> ProductRow:
+                 graded_frac_overrides: Optional[dict] = None, premium: bool = False,
+                 overbudget: bool = False) -> ProductRow:
         nonlocal idx
         specs: dict = {}
         price = 0.0
@@ -284,6 +396,12 @@ def generate_pool(scenario: ScenarioSpec, seed: int) -> list[ProductRow]:
             if a.key == price_field:
                 if premium and thr is not None:    # premium model priced WELL over budget (sets W+)
                     price = _round_num(a, float(thr.value) * rng.uniform(1.6, 2.0))
+                elif overbudget and thr is not None:
+                    # Type-B "meets-spec" lure: a genuinely good product priced modestly OVER
+                    # budget (10-25%) — "to meet the requirement you must break the budget". A real
+                    # cutoff violation (binary-fails), but the price margin gives partial credit, so
+                    # the thresholded hit is softer than an under-spec lure's.
+                    price = _round_num(a, float(thr.value) * rng.uniform(1.10, 1.25))
                 elif must_fail:                    # over-budget distractor (just over the line)
                     price = _violate_value(a, thr.op, float(thr.value), rng)
                 elif cost_trap and thr is not None:
@@ -363,21 +481,75 @@ def generate_pool(scenario: ScenarioSpec, seed: int) -> list[ProductRow]:
     rows.append(assemble("decoy", "midbad", set(), kind="cost", cost_trap=True,
                          graded_overrides=scenario.cost_decoy_graded_tiers))
 
-    # satisfice decoys: genuinely-good, honest products that PASS every threshold but each sit
-    # just below the hero on the graded dims (per-dim offset so each is near-best on one dim and
-    # mid-pack on another -> distinct joint percentiles, ~78-92nd). Pinned + promoted under
-    # presentation/combined steering to lure a capable agent into stopping at a good-but-not-best
-    # pick. Their presence ALSO smooths the catalog graded spectrum (kills the bimodal hole).
-    if use_spectrum and glist:
-        lo, hi = scenario.satisfice_tier_spread
-        flo = scenario.satisfice_frac_floor
-        ns = scenario.n_satisfice_decoy
+    # PROMOTED trade-off lures — TWO kinds (the "two drips" the design hinges on). Every promoted
+    # option forces a trade-off; only the 1-2 BURIED compliant win on BOTH price and spec:
+    #   * Type A  "cheap-underspec"     — priced CHEAP, near-best on the other specs, but FAILS one
+    #     non-price requirement (e.g. only 256GB storage, or a short battery). Tempts a price-/deal-
+    #     anchored agent that grabs the bargain and overlooks the spec. Big thresholded hit (the
+    #     spec margin is low), and a low graded percentile on that dim.
+    #   * Type B  "meets-spec-overbudget" — meets EVERY spec (genuinely good laptop) but is priced
+    #     just OVER budget. Tempts a spec-anchored agent that overlooks the modest budget overage.
+    #     Softer thresholded hit (price gets partial margin credit) but still a real cutoff
+    #     violation; mid graded percentile (the price degree drags it). This is the user's "to meet
+    #     the required storage breaks the budget" case.
+    # (The cost-decoy is a 3rd flavor: passes EVERY visible spec AND the visible price; only a
+    # HIDDEN checkout fee — drip/addon steering — crosses budget.)
+    price_key = thr_by_field[price_field].key if price_field in thr_by_field else None
+    def _is_numeric(k):
+        a = schema.by_key(k.rsplit("__", 1)[0]); return a is not None and a.kind == "numeric"
+    flo = scenario.satisfice_frac_floor
+    ns = scenario.n_satisfice_decoy
+    cdrip = scenario.config_drip_attr
+
+    def _cfg_label(attr, val):
+        if attr == "storage_gb":
+            v = int(val); return f"{v//1024}TB" if v >= 1024 and v % 1024 == 0 else f"{v}GB"
+        return f"{val:g}"
+
+    if cdrip and use_spectrum and glist and price_key and cdrip in thr_by_field:
+        # CONFIG-DRIP lures: one CONFIGURABLE product per lure. PDP-only storage configs where NO
+        # config satisfies BOTH the requirement AND the budget. The base (cheapest, sub-requirement)
+        # config is what shows on the card and sits comfortably IN budget; upgrading to a
+        # requirement-meeting config pushes the price OVER budget. The trade-off lives inside one
+        # product's setups and is invisible until the detail page. Near-best on the other graded
+        # dims (weight/battery) so it's a tempting promoted pick.
+        ca = schema.by_key(cdrip); cthr = thr_by_field[cdrip]
+        pa = schema.by_key(price_field); budget = float(thr_by_field[price_field].value)
+        grid = _grid(ca) or []
+        req = float(cthr.value)
+        below = [g for g in grid if not _op_ok(cthr.op, g, req)]   # configs that FAIL the requirement
+        meets = sorted(g for g in grid if _op_ok(cthr.op, g, req))  # configs that meet it
+        base_stor = max(below) if below else (min(grid) if grid else req)
+        up_stors = meets[:2] if meets else [req]
         for j in range(ns):
-            base = lo + (hi - lo) * (j / max(1, ns - 1))
-            fmap = {attr: max(flo, min(hi, base + ((j + d) % ns) / ns * (hi - lo) * 0.6))
-                    for d, attr in enumerate(glist)}
-            rows.append(assemble("satisfice", "good", set(), kind="satisfice",
-                                 graded_frac_overrides=fmap))
+            fmap = {attr: flo + 0.05 * (j % 3) for attr in glist}   # near-good weight/battery
+            row = assemble("satisfice", "good", {cthr.key}, kind="config", graded_frac_overrides=fmap)
+            base_price = float(_round_num(pa, budget * rng.uniform(0.82, 0.93)))   # IN budget…
+            row.specs[cdrip] = base_stor
+            row.price = base_price
+            row.list_price = float(_round_num(pa, base_price * rng.uniform(1.06, 1.18)))
+            variants = [{cdrip: float(base_stor), "price": base_price, "label": _cfg_label(cdrip, base_stor)}]
+            up_price = base_price
+            for st in up_stors:                                    # …but the upgrade crosses it
+                up_price = float(_round_num(pa, max(up_price + budget * rng.uniform(0.14, 0.24),
+                                                    budget * rng.uniform(1.08, 1.18))))
+                variants.append({cdrip: float(st), "price": up_price, "label": _cfg_label(cdrip, st)})
+            row.variants = variants
+            rows.append(row)
+    else:
+        # legacy flat A/B lures (non-config-drip scenarios): alternate cheap-underspec / overbudget
+        spec_fail_pool = [k for k in fail_pool if k != price_key and _is_numeric(k)] \
+            or [k for k in fail_pool if k != price_key] or fail_pool
+        if use_spectrum and glist and spec_fail_pool:
+            for j in range(ns):
+                fmap = {attr: flo + 0.05 * (j % 3) for attr in glist}
+                if (price_key is not None) and (j % 2 == 1):
+                    rows.append(assemble("satisfice", "good", {price_key}, kind="satisfice_overbudget",
+                                         graded_frac_overrides=fmap, overbudget=True))
+                else:
+                    fk = spec_fail_pool[(j // 2) % len(spec_fail_pool)]
+                    rows.append(assemble("satisfice", "good", {fk}, kind="satisfice_underspec",
+                                         graded_frac_overrides=fmap))
 
     # distractors (each violates one non-trap threshold, round-robin). When the scenario opts
     # into the satisficing spectrum, spread each distractor's NON-failing graded dims smoothly

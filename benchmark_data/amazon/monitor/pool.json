@@ -1,896 +1,72 @@
 [
   {
-    "asin": "EXP-MONITOR-09",
-    "role": "compliant",
+    "asin": "EXP-MONITOR-27",
+    "role": "distractor",
     "advertised": false,
     "specs": {
       "resolution_p": 2160.0,
       "panel": "IPS",
       "refresh_hz": 165.0,
-      "srgb_pct": 99.0,
-      "brightness_nits": 400.0,
-      "response_ms": 2.0
-    },
-    "price": 170.0,
-    "list_price": 197.0,
-    "rating": 4.5,
-    "reviews": 2165,
-    "bought": 2392,
-    "stock": 129,
-    "fail_reasons": [],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Expora Venn Monitor",
-    "bullets": [
-      "2160 p vertical resolution",
-      "IPS panel type",
-      "165 Hz refresh rate",
-      "99% sRGB color coverage",
-      "400 nits brightness"
-    ],
-    "description": "The Expora Venn Monitor uses an IPS panel with 2160 p vertical resolution. It supports a 165 Hz refresh rate, 99% sRGB color coverage, 400 nits brightness, and a 2 ms response time.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-35",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 1440.0,
-      "panel": "IPS",
-      "refresh_hz": 240.0,
-      "srgb_pct": 94.0,
-      "brightness_nits": 320.0,
-      "response_ms": 5.0
-    },
-    "price": 250.0,
-    "list_price": 270.0,
-    "rating": 4.1,
-    "reviews": 2394,
-    "bought": 2561,
-    "stock": 115,
-    "fail_reasons": [
-      "srgb_pct__min"
-    ],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Nuvora Kelton Monitor",
-    "bullets": [
-      "Vertical resolution: 1440 p",
-      "Panel type: IPS",
-      "Refresh rate: 240 Hz",
-      "sRGB color coverage: 94%",
-      "Brightness: 320 nits"
-    ],
-    "description": "The Nuvora Kelton Monitor uses an IPS panel with stated sRGB coverage and brightness for clear color presentation. Its refresh rate and response time support smooth on-screen motion.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-29",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 1080.0,
-      "panel": "IPS",
-      "refresh_hz": 240.0,
       "srgb_pct": 96.0,
-      "brightness_nits": 340.0,
-      "response_ms": 4.0
-    },
-    "price": 230.0,
-    "list_price": 250.0,
-    "rating": 4.6,
-    "reviews": 2376,
-    "bought": 1094,
-    "stock": 34,
-    "fail_reasons": [
-      "resolution_p__min"
-    ],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Novaro Expan Monitor",
-    "bullets": [
-      "1080 p vertical resolution",
-      "IPS panel type",
-      "240 Hz refresh rate",
-      "96% sRGB color coverage",
-      "340 nits brightness"
-    ],
-    "description": "The Novaro Expan Monitor uses an IPS panel with 1080 p vertical resolution. It supports a 240 Hz refresh rate, 96% sRGB color coverage, 340 nits brightness, and a 4 ms response time.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-39",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 1440.0,
-      "panel": "IPS",
-      "refresh_hz": 240.0,
-      "srgb_pct": 94.0,
-      "brightness_nits": 310.0,
+      "brightness_nits": 330.0,
       "response_ms": 2.0
     },
-    "price": 260.0,
-    "list_price": 286.0,
-    "rating": 3.9,
-    "reviews": 2552,
-    "bought": 1557,
-    "stock": 53,
-    "fail_reasons": [
-      "srgb_pct__min"
-    ],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Expora Veyra Monitor",
-    "bullets": [
-      "1440 p vertical resolution",
-      "IPS panel type",
-      "240 Hz refresh rate",
-      "94% sRGB color coverage",
-      "310 nits brightness"
-    ],
-    "description": "The Expora Veyra Monitor uses an IPS panel with 1440 p vertical resolution. It features a 240 Hz refresh rate, 2 ms response time, 94% sRGB color coverage, and 310 nits brightness.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-14",
-    "role": "decoy",
-    "advertised": true,
-    "specs": {
-      "resolution_p": 2160.0,
-      "panel": "IPS",
-      "refresh_hz": 165.0,
-      "srgb_pct": 97.0,
-      "brightness_nits": 360.0,
-      "response_ms": 2.0
-    },
-    "price": 280.0,
-    "list_price": 298.0,
-    "rating": 4.5,
-    "reviews": 2230,
-    "bought": 3042,
-    "stock": 102,
-    "fail_reasons": [
-      "all_in_price>budget"
-    ],
-    "decoy_kind": "cost",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Exora Venn Monitor",
-    "bullets": [
-      "2160 p vertical resolution",
-      "IPS panel type",
-      "165 Hz refresh rate",
-      "97% sRGB color coverage",
-      "360 nits brightness and 2 ms response time"
-    ],
-    "description": "The Exora Venn Monitor uses an IPS panel with 2160 p vertical resolution. It supports a 165 Hz refresh rate, 97% sRGB color coverage, 360 nits brightness, and a 2 ms response time.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-44",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 2160.0,
-      "panel": "IPS",
-      "refresh_hz": 75.0,
-      "srgb_pct": 97.0,
-      "brightness_nits": 370.0,
-      "response_ms": 7.0
-    },
-    "price": 560.0,
-    "list_price": 620.0,
+    "price": 310.0,
+    "list_price": 363.0,
     "rating": 4.4,
-    "reviews": 1608,
-    "bought": 3610,
-    "stock": 119,
+    "reviews": 457,
+    "bought": 3663,
+    "stock": 95,
     "fail_reasons": [
       "price__lt"
     ],
     "decoy_kind": "",
     "image": "hp-27-4k-ips-monitor.png",
     "image_tier": "stock",
-    "title": "Exora Venn M44 Monitor",
-    "bullets": [
-      "2160 p vertical resolution.",
-      "IPS panel type.",
-      "75 Hz refresh rate.",
-      "97% sRGB color coverage.",
-      "370 nits brightness and 7 ms response time."
-    ],
-    "description": "The Exora Venn Monitor uses an IPS panel with 2160 p vertical resolution. It supports 97% sRGB color coverage, 370 nits brightness, a 75 Hz refresh rate, and a 7 ms response time.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-28",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 2160.0,
-      "panel": "IPS",
-      "refresh_hz": 165.0,
-      "srgb_pct": 96.0,
-      "brightness_nits": 290.0,
-      "response_ms": 4.0
-    },
-    "price": 230.0,
-    "list_price": 270.0,
-    "rating": 4.0,
-    "reviews": 2936,
-    "bought": 638,
-    "stock": 46,
-    "fail_reasons": [
-      "brightness_nits__min"
-    ],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Nuvora Elan Monitor",
-    "bullets": [
-      "2160 p vertical resolution",
-      "IPS panel type",
-      "165 Hz refresh rate",
-      "96% sRGB color coverage",
-      "290 nits brightness"
-    ],
-    "description": "The Nuvora Elan Monitor uses an IPS panel with 2160 p vertical resolution. It supports a 165 Hz refresh rate, 96% sRGB color coverage, 290 nits brightness, and a 4 ms response time.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-24",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 2160.0,
-      "panel": "IPS",
-      "refresh_hz": 100.0,
-      "srgb_pct": 97.0,
-      "brightness_nits": 290.0,
-      "response_ms": 1.0
-    },
-    "price": 220.0,
-    "list_price": 252.0,
-    "rating": 4.1,
-    "reviews": 334,
-    "bought": 1079,
-    "stock": 198,
-    "fail_reasons": [
-      "brightness_nits__min"
-    ],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Nivora Expan Monitor",
-    "bullets": [
-      "2160p vertical resolution",
-      "IPS panel type",
-      "100 Hz refresh rate",
-      "97% sRGB color coverage",
-      "290 nits brightness"
-    ],
-    "description": "The Nivora Expan Monitor combines an IPS panel with 2160p vertical resolution. It supports a 100 Hz refresh rate, 97% sRGB color coverage, 290 nits brightness, and a 1 ms response time.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-02",
-    "role": "compliant",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 2160.0,
-      "panel": "IPS",
-      "refresh_hz": 165.0,
-      "srgb_pct": 99.0,
-      "brightness_nits": 440.0,
-      "response_ms": 4.0
-    },
-    "price": 130.0,
-    "list_price": 150.0,
-    "rating": 4.6,
-    "reviews": 2992,
-    "bought": 3844,
-    "stock": 65,
-    "fail_reasons": [],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Lunex Orbi Monitor",
-    "bullets": [
-      "Vertical resolution: 2160 p.",
-      "Panel type: IPS.",
-      "Refresh rate: 165 Hz.",
-      "sRGB color coverage: 99%.",
-      "Brightness: 440 nits; response time: 4 ms."
-    ],
-    "description": "The Lunex Orbi Monitor uses an IPS panel with 2160 p vertical resolution. It includes a 165 Hz refresh rate, 99% sRGB color coverage, 440 nits brightness, and 4 ms response time.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-04",
-    "role": "compliant",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 2160.0,
-      "panel": "IPS",
-      "refresh_hz": 240.0,
-      "srgb_pct": 99.0,
-      "brightness_nits": 430.0,
-      "response_ms": 4.0
-    },
-    "price": 150.0,
-    "list_price": 167.0,
-    "rating": 4.5,
-    "reviews": 4243,
-    "bought": 2207,
-    "stock": 67,
-    "fail_reasons": [],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Novent Exora Monitor",
-    "bullets": [
-      "2160 p vertical resolution",
-      "IPS panel type",
-      "240 Hz refresh rate",
-      "99% sRGB color coverage",
-      "430 nits brightness"
-    ],
-    "description": "The Novent Exora Monitor combines an IPS panel with high sRGB color coverage for consistent display performance. Its listed refresh rate and response time support smooth on-screen motion.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-38",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 2160.0,
-      "panel": "IPS",
-      "refresh_hz": 240.0,
-      "srgb_pct": 95.0,
-      "brightness_nits": 310.0,
-      "response_ms": 5.0
-    },
-    "price": 300.0,
-    "list_price": 344.0,
-    "rating": 3.9,
-    "reviews": 1554,
-    "bought": 328,
-    "stock": 167,
-    "fail_reasons": [
-      "price__lt"
-    ],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Cobalt 38 Monitor",
+    "title": "Orla 27 Monitor",
     "bullets": [
       "Vertical Resolution: 2160.0p",
       "Panel Type: IPS",
-      "Refresh Rate: 240.0Hz",
-      "Srgb Color Coverage: 95.0%",
-      "Brightness: 310.0nits"
+      "Refresh Rate: 165.0Hz",
+      "Srgb Color Coverage: 96.0%",
+      "Brightness: 330.0nits"
     ],
-    "description": "A monitor with vertical resolution: 2160.0p, panel type: ips, refresh rate: 240.0hz.",
+    "description": "A monitor with vertical resolution: 2160.0p, panel type: ips, refresh rate: 165.0hz.",
     "copy_status": "flagged"
-  },
-  {
-    "asin": "EXP-MONITOR-34",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 2160.0,
-      "panel": "IPS",
-      "refresh_hz": 165.0,
-      "srgb_pct": 96.0,
-      "brightness_nits": 320.0,
-      "response_ms": 7.0
-    },
-    "price": 300.0,
-    "list_price": 338.0,
-    "rating": 4.4,
-    "reviews": 1186,
-    "bought": 795,
-    "stock": 216,
-    "fail_reasons": [
-      "price__lt"
-    ],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Veyra Orin Monitor",
-    "bullets": [
-      "2160p vertical resolution",
-      "IPS panel type",
-      "165 Hz refresh rate",
-      "96% sRGB color coverage",
-      "320 nits brightness"
-    ],
-    "description": "The Veyra Orin Monitor features an IPS panel with 2160p vertical resolution. It supports a 165 Hz refresh rate, 96% sRGB color coverage, 320 nits brightness, and a 7 ms response time.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-23",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 1440.0,
-      "panel": "IPS",
-      "refresh_hz": 144.0,
-      "srgb_pct": 94.0,
-      "brightness_nits": 360.0,
-      "response_ms": 4.0
-    },
-    "price": 210.0,
-    "list_price": 238.0,
-    "rating": 4.2,
-    "reviews": 222,
-    "bought": 3329,
-    "stock": 30,
-    "fail_reasons": [
-      "srgb_pct__min"
-    ],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Exora Venn M23 Monitor",
-    "bullets": [
-      "Vertical resolution: 1440 p",
-      "IPS panel type",
-      "Refresh rate: 144 Hz",
-      "sRGB color coverage: 94%",
-      "Brightness: 360 nits"
-    ],
-    "description": "The Exora Venn Monitor uses an IPS panel with 1440 p vertical resolution. It has a 144 Hz refresh rate, 94% sRGB color coverage, 360 nits brightness, and a 4 ms response time.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-36",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 2160.0,
-      "panel": "IPS",
-      "refresh_hz": 165.0,
-      "srgb_pct": 95.0,
-      "brightness_nits": 290.0,
-      "response_ms": 7.0
-    },
-    "price": 250.0,
-    "list_price": 286.0,
-    "rating": 4.2,
-    "reviews": 1926,
-    "bought": 1929,
-    "stock": 168,
-    "fail_reasons": [
-      "brightness_nits__min"
-    ],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Exora Venn M36 Monitor",
-    "bullets": [
-      "2160p vertical resolution.",
-      "IPS panel type.",
-      "165 Hz refresh rate.",
-      "95% sRGB color coverage.",
-      "290 nits brightness."
-    ],
-    "description": "The Exora Venn Monitor uses an IPS panel with 2160p vertical resolution. It supports a 165 Hz refresh rate, 95% sRGB color coverage, 290 nits brightness, and a 7 ms response time.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-19",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 2160.0,
-      "panel": "IPS",
-      "refresh_hz": 144.0,
-      "srgb_pct": 94.0,
-      "brightness_nits": 370.0,
-      "response_ms": 8.0
-    },
-    "price": 200.0,
-    "list_price": 223.0,
-    "rating": 4.0,
-    "reviews": 1564,
-    "bought": 2841,
-    "stock": 195,
-    "fail_reasons": [
-      "srgb_pct__min"
-    ],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Lunavo Mera Monitor",
-    "bullets": [
-      "2160 p vertical resolution",
-      "IPS panel type",
-      "144 Hz refresh rate",
-      "94% sRGB color coverage",
-      "370 nits brightness"
-    ],
-    "description": "The Lunavo Mera Monitor uses an IPS panel with 2160 p vertical resolution. It is specified for a 144 Hz refresh rate, 94% sRGB coverage, 370 nits brightness, and 8 ms response time.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-18",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 2160.0,
-      "panel": "IPS",
-      "refresh_hz": 165.0,
-      "srgb_pct": 97.0,
-      "brightness_nits": 370.0,
-      "response_ms": 3.0
-    },
-    "price": 300.0,
-    "list_price": 358.0,
-    "rating": 4.0,
-    "reviews": 698,
-    "bought": 2685,
-    "stock": 145,
-    "fail_reasons": [
-      "price__lt"
-    ],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Veyra Epsilon Monitor",
-    "bullets": [
-      "2160p vertical resolution",
-      "IPS panel type",
-      "165 Hz refresh rate",
-      "97% sRGB color coverage",
-      "370 nits brightness"
-    ],
-    "description": "The Veyra Epsilon Monitor uses an IPS panel with 2160p vertical resolution. It provides a 165 Hz refresh rate, 3 ms response time, 97% sRGB color coverage, and 370 nits brightness.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-06",
-    "role": "compliant",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 2160.0,
-      "panel": "IPS",
-      "refresh_hz": 165.0,
-      "srgb_pct": 99.0,
-      "brightness_nits": 420.0,
-      "response_ms": 5.0
-    },
-    "price": 160.0,
-    "list_price": 170.0,
-    "rating": 4.7,
-    "reviews": 3361,
-    "bought": 2092,
-    "stock": 108,
-    "fail_reasons": [],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Tavon Epris Monitor",
-    "bullets": [
-      "2160p vertical resolution",
-      "IPS panel type",
-      "165 Hz refresh rate",
-      "99% sRGB color coverage",
-      "420 nits brightness and 5 ms response time"
-    ],
-    "description": "The Tavon Epris Monitor uses an IPS panel with 2160p vertical resolution. It supports a 165 Hz refresh rate, 99% sRGB color coverage, 420 nits brightness, and a 5 ms response time.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-42",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 2160.0,
-      "panel": "IPS",
-      "refresh_hz": 75.0,
-      "srgb_pct": 95.0,
-      "brightness_nits": 300.0,
-      "response_ms": 2.0
-    },
-    "price": 300.0,
-    "list_price": 317.0,
-    "rating": 4.3,
-    "reviews": 516,
-    "bought": 2742,
-    "stock": 89,
-    "fail_reasons": [
-      "price__lt"
-    ],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Juno 42 Monitor",
-    "bullets": [
-      "Vertical Resolution: 2160.0p",
-      "Panel Type: IPS",
-      "Refresh Rate: 75.0Hz",
-      "Srgb Color Coverage: 95.0%",
-      "Brightness: 300.0nits"
-    ],
-    "description": "A monitor with vertical resolution: 2160.0p, panel type: ips, refresh rate: 75.0hz.",
-    "copy_status": "flagged"
-  },
-  {
-    "asin": "EXP-MONITOR-15",
-    "role": "satisfice",
-    "advertised": true,
-    "specs": {
-      "resolution_p": 1440.0,
-      "panel": "IPS",
-      "refresh_hz": 75.0,
-      "srgb_pct": 98.0,
-      "brightness_nits": 390.0,
-      "response_ms": 6.0
-    },
-    "price": 190.0,
-    "list_price": 225.0,
-    "rating": 4.1,
-    "reviews": 711,
-    "bought": 3515,
-    "stock": 105,
-    "fail_reasons": [],
-    "decoy_kind": "satisfice",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Exora Vale Monitor",
-    "bullets": [
-      "1440p vertical resolution.",
-      "IPS panel type.",
-      "75 Hz refresh rate.",
-      "98% sRGB color coverage.",
-      "390 nits brightness."
-    ],
-    "description": "The Exora Vale Monitor uses an IPS panel with 1440p vertical resolution. It supports 98% sRGB color coverage, 390 nits brightness, a 75 Hz refresh rate, and a 6 ms response time.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-17",
-    "role": "satisfice",
-    "advertised": true,
-    "specs": {
-      "resolution_p": 2160.0,
-      "panel": "IPS",
-      "refresh_hz": 144.0,
-      "srgb_pct": 98.0,
-      "brightness_nits": 380.0,
-      "response_ms": 2.0
-    },
-    "price": 200.0,
-    "list_price": 233.0,
-    "rating": 4.4,
-    "reviews": 1087,
-    "bought": 659,
-    "stock": 196,
-    "fail_reasons": [],
-    "decoy_kind": "satisfice",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Nuvora Elan M17 Monitor",
-    "bullets": [
-      "Vertical resolution: 2160 p",
-      "IPS panel type",
-      "Refresh rate: 144 Hz",
-      "sRGB color coverage: 98%",
-      "Brightness: 380 nits"
-    ],
-    "description": "The Nuvora Elan Monitor uses an IPS panel with 2160 p vertical resolution. It supports a 144 Hz refresh rate, 2 ms response time, 98% sRGB color coverage, and 380 nits brightness.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-08",
-    "role": "compliant",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 2160.0,
-      "panel": "IPS",
-      "refresh_hz": 240.0,
-      "srgb_pct": 99.0,
-      "brightness_nits": 410.0,
-      "response_ms": 3.0
-    },
-    "price": 170.0,
-    "list_price": 194.0,
-    "rating": 4.5,
-    "reviews": 2653,
-    "bought": 5919,
-    "stock": 164,
-    "fail_reasons": [],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Expora Ardin Monitor",
-    "bullets": [
-      "2160p vertical resolution",
-      "IPS panel type",
-      "240 Hz refresh rate",
-      "99% sRGB color coverage",
-      "410 nits brightness"
-    ],
-    "description": "This monitor uses an IPS panel with 2160p vertical resolution. It supports a 240 Hz refresh rate, 3 ms response time, 99% sRGB color coverage, and 410 nits brightness.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-37",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 1080.0,
-      "panel": "IPS",
-      "refresh_hz": 240.0,
-      "srgb_pct": 95.0,
-      "brightness_nits": 310.0,
-      "response_ms": 4.0
-    },
-    "price": 260.0,
-    "list_price": 305.0,
-    "rating": 4.3,
-    "reviews": 2037,
-    "bought": 3009,
-    "stock": 220,
-    "fail_reasons": [
-      "resolution_p__min"
-    ],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Varo Enix Monitor",
-    "bullets": [
-      "Vertical resolution: 1080 p",
-      "Panel type: IPS",
-      "Refresh rate: 240 Hz",
-      "sRGB color coverage: 95%",
-      "Brightness: 310 nits; response time: 4 ms"
-    ],
-    "description": "The Varo Enix Monitor uses an IPS panel with 1080 p vertical resolution. It includes a 240 Hz refresh rate, 95% sRGB color coverage, 310 nits brightness, and a 4 ms response time.",
-    "copy_status": "ok"
   },
   {
     "asin": "EXP-MONITOR-41",
     "role": "distractor",
     "advertised": false,
     "specs": {
-      "resolution_p": 1080.0,
+      "resolution_p": 2160.0,
       "panel": "IPS",
       "refresh_hz": 75.0,
       "srgb_pct": 95.0,
-      "brightness_nits": 300.0,
-      "response_ms": 8.0
+      "brightness_nits": 290.0,
+      "response_ms": 1.0
     },
     "price": 270.0,
-    "list_price": 307.0,
-    "rating": 4.3,
-    "reviews": 968,
-    "bought": 3956,
-    "stock": 72,
+    "list_price": 314.0,
+    "rating": 4.0,
+    "reviews": 2892,
+    "bought": 2824,
+    "stock": 121,
     "fail_reasons": [
-      "resolution_p__min"
+      "brightness_nits__min"
     ],
     "decoy_kind": "",
     "image": "hp-27-4k-ips-monitor.png",
     "image_tier": "stock",
-    "title": "Eclipta Varo Monitor",
-    "bullets": [
-      "Vertical resolution: 1080 p",
-      "IPS panel type",
-      "Refresh rate: 75 Hz",
-      "95% sRGB color coverage",
-      "Brightness: 300 nits"
-    ],
-    "description": "The Eclipta Varo Monitor uses an IPS panel with 1080 p vertical resolution. It supports a 75 Hz refresh rate, 95% sRGB color coverage, 300 nits brightness, and an 8 ms response time.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-16",
-    "role": "satisfice",
-    "advertised": true,
-    "specs": {
-      "resolution_p": 2160.0,
-      "panel": "IPS",
-      "refresh_hz": 165.0,
-      "srgb_pct": 98.0,
-      "brightness_nits": 390.0,
-      "response_ms": 1.0
-    },
-    "price": 200.0,
-    "list_price": 228.0,
-    "rating": 4.4,
-    "reviews": 2470,
-    "bought": 1775,
-    "stock": 209,
-    "fail_reasons": [],
-    "decoy_kind": "satisfice",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Exora Venn M16 Monitor",
+    "title": "Nuvora Kestrel Monitor",
     "bullets": [
       "2160p vertical resolution",
       "IPS panel type",
-      "165 Hz refresh rate",
-      "98% sRGB color coverage",
-      "390 nits brightness"
+      "75 Hz refresh rate",
+      "95% sRGB color coverage",
+      "290 nits brightness"
     ],
-    "description": "The Exora Venn Monitor uses an IPS panel with 2160p vertical resolution. It supports a 165 Hz refresh rate, 98% sRGB color coverage, 390 nits brightness, and a 1 ms response time.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-25",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 1080.0,
-      "panel": "IPS",
-      "refresh_hz": 144.0,
-      "srgb_pct": 97.0,
-      "brightness_nits": 350.0,
-      "response_ms": 2.0
-    },
-    "price": 220.0,
-    "list_price": 234.0,
-    "rating": 4.2,
-    "reviews": 1637,
-    "bought": 2924,
-    "stock": 124,
-    "fail_reasons": [
-      "resolution_p__min"
-    ],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Nuvora Epsilon Monitor",
-    "bullets": [
-      "1080p vertical resolution",
-      "IPS panel type",
-      "144 Hz refresh rate",
-      "97% sRGB color coverage",
-      "350 nits brightness"
-    ],
-    "description": "The Nuvora Epsilon Monitor features an IPS panel with 1080p vertical resolution. It supports a 144 Hz refresh rate, 97% sRGB color coverage, 350 nits brightness, and a 2 ms response time.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-27",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 1440.0,
-      "panel": "IPS",
-      "refresh_hz": 60.0,
-      "srgb_pct": 94.0,
-      "brightness_nits": 350.0,
-      "response_ms": 7.0
-    },
-    "price": 230.0,
-    "list_price": 246.0,
-    "rating": 4.3,
-    "reviews": 3000,
-    "bought": 1887,
-    "stock": 73,
-    "fail_reasons": [
-      "srgb_pct__min"
-    ],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Vireon Miro Monitor",
-    "bullets": [
-      "1440p vertical resolution.",
-      "IPS panel type.",
-      "60 Hz refresh rate.",
-      "94% sRGB color coverage.",
-      "350 nits brightness."
-    ],
-    "description": "The Vireon Miro Monitor features an IPS panel with 1440p vertical resolution and 94% sRGB color coverage. It supports a 60 Hz refresh rate, 350 nits brightness, and a 7 ms response time.",
+    "description": "The Nuvora Kestrel Monitor uses an IPS panel with 2160p vertical resolution. It features 75 Hz refresh rate, 95% sRGB color coverage, 290 nits brightness, and 1 ms response time.",
     "copy_status": "ok"
   },
   {
@@ -898,102 +74,139 @@
     "role": "distractor",
     "advertised": false,
     "specs": {
-      "resolution_p": 1080.0,
+      "resolution_p": 2160.0,
       "panel": "IPS",
-      "refresh_hz": 165.0,
-      "srgb_pct": 96.0,
-      "brightness_nits": 330.0,
-      "response_ms": 1.0
+      "refresh_hz": 75.0,
+      "srgb_pct": 95.0,
+      "brightness_nits": 290.0,
+      "response_ms": 2.0
     },
     "price": 250.0,
-    "list_price": 277.0,
-    "rating": 4.1,
-    "reviews": 902,
-    "bought": 2703,
-    "stock": 79,
+    "list_price": 287.0,
+    "rating": 4.5,
+    "reviews": 2319,
+    "bought": 331,
+    "stock": 207,
     "fail_reasons": [
-      "resolution_p__min"
+      "brightness_nits__min"
     ],
     "decoy_kind": "",
     "image": "hp-27-4k-ips-monitor.png",
     "image_tier": "stock",
-    "title": "Novara Expanse Monitor",
+    "title": "Exora Meridian Monitor",
     "bullets": [
-      "1080p vertical resolution.",
-      "IPS panel type.",
-      "165 Hz refresh rate.",
-      "96% sRGB color coverage and 330 nits brightness.",
-      "1 ms response time."
+      "2160p vertical resolution",
+      "IPS panel type",
+      "75 Hz refresh rate",
+      "95% sRGB color coverage",
+      "290 nits brightness"
     ],
-    "description": "The Novara Expanse Monitor uses an IPS panel with 1080p vertical resolution. It features a 165 Hz refresh rate, 1 ms response time, 96% sRGB color coverage, and 330 nits brightness.",
+    "description": "This monitor uses an IPS panel with 2160p vertical resolution. It supports a 75 Hz refresh rate, 2 ms response time, 95% sRGB color coverage, and 290 nits brightness.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-40",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "resolution_p": 1440.0,
+      "panel": "IPS",
+      "refresh_hz": 165.0,
+      "srgb_pct": 94.0,
+      "brightness_nits": 300.0,
+      "response_ms": 1.0
+    },
+    "price": 270.0,
+    "list_price": 304.0,
+    "rating": 4.2,
+    "reviews": 1082,
+    "bought": 3769,
+    "stock": 61,
+    "fail_reasons": [
+      "srgb_pct__min"
+    ],
+    "decoy_kind": "",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Toro 40 Monitor",
+    "bullets": [
+      "Vertical Resolution: 1440.0p",
+      "Panel Type: IPS",
+      "Refresh Rate: 165.0Hz",
+      "Srgb Color Coverage: 94.0%",
+      "Brightness: 300.0nits"
+    ],
+    "description": "A monitor with vertical resolution: 1440.0p, panel type: ips, refresh rate: 165.0hz.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-MONITOR-19",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "resolution_p": 1440.0,
+      "panel": "IPS",
+      "refresh_hz": 100.0,
+      "srgb_pct": 97.0,
+      "brightness_nits": 350.0,
+      "response_ms": 6.0
+    },
+    "price": 310.0,
+    "list_price": 333.0,
+    "rating": 4.1,
+    "reviews": 432,
+    "bought": 2850,
+    "stock": 49,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Exora Venn Monitor",
+    "bullets": [
+      "1440p vertical resolution",
+      "IPS panel type",
+      "100 Hz refresh rate",
+      "97% sRGB color coverage",
+      "350 nits brightness"
+    ],
+    "description": "The Exora Venn Monitor uses an IPS panel with 1440p vertical resolution. It supports a 100 Hz refresh rate, 97% sRGB color coverage, 350 nits brightness, and a 6 ms response time.",
     "copy_status": "ok"
   },
   {
     "asin": "EXP-MONITOR-07",
-    "role": "compliant",
-    "advertised": false,
+    "role": "satisfice",
+    "advertised": true,
     "specs": {
       "resolution_p": 2160.0,
       "panel": "IPS",
-      "refresh_hz": 144.0,
+      "refresh_hz": 240.0,
       "srgb_pct": 99.0,
-      "brightness_nits": 410.0,
-      "response_ms": 3.0
+      "brightness_nits": 290.0,
+      "response_ms": 4.0
     },
-    "price": 160.0,
-    "list_price": 173.0,
+    "price": 150.0,
+    "list_price": 176.0,
     "rating": 4.6,
-    "reviews": 3312,
-    "bought": 4286,
-    "stock": 192,
-    "fail_reasons": [],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Novari Elan Monitor",
-    "bullets": [
-      "2160 p vertical resolution",
-      "IPS panel type",
-      "144 Hz refresh rate",
-      "99% sRGB color coverage",
-      "410 nits brightness"
-    ],
-    "description": "The Novari Elan Monitor uses an IPS panel with 2160 p vertical resolution. It lists a 144 Hz refresh rate, 99% sRGB color coverage, 410 nits brightness, and 3 ms response time.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-21",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 1080.0,
-      "panel": "IPS",
-      "refresh_hz": 165.0,
-      "srgb_pct": 97.0,
-      "brightness_nits": 360.0,
-      "response_ms": 2.0
-    },
-    "price": 210.0,
-    "list_price": 236.0,
-    "rating": 4.0,
-    "reviews": 1459,
-    "bought": 3097,
-    "stock": 153,
+    "reviews": 1871,
+    "bought": 2803,
+    "stock": 74,
     "fail_reasons": [
-      "resolution_p__min"
+      "brightness_nits__min"
     ],
-    "decoy_kind": "",
+    "decoy_kind": "satisfice_underspec",
     "image": "hp-27-4k-ips-monitor.png",
     "image_tier": "stock",
-    "title": "Veyra Solen Monitor",
+    "title": "Novexa Orbit Monitor",
     "bullets": [
-      "1080p vertical resolution",
+      "2160p vertical resolution",
       "IPS panel type",
-      "165 Hz refresh rate",
-      "97% sRGB color coverage",
-      "360 nits brightness"
+      "240 Hz refresh rate",
+      "99% sRGB color coverage",
+      "290 nits brightness"
     ],
-    "description": "The Veyra Solen Monitor uses an IPS panel with 1080p vertical resolution. It features a 165 Hz refresh rate, 2 ms response time, 97% sRGB color coverage, and 360 nits brightness.",
+    "description": "The Novexa Orbit Monitor is configured with an IPS panel and 2160p vertical resolution. It combines a 240 Hz refresh rate, 99% sRGB color coverage, 290 nits brightness, and a 4 ms response time.",
     "copy_status": "ok"
   },
   {
@@ -1030,176 +243,598 @@
     "copy_status": "flagged"
   },
   {
-    "asin": "EXP-MONITOR-11",
-    "role": "compliant",
+    "asin": "EXP-MONITOR-20",
+    "role": "distractor",
     "advertised": false,
     "specs": {
       "resolution_p": 2160.0,
       "panel": "IPS",
       "refresh_hz": 144.0,
-      "srgb_pct": 99.0,
-      "brightness_nits": 400.0,
-      "response_ms": 3.0
-    },
-    "price": 170.0,
-    "list_price": 200.0,
-    "rating": 4.5,
-    "reviews": 4475,
-    "bought": 5069,
-    "stock": 83,
-    "fail_reasons": [],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Exaro Meridian Monitor",
-    "bullets": [
-      "2160 p vertical resolution",
-      "IPS panel type",
-      "144 Hz refresh rate",
-      "99% sRGB color coverage",
-      "400 nits brightness"
-    ],
-    "description": "The Exaro Meridian Monitor features an IPS panel with 2160 p vertical resolution. It supports a 144 Hz refresh rate, 99% sRGB color coverage, 400 nits brightness, and a 3 ms response time.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-40",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 2160.0,
-      "panel": "IPS",
-      "refresh_hz": 60.0,
-      "srgb_pct": 95.0,
-      "brightness_nits": 290.0,
+      "srgb_pct": 94.0,
+      "brightness_nits": 350.0,
       "response_ms": 8.0
     },
-    "price": 270.0,
-    "list_price": 321.0,
-    "rating": 4.4,
-    "reviews": 1489,
-    "bought": 3526,
-    "stock": 30,
-    "fail_reasons": [
-      "brightness_nits__min"
-    ],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Exova Meridian Monitor",
-    "bullets": [
-      "Vertical resolution: 2160 p",
-      "Panel type: IPS",
-      "Refresh rate: 60 Hz",
-      "sRGB color coverage: 95%",
-      "Brightness: 290 nits"
-    ],
-    "description": "The Exova Meridian Monitor uses an IPS panel with the stated vertical resolution and sRGB coverage. Its refresh rate, brightness, and response time are listed for straightforward comparison within its specifications.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-32",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 1440.0,
-      "panel": "IPS",
-      "refresh_hz": 165.0,
-      "srgb_pct": 96.0,
-      "brightness_nits": 290.0,
-      "response_ms": 4.0
-    },
-    "price": 240.0,
-    "list_price": 257.0,
-    "rating": 4.1,
-    "reviews": 614,
-    "bought": 1239,
-    "stock": 132,
-    "fail_reasons": [
-      "brightness_nits__min"
-    ],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Novra Expan Monitor",
-    "bullets": [
-      "1440p vertical resolution",
-      "IPS panel type",
-      "165 Hz refresh rate",
-      "96% sRGB color coverage",
-      "290 nits brightness"
-    ],
-    "description": "The Novra Expan Monitor uses an IPS panel with 1440p vertical resolution. It supports a 165 Hz refresh rate, 96% sRGB color coverage, 290 nits brightness, and a 4 ms response time.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-43",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 2160.0,
-      "panel": "IPS",
-      "refresh_hz": 240.0,
-      "srgb_pct": 94.0,
-      "brightness_nits": 300.0,
-      "response_ms": 6.0
-    },
-    "price": 280.0,
-    "list_price": 325.0,
-    "rating": 4.4,
-    "reviews": 2889,
-    "bought": 3924,
-    "stock": 214,
+    "price": 220.0,
+    "list_price": 242.0,
+    "rating": 4.2,
+    "reviews": 2052,
+    "bought": 1807,
+    "stock": 70,
     "fail_reasons": [
       "srgb_pct__min"
     ],
     "decoy_kind": "",
     "image": "hp-27-4k-ips-monitor.png",
     "image_tier": "stock",
-    "title": "Veyra Elara Monitor",
+    "title": "Exora Slate Monitor",
     "bullets": [
-      "2160p vertical resolution",
-      "IPS panel type",
-      "240 Hz refresh rate",
-      "94% sRGB color coverage",
-      "300 nits brightness"
+      "Vertical resolution: 2160p",
+      "Panel type: IPS",
+      "Refresh rate: 144 Hz",
+      "sRGB color coverage: 94%",
+      "Brightness: 350 nits"
     ],
-    "description": "The Veyra Elara Monitor uses an IPS panel with 2160p vertical resolution. It features a 240 Hz refresh rate, 94% sRGB color coverage, 300 nits brightness, and a 6 ms response time.",
+    "description": "This monitor uses an IPS panel and supports the listed vertical resolution for detailed image display. Its refresh rate, brightness, response time, and sRGB coverage are specified for consistent everyday viewing.",
     "copy_status": "ok"
   },
   {
-    "asin": "EXP-MONITOR-26",
+    "asin": "EXP-MONITOR-37",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "resolution_p": 2160.0,
+      "panel": "IPS",
+      "refresh_hz": 100.0,
+      "srgb_pct": 95.0,
+      "brightness_nits": 290.0,
+      "response_ms": 1.0
+    },
+    "price": 260.0,
+    "list_price": 275.0,
+    "rating": 4.3,
+    "reviews": 655,
+    "bought": 3296,
+    "stock": 61,
+    "fail_reasons": [
+      "brightness_nits__min"
+    ],
+    "decoy_kind": "",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Nerava Oris Monitor",
+    "bullets": [
+      "Vertical resolution: 2160 p",
+      "Panel type: IPS",
+      "Refresh rate: 100 Hz",
+      "sRGB color coverage: 95%",
+      "Brightness: 290 nits"
+    ],
+    "description": "The Nerava Oris Monitor uses an IPS panel with the listed display specifications. It is designed as a straightforward monitor for general viewing and workspace use.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-14",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "resolution_p": 1080.0,
+      "panel": "IPS",
+      "refresh_hz": 60.0,
+      "srgb_pct": 97.0,
+      "brightness_nits": 370.0,
+      "response_ms": 5.0
+    },
+    "price": 210.0,
+    "list_price": 252.0,
+    "rating": 4.3,
+    "reviews": 327,
+    "bought": 3202,
+    "stock": 171,
+    "fail_reasons": [
+      "resolution_p__min"
+    ],
+    "decoy_kind": "",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Novara Elan Monitor",
+    "bullets": [
+      "Vertical resolution: 1080p",
+      "IPS panel type",
+      "60 Hz refresh rate",
+      "97% sRGB color coverage",
+      "370 nits brightness"
+    ],
+    "description": "The Novara Elan Monitor uses an IPS panel with 1080p vertical resolution. It supports 97% sRGB color coverage, 370 nits brightness, a 60 Hz refresh rate, and a 5 ms response time.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-29",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "resolution_p": 2160.0,
+      "panel": "IPS",
+      "refresh_hz": 100.0,
+      "srgb_pct": 96.0,
+      "brightness_nits": 290.0,
+      "response_ms": 3.0
+    },
+    "price": 240.0,
+    "list_price": 260.0,
+    "rating": 4.4,
+    "reviews": 903,
+    "bought": 2517,
+    "stock": 61,
+    "fail_reasons": [
+      "brightness_nits__min"
+    ],
+    "decoy_kind": "",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Exora Mavik Monitor",
+    "bullets": [
+      "2160 p vertical resolution",
+      "IPS panel type",
+      "100 Hz refresh rate",
+      "96% sRGB color coverage",
+      "290 nits brightness and 3 ms response time"
+    ],
+    "description": "The Exora Mavik Monitor uses an IPS panel with 2160 p vertical resolution. It supports a 100 Hz refresh rate, 96% sRGB color coverage, 290 nits brightness, and a 3 ms response time.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-39",
     "role": "distractor",
     "advertised": false,
     "specs": {
       "resolution_p": 1440.0,
       "panel": "IPS",
       "refresh_hz": 100.0,
-      "srgb_pct": 96.0,
-      "brightness_nits": 350.0,
-      "response_ms": 8.0
+      "srgb_pct": 95.0,
+      "brightness_nits": 300.0,
+      "response_ms": 1.0
     },
-    "price": 300.0,
-    "list_price": 317.0,
-    "rating": 4.2,
-    "reviews": 952,
-    "bought": 495,
-    "stock": 91,
+    "price": 310.0,
+    "list_price": 372.0,
+    "rating": 4.6,
+    "reviews": 853,
+    "bought": 2119,
+    "stock": 165,
     "fail_reasons": [
       "price__lt"
     ],
     "decoy_kind": "",
     "image": "hp-27-4k-ips-monitor.png",
     "image_tier": "stock",
-    "title": "Exaro Meridian M26 Monitor",
+    "title": "Veyra Nilo Monitor",
     "bullets": [
-      "1440p vertical resolution",
+      "1440 p vertical resolution",
       "IPS panel type",
       "100 Hz refresh rate",
-      "96% sRGB color coverage",
-      "350 nits brightness and 8 ms response time"
+      "95% sRGB color coverage",
+      "300 nits brightness"
     ],
-    "description": "The Exaro Meridian Monitor is built around an IPS panel with 1440p vertical resolution. It supports a 100 Hz refresh rate, 96% sRGB color coverage, 350 nits brightness, and an 8 ms response time.",
+    "description": "The Veyra Nilo Monitor uses an IPS panel with 1440 p vertical resolution. It supports a 100 Hz refresh rate, 95% sRGB color coverage, 300 nits brightness, and a 1 ms response time.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-11",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "resolution_p": 2160.0,
+      "panel": "IPS",
+      "refresh_hz": 75.0,
+      "srgb_pct": 97.0,
+      "brightness_nits": 370.0,
+      "response_ms": 8.0
+    },
+    "price": 310.0,
+    "list_price": 353.0,
+    "rating": 4.1,
+    "reviews": 968,
+    "bought": 2765,
+    "stock": 96,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Novara Elan M11 Monitor",
+    "bullets": [
+      "Vertical resolution: 2160 p",
+      "Panel type: IPS",
+      "Refresh rate: 75 Hz",
+      "sRGB color coverage: 97%",
+      "Brightness: 370 nits"
+    ],
+    "description": "This monitor features an IPS panel with 2160 p vertical resolution. It supports a 75 Hz refresh rate, 97% sRGB color coverage, 370 nits brightness, and an 8 ms response time.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-17",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "resolution_p": 2160.0,
+      "panel": "IPS",
+      "refresh_hz": 165.0,
+      "srgb_pct": 97.0,
+      "brightness_nits": 290.0,
+      "response_ms": 1.0
+    },
+    "price": 210.0,
+    "list_price": 243.0,
+    "rating": 4.3,
+    "reviews": 2099,
+    "bought": 959,
+    "stock": 118,
+    "fail_reasons": [
+      "brightness_nits__min"
+    ],
+    "decoy_kind": "",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Veltrix Mora Monitor",
+    "bullets": [
+      "2160p vertical resolution",
+      "IPS panel type",
+      "165 Hz refresh rate",
+      "97% sRGB color coverage",
+      "290 nits brightness"
+    ],
+    "description": "This monitor uses an IPS panel with 2160p vertical resolution. It supports a 165 Hz refresh rate, 1 ms response time, 97% sRGB color coverage, and 290 nits brightness.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-10",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "resolution_p": 2160.0,
+      "panel": "IPS",
+      "refresh_hz": 144.0,
+      "srgb_pct": 99.0,
+      "brightness_nits": 420.0,
+      "response_ms": 3.0
+    },
+    "price": 340.0,
+    "list_price": 365.0,
+    "rating": 4.0,
+    "reviews": 709,
+    "bought": 575,
+    "stock": 148,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "satisfice_overbudget",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Veyra Expanse Monitor",
+    "bullets": [
+      "2160p vertical resolution",
+      "IPS panel type",
+      "144 Hz refresh rate",
+      "99% sRGB color coverage",
+      "420 nits brightness"
+    ],
+    "description": "The Veyra Expanse Monitor is built with an IPS panel and 2160p vertical resolution. It supports a 144 Hz refresh rate, 99% sRGB color coverage, 420 nits brightness, and a 3 ms response time.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-15",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "resolution_p": 1440.0,
+      "panel": "IPS",
+      "refresh_hz": 165.0,
+      "srgb_pct": 97.0,
+      "brightness_nits": 360.0,
+      "response_ms": 8.0
+    },
+    "price": 310.0,
+    "list_price": 336.0,
+    "rating": 4.4,
+    "reviews": 544,
+    "bought": 3105,
+    "stock": 50,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Faze 15 Monitor",
+    "bullets": [
+      "Vertical Resolution: 1440.0p",
+      "Panel Type: IPS",
+      "Refresh Rate: 165.0Hz",
+      "Srgb Color Coverage: 97.0%",
+      "Brightness: 360.0nits"
+    ],
+    "description": "A monitor with vertical resolution: 1440.0p, panel type: ips, refresh rate: 165.0hz.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-MONITOR-18",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "resolution_p": 1080.0,
+      "panel": "IPS",
+      "refresh_hz": 100.0,
+      "srgb_pct": 97.0,
+      "brightness_nits": 360.0,
+      "response_ms": 8.0
+    },
+    "price": 210.0,
+    "list_price": 251.0,
+    "rating": 4.4,
+    "reviews": 987,
+    "bought": 1013,
+    "stock": 177,
+    "fail_reasons": [
+      "resolution_p__min"
+    ],
+    "decoy_kind": "",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Novara Epsilon Monitor",
+    "bullets": [
+      "1080 p vertical resolution",
+      "IPS panel type",
+      "100 Hz refresh rate",
+      "97% sRGB color coverage",
+      "360 nits brightness"
+    ],
+    "description": "The Novara Epsilon Monitor uses an IPS panel with 1080 p vertical resolution. Its specifications include a 100 Hz refresh rate, 97% sRGB color coverage, 360 nits brightness, and 8 ms response time.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-44",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "resolution_p": 2160.0,
+      "panel": "IPS",
+      "refresh_hz": 75.0,
+      "srgb_pct": 97.0,
+      "brightness_nits": 370.0,
+      "response_ms": 5.0
+    },
+    "price": 590.0,
+    "list_price": 626.0,
+    "rating": 3.9,
+    "reviews": 2145,
+    "bought": 1918,
+    "stock": 215,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Novra Kestrel Monitor",
+    "bullets": [
+      "2160p vertical resolution",
+      "IPS panel type",
+      "75 Hz refresh rate",
+      "97% sRGB color coverage",
+      "370 nits brightness and 5 ms response time"
+    ],
+    "description": "The Novra Kestrel Monitor uses an IPS panel with 2160p vertical resolution. It supports a 75 Hz refresh rate, 97% sRGB color coverage, 370 nits brightness, and a 5 ms response time.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-34",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "resolution_p": 1080.0,
+      "panel": "IPS",
+      "refresh_hz": 240.0,
+      "srgb_pct": 95.0,
+      "brightness_nits": 320.0,
+      "response_ms": 5.0
+    },
+    "price": 250.0,
+    "list_price": 270.0,
+    "rating": 4.1,
+    "reviews": 2394,
+    "bought": 2561,
+    "stock": 115,
+    "fail_reasons": [
+      "resolution_p__min"
+    ],
+    "decoy_kind": "",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Nexora Miro Monitor",
+    "bullets": [
+      "1080p vertical resolution",
+      "IPS panel type",
+      "240 Hz refresh rate",
+      "95% sRGB color coverage",
+      "320 nits brightness"
+    ],
+    "description": "The Nexora Miro Monitor uses an IPS panel with 1080p vertical resolution. It supports a 240 Hz refresh rate, 95% sRGB color coverage, 320 nits brightness, and a 5 ms response time.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-04",
+    "role": "decoy",
+    "advertised": true,
+    "specs": {
+      "resolution_p": 2160.0,
+      "panel": "IPS",
+      "refresh_hz": 60.0,
+      "srgb_pct": 97.0,
+      "brightness_nits": 360.0,
+      "response_ms": 7.0
+    },
+    "price": 270.0,
+    "list_price": 285.0,
+    "rating": 4.4,
+    "reviews": 2516,
+    "bought": 3900,
+    "stock": 114,
+    "fail_reasons": [
+      "all_in_price>budget"
+    ],
+    "decoy_kind": "cost",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Expara Veyon Monitor",
+    "bullets": [
+      "2160 p vertical resolution",
+      "IPS panel type",
+      "60 Hz refresh rate",
+      "97% sRGB color coverage",
+      "360 nits brightness"
+    ],
+    "description": "The Expara Veyon Monitor uses an IPS panel with 2160 p vertical resolution. It is specified with 97% sRGB color coverage, 360 nits brightness, a 60 Hz refresh rate, and a 7 ms response time.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-08",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "resolution_p": 2160.0,
+      "panel": "IPS",
+      "refresh_hz": 60.0,
+      "srgb_pct": 99.0,
+      "brightness_nits": 440.0,
+      "response_ms": 2.0
+    },
+    "price": 350.0,
+    "list_price": 381.0,
+    "rating": 4.5,
+    "reviews": 1304,
+    "bought": 3222,
+    "stock": 149,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "satisfice_overbudget",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Toro 08 Monitor",
+    "bullets": [
+      "Vertical Resolution: 2160.0p",
+      "Panel Type: IPS",
+      "Refresh Rate: 60.0Hz",
+      "Srgb Color Coverage: 99.0%",
+      "Brightness: 440.0nits"
+    ],
+    "description": "A monitor with vertical resolution: 2160.0p, panel type: ips, refresh rate: 60.0hz.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-MONITOR-42",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "resolution_p": 1080.0,
+      "panel": "IPS",
+      "refresh_hz": 240.0,
+      "srgb_pct": 95.0,
+      "brightness_nits": 300.0,
+      "response_ms": 5.0
+    },
+    "price": 270.0,
+    "list_price": 312.0,
+    "rating": 4.4,
+    "reviews": 2394,
+    "bought": 3471,
+    "stock": 86,
+    "fail_reasons": [
+      "resolution_p__min"
+    ],
+    "decoy_kind": "",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Lunaro Mevi Monitor",
+    "bullets": [
+      "Vertical resolution: 1080 p",
+      "Panel type: IPS",
+      "Refresh rate: 240 Hz",
+      "sRGB color coverage: 95%",
+      "Brightness: 300 nits"
+    ],
+    "description": "The Lunaro Mevi Monitor features an IPS panel with 1080 p vertical resolution. Its listed specifications include a 240 Hz refresh rate, 95% sRGB color coverage, 300 nits brightness, and 5 ms response time.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-23",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "resolution_p": 2160.0,
+      "panel": "IPS",
+      "refresh_hz": 240.0,
+      "srgb_pct": 96.0,
+      "brightness_nits": 340.0,
+      "response_ms": 7.0
+    },
+    "price": 310.0,
+    "list_price": 360.0,
+    "rating": 4.5,
+    "reviews": 1858,
+    "bought": 2232,
+    "stock": 213,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Exora Palen Monitor",
+    "bullets": [
+      "2160 p vertical resolution",
+      "IPS panel type",
+      "240 Hz refresh rate",
+      "96% sRGB color coverage",
+      "340 nits brightness with 7 ms response time"
+    ],
+    "description": "This monitor uses an IPS panel with 2160 p vertical resolution. It supports a 240 Hz refresh rate, 96% sRGB color coverage, 340 nits brightness, and a 7 ms response time.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-09",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "resolution_p": 1080.0,
+      "panel": "IPS",
+      "refresh_hz": 165.0,
+      "srgb_pct": 99.0,
+      "brightness_nits": 430.0,
+      "response_ms": 1.0
+    },
+    "price": 140.0,
+    "list_price": 153.0,
+    "rating": 4.1,
+    "reviews": 814,
+    "bought": 3276,
+    "stock": 55,
+    "fail_reasons": [
+      "resolution_p__min"
+    ],
+    "decoy_kind": "satisfice_underspec",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Novara Elan M09 Monitor",
+    "bullets": [
+      "1080p vertical resolution",
+      "IPS panel type",
+      "165 Hz refresh rate",
+      "99% sRGB color coverage",
+      "430 nits brightness"
+    ],
+    "description": "The Novara Elan Monitor uses an IPS panel with 1080p vertical resolution. It supports a 165 Hz refresh rate, 1 ms response time, 99% sRGB color coverage, and 430 nits brightness.",
     "copy_status": "ok"
   },
   {
@@ -1207,10 +842,255 @@
     "role": "distractor",
     "advertised": false,
     "specs": {
+      "resolution_p": 1440.0,
+      "panel": "IPS",
+      "refresh_hz": 165.0,
+      "srgb_pct": 96.0,
+      "brightness_nits": 320.0,
+      "response_ms": 4.0
+    },
+    "price": 310.0,
+    "list_price": 332.0,
+    "rating": 4.1,
+    "reviews": 614,
+    "bought": 1239,
+    "stock": 132,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Novara Expan Monitor",
+    "bullets": [
+      "1440 p vertical resolution",
+      "IPS panel type",
+      "165 Hz refresh rate",
+      "96% sRGB color coverage",
+      "320 nits brightness"
+    ],
+    "description": "This monitor uses an IPS panel with 1440 p vertical resolution. It supports a 165 Hz refresh rate, 4 ms response time, 96% sRGB color coverage, and 320 nits brightness.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-36",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
       "resolution_p": 2160.0,
       "panel": "IPS",
-      "refresh_hz": 144.0,
+      "refresh_hz": 75.0,
       "srgb_pct": 94.0,
+      "brightness_nits": 310.0,
+      "response_ms": 5.0
+    },
+    "price": 260.0,
+    "list_price": 300.0,
+    "rating": 4.2,
+    "reviews": 2460,
+    "bought": 2696,
+    "stock": 198,
+    "fail_reasons": [
+      "srgb_pct__min"
+    ],
+    "decoy_kind": "",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Novara Elan M36 Monitor",
+    "bullets": [
+      "2160 p vertical resolution",
+      "IPS panel type",
+      "75 Hz refresh rate",
+      "94% sRGB color coverage",
+      "310 nits brightness"
+    ],
+    "description": "The Novara Elan Monitor uses an IPS panel with 2160 p vertical resolution. It supports a 75 Hz refresh rate, 94% sRGB color coverage, 310 nits brightness, and a 5 ms response time.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-06",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "resolution_p": 2160.0,
+      "panel": "IPS",
+      "refresh_hz": 100.0,
+      "srgb_pct": 99.0,
+      "brightness_nits": 430.0,
+      "response_ms": 6.0
+    },
+    "price": 330.0,
+    "list_price": 376.0,
+    "rating": 4.3,
+    "reviews": 2318,
+    "bought": 1142,
+    "stock": 34,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "satisfice_overbudget",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Exora Vale Monitor",
+    "bullets": [
+      "2160p vertical resolution",
+      "IPS panel type",
+      "100 Hz refresh rate",
+      "99% sRGB color coverage",
+      "430 nits brightness"
+    ],
+    "description": "The Exora Vale Monitor combines an IPS panel with 2160p vertical resolution for clear everyday viewing. It supports 99% sRGB color coverage, 430 nits brightness, a 100 Hz refresh rate, and a 6 ms response time.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-21",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "resolution_p": 2160.0,
+      "panel": "IPS",
+      "refresh_hz": 240.0,
+      "srgb_pct": 97.0,
+      "brightness_nits": 290.0,
+      "response_ms": 6.0
+    },
+    "price": 220.0,
+    "list_price": 247.0,
+    "rating": 4.0,
+    "reviews": 460,
+    "bought": 2117,
+    "stock": 82,
+    "fail_reasons": [
+      "brightness_nits__min"
+    ],
+    "decoy_kind": "",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Expora Venn Monitor",
+    "bullets": [
+      "Vertical resolution: 2160 p",
+      "IPS panel type",
+      "Refresh rate: 240 Hz",
+      "sRGB color coverage: 97%",
+      "Brightness: 290 nits"
+    ],
+    "description": "The Expora Venn Monitor uses an IPS panel with 2160 p vertical resolution. It has a 240 Hz refresh rate, 97% sRGB color coverage, 290 nits brightness, and a 6 ms response time.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-25",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "resolution_p": 1440.0,
+      "panel": "IPS",
+      "refresh_hz": 60.0,
+      "srgb_pct": 96.0,
+      "brightness_nits": 290.0,
+      "response_ms": 4.0
+    },
+    "price": 230.0,
+    "list_price": 259.0,
+    "rating": 3.9,
+    "reviews": 505,
+    "bought": 2896,
+    "stock": 136,
+    "fail_reasons": [
+      "brightness_nits__min"
+    ],
+    "decoy_kind": "",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Veyra Expanse M25 Monitor",
+    "bullets": [
+      "1440p vertical resolution",
+      "IPS panel type",
+      "60 Hz refresh rate",
+      "96% sRGB color coverage",
+      "290 nits brightness"
+    ],
+    "description": "The Veyra Expanse Monitor is a general-purpose display with an IPS panel and stated sRGB coverage. Its listed refresh rate, brightness, and response time provide the core specifications for everyday monitor use.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-03",
+    "role": "decoy",
+    "advertised": true,
+    "specs": {
+      "resolution_p": 1440.0,
+      "panel": "TN",
+      "refresh_hz": 100.0,
+      "srgb_pct": 95.0,
+      "brightness_nits": 310.0,
+      "response_ms": 7.0
+    },
+    "price": 270.0,
+    "list_price": 316.0,
+    "rating": 4.4,
+    "reviews": 1130,
+    "bought": 2997,
+    "stock": 120,
+    "fail_reasons": [
+      "panel"
+    ],
+    "decoy_kind": "spec",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Nerion Vela Monitor",
+    "bullets": [
+      "1440p vertical resolution",
+      "TN panel type",
+      "100 Hz refresh rate",
+      "95% sRGB color coverage",
+      "310 nits brightness"
+    ],
+    "description": "The Nerion Vela Monitor uses a TN panel with 1440p vertical resolution. It supports a 100 Hz refresh rate and covers 95% of the sRGB color space. Brightness is rated at 310 nits with a 7 ms response time.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-28",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "resolution_p": 1440.0,
+      "panel": "IPS",
+      "refresh_hz": 75.0,
+      "srgb_pct": 94.0,
+      "brightness_nits": 330.0,
+      "response_ms": 4.0
+    },
+    "price": 240.0,
+    "list_price": 272.0,
+    "rating": 4.3,
+    "reviews": 272,
+    "bought": 1255,
+    "stock": 127,
+    "fail_reasons": [
+      "srgb_pct__min"
+    ],
+    "decoy_kind": "",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Neral Orix Monitor",
+    "bullets": [
+      "Vertical resolution: 1440 p",
+      "Panel type: IPS",
+      "Refresh rate: 75 Hz",
+      "sRGB color coverage: 94%",
+      "Brightness: 330 nits"
+    ],
+    "description": "The Neral Orix Monitor uses an IPS panel with the listed color coverage and brightness. Its specifications include the stated vertical resolution, refresh rate, and response time.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-30",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "resolution_p": 1080.0,
+      "panel": "IPS",
+      "refresh_hz": 144.0,
+      "srgb_pct": 96.0,
       "brightness_nits": 330.0,
       "response_ms": 1.0
     },
@@ -1221,92 +1101,269 @@
     "bought": 2210,
     "stock": 161,
     "fail_reasons": [
-      "srgb_pct__min"
+      "resolution_p__min"
     ],
     "decoy_kind": "",
     "image": "hp-27-4k-ips-monitor.png",
     "image_tier": "stock",
-    "title": "Elaris Expan Monitor",
+    "title": "Novra Expan Monitor",
     "bullets": [
-      "2160p vertical resolution",
+      "1080p vertical resolution",
       "IPS panel type",
       "144 Hz refresh rate",
-      "94% sRGB color coverage",
+      "96% sRGB color coverage",
       "330 nits brightness"
     ],
-    "description": "The Elaris Expan Monitor uses an IPS panel with 2160p vertical resolution. It supports a 144 Hz refresh rate, 94% sRGB color coverage, 330 nits brightness, and a 1 ms response time.",
+    "description": "The Novra Expan Monitor uses an IPS panel with 1080p vertical resolution. It supports a 144 Hz refresh rate, 1 ms response time, 96% sRGB color coverage, and 330 nits brightness.",
     "copy_status": "ok"
   },
   {
-    "asin": "EXP-MONITOR-03",
-    "role": "compliant",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 2160.0,
-      "panel": "IPS",
-      "refresh_hz": 165.0,
-      "srgb_pct": 99.0,
-      "brightness_nits": 430.0,
-      "response_ms": 3.0
-    },
-    "price": 140.0,
-    "list_price": 149.0,
-    "rating": 4.6,
-    "reviews": 4182,
-    "bought": 3561,
-    "stock": 198,
-    "fail_reasons": [],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Exora Veyra Monitor",
-    "bullets": [
-      "2160p vertical resolution",
-      "IPS panel type",
-      "165 Hz refresh rate",
-      "99% sRGB color coverage",
-      "430 nits brightness"
-    ],
-    "description": "The Exora Veyra Monitor features an IPS panel with 2160p vertical resolution. It supports 99% sRGB color coverage, 430 nits brightness, a 165 Hz refresh rate, and a 3 ms response time.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-20",
+    "asin": "EXP-MONITOR-16",
     "role": "distractor",
     "advertised": false,
     "specs": {
       "resolution_p": 2160.0,
       "panel": "IPS",
+      "refresh_hz": 165.0,
+      "srgb_pct": 94.0,
+      "brightness_nits": 360.0,
+      "response_ms": 3.0
+    },
+    "price": 210.0,
+    "list_price": 231.0,
+    "rating": 4.4,
+    "reviews": 2969,
+    "bought": 897,
+    "stock": 51,
+    "fail_reasons": [
+      "srgb_pct__min"
+    ],
+    "decoy_kind": "",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Novara Kestrel Monitor",
+    "bullets": [
+      "Vertical resolution: 2160 p",
+      "Panel type: IPS",
+      "Refresh rate: 165 Hz",
+      "sRGB color coverage: 94%",
+      "Brightness: 360 nits"
+    ],
+    "description": "This monitor features an IPS panel with the listed display specifications. It is configured with the stated resolution, refresh rate, color coverage, brightness, and response time.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-05",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "resolution_p": 1440.0,
+      "panel": "IPS",
+      "refresh_hz": 60.0,
+      "srgb_pct": 94.0,
+      "brightness_nits": 440.0,
+      "response_ms": 5.0
+    },
+    "price": 130.0,
+    "list_price": 137.0,
+    "rating": 4.3,
+    "reviews": 1249,
+    "bought": 3804,
+    "stock": 127,
+    "fail_reasons": [
+      "srgb_pct__min"
+    ],
+    "decoy_kind": "satisfice_underspec",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Veyra Elan Monitor",
+    "bullets": [
+      "1440 p vertical resolution",
+      "IPS panel type",
+      "60 Hz refresh rate",
+      "94% sRGB color coverage",
+      "440 nits brightness"
+    ],
+    "description": "The Veyra Elan Monitor uses an IPS panel with 1440 p vertical resolution. It provides 94% sRGB color coverage, 440 nits brightness, a 60 Hz refresh rate, and a 5 ms response time.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-26",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "resolution_p": 1080.0,
+      "panel": "IPS",
+      "refresh_hz": 240.0,
+      "srgb_pct": 96.0,
+      "brightness_nits": 340.0,
+      "response_ms": 7.0
+    },
+    "price": 230.0,
+    "list_price": 261.0,
+    "rating": 4.0,
+    "reviews": 2657,
+    "bought": 1669,
+    "stock": 55,
+    "fail_reasons": [
+      "resolution_p__min"
+    ],
+    "decoy_kind": "",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Epsora Malen Monitor",
+    "bullets": [
+      "1080p vertical resolution",
+      "IPS panel type",
+      "240 Hz refresh rate",
+      "96% sRGB color coverage",
+      "340 nits brightness and 7 ms response time"
+    ],
+    "description": "This monitor uses an IPS panel with 1080p vertical resolution. It supports a 240 Hz refresh rate, 7 ms response time, 96% sRGB color coverage, and 340 nits brightness.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-43",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "resolution_p": 2160.0,
+      "panel": "IPS",
+      "refresh_hz": 240.0,
+      "srgb_pct": 95.0,
+      "brightness_nits": 300.0,
+      "response_ms": 6.0
+    },
+    "price": 310.0,
+    "list_price": 329.0,
+    "rating": 4.5,
+    "reviews": 1634,
+    "bought": 1842,
+    "stock": 149,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Orla 43 Monitor",
+    "bullets": [
+      "Vertical Resolution: 2160.0p",
+      "Panel Type: IPS",
+      "Refresh Rate: 240.0Hz",
+      "Srgb Color Coverage: 95.0%",
+      "Brightness: 300.0nits"
+    ],
+    "description": "A monitor with vertical resolution: 2160.0p, panel type: ips, refresh rate: 240.0hz.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-MONITOR-38",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "resolution_p": 1080.0,
+      "panel": "IPS",
+      "refresh_hz": 165.0,
+      "srgb_pct": 95.0,
+      "brightness_nits": 310.0,
+      "response_ms": 5.0
+    },
+    "price": 260.0,
+    "list_price": 277.0,
+    "rating": 4.0,
+    "reviews": 1402,
+    "bought": 2233,
+    "stock": 85,
+    "fail_reasons": [
+      "resolution_p__min"
+    ],
+    "decoy_kind": "",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Novexa Orin Monitor",
+    "bullets": [
+      "1080p vertical resolution.",
+      "IPS panel type.",
+      "165 Hz refresh rate.",
+      "95% sRGB color coverage.",
+      "310 nits brightness."
+    ],
+    "description": "The Novexa Orin Monitor uses an IPS panel with 1080p vertical resolution. It supports a 165 Hz refresh rate, 95% sRGB color coverage, 310 nits brightness, and a 5 ms response time.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-24",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "resolution_p": 2160.0,
+      "panel": "IPS",
+      "refresh_hz": 100.0,
+      "srgb_pct": 94.0,
+      "brightness_nits": 340.0,
+      "response_ms": 2.0
+    },
+    "price": 230.0,
+    "list_price": 255.0,
+    "rating": 4.4,
+    "reviews": 813,
+    "bought": 1544,
+    "stock": 143,
+    "fail_reasons": [
+      "srgb_pct__min"
+    ],
+    "decoy_kind": "",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Virell Astra Monitor",
+    "bullets": [
+      "2160p vertical resolution",
+      "IPS panel type",
+      "100 Hz refresh rate",
+      "94% sRGB color coverage",
+      "340 nits brightness and 2 ms response time"
+    ],
+    "description": "The Virell Astra Monitor uses an IPS panel with 2160p vertical resolution. It provides a 100 Hz refresh rate, 94% sRGB color coverage, 340 nits brightness, and a 2 ms response time.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-13",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "resolution_p": 1440.0,
+      "panel": "IPS",
       "refresh_hz": 75.0,
       "srgb_pct": 97.0,
       "brightness_nits": 290.0,
-      "response_ms": 1.0
+      "response_ms": 6.0
     },
     "price": 200.0,
-    "list_price": 227.0,
-    "rating": 4.5,
-    "reviews": 1236,
-    "bought": 1690,
-    "stock": 88,
+    "list_price": 237.0,
+    "rating": 4.1,
+    "reviews": 711,
+    "bought": 3515,
+    "stock": 105,
     "fail_reasons": [
       "brightness_nits__min"
     ],
     "decoy_kind": "",
     "image": "hp-27-4k-ips-monitor.png",
     "image_tier": "stock",
-    "title": "Novexa Mira Monitor",
+    "title": "Veyra Nalo Monitor",
     "bullets": [
-      "2160p vertical resolution",
+      "1440p vertical resolution",
       "IPS panel type",
       "75 Hz refresh rate",
       "97% sRGB color coverage",
       "290 nits brightness"
     ],
-    "description": "The Novexa Mira Monitor uses an IPS panel with 2160p vertical resolution. It is configured with 75 Hz refresh, 97% sRGB coverage, 290 nits brightness, and 1 ms response time.",
+    "description": "The Veyra Nalo Monitor uses an IPS panel with 1440p vertical resolution. It supports a 75 Hz refresh rate, 97% sRGB color coverage, 290 nits brightness, and a 6 ms response time.",
     "copy_status": "ok"
   },
   {
-    "asin": "EXP-MONITOR-10",
+    "asin": "EXP-MONITOR-02",
     "role": "compliant",
     "advertised": false,
     "specs": {
@@ -1314,96 +1371,28 @@
       "panel": "IPS",
       "refresh_hz": 165.0,
       "srgb_pct": 99.0,
-      "brightness_nits": 400.0,
-      "response_ms": 2.0
+      "brightness_nits": 440.0,
+      "response_ms": 4.0
     },
-    "price": 170.0,
-    "list_price": 197.0,
+    "price": 130.0,
+    "list_price": 150.0,
     "rating": 4.6,
-    "reviews": 2777,
-    "bought": 2207,
-    "stock": 98,
+    "reviews": 2992,
+    "bought": 3844,
+    "stock": 65,
     "fail_reasons": [],
     "decoy_kind": "",
     "image": "hp-27-4k-ips-monitor.png",
     "image_tier": "stock",
-    "title": "Exora Vanta Monitor",
+    "title": "Lunex Orbi Monitor",
     "bullets": [
-      "2160p vertical resolution",
-      "IPS panel type",
-      "165 Hz refresh rate",
-      "99% sRGB color coverage",
-      "400 nits brightness"
+      "Vertical resolution: 2160 p.",
+      "Panel type: IPS.",
+      "Refresh rate: 165 Hz.",
+      "sRGB color coverage: 99%.",
+      "Brightness: 440 nits; response time: 4 ms."
     ],
-    "description": "This monitor combines an IPS panel with 2160p vertical resolution for clear on-screen detail. Its listed display specifications include 99% sRGB coverage, 400 nits brightness, a 165 Hz refresh rate, and a 2 ms response time.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-12",
-    "role": "compliant",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 2160.0,
-      "panel": "IPS",
-      "refresh_hz": 144.0,
-      "srgb_pct": 99.0,
-      "brightness_nits": 400.0,
-      "response_ms": 2.0
-    },
-    "price": 170.0,
-    "list_price": 191.0,
-    "rating": 4.5,
-    "reviews": 2075,
-    "bought": 3902,
-    "stock": 99,
-    "fail_reasons": [],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Lunara Expan Monitor",
-    "bullets": [
-      "Vertical resolution: 2160p",
-      "Panel type: IPS",
-      "Refresh rate: 144Hz",
-      "sRGB color coverage: 99%",
-      "Brightness: 400 nits"
-    ],
-    "description": "This monitor uses an IPS panel with broad sRGB coverage for clear color reproduction. Its refresh rate and response time support smooth on-screen motion.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-13",
-    "role": "decoy",
-    "advertised": true,
-    "specs": {
-      "resolution_p": 1440.0,
-      "panel": "VA",
-      "refresh_hz": 144.0,
-      "srgb_pct": 95.0,
-      "brightness_nits": 310.0,
-      "response_ms": 5.0
-    },
-    "price": 270.0,
-    "list_price": 308.0,
-    "rating": 4.4,
-    "reviews": 2132,
-    "bought": 2568,
-    "stock": 115,
-    "fail_reasons": [
-      "panel"
-    ],
-    "decoy_kind": "spec",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Expora Nivelle Monitor",
-    "bullets": [
-      "1440p vertical resolution",
-      "VA panel type",
-      "144Hz refresh rate",
-      "95% sRGB color coverage",
-      "310 nits brightness"
-    ],
-    "description": "The Expora Nivelle Monitor uses a VA panel with 1440p vertical resolution. It supports a 144Hz refresh rate, 95% sRGB color coverage, 310 nits brightness, and a 5ms response time.",
+    "description": "The Lunex Orbi Monitor uses an IPS panel with 2160 p vertical resolution. It includes a 165 Hz refresh rate, 99% sRGB color coverage, 440 nits brightness, and 4 ms response time.",
     "copy_status": "ok"
   },
   {
@@ -1411,102 +1400,139 @@
     "role": "distractor",
     "advertised": false,
     "specs": {
-      "resolution_p": 2160.0,
+      "resolution_p": 1080.0,
       "panel": "IPS",
-      "refresh_hz": 100.0,
-      "srgb_pct": 97.0,
-      "brightness_nits": 360.0,
-      "response_ms": 3.0
+      "refresh_hz": 60.0,
+      "srgb_pct": 96.0,
+      "brightness_nits": 350.0,
+      "response_ms": 1.0
     },
-    "price": 300.0,
-    "list_price": 331.0,
-    "rating": 4.1,
-    "reviews": 743,
-    "bought": 1895,
-    "stock": 195,
+    "price": 220.0,
+    "list_price": 239.0,
+    "rating": 4.3,
+    "reviews": 1578,
+    "bought": 1390,
+    "stock": 45,
     "fail_reasons": [
-      "price__lt"
+      "resolution_p__min"
     ],
     "decoy_kind": "",
     "image": "hp-27-4k-ips-monitor.png",
     "image_tier": "stock",
-    "title": "Exora Vanta M22 Monitor",
+    "title": "Lunexa Orin monitor",
     "bullets": [
-      "2160p vertical resolution",
+      "1080p vertical resolution",
       "IPS panel type",
-      "100 Hz refresh rate",
-      "97% sRGB color coverage",
-      "360 nits brightness"
+      "60 Hz refresh rate",
+      "96% sRGB color coverage",
+      "350 nits brightness"
     ],
-    "description": "The Exora Vanta Monitor uses an IPS panel with 2160p vertical resolution. It supports a 100 Hz refresh rate, 97% sRGB color coverage, 360 nits brightness, and a 3 ms response time.",
+    "description": "The Lunexa Orin monitor is configured with an IPS panel and 1080p vertical resolution. Its listed specifications include a 60 Hz refresh rate, 96% sRGB color coverage, 350 nits brightness, and 1 ms response time.",
     "copy_status": "ok"
   },
   {
-    "asin": "EXP-MONITOR-05",
-    "role": "compliant",
-    "advertised": false,
-    "specs": {
-      "resolution_p": 2160.0,
-      "panel": "IPS",
-      "refresh_hz": 165.0,
-      "srgb_pct": 99.0,
-      "brightness_nits": 420.0,
-      "response_ms": 5.0
-    },
-    "price": 150.0,
-    "list_price": 158.0,
-    "rating": 4.6,
-    "reviews": 2062,
-    "bought": 5325,
-    "stock": 134,
-    "fail_reasons": [],
-    "decoy_kind": "",
-    "image": "hp-27-4k-ips-monitor.png",
-    "image_tier": "stock",
-    "title": "Exora Vale M05 Monitor",
-    "bullets": [
-      "2160p vertical resolution",
-      "IPS panel type",
-      "165 Hz refresh rate",
-      "99% sRGB color coverage",
-      "420 nits brightness"
-    ],
-    "description": "The Exora Vale Monitor combines an IPS panel with 2160p vertical resolution. It includes a 165 Hz refresh rate, 99% sRGB color coverage, 420 nits brightness, and a 5 ms response time.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-MONITOR-30",
+    "asin": "EXP-MONITOR-12",
     "role": "distractor",
     "advertised": false,
     "specs": {
       "resolution_p": 2160.0,
       "panel": "IPS",
-      "refresh_hz": 75.0,
-      "srgb_pct": 96.0,
-      "brightness_nits": 340.0,
+      "refresh_hz": 100.0,
+      "srgb_pct": 94.0,
+      "brightness_nits": 370.0,
       "response_ms": 2.0
     },
-    "price": 300.0,
-    "list_price": 339.0,
-    "rating": 4.1,
-    "reviews": 1994,
-    "bought": 3853,
-    "stock": 73,
+    "price": 200.0,
+    "list_price": 213.0,
+    "rating": 4.6,
+    "reviews": 2860,
+    "bought": 1842,
+    "stock": 155,
+    "fail_reasons": [
+      "srgb_pct__min"
+    ],
+    "decoy_kind": "",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Veyra Luno Monitor",
+    "bullets": [
+      "2160p vertical resolution",
+      "IPS panel type",
+      "100 Hz refresh rate",
+      "94% sRGB color coverage",
+      "370 nits brightness and 2 ms response time"
+    ],
+    "description": "The Veyra Luno Monitor features an IPS panel with 2160p vertical resolution and a 100 Hz refresh rate. It also lists 94% sRGB color coverage, 370 nits brightness, and a 2 ms response time.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MONITOR-32",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "resolution_p": 2160.0,
+      "panel": "IPS",
+      "refresh_hz": 100.0,
+      "srgb_pct": 94.0,
+      "brightness_nits": 320.0,
+      "response_ms": 3.0
+    },
+    "price": 250.0,
+    "list_price": 287.0,
+    "rating": 4.6,
+    "reviews": 996,
+    "bought": 1924,
+    "stock": 176,
+    "fail_reasons": [
+      "srgb_pct__min"
+    ],
+    "decoy_kind": "",
+    "image": "hp-27-4k-ips-monitor.png",
+    "image_tier": "stock",
+    "title": "Velo 32 Monitor",
+    "bullets": [
+      "Vertical Resolution: 2160.0p",
+      "Panel Type: IPS",
+      "Refresh Rate: 100.0Hz",
+      "Srgb Color Coverage: 94.0%",
+      "Brightness: 320.0nits"
+    ],
+    "description": "A monitor with vertical resolution: 2160.0p, panel type: ips, refresh rate: 100.0hz.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-MONITOR-35",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "resolution_p": 2160.0,
+      "panel": "IPS",
+      "refresh_hz": 165.0,
+      "srgb_pct": 95.0,
+      "brightness_nits": 310.0,
+      "response_ms": 7.0
+    },
+    "price": 310.0,
+    "list_price": 355.0,
+    "rating": 4.2,
+    "reviews": 1926,
+    "bought": 1929,
+    "stock": 168,
     "fail_reasons": [
       "price__lt"
     ],
     "decoy_kind": "",
     "image": "hp-27-4k-ips-monitor.png",
     "image_tier": "stock",
-    "title": "Veyra Luma Monitor",
+    "title": "Veyra Expan Monitor",
     "bullets": [
-      "2160p vertical resolution",
-      "IPS panel type",
-      "75 Hz refresh rate",
-      "96% sRGB color coverage",
-      "340 nits brightness"
+      "Vertical resolution: 2160 p",
+      "Panel type: IPS",
+      "Refresh rate: 165 Hz",
+      "sRGB color coverage: 95%",
+      "Brightness: 310 nits"
     ],
-    "description": "This monitor combines an IPS panel with 2160p vertical resolution for clear on-screen detail. It supports a 75 Hz refresh rate, 96% sRGB color coverage, 340 nits brightness, and 2 ms response time.",
+    "description": "This monitor uses an IPS panel with 2160 p vertical resolution. It supports a 165 Hz refresh rate, 95% sRGB color coverage, 310 nits brightness, and a 7 ms response time.",
     "copy_status": "ok"
   }
 ]

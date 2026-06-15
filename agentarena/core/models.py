@@ -69,6 +69,7 @@ class OpenAIEndpoint:
     model: str
     vision: bool = True
     reasoning: bool = False
+    reasoning_effort: Optional[str] = None   # "minimal"|"low"|"medium"|"high" for reasoning models
 
 
 @dataclass
@@ -86,6 +87,10 @@ class ModelSpec:
     @property
     def reasoning(self) -> bool:
         return _is_reasoning(self.deployment or self.name)
+
+    @property
+    def reasoning_effort(self) -> Optional[str]:
+        return self.extra.get("reasoning_effort")
 
     @property
     def has_vision(self) -> bool:
@@ -108,11 +113,19 @@ class ModelSpec:
             key = _resolve_key(self.api_key) or os.environ.get("OPENAI_API_KEY") or ""
             if not base:
                 raise ValueError(f"model {self.name!r}: provider 'openai' needs base_url")
-            return OpenAIEndpoint(base, key, self.wire_model(), self.has_vision, self.reasoning)
+            return OpenAIEndpoint(base, key, self.wire_model(), self.has_vision, self.reasoning, self.reasoning_effort)
         if self.provider == "trapi":
             base = self.base_url or f"https://trapi.research.microsoft.com/{self.region}/openai/v1/"
             token = _trapi_token_provider()()        # fresh bearer token (valid ~1h)
-            return OpenAIEndpoint(base, token, self.wire_model(), self.has_vision, self.reasoning)
+            return OpenAIEndpoint(base, token, self.wire_model(), self.has_vision, self.reasoning, self.reasoning_effort)
+        if self.provider == "phyagi":
+            # PhyAGI gateway (OpenAI-compatible, static key) — used to reach models TRAPI throttles.
+            from ..llm_client import _phyagi_key
+            base = self.base_url or os.environ.get("PHYAGI_GATEWAY_URL", "http://gateway.phyagi.net/api")
+            key = _resolve_key(self.api_key) or _phyagi_key() or ""
+            if not key:
+                raise ValueError(f"model {self.name!r}: provider 'phyagi' needs a PhyAGI key")
+            return OpenAIEndpoint(base, key, self.wire_model(), self.has_vision, self.reasoning, self.reasoning_effort)
         raise ValueError(f"unknown provider {self.provider!r}")
 
     # -- face 2: native async chat (for scaffolds you write) ---------------- #
@@ -142,6 +155,21 @@ class ModelSpec:
         if isinstance(spec, ModelSpec):
             return spec
         if isinstance(spec, str):
+            # "phyagi/<model>[#effort]" → route via the PhyAGI gateway with the BARE model name on the
+            # wire (e.g. "phyagi/gpt-5.5#low" → name "gpt-5.5-low", provider phyagi, wire "gpt-5.5").
+            if spec.startswith("phyagi/"):
+                rest = spec[len("phyagi/"):]
+                eff = None
+                if "#" in rest:
+                    rest, eff = rest.split("#", 1)
+                return cls(name=(f"{rest}-{eff}" if eff else rest), provider="phyagi",
+                           deployment=rest, extra=({"reasoning_effort": eff} if eff else {}))
+            # convention "model#effort" (e.g. "gpt-5.5#low") → recorded/display name "gpt-5.5-low",
+            # wire model "gpt-5.5", reasoning_effort "low" — lets one logical model sweep efforts.
+            if "#" in spec:
+                base, eff = spec.split("#", 1)
+                return cls(name=f"{base}-{eff}", deployment=TRAPI_DEPLOY.get(base, base),
+                           extra={"reasoning_effort": eff})
             return cls(name=spec)
         d = dict(spec)
         return cls(name=d["name"], provider=d.get("provider", "trapi"),

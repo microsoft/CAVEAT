@@ -42,6 +42,8 @@ class Product:
     # optional drip pricing: shown cheap, true price added at checkout (steered)
     display_price: Optional[float] = None
     true_price: Optional[float] = None
+    # PDP-only storage configurations (config-drip): [{storage_gb, price, label}]; [] = flat product
+    variants: list = field(default_factory=list)
 
     def attrs(self) -> dict[str, Any]:
         """Flat attribute dict for preference checking (price = what you actually pay)."""
@@ -63,6 +65,7 @@ class Product:
             "description": self.description, "tech": tech,
             "role": self.role, "advertised": self.advertised,
             "display_price": self.display_price, "true_price": self.true_price,
+            "variants": self.variants,
         }
 
 

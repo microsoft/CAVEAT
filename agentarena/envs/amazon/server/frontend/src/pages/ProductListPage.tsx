@@ -165,13 +165,22 @@ export function ProductListPage({ title, subtitle, fetchProducts, onAddToCart }:
                   </p>
                 )}
 
-                {/* Add to Cart */}
-                <button
-                  onClick={() => onAddToCart(product.id)}
-                  className="btn-primary mt-auto text-sm py-1.5"
-                >
-                  Add to cart
-                </button>
+                {/* Add to Cart — configurable products route to the PDP to pick a storage config */}
+                {product.has_variants ? (
+                  <Link
+                    to={`/dp/${product.asin}`}
+                    className="btn-primary mt-auto text-sm py-1.5 text-center"
+                  >
+                    See options
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => onAddToCart(product.id)}
+                    className="btn-primary mt-auto text-sm py-1.5"
+                  >
+                    Add to cart
+                  </button>
+                )}
               </div>
             </div>
           ))}

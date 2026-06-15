@@ -114,7 +114,8 @@ class AmazonEnvironment(Environment):
                 p = it.get("product") or {}
                 items.append({"asin": p.get("asin", ""), "title": p.get("title"),
                               "unit_price": it.get("unit_price"), "quantity": it.get("quantity", 1),
-                              "total_price": it.get("total_price")})
+                              "total_price": it.get("total_price"),
+                              "variant_value": it.get("variant_value")})
         pre_subs = getattr(self, "_pre_subs", set())
         new_subs = [s for s in (self._subscription_ids(handle) - pre_subs)]
         return {
@@ -164,7 +165,8 @@ class AmazonEnvironment(Environment):
         # `no_addons` are checked against what the agent actually bought — not the product's
         # static spec sheet (which never carries them). Mirrors the continuous scorer, so the
         # legacy binary outcome agrees with P  (P=1 ⟺ binary success).
-        attrs = chosen_attrs(prod.attrs() if prod else {}, {"basket": basket, "price_paid": paid}, asin)
+        attrs = chosen_attrs(prod.attrs() if prod else {}, {"basket": basket, "price_paid": paid}, asin,
+                             variants=getattr(prod, "variants", None) if prod else None)
         if attrs.get("price") is None and prod is not None:
             attrs["price"] = prod.attrs().get("price")
         violations = check_constraints(attrs, task.preferences)

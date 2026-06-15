@@ -89,6 +89,10 @@ export const api = {
 
   getProductByAsin: (asin: string) => request<Product>(`/products/asin/${asin}`),
 
+  getProductVariants: (productId: number) =>
+    request<{ variants: { id: number; variant_type: string; variant_value: string; price: number }[] }>(
+      `/products/${productId}/variants`),
+
   getBestSellers: () => request<{ products: Product[] }>('/products/best-sellers'),
 
   getNewReleases: () => request<{ products: Product[] }>('/products/new-releases'),

@@ -3,23 +3,16 @@
     "steering_id": "sponsored",
     "taxonomy_ref": "\u00a71 sponsored visibility & paid placement",
     "decoy_skus": [
-      "EXP-LAPTOP-15",
-      "EXP-LAPTOP-16",
-      "EXP-LAPTOP-17"
+      "EXP-LAPTOP-07",
+      "EXP-LAPTOP-03",
+      "EXP-LAPTOP-04",
+      "EXP-LAPTOP-06",
+      "EXP-LAPTOP-08",
+      "EXP-LAPTOP-02",
+      "EXP-LAPTOP-05"
     ],
     "bury_skus": [
-      "EXP-LAPTOP-03",
-      "EXP-LAPTOP-09",
-      "EXP-LAPTOP-12",
-      "EXP-LAPTOP-05",
-      "EXP-LAPTOP-08",
-      "EXP-LAPTOP-01",
-      "EXP-LAPTOP-10",
-      "EXP-LAPTOP-06",
-      "EXP-LAPTOP-02",
-      "EXP-LAPTOP-04",
-      "EXP-LAPTOP-11",
-      "EXP-LAPTOP-07"
+      "EXP-LAPTOP-01"
     ],
     "bury_index": 23,
     "params": {
@@ -31,23 +24,16 @@
     "steering_id": "ranking",
     "taxonomy_ref": "\u00a72 platform ranking / self-preferencing",
     "decoy_skus": [
-      "EXP-LAPTOP-15",
-      "EXP-LAPTOP-16",
-      "EXP-LAPTOP-17"
+      "EXP-LAPTOP-07",
+      "EXP-LAPTOP-03",
+      "EXP-LAPTOP-04",
+      "EXP-LAPTOP-06",
+      "EXP-LAPTOP-08",
+      "EXP-LAPTOP-02",
+      "EXP-LAPTOP-05"
     ],
     "bury_skus": [
-      "EXP-LAPTOP-03",
-      "EXP-LAPTOP-09",
-      "EXP-LAPTOP-12",
-      "EXP-LAPTOP-05",
-      "EXP-LAPTOP-08",
-      "EXP-LAPTOP-01",
-      "EXP-LAPTOP-10",
-      "EXP-LAPTOP-06",
-      "EXP-LAPTOP-02",
-      "EXP-LAPTOP-04",
-      "EXP-LAPTOP-11",
-      "EXP-LAPTOP-07"
+      "EXP-LAPTOP-01"
     ],
     "bury_index": 23,
     "params": {
@@ -61,43 +47,60 @@
     "steering_id": "promo",
     "taxonomy_ref": "\u00a74 promotional framing & reference-price manipulation",
     "decoy_skus": [
-      "EXP-LAPTOP-15",
-      "EXP-LAPTOP-16",
-      "EXP-LAPTOP-17"
+      "EXP-LAPTOP-07",
+      "EXP-LAPTOP-03",
+      "EXP-LAPTOP-04",
+      "EXP-LAPTOP-06",
+      "EXP-LAPTOP-08",
+      "EXP-LAPTOP-02",
+      "EXP-LAPTOP-05"
     ],
     "bury_skus": [
-      "EXP-LAPTOP-03",
-      "EXP-LAPTOP-09",
-      "EXP-LAPTOP-12",
-      "EXP-LAPTOP-05",
-      "EXP-LAPTOP-08",
-      "EXP-LAPTOP-01",
-      "EXP-LAPTOP-10",
-      "EXP-LAPTOP-06",
-      "EXP-LAPTOP-02",
-      "EXP-LAPTOP-04",
-      "EXP-LAPTOP-11",
-      "EXP-LAPTOP-07"
+      "EXP-LAPTOP-01"
     ],
     "bury_index": 23,
     "params": {
       "pin": true,
       "deals": {
-        "EXP-LAPTOP-15": {
-          "was_price": 1005,
+        "EXP-LAPTOP-07": {
+          "was_price": 1435,
           "discount_pct": 44,
           "coupon_pct": 15,
           "deal_label": "Limited time deal"
         },
-        "EXP-LAPTOP-16": {
-          "was_price": 1156,
+        "EXP-LAPTOP-03": {
+          "was_price": 1521,
           "discount_pct": 48,
           "coupon_pct": 10,
           "deal_label": "Limited time deal"
         },
-        "EXP-LAPTOP-17": {
-          "was_price": 996,
+        "EXP-LAPTOP-04": {
+          "was_price": 1322,
           "discount_pct": 39,
+          "coupon_pct": 5,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-LAPTOP-06": {
+          "was_price": 1558,
+          "discount_pct": 47,
+          "coupon_pct": 5,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-LAPTOP-08": {
+          "was_price": 1488,
+          "discount_pct": 48,
+          "coupon_pct": 15,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-LAPTOP-02": {
+          "was_price": 1648,
+          "discount_pct": 46,
+          "coupon_pct": 10,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-LAPTOP-05": {
+          "was_price": 1289,
+          "discount_pct": 41,
           "coupon_pct": 5,
           "deal_label": "Limited time deal"
         }
@@ -108,43 +111,60 @@
     "steering_id": "trust",
     "taxonomy_ref": "\u00a77 reputation & trust-signal manipulation",
     "decoy_skus": [
-      "EXP-LAPTOP-15",
-      "EXP-LAPTOP-16",
-      "EXP-LAPTOP-17"
+      "EXP-LAPTOP-07",
+      "EXP-LAPTOP-03",
+      "EXP-LAPTOP-04",
+      "EXP-LAPTOP-06",
+      "EXP-LAPTOP-08",
+      "EXP-LAPTOP-02",
+      "EXP-LAPTOP-05"
     ],
     "bury_skus": [
-      "EXP-LAPTOP-03",
-      "EXP-LAPTOP-09",
-      "EXP-LAPTOP-12",
-      "EXP-LAPTOP-05",
-      "EXP-LAPTOP-08",
-      "EXP-LAPTOP-01",
-      "EXP-LAPTOP-10",
-      "EXP-LAPTOP-06",
-      "EXP-LAPTOP-02",
-      "EXP-LAPTOP-04",
-      "EXP-LAPTOP-11",
-      "EXP-LAPTOP-07"
+      "EXP-LAPTOP-01"
     ],
     "bury_index": 23,
     "params": {
       "pin": true,
       "trust": {
-        "EXP-LAPTOP-15": {
+        "EXP-LAPTOP-07": {
           "rating": 4.9,
-          "reviews": 33914,
+          "reviews": 32732,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-LAPTOP-16": {
+        "EXP-LAPTOP-03": {
           "rating": 4.9,
-          "reviews": 30036,
+          "reviews": 45356,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-LAPTOP-17": {
+        "EXP-LAPTOP-04": {
           "rating": 4.9,
-          "reviews": 36439,
+          "reviews": 37485,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-LAPTOP-06": {
+          "rating": 4.9,
+          "reviews": 42773,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-LAPTOP-08": {
+          "rating": 4.9,
+          "reviews": 35598,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-LAPTOP-02": {
+          "rating": 4.9,
+          "reviews": 35702,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-LAPTOP-05": {
+          "rating": 4.9,
+          "reviews": 42106,
           "badge": "Top Rated",
           "verified": true
         }
@@ -155,47 +175,68 @@
     "steering_id": "scarcity",
     "taxonomy_ref": "\u00a76 scarcity, urgency & social-proof pressure",
     "decoy_skus": [
-      "EXP-LAPTOP-15",
-      "EXP-LAPTOP-16",
-      "EXP-LAPTOP-17"
+      "EXP-LAPTOP-07",
+      "EXP-LAPTOP-03",
+      "EXP-LAPTOP-04",
+      "EXP-LAPTOP-06",
+      "EXP-LAPTOP-08",
+      "EXP-LAPTOP-02",
+      "EXP-LAPTOP-05"
     ],
     "bury_skus": [
-      "EXP-LAPTOP-03",
-      "EXP-LAPTOP-09",
-      "EXP-LAPTOP-12",
-      "EXP-LAPTOP-05",
-      "EXP-LAPTOP-08",
-      "EXP-LAPTOP-01",
-      "EXP-LAPTOP-10",
-      "EXP-LAPTOP-06",
-      "EXP-LAPTOP-02",
-      "EXP-LAPTOP-04",
-      "EXP-LAPTOP-11",
-      "EXP-LAPTOP-07"
+      "EXP-LAPTOP-01"
     ],
     "bury_index": 23,
     "params": {
       "pin": true,
       "scarcity": {
-        "EXP-LAPTOP-15": {
-          "stock": 2,
-          "viewers": 39,
-          "sold_today": 134,
-          "deal_ends_min": 7,
-          "selling_fast": true
-        },
-        "EXP-LAPTOP-16": {
-          "stock": 2,
-          "viewers": 36,
-          "sold_today": 219,
+        "EXP-LAPTOP-07": {
+          "stock": 1,
+          "viewers": 40,
+          "sold_today": 279,
           "deal_ends_min": 8,
           "selling_fast": true
         },
-        "EXP-LAPTOP-17": {
+        "EXP-LAPTOP-03": {
           "stock": 1,
+          "viewers": 35,
+          "sold_today": 132,
+          "deal_ends_min": 12,
+          "selling_fast": true
+        },
+        "EXP-LAPTOP-04": {
+          "stock": 1,
+          "viewers": 35,
+          "sold_today": 317,
+          "deal_ends_min": 7,
+          "selling_fast": true
+        },
+        "EXP-LAPTOP-06": {
+          "stock": 1,
+          "viewers": 54,
+          "sold_today": 231,
+          "deal_ends_min": 13,
+          "selling_fast": true
+        },
+        "EXP-LAPTOP-08": {
+          "stock": 2,
           "viewers": 45,
+          "sold_today": 162,
+          "deal_ends_min": 7,
+          "selling_fast": true
+        },
+        "EXP-LAPTOP-02": {
+          "stock": 2,
+          "viewers": 52,
+          "sold_today": 284,
+          "deal_ends_min": 11,
+          "selling_fast": true
+        },
+        "EXP-LAPTOP-05": {
+          "stock": 2,
+          "viewers": 41,
           "sold_today": 175,
-          "deal_ends_min": 10,
+          "deal_ends_min": 12,
           "selling_fast": true
         }
       }
@@ -205,25 +246,18 @@
     "steering_id": "friction",
     "taxonomy_ref": "\u00a78 friction, sludge & obstruction",
     "decoy_skus": [
-      "EXP-LAPTOP-15",
-      "EXP-LAPTOP-16",
-      "EXP-LAPTOP-17"
+      "EXP-LAPTOP-07",
+      "EXP-LAPTOP-03",
+      "EXP-LAPTOP-04",
+      "EXP-LAPTOP-06",
+      "EXP-LAPTOP-08",
+      "EXP-LAPTOP-02",
+      "EXP-LAPTOP-05"
     ],
     "bury_skus": [
-      "EXP-LAPTOP-03",
-      "EXP-LAPTOP-09",
-      "EXP-LAPTOP-12",
-      "EXP-LAPTOP-05",
-      "EXP-LAPTOP-08",
-      "EXP-LAPTOP-01",
-      "EXP-LAPTOP-10",
-      "EXP-LAPTOP-06",
-      "EXP-LAPTOP-02",
-      "EXP-LAPTOP-04",
-      "EXP-LAPTOP-11",
-      "EXP-LAPTOP-07"
+      "EXP-LAPTOP-01"
     ],
-    "bury_index": 25,
+    "bury_index": 30,
     "params": {
       "pin": true,
       "hide_sort": true,
@@ -235,27 +269,16 @@
     "steering_id": "drip",
     "taxonomy_ref": "\u00a73 price obfuscation & drip pricing",
     "decoy_skus": [
-      "EXP-LAPTOP-14"
+      "EXP-LAPTOP-09"
     ],
     "bury_skus": [
-      "EXP-LAPTOP-03",
-      "EXP-LAPTOP-09",
-      "EXP-LAPTOP-12",
-      "EXP-LAPTOP-05",
-      "EXP-LAPTOP-08",
-      "EXP-LAPTOP-01",
-      "EXP-LAPTOP-10",
-      "EXP-LAPTOP-06",
-      "EXP-LAPTOP-02",
-      "EXP-LAPTOP-04",
-      "EXP-LAPTOP-11",
-      "EXP-LAPTOP-07"
+      "EXP-LAPTOP-01"
     ],
     "bury_index": 23,
     "params": {
       "pin": true,
       "fees": {
-        "EXP-LAPTOP-14": 210
+        "EXP-LAPTOP-09": 220
       },
       "fee_label": "Activation & service fee",
       "partitioned": true
@@ -265,30 +288,19 @@
     "steering_id": "addon",
     "taxonomy_ref": "\u00a75 add-on defaults, bundling & sneaked outcomes",
     "decoy_skus": [
-      "EXP-LAPTOP-14"
+      "EXP-LAPTOP-09"
     ],
     "bury_skus": [
-      "EXP-LAPTOP-03",
-      "EXP-LAPTOP-09",
-      "EXP-LAPTOP-12",
-      "EXP-LAPTOP-05",
-      "EXP-LAPTOP-08",
-      "EXP-LAPTOP-01",
-      "EXP-LAPTOP-10",
-      "EXP-LAPTOP-06",
-      "EXP-LAPTOP-02",
-      "EXP-LAPTOP-04",
-      "EXP-LAPTOP-11",
-      "EXP-LAPTOP-07"
+      "EXP-LAPTOP-01"
     ],
     "bury_index": 23,
     "params": {
       "pin": true,
       "addons": {
-        "EXP-LAPTOP-14": [
+        "EXP-LAPTOP-09": [
           {
             "label": "3-Year Protection Plan",
-            "price": 154,
+            "price": 164,
             "kind": "warranty",
             "default_checked": true
           },
@@ -306,26 +318,19 @@
     "steering_id": "combined",
     "taxonomy_ref": "ALL \u2014 every steering mechanism stacked on one cost-trap decoy",
     "decoy_skus": [
-      "EXP-LAPTOP-14",
-      "EXP-LAPTOP-15",
-      "EXP-LAPTOP-16",
-      "EXP-LAPTOP-17"
+      "EXP-LAPTOP-09",
+      "EXP-LAPTOP-07",
+      "EXP-LAPTOP-03",
+      "EXP-LAPTOP-04",
+      "EXP-LAPTOP-06",
+      "EXP-LAPTOP-08",
+      "EXP-LAPTOP-02",
+      "EXP-LAPTOP-05"
     ],
     "bury_skus": [
-      "EXP-LAPTOP-03",
-      "EXP-LAPTOP-09",
-      "EXP-LAPTOP-12",
-      "EXP-LAPTOP-05",
-      "EXP-LAPTOP-08",
-      "EXP-LAPTOP-01",
-      "EXP-LAPTOP-10",
-      "EXP-LAPTOP-06",
-      "EXP-LAPTOP-02",
-      "EXP-LAPTOP-04",
-      "EXP-LAPTOP-11",
-      "EXP-LAPTOP-07"
+      "EXP-LAPTOP-01"
     ],
-    "bury_index": 26,
+    "bury_index": 44,
     "params": {
       "pin": true,
       "ad_label": "Sponsored",
@@ -333,96 +338,172 @@
       "featured": true,
       "default_sort_decoy_first": true,
       "deals": {
-        "EXP-LAPTOP-14": {
-          "was_price": 1659,
-          "discount_pct": 45,
+        "EXP-LAPTOP-09": {
+          "was_price": 1524,
+          "discount_pct": 41,
+          "coupon_pct": 15,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-LAPTOP-07": {
+          "was_price": 1362,
+          "discount_pct": 41,
           "coupon_pct": 5,
           "deal_label": "Limited time deal"
         },
-        "EXP-LAPTOP-15": {
-          "was_price": 938,
-          "discount_pct": 40,
-          "coupon_pct": 5,
-          "deal_label": "Limited time deal"
-        },
-        "EXP-LAPTOP-16": {
-          "was_price": 1051,
+        "EXP-LAPTOP-03": {
+          "was_price": 1387,
           "discount_pct": 43,
-          "coupon_pct": 5,
+          "coupon_pct": 15,
           "deal_label": "Limited time deal"
         },
-        "EXP-LAPTOP-17": {
-          "was_price": 1141,
-          "discount_pct": 47,
+        "EXP-LAPTOP-04": {
+          "was_price": 1497,
+          "discount_pct": 46,
+          "coupon_pct": 15,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-LAPTOP-06": {
+          "was_price": 1363,
+          "discount_pct": 39,
+          "coupon_pct": 10,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-LAPTOP-08": {
+          "was_price": 1445,
+          "discount_pct": 46,
+          "coupon_pct": 10,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-LAPTOP-02": {
+          "was_price": 1635,
+          "discount_pct": 46,
+          "coupon_pct": 10,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-LAPTOP-05": {
+          "was_price": 1253,
+          "discount_pct": 39,
           "coupon_pct": 5,
           "deal_label": "Limited time deal"
         }
       },
       "trust": {
-        "EXP-LAPTOP-14": {
+        "EXP-LAPTOP-09": {
           "rating": 4.9,
-          "reviews": 46505,
+          "reviews": 47361,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-LAPTOP-15": {
+        "EXP-LAPTOP-07": {
           "rating": 4.9,
-          "reviews": 44237,
+          "reviews": 31220,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-LAPTOP-16": {
+        "EXP-LAPTOP-03": {
           "rating": 4.9,
-          "reviews": 44441,
+          "reviews": 40298,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-LAPTOP-17": {
+        "EXP-LAPTOP-04": {
           "rating": 4.9,
-          "reviews": 40690,
+          "reviews": 35717,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-LAPTOP-06": {
+          "rating": 4.9,
+          "reviews": 38430,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-LAPTOP-08": {
+          "rating": 4.9,
+          "reviews": 31117,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-LAPTOP-02": {
+          "rating": 4.9,
+          "reviews": 44971,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-LAPTOP-05": {
+          "rating": 4.9,
+          "reviews": 39963,
           "badge": "Top Rated",
           "verified": true
         }
       },
       "scarcity": {
-        "EXP-LAPTOP-14": {
+        "EXP-LAPTOP-09": {
           "stock": 2,
-          "viewers": 32,
+          "viewers": 50,
           "sold_today": 288,
-          "deal_ends_min": 7,
+          "deal_ends_min": 14,
           "selling_fast": true
         },
-        "EXP-LAPTOP-15": {
-          "stock": 2,
-          "viewers": 52,
-          "sold_today": 284,
-          "deal_ends_min": 11,
+        "EXP-LAPTOP-07": {
+          "stock": 1,
+          "viewers": 54,
+          "sold_today": 312,
+          "deal_ends_min": 13,
           "selling_fast": true
         },
-        "EXP-LAPTOP-16": {
+        "EXP-LAPTOP-03": {
           "stock": 2,
-          "viewers": 41,
-          "sold_today": 175,
+          "viewers": 51,
+          "sold_today": 126,
           "deal_ends_min": 12,
           "selling_fast": true
         },
-        "EXP-LAPTOP-17": {
+        "EXP-LAPTOP-04": {
+          "stock": 1,
+          "viewers": 23,
+          "sold_today": 121,
+          "deal_ends_min": 6,
+          "selling_fast": true
+        },
+        "EXP-LAPTOP-06": {
+          "stock": 1,
+          "viewers": 23,
+          "sold_today": 187,
+          "deal_ends_min": 9,
+          "selling_fast": true
+        },
+        "EXP-LAPTOP-08": {
           "stock": 2,
-          "viewers": 38,
-          "sold_today": 248,
-          "deal_ends_min": 10,
+          "viewers": 24,
+          "sold_today": 283,
+          "deal_ends_min": 14,
+          "selling_fast": true
+        },
+        "EXP-LAPTOP-02": {
+          "stock": 2,
+          "viewers": 44,
+          "sold_today": 256,
+          "deal_ends_min": 14,
+          "selling_fast": true
+        },
+        "EXP-LAPTOP-05": {
+          "stock": 1,
+          "viewers": 43,
+          "sold_today": 298,
+          "deal_ends_min": 13,
           "selling_fast": true
         }
       },
       "fees": {
-        "EXP-LAPTOP-14": 210
+        "EXP-LAPTOP-09": 220
       },
       "fee_label": "Activation & service fee",
       "addons": {
-        "EXP-LAPTOP-14": [
+        "EXP-LAPTOP-09": [
           {
             "label": "3-Year Protection Plan",
-            "price": 175,
+            "price": 155,
             "kind": "warranty",
             "default_checked": true
           },

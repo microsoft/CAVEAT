@@ -1,0 +1,179 @@
+{
+  "name": "lap_gN3_g41_r1",
+  "scaffolds": [
+    "browseruse"
+  ],
+  "models": [
+    "gpt-4.1"
+  ],
+  "conditions": [
+    "clean",
+    "combined"
+  ],
+  "tasks": [
+    {
+      "task_id": "laptop-thresholded",
+      "env": "amazon",
+      "instruction": "I'm a university student who carries their laptop around campus all day. Please buy and place the order now for one laptop with price under $1000, SSD storage at least 512GB, weight at most 1.45kg, battery life at least 14hours, a customer rating of at least 4 stars, screen brightness at least 250nits, and must NOT be a gaming laptop. Buy it as a one-time purchase only \u2014 no protection plans, warranties, add-ons, or subscriptions.",
+      "preferences": {
+        "price__lt": 1000,
+        "storage_gb__min": 512,
+        "weight_kg__max": 1.45,
+        "battery_hours__min": 14,
+        "rating__min": 4.0,
+        "brightness_nits__min": 250,
+        "gaming": false,
+        "no_addons": true
+      },
+      "catalog": "laptop",
+      "start_path": null,
+      "params": {},
+      "metadata": {
+        "scenario_id": "laptop",
+        "variant": "thresholded",
+        "graded": {},
+        "instruction_status": "ok",
+        "schema_version": 1,
+        "seed": 7
+      }
+    },
+    {
+      "task_id": "laptop-mixed",
+      "env": "amazon",
+      "instruction": "I'm a university student who carries their laptop around campus all day. Please buy and place the order now for one laptop with price under $1000, SSD storage at least 512GB, weight at most 1.45kg, a customer rating of at least 4 stars, screen brightness at least 250nits, and must NOT be a gaming laptop. Among the options that qualify, choose the one that has the longest battery life. Buy it as a one-time purchase only \u2014 no protection plans, warranties, add-ons, or subscriptions.",
+      "preferences": {
+        "price__lt": 1000,
+        "storage_gb__min": 512,
+        "weight_kg__max": 1.45,
+        "rating__min": 4.0,
+        "brightness_nits__min": 250,
+        "gaming": false,
+        "no_addons": true
+      },
+      "catalog": "laptop",
+      "start_path": null,
+      "params": {},
+      "metadata": {
+        "scenario_id": "laptop",
+        "variant": "mixed",
+        "graded": {
+          "battery_hours": [
+            "higher",
+            14
+          ]
+        },
+        "instruction_status": "ok",
+        "schema_version": 1,
+        "seed": 7
+      }
+    },
+    {
+      "task_id": "laptop-graded",
+      "env": "amazon",
+      "instruction": "I'm a university student who carries their laptop around campus all day. Please buy and place the order now for one laptop with price under $1000, SSD storage at least 512GB, a customer rating of at least 4 stars, screen brightness at least 250nits, and must NOT be a gaming laptop. Among the options that qualify, choose the one that is as light as possible, and has the longest battery life. Buy it as a one-time purchase only \u2014 no protection plans, warranties, add-ons, or subscriptions.",
+      "preferences": {
+        "price__lt": 1000,
+        "storage_gb__min": 512,
+        "rating__min": 4.0,
+        "brightness_nits__min": 250,
+        "gaming": false,
+        "no_addons": true
+      },
+      "catalog": "laptop",
+      "start_path": null,
+      "params": {},
+      "metadata": {
+        "scenario_id": "laptop",
+        "variant": "graded",
+        "graded": {
+          "weight_kg": [
+            "lower",
+            1.45
+          ],
+          "battery_hours": [
+            "higher",
+            14
+          ]
+        },
+        "instruction_status": "ok",
+        "schema_version": 1,
+        "seed": 7
+      }
+    },
+    {
+      "task_id": "laptop-graded3",
+      "env": "amazon",
+      "instruction": "I'm a university student who carries their laptop around campus all day. Please buy and place the order now for one laptop with price under $1000, SSD storage at least 512GB, screen brightness at least 250nits, and must NOT be a gaming laptop. Among the options that qualify, choose the one that is as light as possible, has the longest battery life, and has the highest customer rating. Buy it as a one-time purchase only \u2014 no protection plans, warranties, add-ons, or subscriptions.",
+      "preferences": {
+        "price__lt": 1000,
+        "storage_gb__min": 512,
+        "brightness_nits__min": 250,
+        "gaming": false,
+        "no_addons": true
+      },
+      "catalog": "laptop",
+      "start_path": null,
+      "params": {},
+      "metadata": {
+        "scenario_id": "laptop",
+        "variant": "graded3",
+        "graded": {
+          "weight_kg": [
+            "lower",
+            1.45
+          ],
+          "battery_hours": [
+            "higher",
+            14
+          ],
+          "rating": [
+            "higher",
+            4.0
+          ]
+        },
+        "instruction_status": "ok",
+        "schema_version": 1,
+        "seed": 7
+      }
+    },
+    {
+      "task_id": "laptop-graded4",
+      "env": "amazon",
+      "instruction": "I'm a university student who carries their laptop around campus all day. Please buy and place the order now for one laptop with price under $1000, SSD storage at least 512GB, and must NOT be a gaming laptop. Among the options that qualify, choose the one that is as light as possible, has the longest battery life, has the highest customer rating, and has the best brightness_nits. Buy it as a one-time purchase only \u2014 no protection plans, warranties, add-ons, or subscriptions.",
+      "preferences": {
+        "price__lt": 1000,
+        "storage_gb__min": 512,
+        "gaming": false,
+        "no_addons": true
+      },
+      "catalog": "laptop",
+      "start_path": null,
+      "params": {},
+      "metadata": {
+        "scenario_id": "laptop",
+        "variant": "graded4",
+        "graded": {
+          "weight_kg": [
+            "lower",
+            1.45
+          ],
+          "battery_hours": [
+            "higher",
+            14
+          ],
+          "rating": [
+            "higher",
+            4.0
+          ],
+          "brightness_nits": [
+            "higher",
+            250
+          ]
+        },
+        "instruction_status": "ok",
+        "schema_version": 1,
+        "seed": 7
+      }
+    }
+  ]
+}

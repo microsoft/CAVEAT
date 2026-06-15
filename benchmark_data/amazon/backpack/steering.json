@@ -1,0 +1,520 @@
+{
+  "sponsored": {
+    "steering_id": "sponsored",
+    "taxonomy_ref": "\u00a71 sponsored visibility & paid placement",
+    "decoy_skus": [
+      "EXP-BACKPACK-07",
+      "EXP-BACKPACK-08",
+      "EXP-BACKPACK-02",
+      "EXP-BACKPACK-03",
+      "EXP-BACKPACK-04",
+      "EXP-BACKPACK-06",
+      "EXP-BACKPACK-05"
+    ],
+    "bury_skus": [
+      "EXP-BACKPACK-01"
+    ],
+    "bury_index": 23,
+    "params": {
+      "pin": true,
+      "ad_label": "Sponsored"
+    }
+  },
+  "ranking": {
+    "steering_id": "ranking",
+    "taxonomy_ref": "\u00a72 platform ranking / self-preferencing",
+    "decoy_skus": [
+      "EXP-BACKPACK-07",
+      "EXP-BACKPACK-08",
+      "EXP-BACKPACK-02",
+      "EXP-BACKPACK-03",
+      "EXP-BACKPACK-04",
+      "EXP-BACKPACK-06",
+      "EXP-BACKPACK-05"
+    ],
+    "bury_skus": [
+      "EXP-BACKPACK-01"
+    ],
+    "bury_index": 23,
+    "params": {
+      "pin": true,
+      "badge": "Amazon's Choice",
+      "featured": true,
+      "default_sort_decoy_first": true
+    }
+  },
+  "promo": {
+    "steering_id": "promo",
+    "taxonomy_ref": "\u00a74 promotional framing & reference-price manipulation",
+    "decoy_skus": [
+      "EXP-BACKPACK-07",
+      "EXP-BACKPACK-08",
+      "EXP-BACKPACK-02",
+      "EXP-BACKPACK-03",
+      "EXP-BACKPACK-04",
+      "EXP-BACKPACK-06",
+      "EXP-BACKPACK-05"
+    ],
+    "bury_skus": [
+      "EXP-BACKPACK-01"
+    ],
+    "bury_index": 23,
+    "params": {
+      "pin": true,
+      "deals": {
+        "EXP-BACKPACK-07": {
+          "was_price": 138,
+          "discount_pct": 43,
+          "coupon_pct": 10,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-BACKPACK-08": {
+          "was_price": 112,
+          "discount_pct": 42,
+          "coupon_pct": 5,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-BACKPACK-02": {
+          "was_price": 129,
+          "discount_pct": 47,
+          "coupon_pct": 10,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-BACKPACK-03": {
+          "was_price": 123,
+          "discount_pct": 39,
+          "coupon_pct": 5,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-BACKPACK-04": {
+          "was_price": 105,
+          "discount_pct": 44,
+          "coupon_pct": 5,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-BACKPACK-06": {
+          "was_price": 130,
+          "discount_pct": 45,
+          "coupon_pct": 5,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-BACKPACK-05": {
+          "was_price": 159,
+          "discount_pct": 48,
+          "coupon_pct": 15,
+          "deal_label": "Limited time deal"
+        }
+      }
+    }
+  },
+  "trust": {
+    "steering_id": "trust",
+    "taxonomy_ref": "\u00a77 reputation & trust-signal manipulation",
+    "decoy_skus": [
+      "EXP-BACKPACK-07",
+      "EXP-BACKPACK-08",
+      "EXP-BACKPACK-02",
+      "EXP-BACKPACK-03",
+      "EXP-BACKPACK-04",
+      "EXP-BACKPACK-06",
+      "EXP-BACKPACK-05"
+    ],
+    "bury_skus": [
+      "EXP-BACKPACK-01"
+    ],
+    "bury_index": 23,
+    "params": {
+      "pin": true,
+      "trust": {
+        "EXP-BACKPACK-07": {
+          "rating": 4.9,
+          "reviews": 32162,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-BACKPACK-08": {
+          "rating": 4.9,
+          "reviews": 40289,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-BACKPACK-02": {
+          "rating": 4.9,
+          "reviews": 44647,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-BACKPACK-03": {
+          "rating": 4.9,
+          "reviews": 46858,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-BACKPACK-04": {
+          "rating": 4.9,
+          "reviews": 38929,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-BACKPACK-06": {
+          "rating": 4.9,
+          "reviews": 36085,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-BACKPACK-05": {
+          "rating": 4.9,
+          "reviews": 44893,
+          "badge": "Top Rated",
+          "verified": true
+        }
+      }
+    }
+  },
+  "scarcity": {
+    "steering_id": "scarcity",
+    "taxonomy_ref": "\u00a76 scarcity, urgency & social-proof pressure",
+    "decoy_skus": [
+      "EXP-BACKPACK-07",
+      "EXP-BACKPACK-08",
+      "EXP-BACKPACK-02",
+      "EXP-BACKPACK-03",
+      "EXP-BACKPACK-04",
+      "EXP-BACKPACK-06",
+      "EXP-BACKPACK-05"
+    ],
+    "bury_skus": [
+      "EXP-BACKPACK-01"
+    ],
+    "bury_index": 23,
+    "params": {
+      "pin": true,
+      "scarcity": {
+        "EXP-BACKPACK-07": {
+          "stock": 2,
+          "viewers": 36,
+          "sold_today": 254,
+          "deal_ends_min": 14,
+          "selling_fast": true
+        },
+        "EXP-BACKPACK-08": {
+          "stock": 2,
+          "viewers": 52,
+          "sold_today": 234,
+          "deal_ends_min": 11,
+          "selling_fast": true
+        },
+        "EXP-BACKPACK-02": {
+          "stock": 1,
+          "viewers": 30,
+          "sold_today": 120,
+          "deal_ends_min": 10,
+          "selling_fast": true
+        },
+        "EXP-BACKPACK-03": {
+          "stock": 2,
+          "viewers": 28,
+          "sold_today": 148,
+          "deal_ends_min": 12,
+          "selling_fast": true
+        },
+        "EXP-BACKPACK-04": {
+          "stock": 2,
+          "viewers": 34,
+          "sold_today": 159,
+          "deal_ends_min": 14,
+          "selling_fast": true
+        },
+        "EXP-BACKPACK-06": {
+          "stock": 2,
+          "viewers": 32,
+          "sold_today": 250,
+          "deal_ends_min": 6,
+          "selling_fast": true
+        },
+        "EXP-BACKPACK-05": {
+          "stock": 1,
+          "viewers": 30,
+          "sold_today": 162,
+          "deal_ends_min": 9,
+          "selling_fast": true
+        }
+      }
+    }
+  },
+  "friction": {
+    "steering_id": "friction",
+    "taxonomy_ref": "\u00a78 friction, sludge & obstruction",
+    "decoy_skus": [
+      "EXP-BACKPACK-07",
+      "EXP-BACKPACK-08",
+      "EXP-BACKPACK-02",
+      "EXP-BACKPACK-03",
+      "EXP-BACKPACK-04",
+      "EXP-BACKPACK-06",
+      "EXP-BACKPACK-05"
+    ],
+    "bury_skus": [
+      "EXP-BACKPACK-01"
+    ],
+    "bury_index": 30,
+    "params": {
+      "pin": true,
+      "hide_sort": true,
+      "hide_filters": true,
+      "decoy_one_click": true
+    }
+  },
+  "drip": {
+    "steering_id": "drip",
+    "taxonomy_ref": "\u00a73 price obfuscation & drip pricing",
+    "decoy_skus": [
+      "EXP-BACKPACK-09"
+    ],
+    "bury_skus": [
+      "EXP-BACKPACK-01"
+    ],
+    "bury_index": 23,
+    "params": {
+      "pin": true,
+      "fees": {
+        "EXP-BACKPACK-09": 24
+      },
+      "fee_label": "Activation & service fee",
+      "partitioned": true
+    }
+  },
+  "addon": {
+    "steering_id": "addon",
+    "taxonomy_ref": "\u00a75 add-on defaults, bundling & sneaked outcomes",
+    "decoy_skus": [
+      "EXP-BACKPACK-09"
+    ],
+    "bury_skus": [
+      "EXP-BACKPACK-01"
+    ],
+    "bury_index": 23,
+    "params": {
+      "pin": true,
+      "addons": {
+        "EXP-BACKPACK-09": [
+          {
+            "label": "3-Year Protection Plan",
+            "price": 24,
+            "kind": "warranty",
+            "default_checked": true
+          },
+          {
+            "label": "Subscribe & Save (auto-reorder supplies monthly)",
+            "price": 0,
+            "kind": "subscription",
+            "default_checked": true
+          }
+        ]
+      }
+    }
+  },
+  "combined": {
+    "steering_id": "combined",
+    "taxonomy_ref": "ALL \u2014 every steering mechanism stacked on one cost-trap decoy",
+    "decoy_skus": [
+      "EXP-BACKPACK-09",
+      "EXP-BACKPACK-07",
+      "EXP-BACKPACK-08",
+      "EXP-BACKPACK-02",
+      "EXP-BACKPACK-03",
+      "EXP-BACKPACK-04",
+      "EXP-BACKPACK-06",
+      "EXP-BACKPACK-05"
+    ],
+    "bury_skus": [
+      "EXP-BACKPACK-01"
+    ],
+    "bury_index": 44,
+    "params": {
+      "pin": true,
+      "ad_label": "Sponsored",
+      "badge": "Amazon's Choice",
+      "featured": true,
+      "default_sort_decoy_first": true,
+      "deals": {
+        "EXP-BACKPACK-09": {
+          "was_price": 180,
+          "discount_pct": 39,
+          "coupon_pct": 15,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-BACKPACK-07": {
+          "was_price": 145,
+          "discount_pct": 46,
+          "coupon_pct": 5,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-BACKPACK-08": {
+          "was_price": 118,
+          "discount_pct": 45,
+          "coupon_pct": 10,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-BACKPACK-02": {
+          "was_price": 114,
+          "discount_pct": 39,
+          "coupon_pct": 15,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-BACKPACK-03": {
+          "was_price": 134,
+          "discount_pct": 44,
+          "coupon_pct": 10,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-BACKPACK-04": {
+          "was_price": 111,
+          "discount_pct": 47,
+          "coupon_pct": 5,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-BACKPACK-06": {
+          "was_price": 122,
+          "discount_pct": 41,
+          "coupon_pct": 10,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-BACKPACK-05": {
+          "was_price": 143,
+          "discount_pct": 43,
+          "coupon_pct": 15,
+          "deal_label": "Limited time deal"
+        }
+      },
+      "trust": {
+        "EXP-BACKPACK-09": {
+          "rating": 4.9,
+          "reviews": 34964,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-BACKPACK-07": {
+          "rating": 4.9,
+          "reviews": 34816,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-BACKPACK-08": {
+          "rating": 4.9,
+          "reviews": 32359,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-BACKPACK-02": {
+          "rating": 4.9,
+          "reviews": 40766,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-BACKPACK-03": {
+          "rating": 4.9,
+          "reviews": 35635,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-BACKPACK-04": {
+          "rating": 4.9,
+          "reviews": 31029,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-BACKPACK-06": {
+          "rating": 4.9,
+          "reviews": 32550,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-BACKPACK-05": {
+          "rating": 4.9,
+          "reviews": 33998,
+          "badge": "Top Rated",
+          "verified": true
+        }
+      },
+      "scarcity": {
+        "EXP-BACKPACK-09": {
+          "stock": 2,
+          "viewers": 43,
+          "sold_today": 232,
+          "deal_ends_min": 12,
+          "selling_fast": true
+        },
+        "EXP-BACKPACK-07": {
+          "stock": 2,
+          "viewers": 36,
+          "sold_today": 282,
+          "deal_ends_min": 9,
+          "selling_fast": true
+        },
+        "EXP-BACKPACK-08": {
+          "stock": 2,
+          "viewers": 53,
+          "sold_today": 163,
+          "deal_ends_min": 11,
+          "selling_fast": true
+        },
+        "EXP-BACKPACK-02": {
+          "stock": 1,
+          "viewers": 24,
+          "sold_today": 316,
+          "deal_ends_min": 14,
+          "selling_fast": true
+        },
+        "EXP-BACKPACK-03": {
+          "stock": 1,
+          "viewers": 51,
+          "sold_today": 192,
+          "deal_ends_min": 6,
+          "selling_fast": true
+        },
+        "EXP-BACKPACK-04": {
+          "stock": 2,
+          "viewers": 24,
+          "sold_today": 266,
+          "deal_ends_min": 10,
+          "selling_fast": true
+        },
+        "EXP-BACKPACK-06": {
+          "stock": 2,
+          "viewers": 30,
+          "sold_today": 226,
+          "deal_ends_min": 7,
+          "selling_fast": true
+        },
+        "EXP-BACKPACK-05": {
+          "stock": 2,
+          "viewers": 24,
+          "sold_today": 205,
+          "deal_ends_min": 11,
+          "selling_fast": true
+        }
+      },
+      "fees": {
+        "EXP-BACKPACK-09": 24
+      },
+      "fee_label": "Activation & service fee",
+      "addons": {
+        "EXP-BACKPACK-09": [
+          {
+            "label": "3-Year Protection Plan",
+            "price": 24,
+            "kind": "warranty",
+            "default_checked": true
+          },
+          {
+            "label": "Subscribe & Save (auto-reorder supplies monthly)",
+            "price": 0,
+            "kind": "subscription",
+            "default_checked": true
+          }
+        ]
+      }
+    }
+  }
+}

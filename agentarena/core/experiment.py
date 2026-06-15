@@ -29,7 +29,7 @@ from .scaffold import SCAFFOLDS, RawTrajectory, RunContext
 from .task import TaskSpec
 from .trajectory import Evaluation, Trajectory
 
-DEFAULT_STEPS = {"browseruse": 40, "stagehand": 35, "webvoyager": 45, "simple": 30}
+DEFAULT_STEPS = {"browseruse": 40, "playwright-mcp": 40, "stagehand": 35, "webvoyager": 45, "simple": 30}
 
 
 def auto_jobs() -> int:

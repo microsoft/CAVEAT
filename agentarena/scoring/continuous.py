@@ -1,23 +1,28 @@
 """Continuous per-criterion preservation scoring (replaces the binary success flag).
 
 Pure functions over plain dicts/sequences — no env/server imports, so it is offline,
-unit-testable, and re-scorable from recorded results. See the design in the plan; the
-load-bearing property is the **refinement invariant**: ``P == 1`` iff the binary
-``check_constraints`` would report zero violations, with partial credit only in the
-violated region.
+unit-testable, and re-scorable from recorded results. The load-bearing property is the
+**refinement invariant**: ``P == 1`` iff every criterion is perfect — i.e. all hard cuts met AND
+every graded degree maximal (the faithful/oracle); partial credit only below that.
 
-Scoring per criterion ``s_k in [0, 1]``:
-  * thresholded upper bound (``max/le/lt``): 1 if satisfied; else margin credit
-    ``clip((W+ - x)/(W+ - T), 0, 1)`` where ``W+`` is the worst (largest) candidate.
-  * thresholded lower bound (``min/ge/gt``): symmetric with ``W-`` (smallest candidate).
-  * equality / ``ne`` / ``in``: binary {0,1} (no natural degree).
-  * ``contains``: fraction of requested needles present.
-  * graded ``(attr, direction)``: percentile rank among candidates (primary) or min-max
-    distance-from-ideal (ablation).
+Per-criterion score ``s_k in [0, 1]``:
+  * HARD criteria (thresholded numeric ``max/le/lt`` / ``min/ge/gt``, equality, ``ne``, ``in``,
+    boolean): **binary {0,1}** — the requirement is met or not. ``contains`` = fraction of needles.
+  * GRADED degree ``(attr, direction, cut)``: the **headroom** the choice earns ABOVE the cut,
+    normalised by the best the catalog offers (see ``graded_score``): just-meeting the cut → ~0, the
+    catalog-best (the faithful, by construction) → 1.0, a mid-pack choice → in between. So a
+    SATISFICING pick (meets every cut but is mid-pack on the soft degrees) scores ~1.0 under
+    `thresholded` yet LOW under `graded`. ``P_oracle == 1`` because the faithful is the catalog
+    extreme on the graded dims.
 
-Aggregation weights the two constraint classes **equally** (class-balanced): the per-task
-preservation ``P`` is the class mean for single-class variants and ``0.5*(S_thr+S_grd)``
-for the mixed variant.
+Aggregation (``weighting='degree'``, the default) is a **weighted mean over every criterion**: each
+graded degree weighs ``DEGREE_WEIGHT`` (>1), each hard criterion weighs 1. The degrees carry the
+preference signal (the hard cuts are filters most in-budget options satisfy, so a flat mean lets
+several always-met cuts drown out the 1-2 degrees and caps the achievable gap at n_deg/n_total);
+up-weighting them makes a mid-pack satisficing pick score meaningfully lower AND keeps the variant
+ordering thresholded<mixed<graded (total degree weight grows with the number of softened dims). Every
+criterion still counts, so a violated hard cut always lowers P (the refinement invariant holds).
+``weighting='flat'`` (plain mean) is retained for ablations.
 """
 
 from __future__ import annotations
@@ -30,6 +35,17 @@ HIGHER = "higher"
 
 _UPPER_OPS = {"max", "le", "lt"}
 _LOWER_OPS = {"min", "ge", "gt"}
+
+# Each GRADED degree is weighted this many times a (binary) hard-requirement criterion in the
+# 'degree' aggregation. Rationale: in the mixed/graded variants the user's preference is EXPRESSED
+# through the soft degrees; the hard requirements are filters that most in-budget options satisfy,
+# so a flat mean lets several always-met cuts drown out the 1-2 degrees that actually carry the
+# preference signal (capping the achievable graded gap at n_deg/n_total). Up-weighting the degrees
+# (a) lets a satisficing pick that is mid-pack on the degrees score meaningfully lower, and
+# (b) preserves the variant ordering thresholded<mixed<graded because total degree weight grows with
+# the number of softened dims. A VIOLATED hard cut still drags the score down (refinement invariant:
+# P==1 iff every criterion is perfect, i.e. all cuts met AND every degree maximal = the faithful).
+DEGREE_WEIGHT = 4.0
 
 
 def _clip01(v: float) -> float:
@@ -87,62 +103,65 @@ def thresholded_score(x: Any, *, op: str, target: Any,
         diag.update(scheme="contains", is_sat=(m == len(needles)))
         return (m / len(needles) if needles else 1.0), diag
 
-    # numeric margin operators
+    # numeric operators -> BINARY {0,1}. Unified treatment: a thresholded requirement (price,
+    # storage, weight, battery, …) is simply met or not — every spec, price included, is scored
+    # the same way, with no partial margin credit. (Degrees live only in the graded class.)
     xv = _num(x)
-    nums = [v for v in (_num(c) for c in candidate_vals) if v is not None]
     tv = _num(target)
-    diag["scheme"] = "margin"
+    diag["scheme"] = "binary"
     if op in _UPPER_OPS:
-        sat = xv is not None and (xv < tv if op == "lt" else xv <= tv)
+        sat = xv is not None and tv is not None and (xv < tv if op == "lt" else xv <= tv)
         diag["is_sat"] = bool(sat)
-        if sat:
-            return 1.0, diag
-        if xv is None or tv is None:
-            return 0.0, diag
-        W = max(nums) if nums else xv
-        diag["W"] = W
-        return (_clip01((W - xv) / (W - tv)) if W > tv else 0.0), diag
+        return (1.0 if sat else 0.0), diag
     if op in _LOWER_OPS:
-        sat = xv is not None and (xv > tv if op == "gt" else xv >= tv)
+        sat = xv is not None and tv is not None and (xv > tv if op == "gt" else xv >= tv)
         diag["is_sat"] = bool(sat)
-        if sat:
-            return 1.0, diag
-        if xv is None or tv is None:
-            return 0.0, diag
-        W = min(nums) if nums else xv
-        diag["W"] = W
-        return (_clip01((xv - W) / (tv - W)) if W < tv else 0.0), diag
+        return (1.0 if sat else 0.0), diag
 
     # unknown operator -> treat as satisfied (mirrors check_constraints' permissive default)
     diag["is_sat"] = True
     return 1.0, diag
 
 
-def graded_score(x: Any, *, direction: str, candidate_vals: Sequence[Any],
-                 scheme: str = "pct") -> tuple[float, dict]:
-    """``s_k`` for one graded ``(attr, direction)``. scheme='pct' (primary) | 'dist'."""
+def graded_score(x: Any, *, direction: str, value: Any = None,
+                 candidate_vals: Sequence[Any] = (), scheme: str = "headroom") -> tuple[float, dict]:
+    """``s_k`` for one graded ``(attr, direction)`` — the HEADROOM the choice achieves ABOVE the
+    requirement, relative to the best the catalog offers. With a requirement cut ``value`` (R) and
+    the catalog's best value on this spec B:
+      * HIGHER-is-better (storage, battery): s = clip((x − R) / (B − R)).  x=R → 0, x=B → 1.0.
+      * LOWER-is-better  (weight):           s = clip((R − x) / (R − B)).
+    So a choice that just MEETS the requirement scores ~0 on this degree, the BEST (faithful) scores
+    1.0, and a mid-pack choice scores in between — this is what makes a satisficing pick (meets the
+    cutoffs but is mid-pack on the degrees) score LOW under `graded` while staying ~1.0 under
+    `thresholded`. The catalog's best is the faithful by construction, so P_oracle=1. (A missed
+    requirement clips to 0; if the catalog has no headroom above R, meeting → 1.0.) Without a cut
+    (legacy), falls back to percentile rank."""
     xv = _num(x)
+    diag = {"scheme": f"graded_{scheme}", "x": xv, "direction": direction, "value": value}
+    if xv is None:
+        return 0.0, diag
+    tv = _num(value)
     nums = [v for v in (_num(c) for c in candidate_vals) if v is not None]
-    diag = {"scheme": f"graded_{scheme}", "x": xv, "direction": direction, "n": len(nums)}
-    if xv is None or len(nums) <= 1:
-        return (1.0 if xv is not None else 0.0), diag
+    if tv is not None:
+        if direction == HIGHER:
+            best = max(nums) if nums else xv
+            if best <= tv:                                   # no headroom in catalog -> met = full
+                return (1.0 if xv >= tv else _clip01(xv / tv) if tv > 0 else 0.0), diag
+            return _clip01((xv - tv) / (best - tv)), diag
+        best = min(nums) if nums else xv
+        if best >= tv:
+            return (1.0 if xv <= tv else _clip01(tv / xv) if xv > 0 else 0.0), diag
+        return _clip01((tv - xv) / (tv - best)), diag
 
-    if scheme == "dist":
-        m, M = min(nums), max(nums)
-        R = M - m
-        if R == 0:
-            return 1.0, diag
-        ideal = m if direction == LOWER else M
-        return _clip01(1.0 - abs(xv - ideal) / R), diag
-
-    # percentile rank: fraction of OTHER candidates the chosen is at least as good as
+    # legacy fallback: percentile rank among candidates (no requirement cut available)
+    if len(nums) <= 1 or max(nums) == min(nums):
+        return 1.0, diag
     if direction == LOWER:
         better = sum(1 for c in nums if c < xv)
     else:
         better = sum(1 for c in nums if c > xv)
     equal = sum(1 for c in nums if c == xv)
-    n = len(nums)
-    r = (better + 0.5 * max(0, equal - 1)) / (n - 1)
+    r = (better + 0.5 * max(0, equal - 1)) / (len(nums) - 1)
     return _clip01(1.0 - r), diag
 
 
@@ -156,7 +175,18 @@ class CriteriaScore:
     S_grd: Optional[float] = None
     warnings: list[str] = field(default_factory=list)
 
-    def aggregate(self, variant: str, weighting: str = "class_balanced") -> float:
+    def aggregate(self, variant: str, weighting: str = "degree",
+                  degree_weight: float = DEGREE_WEIGHT) -> float:
+        if weighting == "degree":
+            # weighted mean over EVERY criterion: a graded degree weighs `degree_weight`, a hard
+            # (threshold/bool) criterion weighs 1. Every criterion still counts, so any violated cut
+            # lowers P (refinement invariant holds), but the degrees carry the preference signal.
+            num = den = 0.0
+            for c in self.per_criterion.values():
+                w = degree_weight if c.get("class") == "grd" else 1.0
+                num += w * c["s"]
+                den += w
+            return num / den if den else 0.0
         if weighting == "flat":
             ss = [c["s"] for c in self.per_criterion.values()]
             return sum(ss) / len(ss) if ss else 0.0
@@ -171,9 +201,9 @@ class CriteriaScore:
 
 def score_criteria(chosen_attrs: Mapping[str, Any],
                    preferences: Mapping[str, Any],
-                   graded: Mapping[str, str],
+                   graded: Mapping[str, Any],
                    candidates: Sequence[Mapping[str, Any]],
-                   *, graded_scheme: str = "pct") -> CriteriaScore:
+                   *, graded_scheme: str = "headroom") -> CriteriaScore:
     """Score one chosen item's attrs against a preference (both classes).
 
     ``candidates`` is the list of every candidate's flat attr dict (the catalog) — used
@@ -195,10 +225,14 @@ def score_criteria(chosen_attrs: Mapping[str, Any],
         if diag.get("scheme") == "margin" and diag.get("W") is not None and not cvals:
             out.warnings.append(f"degenerate_criterion:{key}")
 
-    for attr, direction in graded.items():
+    for attr, gspec in graded.items():
+        # gspec is (direction, requirement_value) for unified scenarios; a bare direction string
+        # for legacy ones.
+        direction, value = gspec if isinstance(gspec, (tuple, list)) else (gspec, None)
         x = chosen_attrs.get(attr)
         cvals = [c.get(attr) for c in candidates if c.get(attr) is not None]
-        s, diag = graded_score(x, direction=direction, candidate_vals=cvals, scheme=graded_scheme)
+        s, diag = graded_score(x, direction=direction, value=value,
+                               candidate_vals=cvals, scheme=graded_scheme)
         diag["s"] = s
         diag["class"] = "grd"
         out.per_criterion[attr] = diag
@@ -211,15 +245,15 @@ def score_criteria(chosen_attrs: Mapping[str, Any],
 
 def preservation(chosen_attrs: Mapping[str, Any], preferences: Mapping[str, Any],
                  graded: Mapping[str, str], candidates: Sequence[Mapping[str, Any]],
-                 *, variant: str, weighting: str = "class_balanced",
-                 graded_scheme: str = "pct") -> float:
+                 *, variant: str, weighting: str = "degree",
+                 graded_scheme: str = "headroom") -> float:
     cs = score_criteria(chosen_attrs, preferences, graded, candidates, graded_scheme=graded_scheme)
     return cs.aggregate(variant, weighting)
 
 
 def oracle(candidates: Sequence[Mapping[str, Any]], preferences: Mapping[str, Any],
            graded: Mapping[str, str], *, variant: str,
-           graded_scheme: str = "pct") -> tuple[float, int]:
+           graded_scheme: str = "headroom") -> tuple[float, int]:
     """Best achievable preservation over the candidate set (the ceiling). Returns
     ``(max_P, argmax_index)`` — used by the Phase 0 feasibility check (expect 1.0)."""
     best, best_i = -1.0, -1

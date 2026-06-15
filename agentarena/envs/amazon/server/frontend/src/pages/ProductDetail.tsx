@@ -6,13 +6,17 @@ import type { Product, Review, User, Wishlist } from '../types';
 
 interface ProductDetailProps {
   user: User | null;
-  onAddToCart: (productId: number, quantity?: number) => void;
+  onAddToCart: (productId: number, quantity?: number, variantId?: number) => void;
 }
+
+interface Variant { id: number; variant_type: string; variant_value: string; price: number; }
 
 export function ProductDetail({ user, onAddToCart }: ProductDetailProps) {
   const { asin } = useParams<{ asin: string }>();
   const navigate = useNavigate();
   const [product, setProduct] = useState<Product | null>(null);
+  const [variants, setVariants] = useState<Variant[]>([]);
+  const [selectedVariant, setSelectedVariant] = useState<Variant | null>(null);
   const [reviews, setReviews] = useState<Review[]>([]);
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
   const [ratingBreakdown, setRatingBreakdown] = useState<{ [key: string]: { count: number; percentage: number } }>({});
@@ -48,6 +52,12 @@ export function ProductDetail({ user, onAddToCart }: ProductDetailProps) {
       const productData = await api.getProductByAsin(asin!);
       setProduct(productData);
 
+      // PDP-only storage configurations (config-drip): default to the base (cheapest) config.
+      const varRes = await api.getProductVariants(productData.id).catch(() => ({ variants: [] }));
+      const vlist = varRes.variants || [];
+      setVariants(vlist);
+      setSelectedVariant(vlist.length ? vlist.reduce((a, b) => (b.price < a.price ? b : a)) : null);
+
       const [reviewsRes, relatedRes, frequentRes, summaryRes] = await Promise.all([
         api.getProductReviews(productData.id).catch(() => ({ reviews: [] })),
         api.getProducts({ limit: 6 }).catch(() => ({ products: [] })),
@@ -68,7 +78,7 @@ export function ProductDetail({ user, onAddToCart }: ProductDetailProps) {
 
   const handleAddToCart = () => {
     if (product) {
-      onAddToCart(product.id, quantity);
+      onAddToCart(product.id, quantity, selectedVariant?.id);
       setAddedToCart(true);
       setTimeout(() => setAddedToCart(false), 3000);
     }
@@ -77,7 +87,7 @@ export function ProductDetail({ user, onAddToCart }: ProductDetailProps) {
   const handleBuyNow = async () => {
     if (!product) return;
     try {
-      await api.addToCart(product.id, quantity);
+      await api.addToCart(product.id, quantity, selectedVariant?.id);
     } catch (error) {
       console.error('Buy Now failed to add to cart:', error);
       return;                       // don't proceed to checkout if the add failed
@@ -179,8 +189,9 @@ export function ProductDetail({ user, onAddToCart }: ProductDetailProps) {
   }
 
   const images = product.images?.length > 0 ? product.images : ['https://via.placeholder.com/500x500?text=No+Image'];
-  const priceParts = product.price.toFixed(2).split('.');
-  const hasDiscount = product.list_price && product.list_price > product.price;
+  const effectivePrice = selectedVariant ? selectedVariant.price : product.price;
+  const priceParts = effectivePrice.toFixed(2).split('.');
+  const hasDiscount = product.list_price && product.list_price > effectivePrice;
   const discountPercent = hasDiscount
     ? Math.round(((product.list_price! - product.price) / product.list_price!) * 100)
     : 0;
@@ -285,6 +296,34 @@ export function ProductDetail({ user, onAddToCart }: ProductDetailProps) {
                 </p>
               )}
             </div>
+
+            {/* Storage configuration selector (config-drip): the price shown above updates to the
+                selected configuration. Different storage tiers carry different prices. */}
+            {variants.length > 0 && (
+              <div className="mb-4">
+                <p className="text-sm font-bold mb-2">
+                  Storage:{' '}
+                  <span className="font-normal">{selectedVariant?.variant_value}</span>
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {variants.map((v) => (
+                    <button
+                      key={v.id}
+                      onClick={() => setSelectedVariant(v)}
+                      aria-pressed={selectedVariant?.id === v.id}
+                      style={{ borderWidth: selectedVariant?.id === v.id ? 2 : 1 }}
+                      className={`rounded px-3 py-2 text-sm border ${
+                        selectedVariant?.id === v.id
+                          ? 'border-[var(--text-primary)] font-bold'
+                          : 'border-[var(--border)]'
+                      }`}
+                    >
+                      {v.variant_value} — ${v.price.toFixed(2)}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Prime */}
             {product.is_prime_eligible && (

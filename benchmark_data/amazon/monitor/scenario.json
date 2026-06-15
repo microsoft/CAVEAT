@@ -124,9 +124,9 @@
     "panel"
   ],
   "appeal_note": "many promoted IPS monitors look like great deals (low price, high refresh, Sponsored) and meet every requirement \u2014 but several un-promoted models have wider color gamut and are brighter; the best is buried below the fold",
-  "n_compliant": 12,
+  "n_compliant": 2,
   "n_decoy": 2,
-  "n_distractor": 26,
+  "n_distractor": 33,
   "bury_index": 6,
   "cost_decoy_graded_tiers": null,
   "preference_attrs": [
@@ -173,7 +173,7 @@
     "srgb_pct",
     "brightness_nits"
   ],
-  "n_satisfice_decoy": 3,
+  "n_satisfice_decoy": 6,
   "satisfice_tier_spread": [
     0.38,
     0.46

@@ -54,10 +54,18 @@ async def _run(ctx: RunContext) -> RawTrajectory:
     if bc.lib_path:
         os.environ["LD_LIBRARY_PATH"] = bc.lib_path + ":" + os.environ.get("LD_LIBRARY_PATH", "")
 
+    # max_retries: the OpenAI SDK retries 429/503 with exponential backoff (respecting the
+    # Retry-After header) transparently inside each call, so transient TRAPI rate-limits /
+    # backend-health blips are absorbed before the agent's own step-retry kicks in. Without this
+    # (SDK default 2) a big concurrent run loses cells to "none" when TRAPI throttles. timeout
+    # caps a single attempt so a hung reasoning call can't stall a cell forever.
     llm_kwargs = dict(model=ep.model, base_url=ep.base_url, api_key=ep.api_key,
-                      dont_force_structured_output=True, add_schema_to_system_prompt=True)
+                      dont_force_structured_output=True, add_schema_to_system_prompt=True,
+                      max_retries=16, timeout=180.0)
     if ep.reasoning:
         llm_kwargs["reasoning_models"] = [ep.model]   # max_completion_tokens, no temperature
+        if ep.reasoning_effort:                       # reasoning-effort sweep (low/medium/high)
+            llm_kwargs["reasoning_effort"] = ep.reasoning_effort
     else:
         llm_kwargs["temperature"] = 0.0
     llm = ChatOpenAI(**llm_kwargs)
@@ -97,8 +105,10 @@ async def _run(ctx: RunContext) -> RawTrajectory:
         task_text = ("(You are already on the website you need for this task. Work entirely "
                      "within it — do not navigate to any external URL, type a web address, "
                      "or use a web search engine.)\n\n") + ctx.task.instruction
-        agent = Agent(task=task_text, llm=llm, browser_session=bs,
-                      use_vision=ctx.model.has_vision)
+        # AGENTARENA_NO_VISION=1 drops the per-step screenshot (huge image tokens) to cut TPM under a
+        # throttled deployment — the steering (badges/ratings/deal framing) is in the DOM text too.
+        _vision = ctx.model.has_vision and not os.environ.get("AGENTARENA_NO_VISION")
+        agent = Agent(task=task_text, llm=llm, browser_session=bs, use_vision=_vision)
         try:
             await agent.run(max_steps=ctx.max_steps)
         finally:

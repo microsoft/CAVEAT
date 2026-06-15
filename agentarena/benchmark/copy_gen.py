@@ -152,6 +152,83 @@ _FB_BRANDS = ["Velo", "Norvik", "Pomely", "Kestrel", "Aether", "Lumio", "Cobalt"
               "Toro", "Vesper", "Juno", "Orla", "Brixton", "Calder", "Wisp", "Faze"]
 
 
+# Headline specs surfaced in the title, like a real Amazon listing card. Keyed by spec key so it is
+# scenario-agnostic; only the keys named in `scenario.title_specs` are applied.
+_TITLE_SPEC_FMT = {
+    "storage_gb": lambda v: f"{int(round(v))}GB SSD",
+    "ram_gb": lambda v: f"{int(round(v))}GB RAM",
+    "weight_kg": lambda v: f"{v:g}kg",
+    "battery_hours": lambda v: f"{int(round(v))}h battery",
+    "refresh_hz": lambda v: f"{int(round(v))}Hz",
+    "brightness_nits": lambda v: f"{int(round(v))} nits",
+    "screen_in": lambda v: f"{v:g}\"",
+    "size_in": lambda v: f"{v:g}\"",
+    "driver_mm": lambda v: f"{int(round(v))}mm drivers",
+    "suction_pa": lambda v: f"{int(round(v))}Pa",
+    # ---- non-electronic scenarios (office chair / mattress / backpack / tent) ----
+    "weight_capacity_lbs": lambda v: f"holds {int(round(v))} lb",
+    "warranty_years": lambda v: f"{int(round(v))}-yr warranty",
+    "recline_degrees": lambda v: f"reclines {int(round(v))}°",
+    "cushion_mm": lambda v: f"{int(round(v))}mm cushion",
+    "thickness_in": lambda v: f"{v:g}-inch",
+    "trial_nights": lambda v: f"{int(round(v))}-night trial",
+    "foam_density_kg": lambda v: f"{int(round(v))} kg/m³ foam",
+    "capacity_liters": lambda v: f"{int(round(v))}L",
+    "capacity_person": lambda v: f"{int(round(v))}-person",
+    "weight_kg": lambda v: f"{v:g}kg",
+    "water_resist_mm": lambda v: f"{int(round(v))}mm water rating",
+    "waterproof_mm": lambda v: f"{int(round(v))}mm waterproof",
+    # bool features surfaced on the card (concise) so a weak agent can verify the hard requirement
+    # without opening every PDP — rendered only when the value is True (see _apply_title_specs).
+    "adjustable_lumbar": lambda v: "adjustable lumbar",
+    "certipur_certified": lambda v: "CertiPUR-US foam",
+    "has_laptop_sleeve": lambda v: "laptop sleeve",
+    "has_full_rainfly": lambda v: "full rainfly",
+}
+
+
+def _apply_title_specs(scenario: ScenarioSpec, row: ProductRow) -> None:
+    """Append headline specs to the title (real Amazon style: '…Laptop, 16GB RAM, 512GB SSD') so
+    they are visible on the search card and a weak agent can shortlist + buy without diving every
+    PDP. A True 'gaming' bool spec inserts the word 'Gaming' before the category noun. Specs NOT in
+    `title_specs` stay PDP-only (the satisficing/graded-gap drivers). Runs AFTER copy validation +
+    uniqueness, so the LLM-authored name stays name-only and unique; the spec suffix is deterministic
+    and always consistent with the fixed numbers."""
+    keys = scenario.title_specs or []
+    if not keys and not row.specs.get("gaming"):
+        return
+    noun = scenario.noun.split()[-1]
+    title = (row.title or "").strip()
+    # 1. gaming → insert "Gaming " before the category noun (case-insensitive, last occurrence)
+    if "gaming" in (k for k in keys) or row.specs.get("gaming") is not None:
+        if row.specs.get("gaming") is True:
+            low = title.lower()
+            i = low.rfind(noun.lower())
+            if i >= 0 and "gaming" not in low:
+                title = f"{title[:i]}Gaming {title[i:]}".strip()
+                title = " ".join(title.split())
+    # 2. append comma-separated headline spec tokens (gaming handled above; other bools render their
+    #    feature label only when True so a weak agent can verify the requirement from the card)
+    tokens = []
+    for k in keys:
+        if k == "gaming":
+            continue
+        v = row.specs.get(k)
+        if v is None:
+            continue
+        a = scenario.schema.by_key(k)
+        if a is not None and a.kind == "bool":
+            if v is True:
+                fmt = _TITLE_SPEC_FMT.get(k)
+                tokens.append(fmt(v) if fmt else a.label)
+            continue
+        fmt = _TITLE_SPEC_FMT.get(k)
+        tokens.append(fmt(v) if fmt else f"{v}")
+    if tokens:
+        title = f"{title}, {', '.join(tokens)}"
+    row.title = title
+
+
 def _fallback_copy(scenario: ScenarioSpec, row: ProductRow) -> None:
     noun = scenario.noun.split()[-1].title()
     model_no = row.asin.split("-")[-1]
@@ -226,3 +303,5 @@ async def generate_copy(scenario: ScenarioSpec, rows: list[ProductRow], *,
 
     await asyncio.gather(*(one(r) for r in rows))
     _ensure_unique_titles(scenario, rows)
+    for r in rows:
+        _apply_title_specs(scenario, r)

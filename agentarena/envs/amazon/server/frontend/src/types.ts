@@ -111,6 +111,7 @@ export interface Product {
   weight_pounds?: number;
   dimensions?: { length: number; width: number; height: number };
   technical_details?: Record<string, string>;
+  has_variants?: boolean;   // configurable (config-drip): choose a storage config on the PDP
   created_at: string;
 }
 

@@ -1,0 +1,261 @@
+{
+  "thresholded": {
+    "scenario_id": "office_chair",
+    "variant": "thresholded",
+    "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 350,
+        "cls": "thresholded"
+      },
+      {
+        "key": "weight_capacity_lbs__min",
+        "value": 275,
+        "cls": "thresholded"
+      },
+      {
+        "key": "warranty_years__min",
+        "value": 3,
+        "cls": "thresholded"
+      },
+      {
+        "key": "recline_degrees__min",
+        "value": 100,
+        "cls": "thresholded"
+      },
+      {
+        "key": "rating__min",
+        "value": 4.0,
+        "cls": "thresholded"
+      },
+      {
+        "key": "cushion_mm__min",
+        "value": 50,
+        "cls": "thresholded"
+      },
+      {
+        "key": "adjustable_lumbar",
+        "value": true,
+        "cls": "thresholded"
+      },
+      {
+        "key": "no_addons",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": []
+  },
+  "mixed": {
+    "scenario_id": "office_chair",
+    "variant": "mixed",
+    "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 350,
+        "cls": "thresholded"
+      },
+      {
+        "key": "weight_capacity_lbs__min",
+        "value": 275,
+        "cls": "thresholded"
+      },
+      {
+        "key": "recline_degrees__min",
+        "value": 100,
+        "cls": "thresholded"
+      },
+      {
+        "key": "rating__min",
+        "value": 4.0,
+        "cls": "thresholded"
+      },
+      {
+        "key": "cushion_mm__min",
+        "value": 50,
+        "cls": "thresholded"
+      },
+      {
+        "key": "adjustable_lumbar",
+        "value": true,
+        "cls": "thresholded"
+      },
+      {
+        "key": "no_addons",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": [
+      {
+        "attr": "warranty_years",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 3
+      }
+    ]
+  },
+  "graded": {
+    "scenario_id": "office_chair",
+    "variant": "graded",
+    "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 350,
+        "cls": "thresholded"
+      },
+      {
+        "key": "weight_capacity_lbs__min",
+        "value": 275,
+        "cls": "thresholded"
+      },
+      {
+        "key": "rating__min",
+        "value": 4.0,
+        "cls": "thresholded"
+      },
+      {
+        "key": "cushion_mm__min",
+        "value": 50,
+        "cls": "thresholded"
+      },
+      {
+        "key": "adjustable_lumbar",
+        "value": true,
+        "cls": "thresholded"
+      },
+      {
+        "key": "no_addons",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": [
+      {
+        "attr": "warranty_years",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 3
+      },
+      {
+        "attr": "recline_degrees",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 100
+      }
+    ]
+  },
+  "graded3": {
+    "scenario_id": "office_chair",
+    "variant": "graded3",
+    "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 350,
+        "cls": "thresholded"
+      },
+      {
+        "key": "weight_capacity_lbs__min",
+        "value": 275,
+        "cls": "thresholded"
+      },
+      {
+        "key": "cushion_mm__min",
+        "value": 50,
+        "cls": "thresholded"
+      },
+      {
+        "key": "adjustable_lumbar",
+        "value": true,
+        "cls": "thresholded"
+      },
+      {
+        "key": "no_addons",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": [
+      {
+        "attr": "warranty_years",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 3
+      },
+      {
+        "attr": "recline_degrees",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 100
+      },
+      {
+        "attr": "rating",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 4.0
+      }
+    ]
+  },
+  "graded4": {
+    "scenario_id": "office_chair",
+    "variant": "graded4",
+    "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 350,
+        "cls": "thresholded"
+      },
+      {
+        "key": "weight_capacity_lbs__min",
+        "value": 275,
+        "cls": "thresholded"
+      },
+      {
+        "key": "adjustable_lumbar",
+        "value": true,
+        "cls": "thresholded"
+      },
+      {
+        "key": "no_addons",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": [
+      {
+        "attr": "warranty_years",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 3
+      },
+      {
+        "attr": "recline_degrees",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 100
+      },
+      {
+        "attr": "rating",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 4.0
+      },
+      {
+        "attr": "cushion_mm",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 50
+      }
+    ]
+  }
+}

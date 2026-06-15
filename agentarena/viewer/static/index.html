@@ -4,193 +4,134 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>agentarena · viewer</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>📊</text></svg>">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- ===== top bar: brand + section tabs + theme ===== -->
   <header class="topbar">
     <div class="brand">agent<span>arena</span></div>
-    <label class="exp-pick">experiment <select id="exp"></select></label>
-    <button id="refresh" title="refresh now (the view also auto-refreshes every few seconds)">↻</button>
-    <button id="browseBtn" class="browse-btn" title="Launch a live site and navigate it yourself — no agent">🌐 browse envs</button>
-    <button id="themeBtn" class="theme-btn" title="Toggle light / dark">🌙</button>
-    <div class="kpis" id="kpis"></div>
-    <div class="legend" id="legend">
-      <span><i class="c-compliant">✓</i>faithful</span>
-      <span><i class="c-decoy">⚠</i>took the bait</span>
-      <span><i class="c-violation">○</i>violation</span>
-      <span><i class="c-none">–</i>no purchase</span>
+    <nav class="tabs" id="tabs">
+      <button class="tab" data-view="runs">📊 Agent runs</button>
+      <button class="tab" data-view="browse">🌐 Browse envs</button>
+      <button class="tab" data-view="figures">📈 Figures</button>
+    </nav>
+    <div class="topbar-right">
+      <button id="themeBtn" class="icon-btn" title="Toggle light / dark">🌙</button>
     </div>
   </header>
 
-  <div class="layout">
-    <aside class="sidebar" id="sidebar"></aside>
-    <main class="main">
-      <div class="pivot-controls">
-        <label>rows <select id="rowDim"></select></label>
-        <label>columns <select id="colDim"></select></label>
-        <label><input type="checkbox" id="splitCond"> split columns by condition</label>
-        <span class="sp"></span>
-        <span id="count" style="color:var(--faint)"></span>
+  <!-- ============================ RUNS ============================ -->
+  <section class="view" id="view-runs">
+    <div class="runs-bar">
+      <label class="exp-pick">experiment <select id="exp"></select></label>
+      <button id="refresh" class="icon-btn" title="Refresh (auto-refreshes every few seconds too)">↻</button>
+      <div class="kpis" id="kpis"></div>
+      <div class="legend">
+        <span><i class="c-compliant">✓</i>faithful</span>
+        <span><i class="c-decoy">⚠</i>took the bait</span>
+        <span><i class="c-violation">○</i>violation</span>
+        <span><i class="c-none">–</i>no purchase</span>
       </div>
-      <div class="taskcard" id="taskcard"></div>
-      <div class="pivot" id="pivot"></div>
-    </main>
-  </div>
+    </div>
+    <div class="layout">
+      <aside class="sidebar" id="sidebar"></aside>
+      <main class="main">
+        <div class="pivot-controls">
+          <label>rows <select id="rowDim"></select></label>
+          <label>columns <select id="colDim"></select></label>
+          <label><input type="checkbox" id="splitCond"> split columns by condition</label>
+          <span class="sp"></span>
+          <span id="figLinkRuns" class="fig-link" hidden>📈 figures for this product →</span>
+          <span id="count" class="muted"></span>
+        </div>
+        <div class="taskcard" id="taskcard"></div>
+        <div class="pivot" id="pivot"></div>
+      </main>
+    </div>
+  </section>
 
-  <!-- trajectory player -->
-  <div class="player" id="player" hidden>
+  <!-- ============================ BROWSE ============================ -->
+  <section class="view" id="view-browse" hidden>
+    <div class="page">
+      <div class="page-head">
+        <h2>Shop it yourself — no agent</h2>
+        <p>Launch a live, seeded store in a new tab and try to buy faithfully while a steering
+           manipulation pushes you toward a decoy. See whether the dark pattern fools you.</p>
+      </div>
+
+      <!-- steering sandbox: a generated benchmark scenario under any one steering condition -->
+      <div class="card sandbox" id="sandbox" hidden>
+        <div class="card-title">🧪 Steering sandbox <span class="muted">· generated Amazon benchmark</span></div>
+        <div class="sb-controls">
+          <label>product<select id="sbScenario"></select></label>
+          <label>your preference<select id="sbVariant"></select></label>
+          <label>steering<select id="sbCondition"></select></label>
+          <button class="primary" id="sbOpen">Open store ↗</button>
+          <button class="ghost" id="sbFigs">📈 figures</button>
+          <span class="status" id="sbStatus"></span>
+        </div>
+        <div class="sb-look" id="sbLook"></div>
+      </div>
+
+      <h3 class="section-label">All environments <span class="muted">· built-in example task, clean or steered</span></h3>
+      <div class="env-grid" id="envGrid">loading…</div>
+      <div class="page-foot">Sites run locally on ports 9400+ and shut down when you close the viewer.</div>
+    </div>
+  </section>
+
+  <!-- ============================ FIGURES ============================ -->
+  <section class="view" id="view-figures" hidden>
+    <div class="page">
+      <div class="page-head">
+        <h2>Results figures <span id="figReportLink" class="fig-link"></span></h2>
+        <p>Preservation P — <b>Clean</b> row vs <b>Steered</b> row — across the graded-N “relativeness”
+           spectrum (0 = absolute thresholds → 4 = fully graded). Same model = same hue; OpenAI blues ·
+           Grok red · DeepSeek purple.</p>
+      </div>
+      <div class="fig-controls">
+        <div class="seg" id="figMode">
+          <button class="on" data-mode="product">by product</button>
+          <button data-mode="type">by figure type</button>
+        </div>
+        <div class="pill-row" id="figPills"></div>
+      </div>
+      <div class="fig-grid" id="figGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===== trajectory player (runs) ===== -->
+  <div class="modal player" id="player" hidden>
     <div class="player-card">
       <div class="player-head">
         <div class="crumbs" id="pHead"></div>
         <button id="pCompare" title="Pin a second run side by side">⊟ compare</button>
-        <button class="x" id="pClose">✕ close</button>
+        <button class="x" id="pClose">✕</button>
       </div>
-      <div class="player-body"><div class="panes" id="pPanes" style="display:flex;flex:1;min-height:0"></div></div>
+      <div class="player-body"><div class="panes" id="pPanes"></div></div>
       <div class="filmstrip" id="pFilm"></div>
       <div class="player-foot">
-        <button id="pFirst">⏮</button>
-        <button id="pPrev">◀</button>
-        <button id="pPlay">▶ play</button>
-        <button id="pNext">▶</button>
-        <button id="pLast">⏭</button>
+        <button id="pFirst">⏮</button><button id="pPrev">◀</button>
+        <button id="pPlay">▶ play</button><button id="pNext">▶</button><button id="pLast">⏭</button>
         <input type="range" id="pSlider" min="0" value="0">
         <span class="pos" id="pPos"></span>
       </div>
     </div>
   </div>
 
-  <!-- drill-down list for aggregated cells -->
-  <div class="drill" id="drill" hidden><div class="drill-card" id="drillCard"></div></div>
+  <!-- ===== drill-down list for aggregated cells ===== -->
+  <div class="modal drill" id="drill" hidden><div class="drill-card" id="drillCard"></div></div>
 
-  <!-- manual browse: launch a live env and navigate it yourself (no agent) -->
-  <div class="browse" id="browseModal" hidden>
-    <div class="browse-card">
-      <div class="browse-head">
-        <div>
-          <b>Shop it yourself — no agent</b>
-          <div class="browse-sub">Launch a live, seeded store in a new tab and try to buy faithfully while a steering manipulation pushes you toward the decoy. Read the task, then see whether the steering fools you.</div>
-        </div>
-        <button class="x" id="browseClose">✕ close</button>
-      </div>
-
-      <!-- steering sandbox: a generated scenario under any one steering condition -->
-      <div class="sandbox" id="sandbox" hidden>
-        <div class="sb-title">🧪 Steering sandbox · Amazon</div>
-        <div class="sb-row">
-          <label>scenario <select id="sbScenario"></select></label>
-          <label>your preference <select id="sbVariant"></select></label>
-          <label>steering <select id="sbCondition"></select></label>
-          <button class="be-open" id="sbOpen">Open store ↗</button>
-          <span class="be-status" id="sbStatus"></span>
-        </div>
-        <div class="sb-look" id="sbLook"></div>
-      </div>
-
-      <div class="browse-sub" style="margin:16px 0 7px">Or launch any environment's built-in example task (clean vs. steered):</div>
-      <div class="browse-list" id="browseList">loading…</div>
-      <div class="browse-foot">Sites run locally on ports 9400+ and shut down when you close the viewer.</div>
+  <!-- ===== figure lightbox ===== -->
+  <div class="modal lightbox" id="lightbox" hidden>
+    <button class="lb-nav lb-prev" id="lbPrev">‹</button>
+    <div class="lb-stage">
+      <img id="lbImg" alt="">
+      <div class="lb-cap" id="lbCap"></div>
     </div>
+    <button class="lb-nav lb-next" id="lbNext">›</button>
+    <button class="x lb-close" id="lbClose">✕</button>
   </div>
-
-  <script>
-  // theme: light (lite) is the default; remember the user's choice.
-  (function () {
-    const KEY = "aa-theme", root = document.documentElement, btn = document.getElementById("themeBtn");
-    if (localStorage.getItem(KEY) === "dark") root.dataset.theme = "dark";
-    const sync = () => { btn.textContent = root.dataset.theme === "dark" ? "☀" : "🌙"; };
-    btn.onclick = () => {
-      if (root.dataset.theme === "dark") { delete root.dataset.theme; localStorage.setItem(KEY, "light"); }
-      else { root.dataset.theme = "dark"; localStorage.setItem(KEY, "dark"); }
-      sync();
-    };
-    sync();
-  })();
-  (function () {
-    const modal = document.getElementById("browseModal");
-    const list = document.getElementById("browseList");
-    let BENCH = null;
-    const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g,
-      (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-
-    document.getElementById("browseBtn").onclick = async () => {
-      modal.hidden = false; await Promise.all([renderSandbox(), renderList()]);
-    };
-    document.getElementById("browseClose").onclick = () => { modal.hidden = true; };
-    modal.onclick = (e) => { if (e.target === modal) modal.hidden = true; };
-
-    async function launch(body, btn, status) {
-      const orig = btn.textContent;
-      btn.disabled = true; btn.textContent = "launching…"; status.textContent = "";
-      try {
-        const res = await fetch("/api/launch", {
-          method: "POST", headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body)
-        }).then((r) => r.ok ? r.json() : r.json().then((j) => Promise.reject(j)));
-        if (res.url) { window.open(res.url, "_blank"); status.textContent = "running ✓"; }
-      } catch (err) { status.textContent = "failed: " + ((err && err.detail) || "error"); }
-      btn.disabled = false; btn.textContent = orig;
-    }
-
-    // ---- steering sandbox (generated scenarios) ----
-    async function renderSandbox() {
-      const box = document.getElementById("sandbox");
-      try { BENCH = await fetch("/api/benchmark").then((r) => r.json()); }
-      catch (e) { box.hidden = true; return; }
-      if (!BENCH || !(BENCH.scenarios || []).length) { box.hidden = true; return; }
-      box.hidden = false;
-      const scSel = document.getElementById("sbScenario");
-      const vSel = document.getElementById("sbVariant");
-      const cSel = document.getElementById("sbCondition");
-      scSel.innerHTML = BENCH.scenarios.map((s) => `<option>${s.id}</option>`).join("");
-      cSel.innerHTML = BENCH.conditions.map((c) => `<option>${c}</option>`).join("");
-      const fillVariants = () => {
-        const s = BENCH.scenarios.find((x) => x.id === scSel.value);
-        vSel.innerHTML = Object.keys(s.variants).map((v) => `<option>${v}</option>`).join("");
-      };
-      const look = () => {
-        const s = BENCH.scenarios.find((x) => x.id === scSel.value);
-        const instr = s.variants[vSel.value] || "";
-        const note = (BENCH.notes || {})[cSel.value] || "";
-        const titles = (arr) => arr.map((p) => esc(p.title)).join(" · ") || "—";
-        document.getElementById("sbLook").innerHTML =
-          `<div class="sb-task"><span class="sb-k">your task (${esc(vSel.value)})</span>${esc(instr)}</div>` +
-          `<div class="sb-hint"><span class="c-compliant">✓ faithful picks</span> ${titles(s.compliant)}</div>` +
-          `<div class="sb-hint"><span class="c-decoy">⚠ the decoy (trap)</span> ${titles(s.decoy)}</div>` +
-          `<div class="sb-note"><span class="sb-k">steering “${esc(cSel.value)}”</span>${esc(note)}</div>`;
-      };
-      scSel.onchange = () => { fillVariants(); look(); };
-      vSel.onchange = look; cSel.onchange = look;
-      fillVariants(); look();
-      document.getElementById("sbOpen").onclick = (ev) =>
-        launch({ env: "amazon", catalog: scSel.value, condition: cSel.value },
-               ev.target, document.getElementById("sbStatus"));
-    }
-
-    // ---- generic env list (built-in example tasks) ----
-    async function renderList() {
-      list.textContent = "loading…";
-      let envs = [];
-      try { envs = await fetch("/api/envs").then((r) => r.json()); }
-      catch (e) { list.textContent = "could not load envs"; return; }
-      list.innerHTML = "";
-      for (const e of envs) {
-        const row = document.createElement("div");
-        row.className = "browse-row";
-        const isBench = e.running && e.catalog;
-        row.innerHTML =
-          `<span class="be-name">${e.env}</span>` +
-          `<select class="be-cond"><option value="clean">clean</option><option value="steered">steered</option></select>` +
-          `<button class="be-open">Open ↗</button>` +
-          `<span class="be-status">${(e.running && !isBench) ? ("running · " + (e.condition || "")) : ""}</span>`;
-        if (e.condition && !isBench) row.querySelector(".be-cond").value = e.condition;
-        row.querySelector(".be-open").onclick = (ev) =>
-          launch({ env: e.env, condition: row.querySelector(".be-cond").value },
-                 ev.target, row.querySelector(".be-status"));
-        list.appendChild(row);
-      }
-    }
-  })();
-  </script>
 
   <script src="app.js"></script>
 </body>

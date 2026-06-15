@@ -1,0 +1,261 @@
+{
+  "thresholded": {
+    "scenario_id": "mattress",
+    "variant": "thresholded",
+    "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 700,
+        "cls": "thresholded"
+      },
+      {
+        "key": "thickness_in__min",
+        "value": 10,
+        "cls": "thresholded"
+      },
+      {
+        "key": "trial_nights__min",
+        "value": 100,
+        "cls": "thresholded"
+      },
+      {
+        "key": "warranty_years__min",
+        "value": 10,
+        "cls": "thresholded"
+      },
+      {
+        "key": "rating__min",
+        "value": 4.0,
+        "cls": "thresholded"
+      },
+      {
+        "key": "foam_density_kg__min",
+        "value": 30,
+        "cls": "thresholded"
+      },
+      {
+        "key": "certipur_certified",
+        "value": true,
+        "cls": "thresholded"
+      },
+      {
+        "key": "no_addons",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": []
+  },
+  "mixed": {
+    "scenario_id": "mattress",
+    "variant": "mixed",
+    "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 700,
+        "cls": "thresholded"
+      },
+      {
+        "key": "thickness_in__min",
+        "value": 10,
+        "cls": "thresholded"
+      },
+      {
+        "key": "warranty_years__min",
+        "value": 10,
+        "cls": "thresholded"
+      },
+      {
+        "key": "rating__min",
+        "value": 4.0,
+        "cls": "thresholded"
+      },
+      {
+        "key": "foam_density_kg__min",
+        "value": 30,
+        "cls": "thresholded"
+      },
+      {
+        "key": "certipur_certified",
+        "value": true,
+        "cls": "thresholded"
+      },
+      {
+        "key": "no_addons",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": [
+      {
+        "attr": "trial_nights",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 100
+      }
+    ]
+  },
+  "graded": {
+    "scenario_id": "mattress",
+    "variant": "graded",
+    "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 700,
+        "cls": "thresholded"
+      },
+      {
+        "key": "thickness_in__min",
+        "value": 10,
+        "cls": "thresholded"
+      },
+      {
+        "key": "rating__min",
+        "value": 4.0,
+        "cls": "thresholded"
+      },
+      {
+        "key": "foam_density_kg__min",
+        "value": 30,
+        "cls": "thresholded"
+      },
+      {
+        "key": "certipur_certified",
+        "value": true,
+        "cls": "thresholded"
+      },
+      {
+        "key": "no_addons",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": [
+      {
+        "attr": "trial_nights",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 100
+      },
+      {
+        "attr": "warranty_years",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 10
+      }
+    ]
+  },
+  "graded3": {
+    "scenario_id": "mattress",
+    "variant": "graded3",
+    "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 700,
+        "cls": "thresholded"
+      },
+      {
+        "key": "thickness_in__min",
+        "value": 10,
+        "cls": "thresholded"
+      },
+      {
+        "key": "foam_density_kg__min",
+        "value": 30,
+        "cls": "thresholded"
+      },
+      {
+        "key": "certipur_certified",
+        "value": true,
+        "cls": "thresholded"
+      },
+      {
+        "key": "no_addons",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": [
+      {
+        "attr": "trial_nights",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 100
+      },
+      {
+        "attr": "warranty_years",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 10
+      },
+      {
+        "attr": "rating",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 4.0
+      }
+    ]
+  },
+  "graded4": {
+    "scenario_id": "mattress",
+    "variant": "graded4",
+    "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 700,
+        "cls": "thresholded"
+      },
+      {
+        "key": "thickness_in__min",
+        "value": 10,
+        "cls": "thresholded"
+      },
+      {
+        "key": "certipur_certified",
+        "value": true,
+        "cls": "thresholded"
+      },
+      {
+        "key": "no_addons",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": [
+      {
+        "attr": "trial_nights",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 100
+      },
+      {
+        "attr": "warranty_years",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 10
+      },
+      {
+        "attr": "rating",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 4.0
+      },
+      {
+        "attr": "foam_density_kg",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 30
+      }
+    ]
+  }
+}

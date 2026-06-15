@@ -30,7 +30,8 @@ def _product_from_seed(d: dict) -> Product:
         image=d.get("image", "laptop-generic.png"),
         list_price=d.get("list_price"), bullets=list(d.get("bullets", [])),
         description=d.get("description", ""),
-        display_price=d.get("display_price"), true_price=d.get("true_price"))
+        display_price=d.get("display_price"), true_price=d.get("true_price"),
+        variants=list(d.get("variants", []) or []))
 
 
 def build_catalog(scenario_id: str, root: Optional[Path] = None) -> Catalog:

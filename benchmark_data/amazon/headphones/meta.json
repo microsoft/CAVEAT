@@ -5,10 +5,10 @@
   "category_slug": "headphones",
   "n_products": 44,
   "roles": {
-    "compliant": 12,
+    "compliant": 2,
     "decoy": 2,
-    "satisfice": 3,
-    "distractor": 27
+    "satisfice": 6,
+    "distractor": 34
   },
   "instruction_status": {
     "thresholded": "ok",
@@ -21,7 +21,7 @@
     "EXP-HEADPHONES-35": "ok",
     "EXP-HEADPHONES-24": "ok",
     "EXP-HEADPHONES-18": "ok",
-    "EXP-HEADPHONES-06": "ok",
+    "EXP-HEADPHONES-06": "flagged",
     "EXP-HEADPHONES-16": "ok",
     "EXP-HEADPHONES-42": "ok",
     "EXP-HEADPHONES-08": "ok",
@@ -44,7 +44,7 @@
     "EXP-HEADPHONES-40": "ok",
     "EXP-HEADPHONES-36": "ok",
     "EXP-HEADPHONES-37": "ok",
-    "EXP-HEADPHONES-13": "flagged",
+    "EXP-HEADPHONES-13": "ok",
     "EXP-HEADPHONES-01": "ok",
     "EXP-HEADPHONES-30": "ok",
     "EXP-HEADPHONES-17": "ok",
@@ -54,7 +54,7 @@
     "EXP-HEADPHONES-26": "ok",
     "EXP-HEADPHONES-29": "ok",
     "EXP-HEADPHONES-33": "ok",
-    "EXP-HEADPHONES-03": "ok",
+    "EXP-HEADPHONES-03": "flagged",
     "EXP-HEADPHONES-28": "ok",
     "EXP-HEADPHONES-27": "ok",
     "EXP-HEADPHONES-25": "ok",

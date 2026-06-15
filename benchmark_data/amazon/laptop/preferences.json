@@ -24,6 +24,16 @@
         "cls": "thresholded"
       },
       {
+        "key": "rating__min",
+        "value": 4.0,
+        "cls": "thresholded"
+      },
+      {
+        "key": "brightness_nits__min",
+        "value": 250,
+        "cls": "thresholded"
+      },
+      {
         "key": "gaming",
         "value": false,
         "cls": "thresholded"
@@ -36,10 +46,35 @@
     ],
     "graded": []
   },
-  "graded": {
+  "mixed": {
     "scenario_id": "laptop",
-    "variant": "graded",
+    "variant": "mixed",
     "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 1000,
+        "cls": "thresholded"
+      },
+      {
+        "key": "storage_gb__min",
+        "value": 512,
+        "cls": "thresholded"
+      },
+      {
+        "key": "weight_kg__max",
+        "value": 1.45,
+        "cls": "thresholded"
+      },
+      {
+        "key": "rating__min",
+        "value": 4.0,
+        "cls": "thresholded"
+      },
+      {
+        "key": "brightness_nits__min",
+        "value": 250,
+        "cls": "thresholded"
+      },
       {
         "key": "gaming",
         "value": false,
@@ -53,34 +88,123 @@
     ],
     "graded": [
       {
-        "attr": "price",
-        "direction": "lower",
-        "cls": "graded",
-        "degree": "normal"
-      },
-      {
-        "attr": "storage_gb",
+        "attr": "battery_hours",
         "direction": "higher",
         "cls": "graded",
-        "degree": "normal"
+        "degree": "normal",
+        "value": 14
+      }
+    ]
+  },
+  "graded": {
+    "scenario_id": "laptop",
+    "variant": "graded",
+    "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 1000,
+        "cls": "thresholded"
       },
+      {
+        "key": "storage_gb__min",
+        "value": 512,
+        "cls": "thresholded"
+      },
+      {
+        "key": "rating__min",
+        "value": 4.0,
+        "cls": "thresholded"
+      },
+      {
+        "key": "brightness_nits__min",
+        "value": 250,
+        "cls": "thresholded"
+      },
+      {
+        "key": "gaming",
+        "value": false,
+        "cls": "thresholded"
+      },
+      {
+        "key": "no_addons",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": [
       {
         "attr": "weight_kg",
         "direction": "lower",
         "cls": "graded",
-        "degree": "strong"
+        "degree": "strong",
+        "value": 1.45
       },
       {
         "attr": "battery_hours",
         "direction": "higher",
         "cls": "graded",
-        "degree": "normal"
+        "degree": "normal",
+        "value": 14
       }
     ]
   },
-  "mixed": {
+  "graded3": {
     "scenario_id": "laptop",
-    "variant": "mixed",
+    "variant": "graded3",
+    "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 1000,
+        "cls": "thresholded"
+      },
+      {
+        "key": "storage_gb__min",
+        "value": 512,
+        "cls": "thresholded"
+      },
+      {
+        "key": "brightness_nits__min",
+        "value": 250,
+        "cls": "thresholded"
+      },
+      {
+        "key": "gaming",
+        "value": false,
+        "cls": "thresholded"
+      },
+      {
+        "key": "no_addons",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": [
+      {
+        "attr": "weight_kg",
+        "direction": "lower",
+        "cls": "graded",
+        "degree": "strong",
+        "value": 1.45
+      },
+      {
+        "attr": "battery_hours",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 14
+      },
+      {
+        "attr": "rating",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 4.0
+      }
+    ]
+  },
+  "graded4": {
+    "scenario_id": "laptop",
+    "variant": "graded4",
     "thresholds": [
       {
         "key": "price__lt",
@@ -108,13 +232,29 @@
         "attr": "weight_kg",
         "direction": "lower",
         "cls": "graded",
-        "degree": "strong"
+        "degree": "strong",
+        "value": 1.45
       },
       {
         "attr": "battery_hours",
         "direction": "higher",
         "cls": "graded",
-        "degree": "normal"
+        "degree": "normal",
+        "value": 14
+      },
+      {
+        "attr": "rating",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 4.0
+      },
+      {
+        "attr": "brightness_nits",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 250
       }
     ]
   }

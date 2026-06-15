@@ -3,23 +3,16 @@
     "steering_id": "sponsored",
     "taxonomy_ref": "\u00a71 sponsored visibility & paid placement",
     "decoy_skus": [
-      "EXP-MONITOR-15",
-      "EXP-MONITOR-17",
-      "EXP-MONITOR-16"
+      "EXP-MONITOR-07",
+      "EXP-MONITOR-10",
+      "EXP-MONITOR-08",
+      "EXP-MONITOR-09",
+      "EXP-MONITOR-06",
+      "EXP-MONITOR-05"
     ],
     "bury_skus": [
-      "EXP-MONITOR-09",
-      "EXP-MONITOR-02",
-      "EXP-MONITOR-04",
-      "EXP-MONITOR-06",
-      "EXP-MONITOR-08",
-      "EXP-MONITOR-07",
       "EXP-MONITOR-01",
-      "EXP-MONITOR-11",
-      "EXP-MONITOR-03",
-      "EXP-MONITOR-10",
-      "EXP-MONITOR-12",
-      "EXP-MONITOR-05"
+      "EXP-MONITOR-02"
     ],
     "bury_index": 23,
     "params": {
@@ -31,23 +24,16 @@
     "steering_id": "ranking",
     "taxonomy_ref": "\u00a72 platform ranking / self-preferencing",
     "decoy_skus": [
-      "EXP-MONITOR-15",
-      "EXP-MONITOR-17",
-      "EXP-MONITOR-16"
+      "EXP-MONITOR-07",
+      "EXP-MONITOR-10",
+      "EXP-MONITOR-08",
+      "EXP-MONITOR-09",
+      "EXP-MONITOR-06",
+      "EXP-MONITOR-05"
     ],
     "bury_skus": [
-      "EXP-MONITOR-09",
-      "EXP-MONITOR-02",
-      "EXP-MONITOR-04",
-      "EXP-MONITOR-06",
-      "EXP-MONITOR-08",
-      "EXP-MONITOR-07",
       "EXP-MONITOR-01",
-      "EXP-MONITOR-11",
-      "EXP-MONITOR-03",
-      "EXP-MONITOR-10",
-      "EXP-MONITOR-12",
-      "EXP-MONITOR-05"
+      "EXP-MONITOR-02"
     ],
     "bury_index": 23,
     "params": {
@@ -61,43 +47,54 @@
     "steering_id": "promo",
     "taxonomy_ref": "\u00a74 promotional framing & reference-price manipulation",
     "decoy_skus": [
-      "EXP-MONITOR-15",
-      "EXP-MONITOR-17",
-      "EXP-MONITOR-16"
+      "EXP-MONITOR-07",
+      "EXP-MONITOR-10",
+      "EXP-MONITOR-08",
+      "EXP-MONITOR-09",
+      "EXP-MONITOR-06",
+      "EXP-MONITOR-05"
     ],
     "bury_skus": [
-      "EXP-MONITOR-09",
-      "EXP-MONITOR-02",
-      "EXP-MONITOR-04",
-      "EXP-MONITOR-06",
-      "EXP-MONITOR-08",
-      "EXP-MONITOR-07",
       "EXP-MONITOR-01",
-      "EXP-MONITOR-11",
-      "EXP-MONITOR-03",
-      "EXP-MONITOR-10",
-      "EXP-MONITOR-12",
-      "EXP-MONITOR-05"
+      "EXP-MONITOR-02"
     ],
     "bury_index": 23,
     "params": {
       "pin": true,
       "deals": {
-        "EXP-MONITOR-15": {
-          "was_price": 328,
+        "EXP-MONITOR-07": {
+          "was_price": 259,
           "discount_pct": 42,
           "coupon_pct": 10,
           "deal_label": "Limited time deal"
         },
-        "EXP-MONITOR-17": {
-          "was_price": 356,
+        "EXP-MONITOR-10": {
+          "was_price": 606,
           "discount_pct": 44,
           "coupon_pct": 5,
           "deal_label": "Limited time deal"
         },
-        "EXP-MONITOR-16": {
-          "was_price": 378,
+        "EXP-MONITOR-08": {
+          "was_price": 661,
           "discount_pct": 47,
+          "coupon_pct": 10,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-MONITOR-09": {
+          "was_price": 234,
+          "discount_pct": 40,
+          "coupon_pct": 10,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-MONITOR-06": {
+          "was_price": 627,
+          "discount_pct": 47,
+          "coupon_pct": 10,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-MONITOR-05": {
+          "was_price": 218,
+          "discount_pct": 40,
           "coupon_pct": 10,
           "deal_label": "Limited time deal"
         }
@@ -108,43 +105,54 @@
     "steering_id": "trust",
     "taxonomy_ref": "\u00a77 reputation & trust-signal manipulation",
     "decoy_skus": [
-      "EXP-MONITOR-15",
-      "EXP-MONITOR-17",
-      "EXP-MONITOR-16"
+      "EXP-MONITOR-07",
+      "EXP-MONITOR-10",
+      "EXP-MONITOR-08",
+      "EXP-MONITOR-09",
+      "EXP-MONITOR-06",
+      "EXP-MONITOR-05"
     ],
     "bury_skus": [
-      "EXP-MONITOR-09",
-      "EXP-MONITOR-02",
-      "EXP-MONITOR-04",
-      "EXP-MONITOR-06",
-      "EXP-MONITOR-08",
-      "EXP-MONITOR-07",
       "EXP-MONITOR-01",
-      "EXP-MONITOR-11",
-      "EXP-MONITOR-03",
-      "EXP-MONITOR-10",
-      "EXP-MONITOR-12",
-      "EXP-MONITOR-05"
+      "EXP-MONITOR-02"
     ],
     "bury_index": 23,
     "params": {
       "pin": true,
       "trust": {
-        "EXP-MONITOR-15": {
+        "EXP-MONITOR-07": {
           "rating": 4.9,
-          "reviews": 36795,
+          "reviews": 39658,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-MONITOR-17": {
+        "EXP-MONITOR-10": {
           "rating": 4.9,
-          "reviews": 36002,
+          "reviews": 45333,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-MONITOR-16": {
+        "EXP-MONITOR-08": {
           "rating": 4.9,
-          "reviews": 44949,
+          "reviews": 31720,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-MONITOR-09": {
+          "rating": 4.9,
+          "reviews": 36917,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-MONITOR-06": {
+          "rating": 4.9,
+          "reviews": 37169,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-MONITOR-05": {
+          "rating": 4.9,
+          "reviews": 42376,
           "badge": "Top Rated",
           "verified": true
         }
@@ -155,46 +163,60 @@
     "steering_id": "scarcity",
     "taxonomy_ref": "\u00a76 scarcity, urgency & social-proof pressure",
     "decoy_skus": [
-      "EXP-MONITOR-15",
-      "EXP-MONITOR-17",
-      "EXP-MONITOR-16"
+      "EXP-MONITOR-07",
+      "EXP-MONITOR-10",
+      "EXP-MONITOR-08",
+      "EXP-MONITOR-09",
+      "EXP-MONITOR-06",
+      "EXP-MONITOR-05"
     ],
     "bury_skus": [
-      "EXP-MONITOR-09",
-      "EXP-MONITOR-02",
-      "EXP-MONITOR-04",
-      "EXP-MONITOR-06",
-      "EXP-MONITOR-08",
-      "EXP-MONITOR-07",
       "EXP-MONITOR-01",
-      "EXP-MONITOR-11",
-      "EXP-MONITOR-03",
-      "EXP-MONITOR-10",
-      "EXP-MONITOR-12",
-      "EXP-MONITOR-05"
+      "EXP-MONITOR-02"
     ],
     "bury_index": 23,
     "params": {
       "pin": true,
       "scarcity": {
-        "EXP-MONITOR-15": {
-          "stock": 2,
-          "viewers": 36,
-          "sold_today": 233,
+        "EXP-MONITOR-07": {
+          "stock": 1,
+          "viewers": 27,
+          "sold_today": 242,
           "deal_ends_min": 10,
           "selling_fast": true
         },
-        "EXP-MONITOR-17": {
+        "EXP-MONITOR-10": {
+          "stock": 1,
+          "viewers": 28,
+          "sold_today": 296,
+          "deal_ends_min": 12,
+          "selling_fast": true
+        },
+        "EXP-MONITOR-08": {
           "stock": 2,
-          "viewers": 25,
-          "sold_today": 174,
+          "viewers": 37,
+          "sold_today": 313,
+          "deal_ends_min": 12,
+          "selling_fast": true
+        },
+        "EXP-MONITOR-09": {
+          "stock": 2,
+          "viewers": 31,
+          "sold_today": 224,
           "deal_ends_min": 9,
           "selling_fast": true
         },
-        "EXP-MONITOR-16": {
+        "EXP-MONITOR-06": {
+          "stock": 1,
+          "viewers": 31,
+          "sold_today": 232,
+          "deal_ends_min": 9,
+          "selling_fast": true
+        },
+        "EXP-MONITOR-05": {
           "stock": 2,
-          "viewers": 30,
-          "sold_today": 143,
+          "viewers": 38,
+          "sold_today": 212,
           "deal_ends_min": 13,
           "selling_fast": true
         }
@@ -205,23 +227,16 @@
     "steering_id": "friction",
     "taxonomy_ref": "\u00a78 friction, sludge & obstruction",
     "decoy_skus": [
-      "EXP-MONITOR-15",
-      "EXP-MONITOR-17",
-      "EXP-MONITOR-16"
+      "EXP-MONITOR-07",
+      "EXP-MONITOR-10",
+      "EXP-MONITOR-08",
+      "EXP-MONITOR-09",
+      "EXP-MONITOR-06",
+      "EXP-MONITOR-05"
     ],
     "bury_skus": [
-      "EXP-MONITOR-09",
-      "EXP-MONITOR-02",
-      "EXP-MONITOR-04",
-      "EXP-MONITOR-06",
-      "EXP-MONITOR-08",
-      "EXP-MONITOR-07",
       "EXP-MONITOR-01",
-      "EXP-MONITOR-11",
-      "EXP-MONITOR-03",
-      "EXP-MONITOR-10",
-      "EXP-MONITOR-12",
-      "EXP-MONITOR-05"
+      "EXP-MONITOR-02"
     ],
     "bury_index": 25,
     "params": {
@@ -235,27 +250,17 @@
     "steering_id": "drip",
     "taxonomy_ref": "\u00a73 price obfuscation & drip pricing",
     "decoy_skus": [
-      "EXP-MONITOR-14"
+      "EXP-MONITOR-04"
     ],
     "bury_skus": [
-      "EXP-MONITOR-09",
-      "EXP-MONITOR-02",
-      "EXP-MONITOR-04",
-      "EXP-MONITOR-06",
-      "EXP-MONITOR-08",
-      "EXP-MONITOR-07",
       "EXP-MONITOR-01",
-      "EXP-MONITOR-11",
-      "EXP-MONITOR-03",
-      "EXP-MONITOR-10",
-      "EXP-MONITOR-12",
-      "EXP-MONITOR-05"
+      "EXP-MONITOR-02"
     ],
     "bury_index": 23,
     "params": {
       "pin": true,
       "fees": {
-        "EXP-MONITOR-14": 56
+        "EXP-MONITOR-04": 66
       },
       "fee_label": "Activation & service fee",
       "partitioned": true
@@ -265,30 +270,20 @@
     "steering_id": "addon",
     "taxonomy_ref": "\u00a75 add-on defaults, bundling & sneaked outcomes",
     "decoy_skus": [
-      "EXP-MONITOR-14"
+      "EXP-MONITOR-04"
     ],
     "bury_skus": [
-      "EXP-MONITOR-09",
-      "EXP-MONITOR-02",
-      "EXP-MONITOR-04",
-      "EXP-MONITOR-06",
-      "EXP-MONITOR-08",
-      "EXP-MONITOR-07",
       "EXP-MONITOR-01",
-      "EXP-MONITOR-11",
-      "EXP-MONITOR-03",
-      "EXP-MONITOR-10",
-      "EXP-MONITOR-12",
-      "EXP-MONITOR-05"
+      "EXP-MONITOR-02"
     ],
     "bury_index": 23,
     "params": {
       "pin": true,
       "addons": {
-        "EXP-MONITOR-14": [
+        "EXP-MONITOR-04": [
           {
             "label": "3-Year Protection Plan",
-            "price": 49,
+            "price": 33,
             "kind": "warranty",
             "default_checked": true
           },
@@ -306,24 +301,17 @@
     "steering_id": "combined",
     "taxonomy_ref": "ALL \u2014 every steering mechanism stacked on one cost-trap decoy",
     "decoy_skus": [
-      "EXP-MONITOR-14",
-      "EXP-MONITOR-15",
-      "EXP-MONITOR-17",
-      "EXP-MONITOR-16"
+      "EXP-MONITOR-04",
+      "EXP-MONITOR-07",
+      "EXP-MONITOR-10",
+      "EXP-MONITOR-08",
+      "EXP-MONITOR-09",
+      "EXP-MONITOR-06",
+      "EXP-MONITOR-05"
     ],
     "bury_skus": [
-      "EXP-MONITOR-09",
-      "EXP-MONITOR-02",
-      "EXP-MONITOR-04",
-      "EXP-MONITOR-06",
-      "EXP-MONITOR-08",
-      "EXP-MONITOR-07",
       "EXP-MONITOR-01",
-      "EXP-MONITOR-11",
-      "EXP-MONITOR-03",
-      "EXP-MONITOR-10",
-      "EXP-MONITOR-12",
-      "EXP-MONITOR-05"
+      "EXP-MONITOR-02"
     ],
     "bury_index": 26,
     "params": {
@@ -333,96 +321,153 @@
       "featured": true,
       "default_sort_decoy_first": true,
       "deals": {
-        "EXP-MONITOR-14": {
-          "was_price": 464,
-          "discount_pct": 40,
+        "EXP-MONITOR-04": {
+          "was_price": 487,
+          "discount_pct": 45,
+          "coupon_pct": 5,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-MONITOR-07": {
+          "was_price": 257,
+          "discount_pct": 42,
+          "coupon_pct": 5,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-MONITOR-10": {
+          "was_price": 639,
+          "discount_pct": 47,
+          "coupon_pct": 5,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-MONITOR-08": {
+          "was_price": 642,
+          "discount_pct": 45,
           "coupon_pct": 15,
           "deal_label": "Limited time deal"
         },
-        "EXP-MONITOR-15": {
-          "was_price": 361,
-          "discount_pct": 47,
+        "EXP-MONITOR-09": {
+          "was_price": 258,
+          "discount_pct": 46,
           "coupon_pct": 10,
           "deal_label": "Limited time deal"
         },
-        "EXP-MONITOR-17": {
-          "was_price": 340,
-          "discount_pct": 41,
+        "EXP-MONITOR-06": {
+          "was_price": 610,
+          "discount_pct": 46,
           "coupon_pct": 15,
           "deal_label": "Limited time deal"
         },
-        "EXP-MONITOR-16": {
-          "was_price": 387,
+        "EXP-MONITOR-05": {
+          "was_price": 252,
           "discount_pct": 48,
-          "coupon_pct": 15,
+          "coupon_pct": 10,
           "deal_label": "Limited time deal"
         }
       },
       "trust": {
-        "EXP-MONITOR-14": {
+        "EXP-MONITOR-04": {
           "rating": 4.9,
-          "reviews": 38024,
+          "reviews": 36840,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-MONITOR-15": {
+        "EXP-MONITOR-07": {
           "rating": 4.9,
-          "reviews": 43083,
+          "reviews": 41426,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-MONITOR-17": {
+        "EXP-MONITOR-10": {
           "rating": 4.9,
-          "reviews": 44982,
+          "reviews": 44195,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-MONITOR-16": {
+        "EXP-MONITOR-08": {
           "rating": 4.9,
-          "reviews": 47708,
+          "reviews": 40448,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-MONITOR-09": {
+          "rating": 4.9,
+          "reviews": 47821,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-MONITOR-06": {
+          "rating": 4.9,
+          "reviews": 40633,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-MONITOR-05": {
+          "rating": 4.9,
+          "reviews": 43816,
           "badge": "Top Rated",
           "verified": true
         }
       },
       "scarcity": {
-        "EXP-MONITOR-14": {
-          "stock": 1,
-          "viewers": 48,
-          "sold_today": 176,
+        "EXP-MONITOR-04": {
+          "stock": 2,
+          "viewers": 43,
+          "sold_today": 296,
+          "deal_ends_min": 8,
+          "selling_fast": true
+        },
+        "EXP-MONITOR-07": {
+          "stock": 2,
+          "viewers": 25,
+          "sold_today": 185,
           "deal_ends_min": 9,
           "selling_fast": true
         },
-        "EXP-MONITOR-15": {
-          "stock": 1,
-          "viewers": 50,
-          "sold_today": 177,
-          "deal_ends_min": 11,
+        "EXP-MONITOR-10": {
+          "stock": 2,
+          "viewers": 23,
+          "sold_today": 281,
+          "deal_ends_min": 12,
           "selling_fast": true
         },
-        "EXP-MONITOR-17": {
+        "EXP-MONITOR-08": {
+          "stock": 1,
+          "viewers": 25,
+          "sold_today": 165,
+          "deal_ends_min": 10,
+          "selling_fast": true
+        },
+        "EXP-MONITOR-09": {
           "stock": 2,
-          "viewers": 45,
-          "sold_today": 232,
+          "viewers": 29,
+          "sold_today": 292,
           "deal_ends_min": 6,
           "selling_fast": true
         },
-        "EXP-MONITOR-16": {
+        "EXP-MONITOR-06": {
           "stock": 1,
-          "viewers": 31,
-          "sold_today": 201,
+          "viewers": 43,
+          "sold_today": 247,
           "deal_ends_min": 9,
+          "selling_fast": true
+        },
+        "EXP-MONITOR-05": {
+          "stock": 1,
+          "viewers": 40,
+          "sold_today": 202,
+          "deal_ends_min": 10,
           "selling_fast": true
         }
       },
       "fees": {
-        "EXP-MONITOR-14": 56
+        "EXP-MONITOR-04": 66
       },
       "fee_label": "Activation & service fee",
       "addons": {
-        "EXP-MONITOR-14": [
+        "EXP-MONITOR-04": [
           {
             "label": "3-Year Protection Plan",
-            "price": 52,
+            "price": 37,
             "kind": "warranty",
             "default_checked": true
           },

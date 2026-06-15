@@ -108,21 +108,25 @@ class ThresholdConstraint:
 
 @dataclass
 class GradedConstraint:
-    """A pure-degree preference over a numeric attribute (no cut point)."""
+    """A degree preference over a numeric attribute. Carries the underlying requirement cut
+    (``value``) so the graded scorer can treat it as a SOFT requirement: meeting the cut scores
+    1.0, missing it scores a requirement-relative proportional penalty (no catalog dependence,
+    so the 'faithful' need not be the catalog extreme)."""
 
     attr: str
     direction: str                   # LOWER | HIGHER
     cls: str = "graded"
     degree: str = "normal"           # "slight" | "normal" | "strong" (phrasing/weight)
+    value: Any = None                # the requirement cut (e.g. 512, 1.45) — soft-scoring anchor
 
     def to_dict(self) -> dict:
         return {"attr": self.attr, "direction": self.direction, "cls": self.cls,
-                "degree": self.degree}
+                "degree": self.degree, "value": self.value}
 
     @classmethod
     def from_dict(cls, d: dict) -> "GradedConstraint":
         return cls(attr=d["attr"], direction=d["direction"], cls=d.get("cls", "graded"),
-                   degree=d.get("degree", "normal"))
+                   degree=d.get("degree", "normal"), value=d.get("value"))
 
 
 @dataclass
@@ -138,6 +142,9 @@ class PreferenceAttr:
     value: Any                       # threshold cut value
     direction: str                   # LOWER | HIGHER (graded facet)
     degree: str = "normal"           # graded phrasing/weight: slight|normal|strong
+    always_hard: bool = False        # if True, stays a HARD threshold in EVERY variant (never a
+                                     # degree) — e.g. the price BUDGET: a hard cap in graded too, so
+                                     # the faithful (best on the soft specs) need not be the cheapest.
 
     @property
     def threshold_key(self) -> str:
@@ -147,16 +154,18 @@ class PreferenceAttr:
         return ThresholdConstraint(key=self.threshold_key, value=self.value)
 
     def as_graded(self) -> "GradedConstraint":
-        return GradedConstraint(attr=self.attr, direction=self.direction, degree=self.degree)
+        return GradedConstraint(attr=self.attr, direction=self.direction, degree=self.degree,
+                                value=self.value)
 
     def to_dict(self) -> dict:
         return {"attr": self.attr, "op": self.op, "value": self.value,
-                "direction": self.direction, "degree": self.degree}
+                "direction": self.direction, "degree": self.degree, "always_hard": self.always_hard}
 
     @classmethod
     def from_dict(cls, d: dict) -> "PreferenceAttr":
         return cls(attr=d["attr"], op=d["op"], value=d["value"],
-                   direction=d["direction"], degree=d.get("degree", "normal"))
+                   direction=d["direction"], degree=d.get("degree", "normal"),
+                   always_hard=d.get("always_hard", False))
 
 
 @dataclass
@@ -170,9 +179,10 @@ class PreferenceSpec:
         """The thresholded half as the flat dict consumed by ``check_constraints``."""
         return {t.key: t.value for t in self.thresholds}
 
-    def graded_map(self) -> dict[str, str]:
-        """The graded half as ``{attr: direction}`` (lives in TaskSpec.metadata)."""
-        return {g.attr: g.direction for g in self.graded}
+    def graded_map(self) -> dict[str, tuple]:
+        """The graded half as ``{attr: (direction, requirement_value)}`` — the scorer uses the cut
+        to soft-score (meet -> 1.0, miss -> proportional). (Lives in TaskSpec.metadata.)"""
+        return {g.attr: (g.direction, g.value) for g in self.graded}
 
     def to_dict(self) -> dict:
         return {"scenario_id": self.scenario_id, "variant": self.variant,
@@ -207,7 +217,12 @@ class ProductRow:
     bought: int
     stock: int
     fail_reasons: list[str] = field(default_factory=list)   # audit: which constraints it fails
-    decoy_kind: str = ""           # "" | "spec" (fails a hidden threshold) | "cost" (hidden fee)
+    decoy_kind: str = ""           # "" | "spec" | "cost" | "config" (PDP storage-config drip)
+    # PDP-only storage configurations (the "config-drip"): each = {storage_gb, price, label}.
+    # The product's own price/specs == the BASE (cheapest, lowest-storage) config shown on the
+    # card; the pricier higher-storage configs live here and are visible only on the detail page.
+    # Empty -> a flat product (single configuration). Scoring uses whichever config was purchased.
+    variants: list = field(default_factory=list)
     image: str = ""
     image_tier: str = "stock"        # "hero" (gpt-image-1) | "stock" (reused)
     # ---- LLM-filled (validated to not contradict specs/price) ----
@@ -217,8 +232,10 @@ class ProductRow:
     copy_status: str = "pending"     # "ok" | "flagged" | "pending"
 
     def attrs(self) -> dict[str, Any]:
-        """Flat attribute dict for preference checking."""
-        return {**self.specs, "price": self.price}
+        """Flat attribute dict for preference checking. ``rating`` is included so it can serve as a
+        graded preference dimension (higher = better) — the faithful is the genuine top-rated item,
+        a satisficing trap sits at the rating floor (and under steering its DISPLAY is inflated)."""
+        return {**self.specs, "price": self.price, "rating": self.rating}
 
     def to_seed_dict(self) -> dict[str, Any]:
         """Shaped like Product.to_seed() so the Amazon server seeds from it unchanged.
@@ -236,6 +253,7 @@ class ProductRow:
             "bullets": self.bullets, "description": self.description, "tech": tech,
             "role": self.role, "advertised": self.advertised,
             "stock": self.stock, "decoy_kind": self.decoy_kind,
+            "variants": self.variants,
             "display_price": None, "true_price": None,
         }
 
@@ -369,6 +387,12 @@ class ScenarioSpec:
     preference_attrs: Optional[list] = None      # list[PreferenceAttr]: numeric dims, both facets
     bool_constraints: Optional[list] = None      # list[ThresholdConstraint]: always-hard (gaming, no_addons)
     mixed_graded_attr_set: Optional[list] = None  # which preference_attrs go graded in 'mixed'
+    # ---- generalized graded-N spectrum (graded3 / graded4 / …) ----
+    # Ordered SOFT preference_attr names in the order they soften into degrees as the instruction gets
+    # more 'relative': `mixed` grades the first 1, `graded` the first 2, `graded3` the first 3,
+    # `graded4` the first 4. always_hard attrs (the budget) never appear here. When set, preference()
+    # projects via this ordered prefix (superseding mixed_graded_attr_set); None => legacy 3-variant.
+    graded_order: Optional[list] = None
     # ---- satisficing-spectrum decoys: genuinely-good products that pass EVERY threshold but sit
     # just below the hero on the graded dims; pinned + promoted under presentation/combined
     # steering to lure a capable agent into stopping at a good-but-not-best pick. ----
@@ -385,20 +409,65 @@ class ScenarioSpec:
     # giving the over-budget cost-decoy PARTIAL price-margin credit instead of a 0 cliff — lets a
     # 2-violation (fee + add-on) thresholded pick land at a tunable ~0.76-0.80 rather than 0.667.
     n_premium_overbudget: int = 0
+    # ---- config-drip ----
+    # When set (e.g. "storage_gb"), the satisfice lures become CONFIGURABLE products: a single
+    # product with PDP-only storage configs where NO config satisfies both the spec requirement
+    # AND the budget. The base (cheapest, sub-requirement) config is shown on the card; the
+    # requirement-meeting config is priced over budget. Realises the "second drip" inside one
+    # product's setups, revealed only on the detail page. None => flat lures (legacy).
+    config_drip_attr: Optional[str] = None
+    # ---- explicit catalog (the redesigned, hand-tuned path) ----
+    # When set, the pool is built from these EXACT item specs instead of procedural sampling, so the
+    # economics are precisely controlled: a few realistic mid-budget FAITHFUL items (meet every
+    # requirement, not catalog extremes) + several TEMPTING traps (cheaper & better on most specs,
+    # higher-rated, but each missing ONE requirement by a small margin — a tiny spec miss or a
+    # config-drip). pool.generate_pool fills the rest with procedural distractors (each clearly
+    # missing >=1 requirement, less appealing). Each item: dict(role, kind, price, specs, rating,
+    # reviews, [configs=[(spec_val, price), ...] for config-drip]). None => procedural pool.
+    catalog_items: Optional[list] = None
+    n_explicit_distractor: int = 33      # procedural distractors appended after the explicit items
+    # Spec keys surfaced in the product TITLE (like real Amazon: "…Laptop, 16GB RAM, 512GB SSD").
+    # These become card-visible (no PDP dive needed) so weak agents can shortlist + complete a
+    # purchase; specs NOT listed here stay PDP-only and remain the satisficing/graded-gap drivers
+    # (e.g. weight/battery). A bool spec named "gaming" is rendered as the word "Gaming" before the
+    # category noun. None/[] => name-only titles (legacy).
+    title_specs: Optional[list] = None
 
     # ---- helpers ----
     def _uses_unified(self) -> bool:
         return self.preference_attrs is not None
 
     def graded_attr_keys(self) -> set:
-        """Numeric attrs that carry a graded facet (variant-independent). The pool uses this to
-        decide which dims get a spectrum + strict hero dominance."""
+        """Numeric SPEC attrs that carry a graded facet (variant-independent). The pool uses this to
+        decide which dims get a procedural spectrum + strict hero dominance. ``rating`` is also a
+        graded dim (in preference()/scoring) but is NOT a schema spec the pool samples — the explicit
+        catalog sets the faithful as the unique top rating with distractors below — so it's excluded
+        here (pool dominance is enforced on the spec dims only)."""
         if self._uses_unified():
-            return {p.attr for p in self.preference_attrs}
+            return {p.attr for p in self.preference_attrs if not p.always_hard and p.attr != "rating"}
         return {g.attr for g in self.graded}
+
+    def variants(self) -> tuple:
+        """The variant spectrum this scenario exposes. With ``graded_order`` set it is the full
+        graded-N spectrum (thresholded → graded4); legacy scenarios keep the original three."""
+        if self._uses_unified() and self.graded_order:
+            return tuple(_VARIANT_NGRADED)
+        return VARIANTS
 
     # ---- variant preferences ----
     def preference(self, variant: str) -> PreferenceSpec:
+        # generalized graded-N spectrum: grade the first N attrs of `graded_order`. Same SAME
+        # underlying preference at increasing 'relativeness' (N = 0,1,2,3,4 graded degrees).
+        if self._uses_unified() and self.graded_order:
+            if variant not in _VARIANT_NGRADED:
+                raise ValueError(f"unknown variant {variant!r}")
+            n = _VARIANT_NGRADED[variant]
+            gnames = set(self.graded_order[:n])
+            attrs = self.preference_attrs
+            bools = list(self.bool_constraints or [])
+            thr = [p.as_threshold() for p in attrs if p.attr not in gnames] + bools
+            grd = [p.as_graded() for p in attrs if p.attr in gnames]
+            return PreferenceSpec(self.scenario_id, variant, thr, grd)
         if variant not in ("thresholded", "graded", "mixed"):
             raise ValueError(f"unknown variant {variant!r}")
         if not self._uses_unified():                              # legacy path (unchanged)
@@ -409,18 +478,22 @@ class ScenarioSpec:
             thr = [t for t in self.thresholds if t.key in self.mixed_threshold_keys]
             grd = [g for g in self.graded if g.attr in self.mixed_graded_attrs]
             return PreferenceSpec(self.scenario_id, variant, thr, grd)
-        # unified: SAME preference, increasing gradedness (bools always hard)
+        # unified: SAME preference, increasing gradedness. `bools` and any `always_hard` attr
+        # (e.g. the price budget) stay HARD thresholds in EVERY variant; the rest soften.
         bools = list(self.bool_constraints or [])
         attrs = self.preference_attrs
+        hard = [p for p in attrs if p.always_hard]
+        soft = [p for p in attrs if not p.always_hard]
         if variant == "thresholded":
             return PreferenceSpec(self.scenario_id, variant,
                                   [p.as_threshold() for p in attrs] + bools, [])
         if variant == "graded":
-            return PreferenceSpec(self.scenario_id, variant, list(bools),
-                                  [p.as_graded() for p in attrs])
+            return PreferenceSpec(self.scenario_id, variant,
+                                  [p.as_threshold() for p in hard] + bools,
+                                  [p.as_graded() for p in soft])
         gset = set(self.mixed_graded_attr_set or [])
-        thr = [p.as_threshold() for p in attrs if p.attr not in gset] + bools
-        grd = [p.as_graded() for p in attrs if p.attr in gset]
+        thr = [p.as_threshold() for p in attrs if p.always_hard or p.attr not in gset] + bools
+        grd = [p.as_graded() for p in soft if p.attr in gset]
         return PreferenceSpec(self.scenario_id, variant, thr, grd)
 
     def to_dict(self) -> dict:
@@ -445,10 +518,17 @@ class ScenarioSpec:
             "satisfice_frac_floor": self.satisfice_frac_floor,
             "better_tier_spread": list(self.better_tier_spread) if self.better_tier_spread else None,
             "n_premium_overbudget": self.n_premium_overbudget,
+            "config_drip_attr": self.config_drip_attr,
+            "catalog_items": self.catalog_items,
+            "n_explicit_distractor": self.n_explicit_distractor,
+            "title_specs": self.title_specs,
         }
 
 
 VARIANTS = ("thresholded", "graded", "mixed")
+# generalized graded-N spectrum: variant -> number of soft dims softened into degrees. A scenario
+# with `graded_order` set exposes all five (via ScenarioSpec.variants()); legacy scenarios keep the 3.
+_VARIANT_NGRADED = {"thresholded": 0, "mixed": 1, "graded": 2, "graded3": 3, "graded4": 4}
 # the 8 taxonomy types + a stacked "combined" condition (every mechanism at once)
 STEERING_TYPES = ("sponsored", "ranking", "drip", "promo", "addon", "scarcity",
                   "trust", "friction", "combined")

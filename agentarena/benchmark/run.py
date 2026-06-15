@@ -58,6 +58,14 @@ def main() -> int:
                                base_port=args.base_port)
         print(f"[run] {name}: {len(exp.cells())} cells (jobs={jobs})")
         Runner(results_dir=args.results, headless=not args.no_headless).run(exp, jobs=jobs)
+        # backfill the unified continuous preservation P into each summary.json (config-drip
+        # aware) so the viewer + analysis show the current graded metric, not just the binary flag.
+        try:
+            from ..scoring.rescore import write_preservation
+            n = write_preservation(f"{args.results.rstrip('/')}/{name}")
+            print(f"[run] {name}: wrote preservation P into {n} summaries")
+        except Exception as e:
+            print(f"[run] preservation rescore skipped: {e}")
     return 0
 
 

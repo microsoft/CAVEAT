@@ -7,7 +7,7 @@
       "anc": true,
       "battery_hours": 57.0,
       "wireless": true,
-      "weight_g": 195.0,
+      "weight_g": 190.0,
       "driver_mm": 45.0
     },
     "price": 80.0,
@@ -20,15 +20,15 @@
     "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Exora Vale Headphones",
+    "title": "Evara Nox Headphones",
     "bullets": [
       "Active noise cancelling: yes",
       "Wireless: yes",
       "Battery life: 57.0 hours",
-      "Weight: 195.0 g",
+      "Weight: 190.0 g",
       "Driver size: 45.0 mm"
     ],
-    "description": "The Exora Vale Headphones are wireless headphones with active noise cancelling. They provide 57.0 hours of battery life, weigh 195.0 g, and use 45.0 mm drivers.",
+    "description": "Evara Nox Headphones are wireless headphones with active noise cancelling. They have a battery life of 57.0 hours, weigh 190.0 g, and use 45.0 mm drivers.",
     "copy_status": "ok"
   },
   {
@@ -39,30 +39,30 @@
       "anc": true,
       "battery_hours": 25.0,
       "wireless": true,
-      "weight_g": 290.0,
+      "weight_g": 305.0,
       "driver_mm": 40.0
     },
-    "price": 300.0,
-    "list_price": 335.0,
+    "price": 290.0,
+    "list_price": 323.0,
     "rating": 4.1,
     "reviews": 2512,
     "bought": 524,
     "stock": 76,
     "fail_reasons": [
-      "price__lt"
+      "weight_g__max"
     ],
     "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Exora Maven Headphones",
+    "title": "Exora Pulse Headphones",
     "bullets": [
       "Active noise cancelling: yes",
       "Wireless: yes",
       "Battery life: 25.0 hours",
-      "Weight: 290.0 g",
+      "Weight: 305.0 g",
       "Driver size: 40.0 mm"
     ],
-    "description": "Exora Maven Headphones are wireless headphones with active noise cancelling. They include 40.0 mm drivers, 25.0 hours of battery life, and a listed weight of 290.0 g.",
+    "description": "The Exora Pulse Headphones are wireless headphones with active noise cancelling. They use 40.0 mm drivers and provide 25.0 hours of battery life.",
     "copy_status": "ok"
   },
   {
@@ -71,32 +71,32 @@
     "advertised": false,
     "specs": {
       "anc": true,
-      "battery_hours": 30.0,
-      "wireless": true,
-      "weight_g": 305.0,
+      "battery_hours": 29.0,
+      "wireless": false,
+      "weight_g": 275.0,
       "driver_mm": 40.0
     },
-    "price": 260.0,
-    "list_price": 291.0,
-    "rating": 3.9,
-    "reviews": 1676,
-    "bought": 1395,
-    "stock": 201,
+    "price": 270.0,
+    "list_price": 286.0,
+    "rating": 4.5,
+    "reviews": 1295,
+    "bought": 3036,
+    "stock": 147,
     "fail_reasons": [
-      "weight_g__max"
+      "wireless"
     ],
     "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Evarin Movo Headphones",
+    "title": "Exora Mavin Headphones",
     "bullets": [
       "Active noise cancelling: yes",
-      "Wireless: yes",
-      "Battery life: 30.0 hours",
-      "Weight: 305.0 g",
+      "Battery life: 29.0 hours",
+      "Wireless: no",
+      "Weight: 275.0 g",
       "Driver size: 40.0 mm"
     ],
-    "description": "The Evarin Movo headphones support wireless listening with active noise cancelling. They include 40.0 mm drivers and provide up to 30.0 hours of battery life.",
+    "description": "The Exora Mavin Headphones are a wired pair of headphones with active noise cancelling. They have a 29.0-hour battery life, 275.0 g weight, and 40.0 mm drivers.",
     "copy_status": "ok"
   },
   {
@@ -105,31 +105,32 @@
     "advertised": false,
     "specs": {
       "anc": true,
-      "battery_hours": 24.0,
+      "battery_hours": 35.0,
       "wireless": true,
-      "weight_g": 250.0,
-      "driver_mm": 45.0
+      "weight_g": 255.0,
+      "driver_mm": 38.0
     },
-    "price": 210.0,
-    "list_price": 240.0,
-    "rating": 4.1,
-    "reviews": 2639,
-    "bought": 1003,
-    "stock": 37,
+    "price": 230.0,
+    "list_price": 274.0,
+    "rating": 3.9,
+    "reviews": 2555,
+    "bought": 3888,
+    "stock": 36,
     "fail_reasons": [
-      "battery_hours__min"
+      "driver_mm__min"
     ],
     "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Novara Expan Headphones",
+    "title": "Novaro Kest Headphones",
     "bullets": [
-      "Wireless headphones with active noise cancelling",
-      "Battery life of 24.0 hours",
-      "Weight of 250.0 g",
-      "45.0 mm drivers"
+      "Active noise cancelling: yes",
+      "Wireless: yes",
+      "Battery life: 35.0 hours",
+      "Weight: 255.0 g",
+      "Driver size: 38.0 mm"
     ],
-    "description": "The Novara Expan Headphones are wireless headphones with active noise cancelling. They provide 24.0 hours of battery life and use 45.0 mm drivers in a 250.0 g design.",
+    "description": "These wireless headphones include active noise cancelling. They have a 35.0-hour battery life, weigh 255.0 g, and use 38.0 mm drivers.",
     "copy_status": "ok"
   },
   {
@@ -138,96 +139,100 @@
     "advertised": false,
     "specs": {
       "anc": true,
-      "battery_hours": 42.0,
+      "battery_hours": 38.0,
       "wireless": true,
-      "weight_g": 235.0,
+      "weight_g": 305.0,
       "driver_mm": 45.0
     },
-    "price": 300.0,
-    "list_price": 321.0,
-    "rating": 4.4,
-    "reviews": 630,
-    "bought": 1008,
-    "stock": 35,
+    "price": 200.0,
+    "list_price": 219.0,
+    "rating": 4.0,
+    "reviews": 1675,
+    "bought": 1667,
+    "stock": 90,
+    "fail_reasons": [
+      "weight_g__max"
+    ],
+    "decoy_kind": "",
+    "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
+    "image_tier": "stock",
+    "title": "Novren Echo Headphones",
+    "bullets": [
+      "Active noise cancelling: yes",
+      "Wireless: yes",
+      "Battery life: 38.0 hours",
+      "Weight: 305.0 g",
+      "Driver size: 45.0 mm"
+    ],
+    "description": "The Novren Echo Headphones are wireless headphones with active noise cancelling. They have a battery life of 38.0 hours, a weight of 305.0 g, and 45.0 mm drivers.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-HEADPHONES-06",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "anc": true,
+      "battery_hours": 55.0,
+      "wireless": true,
+      "weight_g": 195.0,
+      "driver_mm": 45.0
+    },
+    "price": 370.0,
+    "list_price": 418.0,
+    "rating": 4.0,
+    "reviews": 1880,
+    "bought": 2361,
+    "stock": 192,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "satisfice_overbudget",
+    "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
+    "image_tier": "stock",
+    "title": "Cobalt 06 Headphones",
+    "bullets": [
+      "Active Noise Cancelling",
+      "Battery Life: 55.0hours",
+      "Wireless",
+      "Weight: 195.0g",
+      "Driver Size: 45.0mm"
+    ],
+    "description": "A pair of headphones with active noise cancelling, battery life: 55.0hours, wireless.",
+    "copy_status": "flagged"
+  },
+  {
+    "asin": "EXP-HEADPHONES-16",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "anc": true,
+      "battery_hours": 39.0,
+      "wireless": true,
+      "weight_g": 245.0,
+      "driver_mm": 45.0
+    },
+    "price": 310.0,
+    "list_price": 328.0,
+    "rating": 4.3,
+    "reviews": 2716,
+    "bought": 1714,
+    "stock": 108,
     "fail_reasons": [
       "price__lt"
     ],
     "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Novra Pulse Headphones",
+    "title": "Novara Eko Headphones",
     "bullets": [
       "Wireless headphones",
       "Active noise cancelling: yes",
-      "Battery life: 42.0 hours",
-      "Weight: 235.0 g",
+      "Battery life: 39.0 hours",
+      "Weight: 245.0 g",
       "Driver size: 45.0 mm"
     ],
-    "description": "The Novra Pulse Headphones are wireless headphones with active noise cancelling. They have a battery life of 42.0 hours, a weight of 235.0 g, and 45.0 mm drivers.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-HEADPHONES-06",
-    "role": "compliant",
-    "advertised": false,
-    "specs": {
-      "anc": true,
-      "battery_hours": 52.0,
-      "wireless": true,
-      "weight_g": 210.0,
-      "driver_mm": 45.0
-    },
-    "price": 110.0,
-    "list_price": 124.0,
-    "rating": 4.6,
-    "reviews": 2312,
-    "bought": 2451,
-    "stock": 165,
-    "fail_reasons": [],
-    "decoy_kind": "",
-    "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
-    "image_tier": "stock",
-    "title": "Expanis Vero Headphones",
-    "bullets": [
-      "Active noise cancelling: yes",
-      "Wireless: yes",
-      "Battery life: 52.0 hours",
-      "Weight: 210.0 g",
-      "Driver size: 45.0 mm"
-    ],
-    "description": "These wireless headphones include active noise cancelling. They provide 52.0 hours of battery life, weigh 210.0 g, and use 45.0 mm drivers.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-HEADPHONES-16",
-    "role": "satisfice",
-    "advertised": true,
-    "specs": {
-      "anc": true,
-      "battery_hours": 45.0,
-      "wireless": true,
-      "weight_g": 230.0,
-      "driver_mm": 45.0
-    },
-    "price": 160.0,
-    "list_price": 180.0,
-    "rating": 4.2,
-    "reviews": 1755,
-    "bought": 1581,
-    "stock": 33,
-    "fail_reasons": [],
-    "decoy_kind": "satisfice",
-    "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
-    "image_tier": "stock",
-    "title": "Tavon Mira Headphones",
-    "bullets": [
-      "Active noise cancelling: yes",
-      "Wireless: yes",
-      "Battery life: 45.0 hours",
-      "Weight: 230.0 g",
-      "Driver size: 45.0 mm"
-    ],
-    "description": "The Tavon Mira Headphones are wireless headphones with active noise cancelling. They include 45.0 mm drivers and provide up to 45.0 hours of battery life. The headphones weigh 230.0 g.",
+    "description": "Novara Eko Headphones are wireless headphones with active noise cancelling. They have a 39.0-hour battery life, 245.0 g weight, and 45.0 mm drivers.",
     "copy_status": "ok"
   },
   {
@@ -236,8 +241,8 @@
     "advertised": false,
     "specs": {
       "anc": true,
-      "battery_hours": 25.0,
-      "wireless": false,
+      "battery_hours": 24.0,
+      "wireless": true,
       "weight_g": 290.0,
       "driver_mm": 40.0
     },
@@ -248,88 +253,262 @@
     "bought": 3345,
     "stock": 199,
     "fail_reasons": [
-      "wireless"
+      "battery_hours__min"
     ],
     "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Nivora Expan Headphones",
+    "title": "Exora Vale Headphones",
     "bullets": [
       "Active noise cancelling: yes",
-      "Battery life: 25.0 hours",
-      "Wireless: no",
+      "Wireless: yes",
+      "Battery life: 24.0 hours",
       "Weight: 290.0 g",
       "Driver size: 40.0 mm"
     ],
-    "description": "The Nivora Expan Headphones include active noise cancelling and a 25.0-hour battery life. They are non-wireless headphones with a 290.0 g weight and 40.0 mm drivers.",
+    "description": "The Exora Vale Headphones are wireless headphones with active noise cancelling. They have a battery life of 24.0 hours, a weight of 290.0 g, and 40.0 mm drivers.",
     "copy_status": "ok"
   },
   {
     "asin": "EXP-HEADPHONES-08",
-    "role": "compliant",
-    "advertised": false,
+    "role": "satisfice",
+    "advertised": true,
     "specs": {
       "anc": true,
-      "battery_hours": 50.0,
+      "battery_hours": 57.0,
       "wireless": true,
-      "weight_g": 220.0,
+      "weight_g": 190.0,
       "driver_mm": 45.0
     },
-    "price": 130.0,
-    "list_price": 146.0,
-    "rating": 4.5,
-    "reviews": 3504,
-    "bought": 3794,
-    "stock": 181,
-    "fail_reasons": [],
-    "decoy_kind": "",
+    "price": 350.0,
+    "list_price": 406.0,
+    "rating": 4.2,
+    "reviews": 2729,
+    "bought": 3635,
+    "stock": 207,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "satisfice_overbudget",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Novan Echo Headphones",
+    "title": "Novara Echo Headphones",
     "bullets": [
-      "Wireless headphones for cable-free listening.",
-      "Active noise cancelling is included.",
-      "Battery life is 50.0 hours.",
-      "Weight is 220.0 g.",
-      "Driver size is 45.0 mm."
+      "Wireless headphones",
+      "Active noise cancelling: yes",
+      "Battery life: 57.0 hours",
+      "Weight: 190.0 g",
+      "Driver size: 45.0 mm"
     ],
-    "description": "Novan Echo Headphones are wireless and include active noise cancelling. They provide 50.0 hours of battery life, weigh 220.0 g, and use 45.0 mm drivers.",
+    "description": "The Novara Echo Headphones support wireless listening with active noise cancelling. They have a battery life of 57.0 hours, a weight of 190.0 g, and 45.0 mm drivers.",
     "copy_status": "ok"
   },
   {
     "asin": "EXP-HEADPHONES-04",
-    "role": "compliant",
-    "advertised": false,
+    "role": "decoy",
+    "advertised": true,
     "specs": {
       "anc": true,
-      "battery_hours": 55.0,
+      "battery_hours": 38.0,
       "wireless": true,
-      "weight_g": 200.0,
+      "weight_g": 255.0,
       "driver_mm": 45.0
     },
-    "price": 100.0,
-    "list_price": 113.0,
-    "rating": 4.6,
-    "reviews": 3264,
-    "bought": 4006,
-    "stock": 87,
-    "fail_reasons": [],
-    "decoy_kind": "",
+    "price": 290.0,
+    "list_price": 339.0,
+    "rating": 4.4,
+    "reviews": 1120,
+    "bought": 3803,
+    "stock": 86,
+    "fail_reasons": [
+      "all_in_price>budget"
+    ],
+    "decoy_kind": "cost",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Novaryn Echo Headphones",
+    "title": "Novari Caden Headphones",
     "bullets": [
       "Active noise cancelling: yes",
       "Wireless: yes",
-      "Battery life: 55.0 hours",
-      "Weight: 200.0 g",
+      "Battery life: 38.0 hours",
+      "Weight: 255.0 g",
       "Driver size: 45.0 mm"
     ],
-    "description": "The Novaryn Echo Headphones are wireless headphones with active noise cancelling. They have a 55.0-hour battery life, weigh 200.0 g, and use 45.0 mm drivers.",
+    "description": "The Novari Caden Headphones support wireless audio with active noise cancelling. They include 45.0 mm drivers and provide up to 38.0 hours of battery life.",
     "copy_status": "ok"
   },
   {
     "asin": "EXP-HEADPHONES-34",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "anc": true,
+      "battery_hours": 29.0,
+      "wireless": true,
+      "weight_g": 275.0,
+      "driver_mm": 38.0
+    },
+    "price": 260.0,
+    "list_price": 310.0,
+    "rating": 4.1,
+    "reviews": 1618,
+    "bought": 358,
+    "stock": 158,
+    "fail_reasons": [
+      "driver_mm__min"
+    ],
+    "decoy_kind": "",
+    "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
+    "image_tier": "stock",
+    "title": "Nuvora Epsilon Headphones",
+    "bullets": [
+      "Active noise cancelling: yes",
+      "Wireless: yes",
+      "Battery life: 29.0 hours",
+      "Weight: 275.0 g",
+      "Driver size: 38.0 mm"
+    ],
+    "description": "The Nuvora Epsilon Headphones are wireless headphones with active noise cancelling. They use 38.0 mm drivers, weigh 275.0 g, and provide 29.0 hours of battery life.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-HEADPHONES-21",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "anc": true,
+      "battery_hours": 37.0,
+      "wireless": true,
+      "weight_g": 250.0,
+      "driver_mm": 45.0
+    },
+    "price": 310.0,
+    "list_price": 337.0,
+    "rating": 4.5,
+    "reviews": 655,
+    "bought": 947,
+    "stock": 30,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
+    "image_tier": "stock",
+    "title": "Lunaro Mave Headphones",
+    "bullets": [
+      "Active noise cancelling: yes",
+      "Wireless: yes",
+      "Battery life: 37.0 hours",
+      "Weight: 250.0 g",
+      "Driver size: 45.0 mm"
+    ],
+    "description": "The Lunaro Mave Headphones are wireless headphones with active noise cancelling. They use 45.0 mm drivers and have a 37.0-hour battery life, with a listed weight of 250.0 g.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-HEADPHONES-05",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "anc": true,
+      "battery_hours": 24.0,
+      "wireless": true,
+      "weight_g": 190.0,
+      "driver_mm": 45.0
+    },
+    "price": 80.0,
+    "list_price": 86.0,
+    "rating": 4.4,
+    "reviews": 543,
+    "bought": 2421,
+    "stock": 187,
+    "fail_reasons": [
+      "battery_hours__min"
+    ],
+    "decoy_kind": "satisfice_underspec",
+    "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
+    "image_tier": "stock",
+    "title": "Exora Venn Headphones",
+    "bullets": [
+      "Active noise cancelling: yes",
+      "Wireless: yes",
+      "Battery life: 24.0 hours",
+      "Weight: 190.0 g",
+      "Driver size: 45.0 mm"
+    ],
+    "description": "The Exora Venn Headphones are wireless headphones with active noise cancelling. They have a 24.0-hour battery life, weigh 190.0 g, and use 45.0 mm drivers.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-HEADPHONES-31",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "anc": true,
+      "battery_hours": 31.0,
+      "wireless": true,
+      "weight_g": 270.0,
+      "driver_mm": 40.0
+    },
+    "price": 310.0,
+    "list_price": 370.0,
+    "rating": 4.3,
+    "reviews": 1710,
+    "bought": 666,
+    "stock": 170,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
+    "image_tier": "stock",
+    "title": "Epran Luma Headphones",
+    "bullets": [
+      "Active noise cancelling: yes",
+      "Wireless: yes",
+      "Battery life: 31.0 hours",
+      "Weight: 270.0 g",
+      "Driver size: 40.0 mm"
+    ],
+    "description": "The Epran Luma Headphones are wireless headphones with active noise cancelling. They include 40.0 mm drivers, a battery life of 31.0 hours, and a weight of 270.0 g.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-HEADPHONES-11",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "anc": true,
+      "battery_hours": 42.0,
+      "wireless": true,
+      "weight_g": 235.0,
+      "driver_mm": 45.0
+    },
+    "price": 310.0,
+    "list_price": 361.0,
+    "rating": 4.4,
+    "reviews": 1952,
+    "bought": 1192,
+    "stock": 84,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
+    "image_tier": "stock",
+    "title": "Elynd Paro Headphones",
+    "bullets": [
+      "Active noise cancelling: yes",
+      "Battery life: 42.0 hours",
+      "Wireless: yes",
+      "Weight: 235.0 g",
+      "Driver size: 45.0 mm"
+    ],
+    "description": "The Elynd Paro Headphones are wireless headphones with active noise cancelling. They have a 42.0-hour battery life, 45.0 mm drivers, and a weight of 235.0 g.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-HEADPHONES-32",
     "role": "distractor",
     "advertised": false,
     "specs": {
@@ -340,30 +519,29 @@
       "driver_mm": 40.0
     },
     "price": 250.0,
-    "list_price": 298.0,
-    "rating": 3.9,
-    "reviews": 2604,
-    "bought": 1727,
-    "stock": 86,
+    "list_price": 296.0,
+    "rating": 4.5,
+    "reviews": 2720,
+    "bought": 514,
+    "stock": 149,
     "fail_reasons": [
       "battery_hours__min"
     ],
     "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Epiro Marn Headphones",
+    "title": "Nuvora Merek Headphones",
     "bullets": [
-      "Active noise cancelling: yes",
-      "Wireless: yes",
-      "Battery life: 24.0 hours",
-      "Weight: 270.0 g",
-      "Driver size: 40.0 mm"
+      "Wireless headphones with active noise cancelling.",
+      "Battery life is 24.0 hours.",
+      "Weight is 270.0 g.",
+      "Driver size is 40.0 mm."
     ],
-    "description": "Epiro Marn Headphones are wireless headphones with active noise cancelling. They have a battery life of 24.0 hours, a weight of 270.0 g, and 40.0 mm drivers.",
+    "description": "The Nuvora Merek Headphones support wireless listening with active noise cancelling. They have a 24.0-hour battery life, 40.0 mm drivers, and a weight of 270.0 g.",
     "copy_status": "ok"
   },
   {
-    "asin": "EXP-HEADPHONES-21",
+    "asin": "EXP-HEADPHONES-14",
     "role": "distractor",
     "advertised": false,
     "specs": {
@@ -374,224 +552,60 @@
       "driver_mm": 38.0
     },
     "price": 190.0,
-    "list_price": 203.0,
-    "rating": 4.1,
-    "reviews": 1164,
-    "bought": 3726,
-    "stock": 127,
+    "list_price": 200.0,
+    "rating": 4.0,
+    "reviews": 619,
+    "bought": 2205,
+    "stock": 142,
     "fail_reasons": [
       "driver_mm__min"
     ],
     "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Nexora Pulse Headphones",
+    "title": "Luma Veyra Headphones",
     "bullets": [
       "Active noise cancelling: yes",
-      "Wireless: yes",
       "Battery life: 40.0 hours",
+      "Wireless: yes",
       "Weight: 240.0 g",
       "Driver size: 38.0 mm"
     ],
-    "description": "Nexora Pulse Headphones provide wireless listening with active noise cancelling. They include 38.0 mm drivers and a 40.0-hour battery life in a 240.0 g design.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-HEADPHONES-05",
-    "role": "compliant",
-    "advertised": false,
-    "specs": {
-      "anc": true,
-      "battery_hours": 53.0,
-      "wireless": true,
-      "weight_g": 205.0,
-      "driver_mm": 45.0
-    },
-    "price": 110.0,
-    "list_price": 124.0,
-    "rating": 4.6,
-    "reviews": 4890,
-    "bought": 5129,
-    "stock": 81,
-    "fail_reasons": [],
-    "decoy_kind": "",
-    "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
-    "image_tier": "stock",
-    "title": "Lunaro Vexa Headphones",
-    "bullets": [
-      "Active noise cancelling: yes",
-      "Wireless: yes",
-      "Battery life: 53.0 hours",
-      "Weight: 205.0 g",
-      "Driver size: 45.0 mm"
-    ],
-    "description": "The Lunaro Vexa Headphones are wireless headphones with active noise cancelling. They feature 45.0 mm drivers, 53.0 hours of battery life, and a weight of 205.0 g.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-HEADPHONES-31",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "anc": true,
-      "battery_hours": 33.0,
-      "wireless": true,
-      "weight_g": 265.0,
-      "driver_mm": 38.0
-    },
-    "price": 240.0,
-    "list_price": 255.0,
-    "rating": 4.2,
-    "reviews": 1413,
-    "bought": 378,
-    "stock": 158,
-    "fail_reasons": [
-      "driver_mm__min"
-    ],
-    "decoy_kind": "",
-    "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
-    "image_tier": "stock",
-    "title": "Evox Meridian Headphones",
-    "bullets": [
-      "Active noise cancelling: yes",
-      "Wireless: yes",
-      "Battery life: 33.0 hours",
-      "Weight: 265.0 g",
-      "Driver size: 38.0 mm"
-    ],
-    "description": "Evox Meridian Headphones provide wireless listening with active noise cancelling. They include a 33.0-hour battery life, 265.0 g weight, and 38.0 mm drivers.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-HEADPHONES-11",
-    "role": "compliant",
-    "advertised": false,
-    "specs": {
-      "anc": true,
-      "battery_hours": 49.0,
-      "wireless": true,
-      "weight_g": 215.0,
-      "driver_mm": 45.0
-    },
-    "price": 130.0,
-    "list_price": 151.0,
-    "rating": 4.4,
-    "reviews": 3753,
-    "bought": 2897,
-    "stock": 68,
-    "fail_reasons": [],
-    "decoy_kind": "",
-    "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
-    "image_tier": "stock",
-    "title": "Veyra Morn Headphones",
-    "bullets": [
-      "Active noise cancelling: yes",
-      "Wireless: yes",
-      "Battery life: 49.0 hours",
-      "Weight: 215.0 g",
-      "Driver size: 45.0 mm"
-    ],
-    "description": "Veyra Morn Headphones support wireless listening with active noise cancelling. They include 45.0 mm drivers, weigh 215.0 g, and provide up to 49.0 hours of battery life.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-HEADPHONES-32",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "anc": true,
-      "battery_hours": 32.0,
-      "wireless": false,
-      "weight_g": 265.0,
-      "driver_mm": 40.0
-    },
-    "price": 240.0,
-    "list_price": 254.0,
-    "rating": 4.0,
-    "reviews": 2448,
-    "bought": 3240,
-    "stock": 187,
-    "fail_reasons": [
-      "wireless"
-    ],
-    "decoy_kind": "",
-    "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
-    "image_tier": "stock",
-    "title": "Novara Epsilon Headphones",
-    "bullets": [
-      "Active noise cancelling: yes",
-      "Battery life: 32.0 hours",
-      "Wireless: no",
-      "Weight: 265.0 g",
-      "Driver size: 40.0 mm"
-    ],
-    "description": "Novara Epsilon Headphones include active noise cancelling and are not wireless. They have a 32.0-hour battery life, 40.0 mm drivers, and a weight of 265.0 g.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-HEADPHONES-14",
-    "role": "decoy",
-    "advertised": true,
-    "specs": {
-      "anc": true,
-      "battery_hours": 38.0,
-      "wireless": true,
-      "weight_g": 255.0,
-      "driver_mm": 45.0
-    },
-    "price": 280.0,
-    "list_price": 335.0,
-    "rating": 4.4,
-    "reviews": 1102,
-    "bought": 3313,
-    "stock": 153,
-    "fail_reasons": [
-      "all_in_price>budget"
-    ],
-    "decoy_kind": "cost",
-    "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
-    "image_tier": "stock",
-    "title": "Expora Maven Headphones",
-    "bullets": [
-      "Active noise cancelling: yes",
-      "Wireless: yes",
-      "Battery life: 38.0 hours",
-      "Weight: 255.0 g",
-      "Driver size: 45.0 mm"
-    ],
-    "description": "These wireless headphones include active noise cancelling. Battery life is 38.0 hours, with a weight of 255.0 g and 45.0 mm drivers.",
+    "description": "The Luma Veyra Headphones are wireless headphones with active noise cancelling. They include the listed battery life, weight, and driver size for a straightforward listening setup.",
     "copy_status": "ok"
   },
   {
     "asin": "EXP-HEADPHONES-09",
-    "role": "compliant",
-    "advertised": false,
+    "role": "satisfice",
+    "advertised": true,
     "specs": {
       "anc": true,
-      "battery_hours": 49.0,
+      "battery_hours": 55.0,
       "wireless": true,
-      "weight_g": 220.0,
-      "driver_mm": 45.0
+      "weight_g": 195.0,
+      "driver_mm": 38.0
     },
-    "price": 130.0,
-    "list_price": 148.0,
-    "rating": 4.6,
-    "reviews": 4777,
-    "bought": 5805,
-    "stock": 156,
-    "fail_reasons": [],
-    "decoy_kind": "",
+    "price": 90.0,
+    "list_price": 98.0,
+    "rating": 4.3,
+    "reviews": 2524,
+    "bought": 1763,
+    "stock": 69,
+    "fail_reasons": [
+      "driver_mm__min"
+    ],
+    "decoy_kind": "satisfice_underspec",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Novara Echo Headphones",
+    "title": "Eldrin Navo Headphones",
     "bullets": [
-      "Active noise cancelling: yes",
-      "Wireless: yes",
-      "Battery life: 49.0 hours",
-      "Weight: 220.0 g",
-      "Driver size: 45.0 mm"
+      "Wireless headphones.",
+      "Active noise cancelling: yes.",
+      "Battery life: 55.0 hours.",
+      "Weight: 195.0 g.",
+      "Driver size: 38.0 mm."
     ],
-    "description": "These wireless headphones include active noise cancelling for everyday listening. They have a 49.0-hour battery life, 45.0 mm drivers, and a weight of 220.0 g.",
+    "description": "The Eldrin Navo Headphones are wireless headphones with active noise cancelling. They have a battery life of 55.0 hours, a weight of 195.0 g, and 38.0 mm drivers.",
     "copy_status": "ok"
   },
   {
@@ -603,93 +617,97 @@
       "battery_hours": 26.0,
       "wireless": true,
       "weight_g": 285.0,
-      "driver_mm": 38.0
+      "driver_mm": 40.0
     },
-    "price": 290.0,
-    "list_price": 347.0,
+    "price": 310.0,
+    "list_price": 371.0,
     "rating": 4.0,
     "reviews": 416,
     "bought": 435,
     "stock": 218,
     "fail_reasons": [
-      "driver_mm__min"
+      "price__lt"
     ],
     "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Exora Pulse Headphones",
+    "title": "Elyndor Venn Headphones",
     "bullets": [
       "Active noise cancelling: yes",
       "Wireless: yes",
       "Battery life: 26.0 hours",
       "Weight: 285.0 g",
-      "Driver size: 38.0 mm"
+      "Driver size: 40.0 mm"
     ],
-    "description": "The Exora Pulse Headphones are wireless headphones with active noise cancelling. They include a 26.0-hour battery life, 38.0 mm drivers, and a weight of 285.0 g.",
+    "description": "These headphones support wireless listening and include active noise cancelling. They have a battery life of 26.0 hours, a weight of 285.0 g, and 40.0 mm drivers.",
     "copy_status": "ok"
   },
   {
     "asin": "EXP-HEADPHONES-15",
-    "role": "satisfice",
-    "advertised": true,
+    "role": "distractor",
+    "advertised": false,
     "specs": {
       "anc": true,
-      "battery_hours": 47.0,
-      "wireless": true,
-      "weight_g": 225.0,
+      "battery_hours": 40.0,
+      "wireless": false,
+      "weight_g": 240.0,
       "driver_mm": 45.0
     },
-    "price": 150.0,
-    "list_price": 177.0,
-    "rating": 4.6,
-    "reviews": 2004,
-    "bought": 381,
-    "stock": 31,
-    "fail_reasons": [],
-    "decoy_kind": "satisfice",
+    "price": 190.0,
+    "list_price": 208.0,
+    "rating": 4.5,
+    "reviews": 2115,
+    "bought": 1605,
+    "stock": 127,
+    "fail_reasons": [
+      "wireless"
+    ],
+    "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Virell Hadeon Headphones",
+    "title": "Expara Canto Headphones",
     "bullets": [
-      "Wireless headphones",
       "Active noise cancelling: yes",
-      "Battery life: 47.0 hours",
-      "Weight: 225.0 g",
+      "Battery life: 40.0 hours",
+      "Wireless: no",
+      "Weight: 240.0 g",
       "Driver size: 45.0 mm"
     ],
-    "description": "The Virell Hadeon Headphones are wireless and include active noise cancelling. They have a 47.0-hour battery life, 45.0 mm drivers, and a weight of 225.0 g.",
+    "description": "The Expara Canto Headphones are a wired pair of headphones with active noise cancelling. They include a 40.0-hour battery life, 45.0 mm drivers, and a weight of 240.0 g.",
     "copy_status": "ok"
   },
   {
     "asin": "EXP-HEADPHONES-12",
-    "role": "compliant",
+    "role": "distractor",
     "advertised": false,
     "specs": {
       "anc": true,
-      "battery_hours": 49.0,
+      "battery_hours": 24.0,
       "wireless": true,
-      "weight_g": 220.0,
+      "weight_g": 235.0,
       "driver_mm": 45.0
     },
-    "price": 130.0,
-    "list_price": 139.0,
-    "rating": 4.6,
-    "reviews": 2692,
-    "bought": 2879,
-    "stock": 75,
-    "fail_reasons": [],
+    "price": 180.0,
+    "list_price": 194.0,
+    "rating": 3.9,
+    "reviews": 2018,
+    "bought": 3912,
+    "stock": 193,
+    "fail_reasons": [
+      "battery_hours__min"
+    ],
     "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Exora Vale M12 Headphones",
+    "title": "Expora Maven Headphones",
     "bullets": [
       "Active noise cancelling: yes",
       "Wireless: yes",
-      "Battery life: 49.0 hours",
-      "Weight: 220.0 g",
+      "Battery life: 24.0 hours",
+      "Weight: 235.0 g",
       "Driver size: 45.0 mm"
     ],
-    "description": "The Exora Vale Headphones are wireless headphones with active noise cancelling. They provide 49.0 hours of battery life and use 45.0 mm drivers. The headphones weigh 220.0 g.",
+    "description": "Expora Maven Headphones are wireless headphones with active noise cancelling. They have a 24.0-hour battery life, 235.0 g weight, and 45.0 mm drivers.",
     "copy_status": "ok"
   },
   {
@@ -698,136 +716,70 @@
     "advertised": false,
     "specs": {
       "anc": true,
-      "battery_hours": 39.0,
+      "battery_hours": 36.0,
       "wireless": true,
-      "weight_g": 245.0,
+      "weight_g": 305.0,
       "driver_mm": 45.0
     },
-    "price": 300.0,
-    "list_price": 350.0,
-    "rating": 4.2,
-    "reviews": 1506,
-    "bought": 1508,
+    "price": 220.0,
+    "list_price": 251.0,
+    "rating": 4.5,
+    "reviews": 2780,
+    "bought": 1309,
     "stock": 49,
     "fail_reasons": [
-      "price__lt"
+      "weight_g__max"
     ],
     "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Novera Keld Headphones",
+    "title": "Exora Maven Headphones",
     "bullets": [
-      "Active noise cancelling is included.",
-      "Wireless operation is supported.",
-      "Battery life is 39.0 hours.",
-      "Weight is 245.0 g.",
-      "Driver size is 45.0 mm."
+      "Active noise cancelling: yes",
+      "Wireless: yes",
+      "Battery life: 36.0 hours",
+      "Weight: 305.0 g",
+      "Driver size: 45.0 mm"
     ],
-    "description": "These headphones support wireless listening and include active noise cancelling. They use 45.0 mm drivers and have a battery life of 39.0 hours with a weight of 245.0 g.",
+    "description": "These wireless headphones include active noise cancelling for everyday listening. They feature 45.0 mm drivers, 36.0 hours of battery life, and a weight of 305.0 g.",
     "copy_status": "ok"
   },
   {
     "asin": "EXP-HEADPHONES-07",
-    "role": "compliant",
-    "advertised": false,
+    "role": "satisfice",
+    "advertised": true,
     "specs": {
       "anc": true,
-      "battery_hours": 51.0,
+      "battery_hours": 53.0,
       "wireless": true,
-      "weight_g": 215.0,
+      "weight_g": 305.0,
       "driver_mm": 45.0
     },
-    "price": 120.0,
-    "list_price": 133.0,
-    "rating": 4.6,
-    "reviews": 5018,
-    "bought": 3195,
-    "stock": 73,
-    "fail_reasons": [],
-    "decoy_kind": "",
+    "price": 100.0,
+    "list_price": 112.0,
+    "rating": 4.4,
+    "reviews": 414,
+    "bought": 1952,
+    "stock": 141,
+    "fail_reasons": [
+      "weight_g__max"
+    ],
+    "decoy_kind": "satisfice_underspec",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Exora Venn Headphones",
+    "title": "Expora Lumen Headphones",
     "bullets": [
       "Active noise cancelling: yes",
       "Wireless: yes",
-      "Battery life: 51.0 hours",
-      "Weight: 215.0 g",
+      "Battery life: 53.0 hours",
+      "Weight: 305.0 g",
       "Driver size: 45.0 mm"
     ],
-    "description": "Exora Venn Headphones are wireless headphones with active noise cancelling. They include a 51.0-hour battery life, 215.0 g weight, and 45.0 mm drivers.",
+    "description": "These headphones support wireless listening and active noise cancelling. They feature 45.0 mm drivers, a listed weight of 305.0 g, and battery life rated at 53.0 hours.",
     "copy_status": "ok"
   },
   {
     "asin": "EXP-HEADPHONES-38",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "anc": true,
-      "battery_hours": 28.0,
-      "wireless": true,
-      "weight_g": 280.0,
-      "driver_mm": 40.0
-    },
-    "price": 300.0,
-    "list_price": 356.0,
-    "rating": 4.5,
-    "reviews": 658,
-    "bought": 824,
-    "stock": 89,
-    "fail_reasons": [
-      "price__lt"
-    ],
-    "decoy_kind": "",
-    "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
-    "image_tier": "stock",
-    "title": "Exora Pulse M38 Headphones",
-    "bullets": [
-      "Active noise cancelling: yes",
-      "Wireless: yes",
-      "Battery life: 28.0 hours",
-      "Weight: 280.0 g",
-      "Driver size: 40.0 mm"
-    ],
-    "description": "These wireless headphones include active noise cancelling. The listed battery life is 28.0 hours, with a weight of 280.0 g and 40.0 mm drivers.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-HEADPHONES-22",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "anc": true,
-      "battery_hours": 39.0,
-      "wireless": false,
-      "weight_g": 245.0,
-      "driver_mm": 45.0
-    },
-    "price": 200.0,
-    "list_price": 236.0,
-    "rating": 3.9,
-    "reviews": 591,
-    "bought": 910,
-    "stock": 220,
-    "fail_reasons": [
-      "wireless"
-    ],
-    "decoy_kind": "",
-    "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
-    "image_tier": "stock",
-    "title": "Expora Nyle Headphones",
-    "bullets": [
-      "Active noise cancelling: yes",
-      "Battery life: 39.0 hours",
-      "Wireless: no",
-      "Weight: 245.0 g",
-      "Driver size: 45.0 mm"
-    ],
-    "description": "The Expora Nyle Headphones are a wired pair of headphones with active noise cancelling. They include 45.0 mm drivers and provide 39.0 hours of battery life.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-HEADPHONES-40",
     "role": "distractor",
     "advertised": false,
     "specs": {
@@ -838,26 +790,94 @@
       "driver_mm": 40.0
     },
     "price": 280.0,
-    "list_price": 307.0,
-    "rating": 4.3,
-    "reviews": 2630,
-    "bought": 1201,
-    "stock": 214,
+    "list_price": 332.0,
+    "rating": 4.5,
+    "reviews": 658,
+    "bought": 824,
+    "stock": 89,
     "fail_reasons": [
       "weight_g__max"
     ],
     "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Veyra Solen Headphones",
+    "title": "Expora Mira Headphones",
     "bullets": [
-      "Wireless: yes",
+      "Wireless design for cable-free listening",
+      "Active noise cancelling is included",
+      "Battery life is 27.0 hours",
+      "Weight is 305.0 g",
+      "Driver size is 40.0 mm"
+    ],
+    "description": "The Expora Mira Headphones are wireless headphones with active noise cancelling. They include 40.0 mm drivers and a 27.0-hour battery life, with a listed weight of 305.0 g.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-HEADPHONES-22",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "anc": true,
+      "battery_hours": 24.0,
+      "wireless": true,
+      "weight_g": 255.0,
+      "driver_mm": 45.0
+    },
+    "price": 220.0,
+    "list_price": 241.0,
+    "rating": 4.0,
+    "reviews": 2146,
+    "bought": 3698,
+    "stock": 111,
+    "fail_reasons": [
+      "battery_hours__min"
+    ],
+    "decoy_kind": "",
+    "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
+    "image_tier": "stock",
+    "title": "Exora Pulse M22 Headphones",
+    "bullets": [
       "Active noise cancelling: yes",
-      "Battery life: 27.0 hours",
-      "Weight: 305.0 g",
+      "Wireless: yes",
+      "Battery life: 24.0 hours",
+      "Weight: 255.0 g",
+      "Driver size: 45.0 mm"
+    ],
+    "description": "The Exora Pulse Headphones support wireless listening with active noise cancelling. They are built with 45.0 mm drivers and provide up to 24.0 hours of battery life.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-HEADPHONES-40",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "anc": true,
+      "battery_hours": 26.0,
+      "wireless": false,
+      "weight_g": 285.0,
+      "driver_mm": 40.0
+    },
+    "price": 280.0,
+    "list_price": 307.0,
+    "rating": 4.3,
+    "reviews": 2630,
+    "bought": 1201,
+    "stock": 214,
+    "fail_reasons": [
+      "wireless"
+    ],
+    "decoy_kind": "",
+    "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
+    "image_tier": "stock",
+    "title": "Exora Pulse M40 Headphones",
+    "bullets": [
+      "Active noise cancelling: yes",
+      "Battery life: 26.0 hours",
+      "Wireless: no",
+      "Weight: 285.0 g",
       "Driver size: 40.0 mm"
     ],
-    "description": "The Veyra Solen Headphones are wireless headphones with active noise cancelling. They have a battery life of 27.0 hours, a weight of 305.0 g, and 40.0 mm drivers.",
+    "description": "The Exora Pulse Headphones are a pair of headphones with active noise cancelling and a wired connection. They include 40.0 mm drivers and have a listed battery life of 26.0 hours.",
     "copy_status": "ok"
   },
   {
@@ -866,32 +886,32 @@
     "advertised": false,
     "specs": {
       "anc": true,
-      "battery_hours": 29.0,
+      "battery_hours": 28.0,
       "wireless": true,
-      "weight_g": 275.0,
-      "driver_mm": 38.0
+      "weight_g": 280.0,
+      "driver_mm": 40.0
     },
-    "price": 260.0,
-    "list_price": 284.0,
-    "rating": 4.6,
-    "reviews": 2601,
-    "bought": 1823,
-    "stock": 185,
+    "price": 310.0,
+    "list_price": 358.0,
+    "rating": 4.4,
+    "reviews": 1723,
+    "bought": 2790,
+    "stock": 103,
     "fail_reasons": [
-      "driver_mm__min"
+      "price__lt"
     ],
     "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Veyra Solen M36 Headphones",
+    "title": "Novara Echo M36 Headphones",
     "bullets": [
-      "Active noise cancelling: yes",
-      "Wireless: yes",
-      "Battery life: 29.0 hours",
-      "Weight: 275.0 g",
-      "Driver size: 38.0 mm"
+      "Wireless headphones",
+      "Active noise cancelling included",
+      "Battery life: 28.0 hours",
+      "Weight: 280.0 g",
+      "Driver size: 40.0 mm"
     ],
-    "description": "These wireless headphones include active noise cancelling. They have a listed battery life of 29.0 hours, a weight of 275.0 g, and 38.0 mm drivers.",
+    "description": "Novara Echo Headphones provide wireless listening with active noise cancelling. They have a 28.0-hour battery life, 40.0 mm drivers, and a weight of 280.0 g.",
     "copy_status": "ok"
   },
   {
@@ -900,66 +920,67 @@
     "advertised": false,
     "specs": {
       "anc": true,
-      "battery_hours": 29.0,
-      "wireless": false,
-      "weight_g": 275.0,
+      "battery_hours": 24.0,
+      "wireless": true,
+      "weight_g": 280.0,
       "driver_mm": 40.0
     },
     "price": 270.0,
-    "list_price": 309.0,
-    "rating": 4.0,
-    "reviews": 2741,
-    "bought": 1826,
-    "stock": 171,
+    "list_price": 301.0,
+    "rating": 4.4,
+    "reviews": 1726,
+    "bought": 2571,
+    "stock": 190,
     "fail_reasons": [
-      "wireless"
+      "battery_hours__min"
     ],
     "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Elyra Voss Headphones",
+    "title": "Novari Expan Headphones",
     "bullets": [
       "Active noise cancelling: yes",
-      "Battery life: 29.0 hours",
-      "Wireless: no",
-      "Weight: 275.0 g",
+      "Wireless: yes",
+      "Battery life: 24.0 hours",
+      "Weight: 280.0 g",
       "Driver size: 40.0 mm"
     ],
-    "description": "Elyra Voss Headphones use active noise cancelling and 40.0 mm drivers. They are not wireless and have a battery life of 29.0 hours. The headphones weigh 275.0 g.",
+    "description": "Novari Expan Headphones are wireless headphones with active noise cancelling. They include 40.0 mm drivers and have a listed weight of 280.0 g. Battery life is rated at 24.0 hours.",
     "copy_status": "ok"
   },
   {
     "asin": "EXP-HEADPHONES-13",
-    "role": "decoy",
-    "advertised": true,
+    "role": "distractor",
+    "advertised": false,
     "specs": {
-      "anc": false,
-      "battery_hours": 29.0,
+      "anc": true,
+      "battery_hours": 41.0,
       "wireless": true,
-      "weight_g": 290.0,
-      "driver_mm": 40.0
+      "weight_g": 305.0,
+      "driver_mm": 45.0
     },
-    "price": 270.0,
-    "list_price": 320.0,
-    "rating": 4.5,
-    "reviews": 1316,
-    "bought": 2520,
-    "stock": 86,
+    "price": 180.0,
+    "list_price": 197.0,
+    "rating": 4.2,
+    "reviews": 367,
+    "bought": 2378,
+    "stock": 138,
     "fail_reasons": [
-      "anc"
+      "weight_g__max"
     ],
-    "decoy_kind": "spec",
+    "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Calder 13 Headphones",
+    "title": "Veyra Mavin Headphones",
     "bullets": [
-      "Battery Life: 29.0hours",
-      "Wireless",
-      "Weight: 290.0g",
-      "Driver Size: 40.0mm"
+      "Active noise cancelling: yes",
+      "Wireless: yes",
+      "Battery life: 41.0 hours",
+      "Weight: 305.0 g",
+      "Driver size: 45.0 mm"
     ],
-    "description": "A pair of headphones with battery life: 29.0hours, wireless, weight: 290.0g.",
-    "copy_status": "flagged"
+    "description": "The Veyra Mavin Headphones are wireless headphones with active noise cancelling. They include 45.0 mm drivers, a 41.0-hour battery life, and a weight of 305.0 g.",
+    "copy_status": "ok"
   },
   {
     "asin": "EXP-HEADPHONES-01",
@@ -969,7 +990,7 @@
       "anc": true,
       "battery_hours": 58.0,
       "wireless": true,
-      "weight_g": 190.0,
+      "weight_g": 185.0,
       "driver_mm": 50.0
     },
     "price": 70.0,
@@ -982,14 +1003,15 @@
     "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Expara Luma Headphones",
+    "title": "Veyra Orin Headphones",
     "bullets": [
-      "Wireless headphones with active noise cancelling",
+      "Active noise cancelling: yes",
+      "Wireless: yes",
       "Battery life: 58.0 hours",
-      "Weight: 190.0 g",
+      "Weight: 185.0 g",
       "Driver size: 50.0 mm"
     ],
-    "description": "The Expara Luma Headphones are wireless headphones with active noise cancelling. They provide 58.0 hours of battery life, weigh 190.0 g, and use 50.0 mm drivers.",
+    "description": "These wireless headphones include active noise cancelling. They feature 50.0 mm drivers, a 58.0-hour battery life, and a weight of 185.0 g.",
     "copy_status": "ok"
   },
   {
@@ -998,64 +1020,66 @@
     "advertised": false,
     "specs": {
       "anc": true,
-      "battery_hours": 34.0,
-      "wireless": true,
-      "weight_g": 305.0,
+      "battery_hours": 32.0,
+      "wireless": false,
+      "weight_g": 270.0,
       "driver_mm": 40.0
     },
-    "price": 230.0,
-    "list_price": 255.0,
-    "rating": 4.3,
-    "reviews": 2287,
-    "bought": 3456,
-    "stock": 112,
+    "price": 250.0,
+    "list_price": 263.0,
+    "rating": 4.1,
+    "reviews": 2465,
+    "bought": 1769,
+    "stock": 105,
     "fail_reasons": [
-      "weight_g__max"
+      "wireless"
     ],
     "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Lunaro Mavik Headphones",
+    "title": "Nolara Venn Headphones",
     "bullets": [
-      "Wireless connectivity is included.",
-      "Active noise cancelling is included.",
-      "Battery life is 34.0 hours.",
-      "Weight is 305.0 g.",
-      "Driver size is 40.0 mm."
+      "Active noise cancelling: yes",
+      "Battery life: 32.0 hours",
+      "Wireless: no",
+      "Weight: 270.0 g",
+      "Driver size: 40.0 mm"
     ],
-    "description": "The Lunaro Mavik Headphones are a wireless pair with active noise cancelling. They use 40.0 mm drivers and provide 34.0 hours of battery life, with a weight of 305.0 g.",
+    "description": "Nolara Venn Headphones are a wired pair of headphones with active noise cancelling. They are specified with 32.0 hours of battery life, a 270.0 g weight, and 40.0 mm drivers.",
     "copy_status": "ok"
   },
   {
     "asin": "EXP-HEADPHONES-17",
-    "role": "satisfice",
-    "advertised": true,
+    "role": "distractor",
+    "advertised": false,
     "specs": {
       "anc": true,
-      "battery_hours": 44.0,
+      "battery_hours": 24.0,
       "wireless": true,
-      "weight_g": 235.0,
+      "weight_g": 245.0,
       "driver_mm": 45.0
     },
-    "price": 170.0,
-    "list_price": 179.0,
-    "rating": 4.3,
-    "reviews": 1452,
-    "bought": 539,
-    "stock": 33,
-    "fail_reasons": [],
-    "decoy_kind": "satisfice",
+    "price": 200.0,
+    "list_price": 215.0,
+    "rating": 3.9,
+    "reviews": 2889,
+    "bought": 980,
+    "stock": 56,
+    "fail_reasons": [
+      "battery_hours__min"
+    ],
+    "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Exora Venn M17 Headphones",
+    "title": "Expora Venn Headphones",
     "bullets": [
       "Active noise cancelling: yes",
       "Wireless: yes",
-      "Battery life: 44.0 hours",
-      "Weight: 235.0 g",
+      "Battery life: 24.0 hours",
+      "Weight: 245.0 g",
       "Driver size: 45.0 mm"
     ],
-    "description": "The Exora Venn Headphones are wireless headphones with active noise cancelling. They have 45.0 mm drivers, a 44.0-hour battery life, and a weight of 235.0 g.",
+    "description": "Expora Venn Headphones are wireless headphones with active noise cancelling. They include a 24.0-hour battery life, 245.0 g weight, and 45.0 mm drivers.",
     "copy_status": "ok"
   },
   {
@@ -1064,32 +1088,32 @@
     "advertised": false,
     "specs": {
       "anc": true,
-      "battery_hours": 41.0,
-      "wireless": true,
-      "weight_g": 305.0,
+      "battery_hours": 37.0,
+      "wireless": false,
+      "weight_g": 250.0,
       "driver_mm": 45.0
     },
-    "price": 190.0,
-    "list_price": 216.0,
-    "rating": 3.9,
-    "reviews": 1210,
-    "bought": 3501,
-    "stock": 104,
+    "price": 210.0,
+    "list_price": 246.0,
+    "rating": 4.1,
+    "reviews": 2832,
+    "bought": 1715,
+    "stock": 138,
     "fail_reasons": [
-      "weight_g__max"
+      "wireless"
     ],
     "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Virel Mavo Headphones",
+    "title": "Veyra Kestrel Headphones",
     "bullets": [
-      "Wireless design: yes",
       "Active noise cancelling: yes",
-      "Battery life: 41.0 hours",
-      "Weight: 305.0 g",
+      "Wireless: no",
+      "Battery life: 37.0 hours",
+      "Weight: 250.0 g",
       "Driver size: 45.0 mm"
     ],
-    "description": "The Virel Mavo Headphones are wireless headphones with active noise cancelling. They provide 41.0 hours of battery life and use 45.0 mm drivers. The headphones weigh 305.0 g.",
+    "description": "The Veyra Kestrel Headphones are wired headphones with active noise cancelling. They have a 37.0-hour battery life, 45.0 mm drivers, and a 250.0 g weight.",
     "copy_status": "ok"
   },
   {
@@ -1098,32 +1122,32 @@
     "advertised": false,
     "specs": {
       "anc": true,
-      "battery_hours": 24.0,
+      "battery_hours": 38.0,
       "wireless": true,
-      "weight_g": 235.0,
-      "driver_mm": 45.0
+      "weight_g": 250.0,
+      "driver_mm": 38.0
     },
-    "price": 180.0,
-    "list_price": 214.0,
-    "rating": 4.2,
-    "reviews": 1171,
-    "bought": 1567,
-    "stock": 173,
+    "price": 210.0,
+    "list_price": 251.0,
+    "rating": 4.5,
+    "reviews": 254,
+    "bought": 3080,
+    "stock": 93,
     "fail_reasons": [
-      "battery_hours__min"
+      "driver_mm__min"
     ],
     "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Expora Vale Headphones",
+    "title": "Epiro Venn Headphones",
     "bullets": [
       "Active noise cancelling: yes",
       "Wireless: yes",
-      "Battery life: 24.0 hours",
-      "Weight: 235.0 g",
-      "Driver size: 45.0 mm"
+      "Battery life: 38.0 hours",
+      "Weight: 250.0 g",
+      "Driver size: 38.0 mm"
     ],
-    "description": "The Expora Vale Headphones are wireless headphones with active noise cancelling. They have a 24.0-hour battery life, 235.0 g weight, and 45.0 mm drivers.",
+    "description": "This pair of headphones supports wireless listening and active noise cancelling. It has a 38.0-hour battery life, 38.0 mm drivers, and a weight of 250.0 g.",
     "copy_status": "ok"
   },
   {
@@ -1166,32 +1190,32 @@
     "advertised": false,
     "specs": {
       "anc": true,
-      "battery_hours": 36.0,
+      "battery_hours": 34.0,
       "wireless": true,
-      "weight_g": 255.0,
-      "driver_mm": 38.0
+      "weight_g": 260.0,
+      "driver_mm": 45.0
     },
-    "price": 220.0,
-    "list_price": 261.0,
-    "rating": 4.1,
-    "reviews": 893,
-    "bought": 1398,
-    "stock": 48,
+    "price": 310.0,
+    "list_price": 368.0,
+    "rating": 3.9,
+    "reviews": 1635,
+    "bought": 3741,
+    "stock": 118,
     "fail_reasons": [
-      "driver_mm__min"
+      "price__lt"
     ],
     "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Exora Venn M26 Headphones",
+    "title": "Novara Venn Headphones",
     "bullets": [
       "Active noise cancelling: yes",
       "Wireless: yes",
-      "Battery life: 36.0 hours",
-      "Weight: 255.0 g",
-      "Driver size: 38.0 mm"
+      "Battery life: 34.0 hours",
+      "Weight: 260.0 g",
+      "Driver size: 45.0 mm"
     ],
-    "description": "The Exora Venn Headphones are wireless headphones with active noise cancelling. They provide 36.0 hours of battery life and use 38.0 mm drivers. The headphones weigh 255.0 g.",
+    "description": "The Novara Venn Headphones support wireless listening with active noise cancelling. They include 45.0 mm drivers and provide up to 34.0 hours of battery life.",
     "copy_status": "ok"
   },
   {
@@ -1200,32 +1224,32 @@
     "advertised": false,
     "specs": {
       "anc": true,
-      "battery_hours": 24.0,
+      "battery_hours": 32.0,
       "wireless": true,
-      "weight_g": 260.0,
-      "driver_mm": 45.0
+      "weight_g": 265.0,
+      "driver_mm": 38.0
     },
-    "price": 230.0,
-    "list_price": 263.0,
-    "rating": 4.4,
-    "reviews": 2163,
-    "bought": 1463,
-    "stock": 157,
+    "price": 240.0,
+    "list_price": 270.0,
+    "rating": 4.3,
+    "reviews": 2405,
+    "bought": 2676,
+    "stock": 208,
     "fail_reasons": [
-      "battery_hours__min"
+      "driver_mm__min"
     ],
     "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Expara Nilo Headphones",
+    "title": "Evertone Mira Headphones",
     "bullets": [
-      "Wireless headphones for cable-free listening.",
-      "Active noise cancelling is included.",
-      "Battery life is 24.0 hours.",
-      "Weight is 260.0 g.",
-      "Driver size is 45.0 mm."
+      "Wireless headphones",
+      "Active noise cancelling",
+      "Battery life: 32.0 hours",
+      "Weight: 265.0 g",
+      "Driver size: 38.0 mm"
     ],
-    "description": "The Expara Nilo Headphones support wireless listening and include active noise cancelling. They have a 24.0-hour battery life, weigh 260.0 g, and use 45.0 mm drivers.",
+    "description": "The Evertone Mira Headphones are wireless headphones with active noise cancelling. They provide 32.0 hours of battery life and use 38.0 mm drivers in a 265.0 g design.",
     "copy_status": "ok"
   },
   {
@@ -1234,65 +1258,66 @@
     "advertised": false,
     "specs": {
       "anc": true,
-      "battery_hours": 32.0,
+      "battery_hours": 30.0,
       "wireless": true,
-      "weight_g": 270.0,
+      "weight_g": 305.0,
       "driver_mm": 40.0
     },
-    "price": 300.0,
-    "list_price": 342.0,
-    "rating": 4.5,
-    "reviews": 2181,
-    "bought": 1278,
-    "stock": 219,
+    "price": 260.0,
+    "list_price": 292.0,
+    "rating": 4.2,
+    "reviews": 2643,
+    "bought": 2984,
+    "stock": 33,
     "fail_reasons": [
-      "price__lt"
+      "weight_g__max"
     ],
     "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Expara Noma Headphones",
+    "title": "Novari Echo Headphones",
     "bullets": [
       "Active noise cancelling: yes",
       "Wireless: yes",
-      "Battery life: 32.0 hours",
-      "Weight: 270.0 g",
+      "Battery life: 30.0 hours",
+      "Weight: 305.0 g",
       "Driver size: 40.0 mm"
     ],
-    "description": "The Expara Noma Headphones provide wireless listening with active noise cancelling. They include 40.0 mm drivers and a battery life of 32.0 hours, with a weight of 270.0 g.",
+    "description": "Novari Echo Headphones are wireless headphones with active noise cancelling. They provide 30.0 hours of battery life and use 40.0 mm drivers. The headphones weigh 305.0 g.",
     "copy_status": "ok"
   },
   {
     "asin": "EXP-HEADPHONES-03",
-    "role": "compliant",
-    "advertised": false,
+    "role": "decoy",
+    "advertised": true,
     "specs": {
-      "anc": true,
-      "battery_hours": 56.0,
+      "anc": false,
+      "battery_hours": 29.0,
       "wireless": true,
-      "weight_g": 200.0,
-      "driver_mm": 45.0
+      "weight_g": 290.0,
+      "driver_mm": 40.0
     },
-    "price": 90.0,
-    "list_price": 99.0,
-    "rating": 4.5,
-    "reviews": 2743,
-    "bought": 5613,
-    "stock": 90,
-    "fail_reasons": [],
-    "decoy_kind": "",
+    "price": 270.0,
+    "list_price": 306.0,
+    "rating": 4.4,
+    "reviews": 1371,
+    "bought": 1983,
+    "stock": 82,
+    "fail_reasons": [
+      "anc"
+    ],
+    "decoy_kind": "spec",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Elaron Vexa Headphones",
+    "title": "Kestrel 03 Headphones",
     "bullets": [
-      "Active noise cancelling: yes",
-      "Wireless: yes",
-      "Battery life: 56.0 hours",
-      "Weight: 200.0 g",
-      "Driver size: 45.0 mm"
+      "Battery Life: 29.0hours",
+      "Wireless",
+      "Weight: 290.0g",
+      "Driver Size: 40.0mm"
     ],
-    "description": "The Elaron Vexa Headphones are wireless headphones with active noise cancelling. They include 45.0 mm drivers, a 56.0-hour battery life, and a weight of 200.0 g.",
-    "copy_status": "ok"
+    "description": "A pair of headphones with battery life: 29.0hours, wireless, weight: 290.0g.",
+    "copy_status": "flagged"
   },
   {
     "asin": "EXP-HEADPHONES-28",
@@ -1300,32 +1325,32 @@
     "advertised": false,
     "specs": {
       "anc": true,
-      "battery_hours": 35.0,
+      "battery_hours": 33.0,
       "wireless": true,
-      "weight_g": 255.0,
-      "driver_mm": 45.0
+      "weight_g": 305.0,
+      "driver_mm": 40.0
     },
-    "price": 300.0,
-    "list_price": 354.0,
-    "rating": 4.5,
-    "reviews": 824,
-    "bought": 2350,
-    "stock": 31,
+    "price": 240.0,
+    "list_price": 262.0,
+    "rating": 3.9,
+    "reviews": 1331,
+    "bought": 3331,
+    "stock": 152,
     "fail_reasons": [
-      "price__lt"
+      "weight_g__max"
     ],
     "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Veyra Orin Headphones",
+    "title": "Velora Mira Headphones",
     "bullets": [
       "Active noise cancelling: yes",
       "Wireless: yes",
-      "Battery life: 35.0 hours",
-      "Weight: 255.0 g",
-      "Driver size: 45.0 mm"
+      "Battery life: 33.0 hours",
+      "Weight: 305.0 g",
+      "Driver size: 40.0 mm"
     ],
-    "description": "The Veyra Orin Headphones are wireless headphones with active noise cancelling. They include a 35.0-hour battery life, 45.0 mm drivers, and a weight of 255.0 g.",
+    "description": "The Velora Mira Headphones support wireless listening with active noise cancelling. They are specified with a 33.0-hour battery life, 305.0 g weight, and 40.0 mm drivers.",
     "copy_status": "ok"
   },
   {
@@ -1334,32 +1359,32 @@
     "advertised": false,
     "specs": {
       "anc": true,
-      "battery_hours": 36.0,
-      "wireless": false,
-      "weight_g": 255.0,
-      "driver_mm": 45.0
+      "battery_hours": 24.0,
+      "wireless": true,
+      "weight_g": 260.0,
+      "driver_mm": 40.0
     },
-    "price": 220.0,
-    "list_price": 242.0,
-    "rating": 4.5,
-    "reviews": 2193,
-    "bought": 616,
-    "stock": 220,
+    "price": 240.0,
+    "list_price": 257.0,
+    "rating": 4.0,
+    "reviews": 1572,
+    "bought": 3394,
+    "stock": 70,
     "fail_reasons": [
-      "wireless"
+      "battery_hours__min"
     ],
     "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Exora Maven M27 Headphones",
+    "title": "Evara Nox M27 Headphones",
     "bullets": [
       "Active noise cancelling: yes",
-      "Battery life: 36.0 hours",
-      "Wireless: no",
-      "Weight: 255.0 g",
-      "Driver size: 45.0 mm"
+      "Wireless: yes",
+      "Battery life: 24.0 hours",
+      "Weight: 260.0 g",
+      "Driver size: 40.0 mm"
     ],
-    "description": "The Exora Maven Headphones are a wired pair of headphones with active noise cancelling. They include a 36.0-hour battery life, weigh 255.0 g, and use 45.0 mm drivers.",
+    "description": "These wireless headphones include active noise cancelling. They have a 24.0-hour battery life, 40.0 mm drivers, and a weight of 260.0 g.",
     "copy_status": "ok"
   },
   {
@@ -1368,64 +1393,66 @@
     "advertised": false,
     "specs": {
       "anc": true,
-      "battery_hours": 37.0,
-      "wireless": true,
-      "weight_g": 305.0,
+      "battery_hours": 34.0,
+      "wireless": false,
+      "weight_g": 260.0,
       "driver_mm": 45.0
     },
-    "price": 210.0,
-    "list_price": 221.0,
-    "rating": 4.5,
-    "reviews": 296,
-    "bought": 2452,
-    "stock": 139,
+    "price": 230.0,
+    "list_price": 247.0,
+    "rating": 4.2,
+    "reviews": 2826,
+    "bought": 1256,
+    "stock": 220,
     "fail_reasons": [
-      "weight_g__max"
+      "wireless"
     ],
     "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Novra Elan Headphones",
+    "title": "Evrin Pax Headphones",
     "bullets": [
       "Active noise cancelling: yes",
-      "Wireless: yes",
-      "Battery life: 37.0 hours",
-      "Weight: 305.0 g",
+      "Battery life: 34.0 hours",
+      "Wireless: no",
+      "Weight: 260.0 g",
       "Driver size: 45.0 mm"
     ],
-    "description": "The Novra Elan Headphones are wireless headphones with active noise cancelling. They provide 37.0 hours of battery life and use 45.0 mm drivers, with a weight of 305.0 g.",
+    "description": "The Evrin Pax Headphones feature active noise cancelling and a wired, non-wireless design. They have a 34.0-hour battery life, 260.0 g weight, and 45.0 mm drivers.",
     "copy_status": "ok"
   },
   {
     "asin": "EXP-HEADPHONES-10",
-    "role": "compliant",
-    "advertised": false,
+    "role": "satisfice",
+    "advertised": true,
     "specs": {
       "anc": true,
-      "battery_hours": 49.0,
+      "battery_hours": 53.0,
       "wireless": true,
-      "weight_g": 210.0,
+      "weight_g": 205.0,
       "driver_mm": 45.0
     },
-    "price": 130.0,
-    "list_price": 153.0,
-    "rating": 4.4,
-    "reviews": 2504,
-    "bought": 5047,
-    "stock": 180,
-    "fail_reasons": [],
-    "decoy_kind": "",
+    "price": 360.0,
+    "list_price": 390.0,
+    "rating": 4.5,
+    "reviews": 605,
+    "bought": 2785,
+    "stock": 152,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "satisfice_overbudget",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Veyra Miro Headphones",
+    "title": "Expara Lumen Headphones",
     "bullets": [
       "Active noise cancelling: yes",
       "Wireless: yes",
-      "Battery life: 49.0 hours",
-      "Weight: 210.0 g",
+      "Battery life: 53.0 hours",
+      "Weight: 205.0 g",
       "Driver size: 45.0 mm"
     ],
-    "description": "The Veyra Miro Headphones are wireless headphones with active noise cancelling. They include a 49.0-hour battery life, 45.0 mm drivers, and a weight of 210.0 g.",
+    "description": "Expara Lumen Headphones support wireless listening with active noise cancelling. They include 45.0 mm drivers, a 53.0-hour battery life, and a listed weight of 205.0 g.",
     "copy_status": "ok"
   },
   {
@@ -1434,10 +1461,10 @@
     "advertised": false,
     "specs": {
       "anc": true,
-      "battery_hours": 24.0,
+      "battery_hours": 27.0,
       "wireless": true,
-      "weight_g": 280.0,
-      "driver_mm": 40.0
+      "weight_g": 285.0,
+      "driver_mm": 38.0
     },
     "price": 280.0,
     "list_price": 302.0,
@@ -1446,20 +1473,20 @@
     "bought": 1940,
     "stock": 115,
     "fail_reasons": [
-      "battery_hours__min"
+      "driver_mm__min"
     ],
     "decoy_kind": "",
     "image": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
     "image_tier": "stock",
-    "title": "Velora Mavin Headphones",
+    "title": "Eclipta Verdan Headphones",
     "bullets": [
-      "Wireless connectivity",
       "Active noise cancelling: yes",
-      "Battery life: 24.0 hours",
-      "Weight: 280.0 g",
-      "Driver size: 40.0 mm"
+      "Wireless: yes",
+      "Battery life: 27.0 hours",
+      "Weight: 285.0 g",
+      "Driver size: 38.0 mm"
     ],
-    "description": "The Velora Mavin Headphones are wireless and include active noise cancelling. They have 40.0 mm drivers, a 24.0-hour battery life, and a weight of 280.0 g.",
+    "description": "The Eclipta Verdan Headphones support wireless use with active noise cancelling. They provide 27.0 hours of battery life and use 38.0 mm drivers.",
     "copy_status": "ok"
   }
 ]

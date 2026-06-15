@@ -86,9 +86,9 @@ function AppContent() {
     }
   }, []);
 
-  const handleAddToCart = async (productId: number, quantity: number = 1) => {
+  const handleAddToCart = async (productId: number, quantity: number = 1, variantId?: number) => {
     try {
-      await api.addToCart(productId, quantity);
+      await api.addToCart(productId, quantity, variantId);
       loadCart();
     } catch (error) {
       console.error('Failed to add to cart:', error);

@@ -6,6 +6,9 @@ results/
 agentarena/envs/*/server/_catalogs/
 agentarena/envs/*/server/*.db
 agentarena/scaffolds/stagehand/node_modules/
+# stagehand spawns stray windows-path browser-profile dirs + an npm log under its folder; never commit those
+agentarena/scaffolds/stagehand/*wsl.localhost*
+agentarena/scaffolds/stagehand/npm_install.log
 agentarena/envs/airbnb/server/frontend/node_modules/
 runs/llm_cache/
 .DS_Store

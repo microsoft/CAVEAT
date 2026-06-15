@@ -56,7 +56,12 @@ def resolve_steering(scenario: ScenarioSpec, rows: list[ProductRow],
     present_decoys = satisfice if has_sat else spec_decoys
     present_skus = sat_skus if has_sat else spec_skus
     if has_sat:
-        BI, BI_DEEP, BI_PAGE2 = 23, 25, 26      # page-2 burial (page size 24, ~44 items)
+        # page size 24, ~70-item catalog. Single-mechanism conditions bury onto page 2 (BI/BI_DEEP);
+        # combined buries DEEPEST onto PAGE 3 (BI_PAGE2 -> final position ~7 pinned + 44 = 51, beyond any
+        # 48-item grid and 2 pages of search). Page-3 (not deeper) so the strong spec-reader reaches the
+        # genuine best SOME of the time (graded gap >0.3 but < the weak model's) and stays partly steered
+        # on the single-degree mixed too (gap grows thr<mixed<graded for BOTH models).
+        BI, BI_DEEP, BI_PAGE2 = 23, 30, 44
     else:
         BI, BI_DEEP, BI_PAGE2 = 10, 14, 23      # legacy
 

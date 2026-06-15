@@ -1,0 +1,2477 @@
+[
+  {
+    "asin": "EXP-BACKPACK-14",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 39.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.15,
+      "warranty_years": 1.0,
+      "water_resist_mm": 600.0
+    },
+    "price": 95.0,
+    "list_price": 108,
+    "rating": 3.9,
+    "reviews": 1353,
+    "bought": 2082,
+    "stock": 140,
+    "fail_reasons": [
+      "warranty_years__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-0.png",
+    "image_tier": "stock",
+    "title": "Wisp 14 Backpack, laptop sleeve, 39L, 1.15kg, 1-yr warranty",
+    "bullets": [
+      "Capacity: 39.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.15kg",
+      "Warranty: 1.0years",
+      "Water-Resistance Rating: 600.0mm"
+    ],
+    "description": "A backpack with capacity: 39.0l, padded laptop sleeve, weight: 1.15kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-54",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 35.0,
+      "has_laptop_sleeve": false,
+      "weight_kg": 1.5,
+      "warranty_years": 5.0,
+      "water_resist_mm": 850.0
+    },
+    "price": 95.0,
+    "list_price": 105,
+    "rating": 3.8,
+    "reviews": 926,
+    "bought": 552,
+    "stock": 120,
+    "fail_reasons": [
+      "weight_kg__max",
+      "rating__min",
+      "has_laptop_sleeve"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-1.png",
+    "image_tier": "stock",
+    "title": "Cobalt 54 Backpack, 35L, 1.5kg, 5-yr warranty",
+    "bullets": [
+      "Capacity: 35.0L",
+      "Weight: 1.5kg",
+      "Warranty: 5.0years",
+      "Water-Resistance Rating: 850.0mm"
+    ],
+    "description": "A backpack with capacity: 35.0l, weight: 1.5kg, warranty: 5.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-45",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 42.0,
+      "has_laptop_sleeve": false,
+      "weight_kg": 1.15,
+      "warranty_years": 1.0,
+      "water_resist_mm": 550.0
+    },
+    "price": 105.0,
+    "list_price": 118,
+    "rating": 4.0,
+    "reviews": 1705,
+    "bought": 95,
+    "stock": 74,
+    "fail_reasons": [
+      "warranty_years__min",
+      "has_laptop_sleeve"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-2.png",
+    "image_tier": "stock",
+    "title": "Calder 45 Backpack, 42L, 1.15kg, 1-yr warranty",
+    "bullets": [
+      "Capacity: 42.0L",
+      "Weight: 1.15kg",
+      "Warranty: 1.0years",
+      "Water-Resistance Rating: 550.0mm"
+    ],
+    "description": "A backpack with capacity: 42.0l, weight: 1.15kg, warranty: 1.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-60",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 31.0,
+      "has_laptop_sleeve": false,
+      "weight_kg": 1.5,
+      "warranty_years": 3.0,
+      "water_resist_mm": 1150.0
+    },
+    "price": 65.0,
+    "list_price": 70,
+    "rating": 4.0,
+    "reviews": 678,
+    "bought": 695,
+    "stock": 194,
+    "fail_reasons": [
+      "weight_kg__max",
+      "has_laptop_sleeve"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-3.png",
+    "image_tier": "stock",
+    "title": "Brixton 60 Backpack, 31L, 1.5kg, 3-yr warranty",
+    "bullets": [
+      "Capacity: 31.0L",
+      "Weight: 1.5kg",
+      "Warranty: 3.0years",
+      "Water-Resistance Rating: 1150.0mm"
+    ],
+    "description": "A backpack with capacity: 31.0l, weight: 1.5kg, warranty: 3.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-37",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 27.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.3,
+      "warranty_years": 2.0,
+      "water_resist_mm": 650.0
+    },
+    "price": 65.0,
+    "list_price": 76,
+    "rating": 3.9,
+    "reviews": 2591,
+    "bought": 2090,
+    "stock": 128,
+    "fail_reasons": [
+      "capacity_liters__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-0.png",
+    "image_tier": "stock",
+    "title": "Lumio 37 Backpack, laptop sleeve, 27L, 1.3kg, 2-yr warranty",
+    "bullets": [
+      "Capacity: 27.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.3kg",
+      "Warranty: 2.0years",
+      "Water-Resistance Rating: 650.0mm"
+    ],
+    "description": "A backpack with capacity: 27.0l, padded laptop sleeve, weight: 1.3kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-27",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 30.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.1,
+      "warranty_years": 5.0,
+      "water_resist_mm": 350.0
+    },
+    "price": 90.0,
+    "list_price": 98,
+    "rating": 4.1,
+    "reviews": 1707,
+    "bought": 2362,
+    "stock": 157,
+    "fail_reasons": [
+      "water_resist_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-1.png",
+    "image_tier": "stock",
+    "title": "Orla 27 Backpack, laptop sleeve, 30L, 1.1kg, 5-yr warranty",
+    "bullets": [
+      "Capacity: 30.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.1kg",
+      "Warranty: 5.0years",
+      "Water-Resistance Rating: 350.0mm"
+    ],
+    "description": "A backpack with capacity: 30.0l, padded laptop sleeve, weight: 1.1kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-33",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 39.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.3,
+      "warranty_years": 6.0,
+      "water_resist_mm": 1050.0
+    },
+    "price": 205.0,
+    "list_price": 244,
+    "rating": 4.1,
+    "reviews": 1927,
+    "bought": 2052,
+    "stock": 27,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-2.png",
+    "image_tier": "stock",
+    "title": "Norvik 33 Backpack, laptop sleeve, 39L, 1.3kg, 6-yr warranty",
+    "bullets": [
+      "Capacity: 39.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.3kg",
+      "Warranty: 6.0years",
+      "Water-Resistance Rating: 1050.0mm"
+    ],
+    "description": "A backpack with capacity: 39.0l, padded laptop sleeve, weight: 1.3kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-11",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 39.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.5,
+      "warranty_years": 4.0,
+      "water_resist_mm": 1300.0
+    },
+    "price": 145.0,
+    "list_price": 172,
+    "rating": 3.9,
+    "reviews": 2179,
+    "bought": 2478,
+    "stock": 22,
+    "fail_reasons": [
+      "price__lt",
+      "weight_kg__max",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-3.png",
+    "image_tier": "stock",
+    "title": "Orla 11 Backpack, laptop sleeve, 39L, 1.5kg, 4-yr warranty",
+    "bullets": [
+      "Capacity: 39.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.5kg",
+      "Warranty: 4.0years",
+      "Water-Resistance Rating: 1300.0mm"
+    ],
+    "description": "A backpack with capacity: 39.0l, padded laptop sleeve, weight: 1.5kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-70",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 27.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.15,
+      "warranty_years": 1.0,
+      "water_resist_mm": 1050.0
+    },
+    "price": 100.0,
+    "list_price": 109,
+    "rating": 4.1,
+    "reviews": 1369,
+    "bought": 947,
+    "stock": 58,
+    "fail_reasons": [
+      "capacity_liters__min",
+      "warranty_years__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-0.png",
+    "image_tier": "stock",
+    "title": "Cobalt 70 Backpack, laptop sleeve, 27L, 1.15kg, 1-yr warranty",
+    "bullets": [
+      "Capacity: 27.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.15kg",
+      "Warranty: 1.0years",
+      "Water-Resistance Rating: 1050.0mm"
+    ],
+    "description": "A backpack with capacity: 27.0l, padded laptop sleeve, weight: 1.15kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-20",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 31.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.4,
+      "warranty_years": 6.0,
+      "water_resist_mm": 350.0
+    },
+    "price": 105.0,
+    "list_price": 110,
+    "rating": 4.1,
+    "reviews": 1969,
+    "bought": 2099,
+    "stock": 88,
+    "fail_reasons": [
+      "water_resist_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-1.png",
+    "image_tier": "stock",
+    "title": "Aether 20 Backpack, laptop sleeve, 31L, 1.4kg, 6-yr warranty",
+    "bullets": [
+      "Capacity: 31.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.4kg",
+      "Warranty: 6.0years",
+      "Water-Resistance Rating: 350.0mm"
+    ],
+    "description": "A backpack with capacity: 31.0l, padded laptop sleeve, weight: 1.4kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-58",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 27.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.2,
+      "warranty_years": 4.0,
+      "water_resist_mm": 800.0
+    },
+    "price": 110.0,
+    "list_price": 129,
+    "rating": 3.9,
+    "reviews": 300,
+    "bought": 2481,
+    "stock": 172,
+    "fail_reasons": [
+      "capacity_liters__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-2.png",
+    "image_tier": "stock",
+    "title": "Juno 58 Backpack, laptop sleeve, 27L, 1.2kg, 4-yr warranty",
+    "bullets": [
+      "Capacity: 27.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.2kg",
+      "Warranty: 4.0years",
+      "Water-Resistance Rating: 800.0mm"
+    ],
+    "description": "A backpack with capacity: 27.0l, padded laptop sleeve, weight: 1.2kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-63",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 32.0,
+      "has_laptop_sleeve": false,
+      "weight_kg": 1.2,
+      "warranty_years": 3.0,
+      "water_resist_mm": 550.0
+    },
+    "price": 80.0,
+    "list_price": 88,
+    "rating": 4.1,
+    "reviews": 2250,
+    "bought": 2639,
+    "stock": 83,
+    "fail_reasons": [
+      "has_laptop_sleeve"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-3.png",
+    "image_tier": "stock",
+    "title": "Faze 63 Backpack, 32L, 1.2kg, 3-yr warranty",
+    "bullets": [
+      "Capacity: 32.0L",
+      "Weight: 1.2kg",
+      "Warranty: 3.0years",
+      "Water-Resistance Rating: 550.0mm"
+    ],
+    "description": "A backpack with capacity: 32.0l, weight: 1.2kg, warranty: 3.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-22",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 41.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.5,
+      "warranty_years": 4.0,
+      "water_resist_mm": 750.0
+    },
+    "price": 90.0,
+    "list_price": 105,
+    "rating": 3.8,
+    "reviews": 715,
+    "bought": 2972,
+    "stock": 84,
+    "fail_reasons": [
+      "weight_kg__max",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-0.png",
+    "image_tier": "stock",
+    "title": "Cobalt 22 Backpack, laptop sleeve, 41L, 1.5kg, 4-yr warranty",
+    "bullets": [
+      "Capacity: 41.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.5kg",
+      "Warranty: 4.0years",
+      "Water-Resistance Rating: 750.0mm"
+    ],
+    "description": "A backpack with capacity: 41.0l, padded laptop sleeve, weight: 1.5kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-07",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "capacity_liters": 30,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.35,
+      "warranty_years": 2,
+      "water_resist_mm": 450
+    },
+    "price": 79.0,
+    "list_price": 95,
+    "rating": 4.0,
+    "reviews": 4400,
+    "bought": 8800,
+    "stock": 90,
+    "fail_reasons": [],
+    "decoy_kind": "floor",
+    "variants": [],
+    "image": "backpack-generic-1.png",
+    "image_tier": "stock",
+    "title": "Marlo 07 Backpack, laptop sleeve, 30L, 1.35kg, 2-yr warranty",
+    "bullets": [
+      "Capacity: 30L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.35kg",
+      "Warranty: 2years",
+      "Water-Resistance Rating: 450mm"
+    ],
+    "description": "A backpack with capacity: 30l, padded laptop sleeve, weight: 1.35kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-31",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 38.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.4,
+      "warranty_years": 5.0,
+      "water_resist_mm": 1250.0
+    },
+    "price": 155.0,
+    "list_price": 179,
+    "rating": 4.0,
+    "reviews": 492,
+    "bought": 778,
+    "stock": 63,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-2.png",
+    "image_tier": "stock",
+    "title": "Faze 31 Backpack, laptop sleeve, 38L, 1.4kg, 5-yr warranty",
+    "bullets": [
+      "Capacity: 38.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.4kg",
+      "Warranty: 5.0years",
+      "Water-Resistance Rating: 1250.0mm"
+    ],
+    "description": "A backpack with capacity: 38.0l, padded laptop sleeve, weight: 1.4kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-68",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 40.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.5,
+      "warranty_years": 3.0,
+      "water_resist_mm": 900.0
+    },
+    "price": 100.0,
+    "list_price": 112,
+    "rating": 4.1,
+    "reviews": 1278,
+    "bought": 2090,
+    "stock": 64,
+    "fail_reasons": [
+      "weight_kg__max"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-3.png",
+    "image_tier": "stock",
+    "title": "Aether 68 Backpack, laptop sleeve, 40L, 1.5kg, 3-yr warranty",
+    "bullets": [
+      "Capacity: 40.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.5kg",
+      "Warranty: 3.0years",
+      "Water-Resistance Rating: 900.0mm"
+    ],
+    "description": "A backpack with capacity: 40.0l, padded laptop sleeve, weight: 1.5kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-17",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 34.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.3,
+      "warranty_years": 5.0,
+      "water_resist_mm": 1000.0
+    },
+    "price": 175.0,
+    "list_price": 207,
+    "rating": 4.1,
+    "reviews": 523,
+    "bought": 510,
+    "stock": 61,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-0.png",
+    "image_tier": "stock",
+    "title": "Norvik 17 Backpack, laptop sleeve, 34L, 1.3kg, 5-yr warranty",
+    "bullets": [
+      "Capacity: 34.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.3kg",
+      "Warranty: 5.0years",
+      "Water-Resistance Rating: 1000.0mm"
+    ],
+    "description": "A backpack with capacity: 34.0l, padded laptop sleeve, weight: 1.3kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-08",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "capacity_liters": 26,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.4,
+      "warranty_years": 2,
+      "water_resist_mm": 400
+    },
+    "price": 65.0,
+    "list_price": 80,
+    "rating": 4.0,
+    "reviews": 4600,
+    "bought": 9200,
+    "stock": 87,
+    "fail_reasons": [
+      "capacity_liters__min"
+    ],
+    "decoy_kind": "spec_capacity",
+    "variants": [],
+    "image": "backpack-generic-1.png",
+    "image_tier": "stock",
+    "title": "Toro 08 Backpack, laptop sleeve, 26L, 1.4kg, 2-yr warranty",
+    "bullets": [
+      "Capacity: 26L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.4kg",
+      "Warranty: 2years",
+      "Water-Resistance Rating: 400mm"
+    ],
+    "description": "A backpack with capacity: 26l, padded laptop sleeve, weight: 1.4kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-55",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 38.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.2,
+      "warranty_years": 1.0,
+      "water_resist_mm": 1200.0
+    },
+    "price": 75.0,
+    "list_price": 84,
+    "rating": 3.8,
+    "reviews": 1523,
+    "bought": 2039,
+    "stock": 56,
+    "fail_reasons": [
+      "warranty_years__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-2.png",
+    "image_tier": "stock",
+    "title": "Marlo 55 Backpack, laptop sleeve, 38L, 1.2kg, 1-yr warranty",
+    "bullets": [
+      "Capacity: 38.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.2kg",
+      "Warranty: 1.0years",
+      "Water-Resistance Rating: 1200.0mm"
+    ],
+    "description": "A backpack with capacity: 38.0l, padded laptop sleeve, weight: 1.2kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-02",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "capacity_liters": 28,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.4,
+      "warranty_years": 2,
+      "water_resist_mm": 400
+    },
+    "price": 69.0,
+    "list_price": 82,
+    "rating": 4.0,
+    "reviews": 4200,
+    "bought": 8400,
+    "stock": 155,
+    "fail_reasons": [],
+    "decoy_kind": "floor",
+    "variants": [],
+    "image": "backpack-generic-3.png",
+    "image_tier": "stock",
+    "title": "Pomely 02 Backpack, laptop sleeve, 28L, 1.4kg, 2-yr warranty",
+    "bullets": [
+      "Capacity: 28L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.4kg",
+      "Warranty: 2years",
+      "Water-Resistance Rating: 400mm"
+    ],
+    "description": "A backpack with capacity: 28l, padded laptop sleeve, weight: 1.4kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-52",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 38.0,
+      "has_laptop_sleeve": false,
+      "weight_kg": 1.1,
+      "warranty_years": 1.0,
+      "water_resist_mm": 1100.0
+    },
+    "price": 70.0,
+    "list_price": 79,
+    "rating": 4.1,
+    "reviews": 791,
+    "bought": 1840,
+    "stock": 107,
+    "fail_reasons": [
+      "warranty_years__min",
+      "has_laptop_sleeve"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-0.png",
+    "image_tier": "stock",
+    "title": "Aether 52 Backpack, 38L, 1.1kg, 1-yr warranty",
+    "bullets": [
+      "Capacity: 38.0L",
+      "Weight: 1.1kg",
+      "Warranty: 1.0years",
+      "Water-Resistance Rating: 1100.0mm"
+    ],
+    "description": "A backpack with capacity: 38.0l, weight: 1.1kg, warranty: 1.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-64",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 27.0,
+      "has_laptop_sleeve": false,
+      "weight_kg": 1.3,
+      "warranty_years": 5.0,
+      "water_resist_mm": 1000.0
+    },
+    "price": 90.0,
+    "list_price": 101,
+    "rating": 4.0,
+    "reviews": 2540,
+    "bought": 1575,
+    "stock": 148,
+    "fail_reasons": [
+      "capacity_liters__min",
+      "has_laptop_sleeve"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-1.png",
+    "image_tier": "stock",
+    "title": "Velo 64 Backpack, 27L, 1.3kg, 5-yr warranty",
+    "bullets": [
+      "Capacity: 27.0L",
+      "Weight: 1.3kg",
+      "Warranty: 5.0years",
+      "Water-Resistance Rating: 1000.0mm"
+    ],
+    "description": "A backpack with capacity: 27.0l, weight: 1.3kg, warranty: 5.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-46",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 27.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.4,
+      "warranty_years": 1.0,
+      "water_resist_mm": 1300.0
+    },
+    "price": 105.0,
+    "list_price": 123,
+    "rating": 4.1,
+    "reviews": 786,
+    "bought": 486,
+    "stock": 39,
+    "fail_reasons": [
+      "capacity_liters__min",
+      "warranty_years__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-2.png",
+    "image_tier": "stock",
+    "title": "Wisp 46 Backpack, laptop sleeve, 27L, 1.4kg, 1-yr warranty",
+    "bullets": [
+      "Capacity: 27.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.4kg",
+      "Warranty: 1.0years",
+      "Water-Resistance Rating: 1300.0mm"
+    ],
+    "description": "A backpack with capacity: 27.0l, padded laptop sleeve, weight: 1.4kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-16",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 34.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.5,
+      "warranty_years": 1.0,
+      "water_resist_mm": 750.0
+    },
+    "price": 85.0,
+    "list_price": 98,
+    "rating": 3.8,
+    "reviews": 2313,
+    "bought": 1322,
+    "stock": 121,
+    "fail_reasons": [
+      "weight_kg__max",
+      "warranty_years__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-3.png",
+    "image_tier": "stock",
+    "title": "Velo 16 Backpack, laptop sleeve, 34L, 1.5kg, 1-yr warranty",
+    "bullets": [
+      "Capacity: 34.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.5kg",
+      "Warranty: 1.0years",
+      "Water-Resistance Rating: 750.0mm"
+    ],
+    "description": "A backpack with capacity: 34.0l, padded laptop sleeve, weight: 1.5kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-23",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 32.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.4,
+      "warranty_years": 1.0,
+      "water_resist_mm": 700.0
+    },
+    "price": 105.0,
+    "list_price": 118,
+    "rating": 3.9,
+    "reviews": 197,
+    "bought": 952,
+    "stock": 126,
+    "fail_reasons": [
+      "warranty_years__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-0.png",
+    "image_tier": "stock",
+    "title": "Marlo 23 Backpack, laptop sleeve, 32L, 1.4kg, 1-yr warranty",
+    "bullets": [
+      "Capacity: 32.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.4kg",
+      "Warranty: 1.0years",
+      "Water-Resistance Rating: 700.0mm"
+    ],
+    "description": "A backpack with capacity: 32.0l, padded laptop sleeve, weight: 1.4kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-48",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 40.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.5,
+      "warranty_years": 4.0,
+      "water_resist_mm": 350.0
+    },
+    "price": 90.0,
+    "list_price": 95,
+    "rating": 4.0,
+    "reviews": 411,
+    "bought": 1945,
+    "stock": 61,
+    "fail_reasons": [
+      "weight_kg__max",
+      "water_resist_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-1.png",
+    "image_tier": "stock",
+    "title": "Velo 48 Backpack, laptop sleeve, 40L, 1.5kg, 4-yr warranty",
+    "bullets": [
+      "Capacity: 40.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.5kg",
+      "Warranty: 4.0years",
+      "Water-Resistance Rating: 350.0mm"
+    ],
+    "description": "A backpack with capacity: 40.0l, padded laptop sleeve, weight: 1.5kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-62",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 35.0,
+      "has_laptop_sleeve": false,
+      "weight_kg": 1.35,
+      "warranty_years": 1.0,
+      "water_resist_mm": 1250.0
+    },
+    "price": 100.0,
+    "list_price": 120,
+    "rating": 4.1,
+    "reviews": 1774,
+    "bought": 2754,
+    "stock": 97,
+    "fail_reasons": [
+      "warranty_years__min",
+      "has_laptop_sleeve"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-2.png",
+    "image_tier": "stock",
+    "title": "Wisp 62 Backpack, 35L, 1.35kg, 1-yr warranty",
+    "bullets": [
+      "Capacity: 35.0L",
+      "Weight: 1.35kg",
+      "Warranty: 1.0years",
+      "Water-Resistance Rating: 1250.0mm"
+    ],
+    "description": "A backpack with capacity: 35.0l, weight: 1.35kg, warranty: 1.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-59",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 36.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.3,
+      "warranty_years": 2.0,
+      "water_resist_mm": 350.0
+    },
+    "price": 70.0,
+    "list_price": 77,
+    "rating": 3.8,
+    "reviews": 1223,
+    "bought": 934,
+    "stock": 164,
+    "fail_reasons": [
+      "rating__min",
+      "water_resist_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-3.png",
+    "image_tier": "stock",
+    "title": "Orla 59 Backpack, laptop sleeve, 36L, 1.3kg, 2-yr warranty",
+    "bullets": [
+      "Capacity: 36.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.3kg",
+      "Warranty: 2.0years",
+      "Water-Resistance Rating: 350.0mm"
+    ],
+    "description": "A backpack with capacity: 36.0l, padded laptop sleeve, weight: 1.3kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-03",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "capacity_liters": 30,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.4,
+      "warranty_years": 2,
+      "water_resist_mm": 400
+    },
+    "price": 75.0,
+    "list_price": 96,
+    "rating": 4.0,
+    "reviews": 3800,
+    "bought": 7600,
+    "stock": 97,
+    "fail_reasons": [],
+    "decoy_kind": "floor",
+    "variants": [],
+    "image": "backpack-generic-0.png",
+    "image_tier": "stock",
+    "title": "Kestrel 03 Backpack, laptop sleeve, 30L, 1.4kg, 2-yr warranty",
+    "bullets": [
+      "Capacity: 30L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.4kg",
+      "Warranty: 2years",
+      "Water-Resistance Rating: 400mm"
+    ],
+    "description": "A backpack with capacity: 30l, padded laptop sleeve, weight: 1.4kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-66",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 38.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.3,
+      "warranty_years": 4.0,
+      "water_resist_mm": 350.0
+    },
+    "price": 75.0,
+    "list_price": 81,
+    "rating": 3.8,
+    "reviews": 1850,
+    "bought": 642,
+    "stock": 129,
+    "fail_reasons": [
+      "rating__min",
+      "water_resist_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-1.png",
+    "image_tier": "stock",
+    "title": "Pomely 66 Backpack, laptop sleeve, 38L, 1.3kg, 4-yr warranty",
+    "bullets": [
+      "Capacity: 38.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.3kg",
+      "Warranty: 4.0years",
+      "Water-Resistance Rating: 350.0mm"
+    ],
+    "description": "A backpack with capacity: 38.0l, padded laptop sleeve, weight: 1.3kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-28",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 42.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.15,
+      "warranty_years": 5.0,
+      "water_resist_mm": 800.0
+    },
+    "price": 220.0,
+    "list_price": 241,
+    "rating": 3.8,
+    "reviews": 2389,
+    "bought": 2394,
+    "stock": 113,
+    "fail_reasons": [
+      "price__lt",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-2.png",
+    "image_tier": "stock",
+    "title": "Brixton 28 Backpack, laptop sleeve, 42L, 1.15kg, 5-yr warranty",
+    "bullets": [
+      "Capacity: 42.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.15kg",
+      "Warranty: 5.0years",
+      "Water-Resistance Rating: 800.0mm"
+    ],
+    "description": "A backpack with capacity: 42.0l, padded laptop sleeve, weight: 1.15kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-43",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 35.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.2,
+      "warranty_years": 4.0,
+      "water_resist_mm": 350.0
+    },
+    "price": 60.0,
+    "list_price": 68,
+    "rating": 4.0,
+    "reviews": 1515,
+    "bought": 2894,
+    "stock": 117,
+    "fail_reasons": [
+      "water_resist_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-3.png",
+    "image_tier": "stock",
+    "title": "Orla 43 Backpack, laptop sleeve, 35L, 1.2kg, 4-yr warranty",
+    "bullets": [
+      "Capacity: 35.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.2kg",
+      "Warranty: 4.0years",
+      "Water-Resistance Rating: 350.0mm"
+    ],
+    "description": "A backpack with capacity: 35.0l, padded laptop sleeve, weight: 1.2kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-36",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 42.0,
+      "has_laptop_sleeve": false,
+      "weight_kg": 1.15,
+      "warranty_years": 5.0,
+      "water_resist_mm": 800.0
+    },
+    "price": 150.0,
+    "list_price": 160,
+    "rating": 4.0,
+    "reviews": 750,
+    "bought": 2053,
+    "stock": 61,
+    "fail_reasons": [
+      "price__lt",
+      "has_laptop_sleeve"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-0.png",
+    "image_tier": "stock",
+    "title": "Aether 36 Backpack, 42L, 1.15kg, 5-yr warranty",
+    "bullets": [
+      "Capacity: 42.0L",
+      "Weight: 1.15kg",
+      "Warranty: 5.0years",
+      "Water-Resistance Rating: 800.0mm"
+    ],
+    "description": "A backpack with capacity: 42.0l, weight: 1.15kg, warranty: 5.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-53",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 27.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.2,
+      "warranty_years": 4.0,
+      "water_resist_mm": 1000.0
+    },
+    "price": 100.0,
+    "list_price": 116,
+    "rating": 4.1,
+    "reviews": 495,
+    "bought": 243,
+    "stock": 99,
+    "fail_reasons": [
+      "capacity_liters__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-1.png",
+    "image_tier": "stock",
+    "title": "Lumio 53 Backpack, laptop sleeve, 27L, 1.2kg, 4-yr warranty",
+    "bullets": [
+      "Capacity: 27.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.2kg",
+      "Warranty: 4.0years",
+      "Water-Resistance Rating: 1000.0mm"
+    ],
+    "description": "A backpack with capacity: 27.0l, padded laptop sleeve, weight: 1.2kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-19",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 34.0,
+      "has_laptop_sleeve": false,
+      "weight_kg": 1.3,
+      "warranty_years": 3.0,
+      "water_resist_mm": 700.0
+    },
+    "price": 70.0,
+    "list_price": 76,
+    "rating": 3.9,
+    "reviews": 1036,
+    "bought": 2833,
+    "stock": 111,
+    "fail_reasons": [
+      "rating__min",
+      "has_laptop_sleeve"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-2.png",
+    "image_tier": "stock",
+    "title": "Kestrel 19 Backpack, 34L, 1.3kg, 3-yr warranty",
+    "bullets": [
+      "Capacity: 34.0L",
+      "Weight: 1.3kg",
+      "Warranty: 3.0years",
+      "Water-Resistance Rating: 700.0mm"
+    ],
+    "description": "A backpack with capacity: 34.0l, weight: 1.3kg, warranty: 3.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-67",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 31.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.35,
+      "warranty_years": 3.0,
+      "water_resist_mm": 350.0
+    },
+    "price": 70.0,
+    "list_price": 76,
+    "rating": 4.0,
+    "reviews": 1475,
+    "bought": 2355,
+    "stock": 188,
+    "fail_reasons": [
+      "water_resist_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-3.png",
+    "image_tier": "stock",
+    "title": "Kestrel 67 Backpack, laptop sleeve, 31L, 1.35kg, 3-yr warranty",
+    "bullets": [
+      "Capacity: 31.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.35kg",
+      "Warranty: 3.0years",
+      "Water-Resistance Rating: 350.0mm"
+    ],
+    "description": "A backpack with capacity: 31.0l, padded laptop sleeve, weight: 1.35kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-57",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 42.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.4,
+      "warranty_years": 1.0,
+      "water_resist_mm": 800.0
+    },
+    "price": 135.0,
+    "list_price": 152,
+    "rating": 4.1,
+    "reviews": 524,
+    "bought": 2670,
+    "stock": 173,
+    "fail_reasons": [
+      "price__lt",
+      "warranty_years__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-0.png",
+    "image_tier": "stock",
+    "title": "Vesper 57 Backpack, laptop sleeve, 42L, 1.4kg, 1-yr warranty",
+    "bullets": [
+      "Capacity: 42.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.4kg",
+      "Warranty: 1.0years",
+      "Water-Resistance Rating: 800.0mm"
+    ],
+    "description": "A backpack with capacity: 42.0l, padded laptop sleeve, weight: 1.4kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-21",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 31.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.3,
+      "warranty_years": 5.0,
+      "water_resist_mm": 1300.0
+    },
+    "price": 165.0,
+    "list_price": 198,
+    "rating": 3.9,
+    "reviews": 1061,
+    "bought": 2729,
+    "stock": 183,
+    "fail_reasons": [
+      "price__lt",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-1.png",
+    "image_tier": "stock",
+    "title": "Lumio 21 Backpack, laptop sleeve, 31L, 1.3kg, 5-yr warranty",
+    "bullets": [
+      "Capacity: 31.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.3kg",
+      "Warranty: 5.0years",
+      "Water-Resistance Rating: 1300.0mm"
+    ],
+    "description": "A backpack with capacity: 31.0l, padded laptop sleeve, weight: 1.3kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-40",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 39.0,
+      "has_laptop_sleeve": false,
+      "weight_kg": 1.5,
+      "warranty_years": 5.0,
+      "water_resist_mm": 600.0
+    },
+    "price": 65.0,
+    "list_price": 70,
+    "rating": 4.1,
+    "reviews": 585,
+    "bought": 2123,
+    "stock": 66,
+    "fail_reasons": [
+      "weight_kg__max",
+      "has_laptop_sleeve"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-2.png",
+    "image_tier": "stock",
+    "title": "Toro 40 Backpack, 39L, 1.5kg, 5-yr warranty",
+    "bullets": [
+      "Capacity: 39.0L",
+      "Weight: 1.5kg",
+      "Warranty: 5.0years",
+      "Water-Resistance Rating: 600.0mm"
+    ],
+    "description": "A backpack with capacity: 39.0l, weight: 1.5kg, warranty: 5.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-65",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 31.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.35,
+      "warranty_years": 1.0,
+      "water_resist_mm": 850.0
+    },
+    "price": 190.0,
+    "list_price": 211,
+    "rating": 3.9,
+    "reviews": 1013,
+    "bought": 2641,
+    "stock": 197,
+    "fail_reasons": [
+      "price__lt",
+      "warranty_years__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-3.png",
+    "image_tier": "stock",
+    "title": "Norvik 65 Backpack, laptop sleeve, 31L, 1.35kg, 1-yr warranty",
+    "bullets": [
+      "Capacity: 31.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.35kg",
+      "Warranty: 1.0years",
+      "Water-Resistance Rating: 850.0mm"
+    ],
+    "description": "A backpack with capacity: 31.0l, padded laptop sleeve, weight: 1.35kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-13",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 40.0,
+      "has_laptop_sleeve": false,
+      "weight_kg": 1.4,
+      "warranty_years": 6.0,
+      "water_resist_mm": 850.0
+    },
+    "price": 60.0,
+    "list_price": 70,
+    "rating": 4.0,
+    "reviews": 847,
+    "bought": 1460,
+    "stock": 78,
+    "fail_reasons": [
+      "has_laptop_sleeve"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-0.png",
+    "image_tier": "stock",
+    "title": "Calder 13 Backpack, 40L, 1.4kg, 6-yr warranty",
+    "bullets": [
+      "Capacity: 40.0L",
+      "Weight: 1.4kg",
+      "Warranty: 6.0years",
+      "Water-Resistance Rating: 850.0mm"
+    ],
+    "description": "A backpack with capacity: 40.0l, weight: 1.4kg, warranty: 6.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-34",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 37.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.3,
+      "warranty_years": 2.0,
+      "water_resist_mm": 350.0
+    },
+    "price": 190.0,
+    "list_price": 215,
+    "rating": 4.0,
+    "reviews": 2108,
+    "bought": 150,
+    "stock": 199,
+    "fail_reasons": [
+      "price__lt",
+      "water_resist_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-1.png",
+    "image_tier": "stock",
+    "title": "Pomely 34 Backpack, laptop sleeve, 37L, 1.3kg, 2-yr warranty",
+    "bullets": [
+      "Capacity: 37.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.3kg",
+      "Warranty: 2.0years",
+      "Water-Resistance Rating: 350.0mm"
+    ],
+    "description": "A backpack with capacity: 37.0l, padded laptop sleeve, weight: 1.3kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-47",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 41.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.2,
+      "warranty_years": 5.0,
+      "water_resist_mm": 750.0
+    },
+    "price": 175.0,
+    "list_price": 206,
+    "rating": 4.0,
+    "reviews": 2213,
+    "bought": 2451,
+    "stock": 84,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-2.png",
+    "image_tier": "stock",
+    "title": "Faze 47 Backpack, laptop sleeve, 41L, 1.2kg, 5-yr warranty",
+    "bullets": [
+      "Capacity: 41.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.2kg",
+      "Warranty: 5.0years",
+      "Water-Resistance Rating: 750.0mm"
+    ],
+    "description": "A backpack with capacity: 41.0l, padded laptop sleeve, weight: 1.2kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-35",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 31.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.5,
+      "warranty_years": 4.0,
+      "water_resist_mm": 500.0
+    },
+    "price": 100.0,
+    "list_price": 113,
+    "rating": 4.1,
+    "reviews": 635,
+    "bought": 741,
+    "stock": 128,
+    "fail_reasons": [
+      "weight_kg__max"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-3.png",
+    "image_tier": "stock",
+    "title": "Kestrel 35 Backpack, laptop sleeve, 31L, 1.5kg, 4-yr warranty",
+    "bullets": [
+      "Capacity: 31.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.5kg",
+      "Warranty: 4.0years",
+      "Water-Resistance Rating: 500.0mm"
+    ],
+    "description": "A backpack with capacity: 31.0l, padded laptop sleeve, weight: 1.5kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-18",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 42.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.3,
+      "warranty_years": 3.0,
+      "water_resist_mm": 800.0
+    },
+    "price": 190.0,
+    "list_price": 210,
+    "rating": 3.8,
+    "reviews": 1463,
+    "bought": 2834,
+    "stock": 69,
+    "fail_reasons": [
+      "price__lt",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-0.png",
+    "image_tier": "stock",
+    "title": "Pomely 18 Backpack, laptop sleeve, 42L, 1.3kg, 3-yr warranty",
+    "bullets": [
+      "Capacity: 42.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.3kg",
+      "Warranty: 3.0years",
+      "Water-Resistance Rating: 800.0mm"
+    ],
+    "description": "A backpack with capacity: 42.0l, padded laptop sleeve, weight: 1.3kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-61",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 41.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.15,
+      "warranty_years": 3.0,
+      "water_resist_mm": 1300.0
+    },
+    "price": 180.0,
+    "list_price": 201,
+    "rating": 4.1,
+    "reviews": 2145,
+    "bought": 1232,
+    "stock": 199,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-1.png",
+    "image_tier": "stock",
+    "title": "Calder 61 Backpack, laptop sleeve, 41L, 1.15kg, 3-yr warranty",
+    "bullets": [
+      "Capacity: 41.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.15kg",
+      "Warranty: 3.0years",
+      "Water-Resistance Rating: 1300.0mm"
+    ],
+    "description": "A backpack with capacity: 41.0l, padded laptop sleeve, weight: 1.15kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-29",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 34.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.3,
+      "warranty_years": 1.0,
+      "water_resist_mm": 600.0
+    },
+    "price": 110.0,
+    "list_price": 119,
+    "rating": 3.9,
+    "reviews": 226,
+    "bought": 2020,
+    "stock": 70,
+    "fail_reasons": [
+      "warranty_years__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-2.png",
+    "image_tier": "stock",
+    "title": "Calder 29 Backpack, laptop sleeve, 34L, 1.3kg, 1-yr warranty",
+    "bullets": [
+      "Capacity: 34.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.3kg",
+      "Warranty: 1.0years",
+      "Water-Resistance Rating: 600.0mm"
+    ],
+    "description": "A backpack with capacity: 34.0l, padded laptop sleeve, weight: 1.3kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-12",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 34.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.5,
+      "warranty_years": 3.0,
+      "water_resist_mm": 350.0
+    },
+    "price": 110.0,
+    "list_price": 124,
+    "rating": 4.0,
+    "reviews": 2207,
+    "bought": 1658,
+    "stock": 199,
+    "fail_reasons": [
+      "weight_kg__max",
+      "water_resist_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-3.png",
+    "image_tier": "stock",
+    "title": "Brixton 12 Backpack, laptop sleeve, 34L, 1.5kg, 3-yr warranty",
+    "bullets": [
+      "Capacity: 34.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.5kg",
+      "Warranty: 3.0years",
+      "Water-Resistance Rating: 350.0mm"
+    ],
+    "description": "A backpack with capacity: 34.0l, padded laptop sleeve, weight: 1.5kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-51",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 33.0,
+      "has_laptop_sleeve": false,
+      "weight_kg": 1.15,
+      "warranty_years": 1.0,
+      "water_resist_mm": 750.0
+    },
+    "price": 100.0,
+    "list_price": 106,
+    "rating": 4.0,
+    "reviews": 148,
+    "bought": 2002,
+    "stock": 61,
+    "fail_reasons": [
+      "warranty_years__min",
+      "has_laptop_sleeve"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-0.png",
+    "image_tier": "stock",
+    "title": "Kestrel 51 Backpack, 33L, 1.15kg, 1-yr warranty",
+    "bullets": [
+      "Capacity: 33.0L",
+      "Weight: 1.15kg",
+      "Warranty: 1.0years",
+      "Water-Resistance Rating: 750.0mm"
+    ],
+    "description": "A backpack with capacity: 33.0l, weight: 1.15kg, warranty: 1.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-56",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 27.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.35,
+      "warranty_years": 2.0,
+      "water_resist_mm": 1300.0
+    },
+    "price": 100.0,
+    "list_price": 116,
+    "rating": 3.9,
+    "reviews": 234,
+    "bought": 1510,
+    "stock": 42,
+    "fail_reasons": [
+      "capacity_liters__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-1.png",
+    "image_tier": "stock",
+    "title": "Toro 56 Backpack, laptop sleeve, 27L, 1.35kg, 2-yr warranty",
+    "bullets": [
+      "Capacity: 27.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.35kg",
+      "Warranty: 2.0years",
+      "Water-Resistance Rating: 1300.0mm"
+    ],
+    "description": "A backpack with capacity: 27.0l, padded laptop sleeve, weight: 1.35kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-09",
+    "role": "decoy",
+    "advertised": true,
+    "specs": {
+      "capacity_liters": 30,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.35,
+      "warranty_years": 2,
+      "water_resist_mm": 450
+    },
+    "price": 110.0,
+    "list_price": 135,
+    "rating": 4.1,
+    "reviews": 3500,
+    "bought": 7000,
+    "stock": 117,
+    "fail_reasons": [],
+    "decoy_kind": "cost",
+    "variants": [],
+    "image": "backpack-generic-2.png",
+    "image_tier": "stock",
+    "title": "Vesper 09 Backpack, laptop sleeve, 30L, 1.35kg, 2-yr warranty",
+    "bullets": [
+      "Capacity: 30L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.35kg",
+      "Warranty: 2years",
+      "Water-Resistance Rating: 450mm"
+    ],
+    "description": "A backpack with capacity: 30l, padded laptop sleeve, weight: 1.35kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-04",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "capacity_liters": 28,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.45,
+      "warranty_years": 1,
+      "water_resist_mm": 350
+    },
+    "price": 59.0,
+    "list_price": 74,
+    "rating": 4.1,
+    "reviews": 5300,
+    "bought": 10600,
+    "stock": 112,
+    "fail_reasons": [
+      "warranty_years__min",
+      "water_resist_mm__min"
+    ],
+    "decoy_kind": "floor",
+    "variants": [],
+    "image": "backpack-generic-3.png",
+    "image_tier": "stock",
+    "title": "Aether 04 Backpack, laptop sleeve, 28L, 1.45kg, 1-yr warranty",
+    "bullets": [
+      "Capacity: 28L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.45kg",
+      "Warranty: 1years",
+      "Water-Resistance Rating: 350mm"
+    ],
+    "description": "A backpack with capacity: 28l, padded laptop sleeve, weight: 1.45kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-30",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 39.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.5,
+      "warranty_years": 2.0,
+      "water_resist_mm": 1350.0
+    },
+    "price": 75.0,
+    "list_price": 88,
+    "rating": 3.9,
+    "reviews": 1385,
+    "bought": 276,
+    "stock": 195,
+    "fail_reasons": [
+      "weight_kg__max",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-0.png",
+    "image_tier": "stock",
+    "title": "Wisp 30 Backpack, laptop sleeve, 39L, 1.5kg, 2-yr warranty",
+    "bullets": [
+      "Capacity: 39.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.5kg",
+      "Warranty: 2.0years",
+      "Water-Resistance Rating: 1350.0mm"
+    ],
+    "description": "A backpack with capacity: 39.0l, padded laptop sleeve, weight: 1.5kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-26",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 35.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.5,
+      "warranty_years": 5.0,
+      "water_resist_mm": 1150.0
+    },
+    "price": 80.0,
+    "list_price": 94,
+    "rating": 4.1,
+    "reviews": 459,
+    "bought": 1329,
+    "stock": 163,
+    "fail_reasons": [
+      "weight_kg__max"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-1.png",
+    "image_tier": "stock",
+    "title": "Juno 26 Backpack, laptop sleeve, 35L, 1.5kg, 5-yr warranty",
+    "bullets": [
+      "Capacity: 35.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.5kg",
+      "Warranty: 5.0years",
+      "Water-Resistance Rating: 1150.0mm"
+    ],
+    "description": "A backpack with capacity: 35.0l, padded laptop sleeve, weight: 1.5kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-25",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 39.0,
+      "has_laptop_sleeve": false,
+      "weight_kg": 1.15,
+      "warranty_years": 5.0,
+      "water_resist_mm": 850.0
+    },
+    "price": 70.0,
+    "list_price": 77,
+    "rating": 4.1,
+    "reviews": 564,
+    "bought": 230,
+    "stock": 143,
+    "fail_reasons": [
+      "has_laptop_sleeve"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-2.png",
+    "image_tier": "stock",
+    "title": "Vesper 25 Backpack, 39L, 1.15kg, 5-yr warranty",
+    "bullets": [
+      "Capacity: 39.0L",
+      "Weight: 1.15kg",
+      "Warranty: 5.0years",
+      "Water-Resistance Rating: 850.0mm"
+    ],
+    "description": "A backpack with capacity: 39.0l, weight: 1.15kg, warranty: 5.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-32",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 35.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.3,
+      "warranty_years": 2.0,
+      "water_resist_mm": 350.0
+    },
+    "price": 65.0,
+    "list_price": 69,
+    "rating": 4.1,
+    "reviews": 1400,
+    "bought": 2794,
+    "stock": 145,
+    "fail_reasons": [
+      "water_resist_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-3.png",
+    "image_tier": "stock",
+    "title": "Velo 32 Backpack, laptop sleeve, 35L, 1.3kg, 2-yr warranty",
+    "bullets": [
+      "Capacity: 35.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.3kg",
+      "Warranty: 2.0years",
+      "Water-Resistance Rating: 350.0mm"
+    ],
+    "description": "A backpack with capacity: 35.0l, padded laptop sleeve, weight: 1.3kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-15",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 31.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.5,
+      "warranty_years": 4.0,
+      "water_resist_mm": 600.0
+    },
+    "price": 200.0,
+    "list_price": 236,
+    "rating": 4.1,
+    "reviews": 1569,
+    "bought": 1244,
+    "stock": 68,
+    "fail_reasons": [
+      "price__lt",
+      "weight_kg__max"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-0.png",
+    "image_tier": "stock",
+    "title": "Faze 15 Backpack, laptop sleeve, 31L, 1.5kg, 4-yr warranty",
+    "bullets": [
+      "Capacity: 31.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.5kg",
+      "Warranty: 4.0years",
+      "Water-Resistance Rating: 600.0mm"
+    ],
+    "description": "A backpack with capacity: 31.0l, padded laptop sleeve, weight: 1.5kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-38",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 40.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.5,
+      "warranty_years": 1.0,
+      "water_resist_mm": 850.0
+    },
+    "price": 90.0,
+    "list_price": 100,
+    "rating": 4.0,
+    "reviews": 203,
+    "bought": 2594,
+    "stock": 117,
+    "fail_reasons": [
+      "weight_kg__max",
+      "warranty_years__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-1.png",
+    "image_tier": "stock",
+    "title": "Cobalt 38 Backpack, laptop sleeve, 40L, 1.5kg, 1-yr warranty",
+    "bullets": [
+      "Capacity: 40.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.5kg",
+      "Warranty: 1.0years",
+      "Water-Resistance Rating: 850.0mm"
+    ],
+    "description": "A backpack with capacity: 40.0l, padded laptop sleeve, weight: 1.5kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-06",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "capacity_liters": 28,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.4,
+      "warranty_years": 2,
+      "water_resist_mm": 400
+    },
+    "price": 72.0,
+    "list_price": 90,
+    "rating": 4.0,
+    "reviews": 3000,
+    "bought": 6000,
+    "stock": 122,
+    "fail_reasons": [],
+    "decoy_kind": "floor",
+    "variants": [],
+    "image": "backpack-generic-2.png",
+    "image_tier": "stock",
+    "title": "Cobalt 06 Backpack, laptop sleeve, 28L, 1.4kg, 2-yr warranty",
+    "bullets": [
+      "Capacity: 28L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.4kg",
+      "Warranty: 2years",
+      "Water-Resistance Rating: 400mm"
+    ],
+    "description": "A backpack with capacity: 28l, padded laptop sleeve, weight: 1.4kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-69",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 35.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.1,
+      "warranty_years": 3.0,
+      "water_resist_mm": 350.0
+    },
+    "price": 65.0,
+    "list_price": 73,
+    "rating": 3.8,
+    "reviews": 2289,
+    "bought": 1409,
+    "stock": 40,
+    "fail_reasons": [
+      "rating__min",
+      "water_resist_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-3.png",
+    "image_tier": "stock",
+    "title": "Lumio 69 Backpack, laptop sleeve, 35L, 1.1kg, 3-yr warranty",
+    "bullets": [
+      "Capacity: 35.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.1kg",
+      "Warranty: 3.0years",
+      "Water-Resistance Rating: 350.0mm"
+    ],
+    "description": "A backpack with capacity: 35.0l, padded laptop sleeve, weight: 1.1kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-01",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 30,
+      "has_laptop_sleeve": true,
+      "weight_kg": 0.6,
+      "warranty_years": 12,
+      "water_resist_mm": 3000
+    },
+    "price": 95.0,
+    "list_price": 122,
+    "rating": 4.7,
+    "reviews": 8600,
+    "bought": 17200,
+    "stock": 72,
+    "fail_reasons": [],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-0.png",
+    "image_tier": "stock",
+    "title": "Norvik 01 Backpack, laptop sleeve, 30L, 0.6kg, 12-yr warranty",
+    "bullets": [
+      "Capacity: 30L",
+      "Padded Laptop Sleeve",
+      "Weight: 0.6kg",
+      "Warranty: 12years",
+      "Water-Resistance Rating: 3000mm"
+    ],
+    "description": "A backpack with capacity: 30l, padded laptop sleeve, weight: 0.6kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-39",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 42.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.5,
+      "warranty_years": 2.0,
+      "water_resist_mm": 350.0
+    },
+    "price": 65.0,
+    "list_price": 70,
+    "rating": 4.0,
+    "reviews": 1813,
+    "bought": 1896,
+    "stock": 170,
+    "fail_reasons": [
+      "weight_kg__max",
+      "water_resist_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-1.png",
+    "image_tier": "stock",
+    "title": "Marlo 39 Backpack, laptop sleeve, 42L, 1.5kg, 2-yr warranty",
+    "bullets": [
+      "Capacity: 42.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.5kg",
+      "Warranty: 2.0years",
+      "Water-Resistance Rating: 350.0mm"
+    ],
+    "description": "A backpack with capacity: 42.0l, padded laptop sleeve, weight: 1.5kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-50",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 37.0,
+      "has_laptop_sleeve": false,
+      "weight_kg": 1.15,
+      "warranty_years": 3.0,
+      "water_resist_mm": 1000.0
+    },
+    "price": 65.0,
+    "list_price": 74,
+    "rating": 3.8,
+    "reviews": 694,
+    "bought": 2382,
+    "stock": 156,
+    "fail_reasons": [
+      "rating__min",
+      "has_laptop_sleeve"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-2.png",
+    "image_tier": "stock",
+    "title": "Pomely 50 Backpack, 37L, 1.15kg, 3-yr warranty",
+    "bullets": [
+      "Capacity: 37.0L",
+      "Weight: 1.15kg",
+      "Warranty: 3.0years",
+      "Water-Resistance Rating: 1000.0mm"
+    ],
+    "description": "A backpack with capacity: 37.0l, weight: 1.15kg, warranty: 3.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-10",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 37.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.4,
+      "warranty_years": 1.0,
+      "water_resist_mm": 950.0
+    },
+    "price": 180.0,
+    "list_price": 210,
+    "rating": 3.8,
+    "reviews": 931,
+    "bought": 2651,
+    "stock": 188,
+    "fail_reasons": [
+      "price__lt",
+      "warranty_years__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-3.png",
+    "image_tier": "stock",
+    "title": "Juno 10 Backpack, laptop sleeve, 37L, 1.4kg, 1-yr warranty",
+    "bullets": [
+      "Capacity: 37.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.4kg",
+      "Warranty: 1.0years",
+      "Water-Resistance Rating: 950.0mm"
+    ],
+    "description": "A backpack with capacity: 37.0l, padded laptop sleeve, weight: 1.4kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-41",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 40.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.15,
+      "warranty_years": 3.0,
+      "water_resist_mm": 700.0
+    },
+    "price": 210.0,
+    "list_price": 231,
+    "rating": 3.9,
+    "reviews": 1698,
+    "bought": 2281,
+    "stock": 136,
+    "fail_reasons": [
+      "price__lt",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-0.png",
+    "image_tier": "stock",
+    "title": "Vesper 41 Backpack, laptop sleeve, 40L, 1.15kg, 3-yr warranty",
+    "bullets": [
+      "Capacity: 40.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.15kg",
+      "Warranty: 3.0years",
+      "Water-Resistance Rating: 700.0mm"
+    ],
+    "description": "A backpack with capacity: 40.0l, padded laptop sleeve, weight: 1.15kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-44",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 27.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.5,
+      "warranty_years": 3.0,
+      "water_resist_mm": 1100.0
+    },
+    "price": 100.0,
+    "list_price": 112,
+    "rating": 3.8,
+    "reviews": 1357,
+    "bought": 526,
+    "stock": 145,
+    "fail_reasons": [
+      "capacity_liters__min",
+      "weight_kg__max",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-1.png",
+    "image_tier": "stock",
+    "title": "Brixton 44 Backpack, laptop sleeve, 27L, 1.5kg, 3-yr warranty",
+    "bullets": [
+      "Capacity: 27.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.5kg",
+      "Warranty: 3.0years",
+      "Water-Resistance Rating: 1100.0mm"
+    ],
+    "description": "A backpack with capacity: 27.0l, padded laptop sleeve, weight: 1.5kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-05",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "capacity_liters": 32,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.4,
+      "warranty_years": 2,
+      "water_resist_mm": 400
+    },
+    "price": 82.0,
+    "list_price": 105,
+    "rating": 4.0,
+    "reviews": 3100,
+    "bought": 6200,
+    "stock": 143,
+    "fail_reasons": [],
+    "decoy_kind": "floor",
+    "variants": [],
+    "image": "backpack-generic-2.png",
+    "image_tier": "stock",
+    "title": "Lumio 05 Backpack, laptop sleeve, 32L, 1.4kg, 2-yr warranty",
+    "bullets": [
+      "Capacity: 32L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.4kg",
+      "Warranty: 2years",
+      "Water-Resistance Rating: 400mm"
+    ],
+    "description": "A backpack with capacity: 32l, padded laptop sleeve, weight: 1.4kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-24",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 34.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.5,
+      "warranty_years": 1.0,
+      "water_resist_mm": 750.0
+    },
+    "price": 85.0,
+    "list_price": 96,
+    "rating": 3.8,
+    "reviews": 667,
+    "bought": 2000,
+    "stock": 23,
+    "fail_reasons": [
+      "weight_kg__max",
+      "warranty_years__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-3.png",
+    "image_tier": "stock",
+    "title": "Toro 24 Backpack, laptop sleeve, 34L, 1.5kg, 1-yr warranty",
+    "bullets": [
+      "Capacity: 34.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.5kg",
+      "Warranty: 1.0years",
+      "Water-Resistance Rating: 750.0mm"
+    ],
+    "description": "A backpack with capacity: 34.0l, padded laptop sleeve, weight: 1.5kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-49",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 27.0,
+      "has_laptop_sleeve": true,
+      "weight_kg": 1.4,
+      "warranty_years": 1.0,
+      "water_resist_mm": 950.0
+    },
+    "price": 70.0,
+    "list_price": 77,
+    "rating": 3.9,
+    "reviews": 2248,
+    "bought": 668,
+    "stock": 95,
+    "fail_reasons": [
+      "capacity_liters__min",
+      "warranty_years__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-0.png",
+    "image_tier": "stock",
+    "title": "Norvik 49 Backpack, laptop sleeve, 27L, 1.4kg, 1-yr warranty",
+    "bullets": [
+      "Capacity: 27.0L",
+      "Padded Laptop Sleeve",
+      "Weight: 1.4kg",
+      "Warranty: 1.0years",
+      "Water-Resistance Rating: 950.0mm"
+    ],
+    "description": "A backpack with capacity: 27.0l, padded laptop sleeve, weight: 1.4kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-BACKPACK-42",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_liters": 41.0,
+      "has_laptop_sleeve": false,
+      "weight_kg": 1.5,
+      "warranty_years": 3.0,
+      "water_resist_mm": 500.0
+    },
+    "price": 115.0,
+    "list_price": 124,
+    "rating": 3.8,
+    "reviews": 1730,
+    "bought": 1472,
+    "stock": 25,
+    "fail_reasons": [
+      "weight_kg__max",
+      "rating__min",
+      "has_laptop_sleeve"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "backpack-generic-1.png",
+    "image_tier": "stock",
+    "title": "Juno 42 Backpack, 41L, 1.5kg, 3-yr warranty",
+    "bullets": [
+      "Capacity: 41.0L",
+      "Weight: 1.5kg",
+      "Warranty: 3.0years",
+      "Water-Resistance Rating: 500.0mm"
+    ],
+    "description": "A backpack with capacity: 41.0l, weight: 1.5kg, warranty: 3.0years.",
+    "copy_status": "ok"
+  }
+]

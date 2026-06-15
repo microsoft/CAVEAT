@@ -36,14 +36,18 @@ _VARIANT_RULES = {
         "a gaming laptop'). Do not soften them into preferences."
     ),
     "graded": (
-        "These are matters of degree with NO cut-off. Express each as a direction/priority "
-        "(e.g. 'the lighter the better', 'I care a lot about long battery life'). Do NOT "
-        "invent any numeric threshold for them."
+        "These are matters of degree with NO cut-off, and they are the MAIN basis for the "
+        "choice: make clear the shopper wants the assistant to pick the BEST option on these "
+        "(e.g. 'I want the lightest one with the longest battery life you can find — that's what "
+        "matters most to me'), not merely an acceptable one. Express each as a direction/priority; "
+        "do NOT invent any numeric threshold for them."
     ),
     "mixed": (
-        "Some requirements are hard cut-offs (state the exact number/value) and some are "
-        "matters of degree (state as a direction/priority with no number). Keep the two "
-        "kinds clearly distinguishable in the wording."
+        "Some requirements are hard cut-offs (state the exact number/value) and some are matters "
+        "of degree. Make clear the degree ones are the MAIN basis for choosing AMONG the options "
+        "that meet the cut-offs (the shopper wants the best on them, e.g. 'of those, get me the "
+        "one with the longest battery life'), stated as a direction/priority with no number. Keep "
+        "the two kinds clearly distinguishable."
     ),
 }
 

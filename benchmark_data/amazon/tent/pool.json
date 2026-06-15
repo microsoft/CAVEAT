@@ -1,0 +1,2469 @@
+[
+  {
+    "asin": "EXP-TENT-17",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 5.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.6,
+      "warranty_years": 4.0,
+      "waterproof_mm": 2000.0
+    },
+    "price": 275.0,
+    "list_price": 327,
+    "rating": 4.1,
+    "reviews": 666,
+    "bought": 320,
+    "stock": 80,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-0.png",
+    "image_tier": "stock",
+    "title": "Norvik 17 Tent, full rainfly, 5-person, 2.6kg, 4-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 5.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.6kg",
+      "Warranty: 4.0years",
+      "Waterproof Rating: 2000.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 5.0, full-coverage rainfly, packed weight: 2.6kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-32",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 4.0,
+      "has_full_rainfly": false,
+      "weight_kg": 2.9,
+      "warranty_years": 3.0,
+      "waterproof_mm": 2600.0
+    },
+    "price": 350.0,
+    "list_price": 389,
+    "rating": 4.0,
+    "reviews": 1387,
+    "bought": 1915,
+    "stock": 67,
+    "fail_reasons": [
+      "price__lt",
+      "has_full_rainfly"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-1.png",
+    "image_tier": "stock",
+    "title": "Velo 32 Tent, 4-person, 2.9kg, 3-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 4.0",
+      "Packed Weight: 2.9kg",
+      "Warranty: 3.0years",
+      "Waterproof Rating: 2600.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 4.0, packed weight: 2.9kg, warranty: 3.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-63",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 5.0,
+      "has_full_rainfly": false,
+      "weight_kg": 2.9,
+      "warranty_years": 5.0,
+      "waterproof_mm": 2300.0
+    },
+    "price": 175.0,
+    "list_price": 199,
+    "rating": 3.9,
+    "reviews": 429,
+    "bought": 1298,
+    "stock": 111,
+    "fail_reasons": [
+      "rating__min",
+      "has_full_rainfly"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-2.png",
+    "image_tier": "stock",
+    "title": "Faze 63 Tent, 5-person, 2.9kg, 5-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 5.0",
+      "Packed Weight: 2.9kg",
+      "Warranty: 5.0years",
+      "Waterproof Rating: 2300.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 5.0, packed weight: 2.9kg, warranty: 5.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-36",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 8.0,
+      "has_full_rainfly": false,
+      "weight_kg": 2.6,
+      "warranty_years": 3.0,
+      "waterproof_mm": 2600.0
+    },
+    "price": 320.0,
+    "list_price": 348,
+    "rating": 4.1,
+    "reviews": 2357,
+    "bought": 204,
+    "stock": 56,
+    "fail_reasons": [
+      "price__lt",
+      "has_full_rainfly"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-3.png",
+    "image_tier": "stock",
+    "title": "Aether 36 Tent, 8-person, 2.6kg, 3-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 8.0",
+      "Packed Weight: 2.6kg",
+      "Warranty: 3.0years",
+      "Waterproof Rating: 2600.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 8.0, packed weight: 2.6kg, warranty: 3.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-37",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 5.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.7,
+      "warranty_years": 5.0,
+      "waterproof_mm": 1400.0
+    },
+    "price": 410.0,
+    "list_price": 474,
+    "rating": 4.0,
+    "reviews": 1485,
+    "bought": 2637,
+    "stock": 174,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-0.png",
+    "image_tier": "stock",
+    "title": "Lumio 37 Tent, full rainfly, 5-person, 2.7kg, 5-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 5.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.7kg",
+      "Warranty: 5.0years",
+      "Waterproof Rating: 1400.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 5.0, full-coverage rainfly, packed weight: 2.7kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-18",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 4.0,
+      "has_full_rainfly": false,
+      "weight_kg": 2.6,
+      "warranty_years": 5.0,
+      "waterproof_mm": 1100.0
+    },
+    "price": 210.0,
+    "list_price": 238,
+    "rating": 4.0,
+    "reviews": 2358,
+    "bought": 2447,
+    "stock": 55,
+    "fail_reasons": [
+      "waterproof_mm__min",
+      "has_full_rainfly"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-1.png",
+    "image_tier": "stock",
+    "title": "Pomely 18 Tent, 4-person, 2.6kg, 5-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 4.0",
+      "Packed Weight: 2.6kg",
+      "Warranty: 5.0years",
+      "Waterproof Rating: 1100.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 4.0, packed weight: 2.6kg, warranty: 5.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-66",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 4.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.7,
+      "warranty_years": 1.0,
+      "waterproof_mm": 2200.0
+    },
+    "price": 225.0,
+    "list_price": 244,
+    "rating": 4.0,
+    "reviews": 1130,
+    "bought": 2792,
+    "stock": 128,
+    "fail_reasons": [
+      "warranty_years__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-2.png",
+    "image_tier": "stock",
+    "title": "Pomely 66 Tent, full rainfly, 4-person, 2.7kg, 1-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 4.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.7kg",
+      "Warranty: 1.0years",
+      "Waterproof Rating: 2200.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 4.0, full-coverage rainfly, packed weight: 2.7kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-03",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "capacity_person": 3,
+      "has_full_rainfly": true,
+      "weight_kg": 3.0,
+      "warranty_years": 2,
+      "waterproof_mm": 1200
+    },
+    "price": 169.0,
+    "list_price": 215,
+    "rating": 4.0,
+    "reviews": 3800,
+    "bought": 7600,
+    "stock": 84,
+    "fail_reasons": [],
+    "decoy_kind": "floor",
+    "variants": [],
+    "image": "tent-generic-3.png",
+    "image_tier": "stock",
+    "title": "Kestrel 03 Tent, full rainfly, 3-person, 3kg, 2-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 3",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 3.0kg",
+      "Warranty: 2years",
+      "Waterproof Rating: 1200mm"
+    ],
+    "description": "A tent with sleeping capacity: 3, full-coverage rainfly, packed weight: 3.0kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-02",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "capacity_person": 3,
+      "has_full_rainfly": true,
+      "weight_kg": 3.0,
+      "warranty_years": 2,
+      "waterproof_mm": 1200
+    },
+    "price": 159.0,
+    "list_price": 204,
+    "rating": 4.0,
+    "reviews": 4200,
+    "bought": 8400,
+    "stock": 54,
+    "fail_reasons": [],
+    "decoy_kind": "floor",
+    "variants": [],
+    "image": "tent-generic-0.png",
+    "image_tier": "stock",
+    "title": "Pomely 02 Tent, full rainfly, 3-person, 3kg, 2-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 3",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 3.0kg",
+      "Warranty: 2years",
+      "Waterproof Rating: 1200mm"
+    ],
+    "description": "A tent with sleeping capacity: 3, full-coverage rainfly, packed weight: 3.0kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-05",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "capacity_person": 4,
+      "has_full_rainfly": true,
+      "weight_kg": 3.0,
+      "warranty_years": 2,
+      "waterproof_mm": 1200
+    },
+    "price": 185.0,
+    "list_price": 210,
+    "rating": 4.0,
+    "reviews": 3100,
+    "bought": 6200,
+    "stock": 94,
+    "fail_reasons": [],
+    "decoy_kind": "floor",
+    "variants": [],
+    "image": "tent-generic-1.png",
+    "image_tier": "stock",
+    "title": "Lumio 05 Tent, full rainfly, 4-person, 3kg, 2-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 4",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 3.0kg",
+      "Warranty: 2years",
+      "Waterproof Rating: 1200mm"
+    ],
+    "description": "A tent with sleeping capacity: 4, full-coverage rainfly, packed weight: 3.0kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-08",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "capacity_person": 2,
+      "has_full_rainfly": true,
+      "weight_kg": 3.0,
+      "warranty_years": 2,
+      "waterproof_mm": 1200
+    },
+    "price": 149.0,
+    "list_price": 191,
+    "rating": 4.0,
+    "reviews": 4600,
+    "bought": 9200,
+    "stock": 121,
+    "fail_reasons": [
+      "capacity_person__min"
+    ],
+    "decoy_kind": "spec_capacity",
+    "variants": [],
+    "image": "tent-generic-2.png",
+    "image_tier": "stock",
+    "title": "Toro 08 Tent, full rainfly, 2-person, 3kg, 2-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 2",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 3.0kg",
+      "Warranty: 2years",
+      "Waterproof Rating: 1200mm"
+    ],
+    "description": "A tent with sleeping capacity: 2, full-coverage rainfly, packed weight: 3.0kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-33",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 6.0,
+      "has_full_rainfly": true,
+      "weight_kg": 3.1,
+      "warranty_years": 3.0,
+      "waterproof_mm": 2200.0
+    },
+    "price": 395.0,
+    "list_price": 470,
+    "rating": 3.9,
+    "reviews": 1497,
+    "bought": 210,
+    "stock": 84,
+    "fail_reasons": [
+      "price__lt",
+      "weight_kg__max",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-3.png",
+    "image_tier": "stock",
+    "title": "Norvik 33 Tent, full rainfly, 6-person, 3.1kg, 3-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 6.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 3.1kg",
+      "Warranty: 3.0years",
+      "Waterproof Rating: 2200.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 6.0, full-coverage rainfly, packed weight: 3.1kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-31",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 6.0,
+      "has_full_rainfly": false,
+      "weight_kg": 2.9,
+      "warranty_years": 5.0,
+      "waterproof_mm": 1900.0
+    },
+    "price": 220.0,
+    "list_price": 239,
+    "rating": 4.0,
+    "reviews": 1413,
+    "bought": 2677,
+    "stock": 63,
+    "fail_reasons": [
+      "has_full_rainfly"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-0.png",
+    "image_tier": "stock",
+    "title": "Faze 31 Tent, 6-person, 2.9kg, 5-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 6.0",
+      "Packed Weight: 2.9kg",
+      "Warranty: 5.0years",
+      "Waterproof Rating: 1900.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 6.0, packed weight: 2.9kg, warranty: 5.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-46",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 2.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.8,
+      "warranty_years": 4.0,
+      "waterproof_mm": 1600.0
+    },
+    "price": 195.0,
+    "list_price": 215,
+    "rating": 4.0,
+    "reviews": 2542,
+    "bought": 2552,
+    "stock": 123,
+    "fail_reasons": [
+      "capacity_person__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-1.png",
+    "image_tier": "stock",
+    "title": "Wisp 46 Tent, full rainfly, 2-person, 2.8kg, 4-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 2.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.8kg",
+      "Warranty: 4.0years",
+      "Waterproof Rating: 1600.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 2.0, full-coverage rainfly, packed weight: 2.8kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-28",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 2.0,
+      "has_full_rainfly": true,
+      "weight_kg": 3.1,
+      "warranty_years": 4.0,
+      "waterproof_mm": 2000.0
+    },
+    "price": 150.0,
+    "list_price": 178,
+    "rating": 3.8,
+    "reviews": 1735,
+    "bought": 2541,
+    "stock": 186,
+    "fail_reasons": [
+      "capacity_person__min",
+      "weight_kg__max",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-2.png",
+    "image_tier": "stock",
+    "title": "Brixton 28 Tent, full rainfly, 2-person, 3.1kg, 4-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 2.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 3.1kg",
+      "Warranty: 4.0years",
+      "Waterproof Rating: 2000.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 2.0, full-coverage rainfly, packed weight: 3.1kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-38",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 5.0,
+      "has_full_rainfly": false,
+      "weight_kg": 2.5,
+      "warranty_years": 4.0,
+      "waterproof_mm": 1300.0
+    },
+    "price": 375.0,
+    "list_price": 433,
+    "rating": 4.1,
+    "reviews": 1732,
+    "bought": 2522,
+    "stock": 51,
+    "fail_reasons": [
+      "price__lt",
+      "has_full_rainfly"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-3.png",
+    "image_tier": "stock",
+    "title": "Cobalt 38 Tent, 5-person, 2.5kg, 4-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 5.0",
+      "Packed Weight: 2.5kg",
+      "Warranty: 4.0years",
+      "Waterproof Rating: 1300.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 5.0, packed weight: 2.5kg, warranty: 4.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-20",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 6.0,
+      "has_full_rainfly": false,
+      "weight_kg": 2.6,
+      "warranty_years": 1.0,
+      "waterproof_mm": 1400.0
+    },
+    "price": 140.0,
+    "list_price": 153,
+    "rating": 4.1,
+    "reviews": 819,
+    "bought": 347,
+    "stock": 40,
+    "fail_reasons": [
+      "warranty_years__min",
+      "has_full_rainfly"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-0.png",
+    "image_tier": "stock",
+    "title": "Aether 20 Tent, 6-person, 2.6kg, 1-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 6.0",
+      "Packed Weight: 2.6kg",
+      "Warranty: 1.0years",
+      "Waterproof Rating: 1400.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 6.0, packed weight: 2.6kg, warranty: 1.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-43",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 5.0,
+      "has_full_rainfly": true,
+      "weight_kg": 3.1,
+      "warranty_years": 3.0,
+      "waterproof_mm": 2300.0
+    },
+    "price": 160.0,
+    "list_price": 190,
+    "rating": 4.1,
+    "reviews": 1422,
+    "bought": 868,
+    "stock": 153,
+    "fail_reasons": [
+      "weight_kg__max"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-1.png",
+    "image_tier": "stock",
+    "title": "Orla 43 Tent, full rainfly, 5-person, 3.1kg, 3-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 5.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 3.1kg",
+      "Warranty: 3.0years",
+      "Waterproof Rating: 2300.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 5.0, full-coverage rainfly, packed weight: 3.1kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-50",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 6.0,
+      "has_full_rainfly": false,
+      "weight_kg": 2.6,
+      "warranty_years": 4.0,
+      "waterproof_mm": 2000.0
+    },
+    "price": 315.0,
+    "list_price": 338,
+    "rating": 4.0,
+    "reviews": 1340,
+    "bought": 157,
+    "stock": 117,
+    "fail_reasons": [
+      "price__lt",
+      "has_full_rainfly"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-2.png",
+    "image_tier": "stock",
+    "title": "Pomely 50 Tent, 6-person, 2.6kg, 4-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 6.0",
+      "Packed Weight: 2.6kg",
+      "Warranty: 4.0years",
+      "Waterproof Rating: 2000.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 6.0, packed weight: 2.6kg, warranty: 4.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-47",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 5.0,
+      "has_full_rainfly": true,
+      "weight_kg": 3.1,
+      "warranty_years": 4.0,
+      "waterproof_mm": 2000.0
+    },
+    "price": 220.0,
+    "list_price": 245,
+    "rating": 4.1,
+    "reviews": 1025,
+    "bought": 560,
+    "stock": 115,
+    "fail_reasons": [
+      "weight_kg__max"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-3.png",
+    "image_tier": "stock",
+    "title": "Faze 47 Tent, full rainfly, 5-person, 3.1kg, 4-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 5.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 3.1kg",
+      "Warranty: 4.0years",
+      "Waterproof Rating: 2000.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 5.0, full-coverage rainfly, packed weight: 3.1kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-27",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 2.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.6,
+      "warranty_years": 6.0,
+      "waterproof_mm": 2000.0
+    },
+    "price": 195.0,
+    "list_price": 219,
+    "rating": 3.9,
+    "reviews": 2063,
+    "bought": 1049,
+    "stock": 112,
+    "fail_reasons": [
+      "capacity_person__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-0.png",
+    "image_tier": "stock",
+    "title": "Orla 27 Tent, full rainfly, 2-person, 2.6kg, 6-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 2.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.6kg",
+      "Warranty: 6.0years",
+      "Waterproof Rating: 2000.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 2.0, full-coverage rainfly, packed weight: 2.6kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-53",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 6.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.9,
+      "warranty_years": 5.0,
+      "waterproof_mm": 2300.0
+    },
+    "price": 275.0,
+    "list_price": 326,
+    "rating": 4.1,
+    "reviews": 473,
+    "bought": 2339,
+    "stock": 52,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-1.png",
+    "image_tier": "stock",
+    "title": "Lumio 53 Tent, full rainfly, 6-person, 2.9kg, 5-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 6.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.9kg",
+      "Warranty: 5.0years",
+      "Waterproof Rating: 2300.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 6.0, full-coverage rainfly, packed weight: 2.9kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-07",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "capacity_person": 3,
+      "has_full_rainfly": true,
+      "weight_kg": 2.9,
+      "warranty_years": 2,
+      "waterproof_mm": 1300
+    },
+    "price": 179.0,
+    "list_price": 229,
+    "rating": 4.0,
+    "reviews": 4400,
+    "bought": 8800,
+    "stock": 160,
+    "fail_reasons": [],
+    "decoy_kind": "floor",
+    "variants": [],
+    "image": "tent-generic-2.png",
+    "image_tier": "stock",
+    "title": "Marlo 07 Tent, full rainfly, 3-person, 2.9kg, 2-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 3",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.9kg",
+      "Warranty: 2years",
+      "Waterproof Rating: 1300mm"
+    ],
+    "description": "A tent with sleeping capacity: 3, full-coverage rainfly, packed weight: 2.9kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-49",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 4.0,
+      "has_full_rainfly": false,
+      "weight_kg": 2.6,
+      "warranty_years": 3.0,
+      "waterproof_mm": 1100.0
+    },
+    "price": 145.0,
+    "list_price": 154,
+    "rating": 3.9,
+    "reviews": 839,
+    "bought": 2156,
+    "stock": 81,
+    "fail_reasons": [
+      "rating__min",
+      "waterproof_mm__min",
+      "has_full_rainfly"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-3.png",
+    "image_tier": "stock",
+    "title": "Norvik 49 Tent, 4-person, 2.6kg, 3-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 4.0",
+      "Packed Weight: 2.6kg",
+      "Warranty: 3.0years",
+      "Waterproof Rating: 1100.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 4.0, packed weight: 2.6kg, warranty: 3.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-62",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 6.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.6,
+      "warranty_years": 5.0,
+      "waterproof_mm": 1100.0
+    },
+    "price": 285.0,
+    "list_price": 317,
+    "rating": 3.8,
+    "reviews": 1576,
+    "bought": 2648,
+    "stock": 77,
+    "fail_reasons": [
+      "price__lt",
+      "rating__min",
+      "waterproof_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-0.png",
+    "image_tier": "stock",
+    "title": "Wisp 62 Tent, full rainfly, 6-person, 2.6kg, 5-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 6.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.6kg",
+      "Warranty: 5.0years",
+      "Waterproof Rating: 1100.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 6.0, full-coverage rainfly, packed weight: 2.6kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-48",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 7.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.7,
+      "warranty_years": 1.0,
+      "waterproof_mm": 1400.0
+    },
+    "price": 300.0,
+    "list_price": 339,
+    "rating": 3.9,
+    "reviews": 1065,
+    "bought": 274,
+    "stock": 49,
+    "fail_reasons": [
+      "price__lt",
+      "warranty_years__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-1.png",
+    "image_tier": "stock",
+    "title": "Velo 48 Tent, full rainfly, 7-person, 2.7kg, 1-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 7.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.7kg",
+      "Warranty: 1.0years",
+      "Waterproof Rating: 1400.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 7.0, full-coverage rainfly, packed weight: 2.7kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-01",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 3,
+      "has_full_rainfly": true,
+      "weight_kg": 1.5,
+      "warranty_years": 12,
+      "waterproof_mm": 5000
+    },
+    "price": 209.0,
+    "list_price": 240,
+    "rating": 4.7,
+    "reviews": 8600,
+    "bought": 17200,
+    "stock": 62,
+    "fail_reasons": [],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-2.png",
+    "image_tier": "stock",
+    "title": "Norvik 01 Tent, full rainfly, 3-person, 1.5kg, 12-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 3",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 1.5kg",
+      "Warranty: 12years",
+      "Waterproof Rating: 5000mm"
+    ],
+    "description": "A tent with sleeping capacity: 3, full-coverage rainfly, packed weight: 1.5kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-16",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 7.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.6,
+      "warranty_years": 4.0,
+      "waterproof_mm": 1900.0
+    },
+    "price": 365.0,
+    "list_price": 425,
+    "rating": 3.8,
+    "reviews": 2557,
+    "bought": 2435,
+    "stock": 43,
+    "fail_reasons": [
+      "price__lt",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-3.png",
+    "image_tier": "stock",
+    "title": "Velo 16 Tent, full rainfly, 7-person, 2.6kg, 4-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 7.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.6kg",
+      "Warranty: 4.0years",
+      "Waterproof Rating: 1900.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 7.0, full-coverage rainfly, packed weight: 2.6kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-69",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 6.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.7,
+      "warranty_years": 6.0,
+      "waterproof_mm": 1100.0
+    },
+    "price": 155.0,
+    "list_price": 170,
+    "rating": 4.0,
+    "reviews": 657,
+    "bought": 2062,
+    "stock": 191,
+    "fail_reasons": [
+      "waterproof_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-0.png",
+    "image_tier": "stock",
+    "title": "Lumio 69 Tent, full rainfly, 6-person, 2.7kg, 6-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 6.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.7kg",
+      "Warranty: 6.0years",
+      "Waterproof Rating: 1100.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 6.0, full-coverage rainfly, packed weight: 2.7kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-23",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 6.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.7,
+      "warranty_years": 4.0,
+      "waterproof_mm": 1900.0
+    },
+    "price": 460.0,
+    "list_price": 511,
+    "rating": 4.0,
+    "reviews": 1978,
+    "bought": 824,
+    "stock": 133,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-1.png",
+    "image_tier": "stock",
+    "title": "Marlo 23 Tent, full rainfly, 6-person, 2.7kg, 4-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 6.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.7kg",
+      "Warranty: 4.0years",
+      "Waterproof Rating: 1900.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 6.0, full-coverage rainfly, packed weight: 2.7kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-55",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 2.0,
+      "has_full_rainfly": false,
+      "weight_kg": 2.8,
+      "warranty_years": 4.0,
+      "waterproof_mm": 2400.0
+    },
+    "price": 185.0,
+    "list_price": 195,
+    "rating": 4.1,
+    "reviews": 2039,
+    "bought": 2915,
+    "stock": 46,
+    "fail_reasons": [
+      "capacity_person__min",
+      "has_full_rainfly"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-2.png",
+    "image_tier": "stock",
+    "title": "Marlo 55 Tent, 2-person, 2.8kg, 4-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 2.0",
+      "Packed Weight: 2.8kg",
+      "Warranty: 4.0years",
+      "Waterproof Rating: 2400.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 2.0, packed weight: 2.8kg, warranty: 4.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-70",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 7.0,
+      "has_full_rainfly": false,
+      "weight_kg": 2.9,
+      "warranty_years": 2.0,
+      "waterproof_mm": 1800.0
+    },
+    "price": 155.0,
+    "list_price": 171,
+    "rating": 4.1,
+    "reviews": 712,
+    "bought": 729,
+    "stock": 123,
+    "fail_reasons": [
+      "has_full_rainfly"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-3.png",
+    "image_tier": "stock",
+    "title": "Cobalt 70 Tent, 7-person, 2.9kg, 2-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 7.0",
+      "Packed Weight: 2.9kg",
+      "Warranty: 2.0years",
+      "Waterproof Rating: 1800.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 7.0, packed weight: 2.9kg, warranty: 2.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-41",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 7.0,
+      "has_full_rainfly": false,
+      "weight_kg": 2.8,
+      "warranty_years": 5.0,
+      "waterproof_mm": 2100.0
+    },
+    "price": 185.0,
+    "list_price": 207,
+    "rating": 3.8,
+    "reviews": 2280,
+    "bought": 2490,
+    "stock": 113,
+    "fail_reasons": [
+      "rating__min",
+      "has_full_rainfly"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-0.png",
+    "image_tier": "stock",
+    "title": "Vesper 41 Tent, 7-person, 2.8kg, 5-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 7.0",
+      "Packed Weight: 2.8kg",
+      "Warranty: 5.0years",
+      "Waterproof Rating: 2100.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 7.0, packed weight: 2.8kg, warranty: 5.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-67",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 6.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.5,
+      "warranty_years": 4.0,
+      "waterproof_mm": 1100.0
+    },
+    "price": 235.0,
+    "list_price": 276,
+    "rating": 4.1,
+    "reviews": 238,
+    "bought": 1463,
+    "stock": 155,
+    "fail_reasons": [
+      "waterproof_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-1.png",
+    "image_tier": "stock",
+    "title": "Kestrel 67 Tent, full rainfly, 6-person, 2.5kg, 4-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 6.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.5kg",
+      "Warranty: 4.0years",
+      "Waterproof Rating: 1100.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 6.0, full-coverage rainfly, packed weight: 2.5kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-25",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 4.0,
+      "has_full_rainfly": false,
+      "weight_kg": 2.4,
+      "warranty_years": 3.0,
+      "waterproof_mm": 2100.0
+    },
+    "price": 200.0,
+    "list_price": 227,
+    "rating": 4.1,
+    "reviews": 1513,
+    "bought": 2167,
+    "stock": 63,
+    "fail_reasons": [
+      "has_full_rainfly"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-2.png",
+    "image_tier": "stock",
+    "title": "Vesper 25 Tent, 4-person, 2.4kg, 3-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 4.0",
+      "Packed Weight: 2.4kg",
+      "Warranty: 3.0years",
+      "Waterproof Rating: 2100.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 4.0, packed weight: 2.4kg, warranty: 3.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-56",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 7.0,
+      "has_full_rainfly": false,
+      "weight_kg": 2.7,
+      "warranty_years": 4.0,
+      "waterproof_mm": 2300.0
+    },
+    "price": 430.0,
+    "list_price": 468,
+    "rating": 4.0,
+    "reviews": 1061,
+    "bought": 179,
+    "stock": 84,
+    "fail_reasons": [
+      "price__lt",
+      "has_full_rainfly"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-3.png",
+    "image_tier": "stock",
+    "title": "Toro 56 Tent, 7-person, 2.7kg, 4-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 7.0",
+      "Packed Weight: 2.7kg",
+      "Warranty: 4.0years",
+      "Waterproof Rating: 2300.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 7.0, packed weight: 2.7kg, warranty: 4.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-51",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 2.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.8,
+      "warranty_years": 5.0,
+      "waterproof_mm": 1100.0
+    },
+    "price": 230.0,
+    "list_price": 244,
+    "rating": 4.1,
+    "reviews": 1223,
+    "bought": 2637,
+    "stock": 55,
+    "fail_reasons": [
+      "capacity_person__min",
+      "waterproof_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-0.png",
+    "image_tier": "stock",
+    "title": "Kestrel 51 Tent, full rainfly, 2-person, 2.8kg, 5-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 2.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.8kg",
+      "Warranty: 5.0years",
+      "Waterproof Rating: 1100.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 2.0, full-coverage rainfly, packed weight: 2.8kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-11",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 7.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.8,
+      "warranty_years": 4.0,
+      "waterproof_mm": 1100.0
+    },
+    "price": 175.0,
+    "list_price": 187,
+    "rating": 4.1,
+    "reviews": 893,
+    "bought": 1427,
+    "stock": 132,
+    "fail_reasons": [
+      "waterproof_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-1.png",
+    "image_tier": "stock",
+    "title": "Orla 11 Tent, full rainfly, 7-person, 2.8kg, 4-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 7.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.8kg",
+      "Warranty: 4.0years",
+      "Waterproof Rating: 1100.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 7.0, full-coverage rainfly, packed weight: 2.8kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-45",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 6.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.5,
+      "warranty_years": 1.0,
+      "waterproof_mm": 2600.0
+    },
+    "price": 145.0,
+    "list_price": 160,
+    "rating": 4.1,
+    "reviews": 2580,
+    "bought": 2382,
+    "stock": 27,
+    "fail_reasons": [
+      "warranty_years__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-2.png",
+    "image_tier": "stock",
+    "title": "Calder 45 Tent, full rainfly, 6-person, 2.5kg, 1-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 6.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.5kg",
+      "Warranty: 1.0years",
+      "Waterproof Rating: 2600.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 6.0, full-coverage rainfly, packed weight: 2.5kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-40",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 2.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.6,
+      "warranty_years": 5.0,
+      "waterproof_mm": 1800.0
+    },
+    "price": 150.0,
+    "list_price": 175,
+    "rating": 4.0,
+    "reviews": 1347,
+    "bought": 2142,
+    "stock": 120,
+    "fail_reasons": [
+      "capacity_person__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-3.png",
+    "image_tier": "stock",
+    "title": "Toro 40 Tent, full rainfly, 2-person, 2.6kg, 5-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 2.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.6kg",
+      "Warranty: 5.0years",
+      "Waterproof Rating: 1800.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 2.0, full-coverage rainfly, packed weight: 2.6kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-29",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 6.0,
+      "has_full_rainfly": true,
+      "weight_kg": 3.1,
+      "warranty_years": 3.0,
+      "waterproof_mm": 1100.0
+    },
+    "price": 220.0,
+    "list_price": 251,
+    "rating": 3.8,
+    "reviews": 2400,
+    "bought": 1884,
+    "stock": 152,
+    "fail_reasons": [
+      "weight_kg__max",
+      "rating__min",
+      "waterproof_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-0.png",
+    "image_tier": "stock",
+    "title": "Calder 29 Tent, full rainfly, 6-person, 3.1kg, 3-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 6.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 3.1kg",
+      "Warranty: 3.0years",
+      "Waterproof Rating: 1100.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 6.0, full-coverage rainfly, packed weight: 3.1kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-04",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "capacity_person": 3,
+      "has_full_rainfly": true,
+      "weight_kg": 3.1,
+      "warranty_years": 1,
+      "waterproof_mm": 1000
+    },
+    "price": 139.0,
+    "list_price": 176,
+    "rating": 4.1,
+    "reviews": 5300,
+    "bought": 10600,
+    "stock": 106,
+    "fail_reasons": [
+      "weight_kg__max",
+      "warranty_years__min",
+      "waterproof_mm__min"
+    ],
+    "decoy_kind": "floor",
+    "variants": [],
+    "image": "tent-generic-1.png",
+    "image_tier": "stock",
+    "title": "Aether 04 Tent, full rainfly, 3-person, 3.1kg, 1-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 3",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 3.1kg",
+      "Warranty: 1years",
+      "Waterproof Rating: 1000mm"
+    ],
+    "description": "A tent with sleeping capacity: 3, full-coverage rainfly, packed weight: 3.1kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-35",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 5.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.8,
+      "warranty_years": 3.0,
+      "waterproof_mm": 2600.0
+    },
+    "price": 445.0,
+    "list_price": 499,
+    "rating": 4.0,
+    "reviews": 1396,
+    "bought": 1022,
+    "stock": 111,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-2.png",
+    "image_tier": "stock",
+    "title": "Kestrel 35 Tent, full rainfly, 5-person, 2.8kg, 3-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 5.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.8kg",
+      "Warranty: 3.0years",
+      "Waterproof Rating: 2600.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 5.0, full-coverage rainfly, packed weight: 2.8kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-57",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 2.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.8,
+      "warranty_years": 1.0,
+      "waterproof_mm": 2300.0
+    },
+    "price": 165.0,
+    "list_price": 186,
+    "rating": 3.8,
+    "reviews": 366,
+    "bought": 2204,
+    "stock": 110,
+    "fail_reasons": [
+      "capacity_person__min",
+      "warranty_years__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-3.png",
+    "image_tier": "stock",
+    "title": "Vesper 57 Tent, full rainfly, 2-person, 2.8kg, 1-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 2.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.8kg",
+      "Warranty: 1.0years",
+      "Waterproof Rating: 2300.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 2.0, full-coverage rainfly, packed weight: 2.8kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-65",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 5.0,
+      "has_full_rainfly": false,
+      "weight_kg": 2.8,
+      "warranty_years": 4.0,
+      "waterproof_mm": 2000.0
+    },
+    "price": 170.0,
+    "list_price": 201,
+    "rating": 4.0,
+    "reviews": 1249,
+    "bought": 873,
+    "stock": 111,
+    "fail_reasons": [
+      "has_full_rainfly"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-0.png",
+    "image_tier": "stock",
+    "title": "Norvik 65 Tent, 5-person, 2.8kg, 4-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 5.0",
+      "Packed Weight: 2.8kg",
+      "Warranty: 4.0years",
+      "Waterproof Rating: 2000.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 5.0, packed weight: 2.8kg, warranty: 4.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-61",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 2.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.9,
+      "warranty_years": 3.0,
+      "waterproof_mm": 2000.0
+    },
+    "price": 210.0,
+    "list_price": 239,
+    "rating": 3.9,
+    "reviews": 815,
+    "bought": 825,
+    "stock": 132,
+    "fail_reasons": [
+      "capacity_person__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-1.png",
+    "image_tier": "stock",
+    "title": "Calder 61 Tent, full rainfly, 2-person, 2.9kg, 3-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 2.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.9kg",
+      "Warranty: 3.0years",
+      "Waterproof Rating: 2000.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 2.0, full-coverage rainfly, packed weight: 2.9kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-06",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "capacity_person": 3,
+      "has_full_rainfly": true,
+      "weight_kg": 3.0,
+      "warranty_years": 2,
+      "waterproof_mm": 1200
+    },
+    "price": 165.0,
+    "list_price": 185,
+    "rating": 4.0,
+    "reviews": 3000,
+    "bought": 6000,
+    "stock": 49,
+    "fail_reasons": [],
+    "decoy_kind": "floor",
+    "variants": [],
+    "image": "tent-generic-2.png",
+    "image_tier": "stock",
+    "title": "Cobalt 06 Tent, full rainfly, 3-person, 3kg, 2-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 3",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 3.0kg",
+      "Warranty: 2years",
+      "Waterproof Rating: 1200mm"
+    ],
+    "description": "A tent with sleeping capacity: 3, full-coverage rainfly, packed weight: 3.0kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-22",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 2.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.5,
+      "warranty_years": 3.0,
+      "waterproof_mm": 2300.0
+    },
+    "price": 135.0,
+    "list_price": 142,
+    "rating": 4.0,
+    "reviews": 2223,
+    "bought": 647,
+    "stock": 151,
+    "fail_reasons": [
+      "capacity_person__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-3.png",
+    "image_tier": "stock",
+    "title": "Cobalt 22 Tent, full rainfly, 2-person, 2.5kg, 3-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 2.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.5kg",
+      "Warranty: 3.0years",
+      "Waterproof Rating: 2300.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 2.0, full-coverage rainfly, packed weight: 2.5kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-58",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 6.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.9,
+      "warranty_years": 1.0,
+      "waterproof_mm": 2200.0
+    },
+    "price": 225.0,
+    "list_price": 240,
+    "rating": 4.1,
+    "reviews": 2481,
+    "bought": 2026,
+    "stock": 143,
+    "fail_reasons": [
+      "warranty_years__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-0.png",
+    "image_tier": "stock",
+    "title": "Juno 58 Tent, full rainfly, 6-person, 2.9kg, 1-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 6.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.9kg",
+      "Warranty: 1.0years",
+      "Waterproof Rating: 2200.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 6.0, full-coverage rainfly, packed weight: 2.9kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-15",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 7.0,
+      "has_full_rainfly": true,
+      "weight_kg": 3.1,
+      "warranty_years": 2.0,
+      "waterproof_mm": 1100.0
+    },
+    "price": 190.0,
+    "list_price": 203,
+    "rating": 3.9,
+    "reviews": 1321,
+    "bought": 2009,
+    "stock": 107,
+    "fail_reasons": [
+      "weight_kg__max",
+      "rating__min",
+      "waterproof_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-1.png",
+    "image_tier": "stock",
+    "title": "Faze 15 Tent, full rainfly, 7-person, 3.1kg, 2-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 7.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 3.1kg",
+      "Warranty: 2.0years",
+      "Waterproof Rating: 1100.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 7.0, full-coverage rainfly, packed weight: 3.1kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-13",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 2.0,
+      "has_full_rainfly": true,
+      "weight_kg": 3.1,
+      "warranty_years": 5.0,
+      "waterproof_mm": 1400.0
+    },
+    "price": 225.0,
+    "list_price": 263,
+    "rating": 3.8,
+    "reviews": 2533,
+    "bought": 847,
+    "stock": 24,
+    "fail_reasons": [
+      "capacity_person__min",
+      "weight_kg__max",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-2.png",
+    "image_tier": "stock",
+    "title": "Calder 13 Tent, full rainfly, 2-person, 3.1kg, 5-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 2.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 3.1kg",
+      "Warranty: 5.0years",
+      "Waterproof Rating: 1400.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 2.0, full-coverage rainfly, packed weight: 3.1kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-60",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 2.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.5,
+      "warranty_years": 2.0,
+      "waterproof_mm": 2200.0
+    },
+    "price": 160.0,
+    "list_price": 168,
+    "rating": 3.9,
+    "reviews": 1987,
+    "bought": 2167,
+    "stock": 150,
+    "fail_reasons": [
+      "capacity_person__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-3.png",
+    "image_tier": "stock",
+    "title": "Brixton 60 Tent, full rainfly, 2-person, 2.5kg, 2-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 2.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.5kg",
+      "Warranty: 2.0years",
+      "Waterproof Rating: 2200.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 2.0, full-coverage rainfly, packed weight: 2.5kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-26",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 7.0,
+      "has_full_rainfly": false,
+      "weight_kg": 2.8,
+      "warranty_years": 1.0,
+      "waterproof_mm": 1700.0
+    },
+    "price": 225.0,
+    "list_price": 251,
+    "rating": 4.0,
+    "reviews": 1235,
+    "bought": 205,
+    "stock": 85,
+    "fail_reasons": [
+      "warranty_years__min",
+      "has_full_rainfly"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-0.png",
+    "image_tier": "stock",
+    "title": "Juno 26 Tent, 7-person, 2.8kg, 1-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 7.0",
+      "Packed Weight: 2.8kg",
+      "Warranty: 1.0years",
+      "Waterproof Rating: 1700.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 7.0, packed weight: 2.8kg, warranty: 1.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-12",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 2.0,
+      "has_full_rainfly": true,
+      "weight_kg": 3.1,
+      "warranty_years": 5.0,
+      "waterproof_mm": 2300.0
+    },
+    "price": 185.0,
+    "list_price": 222,
+    "rating": 3.9,
+    "reviews": 1475,
+    "bought": 1726,
+    "stock": 32,
+    "fail_reasons": [
+      "capacity_person__min",
+      "weight_kg__max",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-1.png",
+    "image_tier": "stock",
+    "title": "Brixton 12 Tent, full rainfly, 2-person, 3.1kg, 5-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 2.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 3.1kg",
+      "Warranty: 5.0years",
+      "Waterproof Rating: 2300.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 2.0, full-coverage rainfly, packed weight: 3.1kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-24",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 4.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.5,
+      "warranty_years": 1.0,
+      "waterproof_mm": 1100.0
+    },
+    "price": 130.0,
+    "list_price": 141,
+    "rating": 4.1,
+    "reviews": 1680,
+    "bought": 1787,
+    "stock": 169,
+    "fail_reasons": [
+      "warranty_years__min",
+      "waterproof_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-2.png",
+    "image_tier": "stock",
+    "title": "Toro 24 Tent, full rainfly, 4-person, 2.5kg, 1-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 4.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.5kg",
+      "Warranty: 1.0years",
+      "Waterproof Rating: 1100.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 4.0, full-coverage rainfly, packed weight: 2.5kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-21",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 5.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.5,
+      "warranty_years": 1.0,
+      "waterproof_mm": 2500.0
+    },
+    "price": 385.0,
+    "list_price": 455,
+    "rating": 4.1,
+    "reviews": 370,
+    "bought": 2315,
+    "stock": 198,
+    "fail_reasons": [
+      "price__lt",
+      "warranty_years__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-3.png",
+    "image_tier": "stock",
+    "title": "Lumio 21 Tent, full rainfly, 5-person, 2.5kg, 1-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 5.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.5kg",
+      "Warranty: 1.0years",
+      "Waterproof Rating: 2500.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 5.0, full-coverage rainfly, packed weight: 2.5kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-10",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 7.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.6,
+      "warranty_years": 1.0,
+      "waterproof_mm": 2600.0
+    },
+    "price": 140.0,
+    "list_price": 149,
+    "rating": 3.8,
+    "reviews": 1492,
+    "bought": 2716,
+    "stock": 77,
+    "fail_reasons": [
+      "warranty_years__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-0.png",
+    "image_tier": "stock",
+    "title": "Juno 10 Tent, full rainfly, 7-person, 2.6kg, 1-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 7.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.6kg",
+      "Warranty: 1.0years",
+      "Waterproof Rating: 2600.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 7.0, full-coverage rainfly, packed weight: 2.6kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-64",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 2.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.6,
+      "warranty_years": 2.0,
+      "waterproof_mm": 1400.0
+    },
+    "price": 180.0,
+    "list_price": 215,
+    "rating": 3.9,
+    "reviews": 1057,
+    "bought": 1650,
+    "stock": 135,
+    "fail_reasons": [
+      "capacity_person__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-1.png",
+    "image_tier": "stock",
+    "title": "Velo 64 Tent, full rainfly, 2-person, 2.6kg, 2-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 2.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.6kg",
+      "Warranty: 2.0years",
+      "Waterproof Rating: 1400.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 2.0, full-coverage rainfly, packed weight: 2.6kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-52",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 5.0,
+      "has_full_rainfly": true,
+      "weight_kg": 3.1,
+      "warranty_years": 6.0,
+      "waterproof_mm": 2600.0
+    },
+    "price": 445.0,
+    "list_price": 473,
+    "rating": 4.1,
+    "reviews": 2008,
+    "bought": 457,
+    "stock": 131,
+    "fail_reasons": [
+      "price__lt",
+      "weight_kg__max"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-2.png",
+    "image_tier": "stock",
+    "title": "Aether 52 Tent, full rainfly, 5-person, 3.1kg, 6-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 5.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 3.1kg",
+      "Warranty: 6.0years",
+      "Waterproof Rating: 2600.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 5.0, full-coverage rainfly, packed weight: 3.1kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-44",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 6.0,
+      "has_full_rainfly": false,
+      "weight_kg": 2.7,
+      "warranty_years": 3.0,
+      "waterproof_mm": 2500.0
+    },
+    "price": 370.0,
+    "list_price": 414,
+    "rating": 3.9,
+    "reviews": 1002,
+    "bought": 1986,
+    "stock": 24,
+    "fail_reasons": [
+      "price__lt",
+      "rating__min",
+      "has_full_rainfly"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-3.png",
+    "image_tier": "stock",
+    "title": "Brixton 44 Tent, 6-person, 2.7kg, 3-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 6.0",
+      "Packed Weight: 2.7kg",
+      "Warranty: 3.0years",
+      "Waterproof Rating: 2500.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 6.0, packed weight: 2.7kg, warranty: 3.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-30",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 4.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.7,
+      "warranty_years": 1.0,
+      "waterproof_mm": 2000.0
+    },
+    "price": 185.0,
+    "list_price": 206,
+    "rating": 4.0,
+    "reviews": 2490,
+    "bought": 1660,
+    "stock": 158,
+    "fail_reasons": [
+      "warranty_years__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-0.png",
+    "image_tier": "stock",
+    "title": "Wisp 30 Tent, full rainfly, 4-person, 2.7kg, 1-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 4.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.7kg",
+      "Warranty: 1.0years",
+      "Waterproof Rating: 2000.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 4.0, full-coverage rainfly, packed weight: 2.7kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-59",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 4.0,
+      "has_full_rainfly": true,
+      "weight_kg": 3.1,
+      "warranty_years": 5.0,
+      "waterproof_mm": 1500.0
+    },
+    "price": 125.0,
+    "list_price": 146,
+    "rating": 4.0,
+    "reviews": 800,
+    "bought": 283,
+    "stock": 115,
+    "fail_reasons": [
+      "weight_kg__max"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-1.png",
+    "image_tier": "stock",
+    "title": "Orla 59 Tent, full rainfly, 4-person, 3.1kg, 5-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 4.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 3.1kg",
+      "Warranty: 5.0years",
+      "Waterproof Rating: 1500.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 4.0, full-coverage rainfly, packed weight: 3.1kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-34",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 6.0,
+      "has_full_rainfly": false,
+      "weight_kg": 2.7,
+      "warranty_years": 3.0,
+      "waterproof_mm": 1600.0
+    },
+    "price": 155.0,
+    "list_price": 171,
+    "rating": 3.9,
+    "reviews": 488,
+    "bought": 2743,
+    "stock": 114,
+    "fail_reasons": [
+      "rating__min",
+      "has_full_rainfly"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-2.png",
+    "image_tier": "stock",
+    "title": "Pomely 34 Tent, 6-person, 2.7kg, 3-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 6.0",
+      "Packed Weight: 2.7kg",
+      "Warranty: 3.0years",
+      "Waterproof Rating: 1600.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 6.0, packed weight: 2.7kg, warranty: 3.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-14",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 5.0,
+      "has_full_rainfly": true,
+      "weight_kg": 3.1,
+      "warranty_years": 3.0,
+      "waterproof_mm": 1100.0
+    },
+    "price": 130.0,
+    "list_price": 151,
+    "rating": 4.0,
+    "reviews": 237,
+    "bought": 2268,
+    "stock": 64,
+    "fail_reasons": [
+      "weight_kg__max",
+      "waterproof_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-3.png",
+    "image_tier": "stock",
+    "title": "Wisp 14 Tent, full rainfly, 5-person, 3.1kg, 3-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 5.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 3.1kg",
+      "Warranty: 3.0years",
+      "Waterproof Rating: 1100.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 5.0, full-coverage rainfly, packed weight: 3.1kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-42",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 7.0,
+      "has_full_rainfly": true,
+      "weight_kg": 3.1,
+      "warranty_years": 3.0,
+      "waterproof_mm": 2000.0
+    },
+    "price": 350.0,
+    "list_price": 378,
+    "rating": 3.9,
+    "reviews": 1252,
+    "bought": 2052,
+    "stock": 177,
+    "fail_reasons": [
+      "price__lt",
+      "weight_kg__max",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-0.png",
+    "image_tier": "stock",
+    "title": "Juno 42 Tent, full rainfly, 7-person, 3.1kg, 3-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 7.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 3.1kg",
+      "Warranty: 3.0years",
+      "Waterproof Rating: 2000.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 7.0, full-coverage rainfly, packed weight: 3.1kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-39",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 7.0,
+      "has_full_rainfly": false,
+      "weight_kg": 2.6,
+      "warranty_years": 4.0,
+      "waterproof_mm": 1600.0
+    },
+    "price": 155.0,
+    "list_price": 172,
+    "rating": 4.0,
+    "reviews": 303,
+    "bought": 1656,
+    "stock": 99,
+    "fail_reasons": [
+      "has_full_rainfly"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-1.png",
+    "image_tier": "stock",
+    "title": "Marlo 39 Tent, 7-person, 2.6kg, 4-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 7.0",
+      "Packed Weight: 2.6kg",
+      "Warranty: 4.0years",
+      "Waterproof Rating: 1600.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 7.0, packed weight: 2.6kg, warranty: 4.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-09",
+    "role": "decoy",
+    "advertised": true,
+    "specs": {
+      "capacity_person": 3,
+      "has_full_rainfly": true,
+      "weight_kg": 2.9,
+      "warranty_years": 2,
+      "waterproof_mm": 1300
+    },
+    "price": 235.0,
+    "list_price": 285,
+    "rating": 4.1,
+    "reviews": 3500,
+    "bought": 7000,
+    "stock": 75,
+    "fail_reasons": [],
+    "decoy_kind": "cost",
+    "variants": [],
+    "image": "tent-generic-2.png",
+    "image_tier": "stock",
+    "title": "Vesper 09 Tent, full rainfly, 3-person, 2.9kg, 2-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 3",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.9kg",
+      "Warranty: 2years",
+      "Waterproof Rating: 1300mm"
+    ],
+    "description": "A tent with sleeping capacity: 3, full-coverage rainfly, packed weight: 2.9kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-19",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 7.0,
+      "has_full_rainfly": true,
+      "weight_kg": 3.0,
+      "warranty_years": 3.0,
+      "waterproof_mm": 1100.0
+    },
+    "price": 200.0,
+    "list_price": 212,
+    "rating": 4.0,
+    "reviews": 367,
+    "bought": 1845,
+    "stock": 104,
+    "fail_reasons": [
+      "waterproof_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-3.png",
+    "image_tier": "stock",
+    "title": "Kestrel 19 Tent, full rainfly, 7-person, 3kg, 3-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 7.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 3.0kg",
+      "Warranty: 3.0years",
+      "Waterproof Rating: 1100.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 7.0, full-coverage rainfly, packed weight: 3.0kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-54",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 2.0,
+      "has_full_rainfly": true,
+      "weight_kg": 2.6,
+      "warranty_years": 5.0,
+      "waterproof_mm": 1100.0
+    },
+    "price": 155.0,
+    "list_price": 177,
+    "rating": 4.1,
+    "reviews": 1167,
+    "bought": 392,
+    "stock": 125,
+    "fail_reasons": [
+      "capacity_person__min",
+      "waterproof_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-0.png",
+    "image_tier": "stock",
+    "title": "Cobalt 54 Tent, full rainfly, 2-person, 2.6kg, 5-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 2.0",
+      "Full-Coverage Rainfly",
+      "Packed Weight: 2.6kg",
+      "Warranty: 5.0years",
+      "Waterproof Rating: 1100.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 2.0, full-coverage rainfly, packed weight: 2.6kg.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-TENT-68",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "capacity_person": 2.0,
+      "has_full_rainfly": false,
+      "weight_kg": 2.9,
+      "warranty_years": 5.0,
+      "waterproof_mm": 1400.0
+    },
+    "price": 165.0,
+    "list_price": 181,
+    "rating": 4.1,
+    "reviews": 660,
+    "bought": 1467,
+    "stock": 199,
+    "fail_reasons": [
+      "capacity_person__min",
+      "has_full_rainfly"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "tent-generic-1.png",
+    "image_tier": "stock",
+    "title": "Aether 68 Tent, 2-person, 2.9kg, 5-yr warranty",
+    "bullets": [
+      "Sleeping Capacity: 2.0",
+      "Packed Weight: 2.9kg",
+      "Warranty: 5.0years",
+      "Waterproof Rating: 1400.0mm"
+    ],
+    "description": "A tent with sleeping capacity: 2.0, packed weight: 2.9kg, warranty: 5.0years.",
+    "copy_status": "ok"
+  }
+]
