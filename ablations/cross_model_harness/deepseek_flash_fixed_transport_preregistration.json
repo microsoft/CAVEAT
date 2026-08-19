@@ -1,0 +1,95 @@
+{
+  "schema_version": 2,
+  "kind": "browseruse_deliberative_deepseek_v4_flash_fixed_transport_successor_preregistration",
+  "frozen_before_successor_outcomes": true,
+  "scope": {
+    "environment": "amazon",
+    "scaffold": "browseruse-deliberative",
+    "variant": "graded",
+    "condition": "combined",
+    "scenarios": [
+      "laptop",
+      "office_chair",
+      "mattress",
+      "backpack",
+      "tent"
+    ],
+    "model": {
+      "request": "DeepSeek-V4-Flash",
+      "recorded": "DeepSeek-V4-Flash",
+      "logical": "DeepSeek-V4-Flash",
+      "deployment": "DeepSeek-V4-Flash_2026-04-23",
+      "regions": [
+        "gcr/shared",
+        "msraif/shared"
+      ]
+    }
+  },
+  "design": {
+    "measured_runs": 5,
+    "repeats_per_scenario": 1,
+    "fixed_denominator": true,
+    "treatment_only": true,
+    "full_five_scenario_successor": true,
+    "selective_backpack_refill": false,
+    "no_outcome_driven_subset_or_topup": true,
+    "waves": [
+      {
+        "wave": 1,
+        "scenarios": [
+          "laptop",
+          "mattress"
+        ]
+      },
+      {
+        "wave": 2,
+        "scenarios": [
+          "office_chair",
+          "backpack",
+          "tent"
+        ]
+      }
+    ]
+  },
+  "metrics": {
+    "headline": "preservation_strict",
+    "secondary": "strict_binary",
+    "legacy_preservation": "diagnostic_only",
+    "null_or_no_order_score": 0
+  },
+  "relationship_to_parent": {
+    "additive_only": true,
+    "replacement_or_exclusion": false,
+    "pooled_substitution": false,
+    "all_qwen_kimi_gpt4o_runs_and_zeros_preserved": true,
+    "report_all_four_models_separately": true,
+    "old_deepseek_campaign_preserved_as_invalid_descriptive_evidence": true,
+    "old_deepseek_runs_are_not_selectively_reused": true
+  },
+  "interpretation": {
+    "purpose": "Re-estimate the complete five-scenario DeepSeek treatment denominator under the common fixed evaluate-result transport.",
+    "shared_transport_change_only": true,
+    "domain_or_decision_patch": false,
+    "extract_specific_patch": false,
+    "extract_memory_chars_remains_a_fail_closed_audit": true
+  },
+  "historical_context": {
+    "old_campaign_outcomes_known_before_this_successor": true,
+    "successor_scope_chosen_as_all_five_scenarios": true,
+    "old_backpack_extract_memory_touch_motivates_an_excluded_smoke_not_a_patch_or_selective_refill": true
+  },
+  "excluded_smoke_policy": {
+    "required_before_measured_launch": true,
+    "scenario": "backpack",
+    "score_neutral": true,
+    "must_complete_a_purchase": true,
+    "all_lossy_context_limit_touches_must_be_zero": true,
+    "extract_memory_chars_is_a_fail_closed_audit_not_a_patch_target": true,
+    "excluded_from_five_run_denominator": true
+  },
+  "capacity": {
+    "machine_browser_ceiling": 36,
+    "launch_only_when_entire_wave_fits": true,
+    "otherwise": "remain frozen and queued without measured launch evidence"
+  }
+}

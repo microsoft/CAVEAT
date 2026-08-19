@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
+import { FiChevronLeft, FiChevronRight, FiX, FiMinus, FiPlus } from 'react-icons/fi';
+import { useAppContext } from '../App';
 import { getCategories } from '../api';
 import type { CategoryItem } from '../types';
 
@@ -115,9 +117,147 @@ interface CategoryRibbonProps {
   onSelectCategory: (id: number | null) => void;
 }
 
+const ROOM_TYPES = ['Entire place', 'Private room', 'Shared room'];
+
+function ModalCounter({ label, value, onChange }: { label: string; value: number; onChange: (v: number) => void }) {
+  return (
+    <div className="flex items-center justify-between py-2">
+      <span className="text-sm text-gray-700">{label}</span>
+      <div className="flex items-center gap-3">
+        <button
+          type="button"
+          onClick={() => onChange(Math.max(0, value - 1))}
+          disabled={value === 0}
+          className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:border-gray-900 disabled:opacity-30 disabled:cursor-not-allowed"
+          aria-label={`Decrease ${label}`}
+        ><FiMinus className="w-3.5 h-3.5" /></button>
+        <span className="w-8 text-center text-sm">{value === 0 ? 'Any' : `${value}+`}</span>
+        <button
+          type="button"
+          onClick={() => onChange(value + 1)}
+          className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:border-gray-900"
+          aria-label={`Increase ${label}`}
+        ><FiPlus className="w-3.5 h-3.5" /></button>
+      </div>
+    </div>
+  );
+}
+
+/** Real Filters modal (price range + type of place; Rooms & beds shown only when the served
+ *  card payloads carry the spec fields). Applying navigates to /search with the filters set. */
+function FiltersModal({ onClose }: { onClose: () => void }) {
+  const { searchFilters, setSearchFilters, minimalCards } = useAppContext();
+  const navigate = useNavigate();
+  const [minPrice, setMinPrice] = useState(searchFilters.min_price?.toString() ?? '');
+  const [maxPrice, setMaxPrice] = useState(searchFilters.max_price?.toString() ?? '');
+  const [roomType, setRoomType] = useState<string | undefined>(searchFilters.room_type);
+  const [bedrooms, setBedrooms] = useState(searchFilters.min_bedrooms ?? 0);
+  const [beds, setBeds] = useState(searchFilters.min_beds ?? 0);
+  const [bathrooms, setBathrooms] = useState(searchFilters.min_bathrooms ?? 0);
+
+  const apply = () => {
+    setSearchFilters({
+      ...searchFilters,
+      min_price: minPrice ? Number(minPrice) : undefined,
+      max_price: maxPrice ? Number(maxPrice) : undefined,
+      room_type: roomType,
+      min_bedrooms: !minimalCards && bedrooms > 0 ? bedrooms : undefined,
+      min_beds: !minimalCards && beds > 0 ? beds : undefined,
+      min_bathrooms: !minimalCards && bathrooms > 0 ? bathrooms : undefined,
+    });
+    onClose();
+    navigate('/search');
+  };
+
+  const clearAll = () => {
+    setMinPrice(''); setMaxPrice(''); setRoomType(undefined);
+    setBedrooms(0); setBeds(0); setBathrooms(0);
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40" onClick={onClose}>
+      <div
+        className="bg-white rounded-2xl shadow-xl w-full max-w-md mx-4 max-h-[85vh] overflow-y-auto"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 sticky top-0 bg-white rounded-t-2xl">
+          <button onClick={onClose} className="p-1.5 rounded-full hover:bg-gray-100 transition" aria-label="Close filters">
+            <FiX className="w-4 h-4" />
+          </button>
+          <h3 className="text-base font-semibold text-gray-900">Filters</h3>
+          <span className="w-7" />
+        </div>
+
+        <div className="px-6 py-4 border-b border-gray-100">
+          <h4 className="text-sm font-semibold text-gray-900 mb-3">Price range</h4>
+          <p className="text-xs text-gray-500 mb-3">Nightly price before fees and taxes</p>
+          <div className="flex items-center gap-3">
+            <div className="flex-1">
+              <label className="block text-xs text-gray-500 mb-1">Minimum</label>
+              <input
+                type="number" min={0} placeholder="$0" value={minPrice}
+                onChange={(e) => setMinPrice(e.target.value)}
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900"
+              />
+            </div>
+            <span className="text-gray-400 mt-4">–</span>
+            <div className="flex-1">
+              <label className="block text-xs text-gray-500 mb-1">Maximum</label>
+              <input
+                type="number" min={0} placeholder="Any" value={maxPrice}
+                onChange={(e) => setMaxPrice(e.target.value)}
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="px-6 py-4 border-b border-gray-100">
+          <h4 className="text-sm font-semibold text-gray-900 mb-3">Type of place</h4>
+          <div className="space-y-2">
+            {ROOM_TYPES.map((rt) => (
+              <label key={rt} className="flex items-center gap-2 cursor-pointer py-1">
+                <input
+                  type="checkbox"
+                  checked={roomType === rt}
+                  onChange={() => setRoomType(roomType === rt ? undefined : rt)}
+                  className="rounded border-gray-300"
+                />
+                <span className="text-sm text-gray-700">{rt}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        {!minimalCards && (
+          <div className="px-6 py-4 border-b border-gray-100">
+            <h4 className="text-sm font-semibold text-gray-900 mb-1">Rooms and beds</h4>
+            <ModalCounter label="Bedrooms" value={bedrooms} onChange={setBedrooms} />
+            <ModalCounter label="Beds" value={beds} onChange={setBeds} />
+            <ModalCounter label="Bathrooms" value={bathrooms} onChange={setBathrooms} />
+          </div>
+        )}
+
+        <div className="flex items-center justify-between px-6 py-4 sticky bottom-0 bg-white rounded-b-2xl border-t border-gray-200">
+          <button onClick={clearAll} className="text-sm font-semibold text-gray-900 underline hover:text-gray-600">
+            Clear all
+          </button>
+          <button
+            onClick={apply}
+            className="bg-gray-900 text-white rounded-lg px-6 py-2.5 text-sm font-semibold hover:bg-gray-800"
+          >
+            Show places
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function CategoryRibbon({ selectedCategory, onSelectCategory }: CategoryRibbonProps) {
+  const { showTotalPrice, setShowTotalPrice } = useAppContext();
   const [categories, setCategories] = useState<CategoryItem[]>([]);
-  const [showTaxToggle, setShowTaxToggle] = useState(false);
+  const [filtersOpen, setFiltersOpen] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -211,10 +351,10 @@ export default function CategoryRibbon({ selectedCategory, onSelectCategory }: C
             )}
           </div>
 
-          {/* Display total before taxes toggle */}
+          {/* Filters button (opens the real filters modal) + total-price toggle */}
           <div className="hidden lg:flex items-center gap-3 pl-4 border-l border-gray-200 flex-shrink-0">
             <button
-              onClick={() => setShowTaxToggle(!showTaxToggle)}
+              onClick={() => setFiltersOpen(true)}
               className="flex items-center gap-2 px-4 py-2.5 border border-gray-300 rounded-xl text-sm font-medium text-gray-700 hover:border-gray-500 transition whitespace-nowrap"
             >
               <svg viewBox="0 0 16 16" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -222,17 +362,21 @@ export default function CategoryRibbon({ selectedCategory, onSelectCategory }: C
               </svg>
               Filters
             </button>
-            <label className="flex items-center gap-2 text-sm text-gray-600 cursor-pointer whitespace-nowrap">
+            <label
+              className="flex items-center gap-2 text-sm text-gray-600 cursor-pointer whitespace-nowrap"
+              onClick={(e) => { e.preventDefault(); setShowTotalPrice(!showTotalPrice); }}
+            >
               <span>Display total before taxes</span>
               <div
                 className={`relative w-10 h-5 rounded-full transition-colors ${
-                  showTaxToggle ? 'bg-gray-900' : 'bg-gray-300'
+                  showTotalPrice ? 'bg-gray-900' : 'bg-gray-300'
                 }`}
-                onClick={(e) => { e.preventDefault(); setShowTaxToggle(!showTaxToggle); }}
+                role="switch"
+                aria-checked={showTotalPrice}
               >
                 <div
                   className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform ${
-                    showTaxToggle ? 'translate-x-5' : 'translate-x-0.5'
+                    showTotalPrice ? 'translate-x-5' : 'translate-x-0.5'
                   }`}
                 />
               </div>
@@ -240,6 +384,8 @@ export default function CategoryRibbon({ selectedCategory, onSelectCategory }: C
           </div>
         </div>
       </div>
+
+      {filtersOpen && <FiltersModal onClose={() => setFiltersOpen(false)} />}
     </div>
   );
 }

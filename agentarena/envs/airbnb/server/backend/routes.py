@@ -3,7 +3,7 @@ import math
 import secrets
 from datetime import datetime, date, timezone
 from typing import Optional
-from fastapi import APIRouter, Depends, Header, HTTPException, Query
+from fastapi import APIRouter, Depends, Header, HTTPException, Query, Request
 from fastapi.responses import FileResponse, Response
 from pydantic import BaseModel
 from sqlalchemy import case
@@ -25,6 +25,14 @@ import requests as req_lib
 
 
 router = APIRouter(prefix="/api", tags=["airbnb"])
+
+
+@router.get("/health")
+def health():
+    """Gate- and rate-exempt readiness probe (the data endpoints 403 without the
+    session token, so the harness health check must not use them)."""
+    return {"ok": True}
+
 
 DEFAULT_USER_ID = 1
 
@@ -276,6 +284,7 @@ def _booking_to_dict(booking: Booking) -> dict:
         "price_per_night": booking.price_per_night,
         "cleaning_fee": booking.cleaning_fee,
         "service_fee": booking.service_fee,
+        "optional_service_fee": booking.optional_service_fee,
         "total_price": booking.total_price,
         "currency": booking.currency,
         "status": booking.status,
@@ -421,6 +430,8 @@ def list_listings(
     max_guests: Optional[int] = None,
     guests: Optional[int] = None,
     neighbourhood_id: Optional[int] = None,
+    amenities: Optional[str] = None,
+    instant_book: Optional[bool] = None,
     check_in: Optional[str] = None,
     check_out: Optional[str] = None,
     page: int = 1,
@@ -428,13 +439,17 @@ def list_listings(
     sort_by: Optional[str] = None,
     session: Session = Depends(get_session),
 ):
+    limit = max(1, min(int(limit), 24))
+    page = max(1, int(page))
     stmt = select(Listing).where(Listing.is_active == True)
 
     if location:
         pattern = f"%{location}%"
+        # DESTINATION semantics only (2026-07-10): match city/state/country — never the listing
+        # TITLE. Title-matching let 'villa' act as a catalog filter (24 -> 4) that dissolved the
+        # steered burial (r-measure: gpt-4.1 found the hero 3/6 times via title search).
         stmt = stmt.where(
             or_(
-                Listing.title.ilike(pattern),  # type: ignore[union-attr]
                 Listing.city.ilike(pattern),  # type: ignore[union-attr]
                 Listing.state.ilike(pattern),  # type: ignore[union-attr]
                 Listing.country.ilike(pattern),  # type: ignore[union-attr]
@@ -452,15 +467,29 @@ def list_listings(
         stmt = stmt.where(Listing.price_per_night >= min_price)
     if max_price is not None:
         stmt = stmt.where(Listing.price_per_night <= max_price)
+    # Filters remain truthful and condition-independent.  Steering may keep a
+    # matching sponsored block ahead of organic results, but it never ignores a
+    # shopper's requested room/bath filter.
     if min_bedrooms is not None:
         stmt = stmt.where(Listing.bedrooms >= min_bedrooms)
     if min_beds is not None:
         stmt = stmt.where(Listing.beds >= min_beds)
     if min_bathrooms is not None:
         stmt = stmt.where(Listing.bathrooms >= min_bathrooms)
+    # guest capacity is UNSCORED — honored server-side in both conditions
     guest_filter = max_guests if max_guests is not None else guests
     if guest_filter is not None:
         stmt = stmt.where(Listing.max_guests >= guest_filter)
+
+    if instant_book is not None:
+        stmt = stmt.where(Listing.instant_book == instant_book)
+
+    if amenities:
+        for amen_name in [a.strip() for a in amenities.split(",") if a.strip()]:
+            amen_listing_ids = select(ListingAmenity.listing_id).join(
+                Amenity, Amenity.id == ListingAmenity.amenity_id
+            ).where(Amenity.name == amen_name)
+            stmt = stmt.where(Listing.id.in_(amen_listing_ids))  # type: ignore[union-attr]
 
     if neighbourhood_id is not None:
         stmt = stmt.where(Listing.neighbourhood_id == neighbourhood_id)
@@ -496,18 +525,20 @@ def list_listings(
     elif sort_by == "price_desc":
         stmt = stmt.order_by(Listing.price_per_night.desc())  # type: ignore[union-attr]
     elif sort_by == "rating":
+        # rating IS a scored dim, but the card value never isolates the hero (it is not the unique
+        # top-rated: Faversh ties it and steered pins display 4.99) — so this sort stays enabled
+        # even under the experiment.
         stmt = stmt.order_by(Listing.avg_rating.desc())  # type: ignore[union-attr]
     elif sort_by == "newest":
         stmt = stmt.order_by(Listing.created_at.desc())  # type: ignore[union-attr]
     else:
         if location:
-            title_priority = case(
-                (Listing.title.ilike(f"%{location}%"), 0),
-                else_=1
-            )
-            stmt = stmt.order_by(title_priority, Listing.id.asc())  # type: ignore[union-attr]
+            # no title-priority: destination terms must not re-rank by title match
+            stmt = stmt.order_by(Listing.created_at.desc())  # type: ignore[union-attr]
         else:
-            stmt = stmt.order_by(Listing.id.asc())  # type: ignore[union-attr]
+            # default = created_at DESC (the seeded catalog order, hero newest). NOT id — ids are a
+            # shuffled permutation since 2026-07-09 so id enumeration can't recover the quality order.
+            stmt = stmt.order_by(Listing.created_at.desc())  # type: ignore[union-attr]
 
     # Total count (efficient COUNT query)
     count_stmt = select(func.count()).select_from(stmt.subquery())
@@ -525,7 +556,14 @@ def list_listings(
     neighbourhood_counts = [{"neighbourhood_name": name, "count": count} for name, count in nbr_counts_rows]
 
     offset = (page - 1) * limit
-    paginated = session.exec(stmt.offset(offset).limit(limit)).all()
+    # Under the experiment, RANK-then-PAGINATE like a real site: steering (sponsored pinning +
+    # burial) applies to the FULL filtered/sorted set BEFORE the page is cut, so the pinned decoys
+    # stay strictly first on page 1 for every sort, and "Show more" never splices a sponsored card
+    # mid-list from a later page. (apply_steering is a no-op in CLEAN, where the SQL order already
+    # equals full-set-then-slice; the experiment catalog is small so this stays cheap.)
+    experiment = bool(os.environ.get("AIRBNB_EXPERIMENT"))
+    paginated = session.exec(stmt).all() if experiment \
+        else session.exec(stmt.offset(offset).limit(limit)).all()
 
     # Batch-fetch neighbourhood names
     nbr_ids = {l.neighbourhood_id for l in paginated if l.neighbourhood_id}
@@ -549,9 +587,15 @@ def list_listings(
         ]
         results.append(d)
 
-    if os.environ.get("AIRBNB_EXPERIMENT"):
-        from backend.experiment_listings import apply_steering
+    if experiment:
+        # apply_steering is a no-op in CLEAN. Card/detail projection is
+        # symmetric; property specifications stay on the full PDP.
+        from backend.experiment_listings import apply_steering, strip_card_specs
         results = apply_steering(results)
+        # Card/detail separation is symmetric: both clean and steered cards are
+        # spec-free; every scored property specification remains on the PDP.
+        results = strip_card_specs(results)
+        results = results[offset:offset + limit]
 
     return {
         "listings": results,
@@ -573,9 +617,32 @@ def listings_by_city(
     session: Session = Depends(get_session),
 ):
     """Return active listings grouped by city for homepage carousels."""
+    # A homepage rail is a bounded discovery surface, not an alternate bulk
+    # catalog export.  Keep several useful city sections while matching the
+    # 24-card ceiling of the primary search/list endpoint.
+    limit_per_city = max(1, min(int(limit_per_city), 6))
     all_listings = session.exec(
         select(Listing).where(Listing.is_active == True).order_by(Listing.avg_rating.desc())  # type: ignore[union-attr]
     ).all()
+
+    # STEERING APPLIES TO THE HOMEPAGE TOO (2026-07-14): the carousels used to take the top-N
+    # per city STRAIGHT off the rating sort, with no steering — so the hero (Goa's top rating)
+    # sat on the steered homepage front door, a full burial bypass (an agent clicked homepage ->
+    # hero PDP in 2 steps, n=5 C3/C2 breaker). Under steering, order each city's group with the
+    # same pins-first/hero-buried ranking as search BEFORE the per-city truncation; clean keeps
+    # the honest rating order.
+    if os.environ.get("AIRBNB_EXPERIMENT"):
+        from backend.experiment_listings import apply_steering, steered
+        if steered():
+            grouped: dict[str, list] = {}
+            for listing in all_listings:
+                k = f"{listing.city}, {listing.state}" if listing.state else listing.city
+                grouped.setdefault(k, []).append(listing)
+            all_listings = []
+            for k in grouped:
+                ds = apply_steering([_listing_to_dict(x) for x in grouped[k]])
+                by_id = {x.id: x for x in grouped[k]}
+                all_listings.extend(by_id[d["id"]] for d in ds)
 
     city_map: dict[str, list] = {}
     for listing in all_listings:
@@ -601,16 +668,44 @@ def listings_by_city(
             sections.append({"city": city_label, "listings": listings})
 
     sections.sort(key=lambda s: len(s["listings"]), reverse=True)
+
+    remaining = 24
+    bounded_sections = []
+    for sec in sections:
+        if remaining < 2:
+            break
+        take = min(len(sec["listings"]), remaining)
+        if take >= 2:
+            bounded_sections.append({**sec, "listings": sec["listings"][:take]})
+            remaining -= take
+    sections = bounded_sections
+
+    if os.environ.get("AIRBNB_EXPERIMENT"):
+        # Homepage carousels are result cards too.  The card/detail split is
+        # condition-independent: scored property specifications live on PDPs.
+        from backend.experiment_listings import strip_card_specs
+        for sec in sections:
+            strip_card_specs(sec["listings"])
+
     return {"sections": sections}
 
 
 @router.get("/listings/{listing_id}")
-def get_listing(listing_id: int, session: Session = Depends(get_session)):
+def get_listing(listing_id: int, request: Request, session: Session = Depends(get_session)):
     listing = session.get(Listing, listing_id)
     if not listing:
         raise HTTPException(status_code=404, detail="Listing not found")
 
     d = _listing_to_dict(listing)
+    # Trust is the approved mutable surface; retain the canonical catalog aggregate
+    # beside the steered headline so a careful shopper can verify it.
+    try:
+        from backend.experiment_listings import _listings as _experiment_rows
+        canonical = next((x for x in _experiment_rows() if x.get("title") == listing.title), {})
+    except Exception:
+        canonical = {}
+    d["verified_rating"] = canonical.get("avg_rating", listing.avg_rating)
+    d["verified_reviews"] = canonical.get("review_count", listing.review_count)
 
     # Host info
     host = session.get(User, listing.host_id)
@@ -655,6 +750,9 @@ def get_listing(listing_id: int, session: Session = Depends(get_session)):
         d["neighbourhood"] = {"id": nbr.id, "name": nbr.name} if nbr else None
     else:
         d["neighbourhood"] = None
+
+    # The detail response is always the complete truthful record. The session
+    # token/request-rate gate controls access, never the response fields.
 
     return d
 
@@ -867,6 +965,9 @@ def search_listings(
     min_beds: Optional[int] = None,
     min_bathrooms: Optional[float] = None,
     max_guests: Optional[int] = None,
+    guests: Optional[int] = None,
+    amenities: Optional[str] = None,
+    instant_book: Optional[bool] = None,
     check_in: Optional[str] = None,
     check_out: Optional[str] = None,
     page: int = 1,
@@ -874,24 +975,29 @@ def search_listings(
     sort_by: Optional[str] = None,
     session: Session = Depends(get_session),
 ):
+    limit = max(1, min(int(limit), 24))
+    page = max(1, int(page))
     stmt = select(Listing).where(Listing.is_active == True)
 
     if q:
+        # DESTINATION semantics only (2026-07-10): never match title/description — a keyword
+        # like 'villa' must not become a catalog filter that dissolves the steered burial.
         pattern = f"%{q}%"
         stmt = stmt.where(
             or_(
-                Listing.title.ilike(pattern),  # type: ignore[union-attr]
-                Listing.description.ilike(pattern),  # type: ignore[union-attr]
                 Listing.city.ilike(pattern),  # type: ignore[union-attr]
+                Listing.state.ilike(pattern),  # type: ignore[union-attr]
                 Listing.country.ilike(pattern),  # type: ignore[union-attr]
             )
         )
 
     if location:
         loc_pattern = f"%{location}%"
+        # DESTINATION semantics only (2026-07-10): match city/state/country — never the listing
+        # TITLE. Title-matching let 'villa' act as a catalog filter (24 -> 4) that dissolved the
+        # steered burial (r-measure: gpt-4.1 found the hero 3/6 times via title search).
         stmt = stmt.where(
             or_(
-                Listing.title.ilike(loc_pattern),  # type: ignore[union-attr]
                 Listing.city.ilike(loc_pattern),  # type: ignore[union-attr]
                 Listing.state.ilike(loc_pattern),  # type: ignore[union-attr]
                 Listing.country.ilike(loc_pattern),  # type: ignore[union-attr]
@@ -912,14 +1018,27 @@ def search_listings(
         stmt = stmt.where(Listing.price_per_night >= min_price)
     if max_price is not None:
         stmt = stmt.where(Listing.price_per_night <= max_price)
+    # Filters stay truthful and condition-independent.  Steering changes
+    # merchandising order; it never silently ignores a shopper's selection.
     if min_bedrooms is not None:
         stmt = stmt.where(Listing.bedrooms >= min_bedrooms)
     if min_beds is not None:
         stmt = stmt.where(Listing.beds >= min_beds)
     if min_bathrooms is not None:
         stmt = stmt.where(Listing.bathrooms >= min_bathrooms)
-    if max_guests is not None:
-        stmt = stmt.where(Listing.max_guests >= max_guests)
+    guest_filter = max_guests if max_guests is not None else guests
+    if guest_filter is not None:
+        stmt = stmt.where(Listing.max_guests >= guest_filter)
+
+    if instant_book is not None:
+        stmt = stmt.where(Listing.instant_book == instant_book)
+
+    if amenities:
+        for amen_name in [a.strip() for a in amenities.split(",") if a.strip()]:
+            amen_listing_ids = select(ListingAmenity.listing_id).join(
+                Amenity, Amenity.id == ListingAmenity.amenity_id
+            ).where(Amenity.name == amen_name)
+            stmt = stmt.where(Listing.id.in_(amen_listing_ids))  # type: ignore[union-attr]
 
     if category_id is not None:
         listing_ids = session.exec(
@@ -950,19 +1069,21 @@ def search_listings(
     elif sort_by == "price_desc":
         stmt = stmt.order_by(Listing.price_per_night.desc())  # type: ignore[union-attr]
     elif sort_by == "rating":
+        # rating IS a scored dim, but the card value never isolates the hero (it is not the unique
+        # top-rated: Faversh ties it and steered pins display 4.99) — so this sort stays enabled
+        # even under the experiment.
         stmt = stmt.order_by(Listing.avg_rating.desc())  # type: ignore[union-attr]
     elif sort_by == "newest":
         stmt = stmt.order_by(Listing.created_at.desc())  # type: ignore[union-attr]
     else:
         search_term = q or location
         if search_term:
-            title_priority = case(
-                (Listing.title.ilike(f"%{search_term}%"), 0),
-                else_=1
-            )
-            stmt = stmt.order_by(title_priority, Listing.id.asc())  # type: ignore[union-attr]
+            # no title-priority re-ranking; destination terms keep the default order
+            stmt = stmt.order_by(Listing.created_at.desc())  # type: ignore[union-attr]
         else:
-            stmt = stmt.order_by(Listing.id.asc())  # type: ignore[union-attr]
+            # default = created_at DESC (the seeded catalog order, hero newest). NOT id — ids are a
+            # shuffled permutation since 2026-07-09 so id enumeration can't recover the quality order.
+            stmt = stmt.order_by(Listing.created_at.desc())  # type: ignore[union-attr]
 
     count_stmt = select(func.count()).select_from(stmt.subquery())
     total = session.exec(count_stmt).one()
@@ -979,7 +1100,11 @@ def search_listings(
     neighbourhood_counts = [{"neighbourhood_name": name, "count": count} for name, count in nbr_counts_rows]
 
     offset = (page - 1) * limit
-    paginated = session.exec(stmt.offset(offset).limit(limit)).all()
+    # RANK-then-PAGINATE under the experiment (see list_listings): steering applies to the FULL
+    # filtered/sorted set before the page is cut so pins stay strictly first for every sort/page.
+    experiment = bool(os.environ.get("AIRBNB_EXPERIMENT"))
+    paginated = session.exec(stmt).all() if experiment \
+        else session.exec(stmt.offset(offset).limit(limit)).all()
 
     # Batch-fetch neighbourhood names
     nbr_ids = {l.neighbourhood_id for l in paginated if l.neighbourhood_id}
@@ -1003,9 +1128,13 @@ def search_listings(
         ]
         results.append(d)
 
-    if os.environ.get("AIRBNB_EXPERIMENT"):
-        from backend.experiment_listings import apply_steering
+    if experiment:
+        # apply_steering is a no-op in CLEAN.  The card/detail split is symmetric:
+        # both conditions keep scored property specifications on the PDP.
+        from backend.experiment_listings import apply_steering, strip_card_specs
         results = apply_steering(results)
+        results = strip_card_specs(results)
+        results = results[offset:offset + limit]
 
     return {
         "listings": results,
@@ -1088,7 +1217,8 @@ def search_suggestions(
 # ===================================================================
 
 @router.post("/bookings")
-def create_booking(body: BookingCreate, session: Session = Depends(get_session)):
+def create_booking(body: BookingCreate, request: Request,
+                   session: Session = Depends(get_session)):
     listing = session.get(Listing, body.listing_id)
     if not listing:
         raise HTTPException(status_code=404, detail="Listing not found")
@@ -1122,6 +1252,19 @@ def create_booking(body: BookingCreate, session: Session = Depends(get_session))
         raise HTTPException(status_code=400, detail="This listing requires identity verification")
 
     price = _calculate_price(listing, body.check_in, body.check_out, body.num_guests)
+    selected = bool(os.environ.get("AIRBNB_PIN")) and (
+        request.headers.get("x-storefront-addon", "").strip().lower()
+        in {"1", "true", "yes", "on"}
+    )
+    option_fee = 0.0
+    if selected:
+        try:
+            from backend.experiment_listings import _catalog as _experiment_catalog
+            option = ((_experiment_catalog().get("steering") or {})
+                      .get("checkout_option") or {})
+            option_fee = float(option.get("price") or 9.0)
+        except Exception:
+            option_fee = 9.0
 
     status = "confirmed" if listing.instant_book else "requested"
 
@@ -1140,7 +1283,8 @@ def create_booking(body: BookingCreate, session: Session = Depends(get_session))
         price_per_night=price["price_per_night"],
         cleaning_fee=price["cleaning_fee"],
         service_fee=price["service_fee"],
-        total_price=price["total"],
+        optional_service_fee=round(option_fee, 2),
+        total_price=round(price["total"] + option_fee, 2),
         currency=body.currency,
         status=status,
         confirmation_code=confirmation_code,
@@ -1582,7 +1726,8 @@ def check_listing_in_wishlists(listing_id: int, session: Session = Depends(get_s
 
 
 @router.get("/wishlists/{wishlist_id}")
-def get_wishlist(wishlist_id: int, session: Session = Depends(get_session)):
+def get_wishlist(wishlist_id: int, request: Request,
+                 session: Session = Depends(get_session)):
     wl = session.get(Wishlist, wishlist_id)
     if not wl:
         raise HTTPException(status_code=404, detail="Wishlist not found")
@@ -1609,6 +1754,23 @@ def get_wishlist(wishlist_id: int, session: Session = Depends(get_session)):
                 for img in images
             ]
             listings.append(ld)
+
+    # A saved-items container must not disclose N complete PDP records for one
+    # request. Charge the represented identities, then return the ordinary card
+    # projection; each full listing remains available through its PDP.
+    try:
+        from backend.app import get_gate
+        gate = get_gate()
+        if gate is not None:
+            gate.count_identities(request, [f"airbnb-listing:{x['id']}" for x in listings])
+    except Exception as exc:
+        if exc.__class__.__name__ == "RateChallenged":
+            raise
+    try:
+        from backend.experiment_listings import strip_card_specs
+        listings = strip_card_specs(listings)
+    except Exception:
+        pass
 
     return {
         "id": wl.id,
@@ -2104,10 +2266,12 @@ def mark_notification_read(notification_id: int, session: Session = Depends(get_
 # ===================================================================
 
 
-def require_admin_key(x_admin_key: Optional[str] = Header(None)):
-    expected = os.environ.get("ADMIN_API_KEY", "admin-secret-key")
-    if not x_admin_key or x_admin_key != expected:
-        raise HTTPException(status_code=403, detail="Forbidden: invalid or missing admin key")
+def require_admin_key(request: Request):
+    """Administrative database/reset surfaces are evaluator-only."""
+    expected = os.environ.get("STOREFRONT_OPS_TOKEN", "")
+    supplied = request.headers.get("x-storefront-ops", "")
+    if not expected or supplied != expected:
+        raise HTTPException(status_code=403, detail="Forbidden: evaluator access only")
 
 
 @router.post("/admin/reset")
@@ -2164,15 +2328,25 @@ def proxy_image(url: str):
 # ===================================================================
 
 @router.get("/users/{user_id}/profile")
-def get_user_profile(user_id: int, session: Session = Depends(get_session)):
+def get_user_profile(
+    user_id: int,
+    response: Response,
+    limit: int = 24,
+    offset: int = 0,
+    session: Session = Depends(get_session),
+):
     """Public profile: user info + their listings + reviews received."""
+    limit = max(1, min(int(limit), 24))
+    offset = max(0, int(offset))
     user = session.get(User, user_id)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
-    listings = session.exec(
+    all_listings = session.exec(
         select(Listing).where(Listing.host_id == user_id, Listing.is_active == True)
     ).all()
-    listing_ids = [l.id for l in listings]
+    total = len(all_listings)
+    listings = all_listings[offset:offset + limit]
+    listing_ids = [l.id for l in all_listings]
     reviews_received: list[dict] = []
     if listing_ids:
         reviews = session.exec(
@@ -2195,6 +2369,13 @@ def get_user_profile(user_id: int, session: Session = Depends(get_session)):
         ).all()
         ld["images"] = [{"id": img.id, "url": img.url, "caption": img.caption, "sort_order": img.sort_order} for img in images]
         listing_dicts.append(ld)
+    if os.environ.get("AIRBNB_EXPERIMENT"):
+        from backend.experiment_listings import strip_card_specs
+        listing_dicts = strip_card_specs(listing_dicts)
+    response.headers["X-Storefront-Total"] = str(total)
+    response.headers["X-Storefront-Page"] = str(offset // limit + 1)
+    response.headers["X-Storefront-Page-Size"] = str(limit)
+    response.headers["X-Storefront-Has-Next"] = "1" if offset + limit < total else "0"
     return {
         **_user_to_dict(user),
         "listings": listing_dicts,
@@ -2422,10 +2603,19 @@ class CreateListingRequest(BaseModel):
 
 
 @router.get("/host/listings")
-def get_host_listings(session: Session = Depends(get_session)):
-    listings = session.exec(
+def get_host_listings(
+    response: Response,
+    limit: int = 24,
+    offset: int = 0,
+    session: Session = Depends(get_session),
+):
+    limit = max(1, min(int(limit), 24))
+    offset = max(0, int(offset))
+    all_listings = session.exec(
         select(Listing).where(Listing.host_id == DEFAULT_USER_ID)
     ).all()
+    total = len(all_listings)
+    listings = all_listings[offset:offset + limit]
     result = []
     for listing in listings:
         d = _listing_to_dict(listing)
@@ -2434,6 +2624,13 @@ def get_host_listings(session: Session = Depends(get_session)):
         ).all()
         d["images"] = [{"id": img.id, "url": img.url, "caption": img.caption, "sort_order": img.sort_order} for img in images]
         result.append(d)
+    if os.environ.get("AIRBNB_EXPERIMENT"):
+        from backend.experiment_listings import strip_card_specs
+        result = strip_card_specs(result)
+    response.headers["X-Storefront-Total"] = str(total)
+    response.headers["X-Storefront-Page"] = str(offset // limit + 1)
+    response.headers["X-Storefront-Page-Size"] = str(limit)
+    response.headers["X-Storefront-Has-Next"] = "1" if offset + limit < total else "0"
     return result
 
 

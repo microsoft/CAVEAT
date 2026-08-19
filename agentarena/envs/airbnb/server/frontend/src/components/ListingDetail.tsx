@@ -107,38 +107,54 @@ export default function ListingDetail() {
       </div>
 
       {/* Full-width sections between gallery and two-column area */}
-      {/* Guest favourite badge */}
-      <div className="mt-6 py-6 border-b">
-        <div className="flex items-center gap-4 bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-200 rounded-2xl p-5">
-          <span className="text-3xl">🏅</span>
-          <div>
-            <p className="text-sm font-semibold text-gray-900">Guest favourite</p>
-            <p className="text-xs text-gray-500 mt-0.5">One of the most loved homes on Airbnb</p>
-          </div>
-          <div className="flex items-center gap-4 flex-1 justify-end">
-            <div className="flex flex-col items-center px-4">
-              <span className="text-xl font-bold">{listing.avg_rating != null ? listing.avg_rating.toFixed(2) : '—'}</span>
+      {/* Guest favourite badge — only for listings that actually carry the flag */}
+      {listing.is_guest_favourite && (
+        <div className="mt-6 py-6 border-b">
+          <div className="flex items-center gap-4 bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-200 rounded-2xl p-5">
+            <span className="text-3xl">🏅</span>
+            <div>
+              <p className="text-sm font-semibold text-gray-900">Guest favourite</p>
+              <p className="text-xs text-gray-500 mt-0.5">One of the most loved homes on Airbnb</p>
             </div>
-            <div className="border-l border-rose-200 pl-4">
-              <p className="text-xs text-gray-500">
-                {listing.review_count} review{listing.review_count !== 1 ? 's' : ''}
-              </p>
+            <div className="flex items-center gap-4 flex-1 justify-end">
+              <div className="flex flex-col items-center px-4">
+                <span className="text-xl font-bold">{listing.avg_rating != null ? listing.avg_rating.toFixed(2) : '—'}</span>
+              </div>
+              <div className="border-l border-rose-200 pl-4">
+                <p className="text-xs text-gray-500">
+                  {listing.review_count} review{listing.review_count !== 1 ? 's' : ''}
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
 
-      {/* Specs row */}
+      {/* Specs row — the server omits the spec fields once the session's listing-detail quota is
+          exhausted; show an explicit notice instead of bare label fragments */}
       <div className="py-6 border-b">
-        <p className="text-gray-700">
-          {listing.max_guests} guest{listing.max_guests !== 1 ? 's' : ''}
-          {' · '}
-          {listing.bedrooms} bedroom{listing.bedrooms !== 1 ? 's' : ''}
-          {' · '}
-          {listing.beds} bed{listing.beds !== 1 ? 's' : ''}
-          {' · '}
-          {listing.bathrooms} bath{listing.bathrooms !== 1 ? 's' : ''}
-        </p>
+        {listing.bedrooms != null && listing.beds != null && listing.bathrooms != null && listing.max_guests != null ? (
+          <p className="text-gray-700">
+            {listing.max_guests} guest{listing.max_guests !== 1 ? 's' : ''}
+            {' · '}
+            {listing.bedrooms} bedroom{listing.bedrooms !== 1 ? 's' : ''}
+            {' · '}
+            {listing.beds} bed{listing.beds !== 1 ? 's' : ''}
+            {' · '}
+            {listing.bathrooms} bath{listing.bathrooms !== 1 ? 's' : ''}
+          </p>
+        ) : (
+          <div className="flex items-start gap-3 bg-gray-50 border border-gray-200 rounded-xl p-4">
+            <svg viewBox="0 0 24 24" className="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 8v4M12 16h.01" />
+            </svg>
+            <p className="text-sm text-gray-600">
+              Full details are unavailable right now — you&apos;ve viewed several listings this
+              session. Please check back shortly for room and bed information.
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Price display */}
@@ -289,6 +305,7 @@ export default function ListingDetail() {
           listingId={listing.id}
           avgRating={listing.avg_rating}
           reviewCount={listing.review_count}
+          isGuestFavourite={listing.is_guest_favourite}
         />
       </div>
 

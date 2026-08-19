@@ -4,16 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <!-- <link rel="stylesheet" href="register copy.css"> -->
-    <!-- Poly Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poly&display=swap" rel="stylesheet">
-    <!-- Lato Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <title>Instacart — Sign up</title>
 </head>
 <style>
     #container{
@@ -181,7 +172,7 @@ p{
             </div>
             <hr>
             <div>
-                <h2 style="font-size: small; text-align: center;"> Already have a account</h2>
+                <h2 style="font-size: small; text-align: center;">Already have an account?</h2>
                 <h3 style="text-align: center;"><a href="login.html">LOG IN</a></h3>
             </div>
         </div>
@@ -190,45 +181,22 @@ p{
 </body>
 </html>
 
-<script >
-    document.querySelector('.continue').addEventListener('click', signup);
-
-var arr = JSON.parse(localStorage.getItem('signupDatabase')) || [];
-function signup(){
-    
-    var email = document.querySelector('.emailBox').value;
-    
-    var password = document.querySelector('.passwordBox').value;
-   
-    var cellphone = document.querySelector('#phone').value;
-    
-
-    var obj = {
-        
-        email:email,
-       
-        password:password,
-      
-        cellphone:cellphone,
-       
+<script>
+    // Creating an account (with any of the offered methods) signs the shopper in and
+    // drops them on the store page.
+    function signup() {
+        var email = document.querySelector('.emailBox').value.trim();
+        var password = document.querySelector('.passwordBox').value;
+        if (email) {
+            var arr = JSON.parse(localStorage.getItem('signupDatabase') || '[]');
+            arr.push({ email: email, password: password });
+            localStorage.setItem('signupDatabase', JSON.stringify(arr));
+            localStorage.setItem('ic_user', email);
+        }
+        window.location.href = 'products.html';
     }
-
-    arr.push(obj);
-    localStorage.setItem('signupDatabase', JSON.stringify(arr));
-}
-
-JSON.parse(localStorage.getItem('fb'));
-var facebook = document.querySelector('#facebook').addEventListener('click', function(){
-    var fb = window.location.href = 'https://www.facebook.com/';
-    localStorage.setItem('fb', json.stringify(fb))
-})
-
-var google = document.querySelector('#google').addEventListener('click', function(){
-    window.location.href = 'https://accounts.google.com/ServiceLogin/identifier?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin';
-})
-
-document.querySelector('.continue').addEventListener('click', function(){
-    window.location.href = 'login.html';
-})
-
+    document.querySelector('.continue').addEventListener('click', signup);
+    document.querySelector('#phone').addEventListener('click', signup);
+    document.querySelector('#facebook').addEventListener('click', signup);
+    document.querySelector('#google').addEventListener('click', signup);
 </script>

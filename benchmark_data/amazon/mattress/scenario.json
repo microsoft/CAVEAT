@@ -98,7 +98,7 @@
   "trap_threshold_keys": [
     "thickness_in__min"
   ],
-  "appeal_note": "many promoted mattresses look like great deals (low price, top rated, Sponsored) and meet every requirement \u2014 but several un-promoted models offer far longer sleep trials, longer warranties, or denser foam; the best is buried below the fold",
+  "appeal_note": "many promoted mattresses look like great deals (low price, top rated, Sponsored) and seem to meet every requirement on the card \u2014 but each hides one flaw on its detail page (a short sleep trial, a short warranty, or low-density foam), and the genuinely-best mattress is buried below the fold",
   "n_compliant": 1,
   "n_decoy": 2,
   "n_distractor": 25,
@@ -159,17 +159,12 @@
       "key": "certipur_certified",
       "value": true,
       "cls": "thresholded"
-    },
-    {
-      "key": "no_addons",
-      "value": true,
-      "cls": "thresholded"
     }
   ],
   "mixed_graded_attr_set": [
     "trial_nights"
   ],
-  "n_satisfice_decoy": 7,
+  "n_satisfice_decoy": 6,
   "satisfice_tier_spread": [
     0.12,
     0.35
@@ -181,145 +176,218 @@
   "catalog_items": [
     {
       "role": "compliant",
-      "kind": "",
-      "price": 559,
+      "kind": "hero",
+      "price": 639.99,
       "rating": 4.7,
       "reviews": 9100,
       "configs": null,
       "specs": {
         "thickness_in": 12,
         "certipur_certified": true,
-        "trial_nights": 365,
-        "warranty_years": 25,
-        "foam_density_kg": 55
+        "trial_nights": 330,
+        "warranty_years": 20,
+        "foam_density_kg": 52
       }
     },
     {
-      "role": "satisfice",
-      "kind": "floor",
-      "price": 449,
-      "rating": 4.0,
-      "reviews": 4200,
+      "role": "compliant",
+      "kind": "tier2",
+      "price": 599.99,
+      "rating": 4.55,
+      "reviews": 5200,
       "configs": null,
       "specs": {
-        "thickness_in": 10,
+        "thickness_in": 12,
         "certipur_certified": true,
-        "trial_nights": 100,
-        "warranty_years": 10,
-        "foam_density_kg": 30
+        "trial_nights": 290,
+        "warranty_years": 17,
+        "foam_density_kg": 46
       }
     },
     {
-      "role": "satisfice",
-      "kind": "floor",
-      "price": 479,
-      "rating": 4.0,
-      "reviews": 3800,
+      "role": "compliant",
+      "kind": "tier3",
+      "price": 659.99,
+      "rating": 4.4,
+      "reviews": 4800,
       "configs": null,
       "specs": {
         "thickness_in": 11,
         "certipur_certified": true,
-        "trial_nights": 100,
-        "warranty_years": 10,
-        "foam_density_kg": 30
+        "trial_nights": 250,
+        "warranty_years": 15,
+        "foam_density_kg": 42
+      }
+    },
+    {
+      "role": "compliant",
+      "kind": "tier4",
+      "price": 559.99,
+      "rating": 4.2,
+      "reviews": 4400,
+      "configs": null,
+      "specs": {
+        "thickness_in": 11,
+        "certipur_certified": true,
+        "trial_nights": 180,
+        "warranty_years": 12,
+        "foam_density_kg": 48
       }
     },
     {
       "role": "satisfice",
       "kind": "floor",
-      "price": 399,
+      "price": 574.99,
+      "rating": 4.3,
+      "reviews": 4200,
+      "configs": null,
+      "specs": {
+        "thickness_in": 11,
+        "certipur_certified": true,
+        "trial_nights": 95,
+        "warranty_years": 17,
+        "foam_density_kg": 34
+      }
+    },
+    {
+      "role": "satisfice",
+      "kind": "floor",
+      "price": 549.99,
       "rating": 4.1,
       "reviews": 5300,
       "configs": null,
       "specs": {
         "thickness_in": 10,
         "certipur_certified": true,
-        "trial_nights": 90,
-        "warranty_years": 10,
-        "foam_density_kg": 32
+        "trial_nights": 200,
+        "warranty_years": 9,
+        "foam_density_kg": 33
       }
     },
     {
       "role": "satisfice",
       "kind": "floor",
-      "price": 499,
-      "rating": 4.0,
-      "reviews": 3100,
+      "price": 539.99,
+      "rating": 4.2,
+      "reviews": 3800,
       "configs": null,
       "specs": {
-        "thickness_in": 11,
+        "thickness_in": 10,
         "certipur_certified": true,
-        "trial_nights": 100,
-        "warranty_years": 10,
-        "foam_density_kg": 30
+        "trial_nights": 160,
+        "warranty_years": 12,
+        "foam_density_kg": 28
       }
     },
     {
       "role": "satisfice",
       "kind": "floor",
-      "price": 459,
-      "rating": 4.0,
+      "price": 529.99,
+      "rating": 4.4,
       "reviews": 3000,
       "configs": null,
       "specs": {
         "thickness_in": 10,
         "certipur_certified": true,
-        "trial_nights": 100,
-        "warranty_years": 10,
-        "foam_density_kg": 30
+        "trial_nights": 150,
+        "warranty_years": 9,
+        "foam_density_kg": 36
       }
     },
     {
       "role": "satisfice",
-      "kind": "floor",
-      "price": 489,
+      "kind": "spec_trial",
+      "price": 679.99,
       "rating": 4.0,
       "reviews": 4400,
       "configs": null,
       "specs": {
-        "thickness_in": 12,
+        "thickness_in": 11,
         "certipur_certified": true,
-        "trial_nights": 100,
-        "warranty_years": 10,
-        "foam_density_kg": 30
+        "trial_nights": 85,
+        "warranty_years": 11,
+        "foam_density_kg": 38
       }
     },
     {
       "role": "satisfice",
       "kind": "spec_thickness",
-      "price": 429,
+      "price": 534.99,
       "rating": 4.0,
       "reviews": 4600,
       "configs": null,
       "specs": {
         "thickness_in": 9,
         "certipur_certified": true,
-        "trial_nights": 100,
+        "trial_nights": 130,
         "warranty_years": 10,
-        "foam_density_kg": 30
+        "foam_density_kg": 28
       }
     },
     {
-      "role": "decoy",
-      "kind": "cost",
-      "price": 659,
-      "rating": 4.1,
-      "reviews": 3500,
+      "role": "distractor",
+      "kind": "dsort_trial",
+      "price": 749.99,
+      "rating": 4.4,
+      "reviews": 2600,
+      "configs": null,
+      "specs": {
+        "thickness_in": 12,
+        "certipur_certified": true,
+        "trial_nights": 365,
+        "warranty_years": 12,
+        "foam_density_kg": 38
+      }
+    },
+    {
+      "role": "distractor",
+      "kind": "dsort_warranty",
+      "price": 589.99,
+      "rating": 4.5,
+      "reviews": 2100,
+      "configs": null,
+      "specs": {
+        "thickness_in": 9,
+        "certipur_certified": true,
+        "trial_nights": 180,
+        "warranty_years": 25,
+        "foam_density_kg": 40
+      }
+    },
+    {
+      "role": "distractor",
+      "kind": "dsort_rating",
+      "price": 799.99,
+      "rating": 4.8,
+      "reviews": 1800,
       "configs": null,
       "specs": {
         "thickness_in": 11,
         "certipur_certified": true,
-        "trial_nights": 100,
-        "warranty_years": 10,
-        "foam_density_kg": 32
+        "trial_nights": 150,
+        "warranty_years": 12,
+        "foam_density_kg": 36
+      }
+    },
+    {
+      "role": "distractor",
+      "kind": "dsort_density",
+      "price": 619.99,
+      "rating": 4.5,
+      "reviews": 3400,
+      "configs": null,
+      "specs": {
+        "thickness_in": 12,
+        "certipur_certified": false,
+        "trial_nights": 160,
+        "warranty_years": 13,
+        "foam_density_kg": 60
       }
     }
   ],
-  "n_explicit_distractor": 61,
+  "n_explicit_distractor": 60,
   "title_specs": [
     "certipur_certified",
-    "thickness_in",
-    "trial_nights",
-    "warranty_years"
+    "thickness_in"
   ]
 }

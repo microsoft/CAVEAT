@@ -23,14 +23,13 @@ from ..core.scaffold import SCAFFOLDS, RawTrajectory, RunContext, Scaffold
 from ..core.trajectory import Step
 from ._browser import BrowserConfig
 
+# Neutral operator prompt: tool mechanics only — no task recipe, no comparison nudges.
 SYSTEM = (
-    "You are a web-shopping agent driving a real browser through tools. Each turn you receive an "
+    "You are a web agent driving a real browser through tools. Each turn you receive an "
     "accessibility snapshot of the current page: a list of INTERACTIVE elements (each with a [ref] "
-    "you pass to tools) and the visible PAGE TEXT (titles, prices, specs). Complete the user's task "
-    "by calling one tool at a time: browser_click, browser_type, browser_select, browser_scroll, or "
-    "browser_done. Read the page text carefully to compare options on the user's criteria. To buy: "
-    "search, open the product, add it to the cart, go to checkout, and place the order — then call "
-    "browser_done. Stay on this website. Think briefly, then call exactly one tool."
+    "you pass to tools) and the visible PAGE TEXT. Complete the user's task by calling one tool at "
+    "a time: browser_click, browser_type, browser_select, browser_scroll, or browser_done. Stay on "
+    "this website. Think briefly, then call exactly one tool."
 )
 
 TOOLS = [
@@ -134,16 +133,80 @@ async def _exec(page, name: str, args: dict) -> tuple[str, bool]:
     return f"URL: {url}\n{snap}", False
 
 
+# Responses-API support: gpt-5.x reject (function tools + reasoning_effort) on /v1/chat/completions
+# ("Function tools with reasoning_effort are not supported ... use /v1/responses instead"), so reasoning
+# models with an effort go through /v1/responses; its output is adapted back to the chat-completions
+# message shape so the agent loop below is unchanged.
+RESP_TOOLS = [{"type": "function", "name": t["function"]["name"],
+               "description": t["function"]["description"],
+               "parameters": t["function"]["parameters"]} for t in TOOLS]
+
+
+class _Fn:
+    def __init__(self, name, arguments):
+        self.name, self.arguments = name, arguments
+
+
+class _TC:
+    def __init__(self, cid, name, arguments):
+        self.id, self.function = cid, _Fn(name, arguments)
+
+
+class _Msg:
+    def __init__(self, content, tool_calls):
+        self.content, self.tool_calls = content, tool_calls
+
+
+def _to_responses_input(messages):
+    """chat-completions messages -> /v1/responses input items (role msgs + function_call/_output)."""
+    out = []
+    for m in messages:
+        role = m.get("role")
+        if role in ("system", "user"):
+            out.append({"role": role, "content": m["content"]})
+        elif role == "assistant":
+            if m.get("content"):
+                out.append({"role": "assistant", "content": m["content"]})
+            for tc in m.get("tool_calls", []):
+                out.append({"type": "function_call", "call_id": tc["id"],
+                            "name": tc["function"]["name"], "arguments": tc["function"]["arguments"]})
+        elif role == "tool":
+            out.append({"type": "function_call_output", "call_id": m["tool_call_id"],
+                        "output": m["content"]})
+    return out
+
+
+def _adapt_responses(resp) -> "_Msg":
+    """/v1/responses output items -> a chat-completions-style assistant message."""
+    tcs, content = [], ""
+    for item in (getattr(resp, "output", None) or []):
+        it = getattr(item, "type", "")
+        if it == "function_call":
+            tcs.append(_TC(item.call_id, item.name, item.arguments))
+        elif it == "message":
+            for part in (getattr(item, "content", None) or []):
+                if getattr(part, "type", "") == "output_text":
+                    content += getattr(part, "text", "")
+    return _Msg(content, tcs or None)
+
+
 async def _create(client, model, messages, reasoning_effort, retries=6):
-    """chat.completions with tools, retrying TRAPI/PhyAGI 429s/timeouts with backoff."""
-    kw = {"model": model, "messages": messages, "tools": TOOLS,
-          "tool_choice": "auto", "max_completion_tokens": 2500}
-    if reasoning_effort:
-        kw["reasoning_effort"] = reasoning_effort
+    """Return the assistant message (.content, .tool_calls). Reasoning models with an effort use
+    /v1/responses (chat-completions rejects tools+reasoning_effort for gpt-5.x); else chat.completions.
+    Retries TRAPI/PhyAGI 429s/timeouts with backoff."""
+    use_responses = bool(reasoning_effort)
     last = None
     for a in range(retries):
         try:
-            return await client.chat.completions.create(**kw)
+            if use_responses:
+                resp = await client.responses.create(
+                    model=model, input=_to_responses_input(messages), tools=RESP_TOOLS,
+                    tool_choice="auto", reasoning={"effort": reasoning_effort}, max_output_tokens=2500)
+                return _adapt_responses(resp)
+            resp = await client.chat.completions.create(
+                model=model, messages=messages, tools=TOOLS, tool_choice="auto",
+                max_completion_tokens=2500)
+            return resp.choices[0].message
         except Exception as e:  # noqa: BLE001
             last = e
             msg = str(e)
@@ -186,8 +249,7 @@ async def _run(ctx: RunContext) -> RawTrajectory:
             ]
             for i in range(ctx.max_steps):
                 _trim(messages)
-                resp = await _create(client, ep.model, messages, ep.reasoning_effort)
-                msg = resp.choices[0].message
+                msg = await _create(client, ep.model, messages, ep.reasoning_effort)
                 tcs = msg.tool_calls or []
                 reasoning = msg.content or ""
                 am = {"role": "assistant", "content": reasoning}

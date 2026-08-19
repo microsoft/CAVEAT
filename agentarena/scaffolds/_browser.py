@@ -58,4 +58,10 @@ class BrowserConfig:
 
     @property
     def args(self) -> list[str]:
-        return ["--no-sandbox", "--disable-dev-shm-usage"]
+        # The extra flags cut chromium cold-start work during launch bursts (many browsers
+        # spawning on one host): no GPU probing (headless VM rasterizes in software anyway),
+        # no extensions/background services/first-run tasks. Rendering itself is unaffected
+        # (vision screenshots still work).
+        return ["--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu",
+                "--disable-extensions", "--disable-background-networking",
+                "--no-first-run", "--no-default-browser-check", "--mute-audio"]

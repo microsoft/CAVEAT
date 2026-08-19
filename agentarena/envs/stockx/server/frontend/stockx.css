@@ -1641,8 +1641,8 @@ input[type=password]:focus {
   font-family: sans-serif;
   color: black;
   background-color: #f6f6f6;
-  height: 75px;
-  min-height: 70px;
+  height: auto;
+  min-height: 96px;
 }
 
 .index-items-info h1, .index-items-info h2, .index-items-info p {
@@ -2290,3 +2290,101 @@ input[type=password]:focus {
 #search-item-brand {
   text-align: left;
 }
+
+/* ---- browse card meta (colorway + ask + rating); the other graded dims live on the PDP ---- */
+.index-items-colorway {
+  margin: 4px 0 0;
+  font-size: 13px;
+  font-weight: 400;
+  color: #6b6b6b;
+  font-family: sans-serif;
+}
+.index-items-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 8px;
+}
+.index-items-ask {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111;
+}
+.index-items-rating {
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b6b6b;
+}
+
+/* ---- product page spec sheet (budget-gated /api/products/{ticker}) ---- */
+.sneaker-show-specs-title {
+  font-family: sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 10px;
+  color: #111;
+}
+.sneaker-show-specs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 14px;
+}
+.sneaker-show-specs-table td {
+  padding: 8px 4px;
+  border-bottom: 1px solid #ededed;
+  font-size: 15px;
+  font-family: sans-serif;
+  vertical-align: top;
+}
+.sneaker-show-specs-k {
+  color: #6b6b6b;
+  width: 45%;
+}
+.sneaker-show-specs-v {
+  color: #111;
+  font-weight: 600;
+}
+.sneaker-show-specs-desc {
+  color: #333333;
+  font-size: 15px;
+  font-family: sans-serif;
+  line-height: 1.45;
+}
+.sneaker-show-specs-unavail {
+  color: #b3261e;
+  background: #fdecea;
+  border-radius: 6px;
+  padding: 12px 14px;
+  font-size: 14px;
+  font-family: sans-serif;
+  line-height: 1.4;
+}
+.sneaker-show-specs-loading {
+  color: #888;
+  font-size: 15px;
+  font-family: sans-serif;
+}
+
+/* --- realism fixes (2026-07): working sidebar/sort/share/discount + empty states --- */
+.index-body-sidebar-1 { height: auto; }
+.index-body-sidebar-1 a { text-decoration: none; color: #333; padding: 2px 0; font-family: sans-serif; }
+.index-body-sidebar-7 { height: auto; }
+.index-body-sidebar-7 button { padding: 3px 0; cursor: pointer; }
+.homepage-body-sneaker-selection a { text-decoration: none; color: inherit; }
+.index-empty-state { padding: 60px 30px; text-align: center; color: #555; width: 100%; }
+.index-empty-state h2 { font-size: 20px; margin-bottom: 10px; font-family: sans-serif; }
+.index-empty-state p { font-size: 14px; font-family: sans-serif; }
+.share-copy-btn { border: none; background: none; font-family: sans-serif; font-size: 13px;
+  color: #333; cursor: pointer; padding: 0 14px; white-space: nowrap; }
+.share-copy-btn i { margin-right: 5px; }
+.show-size-error { color: #c0392b; font-family: sans-serif; font-size: 13px; margin-top: 8px; text-align: right; }
+.discount-link-btn { border: none; background: none; color: rgb(8, 160, 92); font-family: sans-serif;
+  font-size: inherit; cursor: pointer; padding: 0; }
+.discount-entry input { border: 1px solid #ccc; border-radius: 3px; padding: 3px 6px; font-size: 12px;
+  width: 110px; margin-right: 6px; }
+.discount-apply-btn { border: 1px solid rgb(8, 160, 92); background: white; color: rgb(8, 160, 92);
+  border-radius: 3px; padding: 3px 10px; font-size: 12px; cursor: pointer; }
+.discount-msg { color: #c0392b; font-family: sans-serif; font-size: 12px; margin-top: 6px; text-align: right; }
+.search-empty-msg { color: #777; font-family: sans-serif; font-size: 14px; margin-top: 18px; }

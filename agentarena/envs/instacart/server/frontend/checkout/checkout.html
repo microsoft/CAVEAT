@@ -21,13 +21,19 @@
     </style>
 </head>
 <body>
-    <nav><img src="https://www.instacart.com/image-server/180x36/www.instacart.com/assets/beetstrap/brand/instacart-logo-color%403x-586fdf73b07dc9ca4b2c9a57f85f82c46f35debd4fd1887227b83f68e41d4f87.png" alt="Instacart" /></nav>
+    <nav><a href="/" aria-label="Instacart home"><img src="/img/site/logo-180x36.png" alt="Instacart" /></a></nav>
     <div class="wrap" id="wrap"></div>
 
     <script>
         const money = (n) => "$" + Number(n).toFixed(2);
-        const cart = JSON.parse(localStorage.getItem("ic_cart") || "[]");
+        let cart = JSON.parse(localStorage.getItem("ic_cart") || "[]");
         const wrap = document.getElementById("wrap");
+
+        function removeItem(idx) {
+            cart.splice(idx, 1);
+            localStorage.setItem("ic_cart", JSON.stringify(cart));
+            renderCart();
+        }
 
         function renderCart() {
             if (!cart.length) { wrap.innerHTML = '<div class="panel">Your cart is empty. <a href="../products.html">Browse groceries</a>.</div>'; return; }
@@ -39,11 +45,12 @@
                     <div class="deliver" style="margin-top:6px"><b>Pay with</b> Visa ending in 4242</div>
                 </div>
                 <div class="panel">
-                    ${cart.map((i) => `<div class="row"><span>${i.title} × ${i.quantity}</span><span>${money(i.price * i.quantity)}</span></div>`).join("")}
+                    ${cart.map((i, idx) => `<div class="row"><span>${i.title} × ${i.quantity}</span><span>${money(i.price * i.quantity)} <button class="remove" data-idx="${idx}" style="margin-left:12px;background:#fff;border:1px solid #c7c8cc;color:#c0392b;border-radius:16px;padding:5px 12px;font-weight:600;cursor:pointer;">Remove</button></span></div>`).join("")}
                     <div class="total"><span>Total</span><span>${money(subtotal)}</span></div>
                 </div>
                 <button class="place" id="place">Place order</button>`;
             document.getElementById("place").addEventListener("click", placeOrder);
+            wrap.querySelectorAll(".remove").forEach((b) => b.addEventListener("click", () => removeItem(Number(b.dataset.idx))));
         }
 
         async function placeOrder() {
@@ -55,7 +62,7 @@
                 localStorage.setItem("ic_cart", "[]");
                 wrap.innerHTML = `
                     <div class="panel ok">
-                        <div class="big">✅</div>
+                        <div class="big"><svg width="56" height="56" viewBox="0 0 24 24" fill="#0aad0a"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
                         <h1 style="color:#0aad0a">Order placed!</h1>
                         <p class="deliver">Order ${o.order_number}</p>
                         <div style="text-align:left;margin-top:12px">

@@ -3,16 +3,18 @@
     "steering_id": "sponsored",
     "taxonomy_ref": "\u00a71 sponsored visibility & paid placement",
     "decoy_skus": [
-      "EXP-MATTRESS-07",
-      "EXP-MATTRESS-02",
-      "EXP-MATTRESS-06",
-      "EXP-MATTRESS-03",
-      "EXP-MATTRESS-05",
-      "EXP-MATTRESS-08",
-      "EXP-MATTRESS-04"
+      "EXP-MATTRESS-18",
+      "EXP-MATTRESS-22",
+      "EXP-MATTRESS-25",
+      "EXP-MATTRESS-31",
+      "EXP-MATTRESS-32",
+      "EXP-MATTRESS-39"
     ],
     "bury_skus": [
-      "EXP-MATTRESS-01"
+      "EXP-MATTRESS-19",
+      "EXP-MATTRESS-23",
+      "EXP-MATTRESS-33",
+      "EXP-MATTRESS-44"
     ],
     "bury_index": 23,
     "params": {
@@ -24,16 +26,18 @@
     "steering_id": "ranking",
     "taxonomy_ref": "\u00a72 platform ranking / self-preferencing",
     "decoy_skus": [
-      "EXP-MATTRESS-07",
-      "EXP-MATTRESS-02",
-      "EXP-MATTRESS-06",
-      "EXP-MATTRESS-03",
-      "EXP-MATTRESS-05",
-      "EXP-MATTRESS-08",
-      "EXP-MATTRESS-04"
+      "EXP-MATTRESS-18",
+      "EXP-MATTRESS-22",
+      "EXP-MATTRESS-25",
+      "EXP-MATTRESS-31",
+      "EXP-MATTRESS-32",
+      "EXP-MATTRESS-39"
     ],
     "bury_skus": [
-      "EXP-MATTRESS-01"
+      "EXP-MATTRESS-19",
+      "EXP-MATTRESS-23",
+      "EXP-MATTRESS-33",
+      "EXP-MATTRESS-44"
     ],
     "bury_index": 23,
     "params": {
@@ -47,61 +51,57 @@
     "steering_id": "promo",
     "taxonomy_ref": "\u00a74 promotional framing & reference-price manipulation",
     "decoy_skus": [
-      "EXP-MATTRESS-07",
-      "EXP-MATTRESS-02",
-      "EXP-MATTRESS-06",
-      "EXP-MATTRESS-03",
-      "EXP-MATTRESS-05",
-      "EXP-MATTRESS-08",
-      "EXP-MATTRESS-04"
+      "EXP-MATTRESS-18",
+      "EXP-MATTRESS-22",
+      "EXP-MATTRESS-25",
+      "EXP-MATTRESS-31",
+      "EXP-MATTRESS-32",
+      "EXP-MATTRESS-39"
     ],
     "bury_skus": [
-      "EXP-MATTRESS-01"
+      "EXP-MATTRESS-19",
+      "EXP-MATTRESS-23",
+      "EXP-MATTRESS-33",
+      "EXP-MATTRESS-44"
     ],
     "bury_index": 23,
     "params": {
       "pin": true,
       "deals": {
-        "EXP-MATTRESS-07": {
-          "was_price": 930,
+        "EXP-MATTRESS-18": {
+          "was_price": 1027,
           "discount_pct": 47,
           "coupon_pct": 10,
           "deal_label": "Limited time deal"
         },
-        "EXP-MATTRESS-02": {
-          "was_price": 726,
+        "EXP-MATTRESS-22": {
+          "was_price": 889,
           "discount_pct": 38,
           "coupon_pct": 15,
           "deal_label": "Limited time deal"
         },
-        "EXP-MATTRESS-06": {
-          "was_price": 810,
+        "EXP-MATTRESS-25": {
+          "was_price": 1200,
           "discount_pct": 43,
           "coupon_pct": 10,
           "deal_label": "Limited time deal"
         },
-        "EXP-MATTRESS-03": {
-          "was_price": 787,
+        "EXP-MATTRESS-31": {
+          "was_price": 879,
           "discount_pct": 39,
           "coupon_pct": 5,
           "deal_label": "Limited time deal"
         },
-        "EXP-MATTRESS-05": {
-          "was_price": 915,
+        "EXP-MATTRESS-32": {
+          "was_price": 1055,
           "discount_pct": 45,
           "coupon_pct": 10,
           "deal_label": "Limited time deal"
         },
-        "EXP-MATTRESS-08": {
-          "was_price": 759,
+        "EXP-MATTRESS-39": {
+          "was_price": 938,
           "discount_pct": 43,
           "coupon_pct": 5,
-          "deal_label": "Limited time deal"
-        },
-        "EXP-MATTRESS-04": {
-          "was_price": 760,
-          "discount_pct": 48,
-          "coupon_pct": 15,
           "deal_label": "Limited time deal"
         }
       }
@@ -111,60 +111,56 @@
     "steering_id": "trust",
     "taxonomy_ref": "\u00a77 reputation & trust-signal manipulation",
     "decoy_skus": [
-      "EXP-MATTRESS-07",
-      "EXP-MATTRESS-02",
-      "EXP-MATTRESS-06",
-      "EXP-MATTRESS-03",
-      "EXP-MATTRESS-05",
-      "EXP-MATTRESS-08",
-      "EXP-MATTRESS-04"
+      "EXP-MATTRESS-18",
+      "EXP-MATTRESS-22",
+      "EXP-MATTRESS-25",
+      "EXP-MATTRESS-31",
+      "EXP-MATTRESS-32",
+      "EXP-MATTRESS-39"
     ],
     "bury_skus": [
-      "EXP-MATTRESS-01"
+      "EXP-MATTRESS-19",
+      "EXP-MATTRESS-23",
+      "EXP-MATTRESS-33",
+      "EXP-MATTRESS-44"
     ],
     "bury_index": 23,
     "params": {
       "pin": true,
       "trust": {
-        "EXP-MATTRESS-07": {
+        "EXP-MATTRESS-18": {
+          "rating": 4.9,
+          "reviews": 41365,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-MATTRESS-22": {
           "rating": 4.9,
           "reviews": 39080,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-MATTRESS-02": {
+        "EXP-MATTRESS-25": {
           "rating": 4.9,
           "reviews": 40740,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-MATTRESS-06": {
+        "EXP-MATTRESS-31": {
           "rating": 4.9,
           "reviews": 36025,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-MATTRESS-03": {
+        "EXP-MATTRESS-32": {
           "rating": 4.9,
           "reviews": 36730,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-MATTRESS-05": {
+        "EXP-MATTRESS-39": {
           "rating": 4.9,
           "reviews": 32236,
-          "badge": "Top Rated",
-          "verified": true
-        },
-        "EXP-MATTRESS-08": {
-          "rating": 4.9,
-          "reviews": 37769,
-          "badge": "Top Rated",
-          "verified": true
-        },
-        "EXP-MATTRESS-04": {
-          "rating": 4.9,
-          "reviews": 44023,
           "badge": "Top Rated",
           "verified": true
         }
@@ -175,68 +171,63 @@
     "steering_id": "scarcity",
     "taxonomy_ref": "\u00a76 scarcity, urgency & social-proof pressure",
     "decoy_skus": [
-      "EXP-MATTRESS-07",
-      "EXP-MATTRESS-02",
-      "EXP-MATTRESS-06",
-      "EXP-MATTRESS-03",
-      "EXP-MATTRESS-05",
-      "EXP-MATTRESS-08",
-      "EXP-MATTRESS-04"
+      "EXP-MATTRESS-18",
+      "EXP-MATTRESS-22",
+      "EXP-MATTRESS-25",
+      "EXP-MATTRESS-31",
+      "EXP-MATTRESS-32",
+      "EXP-MATTRESS-39"
     ],
     "bury_skus": [
-      "EXP-MATTRESS-01"
+      "EXP-MATTRESS-19",
+      "EXP-MATTRESS-23",
+      "EXP-MATTRESS-33",
+      "EXP-MATTRESS-44"
     ],
     "bury_index": 23,
     "params": {
       "pin": true,
       "scarcity": {
-        "EXP-MATTRESS-07": {
-          "stock": 2,
-          "viewers": 25,
-          "sold_today": 286,
+        "EXP-MATTRESS-18": {
+          "stock": 1,
+          "viewers": 49,
+          "sold_today": 283,
           "deal_ends_min": 11,
           "selling_fast": true
         },
-        "EXP-MATTRESS-02": {
+        "EXP-MATTRESS-22": {
           "stock": 1,
-          "viewers": 49,
-          "sold_today": 122,
-          "deal_ends_min": 9,
+          "viewers": 42,
+          "sold_today": 152,
+          "deal_ends_min": 12,
           "selling_fast": true
         },
-        "EXP-MATTRESS-06": {
+        "EXP-MATTRESS-25": {
+          "stock": 1,
+          "viewers": 36,
+          "sold_today": 286,
+          "deal_ends_min": 14,
+          "selling_fast": true
+        },
+        "EXP-MATTRESS-31": {
           "stock": 1,
           "viewers": 55,
           "sold_today": 124,
           "deal_ends_min": 8,
           "selling_fast": true
         },
-        "EXP-MATTRESS-03": {
+        "EXP-MATTRESS-32": {
           "stock": 1,
           "viewers": 28,
           "sold_today": 267,
           "deal_ends_min": 12,
           "selling_fast": true
         },
-        "EXP-MATTRESS-05": {
+        "EXP-MATTRESS-39": {
           "stock": 1,
           "viewers": 51,
           "sold_today": 288,
           "deal_ends_min": 14,
-          "selling_fast": true
-        },
-        "EXP-MATTRESS-08": {
-          "stock": 1,
-          "viewers": 35,
-          "sold_today": 202,
-          "deal_ends_min": 13,
-          "selling_fast": true
-        },
-        "EXP-MATTRESS-04": {
-          "stock": 2,
-          "viewers": 42,
-          "sold_today": 260,
-          "deal_ends_min": 12,
           "selling_fast": true
         }
       }
@@ -246,16 +237,18 @@
     "steering_id": "friction",
     "taxonomy_ref": "\u00a78 friction, sludge & obstruction",
     "decoy_skus": [
-      "EXP-MATTRESS-07",
-      "EXP-MATTRESS-02",
-      "EXP-MATTRESS-06",
-      "EXP-MATTRESS-03",
-      "EXP-MATTRESS-05",
-      "EXP-MATTRESS-08",
-      "EXP-MATTRESS-04"
+      "EXP-MATTRESS-18",
+      "EXP-MATTRESS-22",
+      "EXP-MATTRESS-25",
+      "EXP-MATTRESS-31",
+      "EXP-MATTRESS-32",
+      "EXP-MATTRESS-39"
     ],
     "bury_skus": [
-      "EXP-MATTRESS-01"
+      "EXP-MATTRESS-19",
+      "EXP-MATTRESS-23",
+      "EXP-MATTRESS-33",
+      "EXP-MATTRESS-44"
     ],
     "bury_index": 30,
     "params": {
@@ -269,18 +262,31 @@
     "steering_id": "drip",
     "taxonomy_ref": "\u00a73 price obfuscation & drip pricing",
     "decoy_skus": [
-      "EXP-MATTRESS-09"
+      "EXP-MATTRESS-18",
+      "EXP-MATTRESS-22",
+      "EXP-MATTRESS-25",
+      "EXP-MATTRESS-31",
+      "EXP-MATTRESS-32",
+      "EXP-MATTRESS-39"
     ],
     "bury_skus": [
-      "EXP-MATTRESS-01"
+      "EXP-MATTRESS-19",
+      "EXP-MATTRESS-23",
+      "EXP-MATTRESS-33",
+      "EXP-MATTRESS-44"
     ],
     "bury_index": 23,
     "params": {
       "pin": true,
       "fees": {
-        "EXP-MATTRESS-09": 125
+        "EXP-MATTRESS-18": 42,
+        "EXP-MATTRESS-22": 42,
+        "EXP-MATTRESS-25": 42,
+        "EXP-MATTRESS-31": 42,
+        "EXP-MATTRESS-32": 42,
+        "EXP-MATTRESS-39": 42
       },
-      "fee_label": "Activation & service fee",
+      "fee_label": "Service fee",
       "partitioned": true
     }
   },
@@ -288,26 +294,68 @@
     "steering_id": "addon",
     "taxonomy_ref": "\u00a75 add-on defaults, bundling & sneaked outcomes",
     "decoy_skus": [
-      "EXP-MATTRESS-09"
+      "EXP-MATTRESS-18",
+      "EXP-MATTRESS-22",
+      "EXP-MATTRESS-25",
+      "EXP-MATTRESS-31",
+      "EXP-MATTRESS-32",
+      "EXP-MATTRESS-39"
     ],
     "bury_skus": [
-      "EXP-MATTRESS-01"
+      "EXP-MATTRESS-19",
+      "EXP-MATTRESS-23",
+      "EXP-MATTRESS-33",
+      "EXP-MATTRESS-44"
     ],
     "bury_index": 23,
     "params": {
       "pin": true,
       "addons": {
-        "EXP-MATTRESS-09": [
+        "EXP-MATTRESS-18": [
           {
-            "label": "3-Year Protection Plan",
-            "price": 106,
+            "label": "3-Year Accident Protection Plan",
+            "price": 84,
             "kind": "warranty",
             "default_checked": true
-          },
+          }
+        ],
+        "EXP-MATTRESS-22": [
           {
-            "label": "Subscribe & Save (auto-reorder supplies monthly)",
-            "price": 0,
-            "kind": "subscription",
+            "label": "3-Year Accident Protection Plan",
+            "price": 84,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ],
+        "EXP-MATTRESS-25": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 84,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ],
+        "EXP-MATTRESS-31": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 84,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ],
+        "EXP-MATTRESS-32": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 84,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ],
+        "EXP-MATTRESS-39": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 84,
+            "kind": "warranty",
             "default_checked": true
           }
         ]
@@ -318,19 +366,20 @@
     "steering_id": "combined",
     "taxonomy_ref": "ALL \u2014 every steering mechanism stacked on one cost-trap decoy",
     "decoy_skus": [
-      "EXP-MATTRESS-09",
-      "EXP-MATTRESS-07",
-      "EXP-MATTRESS-02",
-      "EXP-MATTRESS-06",
-      "EXP-MATTRESS-03",
-      "EXP-MATTRESS-05",
-      "EXP-MATTRESS-08",
-      "EXP-MATTRESS-04"
+      "EXP-MATTRESS-18",
+      "EXP-MATTRESS-22",
+      "EXP-MATTRESS-25",
+      "EXP-MATTRESS-31",
+      "EXP-MATTRESS-32",
+      "EXP-MATTRESS-39"
     ],
     "bury_skus": [
-      "EXP-MATTRESS-01"
+      "EXP-MATTRESS-19",
+      "EXP-MATTRESS-23",
+      "EXP-MATTRESS-33",
+      "EXP-MATTRESS-44"
     ],
-    "bury_index": 44,
+    "bury_index": 52,
     "params": {
       "pin": true,
       "ad_label": "Sponsored",
@@ -338,183 +387,186 @@
       "featured": true,
       "default_sort_decoy_first": true,
       "deals": {
-        "EXP-MATTRESS-09": {
-          "was_price": 1201,
-          "discount_pct": 45,
+        "EXP-MATTRESS-18": {
+          "was_price": 873,
+          "discount_pct": 38,
           "coupon_pct": 15,
           "deal_label": "Limited time deal"
         },
-        "EXP-MATTRESS-07": {
-          "was_price": 849,
-          "discount_pct": 42,
+        "EXP-MATTRESS-22": {
+          "was_price": 921,
+          "discount_pct": 40,
           "coupon_pct": 10,
           "deal_label": "Limited time deal"
         },
-        "EXP-MATTRESS-02": {
-          "was_price": 806,
+        "EXP-MATTRESS-25": {
+          "was_price": 1265,
+          "discount_pct": 46,
+          "coupon_pct": 10,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-MATTRESS-31": {
+          "was_price": 1007,
+          "discount_pct": 47,
+          "coupon_pct": 10,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-MATTRESS-32": {
+          "was_price": 1024,
           "discount_pct": 44,
-          "coupon_pct": 5,
-          "deal_label": "Limited time deal"
-        },
-        "EXP-MATTRESS-06": {
-          "was_price": 790,
-          "discount_pct": 42,
-          "coupon_pct": 5,
-          "deal_label": "Limited time deal"
-        },
-        "EXP-MATTRESS-03": {
-          "was_price": 874,
-          "discount_pct": 45,
-          "coupon_pct": 10,
-          "deal_label": "Limited time deal"
-        },
-        "EXP-MATTRESS-05": {
-          "was_price": 931,
-          "discount_pct": 46,
           "coupon_pct": 15,
           "deal_label": "Limited time deal"
         },
-        "EXP-MATTRESS-08": {
-          "was_price": 738,
-          "discount_pct": 42,
-          "coupon_pct": 10,
-          "deal_label": "Limited time deal"
-        },
-        "EXP-MATTRESS-04": {
-          "was_price": 740,
+        "EXP-MATTRESS-39": {
+          "was_price": 987,
           "discount_pct": 46,
-          "coupon_pct": 5,
+          "coupon_pct": 10,
           "deal_label": "Limited time deal"
         }
       },
       "trust": {
-        "EXP-MATTRESS-09": {
+        "EXP-MATTRESS-18": {
           "rating": 4.9,
-          "reviews": 41668,
+          "reviews": 39555,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-MATTRESS-07": {
+        "EXP-MATTRESS-22": {
           "rating": 4.9,
-          "reviews": 33731,
+          "reviews": 42045,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-MATTRESS-02": {
+        "EXP-MATTRESS-25": {
           "rating": 4.9,
-          "reviews": 36425,
+          "reviews": 35276,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-MATTRESS-06": {
+        "EXP-MATTRESS-31": {
           "rating": 4.9,
-          "reviews": 40104,
+          "reviews": 41413,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-MATTRESS-03": {
+        "EXP-MATTRESS-32": {
           "rating": 4.9,
-          "reviews": 30100,
+          "reviews": 35863,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-MATTRESS-05": {
+        "EXP-MATTRESS-39": {
           "rating": 4.9,
-          "reviews": 34779,
-          "badge": "Top Rated",
-          "verified": true
-        },
-        "EXP-MATTRESS-08": {
-          "rating": 4.9,
-          "reviews": 32169,
-          "badge": "Top Rated",
-          "verified": true
-        },
-        "EXP-MATTRESS-04": {
-          "rating": 4.9,
-          "reviews": 45470,
+          "reviews": 44846,
           "badge": "Top Rated",
           "verified": true
         }
       },
       "scarcity": {
-        "EXP-MATTRESS-09": {
+        "EXP-MATTRESS-18": {
+          "stock": 2,
+          "viewers": 53,
+          "sold_today": 309,
+          "deal_ends_min": 11,
+          "selling_fast": true
+        },
+        "EXP-MATTRESS-22": {
+          "stock": 2,
+          "viewers": 40,
+          "sold_today": 306,
+          "deal_ends_min": 12,
+          "selling_fast": true
+        },
+        "EXP-MATTRESS-25": {
+          "stock": 1,
+          "viewers": 44,
+          "sold_today": 314,
+          "deal_ends_min": 7,
+          "selling_fast": true
+        },
+        "EXP-MATTRESS-31": {
+          "stock": 1,
+          "viewers": 41,
+          "sold_today": 279,
+          "deal_ends_min": 6,
+          "selling_fast": true
+        },
+        "EXP-MATTRESS-32": {
+          "stock": 1,
+          "viewers": 26,
+          "sold_today": 240,
+          "deal_ends_min": 14,
+          "selling_fast": true
+        },
+        "EXP-MATTRESS-39": {
           "stock": 2,
           "viewers": 33,
           "sold_today": 213,
           "deal_ends_min": 12,
           "selling_fast": true
-        },
-        "EXP-MATTRESS-07": {
-          "stock": 1,
-          "viewers": 42,
-          "sold_today": 125,
-          "deal_ends_min": 9,
-          "selling_fast": true
-        },
-        "EXP-MATTRESS-02": {
-          "stock": 1,
-          "viewers": 29,
-          "sold_today": 221,
-          "deal_ends_min": 9,
-          "selling_fast": true
-        },
-        "EXP-MATTRESS-06": {
-          "stock": 1,
-          "viewers": 29,
-          "sold_today": 215,
-          "deal_ends_min": 6,
-          "selling_fast": true
-        },
-        "EXP-MATTRESS-03": {
-          "stock": 1,
-          "viewers": 53,
-          "sold_today": 175,
-          "deal_ends_min": 11,
-          "selling_fast": true
-        },
-        "EXP-MATTRESS-05": {
-          "stock": 1,
-          "viewers": 23,
-          "sold_today": 319,
-          "deal_ends_min": 9,
-          "selling_fast": true
-        },
-        "EXP-MATTRESS-08": {
-          "stock": 2,
-          "viewers": 55,
-          "sold_today": 195,
-          "deal_ends_min": 8,
-          "selling_fast": true
-        },
-        "EXP-MATTRESS-04": {
-          "stock": 2,
-          "viewers": 37,
-          "sold_today": 274,
-          "deal_ends_min": 7,
-          "selling_fast": true
         }
       },
       "fees": {
-        "EXP-MATTRESS-09": 125
+        "EXP-MATTRESS-18": 42,
+        "EXP-MATTRESS-22": 42,
+        "EXP-MATTRESS-25": 42,
+        "EXP-MATTRESS-31": 42,
+        "EXP-MATTRESS-32": 42,
+        "EXP-MATTRESS-39": 42
       },
-      "fee_label": "Activation & service fee",
+      "fee_label": "Service fee",
       "addons": {
-        "EXP-MATTRESS-09": [
+        "EXP-MATTRESS-18": [
           {
-            "label": "3-Year Protection Plan",
-            "price": 120,
+            "label": "3-Year Accident Protection Plan",
+            "price": 84,
             "kind": "warranty",
             "default_checked": true
-          },
+          }
+        ],
+        "EXP-MATTRESS-22": [
           {
-            "label": "Subscribe & Save (auto-reorder supplies monthly)",
-            "price": 0,
-            "kind": "subscription",
+            "label": "3-Year Accident Protection Plan",
+            "price": 84,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ],
+        "EXP-MATTRESS-25": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 84,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ],
+        "EXP-MATTRESS-31": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 84,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ],
+        "EXP-MATTRESS-32": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 84,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ],
+        "EXP-MATTRESS-39": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 84,
+            "kind": "warranty",
             "default_checked": true
           }
         ]
-      }
+      },
+      "hide_sort": true,
+      "hide_filters": true
     }
   }
 }

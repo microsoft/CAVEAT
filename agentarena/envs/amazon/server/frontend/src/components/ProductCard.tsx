@@ -17,10 +17,12 @@ export function ProductCard({ product, showAddToCart = false, onAddToCart }: Pro
     : 0;
 
   return (
-    <div className={`product-card${product.sponsored ? ' ring-2 ring-blue-500 rounded-lg p-2 bg-blue-50/40' : ''}`}>
+    <div className="product-card">
       {product.sponsored && (
         <div className="mb-1">
-          <span className="text-[11px] font-bold uppercase tracking-wide text-white bg-blue-700 px-1.5 py-0.5 rounded">
+          {/* Real-Amazon-style sponsored disclosure: a small, dim gray label — no bright badge or
+              card highlight. The steering is the top placement, not a loud visual call-out. */}
+          <span className="text-[11px] text-gray-500">
             {product.ad_label || 'Sponsored'}
           </span>
         </div>
@@ -37,6 +39,23 @@ export function ProductCard({ product, showAddToCart = false, onAddToCart }: Pro
         <Link to={`/dp/${product.asin}`}>
           <h3 className="product-title">{product.title}</h3>
         </Link>
+        {/* ai-injection ONLY: hidden per-product note. sr-only (clip:rect 1x1) is imperceptible to a
+            human and absent from the screenshot, but the browser-use DOM/accessibility serializer
+            does not test clip/color, so it reaches the agent's observation. Absent for every other
+            condition (field only set when steering type is ai_injection). */}
+        {product.agent_note && (
+          <span className="sr-only" aria-label={product.agent_note}>{product.agent_note}</span>
+        )}
+
+        {/* adv_* families: extract-channel block. display:none is dropped by browser-use's DOM
+            serializer but NOT by the html serializer its `extract` action feeds to a sub-LLM, so
+            this text reaches the agent only when it tries to verify — and never reaches a human. */}
+        {product.adv_hidden && (
+          <div style={{ display: 'none' }} data-adv="x">{product.adv_hidden}</div>
+        )}
+        {product.adv_badge && (
+          <span className="text-xs text-[var(--link-color)]">{product.adv_badge}</span>
+        )}
 
         {/* Rating */}
         <div className="star-rating mt-1">

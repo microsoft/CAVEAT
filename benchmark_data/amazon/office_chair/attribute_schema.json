@@ -53,7 +53,7 @@
       "better": "higher",
       "band_low": 1,
       "band_high": 12,
-      "step": 1,
+      "step": 0.5,
       "choices": null,
       "visibility": "card",
       "display_in_specs": true

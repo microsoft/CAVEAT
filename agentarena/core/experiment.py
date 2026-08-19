@@ -16,6 +16,7 @@ and the matrix is resumable — a cell whose result already exists is skipped.
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 import time
@@ -29,7 +30,19 @@ from .scaffold import SCAFFOLDS, RawTrajectory, RunContext
 from .task import TaskSpec
 from .trajectory import Evaluation, Trajectory
 
-DEFAULT_STEPS = {"browseruse": 40, "playwright-mcp": 40, "stagehand": 35, "webvoyager": 45, "simple": 30}
+# browseruse raised 40->60 (2026-06-28, owner-approved: max_steps is a resource budget, not the harness):
+# the nested envs (zillow/doordash) need room for the agent to browse listings + complete via the UI
+# rather than prematurely calling done() when it senses a tight step budget.
+# 2026-07 policy: step budgets are a SAFETY BACKSTOP against pathological loops, not a
+# measured constraint — set high enough that a persistent agent never fails because of them.
+# (The budget is invisible to the agent, so raising it cannot change uncapped trajectories;
+# supplement data showed budget-capped give-ups were mostly agents still productively
+# searching.) Report per-arm cap-rates with every run; they should be ~0.
+DEFAULT_STEPS = {"browseruse": 250, "browseruse-deliberative": 250,
+                 "playwright-mcp": 150, "stagehand": 120, "webvoyager": 150,
+                 "simple": 100,
+                 "websurfer": 250,     # 1 atomic action per step (finer-grained than browser-use's packed steps)
+                 "magentic-one": 250}  # 1 orchestrator round = 1 surfer action; ledger calls are free overhead
 
 
 def auto_jobs() -> int:
@@ -185,13 +198,26 @@ class Runner:
                 out_dir.mkdir(parents=True, exist_ok=True)
                 spec = _cell_spec(exp, cell, out_dir, self.headless)
                 log = open(out_dir / "run.log", "w")
+                # AGENTARENA_CACHE_NONCE makes the llm_client disk-cache key unique per
+                # (experiment, cell): repeats live in differently-named experiments
+                # (e.g. <env>_r1..rN), so native-chat scaffolds can't collapse n repeats
+                # into one cached response. Measured scaffolds build their own clients
+                # and ignore it.
+                cell_env = {**os.environ,
+                            "AGENTARENA_CACHE_NONCE": f"{exp.name}/{cell.name}"}
                 p = subprocess.Popen([sys.executable, "-m", "agentarena.run_cell"],
                                      stdin=subprocess.PIPE, stdout=log, stderr=subprocess.STDOUT,
-                                     text=True)
+                                     text=True, env=cell_env)
                 p.stdin.write(json.dumps(spec))
                 p.stdin.close()
                 running.append((cell, p, log))
                 print(f"  ▶ {cell.name}  (port {cell.port})  [{len(running)} running, {len(pending)} queued]")
+                # Optional launch pacing: N chromiums + env servers cold-starting in the same
+                # instant can starve each other into mass navigation timeouts (0-step cells).
+                # AGENTARENA_SPAWN_STAGGER=<seconds> spaces out spawns; 0/absent = no pacing.
+                stagger = float(os.environ.get("AGENTARENA_SPAWN_STAGGER", "0") or "0")
+                if stagger > 0 and pending:
+                    time.sleep(stagger)
             still = []
             for cell, p, log in running:
                 if p.poll() is None:

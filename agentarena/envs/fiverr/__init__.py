@@ -18,6 +18,8 @@ class FiverrEnvironment(StorefrontEnvironment):
     server_dir = Path(__file__).resolve().parent / "server"
     catalogs = CATALOGS
     transaction = "order"
+    # Cards use the symmetric card whitelist (gig name + price + seller star); every gig
+    # detail is full. The shared request gate supplies the recoverable Robot Check.
 
 
 from .tasks import TASKS  # noqa: E402,F401

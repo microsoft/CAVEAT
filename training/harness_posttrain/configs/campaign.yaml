@@ -1,0 +1,139 @@
+schema_version: 1
+seed: 56036027
+model_config: "configs/model.yaml"
+stack_config: "configs/stack.yaml"
+
+objective:
+  scaffold: "browseruse-deliberative"
+  scaffold_must_be_unchanged: true
+  primary_metric: "strict_binary"
+  diagnostic_metric: "preservation_strict"
+
+splits:
+  train:
+    procedural: ["procedural_train"]
+    amazon: []
+  selection:
+    procedural: ["procedural_validation"]
+    amazon: []
+  development:
+    procedural: []
+    amazon: ["laptop"]
+  final:
+    procedural: ["procedural_test"]
+    amazon: ["office_chair", "mattress", "backpack", "tent"]
+  require_disjoint_scenarios: true
+
+targeted_sft:
+  sequence_length: 32768
+  global_batch_size: 16
+  optimizer_updates: 20
+  checkpoint_updates: [5, 10, 20]
+  learning_rate: 1.0e-5
+  warmup_fraction: 0.03
+  scheduler: "cosine"
+  maximum_gradient_norm: 1.0
+  assistant_tokens_only: true
+  lora_rank: 64
+  lora_alpha: 128
+  lora_dropout: 0.0
+  raw_pool:
+    tasks: 1600
+    rows_per_task:
+      contract: 2
+      interaction: 2
+      rehearsal: 1
+  candidates:
+    balanced:
+      mixture: {contract: 0.40, interaction: 0.40, rehearsal: 0.20}
+      maximum_rows: 4800
+    protocol-heavy:
+      mixture: {contract: 0.60, interaction: 0.30, rehearsal: 0.10}
+      maximum_rows: 4800
+    recovery-heavy:
+      mixture: {contract: 0.30, interaction: 0.60, rehearsal: 0.10}
+      maximum_rows: 4800
+
+refinement:
+  method: "reward_filtered_on_policy_contract_sft"
+  sequence_length: 32768
+  global_batch_size: 16
+  optimizer_updates: 20
+  checkpoint_updates: [5, 10, 20]
+  learning_rate: 5.0e-6
+  warmup_fraction: 0.03
+  assistant_tokens_only: true
+  lora_rank: 64
+  lora_alpha: 128
+  lora_dropout: 0.0
+  maximum_decisions_per_successful_episode: 2
+  maximum_corrections_per_failed_episode: 1
+  mixture:
+    correction: 0.60
+    success: 0.30
+    rehearsal: 0.10
+  maximum_rows: 4000
+  rollout_plan:
+    fresh_tasks: 64
+    episodes_per_task: 4
+    total_episodes: 256
+    conditions: {truthful_steered: 0.75, clean: 0.25}
+  contract_reward:
+    syntax_valid: 0.25
+    semantic_exact: 0.75
+    retain_threshold: 1.0
+  reward_weights:
+    contract_valid: 0.15
+    contract_semantic: 0.15
+    tool_valid: 0.20
+    frontier_complete: 0.20
+    no_loop: 0.10
+    optimal: 0.20
+  successful_reward_threshold: 1.0
+
+optional_opd_smoke:
+  enabled_by_default: false
+  episodes: 64
+  maximum_decisions_per_episode: 2
+  maximum_replay_rows: 128
+  optimizer_updates: 12
+  checkpoint_updates: [4, 12]
+  learning_rate: 2.0e-6
+  sequence_length: 32768
+  maximum_completion_tokens: 1024
+  global_batch_size: 8
+  maximum_inflight_rollouts: 8
+  worker_pool_size: 8
+  vllm_max_num_seqs: 16
+  gpu_memory_utilization_per_server: 0.35
+  total_gpus: 8
+  inference_gpus: 4
+  trainer_gpus: 4
+  minimum_host_memory_gib: 1024
+  wall_clock_kill_seconds: 10800
+  pure_reverse_kl_only: true
+  corrective_ce_in_same_update: false
+
+selection_gate:
+  minimum_contract_validity: 0.98
+  maximum_tool_validity_regression: 0.01
+  minimum_net_hero_wins_over_parent: 4
+  maximum_hero_regressions: 1
+  procedural_shadow_tasks: 64
+  episodes_per_task: 1
+  checkpoint_tool_tasks: 8
+  rank_order: ["semantic_exact_rate", "syntax_valid_rate", "checkpoint_tool_valid_rate"]
+  deterministic_tie_break: ["balanced", "protocol-heavy", "recovery-heavy", 5, 10, 20]
+  retain_parent_on_failure: true
+
+cluster:
+  context: "oidc@msr02"
+  namespace: "bonete61"
+  queue: "bonete61"
+  pvc: "pvc-vast-bonete61"
+  workstream: "socialreasoning"
+  priority: "p0"
+  gpus_per_node: 8
+  authorized_aggregate_gpu_cap: 64
+  hf_secret: "t-yuxuanli-hf-token"
+  acr_pull_secret: "t-yuxuanli-hd-acr-pull"

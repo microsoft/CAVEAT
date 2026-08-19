@@ -43,7 +43,7 @@ def main() -> int:
     ap.add_argument("--models", nargs="*", default=["gpt-5.5"])
     ap.add_argument("--results", default="results")
     ap.add_argument("--jobs", type=int, default=0)
-    ap.add_argument("--max-steps", type=int, default=32)
+    ap.add_argument("--max-steps", type=int, default=250)   # backstop, not a measured constraint (2026-07 policy)
     ap.add_argument("--repeats", type=int, default=1)
     ap.add_argument("--base-port", type=int, default=9100)
     ap.add_argument("--no-headless", action="store_true")
@@ -61,9 +61,16 @@ def main() -> int:
         # backfill the unified continuous preservation P into each summary.json (config-drip
         # aware) so the viewer + analysis show the current graded metric, not just the binary flag.
         try:
-            from ..scoring.rescore import write_preservation
+            from ..scoring.rescore import write_preservation, write_strict
             n = write_preservation(f"{args.results.rstrip('/')}/{name}")
-            print(f"[run] {name}: wrote preservation P into {n} summaries")
+            # ...and the HEADLINE metric. `preservation` is the LEGACY weighted mean and is
+            # diagnostic only (rescore.cell_preservation says so); P* = `preservation_strict`
+            # is what every analysis reads (build_figure_data keys on it). Writing only the
+            # legacy key left fresh runs with no P* at all until some report script happened
+            # to backfill it — and the two disagree wildly on a non-compensatory roster: a
+            # hard-tier pin scores 0.52 legacy vs 0.0988 strict.
+            ns = write_strict(f"{args.results.rstrip('/')}/{name}")
+            print(f"[run] {name}: wrote preservation P into {n} summaries, P* into {ns}")
         except Exception as e:
             print(f"[run] preservation rescore skipped: {e}")
     return 0

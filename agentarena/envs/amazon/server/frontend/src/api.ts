@@ -24,6 +24,18 @@ import type {
 
 const API_BASE = '/api';
 
+// Session-scoped client credential: the server injects a per-session token into the
+// served page (<meta name="sf-client">) and the API only answers requests that echo
+// it back — the same pattern a real SPA marketplace's XHR surface uses. Falls back
+// to the legacy 'web' constant under `npm run dev` (no injection, gate off).
+function clientToken(): string {
+  return (
+    (typeof document !== 'undefined' &&
+      document.querySelector('meta[name="sf-client"]')?.getAttribute('content')) ||
+    'web'
+  );
+}
+
 async function request<T>(
   endpoint: string,
   options: RequestInit = {}
@@ -33,6 +45,9 @@ async function request<T>(
     ...options,
     headers: {
       'Content-Type': 'application/json',
+      // Identifies traffic from the storefront's own web client (i.e. the page a human is
+      // actually looking at), as distinct from a program calling the JSON API directly.
+      'X-Storefront-Client': clientToken(),
       ...options.headers,
     },
     credentials: 'include',

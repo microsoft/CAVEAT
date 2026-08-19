@@ -15,14 +15,22 @@ export default function ReservationWidget({ listing, onDateSelect }: Reservation
   const { user, selectedCurrency, addToast } = useAppContext();
   const navigate = useNavigate();
 
-  const [checkIn, setCheckIn] = useState('');
-  const [checkOut, setCheckOut] = useState('');
+  // Pre-filled default stay (real Airbnb pre-fills dates from the search context): 2 weeks out,
+  // 3 nights. Editable as before. (2026-07-10: the empty-date Reserve error was a give-up trap —
+  // weaker agents looped on "dates required" and abandoned the booking.)
+  const defaultIn = new Date(Date.now() + 14 * 86400000).toISOString().slice(0, 10);
+  const defaultOut = new Date(Date.now() + 17 * 86400000).toISOString().slice(0, 10);
+  const [checkIn, setCheckIn] = useState(defaultIn);
+  const [checkOut, setCheckOut] = useState(defaultOut);
   const [guestCount, setGuestCount] = useState(1);
   const [loading, setLoading] = useState(false);
   const [confirmedBooking, setConfirmedBooking] = useState<Booking | null>(null);
 
   const rate = selectedCurrency?.exchange_rate ?? 1;
   const symbol = selectedCurrency?.symbol ?? '$';
+  // The detail payload may omit max_guests (session listing-detail quota exhausted) — fall back
+  // to the platform cap so the stepper never renders NaN. The server still validates on booking.
+  const maxGuests = typeof listing.max_guests === 'number' ? listing.max_guests : 16;
 
   const convertedPriceNum = listing.price_per_night * rate;
   const convertedPrice = convertedPriceNum.toFixed(2);
@@ -179,8 +187,8 @@ export default function ReservationWidget({ listing, onDateSelect }: Reservation
               {guestCount} guest{guestCount !== 1 ? 's' : ''}
             </span>
             <button
-              onClick={() => setGuestCount((g) => Math.min(listing.max_guests, g + 1))}
-              disabled={guestCount >= listing.max_guests}
+              onClick={() => setGuestCount((g) => Math.min(maxGuests, g + 1))}
+              disabled={guestCount >= maxGuests}
               className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed hover:border-gray-800 transition"
               aria-label="Increase guests"
             >

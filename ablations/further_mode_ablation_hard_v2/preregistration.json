@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "kind": "further_mode_ablation_hard_v2_preregistration",
+  "frozen_before_measured_outcomes": true,
+  "recovery_reason": {
+    "predecessor": "further_mode_ablation_v1",
+    "pilot_block": 5,
+    "pilot_disposition": "excluded_whole_block_never_reused_or_retried",
+    "deterministic_omission": "C stats_snapshot omitted the required limit_observations inventory",
+    "fix_scope": "post-run audit telemetry only",
+    "outcome_inert": true
+  },
+  "design": {
+    "total_runs": 112,
+    "repetitions_per_arm": 8,
+    "hard": {
+      "runs": 112,
+      "model": "gpt-5.6-sol#high",
+      "task": "laptop_hard-graded",
+      "component_arms": ["B", "P", "K", "E", "D", "C", "A", "F"],
+      "additional_context_arms": [
+        "B_clean_original", "F_clean_original", "B_format_only_original",
+        "B_merchandising_original", "B_combined_reversed",
+        "F_combined_reversed"
+      ]
+    },
+    "blocks": {"hard": [28, 28, 28, 28]},
+    "schedule_seed": "further-mode-ablation-hard-v2-20260805"
+  },
+  "runtime": {
+    "max_steps": 12000,
+    "whole_run_timeout_seconds": 172800,
+    "launcher_max_parallel_runs": 32,
+    "host_browser_ceiling": 36,
+    "protected_refill_browser_reserve": 4,
+    "campaign_specific_refill_postcondition_before_every_spawn": true,
+    "spawn_stagger_seconds": 10,
+    "regions": ["gcr/shared", "msraif/shared", "redmond/interactive"],
+    "pre_and_mid_campaign_probe_gates": true,
+    "behavioral_failures_remain_in_denominator": true,
+    "maximum_attempts_per_frozen_row": 3,
+    "replacement_class": "infrastructure_only",
+    "adaptive_stopping": false
+  },
+  "metrics": {
+    "headline": "preservation_strict",
+    "formula": "P*=G*O",
+    "mechanism_primary": "literal_hero",
+    "secondary": "strict_binary",
+    "legacy_preservation": "diagnostic_only"
+  },
+  "effect_families": {
+    "harness_stage_confirmatory": ["P-B", "K-P", "E-K", "D-E", "A-D", "F-A"],
+    "harness_secondary": ["C-P", "F-D"],
+    "hard_steering_context": [
+      "B_combined-B_clean", "B_merchandising-B_clean",
+      "B_combined-B_merchandising", "B_format_only-B_clean"
+    ],
+    "hard_harness_context": [
+      "F_clean-B_clean", "F_combined-B_combined",
+      "harness_by_steering_interaction"
+    ],
+    "hard_objective_order": [
+      "B_original-B_reversed", "F_original-F_reversed",
+      "harness_by_order_interaction"
+    ],
+    "hard_objective_order_directional_rank": [
+      "B_first_mentioned_directional_rank_shift",
+      "F_first_mentioned_directional_rank_shift",
+      "harness_attenuation_of_directional_rank_shift"
+    ]
+  },
+  "inference": {
+    "blocking_unit": "repetition",
+    "paired_exact_two_sided_sign_flip": true,
+    "conservative_exact_binary_risk_difference_intervals": true,
+    "holm_within_frozen_family_and_endpoint": true,
+    "claims_model_scenario_variant_specific": true,
+    "process_measures_are_treatment_uptake_not_mediators": true,
+    "objective_order_directional_rank_endpoint": "rank each selected product separately on each of the two frozen canonical objective axes among threshold-feasible hard-pool products, normalize each penalized rank as (rank-1)/N, assign infeasible, off-catalog, and no-order outcomes rank N+1 (normalized loss 1), compute each repetition's reversed-minus-original shift on each axis, then use (axis1_shift-axis2_shift)/2; harness attenuation is the F effect minus the B effect"
+  },
+  "validity": {
+    "no_benchmark_task_catalog_or_production_scaffold_edits": true,
+    "command_local_analysis_packages_only": true,
+    "oracle_pstar_one_required_for_every_condition": true,
+    "client_token_only": true,
+    "operations_token_forbidden_on_agent_reachable_paths": true,
+    "zero_safety_backstop_or_lossy_limit_touches_required_for_every_initialized_audit": true,
+    "c_fix_is_exact_zero_attempt_limit_observation_only": true,
+    "v1_block5_is_excluded_pilot_and_not_part_of_any_denominator": true,
+    "pre_agent_compiler_capability_exception": "an exact zero-step compiler semantic/output capability failure may score zero if limit/evaluate audits were never initialized; it is disclosed and never imputed as untouched",
+    "generic_early_missing_telemetry_policy": "fail report for manual adjudication",
+    "partial_attempt_retry_policy": "only controller-proven ended, no-summary, seeded-checkout-delta-zero, zero-agent-behavior attempts with an exact external termination marker are infrastructure-eligible; ambiguous partials never retry",
+    "unknown_ablation_names_fail_closed": true
+  }
+}

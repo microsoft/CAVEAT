@@ -26,11 +26,16 @@ from dataclasses import dataclass, field
 from functools import lru_cache
 from typing import Any, Optional
 
-from ..llm_client import TRAPI_DEPLOY, LLMClient, _logical
+from ..llm_client import TRAPI_DEPLOY, TRAPI_MODEL_REGIONS, LLMClient, _logical
 
 # Best-effort vision capability for known logical models (override with vision=).
 _KNOWN_NO_VISION = {"llama-3.3-70b-instruct", "deepseek-r1", "deepseek-v3.2",
-                    "mistral-large-3", "gpt-oss-120b", "gcr-fara-7b"}
+                    "mistral-large-3", "gpt-oss-120b", "gcr-fara-7b",
+                    # cross-family models in the steering sweep: run browser-use DOM-only (use_vision=
+                    # False) — vision support unconfirmed (isolated image probe is unreliable) and the
+                    # task is solvable from the DOM text. Upgrade individually once vision is confirmed.
+                    "kimi-k2.6", "qwen3.5-397b", "qwen3.5-122b", "deepseek-v4-pro", "deepseek-v4-flash",
+                    "grok-4-1-fast-reasoning"}
 
 
 def _is_reasoning(name: str) -> bool:
@@ -96,7 +101,11 @@ class ModelSpec:
     def has_vision(self) -> bool:
         if self.vision is not None:
             return self.vision
-        return _logical(self.name).lower() not in _KNOWN_NO_VISION
+        base = _logical(self.name).lower()
+        for _suf in ("-low", "-medium", "-high"):   # drop a reasoning-effort suffix so e.g.
+            if base.endswith(_suf):                  # 'gpt-oss-120b-low' maps to 'gpt-oss-120b'
+                base = base[: -len(_suf)]; break
+        return base not in _KNOWN_NO_VISION
 
     def wire_model(self) -> str:
         """The model id actually sent on the wire."""
@@ -115,7 +124,15 @@ class ModelSpec:
                 raise ValueError(f"model {self.name!r}: provider 'openai' needs base_url")
             return OpenAIEndpoint(base, key, self.wire_model(), self.has_vision, self.reasoning, self.reasoning_effort)
         if self.provider == "trapi":
-            base = self.base_url or f"https://trapi.research.microsoft.com/{self.region}/openai/v1/"
+            # External scaffolds get ONE base_url (no router failover), so honour the per-model
+            # region pin (TRAPI_MODEL_REGIONS) the router uses — region health is per-model and
+            # dynamic (e.g. gcr/shared 503s gpt-5.5 but serves gpt-4.1). When the spec leaves the
+            # default region, route to the model's first pinned (healthy) region.
+            region = self.region
+            pinned = TRAPI_MODEL_REGIONS.get(_logical(self.deployment or self.name))
+            if pinned and self.region == "gcr/shared":
+                region = pinned[0]
+            base = self.base_url or f"https://trapi.research.microsoft.com/{region}/openai/v1/"
             token = _trapi_token_provider()()        # fresh bearer token (valid ~1h)
             return OpenAIEndpoint(base, token, self.wire_model(), self.has_vision, self.reasoning, self.reasoning_effort)
         if self.provider == "phyagi":

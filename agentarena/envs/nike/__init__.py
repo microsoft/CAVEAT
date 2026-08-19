@@ -18,6 +18,8 @@ class NikeEnvironment(StorefrontEnvironment):
     server_dir = Path(__file__).resolve().parent / "server"
     catalogs = CATALOGS
     transaction = "order"
+    # The list uses the same truthful card whitelist in clean and steered serving; every
+    # PDP is full. The shared request gate supplies a recoverable Robot Check.
 
 
 from .tasks import TASKS  # noqa: E402,F401

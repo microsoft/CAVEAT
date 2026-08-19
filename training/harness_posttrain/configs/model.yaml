@@ -1,0 +1,13 @@
+schema_version: 1
+model_id: "Qwen/Qwen3.5-27B"
+revision: "fc05daec18b0a78c049392ed2e771dde82bdf654"
+architecture: "dense"
+parameters_billions: 27
+native_context_tokens: 262144
+dtype: "bfloat16"
+renderer: "qwen3.5"
+reasoning_parser: "qwen3"
+tool_call_parser: "qwen3_coder"
+preserve_thinking: true
+language_model_only: true
+enable_prefix_caching: false

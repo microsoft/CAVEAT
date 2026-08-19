@@ -23,6 +23,8 @@ class EbayEnvironment(StorefrontEnvironment):
     catalogs = CATALOGS
     transaction = "order"
     default_start_path = "/"
+    # (Phase C) list_minimal/spec_budget removed: cards always card-shaped, detail always
+    # full — anti-scrape is the shared gate + rate-based Robot Check (gate.py).
 
 
 from .tasks import TASKS  # noqa: E402,F401

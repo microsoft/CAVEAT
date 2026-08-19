@@ -2,7 +2,7 @@
 
     python -m agentarena.benchmark.cli generate --scenario laptop --seed 7
     python -m agentarena.benchmark.cli generate --all
-    python -m agentarena.benchmark.cli generate --scenario monitor --no-images
+    python -m agentarena.benchmark.cli generate --scenario laptop --no-images
     python -m agentarena.benchmark.cli list
 """
 

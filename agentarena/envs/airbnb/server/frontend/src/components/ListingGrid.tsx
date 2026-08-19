@@ -112,13 +112,21 @@ export default function ListingGrid() {
           </>
         )}
 
-        {/* Empty state */}
+        {/* Empty state (real-Airbnb copy) */}
         {!loading && data && data.listings.length === 0 && (
           <div className="flex flex-col items-center justify-center py-20 text-center">
-            <p className="text-xl font-semibold text-gray-800 mb-2">No listings found</p>
-            <p className="text-gray-500">
-              Try selecting a different category or adjusting your filters.
+            <p className="text-xl font-semibold text-gray-800 mb-2">No exact matches</p>
+            <p className="text-gray-500 mb-5">
+              Try changing or removing some of your filters, or explore a different category.
             </p>
+            {selectedCategory !== null && (
+              <button
+                onClick={() => setSelectedCategory(null)}
+                className="px-5 py-2.5 border border-gray-900 rounded-lg text-sm font-semibold text-gray-900 hover:bg-gray-100 transition"
+              >
+                Remove category filter
+              </button>
+            )}
           </div>
         )}
       </div>

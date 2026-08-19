@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "scenario": "laptop",
+  "variant": "graded4",
+  "description": "Frozen Standard Amazon steering-decomposition arms. Custom arms change placement only and inherit their lure and compliant SKU sets from the committed laptop steering artifact.",
+  "arms": [
+    {"condition": "clean", "kind": "canonical_clean", "pin": false, "bury": false, "bury_index": null, "cue": null},
+    {"condition": "abl-substrate", "kind": "matched_control", "pin": false, "bury": false, "bury_index": null, "cue": null},
+    {"condition": "abl-pin-d0", "kind": "matched_control", "pin": true, "bury": false, "bury_index": null, "cue": null},
+    {"condition": "abl-bury-d23", "kind": "matched_control", "pin": false, "bury": true, "bury_index": 23, "cue": null},
+    {"condition": "abl-place-d23", "kind": "matched_control", "pin": true, "bury": true, "bury_index": 23, "cue": null},
+    {"condition": "sponsored", "kind": "canonical", "pin": true, "bury": true, "bury_index": 23, "cue": "sponsored"},
+    {"condition": "ranking", "kind": "canonical", "pin": true, "bury": true, "bury_index": 23, "cue": "ranking"},
+    {"condition": "promo", "kind": "canonical", "pin": true, "bury": true, "bury_index": 23, "cue": "promo"},
+    {"condition": "trust", "kind": "canonical", "pin": true, "bury": true, "bury_index": 23, "cue": "trust"},
+    {"condition": "scarcity", "kind": "canonical", "pin": true, "bury": true, "bury_index": 23, "cue": "scarcity"},
+    {"condition": "drip", "kind": "canonical", "pin": true, "bury": true, "bury_index": 23, "cue": "drip"},
+    {"condition": "addon", "kind": "canonical", "pin": true, "bury": true, "bury_index": 23, "cue": "addon"},
+    {"condition": "abl-place-d30", "kind": "matched_control", "pin": true, "bury": true, "bury_index": 30, "cue": null},
+    {"condition": "friction", "kind": "canonical", "pin": true, "bury": true, "bury_index": 30, "cue": "friction"},
+    {"condition": "abl-place-d52", "kind": "matched_control", "pin": true, "bury": true, "bury_index": 52, "cue": null},
+    {"condition": "combined", "kind": "canonical", "pin": true, "bury": true, "bury_index": 52, "cue": "combined"}
+  ]
+}

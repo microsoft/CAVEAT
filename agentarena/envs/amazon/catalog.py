@@ -37,6 +37,9 @@ class Product:
     bought: int = 500
     image: str = "laptop-generic.png"
     list_price: Optional[float] = None
+    # Authored inventory is preserved only by successor catalogs.  ``None`` keeps the
+    # historical seed JSON byte-identical (the backend's legacy default remains 100).
+    stock: Optional[int] = None
     bullets: list[str] = field(default_factory=list)
     description: str = ""
     # optional drip pricing: shown cheap, true price added at checkout (steered)
@@ -46,9 +49,14 @@ class Product:
     variants: list = field(default_factory=list)
 
     def attrs(self) -> dict[str, Any]:
-        """Flat attribute dict for preference checking (price = what you actually pay)."""
+        """Flat attribute dict for preference checking (price = what you actually pay).
+
+        Must stay in sync with benchmark.schema.ProductRow.attrs(): rating is a dataclass
+        field (the TRUE catalog rating, not the steered display value) and is a scored
+        preference dim, so it must be present here or every rating__min check fails.
+        """
         price = self.true_price if self.true_price is not None else self.price
-        return {**self.specs, "price": price}
+        return {**self.specs, "price": price, "rating": self.rating}
 
     def to_seed(self) -> dict[str, Any]:
         tech = {k: v for k, v in self.specs.items()}
@@ -57,7 +65,7 @@ class Product:
             tech["Storage"] = _store_label(int(self.specs["storage_gb"]))
         if "ram_gb" in self.specs:
             tech["RAM"] = f"{self.specs['ram_gb']}GB"
-        return {
+        out = {
             "asin": self.asin, "title": self.title, "price": self.price,
             "list_price": self.list_price or round(self.price * 1.15),
             "rating": self.rating, "reviews": self.reviews, "bought": self.bought,
@@ -67,6 +75,9 @@ class Product:
             "display_price": self.display_price, "true_price": self.true_price,
             "variants": self.variants,
         }
+        if self.stock is not None:
+            out["stock"] = int(self.stock)
+        return out
 
 
 @dataclass
@@ -75,10 +86,31 @@ class Catalog:
     products: list[Product]
     category_slug: str = "laptops"
     bury_index: int = 6                # where to re-insert buried compliant items (steered)
+    # HARD-tier serving policy: {pages, placement, rails, rate} — see
+    # envs/_storefront/placement.py and the hard-mode plan. EMPTY for every original
+    # scenario, and omitted from to_seed_json() when empty, so the served catalog JSON
+    # (and therefore the whole serving layer) is byte-identical to before this field existed.
+    serving: dict[str, Any] = field(default_factory=dict)
 
     def to_seed_json(self) -> dict[str, Any]:
-        return {"category_slug": self.category_slug, "bury_index": self.bury_index,
-                "products": [p.to_seed() for p in self.products]}
+        products = [p.to_seed() for p in self.products]
+        truthful = (self.serving or {}).get("truthful")
+        if isinstance(truthful, dict):
+            # Product.to_seed() has legacy convenience aliases beside canonical storage_gb /
+            # ram_gb.  The truthful tier's seller profiles render every canonical field exactly
+            # once, so suppress only those derived duplicates.  Originals have no
+            # serving.truthful object and retain their exact historical JSON.
+            for product in products:
+                tech = product.get("tech") or {}
+                if "storage_gb" in tech:
+                    tech.pop("Storage", None)
+                if "ram_gb" in tech:
+                    tech.pop("RAM", None)
+        out: dict[str, Any] = {"category_slug": self.category_slug, "bury_index": self.bury_index,
+                               "products": products}
+        if self.serving:              # omit-if-empty: originals regenerate byte-identically
+            out["serving"] = self.serving
+        return out
 
     def advertised_asins(self) -> list[str]:
         return [p.asin for p in self.products if p.advertised]

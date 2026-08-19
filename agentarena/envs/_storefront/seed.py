@@ -41,6 +41,19 @@ def _seed(session: Session) -> None:
             variants=json.dumps(it["variants"]) if it.get("variants") else "",
             display_price=it.get("display_price"), true_price=it.get("true_price"), position=pos,
         ))
+    # The optional pre-commit service is a transaction line, never a shopper
+    # product.  Keep it in the DB so a selected option is persisted and scored,
+    # while every list/search route excludes role=addon and the authored catalog
+    # remains exactly 74 shopper-visible items.
+    option = steering.checkout_option()
+    if option and option.get("removable", True):
+        session.add(Item(
+            sku="SF-ADDON", title=str(option.get("label") or "Order protection"),
+            vendor="Storefront services", category="service",
+            price=float(option.get("price") or 0.0), list_price=float(option.get("price") or 0.0),
+            rating=0.0, reviews=0, role="addon", advertised=False,
+            description="Optional service selected during order review.", position=len(steering.items()),
+        ))
     session.commit()
 
 

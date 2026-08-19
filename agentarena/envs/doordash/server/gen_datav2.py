@@ -16,7 +16,10 @@ OUT = Path(__file__).resolve().parent / "frontend" / "components" / "datav2.tsx"
 
 def _restaurant_entry(r: dict) -> str:
     items = []
-    for (sku, name, price, image, veg, role, adv, desc) in r["dishes"]:
+    for dish in r["dishes"]:
+        # tuple is (sku, name, price, image, veg, role, adv, desc[, true_price]). The card shows the
+        # sticker `price`; any drip true_price is a backend checkout surcharge, not shown on the card.
+        sku, name, price, image, veg, role, adv, desc = dish[:8]
         items.append({
             "sku": sku, "itemName": name, "image": {"src": image, "alt": name},
             "price": price, "description": desc, "vegetarian": veg,

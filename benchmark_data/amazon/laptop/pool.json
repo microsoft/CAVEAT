@@ -1,387 +1,24 @@
 [
   {
-    "asin": "EXP-LAPTOP-07",
-    "role": "satisfice",
-    "advertised": true,
-    "specs": {
-      "storage_gb": 1024,
-      "weight_kg": 1.4,
-      "battery_hours": 13,
-      "ram_gb": 16,
-      "gaming": false,
-      "brightness_nits": 250
-    },
-    "price": 800.0,
-    "list_price": 1011,
-    "rating": 4.0,
-    "reviews": 4400,
-    "bought": 8800,
-    "stock": 75,
-    "fail_reasons": [
-      "battery_hours__min"
-    ],
-    "decoy_kind": "spec_battery",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expora Vela Laptop, 16GB RAM, 1024GB SSD, 1.4kg, 13h battery",
-    "bullets": [
-      "Ssd Storage: 1024GB",
-      "Weight: 1.4kg",
-      "Battery Life: 13hours",
-      "Ram: 16GB",
-      "Screen Brightness: 250nits"
-    ],
-    "description": "A laptop with ssd storage: 1024gb, weight: 1.4kg, battery life: 13hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-20",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 256.0,
-      "weight_kg": 1.35,
-      "battery_hours": 15.0,
-      "ram_gb": 4.0,
-      "brightness_nits": 330.0,
-      "gaming": false
-    },
-    "price": 560.0,
-    "list_price": 610,
-    "rating": 3.9,
-    "reviews": 352,
-    "bought": 1266,
-    "stock": 194,
-    "fail_reasons": [
-      "storage_gb__min",
-      "rating__min"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Veyra Nexo Laptop, 4GB RAM, 256GB SSD, 1.35kg, 15h battery",
-    "bullets": [
-      "Ssd Storage: 256.0GB",
-      "Weight: 1.35kg",
-      "Battery Life: 15.0hours",
-      "Ram: 4.0GB",
-      "Screen Brightness: 330.0nits"
-    ],
-    "description": "A laptop with ssd storage: 256.0gb, weight: 1.35kg, battery life: 15.0hours.",
-    "copy_status": "ok"
-  },
-  {
     "asin": "EXP-LAPTOP-01",
-    "role": "compliant",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 1024,
-      "weight_kg": 0.95,
-      "battery_hours": 19,
-      "ram_gb": 16,
-      "gaming": false,
-      "brightness_nits": 600
-    },
-    "price": 850.0,
-    "list_price": 955,
-    "rating": 4.7,
-    "reviews": 8200,
-    "bought": 16400,
-    "stock": 132,
-    "fail_reasons": [],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Exora Pulse M01 Laptop, 16GB RAM, 1024GB SSD, 0.95kg, 19h battery",
-    "bullets": [
-      "Ssd Storage: 1024GB",
-      "Weight: 0.95kg",
-      "Battery Life: 19hours",
-      "Ram: 16GB",
-      "Screen Brightness: 600nits"
-    ],
-    "description": "A laptop with ssd storage: 1024gb, weight: 0.95kg, battery life: 19hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-62",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 512.0,
-      "weight_kg": 1.4,
-      "battery_hours": 15.0,
-      "ram_gb": 32.0,
-      "brightness_nits": 240.0,
-      "gaming": false
-    },
-    "price": 1710.0,
-    "list_price": 1936,
-    "rating": 4.0,
-    "reviews": 1414,
-    "bought": 2644,
-    "stock": 100,
-    "fail_reasons": [
-      "price__lt",
-      "brightness_nits__min"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expora Vale Laptop, 32GB RAM, 512GB SSD, 1.4kg, 15h battery",
-    "bullets": [
-      "Ssd Storage: 512.0GB",
-      "Weight: 1.4kg",
-      "Battery Life: 15.0hours",
-      "Ram: 32.0GB",
-      "Screen Brightness: 240.0nits"
-    ],
-    "description": "A laptop with ssd storage: 512.0gb, weight: 1.4kg, battery life: 15.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-37",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 1024.0,
-      "weight_kg": 1.5,
-      "battery_hours": 14.0,
-      "ram_gb": 32.0,
-      "brightness_nits": 370.0,
-      "gaming": false
-    },
-    "price": 620.0,
-    "list_price": 731,
-    "rating": 4.1,
-    "reviews": 1467,
-    "bought": 1356,
-    "stock": 116,
-    "fail_reasons": [
-      "weight_kg__max"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expra Nilo Laptop, 32GB RAM, 1024GB SSD, 1.5kg, 14h battery",
-    "bullets": [
-      "Ssd Storage: 1024.0GB",
-      "Weight: 1.5kg",
-      "Battery Life: 14.0hours",
-      "Ram: 32.0GB",
-      "Screen Brightness: 370.0nits"
-    ],
-    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.5kg, battery life: 14.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-16",
     "role": "distractor",
     "advertised": false,
     "specs": {
       "storage_gb": 256.0,
-      "weight_kg": 1.5,
-      "battery_hours": 16.0,
-      "ram_gb": 32.0,
-      "brightness_nits": 360.0,
-      "gaming": false
+      "weight_kg": 1.38,
+      "battery_hours": 14.5,
+      "ram_gb": 4.0,
+      "brightness_nits": 340.0,
+      "gaming": true
     },
-    "price": 870.0,
-    "list_price": 1004,
-    "rating": 4.0,
-    "reviews": 628,
-    "bought": 2609,
-    "stock": 73,
+    "price": 799.99,
+    "list_price": 896,
+    "rating": 3.9,
+    "reviews": 1510,
+    "bought": 2756,
+    "stock": 71,
     "fail_reasons": [
       "storage_gb__min",
-      "weight_kg__max"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expora Venn M16 Laptop, 32GB RAM, 256GB SSD, 1.5kg, 16h battery",
-    "bullets": [
-      "Ssd Storage: 256.0GB",
-      "Weight: 1.5kg",
-      "Battery Life: 16.0hours",
-      "Ram: 32.0GB",
-      "Screen Brightness: 360.0nits"
-    ],
-    "description": "A laptop with ssd storage: 256.0gb, weight: 1.5kg, battery life: 16.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-55",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 1024.0,
-      "weight_kg": 1.45,
-      "battery_hours": 13.0,
-      "ram_gb": 4.0,
-      "brightness_nits": 360.0,
-      "gaming": false
-    },
-    "price": 580.0,
-    "list_price": 676,
-    "rating": 4.0,
-    "reviews": 596,
-    "bought": 965,
-    "stock": 86,
-    "fail_reasons": [
-      "battery_hours__min"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Nexora Vant Laptop, 4GB RAM, 1024GB SSD, 1.45kg, 13h battery",
-    "bullets": [
-      "Ssd Storage: 1024.0GB",
-      "Weight: 1.45kg",
-      "Battery Life: 13.0hours",
-      "Ram: 4.0GB",
-      "Screen Brightness: 360.0nits"
-    ],
-    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.45kg, battery life: 13.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-47",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 512.0,
-      "weight_kg": 1.45,
-      "battery_hours": 16.0,
-      "ram_gb": 8.0,
-      "brightness_nits": 240.0,
-      "gaming": false
-    },
-    "price": 830.0,
-    "list_price": 915,
-    "rating": 4.0,
-    "reviews": 334,
-    "bought": 1782,
-    "stock": 175,
-    "fail_reasons": [
-      "brightness_nits__min"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Exora Pace Laptop, 8GB RAM, 512GB SSD, 1.45kg, 16h battery",
-    "bullets": [
-      "Ssd Storage: 512.0GB",
-      "Weight: 1.45kg",
-      "Battery Life: 16.0hours",
-      "Ram: 8.0GB",
-      "Screen Brightness: 240.0nits"
-    ],
-    "description": "A laptop with ssd storage: 512.0gb, weight: 1.45kg, battery life: 16.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-31",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 512.0,
-      "weight_kg": 1.5,
-      "battery_hours": 15.0,
-      "ram_gb": 8.0,
-      "brightness_nits": 300.0,
-      "gaming": true
-    },
-    "price": 860.0,
-    "list_price": 1016,
-    "rating": 4.0,
-    "reviews": 219,
-    "bought": 824,
-    "stock": 190,
-    "fail_reasons": [
-      "weight_kg__max",
-      "gaming"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expara Navo Gaming Laptop, 8GB RAM, 512GB SSD, 1.5kg, 15h battery",
-    "bullets": [
-      "Ssd Storage: 512.0GB",
-      "Weight: 1.5kg",
-      "Battery Life: 15.0hours",
-      "Ram: 8.0GB",
-      "Screen Brightness: 300.0nits"
-    ],
-    "description": "A laptop with ssd storage: 512.0gb, weight: 1.5kg, battery life: 15.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-30",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 512.0,
-      "weight_kg": 1.45,
-      "battery_hours": 14.0,
-      "ram_gb": 8.0,
-      "brightness_nits": 310.0,
-      "gaming": false
-    },
-    "price": 1800.0,
-    "list_price": 2135,
-    "rating": 3.9,
-    "reviews": 1961,
-    "bought": 2499,
-    "stock": 84,
-    "fail_reasons": [
-      "price__lt",
-      "rating__min"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Exora Pavo Laptop, 8GB RAM, 512GB SSD, 1.45kg, 14h battery",
-    "bullets": [
-      "Ssd Storage: 512.0GB",
-      "Weight: 1.45kg",
-      "Battery Life: 14.0hours",
-      "Ram: 8.0GB",
-      "Screen Brightness: 310.0nits"
-    ],
-    "description": "A laptop with ssd storage: 512.0gb, weight: 1.45kg, battery life: 14.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-68",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 1024.0,
-      "weight_kg": 1.4,
-      "battery_hours": 16.0,
-      "ram_gb": 4.0,
-      "brightness_nits": 280.0,
-      "gaming": true
-    },
-    "price": 1500.0,
-    "list_price": 1672,
-    "rating": 3.8,
-    "reviews": 2524,
-    "bought": 2705,
-    "stock": 158,
-    "fail_reasons": [
-      "price__lt",
       "rating__min",
       "gaming"
     ],
@@ -389,103 +26,103 @@
     "variants": [],
     "image": "laptop-generic.png",
     "image_tier": "stock",
-    "title": "Veyra Nilo Gaming Laptop, 4GB RAM, 1024GB SSD, 1.4kg, 16h battery",
+    "title": "Novara Elan Gaming Laptop, 4GB RAM, 256GB SSD",
     "bullets": [
-      "Ssd Storage: 1024.0GB",
-      "Weight: 1.4kg",
-      "Battery Life: 16.0hours",
+      "Ssd Storage: 256.0GB",
+      "Weight: 1.38kg",
+      "Battery Life: 14.5hours",
       "Ram: 4.0GB",
-      "Screen Brightness: 280.0nits"
+      "Screen Brightness: 340.0nits"
     ],
-    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.4kg, battery life: 16.0hours.",
+    "description": "A laptop with ssd storage: 256.0gb, weight: 1.38kg, battery life: 14.5hours.",
     "copy_status": "ok"
   },
   {
-    "asin": "EXP-LAPTOP-53",
+    "asin": "EXP-LAPTOP-02",
     "role": "distractor",
     "advertised": false,
     "specs": {
-      "storage_gb": 1024.0,
-      "weight_kg": 1.4,
-      "battery_hours": 13.0,
+      "storage_gb": 2048.0,
+      "weight_kg": 1.34,
+      "battery_hours": 15.5,
       "ram_gb": 32.0,
-      "brightness_nits": 370.0,
-      "gaming": true
-    },
-    "price": 780.0,
-    "list_price": 916,
-    "rating": 4.1,
-    "reviews": 1324,
-    "bought": 2713,
-    "stock": 160,
-    "fail_reasons": [
-      "battery_hours__min",
-      "gaming"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expora Vela M53 Gaming Laptop, 32GB RAM, 1024GB SSD, 1.4kg, 13h battery",
-    "bullets": [
-      "Ssd Storage: 1024.0GB",
-      "Weight: 1.4kg",
-      "Battery Life: 13.0hours",
-      "Ram: 32.0GB",
-      "Screen Brightness: 370.0nits"
-    ],
-    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.4kg, battery life: 13.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-12",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 1024.0,
-      "weight_kg": 1.5,
-      "battery_hours": 15.0,
-      "ram_gb": 4.0,
-      "brightness_nits": 350.0,
+      "brightness_nits": 240.0,
       "gaming": false
     },
-    "price": 840.0,
-    "list_price": 934,
-    "rating": 4.1,
-    "reviews": 1443,
-    "bought": 1975,
-    "stock": 185,
+    "price": 899.99,
+    "list_price": 987,
+    "rating": 4.0,
+    "reviews": 2075,
+    "bought": 1386,
+    "stock": 36,
     "fail_reasons": [
-      "weight_kg__max"
+      "brightness_nits__min"
     ],
     "decoy_kind": "",
     "variants": [],
     "image": "laptop-generic.png",
     "image_tier": "stock",
-    "title": "Expora Venn Laptop, 4GB RAM, 1024GB SSD, 1.5kg, 15h battery",
+    "title": "Exora Pulse M64 Gaming Laptop, 32GB RAM, 2048GB SSD",
     "bullets": [
-      "Ssd Storage: 1024.0GB",
-      "Weight: 1.5kg",
-      "Battery Life: 15.0hours",
-      "Ram: 4.0GB",
-      "Screen Brightness: 350.0nits"
+      "Ssd Storage: 2048.0GB",
+      "Weight: 1.34kg",
+      "Battery Life: 15.5hours",
+      "Ram: 32.0GB",
+      "Screen Brightness: 240.0nits"
     ],
-    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.5kg, battery life: 15.0hours.",
+    "description": "A laptop with ssd storage: 2048.0gb, weight: 1.34kg, battery life: 15.5hours.",
     "copy_status": "ok"
   },
   {
-    "asin": "EXP-LAPTOP-36",
+    "asin": "EXP-LAPTOP-03",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 512.0,
+      "weight_kg": 1.31,
+      "battery_hours": 14.0,
+      "ram_gb": 16.0,
+      "brightness_nits": 240.0,
+      "gaming": false
+    },
+    "price": 639.99,
+    "list_price": 753,
+    "rating": 3.8,
+    "reviews": 641,
+    "bought": 879,
+    "stock": 145,
+    "fail_reasons": [
+      "rating__min",
+      "brightness_nits__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expara Nori Gaming Laptop, 16GB RAM, 512GB SSD",
+    "bullets": [
+      "Ssd Storage: 512.0GB",
+      "Weight: 1.31kg",
+      "Battery Life: 14.0hours",
+      "Ram: 16.0GB",
+      "Screen Brightness: 240.0nits"
+    ],
+    "description": "A laptop with ssd storage: 512.0gb, weight: 1.31kg, battery life: 14.0hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-04",
     "role": "distractor",
     "advertised": false,
     "specs": {
       "storage_gb": 1024.0,
-      "weight_kg": 1.3,
-      "battery_hours": 15.0,
+      "weight_kg": 1.29,
+      "battery_hours": 15.5,
       "ram_gb": 32.0,
       "brightness_nits": 320.0,
       "gaming": true
     },
-    "price": 1330.0,
+    "price": 1329.99,
     "list_price": 1480,
     "rating": 4.1,
     "reviews": 1603,
@@ -499,470 +136,104 @@
     "variants": [],
     "image": "laptop-generic.png",
     "image_tier": "stock",
-    "title": "Novara Expanse M36 Gaming Laptop, 32GB RAM, 1024GB SSD, 1.3kg, 15h battery",
+    "title": "Expora Venn Gaming Laptop, 32GB RAM, 1024GB SSD",
     "bullets": [
       "Ssd Storage: 1024.0GB",
-      "Weight: 1.3kg",
-      "Battery Life: 15.0hours",
+      "Weight: 1.29kg",
+      "Battery Life: 15.5hours",
       "Ram: 32.0GB",
       "Screen Brightness: 320.0nits"
     ],
-    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.3kg, battery life: 15.0hours.",
+    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.29kg, battery life: 15.5hours.",
     "copy_status": "ok"
   },
   {
-    "asin": "EXP-LAPTOP-03",
-    "role": "satisfice",
-    "advertised": true,
-    "specs": {
-      "storage_gb": 1024,
-      "weight_kg": 1.4,
-      "battery_hours": 14,
-      "ram_gb": 16,
-      "gaming": false,
-      "brightness_nits": 250
-    },
-    "price": 790.0,
-    "list_price": 925,
-    "rating": 4.0,
-    "reviews": 4200,
-    "bought": 8400,
-    "stock": 76,
-    "fail_reasons": [],
-    "decoy_kind": "midpack",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expara Nivo Laptop, 16GB RAM, 1024GB SSD, 1.4kg, 14h battery",
-    "bullets": [
-      "Ssd Storage: 1024GB",
-      "Weight: 1.4kg",
-      "Battery Life: 14hours",
-      "Ram: 16GB",
-      "Screen Brightness: 250nits"
-    ],
-    "description": "A laptop with ssd storage: 1024gb, weight: 1.4kg, battery life: 14hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-04",
-    "role": "satisfice",
-    "advertised": true,
-    "specs": {
-      "storage_gb": 1024,
-      "weight_kg": 1.42,
-      "battery_hours": 14,
-      "ram_gb": 16,
-      "gaming": false,
-      "brightness_nits": 250
-    },
-    "price": 810.0,
-    "list_price": 1031,
-    "rating": 4.0,
-    "reviews": 3800,
-    "bought": 7600,
-    "stock": 58,
-    "fail_reasons": [],
-    "decoy_kind": "midpack",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Exora Pulse M04 Laptop, 16GB RAM, 1024GB SSD, 1.42kg, 14h battery",
-    "bullets": [
-      "Ssd Storage: 1024GB",
-      "Weight: 1.42kg",
-      "Battery Life: 14hours",
-      "Ram: 16GB",
-      "Screen Brightness: 250nits"
-    ],
-    "description": "A laptop with ssd storage: 1024gb, weight: 1.42kg, battery life: 14hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-32",
+    "asin": "EXP-LAPTOP-05",
     "role": "distractor",
     "advertised": false,
     "specs": {
-      "storage_gb": 1024.0,
-      "weight_kg": 1.5,
-      "battery_hours": 15.0,
-      "ram_gb": 4.0,
-      "brightness_nits": 240.0,
+      "storage_gb": 256.0,
+      "weight_kg": 1.46,
+      "battery_hours": 15.5,
+      "ram_gb": 32.0,
+      "brightness_nits": 360.0,
       "gaming": false
     },
-    "price": 750.0,
-    "list_price": 872,
-    "rating": 3.9,
-    "reviews": 659,
-    "bought": 158,
-    "stock": 180,
-    "fail_reasons": [
-      "weight_kg__max",
-      "rating__min",
-      "brightness_nits__min"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expara Vale Laptop, 4GB RAM, 1024GB SSD, 1.5kg, 15h battery",
-    "bullets": [
-      "Ssd Storage: 1024.0GB",
-      "Weight: 1.5kg",
-      "Battery Life: 15.0hours",
-      "Ram: 4.0GB",
-      "Screen Brightness: 240.0nits"
-    ],
-    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.5kg, battery life: 15.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-35",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 1024.0,
-      "weight_kg": 1.5,
-      "battery_hours": 14.0,
-      "ram_gb": 8.0,
-      "brightness_nits": 310.0,
-      "gaming": false
-    },
-    "price": 590.0,
-    "list_price": 651,
+    "price": 869.99,
+    "list_price": 1004,
     "rating": 4.0,
-    "reviews": 566,
-    "bought": 424,
-    "stock": 48,
+    "reviews": 628,
+    "bought": 2609,
+    "stock": 73,
     "fail_reasons": [
+      "storage_gb__min",
       "weight_kg__max"
     ],
     "decoy_kind": "",
     "variants": [],
     "image": "laptop-generic.png",
     "image_tier": "stock",
-    "title": "Novara Elan Laptop, 8GB RAM, 1024GB SSD, 1.5kg, 14h battery",
+    "title": "Expora Luma Gaming Laptop, 32GB RAM, 256GB SSD",
     "bullets": [
-      "Ssd Storage: 1024.0GB",
-      "Weight: 1.5kg",
-      "Battery Life: 14.0hours",
-      "Ram: 8.0GB",
-      "Screen Brightness: 310.0nits"
+      "Ssd Storage: 256.0GB",
+      "Weight: 1.46kg",
+      "Battery Life: 15.5hours",
+      "Ram: 32.0GB",
+      "Screen Brightness: 360.0nits"
     ],
-    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.5kg, battery life: 14.0hours.",
+    "description": "A laptop with ssd storage: 256.0gb, weight: 1.46kg, battery life: 15.5hours.",
     "copy_status": "ok"
   },
   {
-    "asin": "EXP-LAPTOP-49",
+    "asin": "EXP-LAPTOP-06",
     "role": "distractor",
     "advertised": false,
     "specs": {
-      "storage_gb": 1024.0,
-      "weight_kg": 1.3,
-      "battery_hours": 13.0,
-      "ram_gb": 16.0,
-      "brightness_nits": 310.0,
+      "storage_gb": 256.0,
+      "weight_kg": 1.32,
+      "battery_hours": 13.5,
+      "ram_gb": 32.0,
+      "brightness_nits": 280.0,
       "gaming": false
     },
-    "price": 560.0,
-    "list_price": 662,
-    "rating": 4.0,
-    "reviews": 892,
-    "bought": 2622,
-    "stock": 41,
+    "price": 609.99,
+    "list_price": 711,
+    "rating": 4.1,
+    "reviews": 1820,
+    "bought": 2590,
+    "stock": 63,
     "fail_reasons": [
+      "storage_gb__min",
       "battery_hours__min"
     ],
     "decoy_kind": "",
     "variants": [],
     "image": "laptop-generic.png",
     "image_tier": "stock",
-    "title": "Neravo Quill Laptop, 16GB RAM, 1024GB SSD, 1.3kg, 13h battery",
-    "bullets": [
-      "Ssd Storage: 1024.0GB",
-      "Weight: 1.3kg",
-      "Battery Life: 13.0hours",
-      "Ram: 16.0GB",
-      "Screen Brightness: 310.0nits"
-    ],
-    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.3kg, battery life: 13.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-66",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 2048.0,
-      "weight_kg": 1.4,
-      "battery_hours": 14.0,
-      "ram_gb": 32.0,
-      "brightness_nits": 240.0,
-      "gaming": false
-    },
-    "price": 860.0,
-    "list_price": 955,
-    "rating": 4.1,
-    "reviews": 1638,
-    "bought": 1115,
-    "stock": 71,
-    "fail_reasons": [
-      "brightness_nits__min"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Orven Vela Laptop, 32GB RAM, 2048GB SSD, 1.4kg, 14h battery",
-    "bullets": [
-      "Ssd Storage: 2048.0GB",
-      "Weight: 1.4kg",
-      "Battery Life: 14.0hours",
-      "Ram: 32.0GB",
-      "Screen Brightness: 240.0nits"
-    ],
-    "description": "A laptop with ssd storage: 2048.0gb, weight: 1.4kg, battery life: 14.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-18",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 512.0,
-      "weight_kg": 1.3,
-      "battery_hours": 15.0,
-      "ram_gb": 32.0,
-      "brightness_nits": 300.0,
-      "gaming": true
-    },
-    "price": 1790.0,
-    "list_price": 1941,
-    "rating": 3.8,
-    "reviews": 798,
-    "bought": 795,
-    "stock": 134,
-    "fail_reasons": [
-      "price__lt",
-      "rating__min",
-      "gaming"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Veyra Orin Gaming Laptop, 32GB RAM, 512GB SSD, 1.3kg, 15h battery",
-    "bullets": [
-      "Ssd Storage: 512.0GB",
-      "Weight: 1.3kg",
-      "Battery Life: 15.0hours",
-      "Ram: 32.0GB",
-      "Screen Brightness: 300.0nits"
-    ],
-    "description": "A laptop with ssd storage: 512.0gb, weight: 1.3kg, battery life: 15.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-34",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 256.0,
-      "weight_kg": 1.35,
-      "battery_hours": 15.0,
-      "ram_gb": 32.0,
-      "brightness_nits": 240.0,
-      "gaming": false
-    },
-    "price": 520.0,
-    "list_price": 579,
-    "rating": 3.9,
-    "reviews": 1703,
-    "bought": 176,
-    "stock": 194,
-    "fail_reasons": [
-      "storage_gb__min",
-      "rating__min",
-      "brightness_nits__min"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expara Venn Laptop, 32GB RAM, 256GB SSD, 1.35kg, 15h battery",
+    "title": "Novexa Luma Laptop, 32GB RAM, 256GB SSD",
     "bullets": [
       "Ssd Storage: 256.0GB",
-      "Weight: 1.35kg",
-      "Battery Life: 15.0hours",
+      "Weight: 1.32kg",
+      "Battery Life: 13.5hours",
       "Ram: 32.0GB",
-      "Screen Brightness: 240.0nits"
+      "Screen Brightness: 280.0nits"
     ],
-    "description": "A laptop with ssd storage: 256.0gb, weight: 1.35kg, battery life: 15.0hours.",
+    "description": "A laptop with ssd storage: 256.0gb, weight: 1.32kg, battery life: 13.5hours.",
     "copy_status": "ok"
   },
   {
-    "asin": "EXP-LAPTOP-67",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 512.0,
-      "weight_kg": 1.5,
-      "battery_hours": 14.0,
-      "ram_gb": 4.0,
-      "brightness_nits": 320.0,
-      "gaming": false
-    },
-    "price": 1740.0,
-    "list_price": 1894,
-    "rating": 4.0,
-    "reviews": 2567,
-    "bought": 701,
-    "stock": 47,
-    "fail_reasons": [
-      "price__lt",
-      "weight_kg__max"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expora Vale M67 Laptop, 4GB RAM, 512GB SSD, 1.5kg, 14h battery",
-    "bullets": [
-      "Ssd Storage: 512.0GB",
-      "Weight: 1.5kg",
-      "Battery Life: 14.0hours",
-      "Ram: 4.0GB",
-      "Screen Brightness: 320.0nits"
-    ],
-    "description": "A laptop with ssd storage: 512.0gb, weight: 1.5kg, battery life: 14.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-14",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 256.0,
-      "weight_kg": 1.4,
-      "battery_hours": 15.0,
-      "ram_gb": 16.0,
-      "brightness_nits": 370.0,
-      "gaming": false
-    },
-    "price": 1760.0,
-    "list_price": 1852,
-    "rating": 4.0,
-    "reviews": 1776,
-    "bought": 2431,
-    "stock": 71,
-    "fail_reasons": [
-      "price__lt",
-      "storage_gb__min"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Veyra Nolin Laptop, 16GB RAM, 256GB SSD, 1.4kg, 15h battery",
-    "bullets": [
-      "Ssd Storage: 256.0GB",
-      "Weight: 1.4kg",
-      "Battery Life: 15.0hours",
-      "Ram: 16.0GB",
-      "Screen Brightness: 370.0nits"
-    ],
-    "description": "A laptop with ssd storage: 256.0gb, weight: 1.4kg, battery life: 15.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-29",
+    "asin": "EXP-LAPTOP-07",
     "role": "distractor",
     "advertised": false,
     "specs": {
       "storage_gb": 1024.0,
-      "weight_kg": 1.4,
-      "battery_hours": 13.0,
-      "ram_gb": 4.0,
-      "brightness_nits": 360.0,
-      "gaming": true
-    },
-    "price": 860.0,
-    "list_price": 1030,
-    "rating": 3.9,
-    "reviews": 1430,
-    "bought": 174,
-    "stock": 20,
-    "fail_reasons": [
-      "battery_hours__min",
-      "rating__min",
-      "gaming"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expora Merek Gaming Laptop, 4GB RAM, 1024GB SSD, 1.4kg, 13h battery",
-    "bullets": [
-      "Ssd Storage: 1024.0GB",
-      "Weight: 1.4kg",
-      "Battery Life: 13.0hours",
-      "Ram: 4.0GB",
-      "Screen Brightness: 360.0nits"
-    ],
-    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.4kg, battery life: 13.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-28",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 512.0,
-      "weight_kg": 1.5,
-      "battery_hours": 14.0,
-      "ram_gb": 4.0,
-      "brightness_nits": 330.0,
-      "gaming": false
-    },
-    "price": 1620.0,
-    "list_price": 1850,
-    "rating": 3.9,
-    "reviews": 349,
-    "bought": 1739,
-    "stock": 138,
-    "fail_reasons": [
-      "price__lt",
-      "weight_kg__max",
-      "rating__min"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expora Vale M28 Laptop, 4GB RAM, 512GB SSD, 1.5kg, 14h battery",
-    "bullets": [
-      "Ssd Storage: 512.0GB",
-      "Weight: 1.5kg",
-      "Battery Life: 14.0hours",
-      "Ram: 4.0GB",
-      "Screen Brightness: 330.0nits"
-    ],
-    "description": "A laptop with ssd storage: 512.0gb, weight: 1.5kg, battery life: 14.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-39",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 1024.0,
-      "weight_kg": 1.35,
-      "battery_hours": 13.0,
+      "weight_kg": 1.32,
+      "battery_hours": 13.5,
       "ram_gb": 32.0,
       "brightness_nits": 240.0,
       "gaming": false
     },
-    "price": 830.0,
+    "price": 829.99,
     "list_price": 897,
     "rating": 3.9,
     "reviews": 305,
@@ -977,145 +248,110 @@
     "variants": [],
     "image": "laptop-generic.png",
     "image_tier": "stock",
-    "title": "Expora Vale M39 Laptop, 32GB RAM, 1024GB SSD, 1.35kg, 13h battery",
+    "title": "Expora Venn M16 Gaming Laptop, 32GB RAM, 1024GB SSD",
     "bullets": [
       "Ssd Storage: 1024.0GB",
-      "Weight: 1.35kg",
-      "Battery Life: 13.0hours",
+      "Weight: 1.32kg",
+      "Battery Life: 13.5hours",
       "Ram: 32.0GB",
       "Screen Brightness: 240.0nits"
     ],
-    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.35kg, battery life: 13.0hours.",
+    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.32kg, battery life: 13.5hours.",
     "copy_status": "ok"
   },
   {
-    "asin": "EXP-LAPTOP-57",
+    "asin": "EXP-LAPTOP-08",
     "role": "distractor",
     "advertised": false,
     "specs": {
       "storage_gb": 256.0,
-      "weight_kg": 1.35,
-      "battery_hours": 15.0,
+      "weight_kg": 1.46,
+      "battery_hours": 14.5,
       "ram_gb": 16.0,
-      "brightness_nits": 310.0,
+      "brightness_nits": 370.0,
       "gaming": false
     },
-    "price": 570.0,
-    "list_price": 684,
+    "price": 759.99,
+    "list_price": 875,
     "rating": 3.9,
-    "reviews": 575,
-    "bought": 1983,
-    "stock": 41,
+    "reviews": 964,
+    "bought": 1283,
+    "stock": 167,
     "fail_reasons": [
       "storage_gb__min",
+      "weight_kg__max",
       "rating__min"
     ],
     "decoy_kind": "",
     "variants": [],
     "image": "laptop-generic.png",
     "image_tier": "stock",
-    "title": "Novara Expanse Laptop, 16GB RAM, 256GB SSD, 1.35kg, 15h battery",
+    "title": "Expora Nilo Gaming Laptop, 16GB RAM, 256GB SSD",
     "bullets": [
       "Ssd Storage: 256.0GB",
-      "Weight: 1.35kg",
-      "Battery Life: 15.0hours",
+      "Weight: 1.46kg",
+      "Battery Life: 14.5hours",
       "Ram: 16.0GB",
-      "Screen Brightness: 310.0nits"
+      "Screen Brightness: 370.0nits"
     ],
-    "description": "A laptop with ssd storage: 256.0gb, weight: 1.35kg, battery life: 15.0hours.",
+    "description": "A laptop with ssd storage: 256.0gb, weight: 1.46kg, battery life: 14.5hours.",
     "copy_status": "ok"
   },
   {
-    "asin": "EXP-LAPTOP-56",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 2048.0,
-      "weight_kg": 1.4,
-      "battery_hours": 16.0,
-      "ram_gb": 4.0,
-      "brightness_nits": 240.0,
-      "gaming": false
-    },
-    "price": 770.0,
-    "list_price": 832,
-    "rating": 4.1,
-    "reviews": 2223,
-    "bought": 2698,
-    "stock": 139,
-    "fail_reasons": [
-      "brightness_nits__min"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expora Nilo Laptop, 4GB RAM, 2048GB SSD, 1.4kg, 16h battery",
-    "bullets": [
-      "Ssd Storage: 2048.0GB",
-      "Weight: 1.4kg",
-      "Battery Life: 16.0hours",
-      "Ram: 4.0GB",
-      "Screen Brightness: 240.0nits"
-    ],
-    "description": "A laptop with ssd storage: 2048.0gb, weight: 1.4kg, battery life: 16.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-51",
+    "asin": "EXP-LAPTOP-09",
     "role": "distractor",
     "advertised": false,
     "specs": {
       "storage_gb": 256.0,
-      "weight_kg": 1.5,
-      "battery_hours": 16.0,
-      "ram_gb": 8.0,
-      "brightness_nits": 290.0,
+      "weight_kg": 1.4,
+      "battery_hours": 14.5,
+      "ram_gb": 16.0,
+      "brightness_nits": 370.0,
       "gaming": false
     },
-    "price": 950.0,
-    "list_price": 1104,
+    "price": 1759.99,
+    "list_price": 1852,
     "rating": 4.0,
-    "reviews": 2051,
-    "bought": 1780,
-    "stock": 176,
+    "reviews": 1776,
+    "bought": 2431,
+    "stock": 71,
     "fail_reasons": [
-      "storage_gb__min",
-      "weight_kg__max"
+      "price__lt",
+      "storage_gb__min"
     ],
     "decoy_kind": "",
     "variants": [],
     "image": "laptop-generic.png",
     "image_tier": "stock",
-    "title": "Epsora Nilo Laptop, 8GB RAM, 256GB SSD, 1.5kg, 16h battery",
+    "title": "Expara Nolin Laptop, 16GB RAM, 256GB SSD",
     "bullets": [
       "Ssd Storage: 256.0GB",
-      "Weight: 1.5kg",
-      "Battery Life: 16.0hours",
-      "Ram: 8.0GB",
-      "Screen Brightness: 290.0nits"
+      "Weight: 1.4kg",
+      "Battery Life: 14.5hours",
+      "Ram: 16.0GB",
+      "Screen Brightness: 370.0nits"
     ],
-    "description": "A laptop with ssd storage: 256.0gb, weight: 1.5kg, battery life: 16.0hours.",
+    "description": "A laptop with ssd storage: 256.0gb, weight: 1.4kg, battery life: 14.5hours.",
     "copy_status": "ok"
   },
   {
-    "asin": "EXP-LAPTOP-65",
+    "asin": "EXP-LAPTOP-10",
     "role": "distractor",
     "advertised": false,
     "specs": {
       "storage_gb": 1024.0,
       "weight_kg": 1.4,
-      "battery_hours": 13.0,
-      "ram_gb": 8.0,
-      "brightness_nits": 290.0,
+      "battery_hours": 13.5,
+      "ram_gb": 32.0,
+      "brightness_nits": 370.0,
       "gaming": true
     },
-    "price": 700.0,
-    "list_price": 782,
-    "rating": 4.0,
-    "reviews": 2248,
-    "bought": 2402,
-    "stock": 62,
+    "price": 779.99,
+    "list_price": 916,
+    "rating": 4.1,
+    "reviews": 1324,
+    "bought": 2713,
+    "stock": 160,
     "fail_reasons": [
       "battery_hours__min",
       "gaming"
@@ -1124,289 +360,255 @@
     "variants": [],
     "image": "laptop-generic.png",
     "image_tier": "stock",
-    "title": "Exora Vanta Gaming Laptop, 8GB RAM, 1024GB SSD, 1.4kg, 13h battery",
+    "title": "Veyra Nox Gaming Laptop, 32GB RAM, 1024GB SSD",
     "bullets": [
       "Ssd Storage: 1024.0GB",
       "Weight: 1.4kg",
-      "Battery Life: 13.0hours",
-      "Ram: 8.0GB",
-      "Screen Brightness: 290.0nits"
-    ],
-    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.4kg, battery life: 13.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-06",
-    "role": "satisfice",
-    "advertised": true,
-    "specs": {
-      "storage_gb": 1024,
-      "weight_kg": 1.38,
-      "battery_hours": 14,
-      "ram_gb": 16,
-      "gaming": false,
-      "brightness_nits": 250
-    },
-    "price": 830.0,
-    "list_price": 1068,
-    "rating": 4.0,
-    "reviews": 3100,
-    "bought": 6200,
-    "stock": 86,
-    "fail_reasons": [],
-    "decoy_kind": "midpack",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expora Maven Laptop, 16GB RAM, 1024GB SSD, 1.38kg, 14h battery",
-    "bullets": [
-      "Ssd Storage: 1024GB",
-      "Weight: 1.38kg",
-      "Battery Life: 14hours",
-      "Ram: 16GB",
-      "Screen Brightness: 250nits"
-    ],
-    "description": "A laptop with ssd storage: 1024gb, weight: 1.38kg, battery life: 14hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-10",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 256.0,
-      "weight_kg": 1.3,
-      "battery_hours": 15.0,
-      "ram_gb": 8.0,
-      "brightness_nits": 320.0,
-      "gaming": false
-    },
-    "price": 580.0,
-    "list_price": 669,
-    "rating": 4.0,
-    "reviews": 1627,
-    "bought": 860,
-    "stock": 162,
-    "fail_reasons": [
-      "storage_gb__min"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Exora Pilot Laptop, 8GB RAM, 256GB SSD, 1.3kg, 15h battery",
-    "bullets": [
-      "Ssd Storage: 256.0GB",
-      "Weight: 1.3kg",
-      "Battery Life: 15.0hours",
-      "Ram: 8.0GB",
-      "Screen Brightness: 320.0nits"
-    ],
-    "description": "A laptop with ssd storage: 256.0gb, weight: 1.3kg, battery life: 15.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-19",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 256.0,
-      "weight_kg": 1.35,
-      "battery_hours": 15.0,
-      "ram_gb": 32.0,
-      "brightness_nits": 290.0,
-      "gaming": false
-    },
-    "price": 1110.0,
-    "list_price": 1226,
-    "rating": 3.9,
-    "reviews": 2259,
-    "bought": 1189,
-    "stock": 174,
-    "fail_reasons": [
-      "price__lt",
-      "storage_gb__min",
-      "rating__min"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expora Luma M19 Laptop, 32GB RAM, 256GB SSD, 1.35kg, 15h battery",
-    "bullets": [
-      "Ssd Storage: 256.0GB",
-      "Weight: 1.35kg",
-      "Battery Life: 15.0hours",
+      "Battery Life: 13.5hours",
       "Ram: 32.0GB",
-      "Screen Brightness: 290.0nits"
+      "Screen Brightness: 370.0nits"
     ],
-    "description": "A laptop with ssd storage: 256.0gb, weight: 1.35kg, battery life: 15.0hours.",
+    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.4kg, battery life: 13.5hours.",
     "copy_status": "ok"
   },
   {
-    "asin": "EXP-LAPTOP-60",
+    "asin": "EXP-LAPTOP-11",
     "role": "distractor",
     "advertised": false,
     "specs": {
-      "storage_gb": 512.0,
-      "weight_kg": 1.35,
+      "storage_gb": 2048.0,
+      "weight_kg": 1.34,
       "battery_hours": 14.0,
       "ram_gb": 32.0,
-      "brightness_nits": 270.0,
+      "brightness_nits": 300.0,
       "gaming": true
     },
-    "price": 790.0,
-    "list_price": 895,
-    "rating": 4.0,
-    "reviews": 1231,
-    "bought": 1406,
-    "stock": 146,
+    "price": 1739.99,
+    "list_price": 1887,
+    "rating": 3.8,
+    "reviews": 798,
+    "bought": 795,
+    "stock": 134,
     "fail_reasons": [
+      "price__lt",
+      "rating__min",
       "gaming"
     ],
     "decoy_kind": "",
     "variants": [],
     "image": "laptop-generic.png",
     "image_tier": "stock",
-    "title": "Expora Venn M60 Gaming Laptop, 32GB RAM, 512GB SSD, 1.35kg, 14h battery",
+    "title": "Expara Miro Gaming Laptop, 32GB RAM, 2048GB SSD",
     "bullets": [
-      "Ssd Storage: 512.0GB",
-      "Weight: 1.35kg",
+      "Ssd Storage: 2048.0GB",
+      "Weight: 1.34kg",
       "Battery Life: 14.0hours",
       "Ram: 32.0GB",
-      "Screen Brightness: 270.0nits"
+      "Screen Brightness: 300.0nits"
     ],
-    "description": "A laptop with ssd storage: 512.0gb, weight: 1.35kg, battery life: 14.0hours.",
+    "description": "A laptop with ssd storage: 2048.0gb, weight: 1.34kg, battery life: 14.0hours.",
     "copy_status": "ok"
   },
   {
-    "asin": "EXP-LAPTOP-38",
+    "asin": "EXP-LAPTOP-12",
     "role": "distractor",
     "advertised": false,
     "specs": {
-      "storage_gb": 256.0,
-      "weight_kg": 1.3,
-      "battery_hours": 13.0,
-      "ram_gb": 8.0,
-      "brightness_nits": 280.0,
+      "storage_gb": 1024.0,
+      "weight_kg": 1.42,
+      "battery_hours": 15.5,
+      "ram_gb": 16.0,
+      "brightness_nits": 320.0,
       "gaming": false
     },
-    "price": 850.0,
-    "list_price": 934,
-    "rating": 4.0,
-    "reviews": 175,
-    "bought": 942,
-    "stock": 86,
+    "price": 1109.99,
+    "list_price": 1302,
+    "rating": 4.1,
+    "reviews": 1603,
+    "bought": 464,
+    "stock": 169,
     "fail_reasons": [
-      "storage_gb__min",
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Veyra Nilo Gaming Laptop, 16GB RAM, 1024GB SSD",
+    "bullets": [
+      "Ssd Storage: 1024.0GB",
+      "Weight: 1.42kg",
+      "Battery Life: 15.5hours",
+      "Ram: 16.0GB",
+      "Screen Brightness: 320.0nits"
+    ],
+    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.42kg, battery life: 15.5hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-13",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.36,
+      "battery_hours": 13.5,
+      "ram_gb": 32.0,
+      "brightness_nits": 350.0,
+      "gaming": false
+    },
+    "price": 1769.99,
+    "list_price": 1935,
+    "rating": 4.0,
+    "reviews": 2376,
+    "bought": 2223,
+    "stock": 123,
+    "fail_reasons": [
+      "price__lt",
       "battery_hours__min"
     ],
     "decoy_kind": "",
     "variants": [],
     "image": "laptop-generic.png",
     "image_tier": "stock",
-    "title": "Exora Venn M38 Laptop, 8GB RAM, 256GB SSD, 1.3kg, 13h battery",
+    "title": "Expara Vale Gaming Laptop, 32GB RAM, 1024GB SSD",
     "bullets": [
-      "Ssd Storage: 256.0GB",
-      "Weight: 1.3kg",
-      "Battery Life: 13.0hours",
-      "Ram: 8.0GB",
-      "Screen Brightness: 280.0nits"
-    ],
-    "description": "A laptop with ssd storage: 256.0gb, weight: 1.3kg, battery life: 13.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-40",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 256.0,
-      "weight_kg": 1.5,
-      "battery_hours": 14.0,
-      "ram_gb": 32.0,
-      "brightness_nits": 290.0,
-      "gaming": false
-    },
-    "price": 630.0,
-    "list_price": 741,
-    "rating": 4.0,
-    "reviews": 1907,
-    "bought": 1057,
-    "stock": 61,
-    "fail_reasons": [
-      "storage_gb__min",
-      "weight_kg__max"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expara Miro Laptop, 32GB RAM, 256GB SSD, 1.5kg, 14h battery",
-    "bullets": [
-      "Ssd Storage: 256.0GB",
-      "Weight: 1.5kg",
-      "Battery Life: 14.0hours",
+      "Ssd Storage: 1024.0GB",
+      "Weight: 1.36kg",
+      "Battery Life: 13.5hours",
       "Ram: 32.0GB",
-      "Screen Brightness: 290.0nits"
-    ],
-    "description": "A laptop with ssd storage: 256.0gb, weight: 1.5kg, battery life: 14.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-27",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 512.0,
-      "weight_kg": 1.5,
-      "battery_hours": 15.0,
-      "ram_gb": 8.0,
-      "brightness_nits": 350.0,
-      "gaming": false
-    },
-    "price": 660.0,
-    "list_price": 779,
-    "rating": 4.0,
-    "reviews": 1382,
-    "bought": 2609,
-    "stock": 183,
-    "fail_reasons": [
-      "weight_kg__max"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expora Nax Laptop, 8GB RAM, 512GB SSD, 1.5kg, 15h battery",
-    "bullets": [
-      "Ssd Storage: 512.0GB",
-      "Weight: 1.5kg",
-      "Battery Life: 15.0hours",
-      "Ram: 8.0GB",
       "Screen Brightness: 350.0nits"
     ],
-    "description": "A laptop with ssd storage: 512.0gb, weight: 1.5kg, battery life: 15.0hours.",
+    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.36kg, battery life: 13.5hours.",
     "copy_status": "ok"
   },
   {
-    "asin": "EXP-LAPTOP-22",
+    "asin": "EXP-LAPTOP-14",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 256,
+      "weight_kg": 0.89,
+      "battery_hours": 12.0,
+      "ram_gb": 16,
+      "gaming": false,
+      "brightness_nits": 350
+    },
+    "price": 849.99,
+    "list_price": 995,
+    "rating": 4.6,
+    "reviews": 2100,
+    "bought": 4200,
+    "stock": 77,
+    "fail_reasons": [
+      "storage_gb__min",
+      "battery_hours__min"
+    ],
+    "decoy_kind": "dsort_weight",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Wisp 14 Laptop, 16GB RAM, 256GB SSD",
+    "bullets": [
+      "Ssd Storage: 256GB",
+      "Weight: 0.89kg",
+      "Battery Life: 12.0hours",
+      "Ram: 16GB",
+      "Screen Brightness: 350nits"
+    ],
+    "description": "A laptop with ssd storage: 256gb, weight: 0.89kg, battery life: 12.0hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-15",
     "role": "distractor",
     "advertised": false,
     "specs": {
       "storage_gb": 1024.0,
-      "weight_kg": 1.5,
+      "weight_kg": 1.42,
+      "battery_hours": 14.5,
+      "ram_gb": 16.0,
+      "brightness_nits": 240.0,
+      "gaming": false
+    },
+    "price": 709.99,
+    "list_price": 791,
+    "rating": 4.1,
+    "reviews": 1176,
+    "bought": 2586,
+    "stock": 136,
+    "fail_reasons": [
+      "brightness_nits__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Veyra Expan Gaming Laptop, 16GB RAM, 1024GB SSD",
+    "bullets": [
+      "Ssd Storage: 1024.0GB",
+      "Weight: 1.42kg",
+      "Battery Life: 14.5hours",
+      "Ram: 16.0GB",
+      "Screen Brightness: 240.0nits"
+    ],
+    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.42kg, battery life: 14.5hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-16",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 512.0,
+      "weight_kg": 1.46,
       "battery_hours": 15.0,
-      "ram_gb": 4.0,
-      "brightness_nits": 290.0,
+      "ram_gb": 32.0,
+      "brightness_nits": 300.0,
+      "gaming": false
+    },
+    "price": 779.99,
+    "list_price": 901,
+    "rating": 4.1,
+    "reviews": 2550,
+    "bought": 954,
+    "stock": 33,
+    "fail_reasons": [
+      "weight_kg__max"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Novara Elan M17 Gaming Laptop, 32GB RAM, 512GB SSD",
+    "bullets": [
+      "Ssd Storage: 512.0GB",
+      "Weight: 1.46kg",
+      "Battery Life: 15.0hours",
+      "Ram: 32.0GB",
+      "Screen Brightness: 300.0nits"
+    ],
+    "description": "A laptop with ssd storage: 512.0gb, weight: 1.46kg, battery life: 15.0hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-17",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 2048.0,
+      "weight_kg": 1.46,
+      "battery_hours": 15.0,
+      "ram_gb": 32.0,
+      "brightness_nits": 270.0,
       "gaming": true
     },
-    "price": 810.0,
-    "list_price": 915,
-    "rating": 3.9,
-    "reviews": 2526,
-    "bought": 1819,
-    "stock": 78,
+    "price": 879.99,
+    "list_price": 1026,
+    "rating": 3.8,
+    "reviews": 1092,
+    "bought": 2736,
+    "stock": 45,
     "fail_reasons": [
       "weight_kg__max",
       "rating__min",
@@ -1416,191 +618,30 @@
     "variants": [],
     "image": "laptop-generic.png",
     "image_tier": "stock",
-    "title": "Expora Nova Gaming Laptop, 4GB RAM, 1024GB SSD, 1.5kg, 15h battery",
-    "bullets": [
-      "Ssd Storage: 1024.0GB",
-      "Weight: 1.5kg",
-      "Battery Life: 15.0hours",
-      "Ram: 4.0GB",
-      "Screen Brightness: 290.0nits"
-    ],
-    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.5kg, battery life: 15.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-45",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 2048.0,
-      "weight_kg": 1.3,
-      "battery_hours": 15.0,
-      "ram_gb": 16.0,
-      "brightness_nits": 240.0,
-      "gaming": false
-    },
-    "price": 540.0,
-    "list_price": 644,
-    "rating": 3.9,
-    "reviews": 905,
-    "bought": 1719,
-    "stock": 134,
-    "fail_reasons": [
-      "rating__min",
-      "brightness_nits__min"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Novara Expanse M45 Laptop, 16GB RAM, 2048GB SSD, 1.3kg, 15h battery",
+    "title": "Novara Expanse M36 Gaming Laptop, 32GB RAM, 2048GB SSD",
     "bullets": [
       "Ssd Storage: 2048.0GB",
-      "Weight: 1.3kg",
+      "Weight: 1.46kg",
       "Battery Life: 15.0hours",
-      "Ram: 16.0GB",
-      "Screen Brightness: 240.0nits"
+      "Ram: 32.0GB",
+      "Screen Brightness: 270.0nits"
     ],
-    "description": "A laptop with ssd storage: 2048.0gb, weight: 1.3kg, battery life: 15.0hours.",
+    "description": "A laptop with ssd storage: 2048.0gb, weight: 1.46kg, battery life: 15.0hours.",
     "copy_status": "ok"
   },
   {
-    "asin": "EXP-LAPTOP-08",
-    "role": "satisfice",
-    "advertised": true,
-    "specs": {
-      "storage_gb": 256.0,
-      "weight_kg": 1.41,
-      "battery_hours": 14,
-      "ram_gb": 16,
-      "gaming": false,
-      "brightness_nits": 250
-    },
-    "price": 780.0,
-    "list_price": 992,
-    "rating": 4.0,
-    "reviews": 3900,
-    "bought": 7800,
-    "stock": 48,
-    "fail_reasons": [
-      "storage_gb__min"
-    ],
-    "decoy_kind": "config",
-    "variants": [
-      {
-        "storage_gb": 256.0,
-        "price": 780.0,
-        "label": "256GB"
-      },
-      {
-        "storage_gb": 512.0,
-        "price": 1040.0,
-        "label": "512GB"
-      },
-      {
-        "storage_gb": 1024.0,
-        "price": 1180.0,
-        "label": "1TB"
-      }
-    ],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expara Nivon Laptop, 16GB RAM, 256GB SSD, 1.41kg, 14h battery",
-    "bullets": [
-      "Ssd Storage: 256.0GB",
-      "Weight: 1.41kg",
-      "Battery Life: 14hours",
-      "Ram: 16GB",
-      "Screen Brightness: 250nits"
-    ],
-    "description": "A laptop with ssd storage: 256.0gb, weight: 1.41kg, battery life: 14hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-64",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 256.0,
-      "weight_kg": 1.3,
-      "battery_hours": 14.0,
-      "ram_gb": 16.0,
-      "brightness_nits": 310.0,
-      "gaming": false
-    },
-    "price": 570.0,
-    "list_price": 645,
-    "rating": 4.0,
-    "reviews": 1756,
-    "bought": 471,
-    "stock": 136,
-    "fail_reasons": [
-      "storage_gb__min"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Exora Pulse M64 Laptop, 16GB RAM, 256GB SSD, 1.3kg, 14h battery",
-    "bullets": [
-      "Ssd Storage: 256.0GB",
-      "Weight: 1.3kg",
-      "Battery Life: 14.0hours",
-      "Ram: 16.0GB",
-      "Screen Brightness: 310.0nits"
-    ],
-    "description": "A laptop with ssd storage: 256.0gb, weight: 1.3kg, battery life: 14.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-46",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 256.0,
-      "weight_kg": 1.4,
-      "battery_hours": 15.0,
-      "ram_gb": 4.0,
-      "brightness_nits": 370.0,
-      "gaming": false
-    },
-    "price": 890.0,
-    "list_price": 985,
-    "rating": 4.1,
-    "reviews": 1244,
-    "bought": 419,
-    "stock": 37,
-    "fail_reasons": [
-      "storage_gb__min"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expara Nolin Laptop, 4GB RAM, 256GB SSD, 1.4kg, 15h battery",
-    "bullets": [
-      "Ssd Storage: 256.0GB",
-      "Weight: 1.4kg",
-      "Battery Life: 15.0hours",
-      "Ram: 4.0GB",
-      "Screen Brightness: 370.0nits"
-    ],
-    "description": "A laptop with ssd storage: 256.0gb, weight: 1.4kg, battery life: 15.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-54",
+    "asin": "EXP-LAPTOP-18",
     "role": "distractor",
     "advertised": false,
     "specs": {
       "storage_gb": 1024.0,
-      "weight_kg": 1.5,
-      "battery_hours": 14.0,
+      "weight_kg": 1.46,
+      "battery_hours": 14.5,
       "ram_gb": 16.0,
       "brightness_nits": 240.0,
       "gaming": false
     },
-    "price": 620.0,
+    "price": 619.99,
     "list_price": 711,
     "rating": 3.8,
     "reviews": 190,
@@ -1615,216 +656,289 @@
     "variants": [],
     "image": "laptop-generic.png",
     "image_tier": "stock",
-    "title": "Epsora Vela Laptop, 16GB RAM, 1024GB SSD, 1.5kg, 14h battery",
+    "title": "Expara Navo Gaming Laptop, 16GB RAM, 1024GB SSD",
     "bullets": [
       "Ssd Storage: 1024.0GB",
-      "Weight: 1.5kg",
-      "Battery Life: 14.0hours",
+      "Weight: 1.46kg",
+      "Battery Life: 14.5hours",
       "Ram: 16.0GB",
       "Screen Brightness: 240.0nits"
     ],
-    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.5kg, battery life: 14.0hours.",
+    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.46kg, battery life: 14.5hours.",
     "copy_status": "ok"
   },
   {
-    "asin": "EXP-LAPTOP-69",
+    "asin": "EXP-LAPTOP-19",
     "role": "distractor",
     "advertised": false,
     "specs": {
       "storage_gb": 1024.0,
-      "weight_kg": 1.35,
-      "battery_hours": 15.0,
+      "weight_kg": 1.46,
+      "battery_hours": 14.5,
       "ram_gb": 32.0,
-      "brightness_nits": 280.0,
+      "brightness_nits": 290.0,
       "gaming": true
     },
-    "price": 610.0,
-    "list_price": 693,
-    "rating": 4.1,
-    "reviews": 2541,
-    "bought": 504,
-    "stock": 27,
+    "price": 809.99,
+    "list_price": 916,
+    "rating": 3.9,
+    "reviews": 1198,
+    "bought": 1312,
+    "stock": 115,
     "fail_reasons": [
+      "weight_kg__max",
+      "rating__min",
       "gaming"
     ],
     "decoy_kind": "",
     "variants": [],
     "image": "laptop-generic.png",
     "image_tier": "stock",
-    "title": "Veyra Expan Gaming Laptop, 32GB RAM, 1024GB SSD, 1.35kg, 15h battery",
+    "title": "Novara Expanse Gaming Laptop, 32GB RAM, 1024GB SSD",
     "bullets": [
       "Ssd Storage: 1024.0GB",
-      "Weight: 1.35kg",
-      "Battery Life: 15.0hours",
+      "Weight: 1.46kg",
+      "Battery Life: 14.5hours",
       "Ram: 32.0GB",
-      "Screen Brightness: 280.0nits"
+      "Screen Brightness: 290.0nits"
     ],
-    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.35kg, battery life: 15.0hours.",
+    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.46kg, battery life: 14.5hours.",
     "copy_status": "ok"
   },
   {
-    "asin": "EXP-LAPTOP-50",
+    "asin": "EXP-LAPTOP-20",
     "role": "distractor",
     "advertised": false,
     "specs": {
-      "storage_gb": 2048.0,
-      "weight_kg": 1.45,
+      "storage_gb": 256.0,
+      "weight_kg": 1.46,
       "battery_hours": 14.0,
       "ram_gb": 32.0,
-      "brightness_nits": 310.0,
-      "gaming": true
+      "brightness_nits": 290.0,
+      "gaming": false
     },
-    "price": 1240.0,
-    "list_price": 1320,
-    "rating": 4.1,
-    "reviews": 1887,
-    "bought": 214,
-    "stock": 31,
+    "price": 629.99,
+    "list_price": 741,
+    "rating": 4.0,
+    "reviews": 1907,
+    "bought": 1057,
+    "stock": 61,
     "fail_reasons": [
-      "price__lt",
-      "gaming"
+      "storage_gb__min",
+      "weight_kg__max"
     ],
     "decoy_kind": "",
     "variants": [],
     "image": "laptop-generic.png",
     "image_tier": "stock",
-    "title": "Exora Pulse Gaming Laptop, 32GB RAM, 2048GB SSD, 1.45kg, 14h battery",
+    "title": "Neravo Quill Laptop, 32GB RAM, 256GB SSD",
     "bullets": [
-      "Ssd Storage: 2048.0GB",
-      "Weight: 1.45kg",
+      "Ssd Storage: 256.0GB",
+      "Weight: 1.46kg",
       "Battery Life: 14.0hours",
       "Ram: 32.0GB",
-      "Screen Brightness: 310.0nits"
+      "Screen Brightness: 290.0nits"
     ],
-    "description": "A laptop with ssd storage: 2048.0gb, weight: 1.45kg, battery life: 14.0hours.",
+    "description": "A laptop with ssd storage: 256.0gb, weight: 1.46kg, battery life: 14.0hours.",
     "copy_status": "ok"
   },
   {
-    "asin": "EXP-LAPTOP-41",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 1024.0,
-      "weight_kg": 1.45,
-      "battery_hours": 14.0,
-      "ram_gb": 4.0,
-      "brightness_nits": 240.0,
-      "gaming": false
-    },
-    "price": 710.0,
-    "list_price": 816,
-    "rating": 3.9,
-    "reviews": 1983,
-    "bought": 1136,
-    "stock": 176,
-    "fail_reasons": [
-      "rating__min",
-      "brightness_nits__min"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expora Vale M41 Laptop, 4GB RAM, 1024GB SSD, 1.45kg, 14h battery",
-    "bullets": [
-      "Ssd Storage: 1024.0GB",
-      "Weight: 1.45kg",
-      "Battery Life: 14.0hours",
-      "Ram: 4.0GB",
-      "Screen Brightness: 240.0nits"
-    ],
-    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.45kg, battery life: 14.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-48",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 1024.0,
-      "weight_kg": 1.4,
-      "battery_hours": 16.0,
-      "ram_gb": 8.0,
-      "brightness_nits": 240.0,
-      "gaming": false
-    },
-    "price": 870.0,
-    "list_price": 1004,
-    "rating": 3.9,
-    "reviews": 538,
-    "bought": 2869,
-    "stock": 160,
-    "fail_reasons": [
-      "rating__min",
-      "brightness_nits__min"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expara Veyra M48 Laptop, 8GB RAM, 1024GB SSD, 1.4kg, 16h battery",
-    "bullets": [
-      "Ssd Storage: 1024.0GB",
-      "Weight: 1.4kg",
-      "Battery Life: 16.0hours",
-      "Ram: 8.0GB",
-      "Screen Brightness: 240.0nits"
-    ],
-    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.4kg, battery life: 16.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-02",
+    "asin": "EXP-LAPTOP-21",
     "role": "satisfice",
     "advertised": true,
     "specs": {
       "storage_gb": 1024,
-      "weight_kg": 1.42,
-      "battery_hours": 14,
+      "weight_kg": 1.39,
+      "battery_hours": 12.8,
       "ram_gb": 16,
       "gaming": false,
-      "brightness_nits": 250
+      "brightness_nits": 260
     },
-    "price": 890.0,
-    "list_price": 1125,
+    "price": 968.99,
+    "list_price": 1208,
     "rating": 4.0,
-    "reviews": 3000,
-    "bought": 6000,
-    "stock": 152,
-    "fail_reasons": [],
-    "decoy_kind": "midpack",
+    "reviews": 4400,
+    "bought": 8800,
+    "stock": 127,
+    "fail_reasons": [
+      "battery_hours__min"
+    ],
+    "decoy_kind": "spec_battery",
     "variants": [],
     "image": "laptop-generic.png",
     "image_tier": "stock",
-    "title": "Exora Pulse M02 Laptop, 16GB RAM, 1024GB SSD, 1.42kg, 14h battery",
+    "title": "Expora Nove Laptop, 16GB RAM, 1024GB SSD",
     "bullets": [
       "Ssd Storage: 1024GB",
-      "Weight: 1.42kg",
-      "Battery Life: 14hours",
+      "Weight: 1.39kg",
+      "Battery Life: 12.8hours",
       "Ram: 16GB",
-      "Screen Brightness: 250nits"
+      "Screen Brightness: 260nits"
     ],
-    "description": "A laptop with ssd storage: 1024gb, weight: 1.42kg, battery life: 14hours.",
+    "description": "A laptop with ssd storage: 1024gb, weight: 1.39kg, battery life: 12.8hours.",
     "copy_status": "ok"
   },
   {
-    "asin": "EXP-LAPTOP-52",
+    "asin": "EXP-LAPTOP-22",
     "role": "distractor",
     "advertised": false,
     "specs": {
-      "storage_gb": 1024.0,
-      "weight_kg": 1.45,
-      "battery_hours": 15.0,
+      "storage_gb": 512.0,
+      "weight_kg": 1.38,
+      "battery_hours": 13.5,
       "ram_gb": 16.0,
       "brightness_nits": 320.0,
       "gaming": false
     },
-    "price": 1110.0,
-    "list_price": 1302,
+    "price": 589.99,
+    "list_price": 634,
+    "rating": 3.8,
+    "reviews": 2354,
+    "bought": 2504,
+    "stock": 84,
+    "fail_reasons": [
+      "battery_hours__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Veyra Orin Gaming Laptop, 16GB RAM, 512GB SSD",
+    "bullets": [
+      "Ssd Storage: 512.0GB",
+      "Weight: 1.38kg",
+      "Battery Life: 13.5hours",
+      "Ram: 16.0GB",
+      "Screen Brightness: 320.0nits"
+    ],
+    "description": "A laptop with ssd storage: 512.0gb, weight: 1.38kg, battery life: 13.5hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-23",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.46,
+      "battery_hours": 14.0,
+      "ram_gb": 32.0,
+      "brightness_nits": 370.0,
+      "gaming": false
+    },
+    "price": 619.99,
+    "list_price": 731,
     "rating": 4.1,
-    "reviews": 1603,
-    "bought": 464,
-    "stock": 169,
+    "reviews": 1467,
+    "bought": 1356,
+    "stock": 116,
+    "fail_reasons": [
+      "weight_kg__max"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Vale Laptop, 32GB RAM, 1024GB SSD",
+    "bullets": [
+      "Ssd Storage: 1024.0GB",
+      "Weight: 1.46kg",
+      "Battery Life: 14.0hours",
+      "Ram: 32.0GB",
+      "Screen Brightness: 370.0nits"
+    ],
+    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.46kg, battery life: 14.0hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-24",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 512,
+      "weight_kg": 1.16,
+      "battery_hours": 15.2,
+      "ram_gb": 16,
+      "gaming": false,
+      "brightness_nits": 545
+    },
+    "price": 789.99,
+    "list_price": 1005,
+    "rating": 4.2,
+    "reviews": 4400,
+    "bought": 8800,
+    "stock": 58,
+    "fail_reasons": [],
+    "decoy_kind": "tier4",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Pulse M04 Laptop, 16GB RAM, 512GB SSD",
+    "bullets": [
+      "Ssd Storage: 512GB",
+      "Weight: 1.16kg",
+      "Battery Life: 15.2hours",
+      "Ram: 16GB",
+      "Screen Brightness: 545nits"
+    ],
+    "description": "A laptop with ssd storage: 512gb, weight: 1.16kg, battery life: 15.2hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-25",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.29,
+      "battery_hours": 14.0,
+      "ram_gb": 16.0,
+      "brightness_nits": 240.0,
+      "gaming": false
+    },
+    "price": 779.99,
+    "list_price": 915,
+    "rating": 4.0,
+    "reviews": 1183,
+    "bought": 1495,
+    "stock": 138,
+    "fail_reasons": [
+      "brightness_nits__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Nexora Vant Laptop, 16GB RAM, 1024GB SSD",
+    "bullets": [
+      "Ssd Storage: 1024.0GB",
+      "Weight: 1.29kg",
+      "Battery Life: 14.0hours",
+      "Ram: 16.0GB",
+      "Screen Brightness: 240.0nits"
+    ],
+    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.29kg, battery life: 14.0hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-26",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.26,
+      "battery_hours": 14.5,
+      "ram_gb": 16.0,
+      "brightness_nits": 360.0,
+      "gaming": false
+    },
+    "price": 1379.99,
+    "list_price": 1625,
+    "rating": 4.1,
+    "reviews": 418,
+    "bought": 2676,
+    "stock": 27,
     "fail_reasons": [
       "price__lt"
     ],
@@ -1832,30 +946,326 @@
     "variants": [],
     "image": "laptop-generic.png",
     "image_tier": "stock",
-    "title": "Exora Vale Laptop, 16GB RAM, 1024GB SSD, 1.45kg, 15h battery",
+    "title": "Expara Venn Laptop, 16GB RAM, 1024GB SSD",
     "bullets": [
       "Ssd Storage: 1024.0GB",
-      "Weight: 1.45kg",
-      "Battery Life: 15.0hours",
+      "Weight: 1.26kg",
+      "Battery Life: 14.5hours",
       "Ram: 16.0GB",
-      "Screen Brightness: 320.0nits"
+      "Screen Brightness: 360.0nits"
     ],
-    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.45kg, battery life: 15.0hours.",
+    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.26kg, battery life: 14.5hours.",
     "copy_status": "ok"
   },
   {
-    "asin": "EXP-LAPTOP-21",
+    "asin": "EXP-LAPTOP-27",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "storage_gb": 1024,
+      "weight_kg": 1.52,
+      "battery_hours": 15.5,
+      "ram_gb": 16,
+      "gaming": false,
+      "brightness_nits": 280
+    },
+    "price": 764.99,
+    "list_price": 984,
+    "rating": 4.1,
+    "reviews": 3800,
+    "bought": 7600,
+    "stock": 86,
+    "fail_reasons": [
+      "weight_kg__max"
+    ],
+    "decoy_kind": "floor",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expara Veyra M05 Laptop, 16GB RAM, 1024GB SSD",
+    "bullets": [
+      "Ssd Storage: 1024GB",
+      "Weight: 1.52kg",
+      "Battery Life: 15.5hours",
+      "Ram: 16GB",
+      "Screen Brightness: 280nits"
+    ],
+    "description": "A laptop with ssd storage: 1024gb, weight: 1.52kg, battery life: 15.5hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-28",
     "role": "distractor",
     "advertised": false,
     "specs": {
       "storage_gb": 1024.0,
+      "weight_kg": 1.42,
+      "battery_hours": 15.0,
+      "ram_gb": 16.0,
+      "brightness_nits": 240.0,
+      "gaming": true
+    },
+    "price": 879.99,
+    "list_price": 1033,
+    "rating": 3.9,
+    "reviews": 1411,
+    "bought": 2222,
+    "stock": 147,
+    "fail_reasons": [
+      "rating__min",
+      "brightness_nits__min",
+      "gaming"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Veyra Nolin Gaming Laptop, 16GB RAM, 1024GB SSD",
+    "bullets": [
+      "Ssd Storage: 1024.0GB",
+      "Weight: 1.42kg",
+      "Battery Life: 15.0hours",
+      "Ram: 16.0GB",
+      "Screen Brightness: 240.0nits"
+    ],
+    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.42kg, battery life: 15.0hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-29",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024,
+      "weight_kg": 2.3,
+      "battery_hours": 11.0,
+      "ram_gb": 16,
+      "gaming": true,
+      "brightness_nits": 320
+    },
+    "price": 919.99,
+    "list_price": 1181,
+    "rating": 4.8,
+    "reviews": 3400,
+    "bought": 6800,
+    "stock": 40,
+    "fail_reasons": [
+      "weight_kg__max",
+      "battery_hours__min",
+      "gaming"
+    ],
+    "decoy_kind": "dsort_rating",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Calder 29 Gaming Laptop, 16GB RAM, 1024GB SSD",
+    "bullets": [
+      "Ssd Storage: 1024GB",
+      "Weight: 2.3kg",
+      "Battery Life: 11.0hours",
+      "Ram: 16GB",
+      "Screen Brightness: 320nits"
+    ],
+    "description": "A laptop with ssd storage: 1024gb, weight: 2.3kg, battery life: 11.0hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-30",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 512.0,
+      "weight_kg": 1.42,
+      "battery_hours": 15.5,
+      "ram_gb": 8.0,
+      "brightness_nits": 240.0,
+      "gaming": false
+    },
+    "price": 829.99,
+    "list_price": 915,
+    "rating": 4.0,
+    "reviews": 334,
+    "bought": 1782,
+    "stock": 175,
+    "fail_reasons": [
+      "brightness_nits__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Veyra Navo Gaming Laptop, 8GB RAM, 512GB SSD",
+    "bullets": [
+      "Ssd Storage: 512.0GB",
+      "Weight: 1.42kg",
+      "Battery Life: 15.5hours",
+      "Ram: 8.0GB",
+      "Screen Brightness: 240.0nits"
+    ],
+    "description": "A laptop with ssd storage: 512.0gb, weight: 1.42kg, battery life: 15.5hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-31",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 2048.0,
+      "weight_kg": 1.28,
+      "battery_hours": 14.5,
+      "ram_gb": 16.0,
+      "brightness_nits": 240.0,
+      "gaming": false
+    },
+    "price": 539.99,
+    "list_price": 644,
+    "rating": 3.9,
+    "reviews": 905,
+    "bought": 1719,
+    "stock": 134,
+    "fail_reasons": [
+      "rating__min",
+      "brightness_nits__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expora Vale M28 Gaming Laptop, 16GB RAM, 2048GB SSD",
+    "bullets": [
+      "Ssd Storage: 2048.0GB",
+      "Weight: 1.28kg",
+      "Battery Life: 14.5hours",
+      "Ram: 16.0GB",
+      "Screen Brightness: 240.0nits"
+    ],
+    "description": "A laptop with ssd storage: 2048.0gb, weight: 1.28kg, battery life: 14.5hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-32",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.28,
+      "battery_hours": 14.5,
+      "ram_gb": 32.0,
+      "brightness_nits": 320.0,
+      "gaming": true
+    },
+    "price": 509.99,
+    "list_price": 608,
+    "rating": 4.0,
+    "reviews": 2029,
+    "bought": 110,
+    "stock": 134,
+    "fail_reasons": [
+      "gaming"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expra Nilo Gaming Laptop, 32GB RAM, 1024GB SSD",
+    "bullets": [
+      "Ssd Storage: 1024.0GB",
+      "Weight: 1.28kg",
+      "Battery Life: 14.5hours",
+      "Ram: 32.0GB",
+      "Screen Brightness: 320.0nits"
+    ],
+    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.28kg, battery life: 14.5hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-33",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024,
+      "weight_kg": 2.6,
+      "battery_hours": 22.0,
+      "ram_gb": 16,
+      "gaming": true,
+      "brightness_nits": 300
+    },
+    "price": 899.99,
+    "list_price": 1037,
+    "rating": 4.4,
+    "reviews": 2600,
+    "bought": 5200,
+    "stock": 53,
+    "fail_reasons": [
+      "weight_kg__max",
+      "gaming"
+    ],
+    "decoy_kind": "dsort_battery",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Norvik 33 Gaming Laptop, 16GB RAM, 1024GB SSD",
+    "bullets": [
+      "Ssd Storage: 1024GB",
+      "Weight: 2.6kg",
+      "Battery Life: 22.0hours",
+      "Ram: 16GB",
+      "Screen Brightness: 300nits"
+    ],
+    "description": "A laptop with ssd storage: 1024gb, weight: 2.6kg, battery life: 22.0hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-34",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 256.0,
       "weight_kg": 1.35,
-      "battery_hours": 14.0,
+      "battery_hours": 15.0,
+      "ram_gb": 32.0,
+      "brightness_nits": 290.0,
+      "gaming": false
+    },
+    "price": 1109.99,
+    "list_price": 1226,
+    "rating": 3.9,
+    "reviews": 2259,
+    "bought": 1189,
+    "stock": 174,
+    "fail_reasons": [
+      "price__lt",
+      "storage_gb__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expora Merek Gaming Laptop, 32GB RAM, 256GB SSD",
+    "bullets": [
+      "Ssd Storage: 256.0GB",
+      "Weight: 1.35kg",
+      "Battery Life: 15.0hours",
+      "Ram: 32.0GB",
+      "Screen Brightness: 290.0nits"
+    ],
+    "description": "A laptop with ssd storage: 256.0gb, weight: 1.35kg, battery life: 15.0hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-35",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.33,
+      "battery_hours": 14.5,
       "ram_gb": 32.0,
       "brightness_nits": 240.0,
       "gaming": true
     },
-    "price": 920.0,
+    "price": 919.99,
     "list_price": 990,
     "rating": 3.8,
     "reviews": 537,
@@ -1870,35 +1280,35 @@
     "variants": [],
     "image": "laptop-generic.png",
     "image_tier": "stock",
-    "title": "Expara Veyra Gaming Laptop, 32GB RAM, 1024GB SSD, 1.35kg, 14h battery",
+    "title": "Veyra Nexo Gaming Laptop, 32GB RAM, 1024GB SSD",
     "bullets": [
       "Ssd Storage: 1024.0GB",
-      "Weight: 1.35kg",
-      "Battery Life: 14.0hours",
+      "Weight: 1.33kg",
+      "Battery Life: 14.5hours",
       "Ram: 32.0GB",
       "Screen Brightness: 240.0nits"
     ],
-    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.35kg, battery life: 14.0hours.",
+    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.33kg, battery life: 14.5hours.",
     "copy_status": "ok"
   },
   {
-    "asin": "EXP-LAPTOP-25",
+    "asin": "EXP-LAPTOP-36",
     "role": "distractor",
     "advertised": false,
     "specs": {
-      "storage_gb": 512.0,
-      "weight_kg": 1.35,
-      "battery_hours": 13.0,
-      "ram_gb": 16.0,
-      "brightness_nits": 330.0,
+      "storage_gb": 1024.0,
+      "weight_kg": 1.43,
+      "battery_hours": 13.5,
+      "ram_gb": 32.0,
+      "brightness_nits": 360.0,
       "gaming": false
     },
-    "price": 910.0,
-    "list_price": 1039,
-    "rating": 3.9,
-    "reviews": 1260,
-    "bought": 1491,
-    "stock": 125,
+    "price": 579.99,
+    "list_price": 665,
+    "rating": 3.8,
+    "reviews": 1186,
+    "bought": 389,
+    "stock": 21,
     "fail_reasons": [
       "battery_hours__min",
       "rating__min"
@@ -1907,53 +1317,273 @@
     "variants": [],
     "image": "laptop-generic.png",
     "image_tier": "stock",
-    "title": "Expavo Nemi Laptop, 16GB RAM, 512GB SSD, 1.35kg, 13h battery",
+    "title": "Exora Vanta Gaming Laptop, 32GB RAM, 1024GB SSD",
     "bullets": [
-      "Ssd Storage: 512.0GB",
-      "Weight: 1.35kg",
-      "Battery Life: 13.0hours",
-      "Ram: 16.0GB",
-      "Screen Brightness: 330.0nits"
+      "Ssd Storage: 1024.0GB",
+      "Weight: 1.43kg",
+      "Battery Life: 13.5hours",
+      "Ram: 32.0GB",
+      "Screen Brightness: 360.0nits"
     ],
-    "description": "A laptop with ssd storage: 512.0gb, weight: 1.35kg, battery life: 13.0hours.",
+    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.43kg, battery life: 13.5hours.",
     "copy_status": "ok"
   },
   {
-    "asin": "EXP-LAPTOP-26",
+    "asin": "EXP-LAPTOP-37",
     "role": "distractor",
     "advertised": false,
     "specs": {
-      "storage_gb": 2048.0,
-      "weight_kg": 1.3,
+      "storage_gb": 1024.0,
+      "weight_kg": 1.31,
       "battery_hours": 15.0,
       "ram_gb": 16.0,
-      "brightness_nits": 280.0,
-      "gaming": true
+      "brightness_nits": 370.0,
+      "gaming": false
     },
-    "price": 1550.0,
-    "list_price": 1715,
-    "rating": 3.8,
-    "reviews": 1078,
-    "bought": 392,
-    "stock": 179,
+    "price": 1429.99,
+    "list_price": 1619,
+    "rating": 4.0,
+    "reviews": 2570,
+    "bought": 2665,
+    "stock": 103,
     "fail_reasons": [
-      "price__lt",
-      "rating__min",
-      "gaming"
+      "price__lt"
     ],
     "decoy_kind": "",
     "variants": [],
     "image": "laptop-generic.png",
     "image_tier": "stock",
-    "title": "Veyra Lumen Gaming Laptop, 16GB RAM, 2048GB SSD, 1.3kg, 15h battery",
+    "title": "Expora Luma M19 Laptop, 16GB RAM, 1024GB SSD",
     "bullets": [
-      "Ssd Storage: 2048.0GB",
-      "Weight: 1.3kg",
+      "Ssd Storage: 1024.0GB",
+      "Weight: 1.31kg",
       "Battery Life: 15.0hours",
       "Ram: 16.0GB",
+      "Screen Brightness: 370.0nits"
+    ],
+    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.31kg, battery life: 15.0hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-38",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 256.0,
+      "weight_kg": 1.32,
+      "battery_hours": 15.0,
+      "ram_gb": 4.0,
+      "brightness_nits": 330.0,
+      "gaming": false
+    },
+    "price": 559.99,
+    "list_price": 610,
+    "rating": 3.9,
+    "reviews": 352,
+    "bought": 1266,
+    "stock": 194,
+    "fail_reasons": [
+      "storage_gb__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Pulse M23 Gaming Laptop, 4GB RAM, 256GB SSD",
+    "bullets": [
+      "Ssd Storage: 256.0GB",
+      "Weight: 1.32kg",
+      "Battery Life: 15.0hours",
+      "Ram: 4.0GB",
+      "Screen Brightness: 330.0nits"
+    ],
+    "description": "A laptop with ssd storage: 256.0gb, weight: 1.32kg, battery life: 15.0hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-39",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.46,
+      "battery_hours": 15.0,
+      "ram_gb": 16.0,
+      "brightness_nits": 270.0,
+      "gaming": false
+    },
+    "price": 629.99,
+    "list_price": 685,
+    "rating": 3.9,
+    "reviews": 1282,
+    "bought": 1403,
+    "stock": 138,
+    "fail_reasons": [
+      "weight_kg__max",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Epsora Nilo Gaming Laptop, 16GB RAM, 1024GB SSD",
+    "bullets": [
+      "Ssd Storage: 1024.0GB",
+      "Weight: 1.46kg",
+      "Battery Life: 15.0hours",
+      "Ram: 16.0GB",
+      "Screen Brightness: 270.0nits"
+    ],
+    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.46kg, battery life: 15.0hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-40",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 256.0,
+      "weight_kg": 1.43,
+      "battery_hours": 13.5,
+      "ram_gb": 8.0,
+      "brightness_nits": 320.0,
+      "gaming": false
+    },
+    "price": 869.99,
+    "list_price": 957,
+    "rating": 4.1,
+    "reviews": 176,
+    "bought": 244,
+    "stock": 38,
+    "fail_reasons": [
+      "storage_gb__min",
+      "battery_hours__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expora Vale M39 Laptop, 8GB RAM, 256GB SSD",
+    "bullets": [
+      "Ssd Storage: 256.0GB",
+      "Weight: 1.43kg",
+      "Battery Life: 13.5hours",
+      "Ram: 8.0GB",
+      "Screen Brightness: 320.0nits"
+    ],
+    "description": "A laptop with ssd storage: 256.0gb, weight: 1.43kg, battery life: 13.5hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-41",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 256.0,
+      "weight_kg": 1.41,
+      "battery_hours": 15.0,
+      "ram_gb": 32.0,
+      "brightness_nits": 240.0,
+      "gaming": false
+    },
+    "price": 769.99,
+    "list_price": 877,
+    "rating": 4.0,
+    "reviews": 1166,
+    "bought": 1267,
+    "stock": 78,
+    "fail_reasons": [
+      "storage_gb__min",
+      "brightness_nits__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Pace Laptop, 32GB RAM, 256GB SSD",
+    "bullets": [
+      "Ssd Storage: 256.0GB",
+      "Weight: 1.41kg",
+      "Battery Life: 15.0hours",
+      "Ram: 32.0GB",
+      "Screen Brightness: 240.0nits"
+    ],
+    "description": "A laptop with ssd storage: 256.0gb, weight: 1.41kg, battery life: 15.0hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-42",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.46,
+      "battery_hours": 13.5,
+      "ram_gb": 16.0,
+      "brightness_nits": 300.0,
+      "gaming": false
+    },
+    "price": 749.99,
+    "list_price": 881,
+    "rating": 4.1,
+    "reviews": 1246,
+    "bought": 1585,
+    "stock": 152,
+    "fail_reasons": [
+      "weight_kg__max",
+      "battery_hours__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Venn M38 Laptop, 16GB RAM, 1024GB SSD",
+    "bullets": [
+      "Ssd Storage: 1024.0GB",
+      "Weight: 1.46kg",
+      "Battery Life: 13.5hours",
+      "Ram: 16.0GB",
+      "Screen Brightness: 300.0nits"
+    ],
+    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.46kg, battery life: 13.5hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-43",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 256.0,
+      "weight_kg": 1.3,
+      "battery_hours": 13.5,
+      "ram_gb": 8.0,
+      "brightness_nits": 280.0,
+      "gaming": false
+    },
+    "price": 849.99,
+    "list_price": 934,
+    "rating": 4.0,
+    "reviews": 175,
+    "bought": 942,
+    "stock": 86,
+    "fail_reasons": [
+      "storage_gb__min",
+      "battery_hours__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expora Nax Gaming Laptop, 8GB RAM, 256GB SSD",
+    "bullets": [
+      "Ssd Storage: 256.0GB",
+      "Weight: 1.3kg",
+      "Battery Life: 13.5hours",
+      "Ram: 8.0GB",
       "Screen Brightness: 280.0nits"
     ],
-    "description": "A laptop with ssd storage: 2048.0gb, weight: 1.3kg, battery life: 15.0hours.",
+    "description": "A laptop with ssd storage: 256.0gb, weight: 1.3kg, battery life: 13.5hours.",
     "copy_status": "ok"
   },
   {
@@ -1962,13 +1592,518 @@
     "advertised": false,
     "specs": {
       "storage_gb": 1024.0,
-      "weight_kg": 1.45,
-      "battery_hours": 16.0,
+      "weight_kg": 1.46,
+      "battery_hours": 15.5,
+      "ram_gb": 16.0,
+      "brightness_nits": 290.0,
+      "gaming": false
+    },
+    "price": 529.99,
+    "list_price": 611,
+    "rating": 4.1,
+    "reviews": 910,
+    "bought": 2415,
+    "stock": 161,
+    "fail_reasons": [
+      "weight_kg__max"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expora Nova Gaming Laptop, 16GB RAM, 1024GB SSD",
+    "bullets": [
+      "Ssd Storage: 1024.0GB",
+      "Weight: 1.46kg",
+      "Battery Life: 15.5hours",
+      "Ram: 16.0GB",
+      "Screen Brightness: 290.0nits"
+    ],
+    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.46kg, battery life: 15.5hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-45",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "storage_gb": 1024,
+      "weight_kg": 1.58,
+      "battery_hours": 14.5,
+      "ram_gb": 16,
+      "gaming": false,
+      "brightness_nits": 320
+    },
+    "price": 749.99,
+    "list_price": 954,
+    "rating": 4.4,
+    "reviews": 3100,
+    "bought": 6200,
+    "stock": 48,
+    "fail_reasons": [
+      "weight_kg__max"
+    ],
+    "decoy_kind": "floor",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expora Vela Laptop, 16GB RAM, 1024GB SSD",
+    "bullets": [
+      "Ssd Storage: 1024GB",
+      "Weight: 1.58kg",
+      "Battery Life: 14.5hours",
+      "Ram: 16GB",
+      "Screen Brightness: 320nits"
+    ],
+    "description": "A laptop with ssd storage: 1024gb, weight: 1.58kg, battery life: 14.5hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-46",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 256.0,
+      "weight_kg": 1.35,
+      "battery_hours": 15.0,
+      "ram_gb": 32.0,
+      "brightness_nits": 380.0,
+      "gaming": true
+    },
+    "price": 709.99,
+    "list_price": 815,
+    "rating": 3.9,
+    "reviews": 238,
+    "bought": 1264,
+    "stock": 47,
+    "fail_reasons": [
+      "storage_gb__min",
+      "rating__min",
+      "gaming"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expora Vale M67 Gaming Laptop, 32GB RAM, 256GB SSD",
+    "bullets": [
+      "Ssd Storage: 256.0GB",
+      "Weight: 1.35kg",
+      "Battery Life: 15.0hours",
+      "Ram: 32.0GB",
+      "Screen Brightness: 380.0nits"
+    ],
+    "description": "A laptop with ssd storage: 256.0gb, weight: 1.35kg, battery life: 15.0hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-47",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 2048.0,
+      "weight_kg": 1.32,
+      "battery_hours": 14.5,
       "ram_gb": 32.0,
       "brightness_nits": 240.0,
       "gaming": false
     },
-    "price": 530.0,
+    "price": 739.99,
+    "list_price": 798,
+    "rating": 3.8,
+    "reviews": 229,
+    "bought": 910,
+    "stock": 58,
+    "fail_reasons": [
+      "rating__min",
+      "brightness_nits__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Pulse Gaming Laptop, 32GB RAM, 2048GB SSD",
+    "bullets": [
+      "Ssd Storage: 2048.0GB",
+      "Weight: 1.32kg",
+      "Battery Life: 14.5hours",
+      "Ram: 32.0GB",
+      "Screen Brightness: 240.0nits"
+    ],
+    "description": "A laptop with ssd storage: 2048.0gb, weight: 1.32kg, battery life: 14.5hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-48",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 2048,
+      "weight_kg": 1.9,
+      "battery_hours": 10.0,
+      "ram_gb": 16,
+      "gaming": false,
+      "brightness_nits": 650
+    },
+    "price": 1199.99,
+    "list_price": 1538,
+    "rating": 4.5,
+    "reviews": 1800,
+    "bought": 3600,
+    "stock": 101,
+    "fail_reasons": [
+      "price__lt",
+      "weight_kg__max",
+      "battery_hours__min"
+    ],
+    "decoy_kind": "dsort_brightness",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Velo 48 Laptop, 16GB RAM, 2048GB SSD",
+    "bullets": [
+      "Ssd Storage: 2048GB",
+      "Weight: 1.9kg",
+      "Battery Life: 10.0hours",
+      "Ram: 16GB",
+      "Screen Brightness: 650nits"
+    ],
+    "description": "A laptop with ssd storage: 2048gb, weight: 1.9kg, battery life: 10.0hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-49",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.4,
+      "battery_hours": 15.5,
+      "ram_gb": 16.0,
+      "brightness_nits": 240.0,
+      "gaming": false
+    },
+    "price": 869.99,
+    "list_price": 967,
+    "rating": 4.1,
+    "reviews": 2369,
+    "bought": 1791,
+    "stock": 130,
+    "fail_reasons": [
+      "brightness_nits__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Luma Laptop, 16GB RAM, 1024GB SSD",
+    "bullets": [
+      "Ssd Storage: 1024.0GB",
+      "Weight: 1.4kg",
+      "Battery Life: 15.5hours",
+      "Ram: 16.0GB",
+      "Screen Brightness: 240.0nits"
+    ],
+    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.4kg, battery life: 15.5hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-50",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024,
+      "weight_kg": 0.98,
+      "battery_hours": 18.5,
+      "ram_gb": 16,
+      "gaming": false,
+      "brightness_nits": 585
+    },
+    "price": 919.99,
+    "list_price": 1034,
+    "rating": 4.7,
+    "reviews": 8200,
+    "bought": 16400,
+    "stock": 132,
+    "fail_reasons": [],
+    "decoy_kind": "hero",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Pulse M01 Laptop, 16GB RAM, 1024GB SSD",
+    "bullets": [
+      "Ssd Storage: 1024GB",
+      "Weight: 0.98kg",
+      "Battery Life: 18.5hours",
+      "Ram: 16GB",
+      "Screen Brightness: 585nits"
+    ],
+    "description": "A laptop with ssd storage: 1024gb, weight: 0.98kg, battery life: 18.5hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-51",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "storage_gb": 1024,
+      "weight_kg": 1.12,
+      "battery_hours": 13.5,
+      "ram_gb": 16,
+      "gaming": false,
+      "brightness_nits": 300
+    },
+    "price": 799.99,
+    "list_price": 1008,
+    "rating": 4.3,
+    "reviews": 4200,
+    "bought": 8400,
+    "stock": 61,
+    "fail_reasons": [
+      "battery_hours__min"
+    ],
+    "decoy_kind": "floor",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expora Maven Laptop, 16GB RAM, 1024GB SSD",
+    "bullets": [
+      "Ssd Storage: 1024GB",
+      "Weight: 1.12kg",
+      "Battery Life: 13.5hours",
+      "Ram: 16GB",
+      "Screen Brightness: 300nits"
+    ],
+    "description": "A laptop with ssd storage: 1024gb, weight: 1.12kg, battery life: 13.5hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-52",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 256.0,
+      "weight_kg": 1.36,
+      "battery_hours": 15.0,
+      "ram_gb": 4.0,
+      "brightness_nits": 370.0,
+      "gaming": false
+    },
+    "price": 889.99,
+    "list_price": 985,
+    "rating": 4.1,
+    "reviews": 1244,
+    "bought": 419,
+    "stock": 37,
+    "fail_reasons": [
+      "storage_gb__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expora Vela M53 Gaming Laptop, 4GB RAM, 256GB SSD",
+    "bullets": [
+      "Ssd Storage: 256.0GB",
+      "Weight: 1.36kg",
+      "Battery Life: 15.0hours",
+      "Ram: 4.0GB",
+      "Screen Brightness: 370.0nits"
+    ],
+    "description": "A laptop with ssd storage: 256.0gb, weight: 1.36kg, battery life: 15.0hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-53",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.4,
+      "battery_hours": 15.5,
+      "ram_gb": 32.0,
+      "brightness_nits": 360.0,
+      "gaming": false
+    },
+    "price": 1749.99,
+    "list_price": 2073,
+    "rating": 4.1,
+    "reviews": 1842,
+    "bought": 837,
+    "stock": 92,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expora Vale Laptop, 32GB RAM, 1024GB SSD",
+    "bullets": [
+      "Ssd Storage: 1024.0GB",
+      "Weight: 1.4kg",
+      "Battery Life: 15.5hours",
+      "Ram: 32.0GB",
+      "Screen Brightness: 360.0nits"
+    ],
+    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.4kg, battery life: 15.5hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-54",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 256.0,
+      "weight_kg": 1.3,
+      "battery_hours": 14.5,
+      "ram_gb": 32.0,
+      "brightness_nits": 320.0,
+      "gaming": false
+    },
+    "price": 1639.99,
+    "list_price": 1854,
+    "rating": 4.1,
+    "reviews": 1414,
+    "bought": 2644,
+    "stock": 100,
+    "fail_reasons": [
+      "price__lt",
+      "storage_gb__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expora Vane Laptop, 32GB RAM, 256GB SSD",
+    "bullets": [
+      "Ssd Storage: 256.0GB",
+      "Weight: 1.3kg",
+      "Battery Life: 14.5hours",
+      "Ram: 32.0GB",
+      "Screen Brightness: 320.0nits"
+    ],
+    "description": "A laptop with ssd storage: 256.0gb, weight: 1.3kg, battery life: 14.5hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-55",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 2048.0,
+      "weight_kg": 1.26,
+      "battery_hours": 15.5,
+      "ram_gb": 16.0,
+      "brightness_nits": 240.0,
+      "gaming": false
+    },
+    "price": 609.99,
+    "list_price": 711,
+    "rating": 3.8,
+    "reviews": 231,
+    "bought": 1734,
+    "stock": 58,
+    "fail_reasons": [
+      "rating__min",
+      "brightness_nits__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Veyra Maven Gaming Laptop, 16GB RAM, 2048GB SSD",
+    "bullets": [
+      "Ssd Storage: 2048.0GB",
+      "Weight: 1.26kg",
+      "Battery Life: 15.5hours",
+      "Ram: 16.0GB",
+      "Screen Brightness: 240.0nits"
+    ],
+    "description": "A laptop with ssd storage: 2048.0gb, weight: 1.26kg, battery life: 15.5hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-56",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024,
+      "weight_kg": 1.03,
+      "battery_hours": 17.5,
+      "ram_gb": 16,
+      "gaming": false,
+      "brightness_nits": 500
+    },
+    "price": 874.99,
+    "list_price": 1106,
+    "rating": 4.55,
+    "reviews": 5200,
+    "bought": 10400,
+    "stock": 152,
+    "fail_reasons": [],
+    "decoy_kind": "tier2",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Pulse M02 Laptop, 16GB RAM, 1024GB SSD",
+    "bullets": [
+      "Ssd Storage: 1024GB",
+      "Weight: 1.03kg",
+      "Battery Life: 17.5hours",
+      "Ram: 16GB",
+      "Screen Brightness: 500nits"
+    ],
+    "description": "A laptop with ssd storage: 1024gb, weight: 1.03kg, battery life: 17.5hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-57",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024,
+      "weight_kg": 1.21,
+      "battery_hours": 17.8,
+      "ram_gb": 16,
+      "gaming": false,
+      "brightness_nits": 455
+    },
+    "price": 954.99,
+    "list_price": 1118,
+    "rating": 4.4,
+    "reviews": 4800,
+    "bought": 9600,
+    "stock": 76,
+    "fail_reasons": [],
+    "decoy_kind": "tier3",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expara Nivo Laptop, 16GB RAM, 1024GB SSD",
+    "bullets": [
+      "Ssd Storage: 1024GB",
+      "Weight: 1.21kg",
+      "Battery Life: 17.8hours",
+      "Ram: 16GB",
+      "Screen Brightness: 455nits"
+    ],
+    "description": "A laptop with ssd storage: 1024gb, weight: 1.21kg, battery life: 17.8hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-58",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.42,
+      "battery_hours": 15.5,
+      "ram_gb": 32.0,
+      "brightness_nits": 240.0,
+      "gaming": false
+    },
+    "price": 529.99,
     "list_price": 598,
     "rating": 3.8,
     "reviews": 1113,
@@ -1982,67 +2117,414 @@
     "variants": [],
     "image": "laptop-generic.png",
     "image_tier": "stock",
-    "title": "Exora Venn Laptop, 32GB RAM, 1024GB SSD, 1.45kg, 16h battery",
+    "title": "Expora Vale M41 Laptop, 32GB RAM, 1024GB SSD",
     "bullets": [
       "Ssd Storage: 1024.0GB",
-      "Weight: 1.45kg",
-      "Battery Life: 16.0hours",
+      "Weight: 1.42kg",
+      "Battery Life: 15.5hours",
       "Ram: 32.0GB",
       "Screen Brightness: 240.0nits"
     ],
-    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.45kg, battery life: 16.0hours.",
+    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.42kg, battery life: 15.5hours.",
     "copy_status": "ok"
   },
   {
-    "asin": "EXP-LAPTOP-13",
+    "asin": "EXP-LAPTOP-59",
     "role": "distractor",
     "advertised": false,
     "specs": {
       "storage_gb": 256.0,
       "weight_kg": 1.4,
-      "battery_hours": 14.0,
-      "ram_gb": 4.0,
-      "brightness_nits": 340.0,
+      "battery_hours": 14.5,
+      "ram_gb": 32.0,
+      "brightness_nits": 320.0,
       "gaming": false
     },
-    "price": 800.0,
-    "list_price": 896,
-    "rating": 3.9,
-    "reviews": 1510,
-    "bought": 2756,
-    "stock": 71,
+    "price": 519.99,
+    "list_price": 577,
+    "rating": 4.0,
+    "reviews": 1792,
+    "bought": 1834,
+    "stock": 122,
     "fail_reasons": [
-      "storage_gb__min",
-      "rating__min"
+      "storage_gb__min"
     ],
     "decoy_kind": "",
     "variants": [],
     "image": "laptop-generic.png",
     "image_tier": "stock",
-    "title": "Exora Vale M13 Laptop, 4GB RAM, 256GB SSD, 1.4kg, 14h battery",
+    "title": "Epsora Vela Gaming Laptop, 32GB RAM, 256GB SSD",
     "bullets": [
       "Ssd Storage: 256.0GB",
       "Weight: 1.4kg",
-      "Battery Life: 14.0hours",
-      "Ram: 4.0GB",
-      "Screen Brightness: 340.0nits"
+      "Battery Life: 14.5hours",
+      "Ram: 32.0GB",
+      "Screen Brightness: 320.0nits"
     ],
-    "description": "A laptop with ssd storage: 256.0gb, weight: 1.4kg, battery life: 14.0hours.",
+    "description": "A laptop with ssd storage: 256.0gb, weight: 1.4kg, battery life: 14.5hours.",
     "copy_status": "ok"
   },
   {
-    "asin": "EXP-LAPTOP-15",
+    "asin": "EXP-LAPTOP-60",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 2048.0,
+      "weight_kg": 1.39,
+      "battery_hours": 15.0,
+      "ram_gb": 16.0,
+      "brightness_nits": 330.0,
+      "gaming": true
+    },
+    "price": 679.99,
+    "list_price": 815,
+    "rating": 3.8,
+    "reviews": 324,
+    "bought": 1860,
+    "stock": 163,
+    "fail_reasons": [
+      "rating__min",
+      "gaming"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expara Veyra M48 Gaming Laptop, 16GB RAM, 2048GB SSD",
+    "bullets": [
+      "Ssd Storage: 2048.0GB",
+      "Weight: 1.39kg",
+      "Battery Life: 15.0hours",
+      "Ram: 16.0GB",
+      "Screen Brightness: 330.0nits"
+    ],
+    "description": "A laptop with ssd storage: 2048.0gb, weight: 1.39kg, battery life: 15.0hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-61",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "storage_gb": 256.0,
+      "weight_kg": 1.48,
+      "battery_hours": 14.5,
+      "ram_gb": 16,
+      "gaming": false,
+      "brightness_nits": 255
+    },
+    "price": 779.99,
+    "list_price": 911,
+    "rating": 4.0,
+    "reviews": 3900,
+    "bought": 7800,
+    "stock": 59,
+    "fail_reasons": [
+      "storage_gb__min",
+      "weight_kg__max"
+    ],
+    "decoy_kind": "config",
+    "variants": [
+      {
+        "storage_gb": 256.0,
+        "price": 779.99,
+        "label": "256GB"
+      },
+      {
+        "storage_gb": 512.0,
+        "price": 1049.99,
+        "label": "512GB"
+      },
+      {
+        "storage_gb": 1024.0,
+        "price": 1189.99,
+        "label": "1TB"
+      }
+    ],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Pilot Laptop, 16GB RAM, 256GB SSD",
+    "bullets": [
+      "Ssd Storage: 256.0GB",
+      "Weight: 1.48kg",
+      "Battery Life: 14.5hours",
+      "Ram: 16GB",
+      "Screen Brightness: 255nits"
+    ],
+    "description": "A laptop with ssd storage: 256.0gb, weight: 1.48kg, battery life: 14.5hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-62",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.4,
+      "battery_hours": 14.0,
+      "ram_gb": 32.0,
+      "brightness_nits": 240.0,
+      "gaming": true
+    },
+    "price": 819.99,
+    "list_price": 904,
+    "rating": 4.0,
+    "reviews": 566,
+    "bought": 424,
+    "stock": 48,
+    "fail_reasons": [
+      "brightness_nits__min",
+      "gaming"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expora Venn M60 Gaming Laptop, 32GB RAM, 1024GB SSD",
+    "bullets": [
+      "Ssd Storage: 1024.0GB",
+      "Weight: 1.4kg",
+      "Battery Life: 14.0hours",
+      "Ram: 32.0GB",
+      "Screen Brightness: 240.0nits"
+    ],
+    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.4kg, battery life: 14.0hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-63",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.36,
+      "battery_hours": 15.5,
+      "ram_gb": 32.0,
+      "brightness_nits": 240.0,
+      "gaming": true
+    },
+    "price": 789.99,
+    "list_price": 884,
+    "rating": 3.9,
+    "reviews": 1782,
+    "bought": 2020,
+    "stock": 177,
+    "fail_reasons": [
+      "rating__min",
+      "brightness_nits__min",
+      "gaming"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Orven Vela Gaming Laptop, 32GB RAM, 1024GB SSD",
+    "bullets": [
+      "Ssd Storage: 1024.0GB",
+      "Weight: 1.36kg",
+      "Battery Life: 15.5hours",
+      "Ram: 32.0GB",
+      "Screen Brightness: 240.0nits"
+    ],
+    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.36kg, battery life: 15.5hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-64",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 256.0,
+      "weight_kg": 1.27,
+      "battery_hours": 15.5,
+      "ram_gb": 32.0,
+      "brightness_nits": 260.0,
+      "gaming": true
+    },
+    "price": 539.99,
+    "list_price": 588,
+    "rating": 4.1,
+    "reviews": 2023,
+    "bought": 425,
+    "stock": 182,
+    "fail_reasons": [
+      "storage_gb__min",
+      "gaming"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expavo Nemi Gaming Laptop, 32GB RAM, 256GB SSD",
+    "bullets": [
+      "Ssd Storage: 256.0GB",
+      "Weight: 1.27kg",
+      "Battery Life: 15.5hours",
+      "Ram: 32.0GB",
+      "Screen Brightness: 260.0nits"
+    ],
+    "description": "A laptop with ssd storage: 256.0gb, weight: 1.27kg, battery life: 15.5hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-65",
     "role": "distractor",
     "advertised": false,
     "specs": {
       "storage_gb": 512.0,
-      "weight_kg": 1.5,
-      "battery_hours": 13.0,
+      "weight_kg": 1.31,
+      "battery_hours": 13.5,
+      "ram_gb": 16.0,
+      "brightness_nits": 270.0,
+      "gaming": false
+    },
+    "price": 1219.99,
+    "list_price": 1281,
+    "rating": 4.1,
+    "reviews": 335,
+    "bought": 1371,
+    "stock": 77,
+    "fail_reasons": [
+      "price__lt",
+      "battery_hours__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Veyra Lumen Gaming Laptop, 16GB RAM, 512GB SSD",
+    "bullets": [
+      "Ssd Storage: 512.0GB",
+      "Weight: 1.31kg",
+      "Battery Life: 13.5hours",
+      "Ram: 16.0GB",
+      "Screen Brightness: 270.0nits"
+    ],
+    "description": "A laptop with ssd storage: 512.0gb, weight: 1.31kg, battery life: 13.5hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-66",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 256.0,
+      "weight_kg": 1.46,
+      "battery_hours": 15.0,
+      "ram_gb": 4.0,
+      "brightness_nits": 270.0,
+      "gaming": false
+    },
+    "price": 749.99,
+    "list_price": 829,
+    "rating": 4.1,
+    "reviews": 411,
+    "bought": 296,
+    "stock": 112,
+    "fail_reasons": [
+      "storage_gb__min",
+      "weight_kg__max"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Venn Laptop, 4GB RAM, 256GB SSD",
+    "bullets": [
+      "Ssd Storage: 256.0GB",
+      "Weight: 1.46kg",
+      "Battery Life: 15.0hours",
+      "Ram: 4.0GB",
+      "Screen Brightness: 270.0nits"
+    ],
+    "description": "A laptop with ssd storage: 256.0gb, weight: 1.46kg, battery life: 15.0hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-67",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "storage_gb": 512,
+      "weight_kg": 1.31,
+      "battery_hours": 15.0,
+      "ram_gb": 16,
+      "gaming": false,
+      "brightness_nits": 235
+    },
+    "price": 829.99,
+    "list_price": 1049,
+    "rating": 4.2,
+    "reviews": 5300,
+    "bought": 10600,
+    "stock": 75,
+    "fail_reasons": [
+      "brightness_nits__min"
+    ],
+    "decoy_kind": "floor",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Expara Nivon Laptop, 16GB RAM, 512GB SSD",
+    "bullets": [
+      "Ssd Storage: 512GB",
+      "Weight: 1.31kg",
+      "Battery Life: 15.0hours",
+      "Ram: 16GB",
+      "Screen Brightness: 235nits"
+    ],
+    "description": "A laptop with ssd storage: 512gb, weight: 1.31kg, battery life: 15.0hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-68",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 1024.0,
+      "weight_kg": 1.33,
+      "battery_hours": 14.5,
+      "ram_gb": 16.0,
+      "brightness_nits": 310.0,
+      "gaming": true
+    },
+    "price": 829.99,
+    "list_price": 876,
+    "rating": 4.1,
+    "reviews": 965,
+    "bought": 2925,
+    "stock": 115,
+    "fail_reasons": [
+      "gaming"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "laptop-generic.png",
+    "image_tier": "stock",
+    "title": "Exora Vale M13 Gaming Laptop, 16GB RAM, 1024GB SSD",
+    "bullets": [
+      "Ssd Storage: 1024.0GB",
+      "Weight: 1.33kg",
+      "Battery Life: 14.5hours",
+      "Ram: 16.0GB",
+      "Screen Brightness: 310.0nits"
+    ],
+    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.33kg, battery life: 14.5hours.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-LAPTOP-69",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "storage_gb": 512.0,
+      "weight_kg": 1.46,
+      "battery_hours": 13.5,
       "ram_gb": 8.0,
       "brightness_nits": 290.0,
       "gaming": false
     },
-    "price": 590.0,
+    "price": 589.99,
     "list_price": 700,
     "rating": 4.1,
     "reviews": 1894,
@@ -2056,232 +2538,15 @@
     "variants": [],
     "image": "laptop-generic.png",
     "image_tier": "stock",
-    "title": "Veyra Navo Laptop, 8GB RAM, 512GB SSD, 1.5kg, 13h battery",
+    "title": "Exora Pavo Gaming Laptop, 8GB RAM, 512GB SSD",
     "bullets": [
       "Ssd Storage: 512.0GB",
-      "Weight: 1.5kg",
-      "Battery Life: 13.0hours",
+      "Weight: 1.46kg",
+      "Battery Life: 13.5hours",
       "Ram: 8.0GB",
       "Screen Brightness: 290.0nits"
     ],
-    "description": "A laptop with ssd storage: 512.0gb, weight: 1.5kg, battery life: 13.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-05",
-    "role": "satisfice",
-    "advertised": true,
-    "specs": {
-      "storage_gb": 512,
-      "weight_kg": 1.42,
-      "battery_hours": 14,
-      "ram_gb": 16,
-      "gaming": false,
-      "brightness_nits": 260
-    },
-    "price": 760.0,
-    "list_price": 957,
-    "rating": 4.1,
-    "reviews": 5300,
-    "bought": 10600,
-    "stock": 61,
-    "fail_reasons": [],
-    "decoy_kind": "midpack",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expara Veyra M05 Laptop, 16GB RAM, 512GB SSD, 1.42kg, 14h battery",
-    "bullets": [
-      "Ssd Storage: 512GB",
-      "Weight: 1.42kg",
-      "Battery Life: 14hours",
-      "Ram: 16GB",
-      "Screen Brightness: 260nits"
-    ],
-    "description": "A laptop with ssd storage: 512gb, weight: 1.42kg, battery life: 14hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-33",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 256.0,
-      "weight_kg": 1.35,
-      "battery_hours": 13.0,
-      "ram_gb": 8.0,
-      "brightness_nits": 290.0,
-      "gaming": false
-    },
-    "price": 530.0,
-    "list_price": 588,
-    "rating": 4.1,
-    "reviews": 1637,
-    "bought": 2942,
-    "stock": 184,
-    "fail_reasons": [
-      "storage_gb__min",
-      "battery_hours__min"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Veyra Orbit Laptop, 8GB RAM, 256GB SSD, 1.35kg, 13h battery",
-    "bullets": [
-      "Ssd Storage: 256.0GB",
-      "Weight: 1.35kg",
-      "Battery Life: 13.0hours",
-      "Ram: 8.0GB",
-      "Screen Brightness: 290.0nits"
-    ],
-    "description": "A laptop with ssd storage: 256.0gb, weight: 1.35kg, battery life: 13.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-11",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 1024.0,
-      "weight_kg": 1.5,
-      "battery_hours": 16.0,
-      "ram_gb": 32.0,
-      "brightness_nits": 360.0,
-      "gaming": false
-    },
-    "price": 740.0,
-    "list_price": 862,
-    "rating": 4.1,
-    "reviews": 1323,
-    "bought": 2433,
-    "stock": 85,
-    "fail_reasons": [
-      "weight_kg__max"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Exora Luma Laptop, 32GB RAM, 1024GB SSD, 1.5kg, 16h battery",
-    "bullets": [
-      "Ssd Storage: 1024.0GB",
-      "Weight: 1.5kg",
-      "Battery Life: 16.0hours",
-      "Ram: 32.0GB",
-      "Screen Brightness: 360.0nits"
-    ],
-    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.5kg, battery life: 16.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-23",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 512.0,
-      "weight_kg": 1.5,
-      "battery_hours": 14.0,
-      "ram_gb": 8.0,
-      "brightness_nits": 340.0,
-      "gaming": true
-    },
-    "price": 670.0,
-    "list_price": 760,
-    "rating": 4.0,
-    "reviews": 1067,
-    "bought": 2025,
-    "stock": 93,
-    "fail_reasons": [
-      "weight_kg__max",
-      "gaming"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Exora Pulse M23 Gaming Laptop, 8GB RAM, 512GB SSD, 1.5kg, 14h battery",
-    "bullets": [
-      "Ssd Storage: 512.0GB",
-      "Weight: 1.5kg",
-      "Battery Life: 14.0hours",
-      "Ram: 8.0GB",
-      "Screen Brightness: 340.0nits"
-    ],
-    "description": "A laptop with ssd storage: 512.0gb, weight: 1.5kg, battery life: 14.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-61",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 2048.0,
-      "weight_kg": 1.35,
-      "battery_hours": 14.0,
-      "ram_gb": 8.0,
-      "brightness_nits": 240.0,
-      "gaming": false
-    },
-    "price": 730.0,
-    "list_price": 785,
-    "rating": 3.9,
-    "reviews": 519,
-    "bought": 1234,
-    "stock": 80,
-    "fail_reasons": [
-      "rating__min",
-      "brightness_nits__min"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expora Luma Laptop, 8GB RAM, 2048GB SSD, 1.35kg, 14h battery",
-    "bullets": [
-      "Ssd Storage: 2048.0GB",
-      "Weight: 1.35kg",
-      "Battery Life: 14.0hours",
-      "Ram: 8.0GB",
-      "Screen Brightness: 240.0nits"
-    ],
-    "description": "A laptop with ssd storage: 2048.0gb, weight: 1.35kg, battery life: 14.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-17",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 1024.0,
-      "weight_kg": 1.25,
-      "battery_hours": 14.0,
-      "ram_gb": 8.0,
-      "brightness_nits": 360.0,
-      "gaming": false
-    },
-    "price": 1380.0,
-    "list_price": 1615,
-    "rating": 4.1,
-    "reviews": 1547,
-    "bought": 1696,
-    "stock": 38,
-    "fail_reasons": [
-      "price__lt"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Novara Elan M17 Laptop, 8GB RAM, 1024GB SSD, 1.25kg, 14h battery",
-    "bullets": [
-      "Ssd Storage: 1024.0GB",
-      "Weight: 1.25kg",
-      "Battery Life: 14.0hours",
-      "Ram: 8.0GB",
-      "Screen Brightness: 360.0nits"
-    ],
-    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.25kg, battery life: 14.0hours.",
+    "description": "A laptop with ssd storage: 512.0gb, weight: 1.46kg, battery life: 13.5hours.",
     "copy_status": "ok"
   },
   {
@@ -2290,163 +2555,18 @@
     "advertised": false,
     "specs": {
       "storage_gb": 1024.0,
-      "weight_kg": 1.5,
-      "battery_hours": 14.0,
-      "ram_gb": 4.0,
-      "brightness_nits": 300.0,
-      "gaming": false
-    },
-    "price": 930.0,
-    "list_price": 1013,
-    "rating": 3.9,
-    "reviews": 1677,
-    "bought": 1391,
-    "stock": 97,
-    "fail_reasons": [
-      "weight_kg__max",
-      "rating__min"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expara Nori Laptop, 4GB RAM, 1024GB SSD, 1.5kg, 14h battery",
-    "bullets": [
-      "Ssd Storage: 1024.0GB",
-      "Weight: 1.5kg",
-      "Battery Life: 14.0hours",
-      "Ram: 4.0GB",
-      "Screen Brightness: 300.0nits"
-    ],
-    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.5kg, battery life: 14.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-59",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 1024.0,
       "weight_kg": 1.35,
       "battery_hours": 14.0,
-      "ram_gb": 8.0,
+      "ram_gb": 16.0,
       "brightness_nits": 340.0,
       "gaming": true
     },
-    "price": 530.0,
-    "list_price": 632,
-    "rating": 4.1,
-    "reviews": 970,
-    "bought": 1342,
-    "stock": 128,
-    "fail_reasons": [
-      "gaming"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expora Vellum Gaming Laptop, 8GB RAM, 1024GB SSD, 1.35kg, 14h battery",
-    "bullets": [
-      "Ssd Storage: 1024.0GB",
-      "Weight: 1.35kg",
-      "Battery Life: 14.0hours",
-      "Ram: 8.0GB",
-      "Screen Brightness: 340.0nits"
-    ],
-    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.35kg, battery life: 14.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-63",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 2048.0,
-      "weight_kg": 1.4,
-      "battery_hours": 15.0,
-      "ram_gb": 4.0,
-      "brightness_nits": 330.0,
-      "gaming": true
-    },
-    "price": 680.0,
-    "list_price": 778,
-    "rating": 4.1,
-    "reviews": 298,
-    "bought": 2752,
-    "stock": 32,
-    "fail_reasons": [
-      "gaming"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Exora Pavo M63 Gaming Laptop, 4GB RAM, 2048GB SSD, 1.4kg, 15h battery",
-    "bullets": [
-      "Ssd Storage: 2048.0GB",
-      "Weight: 1.4kg",
-      "Battery Life: 15.0hours",
-      "Ram: 4.0GB",
-      "Screen Brightness: 330.0nits"
-    ],
-    "description": "A laptop with ssd storage: 2048.0gb, weight: 1.4kg, battery life: 15.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-42",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 256.0,
-      "weight_kg": 1.4,
-      "battery_hours": 14.0,
-      "ram_gb": 8.0,
-      "brightness_nits": 320.0,
-      "gaming": false
-    },
-    "price": 910.0,
-    "list_price": 1001,
-    "rating": 4.1,
-    "reviews": 176,
-    "bought": 244,
-    "stock": 38,
-    "fail_reasons": [
-      "storage_gb__min"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Novexa Luma Laptop, 8GB RAM, 256GB SSD, 1.4kg, 14h battery",
-    "bullets": [
-      "Ssd Storage: 256.0GB",
-      "Weight: 1.4kg",
-      "Battery Life: 14.0hours",
-      "Ram: 8.0GB",
-      "Screen Brightness: 320.0nits"
-    ],
-    "description": "A laptop with ssd storage: 256.0gb, weight: 1.4kg, battery life: 14.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-24",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 512.0,
-      "weight_kg": 1.4,
-      "battery_hours": 15.0,
-      "ram_gb": 16.0,
-      "brightness_nits": 330.0,
-      "gaming": true
-    },
-    "price": 850.0,
-    "list_price": 1004,
+    "price": 529.99,
+    "list_price": 622,
     "rating": 3.9,
-    "reviews": 568,
-    "bought": 852,
-    "stock": 20,
+    "reviews": 1861,
+    "bought": 1069,
+    "stock": 153,
     "fail_reasons": [
       "rating__min",
       "gaming"
@@ -2455,123 +2575,15 @@
     "variants": [],
     "image": "laptop-generic.png",
     "image_tier": "stock",
-    "title": "Veyra Nox Gaming Laptop, 16GB RAM, 512GB SSD, 1.4kg, 15h battery",
-    "bullets": [
-      "Ssd Storage: 512.0GB",
-      "Weight: 1.4kg",
-      "Battery Life: 15.0hours",
-      "Ram: 16.0GB",
-      "Screen Brightness: 330.0nits"
-    ],
-    "description": "A laptop with ssd storage: 512.0gb, weight: 1.4kg, battery life: 15.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-09",
-    "role": "decoy",
-    "advertised": true,
-    "specs": {
-      "storage_gb": 1024,
-      "weight_kg": 1.4,
-      "battery_hours": 14,
-      "ram_gb": 16,
-      "gaming": false,
-      "brightness_nits": 260
-    },
-    "price": 900.0,
-    "list_price": 1122,
-    "rating": 4.1,
-    "reviews": 3500,
-    "bought": 7000,
-    "stock": 127,
-    "fail_reasons": [],
-    "decoy_kind": "cost",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expora Nove Laptop, 16GB RAM, 1024GB SSD, 1.4kg, 14h battery",
-    "bullets": [
-      "Ssd Storage: 1024GB",
-      "Weight: 1.4kg",
-      "Battery Life: 14hours",
-      "Ram: 16GB",
-      "Screen Brightness: 260nits"
-    ],
-    "description": "A laptop with ssd storage: 1024gb, weight: 1.4kg, battery life: 14hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-43",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 1024.0,
-      "weight_kg": 1.3,
-      "battery_hours": 15.0,
-      "ram_gb": 8.0,
-      "brightness_nits": 370.0,
-      "gaming": false
-    },
-    "price": 1430.0,
-    "list_price": 1533,
-    "rating": 4.1,
-    "reviews": 2570,
-    "bought": 2665,
-    "stock": 103,
-    "fail_reasons": [
-      "price__lt"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Expora Vane Laptop, 8GB RAM, 1024GB SSD, 1.3kg, 15h battery",
+    "title": "Expara Veyra Gaming Laptop, 16GB RAM, 1024GB SSD",
     "bullets": [
       "Ssd Storage: 1024.0GB",
-      "Weight: 1.3kg",
-      "Battery Life: 15.0hours",
-      "Ram: 8.0GB",
-      "Screen Brightness: 370.0nits"
-    ],
-    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.3kg, battery life: 15.0hours.",
-    "copy_status": "ok"
-  },
-  {
-    "asin": "EXP-LAPTOP-58",
-    "role": "distractor",
-    "advertised": false,
-    "specs": {
-      "storage_gb": 256.0,
-      "weight_kg": 1.35,
-      "battery_hours": 15.0,
-      "ram_gb": 32.0,
-      "brightness_nits": 380.0,
-      "gaming": false
-    },
-    "price": 1430.0,
-    "list_price": 1641,
-    "rating": 3.9,
-    "reviews": 238,
-    "bought": 1264,
-    "stock": 47,
-    "fail_reasons": [
-      "price__lt",
-      "storage_gb__min",
-      "rating__min"
-    ],
-    "decoy_kind": "",
-    "variants": [],
-    "image": "laptop-generic.png",
-    "image_tier": "stock",
-    "title": "Veyra Maven Laptop, 32GB RAM, 256GB SSD, 1.35kg, 15h battery",
-    "bullets": [
-      "Ssd Storage: 256.0GB",
       "Weight: 1.35kg",
-      "Battery Life: 15.0hours",
-      "Ram: 32.0GB",
-      "Screen Brightness: 380.0nits"
+      "Battery Life: 14.0hours",
+      "Ram: 16.0GB",
+      "Screen Brightness: 340.0nits"
     ],
-    "description": "A laptop with ssd storage: 256.0gb, weight: 1.35kg, battery life: 15.0hours.",
+    "description": "A laptop with ssd storage: 1024.0gb, weight: 1.35kg, battery life: 14.0hours.",
     "copy_status": "ok"
   }
 ]

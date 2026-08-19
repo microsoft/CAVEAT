@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.ee4b82aa.css",
-    "main.js": "/static/js/main.55ffceb3.js",
+    "main.css": "/static/css/main.29e90c9c.css",
+    "main.js": "/static/js/main.e6a2e784.js",
     "static/media/clip.mp4": "/static/media/clip.f408178c216aef647b73.mp4",
     "static/media/product10.png": "/static/media/product10.5cf07402a4a3aee66e1d.png",
     "static/media/product1.png": "/static/media/product1.d2d46288b3f964c06841.png",
@@ -11,6 +11,7 @@
     "static/media/product3.png": "/static/media/product3.cc141b8c1df4a8ca9180.png",
     "static/media/product11.png": "/static/media/product11.e632016cd8c0a3f073ca.png",
     "static/media/sneaker.png": "/static/media/sneaker.898a3f472f931263efaa.png",
+    "static/media/story4.jpg": "/static/media/story4.dc5b4fa325d533a10f75.jpg",
     "static/media/product7.png": "/static/media/product7.1cc87ac050a19ea744b2.png",
     "static/media/product4.png": "/static/media/product4.30bd525967e89d1acf92.png",
     "static/media/product9.png": "/static/media/product9.be6ae655d7286d1712c0.png",
@@ -25,6 +26,14 @@
     "static/media/vcover1.png": "/static/media/vcover1.a74d616787a46c7681bf.png",
     "static/media/emptybag.png": "/static/media/emptybag.cace10dfcc6ced9dfb9b.png",
     "static/media/vcover2.png": "/static/media/vcover2.93f20b457a6a2a953877.png",
+    "static/media/story1.jpg": "/static/media/story1.b3026cd48502ba566601.jpg",
+    "static/media/story5.jpg": "/static/media/story5.c23f1e39df91114c2091.jpg",
+    "static/media/story9.jpg": "/static/media/story9.b675141473de6a909726.jpg",
+    "static/media/story6.jpg": "/static/media/story6.851beb59270fd1125a03.jpg",
+    "static/media/story3.jpg": "/static/media/story3.83f749f71de18da42663.jpg",
+    "static/media/story2.jpg": "/static/media/story2.edf00011a3cf34c3a59d.jpg",
+    "static/media/story8.jpg": "/static/media/story8.98bc0f6b80218a4357ea.jpg",
+    "static/media/story7.jpg": "/static/media/story7.f2028ae597e80c4fa4ba.jpg",
     "static/media/logo.png": "/static/media/logo.aa3419b8b2c6dda5adad.png",
     "static/media/instagram.svg": "/static/media/instagram.dcebfd64ac5fde47507d605c0aa14634.svg",
     "static/media/twitter.svg": "/static/media/twitter.0ba897192d33c49eac3d890b0ef37291.svg",
@@ -32,11 +41,11 @@
     "static/media/youtube.svg": "/static/media/youtube.3373e38b831ef22ee49cba59e9aea50c.svg",
     "static/media/messenger.svg": "/static/media/messenger.caa8584e29cb21f09c8f464ca6c7dab9.svg",
     "static/media/facebook.svg": "/static/media/facebook.449a424f959807f71a24bba589c298e5.svg",
-    "main.ee4b82aa.css.map": "/static/css/main.ee4b82aa.css.map",
-    "main.55ffceb3.js.map": "/static/js/main.55ffceb3.js.map"
+    "main.29e90c9c.css.map": "/static/css/main.29e90c9c.css.map",
+    "main.e6a2e784.js.map": "/static/js/main.e6a2e784.js.map"
   },
   "entrypoints": [
-    "static/css/main.ee4b82aa.css",
-    "static/js/main.55ffceb3.js"
+    "static/css/main.29e90c9c.css",
+    "static/js/main.e6a2e784.js"
   ]
 }

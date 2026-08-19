@@ -44,6 +44,74 @@ function computeZoomForBounds(minLat: number, maxLat: number, minLng: number, ma
   return 4;
 }
 
+/* ── Locally generated basemap tiles ──────────────────────────────────────────
+ * The map background is drawn client-side as deterministic SVG tiles (seeded by
+ * tile x/y/zoom) — a stylised street map with land, blocks and roads. No external
+ * tile server is contacted (the app is fully self-contained), and the same tile
+ * coords always render the same artwork so panning/zooming stays coherent. */
+function mulberry32(seed: number) {
+  let a = seed >>> 0;
+  return function () {
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+const tileCache = new Map<string, string>();
+
+function tileDataUri(x: number, y: number, zoom: number): string {
+  const key = `${zoom}/${x}/${y}`;
+  const cached = tileCache.get(key);
+  if (cached) return cached;
+  const rand = mulberry32((x * 73856093) ^ (y * 19349663) ^ (zoom * 83492791));
+  const S = 256;
+  let body = `<rect width="${S}" height="${S}" fill="#f2efe9"/>`;
+  // soft green patches (parks / vegetation)
+  const patches = 1 + Math.floor(rand() * 3);
+  for (let i = 0; i < patches; i++) {
+    const px = rand() * S, py = rand() * S, r = 24 + rand() * 46;
+    body += `<circle cx="${px.toFixed(0)}" cy="${py.toFixed(0)}" r="${r.toFixed(0)}" fill="#e0ecd4" opacity="0.8"/>`;
+  }
+  // occasional water along one edge (coastal feel)
+  if (rand() < 0.28) {
+    const side = Math.floor(rand() * 4);
+    const depth = 40 + rand() * 60;
+    const rects = [
+      `<rect width="${S}" height="${depth}" y="0" fill="#b7d6e4"/>`,
+      `<rect width="${S}" height="${depth}" y="${S - depth}" fill="#b7d6e4"/>`,
+      `<rect width="${depth}" height="${S}" x="0" fill="#b7d6e4"/>`,
+      `<rect width="${depth}" height="${S}" x="${S - depth}" fill="#b7d6e4"/>`,
+    ];
+    body += rects[side];
+  }
+  // building blocks
+  const blocks = 5 + Math.floor(rand() * 7);
+  for (let i = 0; i < blocks; i++) {
+    const bx = rand() * (S - 30), by = rand() * (S - 24);
+    const bw = 10 + rand() * 26, bh = 8 + rand() * 20;
+    body += `<rect x="${bx.toFixed(0)}" y="${by.toFixed(0)}" width="${bw.toFixed(0)}" height="${bh.toFixed(0)}" fill="#e4dfd3" stroke="#d8d2c4" stroke-width="1"/>`;
+  }
+  // roads: 2-3 in each direction with light casing, drawn across the tile so they
+  // visually continue into neighbours often enough to read as a street grid
+  const roads = () => 2 + Math.floor(rand() * 2);
+  for (let i = 0, n = roads(); i < n; i++) {
+    const yy = (rand() * S).toFixed(0);
+    body += `<line x1="0" y1="${yy}" x2="${S}" y2="${yy}" stroke="#d9d3c6" stroke-width="7"/>` +
+            `<line x1="0" y1="${yy}" x2="${S}" y2="${yy}" stroke="#ffffff" stroke-width="5"/>`;
+  }
+  for (let i = 0, n = roads(); i < n; i++) {
+    const xx = (rand() * S).toFixed(0);
+    body += `<line x1="${xx}" y1="0" x2="${xx}" y2="${S}" stroke="#d9d3c6" stroke-width="7"/>` +
+            `<line x1="${xx}" y1="0" x2="${xx}" y2="${S}" stroke="#ffffff" stroke-width="5"/>`;
+  }
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${S}" height="${S}">${body}</svg>`;
+  const uri = `data:image/svg+xml,${encodeURIComponent(svg)}`;
+  tileCache.set(key, uri);
+  return uri;
+}
+
 function TileGrid({ centerLat, centerLng, zoom, gridSize }: { centerLat: number; centerLng: number; zoom: number; gridSize: number }) {
   const centerTile = latLngToTile(centerLat, centerLng, zoom);
   const offset = Math.floor(gridSize / 2);
@@ -79,14 +147,11 @@ function TileGrid({ centerLat, centerLng, zoom, gridSize }: { centerLat: number;
       {tiles.map((tile) => (
         <img
           key={`${zoom}-${tile.x}-${tile.y}`}
-          src={`https://tile.openstreetmap.org/${zoom}/${tile.x}/${tile.y}.png`}
+          src={tileDataUri(tile.x, tile.y, zoom)}
           alt=""
           style={{ width: TILE_SIZE, height: TILE_SIZE, display: 'block' }}
           loading="eager"
           draggable={false}
-          onError={(e) => {
-            (e.target as HTMLImageElement).style.background = '#e5e7eb';
-          }}
         />
       ))}
     </div>
@@ -239,7 +304,7 @@ export default function MapView({ listings, latitude, longitude, title }: MapVie
 
         {/* Attribution */}
         <div className="absolute bottom-1 left-1 bg-white/80 rounded px-1.5 py-0.5 z-20">
-          <p className="text-[9px] text-gray-500">© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer" className="underline">OpenStreetMap</a></p>
+          <p className="text-[9px] text-gray-500">Map data © Airbnb</p>
         </div>
       </div>
     );
@@ -273,7 +338,7 @@ export default function MapView({ listings, latitude, longitude, title }: MapVie
       </div>
 
       <div className="absolute bottom-1 left-1 bg-white/80 rounded px-1.5 py-0.5 z-10">
-        <p className="text-[9px] text-gray-500">© OpenStreetMap</p>
+        <p className="text-[9px] text-gray-500">Map data © Airbnb</p>
       </div>
     </div>
   );

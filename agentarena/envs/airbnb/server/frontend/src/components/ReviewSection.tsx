@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import { FiX } from 'react-icons/fi';
 import { format, parseISO, differenceInYears } from 'date-fns';
 import type { Review } from '../types';
 import { getListingReviews } from '../api';
@@ -7,6 +8,7 @@ interface ReviewSectionProps {
   listingId: number;
   avgRating?: number;
   reviewCount: number;
+  isGuestFavourite?: boolean;
 }
 
 type RatingKey = 'cleanliness_rating' | 'accuracy_rating' | 'checkin_rating' | 'communication_rating' | 'location_rating' | 'value_rating';
@@ -100,11 +102,11 @@ function ReviewCard({ review }: { review: Review }) {
   );
 }
 
-export default function ReviewSection({ listingId, avgRating, reviewCount }: ReviewSectionProps) {
+export default function ReviewSection({ listingId, avgRating, reviewCount, isGuestFavourite }: ReviewSectionProps) {
   const [reviews, setReviews] = useState<Review[]>([]);
-  const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [showAllModal, setShowAllModal] = useState(false);
 
   const fetchPage = useCallback(
     async (p: number) => {
@@ -126,6 +128,14 @@ export default function ReviewSection({ listingId, avgRating, reviewCount }: Rev
     fetchPage(1);
   }, [fetchPage]);
 
+  // pull any remaining pages when the "show all" modal opens
+  useEffect(() => {
+    if (showAllModal && totalPages > 1) {
+      for (let p = 2; p <= totalPages; p++) fetchPage(p);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showAllModal]);
+
   const categoryAverages = RATING_CATEGORIES.map(({ key, label }) => {
     if (reviews.length === 0) return { label, value: 0 };
     const sum = reviews.reduce((acc, r) => acc + (r[key] as number), 0);
@@ -140,6 +150,8 @@ export default function ReviewSection({ listingId, avgRating, reviewCount }: Rev
     );
   }
 
+  const previewReviews = reviews.slice(0, 6);
+
   return (
     <div className="py-12">
       {/* Large rating display */}
@@ -148,16 +160,18 @@ export default function ReviewSection({ listingId, avgRating, reviewCount }: Rev
           {avgRating != null ? avgRating.toFixed(2) : '—'}
         </div>
 
-        {/* Guest favourite badge */}
-        <div className="inline-flex items-center gap-3 bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-200 rounded-2xl px-6 py-4 mt-4 max-w-lg">
-          <span className="text-3xl">🏅</span>
-          <div className="text-left">
-            <p className="font-semibold text-gray-900">Guest favourite</p>
-            <p className="text-xs text-gray-600 leading-snug">
-              One of the most loved homes on Airbnb based on ratings, reviews, and reliability
-            </p>
+        {/* Guest favourite badge — only when the listing carries the flag */}
+        {isGuestFavourite && (
+          <div className="inline-flex items-center gap-3 bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-200 rounded-2xl px-6 py-4 mt-4 max-w-lg">
+            <span className="text-3xl">🏅</span>
+            <div className="text-left">
+              <p className="font-semibold text-gray-900">Guest favourite</p>
+              <p className="text-xs text-gray-600 leading-snug">
+                One of the most loved homes on Airbnb based on ratings, reviews, and reliability
+              </p>
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* 6 category rating bars in 2×3 grid */}
@@ -178,25 +192,54 @@ export default function ReviewSection({ listingId, avgRating, reviewCount }: Rev
 
       {/* Review cards in 2-column grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16">
-        {reviews.map((review) => (
+        {previewReviews.map((review) => (
           <ReviewCard key={review.id} review={review} />
         ))}
       </div>
 
-      {/* Show all reviews button */}
-      {page < totalPages && (
+      {/* Show all reviews button — opens the full recent-review list */}
+      {reviews.length > 0 && (
         <div className="mt-8">
           <button
-            onClick={() => {
-              const next = page + 1;
-              setPage(next);
-              fetchPage(next);
-            }}
-            disabled={loading}
-            className="px-6 py-3 border border-gray-800 rounded-lg font-medium text-gray-800 hover:bg-gray-100 transition disabled:opacity-50"
+            onClick={() => setShowAllModal(true)}
+            className="px-6 py-3 border border-gray-800 rounded-lg font-medium text-gray-800 hover:bg-gray-100 transition"
           >
-            {loading ? 'Loading…' : `Show all ${reviewCount} reviews`}
+            Show all {reviewCount.toLocaleString()} reviews
           </button>
+        </div>
+      )}
+
+      {/* All-reviews modal */}
+      {showAllModal && (
+        <div
+          className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center"
+          onClick={() => setShowAllModal(false)}
+        >
+          <div
+            className="bg-white w-full max-w-3xl max-h-[85vh] rounded-2xl overflow-y-auto relative mx-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center gap-4 z-10">
+              <button
+                onClick={() => setShowAllModal(false)}
+                className="p-1.5 rounded-full hover:bg-gray-100 transition"
+                aria-label="Close reviews"
+              >
+                <FiX className="w-4 h-4" />
+              </button>
+              <div>
+                <h3 className="text-base font-semibold text-gray-900">
+                  ★ {avgRating != null ? avgRating.toFixed(2) : '—'} · {reviewCount.toLocaleString()} reviews
+                </h3>
+                <p className="text-xs text-gray-500">Showing the most recent reviews</p>
+              </div>
+            </div>
+            <div className="px-6 py-2 divide-y divide-gray-100">
+              {reviews.map((review) => (
+                <ReviewCard key={review.id} review={review} />
+              ))}
+            </div>
+          </div>
         </div>
       )}
     </div>

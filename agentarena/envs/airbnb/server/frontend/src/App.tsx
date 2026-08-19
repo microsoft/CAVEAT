@@ -31,6 +31,12 @@ interface AppContextType {
   removeToast: (id: string) => void;
   wishedListingIds: Set<number>;
   toggleWish: (listingId: number) => void;
+  /** true when the served card payloads omit the room/bed spec fields (minimal-card mode).
+   *  UI controls that rank/filter on those fields are not rendered in that mode. */
+  minimalCards: boolean;
+  /** "Display total before taxes" ribbon toggle — ON shows the stay total incl. fees on cards. */
+  showTotalPrice: boolean;
+  setShowTotalPrice: (v: boolean) => void;
 }
 
 const AppContext = createContext<AppContextType | null>(null);
@@ -48,10 +54,21 @@ function AppProvider({ children }: { children: React.ReactNode }) {
   const [searchFilters, setSearchFilters] = useState<SearchFilters>({});
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
   const [wishedListingIds, setWishedListingIds] = useState<Set<number>>(new Set());
+  const [minimalCards, setMinimalCards] = useState(false);
+  const [showTotalPrice, setShowTotalPrice] = useState(false);
 
   const [defaultWishlistId, setDefaultWishlistId] = useState<number | null>(null);
 
   useEffect(() => {
+    // Detect minimal-card mode from the served data itself: when list payloads omit the
+    // bedrooms field, spec-based controls (Rooms & beds, Top rated) are not rendered.
+    fetch('/api/listings?limit=1')
+      .then((r) => r.json())
+      .then((d) => {
+        const first = d?.listings?.[0];
+        if (first && !('bedrooms' in first)) setMinimalCards(true);
+      })
+      .catch(() => {});
     getMe().then(setUser).catch(() => {});
     getCurrencies()
       .then((c) => {
@@ -133,6 +150,9 @@ function AppProvider({ children }: { children: React.ReactNode }) {
         removeToast,
         wishedListingIds,
         toggleWish,
+        minimalCards,
+        showTotalPrice,
+        setShowTotalPrice,
       }}
     >
       {children}

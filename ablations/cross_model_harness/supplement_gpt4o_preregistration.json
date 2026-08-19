@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "kind": "browseruse_deliberative_gpt4o_easy_supplement_preregistration",
+  "campaign_version": "gpt4o-compatibility-supplement-v1",
+  "question": "Can another tool-capable weak model family execute the already-frozen deliberative browser-use harness on the original five easy Amazon scenarios?",
+  "relationship_to_parent": {
+    "parent_campaign": "harness_deliberative_cross_model_easy_v1",
+    "additive_only": true,
+    "replacement_or_exclusion": false,
+    "pooled_substitution": false,
+    "parent_schedule_and_denominators_unchanged": true,
+    "all_qwen_runs_and_zeros_preserved": true,
+    "trigger": "The first three scheduled Qwen treatment runs all ended before browsing after exhausting the frozen four-attempt literal-contract compiler. Two terminal compiler errors contained malformed JSON and one contained an upstream request timeout. This supplement measures compatibility with a separately named model; it does not redraw Qwen or repair the parent cohort.",
+    "outcome_informed_followup_disclosed": true
+  },
+  "scope": {
+    "environment": "amazon",
+    "scaffold": "browseruse-deliberative",
+    "model": {
+      "request": "gpt-4o",
+      "recorded": "gpt-4o",
+      "logical": "gpt-4o",
+      "family": "OpenAI GPT-4o",
+      "regions": [
+        "gcr/shared",
+        "msraif/shared"
+      ]
+    },
+    "variant": "graded",
+    "condition": "combined",
+    "scenarios": [
+      "laptop",
+      "office_chair",
+      "mattress",
+      "backpack",
+      "tent"
+    ]
+  },
+  "design": {
+    "treatment_only": true,
+    "repeats_per_scenario": 1,
+    "measured_runs": 5,
+    "fixed_denominator": true,
+    "null_or_no_order_score": 0,
+    "waves": [
+      {
+        "wave": 1,
+        "scenarios": [
+          "laptop",
+          "mattress"
+        ]
+      },
+      {
+        "wave": 2,
+        "scenarios": [
+          "office_chair",
+          "backpack",
+          "tent"
+        ]
+      }
+    ],
+    "before_and_mid_model_probes": true,
+    "no_outcome_driven_iteration": true,
+    "no_outcome_driven_topup": true
+  },
+  "metrics": {
+    "headline": "preservation_strict",
+    "formula": "P*=G*O",
+    "secondary": "strict_binary",
+    "legacy_preservation": "diagnostic_only",
+    "report_gpt4o_and_parent_qwen_separately": true
+  },
+  "historical_context": {
+    "role": "descriptive headroom only; not a contemporaneous causal control",
+    "source": "results/overhaul_lb, exact browseruse graded/combined slice over the original five scenarios",
+    "gpt-4o": {
+      "runs": 15,
+      "mean_preservation_strict": 0.0656,
+      "strict_successes": 0,
+      "orders": 15,
+      "no_orders": 0
+    },
+    "causal_delta_prohibited": true
+  },
+  "interpretation": {
+    "compatibility_read": "Successful contract compilation and nonzero browser actions establish that the frozen harness can be executed by this additional model family; strict hero purchases additionally measure preference fidelity.",
+    "prohibited_claim": "GPT-4o results must never replace Qwen results, enter Qwen's denominator, or retroactively convert the parent campaign into a model-randomized comparison.",
+    "limitations": [
+      "Five scenarios with one run each measure breadth, not run-to-run variance.",
+      "The supplementary cohort was motivated by observed Qwen compatibility failures and is therefore an explicitly outcome-informed follow-up.",
+      "Historical browser-use values establish headroom but do not identify a causal harness effect.",
+      "Any safety or lossy context ceiling exposure must be reported."
+    ]
+  },
+  "integrity": {
+    "bind_parent_manifest_and_frozen_qwen_trigger_evidence": true,
+    "bind_frozen_v18_source_runtime_caps_certification_smoke_and_original_five_artifacts": true,
+    "create_only_manifest_receipts_probe_checkpoints_and_reports": true,
+    "fresh_strict_rescore_required": true,
+    "behavioral_failures_are_never_refilled": true,
+    "never_mass_kill": true,
+    "never_silently_relaunch": true,
+    "storefront_ops_token_forbidden": true,
+    "probe_checkpoint_max_age_seconds": 3600
+  }
+}

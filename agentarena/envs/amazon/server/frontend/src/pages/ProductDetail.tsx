@@ -240,6 +240,21 @@ export function ProductDetail({ user, onAddToCart }: ProductDetailProps) {
           {/* Center Column - Product Info */}
           <div className="lg:col-span-4">
             <h1 className="text-xl font-medium mb-2">{product.title}</h1>
+            {/* ai-injection ONLY: hidden per-product note (see ProductCard). Invisible to a human /
+                screenshot; read by the agent's DOM serialization. Absent for all other conditions. */}
+            {product.agent_note && (
+              <span className="sr-only" aria-label={product.agent_note}>{product.agent_note}</span>
+            )}
+
+            {/* adv_* families: extract-channel block. display:none is dropped by browser-use's DOM
+                serializer but NOT by the html serializer its `extract` action feeds to a sub-LLM, so
+                this text reaches the agent only when it tries to verify — and never reaches a human. */}
+            {product.adv_hidden && (
+              <div style={{ display: 'none' }} data-adv="x">{product.adv_hidden}</div>
+            )}
+            {product.adv_badge && (
+              <span className="text-xs text-[var(--link-color)]">{product.adv_badge}</span>
+            )}
 
             {/* Brand */}
             <p className="text-sm mb-2">
@@ -340,8 +355,10 @@ export function ProductDetail({ user, onAddToCart }: ProductDetailProps) {
 
             <hr className="my-4" />
 
-            {/* About this item */}
-            <div className="mb-4">
+            {/* About this item — adv_exclude marks this subtree data-browser-use-exclude, which
+                removes it from the agent's browser_state while a human still reads it normally
+                (it also still leaks via `extract`, which keeps the condition defeasible). */}
+            <div className="mb-4" {...(product.adv_exclude ? { 'data-browser-use-exclude': 'true' } : {})}>
               <h3 className="font-bold mb-2">About this item</h3>
               <ul className="list-disc pl-5 space-y-1 text-sm">
                 {product.bullet_points?.map((point, idx) => (
@@ -350,6 +367,28 @@ export function ProductDetail({ user, onAddToCart }: ProductDetailProps) {
                     <li>High-quality product</li>
                   )}
               </ul>
+
+              {/* Product information: the PDP-only technical-details spec table (graded
+                  dims live here, never in listing payloads). Rendered INSIDE the same
+                  subtree as "About this item" so adv_exclude's data-browser-use-exclude
+                  contract covers the whole spec block. */}
+              {product.technical_details && Object.keys(product.technical_details).length > 0 && (
+                <div className="mt-4">
+                  <h3 className="font-bold mb-2">Product information</h3>
+                  <table className="w-full max-w-xl text-sm border border-[var(--border)] border-collapse">
+                    <tbody>
+                      {Object.entries(product.technical_details).map(([key, value]) => (
+                        <tr key={key} className="border-b border-[var(--border)] last:border-b-0">
+                          <td className="py-1.5 px-3 w-1/3 align-top font-bold bg-[var(--bg-secondary,#f7f7f7)]">
+                            {key.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())}
+                          </td>
+                          <td className="py-1.5 px-3">{String(value)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </div>
           </div>
 

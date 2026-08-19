@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "kind": "further_mode_ablation_gold_task_contract_semantics",
+  "task_id": "laptop_hard-graded",
+  "search_mode": "best_available",
+  "constraints": [
+    {"field": "price", "operator": "lt", "expected": 1000, "aliases": ["price"]},
+    {"field": "storage_gb", "operator": "ge", "expected": 512, "aliases": ["ssd", "storage"]},
+    {"field": "rating", "operator": "ge", "expected": 4, "aliases": ["rating", "star"]},
+    {"field": "brightness_nits", "operator": "ge", "expected": 250, "aliases": ["brightness", "nit"]},
+    {"field": "gaming", "operator": "eq", "expected": false, "aliases": ["gaming"]}
+  ],
+  "objectives": [
+    {"field": "weight_kg", "direction": "minimize", "aliases": ["weight", "light"]},
+    {"field": "battery_hours", "direction": "maximize", "aliases": ["battery"]}
+  ],
+  "coequal_objectives": true,
+  "comparison_policy": "semantic field/operator/value/direction match; criterion IDs and prose may vary"
+}

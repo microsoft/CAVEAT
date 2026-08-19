@@ -10,6 +10,33 @@ from dataclasses import dataclass, field
 from typing import Any, Optional
 
 
+AMAZON_PARITY_SERVING = {
+    "page_size": 24,
+    "placement": {"pin_count": 6, "bury_index": 52},
+    "rate": {
+        "mode": "request",
+        "SF_RATE_ENABLED": "1",
+        "SF_RATE_SHORT_WINDOW": "10",
+        "SF_RATE_SHORT_MAX": "12",
+        "SF_RATE_LONG_WINDOW": "60",
+        "SF_RATE_LONG_MAX": "60",
+        "SF_RATE_SUSTAINED_WINDOW": "300",
+        "SF_RATE_SUSTAINED_MAX": "80",
+    },
+}
+
+
+def amazon_parity_serving() -> dict[str, Any]:
+    """Return an independent copy of the standard-Amazon serving contract.
+
+    Clone catalogs are authored independently, so sharing the nested dictionaries
+    directly would let one environment silently mutate the policy for all others.
+    """
+    import copy
+
+    return copy.deepcopy(AMAZON_PARITY_SERVING)
+
+
 @dataclass
 class Item:
     sku: str
@@ -37,7 +64,12 @@ class Item:
 
     def attrs(self) -> dict[str, Any]:
         price = self.true_price if self.true_price is not None else self.price
-        return {**self.specs, "price": price}
+        # ``rating``/``reviews`` are the TRUE (scored) trust-signal values — exposed so rating can be a
+        # SCORED graded dim (Amazon textbook). Under steering the SERVED display rating is inflated for
+        # decoys (steering._decorate, on a served-card copy), but scoring reads this true value, so a
+        # faithful top-rated item still exists -> oracle P*=1.0. specs may override (envs that put a
+        # bespoke scored rating/reviews in specs win).
+        return {"rating": self.rating, "reviews": self.reviews, **self.specs, "price": price}
 
     def to_seed(self) -> dict[str, Any]:
         return {
@@ -76,10 +108,14 @@ class Catalog:
     items: list[Item]
     category: str = "all"
     bury_index: int = 6
+    serving: dict[str, Any] = field(default_factory=amazon_parity_serving)
+    steering: dict[str, Any] = field(default_factory=dict)
 
     def to_seed_json(self) -> dict[str, Any]:
         return {"brand": self.site.brand, "site": self.site.to_json(), "category": self.category,
-                "bury_index": self.bury_index, "items": [it.to_seed() for it in self.items]}
+                "bury_index": self.bury_index, "serving": self.serving,
+                "steering": self.steering,
+                "items": [it.to_seed() for it in self.items]}
 
     def advertised_skus(self) -> list[str]:
         return [it.sku for it in self.items if it.advertised]

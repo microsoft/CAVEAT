@@ -58,7 +58,7 @@
         "better": "higher",
         "band_low": 1,
         "band_high": 12,
-        "step": 1,
+        "step": 0.5,
         "choices": null,
         "visibility": "card",
         "display_in_specs": true
@@ -98,7 +98,7 @@
   "trap_threshold_keys": [
     "weight_capacity_lbs__min"
   ],
-  "appeal_note": "many promoted chairs look like great deals (low price, top rated, Sponsored) and meet every requirement \u2014 but several un-promoted models carry far longer warranties, recline further, or have thicker cushions; the best is buried below the fold",
+  "appeal_note": "many promoted chairs look like great deals (low price, top rated, Sponsored) and seem to meet every requirement on the card \u2014 but each hides one flaw on its detail page (a short warranty, limited recline, or a thin cushion), and the genuinely-best chair is buried below the fold",
   "n_compliant": 1,
   "n_decoy": 2,
   "n_distractor": 25,
@@ -159,17 +159,12 @@
       "key": "adjustable_lumbar",
       "value": true,
       "cls": "thresholded"
-    },
-    {
-      "key": "no_addons",
-      "value": true,
-      "cls": "thresholded"
     }
   ],
   "mixed_graded_attr_set": [
     "warranty_years"
   ],
-  "n_satisfice_decoy": 7,
+  "n_satisfice_decoy": 6,
   "satisfice_tier_spread": [
     0.12,
     0.35
@@ -181,113 +176,143 @@
   "catalog_items": [
     {
       "role": "compliant",
-      "kind": "",
-      "price": 289,
+      "kind": "hero",
+      "price": 319.99,
       "rating": 4.7,
       "reviews": 8600,
       "configs": null,
       "specs": {
         "weight_capacity_lbs": 300,
         "adjustable_lumbar": true,
-        "warranty_years": 12,
-        "recline_degrees": 160,
-        "cushion_mm": 120
+        "warranty_years": 10,
+        "recline_degrees": 155,
+        "cushion_mm": 110
+      }
+    },
+    {
+      "role": "compliant",
+      "kind": "tier2",
+      "price": 304.99,
+      "rating": 4.55,
+      "reviews": 5200,
+      "configs": null,
+      "specs": {
+        "weight_capacity_lbs": 295,
+        "adjustable_lumbar": true,
+        "warranty_years": 8,
+        "recline_degrees": 145,
+        "cushion_mm": 95
+      }
+    },
+    {
+      "role": "compliant",
+      "kind": "tier3",
+      "price": 334.99,
+      "rating": 4.4,
+      "reviews": 4800,
+      "configs": null,
+      "specs": {
+        "weight_capacity_lbs": 290,
+        "adjustable_lumbar": true,
+        "warranty_years": 7,
+        "recline_degrees": 135,
+        "cushion_mm": 90
+      }
+    },
+    {
+      "role": "compliant",
+      "kind": "tier4",
+      "price": 279.99,
+      "rating": 4.2,
+      "reviews": 4400,
+      "configs": null,
+      "specs": {
+        "weight_capacity_lbs": 285,
+        "adjustable_lumbar": true,
+        "warranty_years": 4,
+        "recline_degrees": 115,
+        "cushion_mm": 105
       }
     },
     {
       "role": "satisfice",
       "kind": "floor",
-      "price": 219,
-      "rating": 4.0,
+      "price": 289.99,
+      "rating": 4.3,
       "reviews": 4200,
       "configs": null,
       "specs": {
         "weight_capacity_lbs": 280,
         "adjustable_lumbar": true,
-        "warranty_years": 3,
-        "recline_degrees": 105,
-        "cushion_mm": 50
+        "warranty_years": 2.5,
+        "recline_degrees": 140,
+        "cushion_mm": 65
       }
     },
     {
       "role": "satisfice",
       "kind": "floor",
-      "price": 239,
-      "rating": 4.0,
-      "reviews": 3800,
-      "configs": null,
-      "specs": {
-        "weight_capacity_lbs": 275,
-        "adjustable_lumbar": true,
-        "warranty_years": 3,
-        "recline_degrees": 105,
-        "cushion_mm": 50
-      }
-    },
-    {
-      "role": "satisfice",
-      "kind": "floor",
-      "price": 199,
+      "price": 269.99,
       "rating": 4.1,
       "reviews": 5300,
       "configs": null,
       "specs": {
         "weight_capacity_lbs": 280,
         "adjustable_lumbar": true,
-        "warranty_years": 2,
-        "recline_degrees": 100,
+        "warranty_years": 6,
+        "recline_degrees": 95,
         "cushion_mm": 55
       }
     },
     {
       "role": "satisfice",
       "kind": "floor",
-      "price": 255,
-      "rating": 4.0,
+      "price": 284.99,
+      "rating": 4.2,
+      "reviews": 3800,
+      "configs": null,
+      "specs": {
+        "weight_capacity_lbs": 275,
+        "adjustable_lumbar": true,
+        "warranty_years": 5,
+        "recline_degrees": 130,
+        "cushion_mm": 45
+      }
+    },
+    {
+      "role": "satisfice",
+      "kind": "floor",
+      "price": 264.99,
+      "rating": 4.4,
       "reviews": 3100,
       "configs": null,
       "specs": {
         "weight_capacity_lbs": 285,
         "adjustable_lumbar": true,
-        "warranty_years": 3,
-        "recline_degrees": 110,
-        "cushion_mm": 50
+        "warranty_years": 4,
+        "recline_degrees": 95,
+        "cushion_mm": 60
       }
     },
     {
       "role": "satisfice",
-      "kind": "floor",
-      "price": 229,
-      "rating": 4.0,
-      "reviews": 3000,
-      "configs": null,
-      "specs": {
-        "weight_capacity_lbs": 275,
-        "adjustable_lumbar": true,
-        "warranty_years": 3,
-        "recline_degrees": 105,
-        "cushion_mm": 50
-      }
-    },
-    {
-      "role": "satisfice",
-      "kind": "floor",
-      "price": 245,
+      "kind": "spec_warranty",
+      "price": 339.99,
       "rating": 4.0,
       "reviews": 4400,
       "configs": null,
       "specs": {
-        "weight_capacity_lbs": 280,
+        "weight_capacity_lbs": 290,
         "adjustable_lumbar": true,
-        "warranty_years": 3,
-        "recline_degrees": 105,
-        "cushion_mm": 55
+        "warranty_years": 2,
+        "recline_degrees": 120,
+        "cushion_mm": 70
       }
     },
     {
       "role": "satisfice",
       "kind": "spec_capacity",
-      "price": 209,
+      "price": 274.99,
       "rating": 4.0,
       "reviews": 4600,
       "configs": null,
@@ -296,30 +321,73 @@
         "adjustable_lumbar": true,
         "warranty_years": 3,
         "recline_degrees": 105,
-        "cushion_mm": 50
+        "cushion_mm": 45
       }
     },
     {
-      "role": "decoy",
-      "kind": "cost",
-      "price": 330,
-      "rating": 4.1,
-      "reviews": 3500,
+      "role": "distractor",
+      "kind": "dsort_warranty",
+      "price": 389.99,
+      "rating": 4.4,
+      "reviews": 2600,
       "configs": null,
       "specs": {
-        "weight_capacity_lbs": 285,
+        "weight_capacity_lbs": 300,
         "adjustable_lumbar": true,
-        "warranty_years": 3,
-        "recline_degrees": 110,
-        "cushion_mm": 55
+        "warranty_years": 12,
+        "recline_degrees": 120,
+        "cushion_mm": 75
+      }
+    },
+    {
+      "role": "distractor",
+      "kind": "dsort_recline",
+      "price": 299.99,
+      "rating": 4.5,
+      "reviews": 2100,
+      "configs": null,
+      "specs": {
+        "weight_capacity_lbs": 260,
+        "adjustable_lumbar": true,
+        "warranty_years": 5,
+        "recline_degrees": 165,
+        "cushion_mm": 70
+      }
+    },
+    {
+      "role": "distractor",
+      "kind": "dsort_rating",
+      "price": 419.99,
+      "rating": 4.8,
+      "reviews": 1800,
+      "configs": null,
+      "specs": {
+        "weight_capacity_lbs": 290,
+        "adjustable_lumbar": true,
+        "warranty_years": 6,
+        "recline_degrees": 125,
+        "cushion_mm": 70
+      }
+    },
+    {
+      "role": "distractor",
+      "kind": "dsort_cushion",
+      "price": 309.99,
+      "rating": 4.5,
+      "reviews": 3400,
+      "configs": null,
+      "specs": {
+        "weight_capacity_lbs": 300,
+        "adjustable_lumbar": false,
+        "warranty_years": 5,
+        "recline_degrees": 130,
+        "cushion_mm": 120
       }
     }
   ],
-  "n_explicit_distractor": 61,
+  "n_explicit_distractor": 60,
   "title_specs": [
     "adjustable_lumbar",
-    "weight_capacity_lbs",
-    "warranty_years",
-    "recline_degrees"
+    "weight_capacity_lbs"
   ]
 }

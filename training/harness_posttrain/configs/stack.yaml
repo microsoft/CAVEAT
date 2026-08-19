@@ -1,0 +1,17 @@
+schema_version: 1
+prime_rl:
+  version: "0.7.0"
+  commit: "d334ea52940b47f426293a7d146239e3fbf91caa"
+verifiers:
+  version: "0.2.0"
+  commit: "6c64ce6a3a01e8edde7c3c0e8e5315fb236e9faa"
+transformers: "5.12.1"
+vllm: "0.24.0"
+peft: "0.20.0"
+browser_use: "0.13.6"
+image: "aifrontiers.azurecr.io/t-yuxuanli/harness-distill@sha256:28f38e74e17779e9c85985d3d3f970c1f6aa4427407f1843c11f2af87a324dd0"
+required_prime_patches:
+  privileged_opd: "2566dd8fa0ec564232209f083187dd4a5aa0fb4621fdc97c4932bc12e8778ddf"
+  train_top_p: "ea6f955228a8cb5b650c2dabc1cb38e20574b23f847524764f4e7058fd4ec767"
+  renderer_sample: "aaeeb36d353ad20466c27ecb7150e512658ad4caa5bcf4c0d05005e626ac9e1b"
+  qwen35_config_detection: "58b73b83c24d9713948f0f5c1fd33594c86be799c51016bcfbc8b40ebad68469"

@@ -6,6 +6,7 @@ versioned artifacts. Numbers are deterministic; only copy/instructions/images us
 from __future__ import annotations
 
 import asyncio
+import dataclasses
 from pathlib import Path
 from typing import Optional
 
@@ -13,7 +14,8 @@ from . import serialize
 from .copy_gen import generate_copy
 from .faithfulness import make_instruction
 from .images import generate_images
-from .pool import generate_pool
+from .pool import (generate_pool_drawn, truthful_steering_index,
+                   truthful_steering_sidecar)
 from .preferences import build_preferences
 from .scenarios import SCENARIOS
 from .steering import resolve_steering
@@ -24,9 +26,7 @@ AMAZON_IMAGE_DIR = (Path(__file__).resolve().parents[1] / "envs" / "amazon" / "s
 
 # category fallbacks (existing committed PNGs) when running --no-images
 _STOCK = {
-    "laptop": "laptop-generic.png", "monitor": "hp-27-4k-ips-monitor.png",
-    "headphones": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
-    "robot_vacuum": "home-kitchen.png",
+    "laptop": "laptop-generic.png",
 }
 
 
@@ -34,7 +34,11 @@ async def build_scenario(scenario_id: str, *, seed: int = 7, root: Optional[Path
                          with_images: bool = True, force_images: bool = False) -> Path:
     scenario = SCENARIOS[scenario_id]
     print(f"[{scenario_id}] generating pool (seed {seed}) ...")
-    rows = generate_pool(scenario, seed)
+    # the DRAWN scenario, not the registry template: hard scenarios draw B, the authored block
+    # and the serving placement per seed, and the artifacts must carry what the pool was built
+    # against (scenario.json / catalog.json serving). Identical to the template for the
+    # original five.
+    rows, scenario = generate_pool_drawn(scenario, seed)
 
     print(f"[{scenario_id}] generating product copy ({len(rows)} items) ...")
     await generate_copy(scenario, rows)
@@ -42,16 +46,75 @@ async def build_scenario(scenario_id: str, *, seed: int = 7, root: Optional[Path
     if flagged:
         print(f"  copy flagged (fell back): {flagged}")
 
-    print(f"[{scenario_id}] generating + faithfulness-checking instructions ...")
-    prefs = build_preferences(scenario)
-    insts = await asyncio.gather(*(make_instruction(scenario, prefs[v]) for v in prefs))
-    instructions = {gi.variant: gi for gi in insts}
-    for v, gi in instructions.items():
-        print(f"  [{v}] {gi.status} (tries={gi.tries})")
+    if scenario_id.endswith("_steerhard_compact"):
+        parent_id = scenario_id[:-len("_steerhard_compact")]
+    elif scenario_id.endswith("_steerhard"):
+        parent_id = scenario_id[:-len("_steerhard")]
+    elif scenario_id.endswith("_hard"):
+        parent_id = scenario_id[:-len("_hard")]
+    else:
+        parent_id = None
+    truthful = bool((scenario.serving or {}).get("truthful"))
+    if truthful and parent_id in SCENARIOS:
+        # The successor normally keeps the original ground-truth preference
+        # artifact literally byte-equivalent.  A declared semantic requirement is
+        # the narrow exception: the parent instruction already states it, and the
+        # successor now models it as a universal hard equality.
+        try:
+            prefs = serialize.load_preferences(parent_id, root)
+        except FileNotFoundError:
+            prefs = serialize.load_preferences(parent_id)
+        semantic_requirements = (
+            (scenario.serving or {}).get("truthful") or {}
+        ).get("semantic_requirements") or {}
+        if semantic_requirements:
+            merged = {}
+            for variant, parent_pref in prefs.items():
+                declared = {
+                    threshold.field: threshold
+                    for threshold in scenario.preference(variant).thresholds
+                    if threshold.field in semantic_requirements
+                }
+                if set(declared) != set(semantic_requirements) or any(
+                        declared[key].value != expected
+                        for key, expected in semantic_requirements.items()):
+                    raise AssertionError(
+                        f"{scenario_id}/{variant}: semantic requirements are not "
+                        "exact hard thresholds")
+                merged[variant] = dataclasses.replace(
+                    parent_pref,
+                    thresholds=list(parent_pref.thresholds)
+                    + [declared[key] for key in semantic_requirements],
+                )
+            prefs = merged
+    else:
+        prefs = build_preferences(scenario)
+    if parent_id and parent_id in SCENARIOS:
+        # Hard clones copy the parent's committed instructions VERBATIM (scenario_id field
+        # included): the preference-bearing fields are copied verbatim by construction
+        # (scenarios.py), so byte-identical instruction text is both correct and the point —
+        # the catalog is the ONLY thing that differs between a hard run and its parent.
+        print(f"[{scenario_id}] copying instructions verbatim from parent {parent_id} ...")
+        try:
+            instructions = serialize.load_instructions(parent_id, root)
+        except FileNotFoundError:
+            instructions = serialize.load_instructions(parent_id)
+    else:
+        print(f"[{scenario_id}] generating + faithfulness-checking instructions ...")
+        insts = await asyncio.gather(*(make_instruction(scenario, prefs[v]) for v in prefs))
+        instructions = {gi.variant: gi for gi in insts}
+        for v, gi in instructions.items():
+            print(f"  [{v}] {gi.status} (tries={gi.tries})")
 
-    steering = resolve_steering(scenario, rows)
+    truthful_sidecar = truthful_steering_sidecar(scenario, rows)
+    steering = (truthful_steering_index(truthful_sidecar)
+                if truthful_sidecar is not None else resolve_steering(scenario, rows))
 
-    if with_images:
+    if truthful:
+        # The pool already draws every row from the category's shared committed image set.
+        # Generating 2,112 near-duplicate photos would be neither scientific nor deterministic.
+        print(f"[{scenario_id}] reusing truthful shared category images ...")
+    elif with_images:
         print(f"[{scenario_id}] generating images (gpt-image-1) ...")
         await generate_images(scenario, rows, image_dir=AMAZON_IMAGE_DIR,
                              mirror_dir=serialize.scenario_dir(scenario_id, root) / "images",
@@ -62,7 +125,8 @@ async def build_scenario(scenario_id: str, *, seed: int = 7, root: Optional[Path
 
     d = serialize.write_artifacts(scenario, rows, prefs, instructions, steering,
                                   seed=seed, root=root,
-                                  extra_meta={"with_images": with_images})
+                                  extra_meta={"with_images": with_images},
+                                  truthful_steering=truthful_sidecar)
     print(f"[{scenario_id}] wrote artifacts -> {d}")
     return d
 

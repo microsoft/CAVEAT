@@ -11,33 +11,36 @@ const SORT_OPTIONS: { label: string; value: string | undefined }[] = [
   { label: 'Price: low to high', value: 'price_asc' },
   { label: 'Price: high to low', value: 'price_desc' },
   { label: 'Top rated', value: 'rating' },
-  { label: 'Newest', value: 'newest' },
 ];
 
 const ROOM_TYPES = ['Entire place', 'Private room', 'Shared room'];
 
-const PROPERTY_TYPES = [
-  'Entire rental unit', 'Private room in rental unit', 'Private room in home',
-  'Entire condo', 'Entire home', 'Room in hotel',
-  'Entire serviced apartment', 'Entire guest suite',
-  'Private room in condo', 'Private room in townhouse',
+// The property types that actually exist in the inventory.
+const PROPERTY_TYPES = ['Villa', 'Home', 'Apartment', 'Cottage', 'Bungalow', 'Penthouse'];
+
+// The amenity choices surfaced in the Amenities filter (a curated popular subset).
+const AMENITY_OPTIONS = [
+  'Wifi', 'Kitchen', 'Air conditioning', 'Pool', 'Free parking', 'Washer',
+  'TV', 'Hot water', 'Beach access', 'Dedicated workspace', 'Crib',
 ];
 
 // Neighbourhoods are fetched dynamically from the API inside the component.
 
-const INACTIVE_PILLS = ['Amenities', 'Booking options', 'Accessibility', 'Host language', 'Top-tier stays'];
+type OpenDropdown =
+  | 'price' | 'room_type' | 'property_type' | 'neighbourhood' | 'rooms_beds'
+  | 'amenities' | 'booking_options' | 'sort' | null;
 
-type OpenDropdown = 'price' | 'room_type' | 'property_type' | 'neighbourhood' | 'rooms_beds' | 'sort' | null;
-
-function useClickOutside(ref: React.RefObject<HTMLElement | null>, handler: () => void) {
+function useClickOutside(refs: React.RefObject<HTMLElement | null>[], handler: () => void) {
   useEffect(() => {
     function listener(e: MouseEvent) {
-      if (!ref.current || ref.current.contains(e.target as Node)) return;
+      // ignore clicks inside ANY of the tracked containers (pills bar + sort dropdown)
+      if (refs.some((r) => r.current && r.current.contains(e.target as Node))) return;
       handler();
     }
     document.addEventListener('mousedown', listener);
     return () => document.removeEventListener('mousedown', listener);
-  }, [ref, handler]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [handler]);
 }
 
 function Counter({ label, value, onChange }: { label: string; value: number; onChange: (v: number) => void }) {
@@ -63,7 +66,7 @@ function Counter({ label, value, onChange }: { label: string; value: number; onC
 }
 
 export default function SearchResults() {
-  const { searchFilters, setSearchFilters } = useAppContext();
+  const { searchFilters, setSearchFilters, minimalCards } = useAppContext();
   const [searchParams] = useSearchParams();
 
   const [listings, setListings] = useState<Listing[]>([]);
@@ -82,12 +85,20 @@ export default function SearchResults() {
   const [draftMaxPrice, setDraftMaxPrice] = useState<string>(searchFilters.max_price?.toString() ?? '');
 
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const sortRef = useRef<HTMLDivElement>(null);
 
   const closeDropdown = useCallback(() => setOpenDropdown(null), []);
-  useClickOutside(dropdownRef, closeDropdown);
+  // The sort menu lives outside the pills bar — track BOTH containers so opening/clicking the
+  // sort options doesn't count as an outside click (which used to unmount the menu on mousedown).
+  useClickOutside([dropdownRef, sortRef], closeDropdown);
+
+  const sortOptions = minimalCards
+    ? SORT_OPTIONS.filter((o) => o.value !== 'rating')
+    : SORT_OPTIONS;
 
   const effectiveFilters: SearchFilters = {
-    location: searchParams.get('location') || searchFilters.location || undefined,
+    // footer destination links use ?q= — honour it as the location term
+    location: searchParams.get('location') || searchParams.get('q') || searchFilters.location || undefined,
     check_in: searchParams.get('check_in') || searchFilters.check_in || undefined,
     check_out: searchParams.get('check_out') || searchFilters.check_out || undefined,
     guests: searchParams.get('guests') ? Number(searchParams.get('guests')) : searchFilters.guests || undefined,
@@ -95,11 +106,13 @@ export default function SearchResults() {
     max_price: searchFilters.max_price,
     property_type: searchFilters.property_type,
     room_type: searchFilters.room_type,
-    min_bedrooms: searchFilters.min_bedrooms,
-    min_beds: searchFilters.min_beds,
-    min_bathrooms: searchFilters.min_bathrooms,
+    min_bedrooms: minimalCards ? undefined : searchFilters.min_bedrooms,
+    min_beds: minimalCards ? undefined : searchFilters.min_beds,
+    min_bathrooms: minimalCards ? undefined : searchFilters.min_bathrooms,
     sort_by: searchFilters.sort_by,
     neighbourhood_id: searchFilters.neighbourhood_id,
+    amenities: searchFilters.amenities && searchFilters.amenities.length > 0 ? searchFilters.amenities : undefined,
+    instant_book: searchFilters.instant_book || undefined,
   };
 
   const filterKey = JSON.stringify(effectiveFilters);
@@ -151,6 +164,8 @@ export default function SearchResults() {
     effectiveFilters.property_type !== undefined,
     effectiveFilters.neighbourhood_id !== undefined,
     (effectiveFilters.min_bedrooms ?? 0) > 0 || (effectiveFilters.min_beds ?? 0) > 0 || (effectiveFilters.min_bathrooms ?? 0) > 0,
+    (effectiveFilters.amenities?.length ?? 0) > 0,
+    effectiveFilters.instant_book === true,
   ].filter(Boolean).length;
 
   const isPriceActive = effectiveFilters.min_price !== undefined || effectiveFilters.max_price !== undefined;
@@ -158,6 +173,14 @@ export default function SearchResults() {
   const isPropertyTypeActive = effectiveFilters.property_type !== undefined;
   const isNeighbourhoodActive = effectiveFilters.neighbourhood_id !== undefined;
   const isRoomsBedsActive = (effectiveFilters.min_bedrooms ?? 0) > 0 || (effectiveFilters.min_beds ?? 0) > 0 || (effectiveFilters.min_bathrooms ?? 0) > 0;
+  const isAmenitiesActive = (effectiveFilters.amenities?.length ?? 0) > 0;
+  const isBookingOptionsActive = effectiveFilters.instant_book === true;
+
+  const toggleAmenity = (name: string) => {
+    const current = searchFilters.amenities ?? [];
+    const next = current.includes(name) ? current.filter((a) => a !== name) : [...current, name];
+    updateFilter({ amenities: next.length > 0 ? next : undefined });
+  };
 
   const pillClass = (active: boolean) =>
     `flex-shrink-0 px-4 py-2 rounded-full text-sm border transition-colors flex items-center gap-1 ${
@@ -333,47 +356,99 @@ export default function SearchResults() {
               )}
             </div>
 
-            {/* Rooms and beds pill */}
+            {/* Rooms and beds pill — spec-based filter, only rendered when the served card
+                payloads carry the spec fields (they filter for real then) */}
+            {!minimalCards && (
+              <div className="relative flex-shrink-0">
+                <button onClick={() => toggleDropdown('rooms_beds')} className={pillClass(isRoomsBedsActive)}>
+                  <span>Rooms and beds</span>
+                  {isRoomsBedsActive && (
+                    <span
+                      onClick={(e) => { e.stopPropagation(); clearFilter(['min_bedrooms', 'min_beds', 'min_bathrooms']); }}
+                      className="ml-1 cursor-pointer"
+                    >×</span>
+                  )}
+                </button>
+                {openDropdown === 'rooms_beds' && (
+                  <div className="absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg p-4 z-20 w-64">
+                    <Counter
+                      label="Bedrooms"
+                      value={effectiveFilters.min_bedrooms ?? 0}
+                      onChange={(v) => updateFilter({ min_bedrooms: v || undefined })}
+                    />
+                    <Counter
+                      label="Beds"
+                      value={effectiveFilters.min_beds ?? 0}
+                      onChange={(v) => updateFilter({ min_beds: v || undefined })}
+                    />
+                    <Counter
+                      label="Bathrooms"
+                      value={effectiveFilters.min_bathrooms ?? 0}
+                      onChange={(v) => updateFilter({ min_bathrooms: v || undefined })}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Amenities pill */}
             <div className="relative flex-shrink-0">
-              <button onClick={() => toggleDropdown('rooms_beds')} className={pillClass(isRoomsBedsActive)}>
-                <span>Rooms and beds</span>
-                {isRoomsBedsActive && (
+              <button onClick={() => toggleDropdown('amenities')} className={pillClass(isAmenitiesActive)}>
+                <span>Amenities{isAmenitiesActive ? ` (${effectiveFilters.amenities!.length})` : ''}</span>
+                {isAmenitiesActive && (
                   <span
-                    onClick={(e) => { e.stopPropagation(); clearFilter(['min_bedrooms', 'min_beds', 'min_bathrooms']); }}
+                    onClick={(e) => { e.stopPropagation(); clearFilter(['amenities']); }}
                     className="ml-1 cursor-pointer"
                   >×</span>
                 )}
               </button>
-              {openDropdown === 'rooms_beds' && (
-                <div className="absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg p-4 z-20 w-64">
-                  <Counter
-                    label="Bedrooms"
-                    value={effectiveFilters.min_bedrooms ?? 0}
-                    onChange={(v) => updateFilter({ min_bedrooms: v || undefined })}
-                  />
-                  <Counter
-                    label="Beds"
-                    value={effectiveFilters.min_beds ?? 0}
-                    onChange={(v) => updateFilter({ min_beds: v || undefined })}
-                  />
-                  <Counter
-                    label="Bathrooms"
-                    value={effectiveFilters.min_bathrooms ?? 0}
-                    onChange={(v) => updateFilter({ min_bathrooms: v || undefined })}
-                  />
+              {openDropdown === 'amenities' && (
+                <div className="absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg p-4 z-20 w-60 max-h-72 overflow-y-auto">
+                  <div className="space-y-2">
+                    {AMENITY_OPTIONS.map((name) => (
+                      <label key={name} className="flex items-center gap-2 cursor-pointer py-1">
+                        <input
+                          type="checkbox"
+                          checked={(effectiveFilters.amenities ?? []).includes(name)}
+                          onChange={() => toggleAmenity(name)}
+                          className="rounded border-gray-300"
+                        />
+                        <span className="text-sm text-gray-700">{name}</span>
+                      </label>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
 
-            {/* Non-functional pills */}
-            {INACTIVE_PILLS.map((pill) => (
-              <button
-                key={pill}
-                className="flex-shrink-0 px-4 py-2 rounded-full text-sm border bg-white text-gray-700 border-gray-300 hover:border-gray-900 transition-colors"
-              >
-                {pill}
+            {/* Booking options pill */}
+            <div className="relative flex-shrink-0">
+              <button onClick={() => toggleDropdown('booking_options')} className={pillClass(isBookingOptionsActive)}>
+                <span>Booking options</span>
+                {isBookingOptionsActive && (
+                  <span
+                    onClick={(e) => { e.stopPropagation(); clearFilter(['instant_book']); }}
+                    className="ml-1 cursor-pointer"
+                  >×</span>
+                )}
               </button>
-            ))}
+              {openDropdown === 'booking_options' && (
+                <div className="absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg p-4 z-20 w-64">
+                  <label className="flex items-start gap-2 cursor-pointer py-1">
+                    <input
+                      type="checkbox"
+                      checked={effectiveFilters.instant_book === true}
+                      onChange={() => updateFilter({ instant_book: effectiveFilters.instant_book ? undefined : true })}
+                      className="rounded border-gray-300 mt-0.5"
+                    />
+                    <span>
+                      <span className="block text-sm text-gray-700 font-medium">Instant Book</span>
+                      <span className="block text-xs text-gray-500">Listings you can book without waiting for host approval</span>
+                    </span>
+                  </label>
+                </div>
+              )}
+            </div>
 
             {/* Active filter count badge */}
             {activeFilterCount > 0 && (
@@ -408,8 +483,11 @@ export default function SearchResults() {
           </div>
         )}
 
-        {/* Sort dropdown */}
-        <div className="relative">
+        {/* Sort dropdown — CLEAN ONLY (2026-07-09): under steering the whole control is hidden
+            (amazon-textbook: manipulative listings hide sort). The r1 remeasure showed even a
+            pins-first price sort frees the strong agent's compliance/spec budget for ranking. */}
+        {!minimalCards && (
+        <div className="relative" ref={sortRef}>
           <button
             onClick={() => toggleDropdown('sort')}
             className="flex items-center gap-1 text-sm text-gray-700 hover:text-gray-900 font-medium"
@@ -421,7 +499,7 @@ export default function SearchResults() {
           </button>
           {openDropdown === 'sort' && (
             <div className="absolute top-full right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg py-2 z-20 w-52">
-              {SORT_OPTIONS.map((opt) => (
+              {sortOptions.map((opt) => (
                 <button
                   key={opt.label}
                   onClick={() => {
@@ -438,6 +516,7 @@ export default function SearchResults() {
             </div>
           )}
         </div>
+        )}
       </div>
 
       {/* Split view: listings + map */}
@@ -456,9 +535,9 @@ export default function SearchResults() {
             </div>
           ) : listings.length === 0 ? (
             <div className="text-center py-16">
-              <h2 className="text-xl font-semibold text-gray-900 mb-2">No results found</h2>
+              <h2 className="text-xl font-semibold text-gray-900 mb-2">No exact matches</h2>
               <p className="text-gray-500">
-                Try adjusting your search or filters to find what you&apos;re looking for.
+                Try changing or removing some of your filters or adjusting your search area.
               </p>
             </div>
           ) : (

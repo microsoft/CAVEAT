@@ -1,14 +1,60 @@
 """Test configuration and fixtures for Mercato API tests."""
 
 import json
+import os
 import pytest
 from datetime import datetime, timedelta, date
 from fastapi.testclient import TestClient
 from sqlmodel import SQLModel, Session, create_engine
 from sqlmodel.pool import StaticPool
 
-from backend.app import create_app
+from backend.app import create_app, get_gate
 from backend.database import get_session
+
+
+def _default_headers() -> dict:
+    """Default storefront-client header for test clients — what the SPA sends.
+
+    Reads the env at fixture time so gate-enabled tests (which set
+    STOREFRONT_CLIENT_TOKEN first) get a passing credential, and legacy tests
+    (no token set -> gate transparent) keep working unchanged."""
+    return {"X-Storefront-Client": os.environ.get("STOREFRONT_CLIENT_TOKEN", "web")}
+
+
+@pytest.fixture(autouse=True)
+def _gate_neutral_env(monkeypatch):
+    """Keep the legacy suites gate/rate-transparent and state-isolated.
+
+    - clears any leaked gate secrets/switches so the token check is off by default;
+    - disables the rate limiter (legacy suites hammer endpoints far past the
+      thresholds); rate tests opt back in with monkeypatch.setenv;
+    - resets the gate's per-process windows/challenge between tests."""
+    for var in ("STOREFRONT_CLIENT_TOKEN", "STOREFRONT_OPS_TOKEN",
+                "AMAZON_API_GATE", "STOREFRONT_API_GATE",
+                "SF_RATE_SHORT_WINDOW", "SF_RATE_SHORT_MAX",
+                "SF_RATE_LONG_WINDOW", "SF_RATE_LONG_MAX",
+                "SF_RATE_SUSTAINED_WINDOW", "SF_RATE_SUSTAINED_MAX",
+                "SF_CHALLENGE_MIN_DELAY", "SF_CHALLENGE_TTL"):
+        monkeypatch.delenv(var, raising=False)
+    monkeypatch.setenv("SF_RATE_ENABLED", "0")
+    gate = get_gate()
+    if gate is not None:
+        gate.reset_state()
+
+    def _clear_steering_caches():
+        try:
+            import backend.experiment_laptops as XL
+            XL._catalog.cache_clear()
+            XL._by_asin.cache_clear()
+            XL._steering.cache_clear()
+        except Exception:
+            pass
+
+    _clear_steering_caches()
+    yield
+    if gate is not None:
+        gate.reset_state()
+    _clear_steering_caches()
 from backend.models import (
     User,
     UserSession,
@@ -75,7 +121,7 @@ def client_fixture(session: Session):
 
     app = create_app()
     app.dependency_overrides[get_session] = get_session_override
-    client = TestClient(app)
+    client = TestClient(app, headers=_default_headers())
     yield client
     app.dependency_overrides.clear()
 
@@ -387,7 +433,7 @@ def seeded_client_fixture(seeded_session: Session):
 
     app = create_app()
     app.dependency_overrides[get_session] = get_session_override
-    client = TestClient(app)
+    client = TestClient(app, headers=_default_headers())
     yield client
     app.dependency_overrides.clear()
 
@@ -401,7 +447,7 @@ def auth_client_fixture(seeded_session: Session):
 
     app = create_app()
     app.dependency_overrides[get_session] = get_session_override
-    client = TestClient(app)
+    client = TestClient(app, headers=_default_headers())
     client.cookies.set("session_token", "test_session_token")
     yield client
     app.dependency_overrides.clear()

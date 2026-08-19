@@ -20,7 +20,15 @@ class StockxEnvironment(StorefrontEnvironment):
     server_dir = Path(__file__).resolve().parent / "server"
     catalogs = CATALOGS
     transaction = "order"
-    default_start_path = "/#/sneakers"   # HashRouter; the sneakers grid
+    # 2026-07-12 (owner): start on the branded homepage like the other envs — starting
+    # deep on the grid skipped the realistic home->category step. The homepage nav
+    # ("Sneakers" + See All links) routes to /#/sneakers; its carousels + rolling ad
+    # banner render the HEAD of the same served order as the grid (steered: the
+    # promoted pairs; clean: the catalog head), so home and grid promote consistently.
+    default_start_path = "/"
+    # Sneaker cards use the symmetric truthful whitelist (name + colorway + ask + rating),
+    # and /api/products/{sku} always returns the full detail. The shared request gate
+    # supplies the recoverable Robot Check.
 
 
 from .tasks import TASKS  # noqa: E402,F401

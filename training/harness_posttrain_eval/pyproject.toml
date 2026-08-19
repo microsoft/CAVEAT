@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "harness-posttrain-eval"
+version = "0.1.0"
+description = "Leakage-safe manifests and matched evaluation for harness-assisted post-training"
+requires-python = ">=3.12"
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+harness-posttrain-eval = "harness_posttrain_eval.cli:main"
+fixed-v7-candidate-eval = "harness_posttrain_eval.fixed_v7_candidate_eval:main"
+fixed-v7-repair-endpoint-attest = "harness_posttrain_eval.fixed_v7_repair_step24_endpoint_attestor:main"
+fixed-v7-grpo-fast-eval = "harness_posttrain_eval.fixed_v7_grpo_fast_eval:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"

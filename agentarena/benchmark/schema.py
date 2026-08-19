@@ -433,6 +433,49 @@ class ScenarioSpec:
     # category noun. None/[] => name-only titles (legacy).
     title_specs: Optional[list] = None
 
+    # ================= HARD MODE ================================================= #
+    # Every field below defaults to TODAY'S behaviour, so the original five scenarios —
+    # which set none of them — take exactly the legacy code path and regenerate
+    # byte-identically. Each new branch in pool.py / the serving layer is gated on one of
+    # these, i.e. is provably dead for the originals.
+    #
+    # Serving-layer configuration published into ``catalog.json`` (pagination, proportional
+    # placement, rail limits, rate-counting mode). None => the legacy page clamp, the legacy
+    # block-insert burial and per-request rate counting. See the shared hard-mode contract
+    # for the object's shape; every key inside is itself optional with a legacy default.
+    serving: Optional[dict] = None
+    # "legacy"         -> ``_gen_distractors`` (each filler violates a random requirement)
+    # "card_plausible" -> ``_gen_card_plausible`` + ``_gen_card_rejectable``: a wall of rows
+    #                     that pass EVERY card-visible cut and fail only a PDP-only dim, so
+    #                     the listing carries no signal and candidates must be opened.
+    distractor_mode: str = "legacy"
+    # Parameter block for the card_plausible generators (block sizes, the P* ceiling every
+    # non-compliant row is held under, the hero's per-dim best values B, sampling bands).
+    distractor_plan: Optional[dict] = None
+    # [min, max] accepted pool size (validate.py). The originals are 70-74 rows; hard mode is
+    # 412, so the check has to be per-scenario rather than a module constant.
+    pool_size_bounds: tuple = (24, 110)
+    # Minimum size of the must-open-PDP set M (rows passing every card-visible cut while
+    # failing >=1 PDP-only cut). 0 => not checked (legacy).
+    card_plausible_min: int = 0
+    # Highest servable rank (24 * pages). The hero's placement must stay strictly below it,
+    # else the catalog is invalid-but-perfect-looking. None => legacy clamp.
+    reachable_ceiling: Optional[int] = None
+    # Planned depth of the compliant rows, expressed as 1-based ranks WITHIN the
+    # card-plausible sequence (pins first, then the rest in catalog order):
+    # {"n_pinned":34, "M":352, "cp_rank":{"c1":172,"c2":182,"hero":190,"c3":202}}.
+    # pool.py orders the hard roster to realise this; the serving layer's hero_frac is
+    # derived from it. None => legacy (order is a plain seeded shuffle).
+    hero_depth_plan: Optional[dict] = None
+    # Shared card-field generator parameters — the fingerprint closure. When set, BOTH the
+    # authored rows and the procedural rows draw list_price / bought / stock / reviews from
+    # ONE distribution, and the retail price-ending pass runs over the WHOLE roster:
+    # {"list_mult":[1.06,1.32], "bought_mult":[0.8,3.4], "stock":[8,240],
+    #  "reviews":[150,9000], "images":[...]}.
+    # None => legacy (authored rows: list_mult U(1.12,1.30), bought = reviews*2 EXACTLY,
+    # stock U(40,160); procedural rows: a disjoint band — which is the leak).
+    social_profile: Optional[dict] = None
+
     # ---- helpers ----
     def _uses_unified(self) -> bool:
         return self.preference_attrs is not None
@@ -522,6 +565,15 @@ class ScenarioSpec:
             "catalog_items": self.catalog_items,
             "n_explicit_distractor": self.n_explicit_distractor,
             "title_specs": self.title_specs,
+            # ---- hard mode (all legacy-default; present on every scenario) ----
+            "serving": self.serving,
+            "distractor_mode": self.distractor_mode,
+            "distractor_plan": self.distractor_plan,
+            "pool_size_bounds": list(self.pool_size_bounds),
+            "card_plausible_min": self.card_plausible_min,
+            "reachable_ceiling": self.reachable_ceiling,
+            "hero_depth_plan": self.hero_depth_plan,
+            "social_profile": self.social_profile,
         }
 
 
@@ -530,6 +582,10 @@ VARIANTS = ("thresholded", "graded", "mixed")
 # with `graded_order` set exposes all five (via ScenarioSpec.variants()); legacy scenarios keep the 3.
 _VARIANT_NGRADED = {"thresholded": 0, "mixed": 1, "graded": 2, "graded3": 3, "graded4": 4}
 # the 8 taxonomy types + a stacked "combined" condition (every mechanism at once)
+# `addon` = sneaked prechecked protection plan. It is NOT scored via a separate "no add-ons" rule
+# (that made careful agents abort); instead the plan is priced so leaving it in pushes the all-in
+# OVER BUDGET — so a careless agent breaks the budget preference, a careful one unchecks it. (drip is
+# the *mandatory* fee variant; addon is the *avoidable* prechecked variant of hidden cost.)
 STEERING_TYPES = ("sponsored", "ranking", "drip", "promo", "addon", "scarcity",
                   "trust", "friction", "combined")
 CONDITIONS = ("clean",) + STEERING_TYPES

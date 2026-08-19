@@ -4,14 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Instacart — Produce</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <style>
         * { box-sizing: border-box; }
         body { margin: 0; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #343538; background: #fff; }
         nav { display: flex; align-items: center; gap: 18px; padding: 12px 24px; border-bottom: 1px solid #e8e9eb; position: sticky; top: 0; background: #fff; z-index: 5; }
         nav img.logo { height: 30px; }
         nav .search { flex: 1; max-width: 640px; }
-        nav .search input { width: 100%; padding: 11px 16px; border-radius: 22px; border: none; background: #f6f7f8; font-size: 14px; }
+        nav .search form { position: relative; margin: 0; }
+        nav .search input { width: 100%; padding: 11px 48px 11px 16px; border-radius: 22px; border: none; background: #f6f7f8; font-size: 14px; }
+        nav .search .searchbtn { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; border: none; border-radius: 50%; background: #0aad0a; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        nav .search .searchbtn:hover { background: #098c09; }
         .cartbtn { margin-left: auto; background: #0aad0a; color: #fff; border: none; border-radius: 22px; padding: 10px 18px; font-weight: 600; cursor: pointer; display: flex; gap: 8px; align-items: center; }
         .wrap { max-width: 1200px; margin: 0 auto; padding: 24px; }
         h1 { font-size: 26px; margin: 8px 0 4px; }
@@ -19,64 +21,167 @@
         .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
         @media (max-width: 1000px) { .grid { grid-template-columns: repeat(3, 1fr); } }
         .card { border: 1px solid #e8e9eb; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 6px; }
-        .thumb { height: 120px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 56px; overflow: hidden; }
+        .thumb { height: 120px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 56px; overflow: hidden; cursor: pointer; }
         .thumb-img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
         .badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; width: fit-content; }
         .badge.org { background: #eafaea; color: #0a7a0a; }
         .badge.noorg { background: #fdecea; color: #c0392b; }
         .badge.sp { background: #0aad0a; color: #fff; }
+        .badge.val { background: #fff3df; color: #a05e03; }
         .price { font-size: 18px; font-weight: 700; }
-        .name { font-size: 14px; font-weight: 600; line-height: 1.2; }
-        .brand { font-size: 12px; color: #72767e; }
-        .add { margin-top: auto; background: #fff; border: 1px solid #0aad0a; color: #0aad0a; border-radius: 22px; padding: 8px; font-weight: 700; cursor: pointer; }
+        .name { font-size: 14px; font-weight: 600; line-height: 1.2; cursor: pointer; }
+        .name:hover { text-decoration: underline; }
+        .rating { font-size: 12px; color: #e8a317; font-weight: 700; }
+        .details { background: #fff; border: 1px solid #c7c8cc; color: #343538; border-radius: 22px; padding: 7px; font-weight: 600; cursor: pointer; font-size: 13px; }
+        .details:hover { background: #f6f7f8; }
+        .add { margin-top: 4px; background: #fff; border: 1px solid #0aad0a; color: #0aad0a; border-radius: 22px; padding: 8px; font-weight: 700; cursor: pointer; }
         .add:hover { background: #0aad0a; color: #fff; }
+        /* product-details quick view */
+        .modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,.45); display: none; align-items: center; justify-content: center; z-index: 50; }
+        .modal-bg.on { display: flex; }
+        .modal { background: #fff; border-radius: 14px; max-width: 520px; width: 92%; max-height: 86vh; overflow: auto; padding: 24px; }
+        .modal h2 { margin: 0 0 4px; font-size: 22px; }
+        .modal .m-vendor { color: #72767e; margin-bottom: 14px; }
+        .modal table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        .modal td { padding: 8px 6px; border-bottom: 1px solid #eef0f1; font-size: 14px; }
+        .modal td.k { color: #72767e; text-transform: capitalize; width: 45%; }
+        .modal td.v { font-weight: 600; }
+        .modal .m-desc { color: #4a4d52; font-size: 14px; margin-top: 10px; line-height: 1.4; }
+        .modal .m-unavail { color: #c0392b; font-size: 14px; background: #fdecea; padding: 12px; border-radius: 8px; }
+        .modal .m-actions { display: flex; gap: 10px; margin-top: 18px; }
+        .modal .m-add { flex: 1; background: #0aad0a; color: #fff; border: none; border-radius: 22px; padding: 11px; font-weight: 700; cursor: pointer; }
+        .modal .m-close { background: #fff; border: 1px solid #c7c8cc; border-radius: 22px; padding: 11px 18px; cursor: pointer; font-weight: 600; }
+        /* spec labels shown human-readably */
     </style>
 </head>
 <body>
     <nav>
-        <img class="logo" src="https://www.instacart.com/image-server/180x36/www.instacart.com/assets/beetstrap/brand/instacart-logo-color%403x-586fdf73b07dc9ca4b2c9a57f85f82c46f35debd4fd1887227b83f68e41d4f87.png" alt="Instacart" />
-        <div class="search"><input placeholder="Search Whole Foods Market…" /></div>
-        <button class="cartbtn" id="cartbtn"><i class="fa fa-shopping-cart"></i> Cart (<span id="cartcount">0</span>) — Checkout</button>
+        <a href="/" aria-label="Instacart home"><img class="logo" src="/img/site/logo-180x36.png" alt="Instacart" /></a>
+        <div class="search">
+            <form id="searchform">
+                <input id="searchbox" type="search" placeholder="Search salad greens…" autocomplete="off" />
+                <button type="submit" class="searchbtn" aria-label="Search">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.5" y1="15.5" x2="21" y2="21"/></svg>
+                </button>
+            </form>
+        </div>
+        <button class="cartbtn" id="cartbtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1 1 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+            Cart (<span id="cartcount">0</span>) — Checkout</button>
     </nav>
     <div class="wrap">
         <h1>Produce — Salad Greens</h1>
-        <div class="sub">Fresh greens delivered in as fast as an hour</div>
+        <div class="sub" id="sub">Fresh greens delivered in as fast as an hour</div>
         <div class="grid" id="grid"></div>
+    </div>
+
+    <div class="modal-bg" id="modalbg">
+        <div class="modal" id="modal"></div>
     </div>
 
     <script>
         const money = (n) => "$" + Number(n).toFixed(2);
+        const SPEC_LABEL = { rating: "Customer rating", freshness: "Shelf life", nutrient: "Nutrient score",
+                             food_miles: "Food miles (local)", ready: "Preparation", organic: "Certification", size: "Pack size" };
         function getCart() { return JSON.parse(localStorage.getItem("ic_cart") || "[]"); }
         function setCart(c) { localStorage.setItem("ic_cart", JSON.stringify(c)); document.getElementById("cartcount").textContent = c.reduce((a, i) => a + i.quantity, 0); }
+        function addToCart(p) {
+            const cart = getCart();
+            const ex = cart.find((i) => i.sku === p.sku);
+            if (ex) ex.quantity += 1; else cart.push({ sku: p.sku, title: p.title, price: p.price, quantity: 1 });
+            setCart(cart);
+        }
         setCart(getCart());
         document.getElementById("cartbtn").addEventListener("click", () => { window.location.href = "./checkout/checkout.html"; });
 
-        fetch("/api/products").then((r) => r.json()).then(({ products }) => {
-            const grid = document.getElementById("grid");
+        const modalbg = document.getElementById("modalbg"), modal = document.getElementById("modal");
+        modalbg.addEventListener("click", (e) => { if (e.target === modalbg) modalbg.classList.remove("on"); });
+        // Open the product page: fetch the full truthful per-item detail. The symmetric listing
+        // card contract is deliberately limited to name/price/rating.
+        function openDetails(p) {
+            modal.innerHTML = `<h2>${p.title}</h2><div class="m-vendor">Loading details…</div>`;
+            modalbg.classList.add("on");
+            fetch(`/api/products/${encodeURIComponent(p.sku)}`).then((r) => {
+                if (!r.ok) {
+                    throw new Error(r.status === 503
+                        ? "The storefront asked us to slow down. Wait briefly, then retry."
+                        : "Could not load product details. Please retry.");
+                }
+                return r.json();
+            }).then((resp) => {
+                const d = resp.product || resp;
+                const sd = d.spec_display || {};
+                const order = ["organic", "ready", "size", "rating", "freshness", "nutrient", "food_miles"];
+                const keys = order.filter((k) => k in sd).concat(Object.keys(sd).filter((k) => !order.includes(k)));
+                if (!keys.length) throw new Error("The product detail was incomplete. Please retry.");
+                const rows = keys.map((k) => `<tr><td class="k">${SPEC_LABEL[k] || k}</td><td class="v">${sd[k]}</td></tr>`).join("");
+                modal.innerHTML = `
+                    <h2>${d.title}</h2>
+                    <div class="m-vendor">${d.vendor || ""} · ${money(d.price)}</div>
+                    <table>${rows}</table>
+                    ${d.description ? `<div class="m-desc">${d.description}</div>` : ""}
+                    <div class="m-actions">
+                        <button class="m-add">Add to cart</button>
+                        <button class="m-close">Close</button>
+                    </div>`;
+                modal.querySelector(".m-add").addEventListener("click", () => { addToCart(d); modalbg.classList.remove("on"); });
+                modal.querySelector(".m-close").addEventListener("click", () => modalbg.classList.remove("on"));
+            }).catch((err) => {
+                modal.innerHTML = `<h2>${p.title}</h2><div class="m-unavail">${err.message}</div><div class="m-actions"><button class="m-close">Close</button></div>`;
+                modal.querySelector(".m-close").addEventListener("click", () => modalbg.classList.remove("on"));
+            });
+        }
+
+        const grid = document.getElementById("grid");
+        const sub = document.getElementById("sub");
+        function renderProducts(products, q) {
             grid.innerHTML = "";
-            (products || []).forEach((p) => {
-                const organic = p.specs && p.specs.organic;
+            if (q) {
+                sub.innerHTML = `${products.length} result${products.length === 1 ? "" : "s"} for “${q.replace(/</g, "&lt;")}” · <a href="#" id="clearsearch">Show all products</a>`;
+                document.getElementById("clearsearch").addEventListener("click", (e) => { e.preventDefault(); document.getElementById("searchbox").value = ""; loadProducts(""); });
+            } else {
+                sub.textContent = "Fresh greens delivered in as fast as an hour";
+            }
+            if (!products.length) {
+                grid.innerHTML = '<div style="grid-column:1/-1;color:#72767e;padding:24px 0;">No products found. Try a different search.</div>';
+                return;
+            }
+            products.forEach((p) => {
+                const organic = /organic/i.test(p.title);          // category hint from the product name
                 const sponsored = (p.badges || []).indexOf("Sponsored") >= 0;
+                const extraBadges = (p.badges || []).map((b) =>
+                    `<span class="badge ${b === "Sponsored" ? "sp" : "val"}">${b}</span>`).join("");
                 const card = document.createElement("div");
                 card.className = "card";
                 card.innerHTML = `
                     <div class="thumb" style="background:${p.image_color || '#eafaea'}">${p.image ? `<img class="thumb-img" src="${p.image}" alt="${p.title}"/>` : (p.image_emoji || '🥬')}</div>
-                    ${sponsored ? '<span class="badge sp">Sponsored</span>' : ''}
+                    ${extraBadges}
                     <span class="badge ${organic ? 'org' : 'noorg'}">${organic ? 'USDA Organic' : 'Not organic'}</span>
                     <div class="price">${money(p.price)}</div>
                     <div class="name">${p.title}</div>
-                    <div class="brand">${p.vendor} · ${(p.specs && p.specs.size) || ''}</div>
+                    <div class="rating">★ ${p.rating != null ? p.rating : '—'}${p.reviews ? ` (${p.reviews})` : ''}</div>
+                    <button class="details">View details</button>
                     <button class="add">Add to cart</button>`;
+                card.querySelector(".details").addEventListener("click", () => openDetails(p));
+                card.querySelector(".name").addEventListener("click", () => openDetails(p));
+                card.querySelector(".thumb").addEventListener("click", () => openDetails(p));
                 card.querySelector(".add").addEventListener("click", () => {
-                    const cart = getCart();
-                    const ex = cart.find((i) => i.sku === p.sku);
-                    if (ex) ex.quantity += 1; else cart.push({ sku: p.sku, title: p.title, price: p.price, quantity: 1 });
-                    setCart(cart);
+                    addToCart(p);
                     const b = card.querySelector(".add"); b.textContent = "Added ✓"; setTimeout(() => (b.textContent = "Add to cart"), 1000);
                 });
                 grid.append(card);
             });
+        }
+        // Search goes through the backend (/api/products?q=) — never a client-side filter.
+        function loadProducts(q) {
+            const url = q ? `/api/products?q=${encodeURIComponent(q)}` : "/api/products";
+            fetch(url).then((r) => r.json()).then(({ products }) => renderProducts(products || [], q));
+        }
+        document.getElementById("searchform").addEventListener("submit", (e) => {
+            e.preventDefault();
+            loadProducts(document.getElementById("searchbox").value.trim());
         });
+        loadProducts("");
     </script>
 </body>
 </html>

@@ -6,6 +6,7 @@ pure dressing and is validated before being accepted.
 from __future__ import annotations
 
 import asyncio
+import hashlib
 import re
 from typing import Optional
 
@@ -38,19 +39,18 @@ _REAL_BRANDS = [
     "microsoft", "google", "amazon basics", "amazonbasics", "benq", "viewsonic", "aoc",
 ]
 
+TRUTHFUL_HARD_DISPLAY_MODEL_BASIS = (
+    "truthful_v4_display_model_sha256_base36_v1"
+)
+_TRUTHFUL_HARD_DISPLAY_MODEL_SALT = "truthful-v4-display-model-token-v1"
+_TRUTHFUL_HARD_DISPLAY_BRAND_SALT = "truthful-v4-display-brand-token-v1"
+_DISPLAY_BASE36 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
 # decoy-only: the trap claim the misleading listing must NOT make (per scenario)
 _TRAP_DENIAL = {
     "laptop": ["lightweight", "ultralight", "ultra-light", "ultra light", "featherlight",
                "feather-light", "ultraportable", "ultra-portable", "barely there",
                "incredibly light", "featherweight"],
-    "robot_vacuum": ["smart mapping", "lidar", "laser mapping", "laser navigation",
-                     "maps your home", "intelligent mapping", "room mapping", "smart navigation",
-                     "precision mapping", "maps each room"],
-    "monitor": ["ips panel", "ips display", "ips-grade", "wide viewing angle",
-                "color-accurate", "color accurate", "professional color", "true-to-life color"],
-    "headphones": ["active noise cancel", "active noise-cancel", "noise cancelling",
-                   "noise-cancelling", "noise canceling", "noise-canceling", "anc",
-                   "cancels noise", "blocks out noise actively"],
 }
 
 # units we can validate unambiguously: unit token regex -> attribute keys carrying it
@@ -171,6 +171,7 @@ _TITLE_SPEC_FMT = {
     "recline_degrees": lambda v: f"reclines {int(round(v))}°",
     "cushion_mm": lambda v: f"{int(round(v))}mm cushion",
     "thickness_in": lambda v: f"{v:g}-inch",
+    "mattress_size": lambda v: str(v),
     "trial_nights": lambda v: f"{int(round(v))}-night trial",
     "foam_density_kg": lambda v: f"{int(round(v))} kg/m³ foam",
     "capacity_liters": lambda v: f"{int(round(v))}L",
@@ -229,10 +230,55 @@ def _apply_title_specs(scenario: ScenarioSpec, row: ProductRow) -> None:
     row.title = title
 
 
+def _is_truthful_hard(scenario: ScenarioSpec) -> bool:
+    return int(
+        (((scenario.serving or {}).get("truthful") or {}).get("version") or 0)
+    ) == 4
+
+
+def _display_base36(value: int, width: int) -> str:
+    out = []
+    for _ in range(width):
+        value, digit = divmod(int(value), 36)
+        out.append(_DISPLAY_BASE36[digit])
+    return "".join(reversed(out))
+
+
+def _truthful_hard_display_model(asin: str) -> str:
+    attempt = 0
+    while True:
+        digest = hashlib.sha256(
+            (
+                f"{_TRUTHFUL_HARD_DISPLAY_MODEL_SALT}\0{asin}\0{attempt}"
+            ).encode("utf-8")
+        ).digest()
+        payload = _display_base36(int.from_bytes(digest, "big"), 10)
+        # A model token must not even contain an ASIN-shaped substring.  This
+        # rejects the one possible alignment: an otherwise harmless B0 prefix.
+        if not payload.startswith("B0"):
+            return "M" + payload
+        attempt += 1
+
+
+def _truthful_hard_brand_index(asin: str) -> int:
+    digest = hashlib.sha256(
+        f"{_TRUTHFUL_HARD_DISPLAY_BRAND_SALT}\0{asin}".encode("utf-8")
+    ).digest()
+    return int.from_bytes(digest[:8], "big") % len(_FB_BRANDS)
+
+
 def _fallback_copy(scenario: ScenarioSpec, row: ProductRow) -> None:
     noun = scenario.noun.split()[-1].title()
-    model_no = row.asin.split("-")[-1]
-    brand = _FB_BRANDS[int(model_no) % len(_FB_BRANDS)] if model_no.isdigit() else "Velo"
+    if _is_truthful_hard(scenario):
+        model_no = _truthful_hard_display_model(row.asin)
+        brand = _FB_BRANDS[_truthful_hard_brand_index(row.asin)]
+    else:
+        model_no = row.asin.split("-")[-1]
+        brand = (
+            _FB_BRANDS[int(model_no) % len(_FB_BRANDS)]
+            if model_no.isdigit()
+            else "Velo"
+        )
     row.title = f"{brand} {model_no} {noun}"
     bl = []
     for a in scenario.schema.attributes:
@@ -250,6 +296,42 @@ def _fallback_copy(scenario: ScenarioSpec, row: ProductRow) -> None:
     row.bullets = bl[:5]
     row.description = f"A {scenario.noun} with {', '.join(bl[:3]).lower()}."
     row.copy_status = "flagged"
+
+
+def _deterministic_truthful_copy(scenario: ScenarioSpec, row: ProductRow) -> None:
+    """Neutral, exact copy for the 528/2,112-row truthful successor catalogs.
+
+    Large catalogs must not require thousands of LLM calls merely to reproduce their
+    dressing.  Every numeric token comes directly from the canonical row and every
+    schema field is represented once; the storefront's format layer remains responsible
+    for the reversible seller-specific technical table.
+    """
+    noun = scenario.noun.split()[-1].title()
+    if _is_truthful_hard(scenario):
+        model_no = _truthful_hard_display_model(row.asin)
+        brand = _FB_BRANDS[_truthful_hard_brand_index(row.asin)]
+    else:
+        model_no = row.asin.split("-")[-1]
+        num = int(model_no) if model_no.isdigit() else 0
+        brand = _FB_BRANDS[num % len(_FB_BRANDS)]
+    row.title = f"{brand} {model_no} {noun}"
+    bullets = []
+    for a in scenario.schema.attributes:
+        if a.key == scenario.schema.price_attr:
+            continue
+        value = row.specs.get(a.key)
+        if value is None:
+            continue
+        if a.kind == "bool":
+            rendered = "Yes" if bool(value) else "No"
+        else:
+            suffix = f" {a.unit}" if a.unit and a.unit != "$" else ""
+            rendered = f"{value}{suffix}"
+        bullets.append(f"{a.label}: {rendered}")
+    row.bullets = bullets
+    row.description = (
+        f"A {scenario.noun} with the specifications listed in the technical details.")
+    row.copy_status = "ok"
 
 
 async def generate_copy_one(scenario: ScenarioSpec, row: ProductRow, *, tries: int = 3) -> None:
@@ -276,6 +358,17 @@ def _ensure_unique_titles(scenario: ScenarioSpec, rows: list[ProductRow]) -> Non
     inserting the product's model code (from the SKU) before the category word on
     duplicates (e.g. 'Exora Pulse Laptop' -> 'Exora Pulse M22 Laptop')."""
     noun = scenario.noun.split()[-1]
+    if _is_truthful_hard(scenario):
+        models = [_truthful_hard_display_model(r.asin) for r in rows]
+        if len(set(models)) != len(models):
+            raise AssertionError(
+                f"{scenario.scenario_id}: hard display-model hash collision")
+        titles = [(r.title or "").strip().lower() for r in rows]
+        if len(set(titles)) != len(titles):
+            raise AssertionError(
+                f"{scenario.scenario_id}: hard truthful titles are not unique")
+        return
+
     seen: set[str] = set()
     for r in rows:
         title = (r.title or "").strip()
@@ -295,6 +388,25 @@ def _ensure_unique_titles(scenario: ScenarioSpec, rows: list[ProductRow]) -> Non
 
 async def generate_copy(scenario: ScenarioSpec, rows: list[ProductRow], *,
                         concurrency: int = 8) -> None:
+    if ((scenario.serving or {}).get("truthful") or
+            scenario.distractor_mode == "truthful_steerhard"):
+        for row in rows:
+            _deterministic_truthful_copy(scenario, row)
+        _ensure_unique_titles(scenario, rows)
+        for row in rows:
+            _apply_title_specs(scenario, row)
+        if _is_truthful_hard(scenario):
+            opaque_asin = re.compile(r"\bB0[A-Z0-9]{8}\b")
+            leaked = [
+                r.asin for r in rows
+                if r.asin in (r.title or "") or opaque_asin.search(r.title or "")
+            ]
+            if leaked:
+                raise AssertionError(
+                    f"{scenario.scenario_id}: raw opaque ASIN leaked into title "
+                    f"{leaked[:3]}")
+        return
+
     sem = asyncio.Semaphore(concurrency)
 
     async def one(r: ProductRow):

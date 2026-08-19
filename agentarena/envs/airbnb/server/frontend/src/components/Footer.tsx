@@ -1,90 +1,76 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FiX } from 'react-icons/fi';
+import { useAppContext } from '../App';
 
-/* ── Inspiration tab data ── */
+/* ── Inspiration tab data (India inventory) ── */
 const INSPIRATION_TABS = [
   'Popular',
-  'Arts & Culture',
-  'Outdoors',
-  'Mountains',
   'Beach',
+  'Countryside',
+  'Cities',
   'Unique stays',
-  'Categories',
-  'Things to do',
 ] as const;
 
 const DESTINATION_DATA: Record<string, { city: string; description: string }[]> = {
   Popular: [
-    { city: 'Boston', description: 'Entire home' },
-    { city: 'Cambridge', description: 'Apartment rentals' },
-    { city: 'Provincetown', description: 'Beach house rentals' },
-    { city: 'Cape Cod', description: 'Cottage rentals' },
-    { city: 'Salem', description: 'Vacation rentals' },
-    { city: 'Martha\'s Vineyard', description: 'House rentals' },
-    { city: 'Nantucket', description: 'Vacation rentals' },
-    { city: 'Plymouth', description: 'Cabin rentals' },
-    { city: 'Newport', description: 'Apartment rentals' },
-    { city: 'Portland', description: 'Vacation rentals' },
-    { city: 'Bar Harbor', description: 'House rentals' },
-    { city: 'Kennebunkport', description: 'Cottage rentals' },
-  ],
-  'Arts & Culture': [
-    { city: 'Boston', description: 'Rentals with museums' },
-    { city: 'Cambridge', description: 'Historic walks' },
-    { city: 'Salem', description: 'Cultural experiences' },
-    { city: 'Provincetown', description: 'Art gallery visits' },
-    { city: 'Newport', description: 'Mansion tours' },
-    { city: 'Plymouth', description: 'Historical tours' },
-  ],
-  Outdoors: [
-    { city: 'Cape Cod', description: 'Nature trips' },
-    { city: 'Acadia', description: 'Park stays' },
-    { city: 'White Mountains', description: 'Hiking trips' },
-    { city: 'Berkshires', description: 'Outdoor adventures' },
-    { city: 'Martha\'s Vineyard', description: 'Beach activities' },
-    { city: 'Nantucket', description: 'Kayaking trips' },
-  ],
-  Mountains: [
-    { city: 'White Mountains', description: 'Cabin rentals' },
-    { city: 'Berkshires', description: 'Mountain retreats' },
-    { city: 'Green Mountains', description: 'Ski lodges' },
-    { city: 'Killington', description: 'Winter stays' },
-    { city: 'Stowe', description: 'Mountain homes' },
-    { city: 'Woodstock', description: 'Countryside stays' },
+    { city: 'Goa', description: 'Villa rentals' },
+    { city: 'Mumbai', description: 'Apartment rentals' },
+    { city: 'Pune', description: 'Vacation rentals' },
+    { city: 'Jaipur', description: 'Heritage homes' },
+    { city: 'Anjuna', description: 'Cottage rentals' },
+    { city: 'Baga', description: 'Beach stays' },
+    { city: 'Calangute', description: 'Holiday homes' },
+    { city: 'Candolim', description: 'Villa rentals' },
+    { city: 'Vagator', description: 'Cliffside stays' },
+    { city: 'Palolem', description: 'Beach huts' },
+    { city: 'Maharashtra', description: 'Weekend getaways' },
+    { city: 'Rajasthan', description: 'Palace stays' },
   ],
   Beach: [
-    { city: 'Cape Cod', description: 'Beachfront stays' },
-    { city: 'Martha\'s Vineyard', description: 'Beach houses' },
-    { city: 'Nantucket', description: 'Oceanfront homes' },
-    { city: 'Provincetown', description: 'Beach rentals' },
-    { city: 'Narragansett', description: 'Beach cottages' },
-    { city: 'Block Island', description: 'Seaside stays' },
+    { city: 'Goa', description: 'Beachfront stays' },
+    { city: 'Palolem', description: 'Beach cottages' },
+    { city: 'Anjuna', description: 'Seaside homes' },
+    { city: 'Baga', description: 'Beach villas' },
+    { city: 'Candolim', description: 'Oceanview stays' },
+    { city: 'Morjim', description: 'Quiet beach stays' },
+  ],
+  Countryside: [
+    { city: 'Rajasthan', description: 'Desert retreats' },
+    { city: 'Jaipur', description: 'Countryside homes' },
+    { city: 'Pune', description: 'Hillside stays' },
+    { city: 'Lonavala', description: 'Valley cottages' },
+    { city: 'Mahabaleshwar', description: 'Hill station stays' },
+    { city: 'Coorg', description: 'Plantation stays' },
+  ],
+  Cities: [
+    { city: 'Mumbai', description: 'City apartments' },
+    { city: 'Pune', description: 'Modern flats' },
+    { city: 'Jaipur', description: 'Old-town stays' },
+    { city: 'Delhi', description: 'City rentals' },
+    { city: 'Bengaluru', description: 'Tech-hub stays' },
+    { city: 'Hyderabad', description: 'City homes' },
   ],
   'Unique stays': [
-    { city: 'Cape Cod', description: 'Treehouses' },
-    { city: 'Vermont', description: 'Tiny homes' },
-    { city: 'Maine', description: 'Lighthouse stays' },
-    { city: 'Berkshires', description: 'Yurt rentals' },
-    { city: 'New Hampshire', description: 'Glamping sites' },
-    { city: 'Connecticut', description: 'Barn stays' },
-  ],
-  Categories: [
-    { city: 'Entire homes', description: 'Comfortable spaces' },
-    { city: 'Cabins', description: 'Cosy retreats' },
-    { city: 'Apartments', description: 'City living' },
-    { city: 'Treehouses', description: 'Unique stays' },
-    { city: 'Lakefront', description: 'Waterside homes' },
-    { city: 'Beachfront', description: 'Ocean views' },
-  ],
-  'Things to do': [
-    { city: 'Freedom Trail', description: 'Walking tours' },
-    { city: 'Whale watching', description: 'Ocean experiences' },
-    { city: 'Lobster dinners', description: 'Food experiences' },
-    { city: 'Sailing trips', description: 'Water activities' },
-    { city: 'Brewery tours', description: 'Craft beer tasting' },
-    { city: 'Kayaking', description: 'Water adventures' },
+    { city: 'Goa', description: 'Portuguese villas' },
+    { city: 'Jaipur', description: 'Haveli stays' },
+    { city: 'Palolem', description: 'Eco huts' },
+    { city: 'Vagator', description: 'Cliff cottages' },
+    { city: 'Rajasthan', description: 'Fort stays' },
+    { city: 'Kerala', description: 'Houseboat stays' },
   ],
 };
+
+const LANGUAGES = [
+  { code: 'en-US', label: 'English (US)' },
+  { code: 'en-GB', label: 'English (UK)' },
+  { code: 'hi', label: 'हिन्दी (Hindi)' },
+  { code: 'fr', label: 'Français' },
+  { code: 'de', label: 'Deutsch' },
+  { code: 'es', label: 'Español' },
+  { code: 'pt', label: 'Português' },
+  { code: 'ja', label: '日本語 (Japanese)' },
+];
 
 /* ── Footer links ── */
 const SUPPORT_LINKS = [
@@ -115,7 +101,11 @@ const AIRBNB_LINKS = [
 ];
 
 export default function Footer() {
+  const { currencies, selectedCurrency, setSelectedCurrency, addToast } = useAppContext();
   const [activeTab, setActiveTab] = useState<string>('Popular');
+  const [langModal, setLangModal] = useState(false);
+  const [currencyModal, setCurrencyModal] = useState(false);
+  const [language, setLanguage] = useState(LANGUAGES[0]);
 
   const destinations = DESTINATION_DATA[activeTab] || [];
 
@@ -227,44 +217,111 @@ export default function Footer() {
               <Link to="/help" className="hover:underline">Your Privacy Choices</Link>
             </div>
 
-            {/* Right: language, currency, social */}
+            {/* Right: language & currency */}
             <div className="flex items-center gap-4">
-              <button className="flex items-center gap-1.5 text-sm font-medium text-gray-700 hover:underline">
+              <button
+                onClick={() => setLangModal(true)}
+                className="flex items-center gap-1.5 text-sm font-medium text-gray-700 hover:underline"
+              >
                 <svg viewBox="0 0 16 16" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <circle cx="8" cy="8" r="6.5" />
                   <path d="M1.5 8h13M8 1.5c-2 2.5-2 11 0 13M8 1.5c2 2.5 2 11 0 13" />
                 </svg>
-                English (US)
+                {language.label}
               </button>
-              <button className="text-sm font-medium text-gray-700 hover:underline">
-                $ USD
+              <button
+                onClick={() => setCurrencyModal(true)}
+                className="text-sm font-medium text-gray-700 hover:underline"
+              >
+                {selectedCurrency ? `${selectedCurrency.symbol} ${selectedCurrency.code}` : '$ USD'}
               </button>
-
-              {/* Social icons */}
-              <div className="flex items-center gap-3 ml-2">
-                {/* Facebook */}
-                <a href="#" className="text-gray-700 hover:text-gray-900" aria-label="Facebook">
-                  <svg viewBox="0 0 24 24" className="w-[18px] h-[18px]" fill="currentColor">
-                    <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z" />
-                  </svg>
-                </a>
-                {/* Twitter / X */}
-                <a href="#" className="text-gray-700 hover:text-gray-900" aria-label="Twitter">
-                  <svg viewBox="0 0 24 24" className="w-[18px] h-[18px]" fill="currentColor">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                  </svg>
-                </a>
-                {/* Instagram */}
-                <a href="#" className="text-gray-700 hover:text-gray-900" aria-label="Instagram">
-                  <svg viewBox="0 0 24 24" className="w-[18px] h-[18px]" fill="currentColor">
-                    <path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.25a1.25 1.25 0 1 0-2.5 0 1.25 1.25 0 0 0 2.5 0zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z" />
-                  </svg>
-                </a>
-              </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Language modal */}
+      {langModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40" onClick={() => setLangModal(false)}>
+          <div className="bg-white rounded-2xl shadow-xl w-full max-w-md mx-4 p-6" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-gray-900">Choose a language</h3>
+              <button onClick={() => setLangModal(false)} className="p-1.5 rounded-full hover:bg-gray-100" aria-label="Close">
+                <FiX className="w-4 h-4" />
+              </button>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              {LANGUAGES.map((lang) => (
+                <button
+                  key={lang.code}
+                  onClick={async () => {
+                    setLanguage(lang);
+                    setLangModal(false);
+                    try {
+                      await fetch('/api/settings', {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ preferred_language: lang.code }),
+                      });
+                    } catch { /* ignore */ }
+                    addToast('success', `Language set to ${lang.label}`);
+                  }}
+                  className={`text-left px-3 py-2.5 rounded-lg border text-sm transition ${
+                    language.code === lang.code
+                      ? 'border-gray-900 bg-gray-50 font-semibold'
+                      : 'border-gray-200 hover:border-gray-400'
+                  }`}
+                >
+                  {lang.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Currency modal */}
+      {currencyModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40" onClick={() => setCurrencyModal(false)}>
+          <div className="bg-white rounded-2xl shadow-xl w-full max-w-md mx-4 p-6 max-h-[80vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-gray-900">Choose a currency</h3>
+              <button onClick={() => setCurrencyModal(false)} className="p-1.5 rounded-full hover:bg-gray-100" aria-label="Close">
+                <FiX className="w-4 h-4" />
+              </button>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              {currencies.map((currency) => (
+                <button
+                  key={currency.code}
+                  onClick={async () => {
+                    setSelectedCurrency(currency);
+                    setCurrencyModal(false);
+                    try {
+                      await fetch('/api/settings', {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ preferred_currency: currency.code }),
+                      });
+                    } catch { /* ignore */ }
+                  }}
+                  className={`text-left px-3 py-2.5 rounded-lg border text-sm transition ${
+                    selectedCurrency?.code === currency.code
+                      ? 'border-gray-900 bg-gray-50 font-semibold'
+                      : 'border-gray-200 hover:border-gray-400'
+                  }`}
+                >
+                  <span className="block">{currency.name}</span>
+                  <span className="block text-xs text-gray-500">{currency.symbol} · {currency.code}</span>
+                </button>
+              ))}
+              {currencies.length === 0 && (
+                <p className="col-span-2 text-sm text-gray-400 px-1 py-2">No currencies available</p>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </footer>
   );
 }

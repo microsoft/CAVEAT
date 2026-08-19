@@ -4,17 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
-    <!-- <link rel="stylesheet" href="login.css"> -->
-    <!-- Poly Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poly&display=swap" rel="stylesheet">
-    <!-- Lato Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-    
+    <title>Instacart — Log in</title>
 </head>
 <style>
     #container{
@@ -179,7 +169,7 @@ p{
                    <button id="google" style="text-align: center;">Google</button>
                </div>
                <hr>
-               <h2 style="font-size: small; text-align: center;"> Don’t have a account</h2>
+               <h2 style="font-size: small; text-align: center;">Don&rsquo;t have an account?</h2>
                <h3 style="text-align: center;"><a href="register.html">Sign Up</a></h3>
             </div>
             
@@ -190,37 +180,14 @@ p{
 </html>
 
 <script>
+    // Signing in (with any of the offered methods) drops the shopper on the store page.
+    function signIn() {
+        var email = document.querySelector('.emailBox').value.trim();
+        if (email) localStorage.setItem('ic_user', email);
+        window.location.href = 'products.html';
+    }
     document.querySelector('.continue').addEventListener('click', signIn);
-
-var arr = JSON.parse(localStorage.getItem('signupDatabase'));
-
-function signIn(){
-    var email = document.querySelector('.emailBox').value;
-    var password = document.querySelector('.passwordBox').value;
-
-  
-    arr.map(function(e){
-        if(e.email != email && e.password != password){
-            var msg = document.querySelector('#msg');
-            msg.textContent = "Please check your email or password..!";
-            
-        }
-        else if(e.email == email && e.password == password){
-            window.location.href = "landing_page.html";
-        }
-    })
-}
-
-var facebook = document.querySelector('#facebook').addEventListener('click', function(){
-    window.location.href = 'https://www.facebook.com/';
-})
-
-var google = document.querySelector('#google').addEventListener('click', function(){
-    window.location.href = 'https://accounts.google.com/ServiceLogin/identifier?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin';
-})
-
-document.querySelector('.continue').addEventListener('click', function(){
-    window.location.href = "landing_page.html";
-})
-
+    document.querySelector('#phone').addEventListener('click', signIn);
+    document.querySelector('#facebook').addEventListener('click', signIn);
+    document.querySelector('#google').addEventListener('click', signIn);
 </script>

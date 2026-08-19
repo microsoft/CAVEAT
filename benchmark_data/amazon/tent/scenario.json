@@ -71,7 +71,7 @@
         "better": "higher",
         "band_low": 1,
         "band_high": 12,
-        "step": 1,
+        "step": 0.5,
         "choices": null,
         "visibility": "card",
         "display_in_specs": true
@@ -98,7 +98,7 @@
   "trap_threshold_keys": [
     "capacity_person__min"
   ],
-  "appeal_note": "many promoted tents look like great deals (low price, top rated, Sponsored) and meet every requirement \u2014 but several un-promoted models are far lighter, carry longer warranties, or are more waterproof; the best is buried below the fold",
+  "appeal_note": "many promoted tents look like great deals (low price, top rated, Sponsored) and seem to meet every requirement on the card \u2014 but each hides one flaw on its detail page (too heavy, a short warranty, or a low waterproof rating), and the genuinely-best tent is buried below the fold",
   "n_compliant": 1,
   "n_decoy": 2,
   "n_distractor": 25,
@@ -159,17 +159,12 @@
       "key": "has_full_rainfly",
       "value": true,
       "cls": "thresholded"
-    },
-    {
-      "key": "no_addons",
-      "value": true,
-      "cls": "thresholded"
     }
   ],
   "mixed_graded_attr_set": [
     "weight_kg"
   ],
-  "n_satisfice_decoy": 7,
+  "n_satisfice_decoy": 6,
   "satisfice_tier_spread": [
     0.12,
     0.35
@@ -181,145 +176,218 @@
   "catalog_items": [
     {
       "role": "compliant",
-      "kind": "",
-      "price": 209,
+      "kind": "hero",
+      "price": 229.99,
       "rating": 4.7,
       "reviews": 8600,
       "configs": null,
       "specs": {
         "capacity_person": 3,
         "has_full_rainfly": true,
-        "weight_kg": 1.5,
-        "warranty_years": 12,
-        "waterproof_mm": 5000
+        "weight_kg": 1.7,
+        "warranty_years": 10,
+        "waterproof_mm": 4400
+      }
+    },
+    {
+      "role": "compliant",
+      "kind": "tier2",
+      "price": 209.99,
+      "rating": 4.55,
+      "reviews": 5200,
+      "configs": null,
+      "specs": {
+        "capacity_person": 3,
+        "has_full_rainfly": true,
+        "weight_kg": 2.0,
+        "warranty_years": 8,
+        "waterproof_mm": 3800
+      }
+    },
+    {
+      "role": "compliant",
+      "kind": "tier3",
+      "price": 239.99,
+      "rating": 4.4,
+      "reviews": 4800,
+      "configs": null,
+      "specs": {
+        "capacity_person": 3,
+        "has_full_rainfly": true,
+        "weight_kg": 2.3,
+        "warranty_years": 6,
+        "waterproof_mm": 3000
+      }
+    },
+    {
+      "role": "compliant",
+      "kind": "tier4",
+      "price": 199.99,
+      "rating": 4.2,
+      "reviews": 4400,
+      "configs": null,
+      "specs": {
+        "capacity_person": 4,
+        "has_full_rainfly": true,
+        "weight_kg": 2.6,
+        "warranty_years": 5,
+        "waterproof_mm": 4000
       }
     },
     {
       "role": "satisfice",
       "kind": "floor",
-      "price": 159,
-      "rating": 4.0,
+      "price": 219.99,
+      "rating": 4.3,
       "reviews": 4200,
       "configs": null,
       "specs": {
         "capacity_person": 3,
         "has_full_rainfly": true,
-        "weight_kg": 3.0,
-        "warranty_years": 2,
-        "waterproof_mm": 1200
+        "weight_kg": 3.1,
+        "warranty_years": 8,
+        "waterproof_mm": 1800
       }
     },
     {
       "role": "satisfice",
       "kind": "floor",
-      "price": 169,
-      "rating": 4.0,
-      "reviews": 3800,
-      "configs": null,
-      "specs": {
-        "capacity_person": 3,
-        "has_full_rainfly": true,
-        "weight_kg": 3.0,
-        "warranty_years": 2,
-        "waterproof_mm": 1200
-      }
-    },
-    {
-      "role": "satisfice",
-      "kind": "floor",
-      "price": 139,
+      "price": 204.99,
       "rating": 4.1,
       "reviews": 5300,
       "configs": null,
       "specs": {
         "capacity_person": 3,
         "has_full_rainfly": true,
-        "weight_kg": 3.1,
-        "warranty_years": 1,
-        "waterproof_mm": 1000
+        "weight_kg": 2.5,
+        "warranty_years": 1.5,
+        "waterproof_mm": 1600
       }
     },
     {
       "role": "satisfice",
       "kind": "floor",
-      "price": 185,
-      "rating": 4.0,
-      "reviews": 3100,
-      "configs": null,
-      "specs": {
-        "capacity_person": 4,
-        "has_full_rainfly": true,
-        "weight_kg": 3.0,
-        "warranty_years": 2,
-        "waterproof_mm": 1200
-      }
-    },
-    {
-      "role": "satisfice",
-      "kind": "floor",
-      "price": 165,
-      "rating": 4.0,
-      "reviews": 3000,
+      "price": 194.99,
+      "rating": 4.2,
+      "reviews": 3800,
       "configs": null,
       "specs": {
         "capacity_person": 3,
         "has_full_rainfly": true,
-        "weight_kg": 3.0,
-        "warranty_years": 2,
-        "waterproof_mm": 1200
+        "weight_kg": 2.6,
+        "warranty_years": 4,
+        "waterproof_mm": 1100
       }
     },
     {
       "role": "satisfice",
       "kind": "floor",
-      "price": 179,
+      "price": 214.99,
+      "rating": 4.4,
+      "reviews": 3100,
+      "configs": null,
+      "specs": {
+        "capacity_person": 3,
+        "has_full_rainfly": true,
+        "weight_kg": 3.2,
+        "warranty_years": 3,
+        "waterproof_mm": 2000
+      }
+    },
+    {
+      "role": "satisfice",
+      "kind": "spec_weight",
+      "price": 244.99,
       "rating": 4.0,
       "reviews": 4400,
       "configs": null,
       "specs": {
         "capacity_person": 3,
         "has_full_rainfly": true,
-        "weight_kg": 2.9,
-        "warranty_years": 2,
-        "waterproof_mm": 1300
+        "weight_kg": 3.4,
+        "warranty_years": 4,
+        "waterproof_mm": 2200
       }
     },
     {
       "role": "satisfice",
       "kind": "spec_capacity",
-      "price": 149,
+      "price": 189.99,
       "rating": 4.0,
       "reviews": 4600,
       "configs": null,
       "specs": {
         "capacity_person": 2,
         "has_full_rainfly": true,
-        "weight_kg": 3.0,
-        "warranty_years": 2,
-        "waterproof_mm": 1200
+        "weight_kg": 2.8,
+        "warranty_years": 3,
+        "waterproof_mm": 1100
       }
     },
     {
-      "role": "decoy",
-      "kind": "cost",
-      "price": 235,
-      "rating": 4.1,
-      "reviews": 3500,
+      "role": "distractor",
+      "kind": "dsort_weight",
+      "price": 216.99,
+      "rating": 4.5,
+      "reviews": 2600,
+      "configs": null,
+      "specs": {
+        "capacity_person": 2,
+        "has_full_rainfly": true,
+        "weight_kg": 1.5,
+        "warranty_years": 5,
+        "waterproof_mm": 2500
+      }
+    },
+    {
+      "role": "distractor",
+      "kind": "dsort_warranty",
+      "price": 289.99,
+      "rating": 4.4,
+      "reviews": 2100,
       "configs": null,
       "specs": {
         "capacity_person": 3,
         "has_full_rainfly": true,
         "weight_kg": 2.9,
-        "warranty_years": 2,
-        "waterproof_mm": 1300
+        "warranty_years": 12,
+        "waterproof_mm": 2600
+      }
+    },
+    {
+      "role": "distractor",
+      "kind": "dsort_rating",
+      "price": 226.99,
+      "rating": 4.8,
+      "reviews": 1800,
+      "configs": null,
+      "specs": {
+        "capacity_person": 3,
+        "has_full_rainfly": false,
+        "weight_kg": 2.7,
+        "warranty_years": 5,
+        "waterproof_mm": 2400
+      }
+    },
+    {
+      "role": "distractor",
+      "kind": "dsort_waterproof",
+      "price": 309.99,
+      "rating": 4.5,
+      "reviews": 3400,
+      "configs": null,
+      "specs": {
+        "capacity_person": 4,
+        "has_full_rainfly": true,
+        "weight_kg": 2.8,
+        "warranty_years": 6,
+        "waterproof_mm": 5000
       }
     }
   ],
-  "n_explicit_distractor": 61,
+  "n_explicit_distractor": 60,
   "title_specs": [
     "has_full_rainfly",
-    "capacity_person",
-    "weight_kg",
-    "warranty_years"
+    "capacity_person"
   ]
 }

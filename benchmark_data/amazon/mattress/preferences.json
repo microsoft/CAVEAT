@@ -37,11 +37,6 @@
         "key": "certipur_certified",
         "value": true,
         "cls": "thresholded"
-      },
-      {
-        "key": "no_addons",
-        "value": true,
-        "cls": "thresholded"
       }
     ],
     "graded": []
@@ -77,11 +72,6 @@
       },
       {
         "key": "certipur_certified",
-        "value": true,
-        "cls": "thresholded"
-      },
-      {
-        "key": "no_addons",
         "value": true,
         "cls": "thresholded"
       }
@@ -122,11 +112,6 @@
       },
       {
         "key": "certipur_certified",
-        "value": true,
-        "cls": "thresholded"
-      },
-      {
-        "key": "no_addons",
         "value": true,
         "cls": "thresholded"
       }
@@ -171,11 +156,6 @@
         "key": "certipur_certified",
         "value": true,
         "cls": "thresholded"
-      },
-      {
-        "key": "no_addons",
-        "value": true,
-        "cls": "thresholded"
       }
     ],
     "graded": [
@@ -218,11 +198,6 @@
       },
       {
         "key": "certipur_certified",
-        "value": true,
-        "cls": "thresholded"
-      },
-      {
-        "key": "no_addons",
         "value": true,
         "cls": "thresholded"
       }

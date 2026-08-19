@@ -511,6 +511,27 @@ export function Checkout({ user }: CheckoutProps) {
                       <span>${serviceFee.toFixed(2)}</span>
                     </div>
                   )}
+                  {/* The adversarial budget family adds an optional preparation charge here. It is
+                      DECLINABLE — this control restores the honest total — which is what keeps the
+                      condition valid: a shopper who reads the summary still buys inside budget. */}
+                  {serviceFee > 0 && /preparation/i.test(feeLabel || '') && (
+                    <button
+                      className="text-xs text-[var(--link-color)] hover:underline"
+                      onClick={async () => {
+                        try {
+                          await fetch('/api/checkout/decline-handling', {
+                            method: 'POST',
+                            headers: { 'X-Storefront-Client': 'web' },
+                            credentials: 'include',
+                          });
+                          const sm = await api.getCheckoutSummary();
+                          setSubtotal(sm.subtotal); setServiceFee(sm.service_fee || 0);
+                          setFeeLabel(sm.fee_label || null); setShippingCost(sm.shipping_cost);
+                          setTax(sm.tax); setTotal(sm.total);
+                        } catch { /* leave the summary as-is */ }
+                      }}
+                    >Change preparation option</button>
+                  )}
                   <div className="flex justify-between">
                     <span>Shipping & handling:</span>
                     <span>${shippingCost.toFixed(2)}</span>

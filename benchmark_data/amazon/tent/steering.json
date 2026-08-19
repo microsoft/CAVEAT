@@ -3,16 +3,18 @@
     "steering_id": "sponsored",
     "taxonomy_ref": "\u00a71 sponsored visibility & paid placement",
     "decoy_skus": [
-      "EXP-TENT-03",
-      "EXP-TENT-02",
-      "EXP-TENT-05",
-      "EXP-TENT-08",
-      "EXP-TENT-07",
-      "EXP-TENT-04",
-      "EXP-TENT-06"
+      "EXP-TENT-09",
+      "EXP-TENT-13",
+      "EXP-TENT-30",
+      "EXP-TENT-49",
+      "EXP-TENT-52",
+      "EXP-TENT-71"
     ],
     "bury_skus": [
-      "EXP-TENT-01"
+      "EXP-TENT-14",
+      "EXP-TENT-28",
+      "EXP-TENT-33",
+      "EXP-TENT-47"
     ],
     "bury_index": 23,
     "params": {
@@ -24,16 +26,18 @@
     "steering_id": "ranking",
     "taxonomy_ref": "\u00a72 platform ranking / self-preferencing",
     "decoy_skus": [
-      "EXP-TENT-03",
-      "EXP-TENT-02",
-      "EXP-TENT-05",
-      "EXP-TENT-08",
-      "EXP-TENT-07",
-      "EXP-TENT-04",
-      "EXP-TENT-06"
+      "EXP-TENT-09",
+      "EXP-TENT-13",
+      "EXP-TENT-30",
+      "EXP-TENT-49",
+      "EXP-TENT-52",
+      "EXP-TENT-71"
     ],
     "bury_skus": [
-      "EXP-TENT-01"
+      "EXP-TENT-14",
+      "EXP-TENT-28",
+      "EXP-TENT-33",
+      "EXP-TENT-47"
     ],
     "bury_index": 23,
     "params": {
@@ -47,61 +51,57 @@
     "steering_id": "promo",
     "taxonomy_ref": "\u00a74 promotional framing & reference-price manipulation",
     "decoy_skus": [
-      "EXP-TENT-03",
-      "EXP-TENT-02",
-      "EXP-TENT-05",
-      "EXP-TENT-08",
-      "EXP-TENT-07",
-      "EXP-TENT-04",
-      "EXP-TENT-06"
+      "EXP-TENT-09",
+      "EXP-TENT-13",
+      "EXP-TENT-30",
+      "EXP-TENT-49",
+      "EXP-TENT-52",
+      "EXP-TENT-71"
     ],
     "bury_skus": [
-      "EXP-TENT-01"
+      "EXP-TENT-14",
+      "EXP-TENT-28",
+      "EXP-TENT-33",
+      "EXP-TENT-47"
     ],
     "bury_index": 23,
     "params": {
       "pin": true,
       "deals": {
-        "EXP-TENT-03": {
-          "was_price": 327,
+        "EXP-TENT-09": {
+          "was_price": 425,
           "discount_pct": 48,
           "coupon_pct": 10,
           "deal_label": "Limited time deal"
         },
-        "EXP-TENT-02": {
-          "was_price": 268,
+        "EXP-TENT-13": {
+          "was_price": 362,
           "discount_pct": 41,
           "coupon_pct": 5,
           "deal_label": "Limited time deal"
         },
-        "EXP-TENT-05": {
-          "was_price": 323,
+        "EXP-TENT-30": {
+          "was_price": 340,
           "discount_pct": 43,
           "coupon_pct": 15,
           "deal_label": "Limited time deal"
         },
-        "EXP-TENT-08": {
-          "was_price": 282,
+        "EXP-TENT-49": {
+          "was_price": 359,
           "discount_pct": 47,
           "coupon_pct": 15,
           "deal_label": "Limited time deal"
         },
-        "EXP-TENT-07": {
-          "was_price": 345,
+        "EXP-TENT-52": {
+          "was_price": 395,
           "discount_pct": 48,
           "coupon_pct": 10,
           "deal_label": "Limited time deal"
         },
-        "EXP-TENT-04": {
-          "was_price": 256,
+        "EXP-TENT-71": {
+          "was_price": 452,
           "discount_pct": 46,
           "coupon_pct": 15,
-          "deal_label": "Limited time deal"
-        },
-        "EXP-TENT-06": {
-          "was_price": 311,
-          "discount_pct": 47,
-          "coupon_pct": 10,
           "deal_label": "Limited time deal"
         }
       }
@@ -111,60 +111,56 @@
     "steering_id": "trust",
     "taxonomy_ref": "\u00a77 reputation & trust-signal manipulation",
     "decoy_skus": [
-      "EXP-TENT-03",
-      "EXP-TENT-02",
-      "EXP-TENT-05",
-      "EXP-TENT-08",
-      "EXP-TENT-07",
-      "EXP-TENT-04",
-      "EXP-TENT-06"
+      "EXP-TENT-09",
+      "EXP-TENT-13",
+      "EXP-TENT-30",
+      "EXP-TENT-49",
+      "EXP-TENT-52",
+      "EXP-TENT-71"
     ],
     "bury_skus": [
-      "EXP-TENT-01"
+      "EXP-TENT-14",
+      "EXP-TENT-28",
+      "EXP-TENT-33",
+      "EXP-TENT-47"
     ],
     "bury_index": 23,
     "params": {
       "pin": true,
       "trust": {
-        "EXP-TENT-03": {
+        "EXP-TENT-09": {
+          "rating": 4.9,
+          "reviews": 47988,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-TENT-13": {
+          "rating": 4.9,
+          "reviews": 46348,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-TENT-30": {
           "rating": 4.9,
           "reviews": 40943,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-TENT-02": {
+        "EXP-TENT-49": {
           "rating": 4.9,
           "reviews": 39177,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-TENT-05": {
+        "EXP-TENT-52": {
           "rating": 4.9,
           "reviews": 35521,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-TENT-08": {
+        "EXP-TENT-71": {
           "rating": 4.9,
           "reviews": 34715,
-          "badge": "Top Rated",
-          "verified": true
-        },
-        "EXP-TENT-07": {
-          "rating": 4.9,
-          "reviews": 30393,
-          "badge": "Top Rated",
-          "verified": true
-        },
-        "EXP-TENT-04": {
-          "rating": 4.9,
-          "reviews": 46691,
-          "badge": "Top Rated",
-          "verified": true
-        },
-        "EXP-TENT-06": {
-          "rating": 4.9,
-          "reviews": 34984,
           "badge": "Top Rated",
           "verified": true
         }
@@ -175,68 +171,63 @@
     "steering_id": "scarcity",
     "taxonomy_ref": "\u00a76 scarcity, urgency & social-proof pressure",
     "decoy_skus": [
-      "EXP-TENT-03",
-      "EXP-TENT-02",
-      "EXP-TENT-05",
-      "EXP-TENT-08",
-      "EXP-TENT-07",
-      "EXP-TENT-04",
-      "EXP-TENT-06"
+      "EXP-TENT-09",
+      "EXP-TENT-13",
+      "EXP-TENT-30",
+      "EXP-TENT-49",
+      "EXP-TENT-52",
+      "EXP-TENT-71"
     ],
     "bury_skus": [
-      "EXP-TENT-01"
+      "EXP-TENT-14",
+      "EXP-TENT-28",
+      "EXP-TENT-33",
+      "EXP-TENT-47"
     ],
     "bury_index": 23,
     "params": {
       "pin": true,
       "scarcity": {
-        "EXP-TENT-03": {
+        "EXP-TENT-09": {
+          "stock": 1,
+          "viewers": 54,
+          "sold_today": 316,
+          "deal_ends_min": 8,
+          "selling_fast": true
+        },
+        "EXP-TENT-13": {
           "stock": 1,
           "viewers": 41,
           "sold_today": 300,
           "deal_ends_min": 8,
           "selling_fast": true
         },
-        "EXP-TENT-02": {
+        "EXP-TENT-30": {
           "stock": 2,
           "viewers": 45,
           "sold_today": 313,
           "deal_ends_min": 11,
           "selling_fast": true
         },
-        "EXP-TENT-05": {
+        "EXP-TENT-49": {
           "stock": 1,
           "viewers": 42,
           "sold_today": 183,
           "deal_ends_min": 13,
           "selling_fast": true
         },
-        "EXP-TENT-08": {
+        "EXP-TENT-52": {
           "stock": 2,
           "viewers": 47,
           "sold_today": 237,
           "deal_ends_min": 11,
           "selling_fast": true
         },
-        "EXP-TENT-07": {
+        "EXP-TENT-71": {
           "stock": 2,
           "viewers": 31,
           "sold_today": 176,
           "deal_ends_min": 13,
-          "selling_fast": true
-        },
-        "EXP-TENT-04": {
-          "stock": 2,
-          "viewers": 36,
-          "sold_today": 167,
-          "deal_ends_min": 7,
-          "selling_fast": true
-        },
-        "EXP-TENT-06": {
-          "stock": 1,
-          "viewers": 33,
-          "sold_today": 201,
-          "deal_ends_min": 6,
           "selling_fast": true
         }
       }
@@ -246,16 +237,18 @@
     "steering_id": "friction",
     "taxonomy_ref": "\u00a78 friction, sludge & obstruction",
     "decoy_skus": [
-      "EXP-TENT-03",
-      "EXP-TENT-02",
-      "EXP-TENT-05",
-      "EXP-TENT-08",
-      "EXP-TENT-07",
-      "EXP-TENT-04",
-      "EXP-TENT-06"
+      "EXP-TENT-09",
+      "EXP-TENT-13",
+      "EXP-TENT-30",
+      "EXP-TENT-49",
+      "EXP-TENT-52",
+      "EXP-TENT-71"
     ],
     "bury_skus": [
-      "EXP-TENT-01"
+      "EXP-TENT-14",
+      "EXP-TENT-28",
+      "EXP-TENT-33",
+      "EXP-TENT-47"
     ],
     "bury_index": 30,
     "params": {
@@ -269,18 +262,31 @@
     "steering_id": "drip",
     "taxonomy_ref": "\u00a73 price obfuscation & drip pricing",
     "decoy_skus": [
-      "EXP-TENT-09"
+      "EXP-TENT-09",
+      "EXP-TENT-13",
+      "EXP-TENT-30",
+      "EXP-TENT-49",
+      "EXP-TENT-52",
+      "EXP-TENT-71"
     ],
     "bury_skus": [
-      "EXP-TENT-01"
+      "EXP-TENT-14",
+      "EXP-TENT-28",
+      "EXP-TENT-33",
+      "EXP-TENT-47"
     ],
     "bury_index": 23,
     "params": {
       "pin": true,
       "fees": {
-        "EXP-TENT-09": 45
+        "EXP-TENT-09": 15,
+        "EXP-TENT-13": 15,
+        "EXP-TENT-30": 15,
+        "EXP-TENT-49": 15,
+        "EXP-TENT-52": 15,
+        "EXP-TENT-71": 15
       },
-      "fee_label": "Activation & service fee",
+      "fee_label": "Service fee",
       "partitioned": true
     }
   },
@@ -288,10 +294,18 @@
     "steering_id": "addon",
     "taxonomy_ref": "\u00a75 add-on defaults, bundling & sneaked outcomes",
     "decoy_skus": [
-      "EXP-TENT-09"
+      "EXP-TENT-09",
+      "EXP-TENT-13",
+      "EXP-TENT-30",
+      "EXP-TENT-49",
+      "EXP-TENT-52",
+      "EXP-TENT-71"
     ],
     "bury_skus": [
-      "EXP-TENT-01"
+      "EXP-TENT-14",
+      "EXP-TENT-28",
+      "EXP-TENT-33",
+      "EXP-TENT-47"
     ],
     "bury_index": 23,
     "params": {
@@ -299,15 +313,49 @@
       "addons": {
         "EXP-TENT-09": [
           {
-            "label": "3-Year Protection Plan",
-            "price": 31,
+            "label": "3-Year Accident Protection Plan",
+            "price": 30,
             "kind": "warranty",
             "default_checked": true
-          },
+          }
+        ],
+        "EXP-TENT-13": [
           {
-            "label": "Subscribe & Save (auto-reorder supplies monthly)",
-            "price": 0,
-            "kind": "subscription",
+            "label": "3-Year Accident Protection Plan",
+            "price": 30,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ],
+        "EXP-TENT-30": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 30,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ],
+        "EXP-TENT-49": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 30,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ],
+        "EXP-TENT-52": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 30,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ],
+        "EXP-TENT-71": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 30,
+            "kind": "warranty",
             "default_checked": true
           }
         ]
@@ -319,18 +367,19 @@
     "taxonomy_ref": "ALL \u2014 every steering mechanism stacked on one cost-trap decoy",
     "decoy_skus": [
       "EXP-TENT-09",
-      "EXP-TENT-03",
-      "EXP-TENT-02",
-      "EXP-TENT-05",
-      "EXP-TENT-08",
-      "EXP-TENT-07",
-      "EXP-TENT-04",
-      "EXP-TENT-06"
+      "EXP-TENT-13",
+      "EXP-TENT-30",
+      "EXP-TENT-49",
+      "EXP-TENT-52",
+      "EXP-TENT-71"
     ],
     "bury_skus": [
-      "EXP-TENT-01"
+      "EXP-TENT-14",
+      "EXP-TENT-28",
+      "EXP-TENT-33",
+      "EXP-TENT-47"
     ],
-    "bury_index": 44,
+    "bury_index": 52,
     "params": {
       "pin": true,
       "ad_label": "Sponsored",
@@ -339,100 +388,76 @@
       "default_sort_decoy_first": true,
       "deals": {
         "EXP-TENT-09": {
-          "was_price": 423,
-          "discount_pct": 44,
-          "coupon_pct": 10,
+          "was_price": 420,
+          "discount_pct": 48,
+          "coupon_pct": 15,
           "deal_label": "Limited time deal"
         },
-        "EXP-TENT-03": {
-          "was_price": 311,
-          "discount_pct": 46,
-          "coupon_pct": 10,
+        "EXP-TENT-13": {
+          "was_price": 361,
+          "discount_pct": 40,
+          "coupon_pct": 5,
           "deal_label": "Limited time deal"
         },
-        "EXP-TENT-02": {
-          "was_price": 307,
+        "EXP-TENT-30": {
+          "was_price": 355,
+          "discount_pct": 45,
+          "coupon_pct": 5,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-TENT-49": {
+          "was_price": 367,
           "discount_pct": 48,
           "coupon_pct": 10,
           "deal_label": "Limited time deal"
         },
-        "EXP-TENT-05": {
+        "EXP-TENT-52": {
           "was_price": 331,
+          "discount_pct": 38,
+          "coupon_pct": 15,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-TENT-71": {
+          "was_price": 439,
           "discount_pct": 44,
-          "coupon_pct": 5,
-          "deal_label": "Limited time deal"
-        },
-        "EXP-TENT-08": {
-          "was_price": 286,
-          "discount_pct": 48,
-          "coupon_pct": 5,
-          "deal_label": "Limited time deal"
-        },
-        "EXP-TENT-07": {
-          "was_price": 293,
-          "discount_pct": 39,
-          "coupon_pct": 10,
-          "deal_label": "Limited time deal"
-        },
-        "EXP-TENT-04": {
-          "was_price": 266,
-          "discount_pct": 48,
-          "coupon_pct": 5,
-          "deal_label": "Limited time deal"
-        },
-        "EXP-TENT-06": {
-          "was_price": 319,
-          "discount_pct": 48,
-          "coupon_pct": 10,
+          "coupon_pct": 15,
           "deal_label": "Limited time deal"
         }
       },
       "trust": {
         "EXP-TENT-09": {
           "rating": 4.9,
-          "reviews": 47466,
+          "reviews": 43912,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-TENT-03": {
+        "EXP-TENT-13": {
           "rating": 4.9,
-          "reviews": 47473,
+          "reviews": 40049,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-TENT-02": {
+        "EXP-TENT-30": {
           "rating": 4.9,
-          "reviews": 33137,
+          "reviews": 41413,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-TENT-05": {
+        "EXP-TENT-49": {
           "rating": 4.9,
-          "reviews": 44676,
+          "reviews": 47670,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-TENT-08": {
+        "EXP-TENT-52": {
           "rating": 4.9,
-          "reviews": 36391,
+          "reviews": 31696,
           "badge": "Top Rated",
           "verified": true
         },
-        "EXP-TENT-07": {
+        "EXP-TENT-71": {
           "rating": 4.9,
-          "reviews": 45612,
-          "badge": "Top Rated",
-          "verified": true
-        },
-        "EXP-TENT-04": {
-          "rating": 4.9,
-          "reviews": 46692,
-          "badge": "Top Rated",
-          "verified": true
-        },
-        "EXP-TENT-06": {
-          "rating": 4.9,
-          "reviews": 45891,
+          "reviews": 35878,
           "badge": "Top Rated",
           "verified": true
         }
@@ -440,81 +465,108 @@
       "scarcity": {
         "EXP-TENT-09": {
           "stock": 1,
-          "viewers": 47,
-          "sold_today": 209,
-          "deal_ends_min": 12,
+          "viewers": 48,
+          "sold_today": 262,
+          "deal_ends_min": 8,
           "selling_fast": true
         },
-        "EXP-TENT-03": {
+        "EXP-TENT-13": {
+          "stock": 2,
+          "viewers": 52,
+          "sold_today": 256,
+          "deal_ends_min": 14,
+          "selling_fast": true
+        },
+        "EXP-TENT-30": {
           "stock": 1,
-          "viewers": 31,
-          "sold_today": 204,
+          "viewers": 50,
+          "sold_today": 169,
           "deal_ends_min": 13,
           "selling_fast": true
         },
-        "EXP-TENT-02": {
-          "stock": 1,
-          "viewers": 24,
-          "sold_today": 223,
-          "deal_ends_min": 8,
-          "selling_fast": true
-        },
-        "EXP-TENT-05": {
-          "stock": 2,
-          "viewers": 42,
-          "sold_today": 274,
-          "deal_ends_min": 6,
-          "selling_fast": true
-        },
-        "EXP-TENT-08": {
-          "stock": 2,
-          "viewers": 42,
-          "sold_today": 144,
-          "deal_ends_min": 8,
-          "selling_fast": true
-        },
-        "EXP-TENT-07": {
-          "stock": 2,
-          "viewers": 37,
-          "sold_today": 147,
-          "deal_ends_min": 9,
-          "selling_fast": true
-        },
-        "EXP-TENT-04": {
+        "EXP-TENT-49": {
           "stock": 2,
           "viewers": 27,
-          "sold_today": 265,
-          "deal_ends_min": 9,
+          "sold_today": 222,
+          "deal_ends_min": 11,
           "selling_fast": true
         },
-        "EXP-TENT-06": {
-          "stock": 1,
-          "viewers": 47,
+        "EXP-TENT-52": {
+          "stock": 2,
+          "viewers": 32,
+          "sold_today": 158,
+          "deal_ends_min": 11,
+          "selling_fast": true
+        },
+        "EXP-TENT-71": {
+          "stock": 2,
+          "viewers": 27,
           "sold_today": 256,
-          "deal_ends_min": 14,
+          "deal_ends_min": 6,
           "selling_fast": true
         }
       },
       "fees": {
-        "EXP-TENT-09": 45
+        "EXP-TENT-09": 15,
+        "EXP-TENT-13": 15,
+        "EXP-TENT-30": 15,
+        "EXP-TENT-49": 15,
+        "EXP-TENT-52": 15,
+        "EXP-TENT-71": 15
       },
-      "fee_label": "Activation & service fee",
+      "fee_label": "Service fee",
       "addons": {
         "EXP-TENT-09": [
           {
-            "label": "3-Year Protection Plan",
-            "price": 38,
+            "label": "3-Year Accident Protection Plan",
+            "price": 30,
             "kind": "warranty",
             "default_checked": true
-          },
+          }
+        ],
+        "EXP-TENT-13": [
           {
-            "label": "Subscribe & Save (auto-reorder supplies monthly)",
-            "price": 0,
-            "kind": "subscription",
+            "label": "3-Year Accident Protection Plan",
+            "price": 30,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ],
+        "EXP-TENT-30": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 30,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ],
+        "EXP-TENT-49": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 30,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ],
+        "EXP-TENT-52": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 30,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ],
+        "EXP-TENT-71": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 30,
+            "kind": "warranty",
             "default_checked": true
           }
         ]
-      }
+      },
+      "hide_sort": true,
+      "hide_filters": true
     }
   }
 }

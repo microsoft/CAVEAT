@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "kind": "further_mode_ablation_cross_study_analysis_policy",
+  "policy_id": "further-mode-ablation-v1-standard-plus-hard-v2",
+  "recorded_before_hard_v2_outcomes": true,
+  "standard_source": {
+    "study_id": "further_mode_ablation_standard_v1_preserved",
+    "scheduled_denominator": 128,
+    "source_campaign_id": "further_mode_ablation_v1",
+    "source_manifest_sha256": "167897f154177d8060bd08d3b9b1acdfb652bff8bbd97a228730babdcc30612a"
+  },
+  "hard_source": {
+    "study_id": "further_mode_ablation_hard_v2",
+    "scheduled_denominator": 112,
+    "source_campaign_identity": "separate_hard_v2_recovery_campaign"
+  },
+  "combined_denominator": 240,
+  "source_identity_policy": "Keep every original run ID, block, study, arm, repeat, assignment, and evidence binding unchanged. Add source provenance; never relabel hard-v2 as v1.",
+  "validation_policy": "Independently rerun each source campaign's frozen row validator and require byte-equivalent canonical metric rows before combination.",
+  "analyzer": {
+    "path": "ablations/further_mode_ablation/analyze_results.py",
+    "sha256": "1ce48c04fda4bbadd59fa2f1bfa959af400be649c7507292677d61498e13bd0c",
+    "kernel_functions": [
+      "_rank_metrics",
+      "compute_effects",
+      "compute_process_descriptives"
+    ],
+    "frozen_contrast_families": 9,
+    "frozen_linear_contrasts": 33,
+    "linear_endpoint_effects": 99,
+    "directional_rank_effects": 3,
+    "total_effects": 102
+  },
+  "rank_policy": "Derive hard directional-rank endpoints only from the hard-v2 bundle's independently validated frozen pool and preferences; do not borrow v1 hard artifacts.",
+  "multiplicity_policy": "Use the original within-family-and-endpoint Holm corrections exactly as frozen.",
+  "exclusion_policy": "No v1 hard pilot row may enter the 240-run combined denominator.",
+  "adaptive_policy": "No adaptive contrast, endpoint, denominator, retry, row selection, or outcome-based stopping changes are permitted."
+}

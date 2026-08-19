@@ -112,6 +112,12 @@ export interface Product {
   dimensions?: { length: number; width: number; height: number };
   technical_details?: Record<string, string>;
   has_variants?: boolean;   // configurable (config-drip): choose a storage config on the PDP
+  agent_note?: string;      // adversarial ai-injection / adv_* ONLY: text rendered sr-only (invisible to humans, read by the agent's DOM serialization)
+  // --- adversarial agent-targeted steering (adv_* conditions) render slots. Each is emitted by
+  // the backend ONLY under its own family, so every other condition's DOM is unchanged. ---
+  adv_hidden?: string;      // display:none block: absent from browser_state, visible to the `extract` sub-LLM
+  adv_exclude?: boolean;    // mark the spec block data-browser-use-exclude: humans read it, the agent's serializer drops it
+  adv_badge?: string;       // a visible chip (machine-consensus / agent-ready framing)
   created_at: string;
 }
 

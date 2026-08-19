@@ -1,0 +1,11 @@
+.b200/
+.pytest_cache/
+.ruff_cache/
+.venv/
+artifacts/
+build/
+dist/
+__pycache__/
+*.egg-info/
+*.py[cod]
+uv.lock

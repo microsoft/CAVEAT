@@ -31,6 +31,18 @@ from .trajectory import Evaluation
 
 ENVIRONMENTS: Registry["Environment"] = Registry("environment")
 
+EVALUATOR_GET_RETRIES_EXHAUSTED = (
+    "AGENTARENA_EVALUATOR_GET_RETRIES_EXHAUSTED"
+)
+ENVIRONMENT_STARTUP_TIMEOUT = "AGENTARENA_ENVIRONMENT_STARTUP_TIMEOUT"
+ENVIRONMENT_SERVER_EXITED = "AGENTARENA_ENVIRONMENT_SERVER_EXITED"
+
+# Infrastructure backstop only.  A healthy storefront normally starts in a few
+# seconds, but many independent Python servers and browsers can cold-start at
+# once in publication campaigns.  Keep this far beyond that healthy path so
+# host scheduling cannot become a measured constraint.
+ENVIRONMENT_STARTUP_TIMEOUT_SECONDS = 300
+
 
 # --------------------------------------------------------------------------- #
 # small HTTP / port helpers
@@ -62,25 +74,49 @@ def http_json(url: str, method: str = "GET", body: Any = None, timeout: float = 
         return {"_error": e.code, "_body": e.read().decode()[:200]}
 
 
-def http_get_json(url: str, *, retries: int = 5, delay: float = 0.5, timeout: float = 15) -> dict:
-    """GET + parse JSON, retrying transient failures. Returns {} only after the
-    server keeps failing — so a momentary hiccup right after the agent finishes
-    never gets silently misread as 'no result'. Used by evaluators."""
+def http_get_json(url: str, *, retries: int = 5, delay: float = 0.5, timeout: float = 15,
+                  headers: Optional[dict] = None) -> dict:
+    """GET + parse JSON, retrying transient failures.
+
+    Exhaustion is an explicit infrastructure error: returning an empty object
+    here would make an unavailable evaluator endpoint indistinguishable from a
+    genuine empty order/bookings response.  Evaluators may pass an
+    X-Storefront-Ops credential via ``headers``; the error deliberately never
+    includes request headers.
+    """
     last = None
     for i in range(retries):
         try:
-            with urllib.request.urlopen(url, timeout=timeout) as r:
+            req = urllib.request.Request(url, headers=headers or {})
+            with urllib.request.urlopen(req, timeout=timeout) as r:
                 return json.loads(r.read())
         except Exception as e:  # noqa: BLE001
             last = e
             time.sleep(delay * (i + 1))
-    print(f"[agentarena] warning: {url} failed after {retries} tries: {last}")
-    return {}
+    last_description = (
+        f"{type(last).__name__}: {last}"
+        if last is not None else "no attempts configured"
+    )
+    raise RuntimeError(
+        f"{EVALUATOR_GET_RETRIES_EXHAUSTED}: "
+        f"{url} failed after {retries} attempts; "
+        f"last_error={last_description}"
+    ) from last
 
 
-def wait_up(health_url: str, timeout: float = 40) -> bool:
+def wait_up(
+    health_url: str,
+    timeout: float = ENVIRONMENT_STARTUP_TIMEOUT_SECONDS,
+    *,
+    process: Optional[subprocess.Popen] = None,
+) -> bool:
     end = time.time() + timeout
     while time.time() < end:
+        # Do not spend the whole backstop polling a child that has already
+        # failed.  Environment.start() deliberately distinguishes this local
+        # server failure from a still-live process starved past the deadline.
+        if process is not None and process.poll() is not None:
+            return False
         try:
             urllib.request.urlopen(health_url, timeout=5).read()
             return True
@@ -96,6 +132,7 @@ class ServerHandle:
     db_path: Path
     base_url: str
     env: dict
+    server_log: Any = None
 
     def stop(self) -> None:
         try:
@@ -106,7 +143,13 @@ class ServerHandle:
                 self.proc.kill()
             except Exception:
                 pass
-        free_port(self.port)
+        finally:
+            if self.server_log is not None:
+                try:
+                    self.server_log.close()
+                except Exception:
+                    pass
+            free_port(self.port)
 
 
 # --------------------------------------------------------------------------- #
@@ -124,6 +167,24 @@ class Environment(ABC):
 
     # Named catalogs registered by the adapter ({"laptops": Catalog, ...}).
     catalogs: dict[str, Any] = {}
+
+    @staticmethod
+    def _atomic_write(path: Path, text: str) -> None:
+        """tmp + os.replace: concurrent cells seed the same catalog cache at matrix launch;
+        a reader catching a half-written JSON gets a broken storefront (mass 0-step
+        navigation-timeout cells). Content is deterministic, so last-writer-wins is safe."""
+        import tempfile as _tf
+        fd, tmp = _tf.mkstemp(dir=str(path.parent), prefix=path.name + ".", suffix=".tmp")
+        try:
+            with os.fdopen(fd, "w") as f:
+                f.write(text)
+            os.replace(tmp, str(path))
+        except BaseException:
+            try:
+                os.unlink(tmp)
+            except OSError:
+                pass
+            raise
 
     # ---- adapter hooks ---------------------------------------------------- #
     @abstractmethod
@@ -170,14 +231,45 @@ class Environment(ABC):
             pass
         self.seed_db(db, catalog=task.catalog, condition=task.condition, params=task.params)
         env = {**os.environ, **self.server_env(task.catalog, task.condition, task.params)}
-        proc = subprocess.Popen([self.python, *self.server_command(port, db)],
-                                cwd=str(self.server_dir), env=env,
-                                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        handle = ServerHandle(proc, port, db, f"http://127.0.0.1:{port}", env)
-        if not wait_up(f"{handle.base_url}{self.health_path}"):
+        server_log = (work_dir / "environment_server.log").open(
+            "w", encoding="utf-8"
+        )
+        try:
+            proc = subprocess.Popen(
+                [self.python, *self.server_command(port, db)],
+                cwd=str(self.server_dir), env=env,
+                stdout=server_log, stderr=subprocess.STDOUT,
+            )
+        except BaseException:
+            server_log.close()
+            raise
+        handle = ServerHandle(
+            proc, port, db, f"http://127.0.0.1:{port}", env, server_log
+        )
+        if not wait_up(
+            f"{handle.base_url}{self.health_path}",
+            timeout=ENVIRONMENT_STARTUP_TIMEOUT_SECONDS,
+            process=proc,
+        ):
+            returncode = proc.poll()
             handle.stop()
-            raise RuntimeError(f"{self.name}: server failed to start on port {port}")
-        self.after_start(handle, task)
+            if returncode is not None:
+                raise RuntimeError(
+                    f"{ENVIRONMENT_SERVER_EXITED}: env={self.name} port={port} "
+                    f"returncode={returncode} before_health"
+                )
+            raise RuntimeError(
+                f"{ENVIRONMENT_STARTUP_TIMEOUT}: env={self.name} port={port} "
+                f"timeout_seconds={ENVIRONMENT_STARTUP_TIMEOUT_SECONDS}"
+            )
+        try:
+            self.after_start(handle, task)
+        except BaseException:
+            # The caller cannot own a handle until start() returns.  If a
+            # post-health hook (for example the evaluator's initial snapshot)
+            # fails, tear down here and preserve the original exception.
+            handle.stop()
+            raise
         return handle
 
     # ---- catalog access --------------------------------------------------- #

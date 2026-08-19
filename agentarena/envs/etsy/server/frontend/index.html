@@ -6,7 +6,6 @@
     <title>Etsy - Shop for handmade, vintage, custom, and unique gifts</title>
     <link rel="stylesheet" href="/etsy.css" />
     <link rel="stylesheet" href="/static/fa4/css/font-awesome.min.css" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet" />
     <script src="/static/jquery.min.js"></script>
     <style>
         /* Real Etsy puts the photo on the left and the price + Add-to-cart on the right,
@@ -19,12 +18,83 @@
         .product-show .product-info { flex:1 1 360px; min-width:320px; }
     </style>
     <script>
-        // auto-logged-in user (mirrors the Rails root view's window.currentUser injection)
-        window.currentUser = { "id": 1, "fname": "Alex", "gender": "", "city": "San Francisco", "about": "", "birthday": "" };
+        // auto-logged-in user (mirrors the Rails root view's window.currentUser injection);
+        // a real Log out sticks for the rest of the browser session (sessionStorage gate).
+        if (!window.sessionStorage || !sessionStorage.getItem('epsyLoggedOut')) {
+            window.currentUser = { "id": 1, "fname": "Alex", "gender": "", "city": "San Francisco",
+                                   "about": "", "birthday": "", "imageUrl": "/etsy/avatar/Alex" };
+        }
     </script>
 </head>
 <body>
     <main id="root"></main>
     <script src="/bundle.js"></script>
+    <script>
+    /* ---- small vanilla shims over the harvested bundle (no rebuild toolchain) ---- */
+    (function () {
+        // 1) PDP -> PDP URL/hash navigation: the harvested ProductShow keeps the previously
+        //    mounted product in its local state, so Add to cart added the WRONG item after a
+        //    same-document hash change between two listing pages. A full load (what a real
+        //    marketplace does anyway) re-binds the handler to the product on screen.
+        var PDP_RE = /^#\/shops\/\d+\/products\/\d+\/?$/;
+        var lastHash = location.hash;
+        window.addEventListener('hashchange', function () {
+            var cur = location.hash;
+            if (PDP_RE.test(lastHash) && PDP_RE.test(cur) && lastHash !== cur) {
+                location.reload();
+                return;
+            }
+            lastHash = cur;
+            var dd = document.getElementById('notifications-dropdown');
+            if (dd && dd.parentNode) dd.parentNode.removeChild(dd);   // close on navigation
+        });
+
+        // 2) Header notifications bell: small seeded dropdown (was a dead control).
+        var NOTIFS = [
+            { text: 'Welcome back, Alex! New handmade picks were added this week.', time: '2h' },
+            { text: 'SilverFoxStudio added new items to their shop.', time: '1d' },
+            { text: 'Your account email was verified successfully.', time: '3d' }
+        ];
+        document.addEventListener('click', function (e) {
+            var t = e.target;
+            var inPanel = false, nav = null, n = t;
+            while (n && n !== document) {
+                if (n.id === 'notifications-dropdown') inPanel = true;
+                if (n.className && String(n.className).indexOf('notification-nav') !== -1) nav = n;
+                n = n.parentNode;
+            }
+            var dd = document.getElementById('notifications-dropdown');
+            if (inPanel) return;                       // clicks inside the panel are inert
+            if (nav) {
+                if (dd) { dd.parentNode.removeChild(dd); return; }
+                dd = document.createElement('div');
+                dd.id = 'notifications-dropdown';
+                var html = '<h4>Notifications</h4><ul>';
+                for (var i = 0; i < NOTIFS.length; i++) {
+                    html += '<li>' + NOTIFS[i].text +
+                            '<span class="notif-time">' + NOTIFS[i].time + ' ago</span></li>';
+                }
+                dd.innerHTML = html + '</ul>';
+                nav.appendChild(dd);
+            } else if (dd && dd.parentNode) {
+                dd.parentNode.removeChild(dd);
+            }
+        });
+
+        // 3) Log out / log in persistence across full page loads (pairs with the
+        //    window.currentUser gate in <head>).
+        if (window.$ && window.sessionStorage) {
+            $(document).ajaxSuccess(function (event, xhr, settings) {
+                var url = (settings.url || '').split('?')[0];
+                var method = (settings.type || settings.method || 'GET').toUpperCase();
+                if (url === '/etsy/session' && method === 'DELETE') {
+                    sessionStorage.setItem('epsyLoggedOut', '1');
+                } else if ((url === '/etsy/session' || url === '/etsy/users') && method === 'POST') {
+                    sessionStorage.removeItem('epsyLoggedOut');
+                }
+            });
+        }
+    })();
+    </script>
 </body>
 </html>

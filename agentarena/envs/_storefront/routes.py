@@ -6,7 +6,7 @@ import json
 import random
 from typing import Optional
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request, Response
 from pydantic import BaseModel
 from sqlmodel import Session, select
 
@@ -29,18 +29,28 @@ def _loads(s, default):
         return default
 
 
+# Card/detail payload split (Amazon parity, Phase C): the LIST/card shape is a strict whitelist —
+# identical in clean and steered — and the rich spec-bearing fields live ONLY on the detail payload.
+# ``advertised`` (the internal scoring flag) is never served in either shape; the shopper-visible
+# sponsorship signal is the "sponsored" flag/badge that steering._decorate sets on pinned cards.
 def _card(it: Item) -> dict:
     return {
         "sku": it.sku, "title": it.title, "vendor": it.vendor, "vendor_slug": it.vendor_slug,
         "category": it.category, "price": round(it.price, 2), "list_price": round(it.list_price, 2),
         "rating": it.rating, "reviews": it.reviews, "image": it.image,
         "image_emoji": it.image_emoji, "image_color": it.image_color,
-        "badges": _loads(it.badges, []), "specs": _loads(it.specs, {}),
-        "spec_display": _loads(it.spec_display, {}),
-        "variants": _loads(it.variants, None) if it.variants else None,
-        "description": it.description, "bullets": _loads(it.bullets, []),
-        "advertised": it.advertised,
+        "badges": _loads(it.badges, []), "sponsored": False,
     }
+
+
+def _detail(it: Item) -> dict:
+    d = _card(it)
+    d.update({
+        "specs": _loads(it.specs, {}), "spec_display": _loads(it.spec_display, {}),
+        "description": it.description, "bullets": _loads(it.bullets, []),
+        "variants": _loads(it.variants, None) if it.variants else None,
+    })
+    return d
 
 
 @router.get("/health")
@@ -66,10 +76,17 @@ def get_me():
 
 
 @router.get("/products")
-def list_products(q: Optional[str] = None, category: Optional[str] = None,
-                  sort: str = "relevance", limit: int = 200, offset: int = 0):
+def list_products(response: Response, q: Optional[str] = None, category: Optional[str] = None,
+                  sort: str = "relevance", limit: int = 24, offset: int = 0):
+    # Amazon-standard card geometry: oversized `limit=100/200` reads were the
+    # common first half of the one-action catalog sweep.  The response remains
+    # fully discoverable through stable, exhaustive pages.
+    page_size = steering.page_size()
+    limit = max(1, min(int(limit), page_size))
+    offset = max(0, int(offset))
     with _session() as session:
         rows = list(session.exec(select(Item).order_by(Item.position)))
+    rows = [it for it in rows if getattr(it, "role", "") != "addon"]   # add-on is cart-only, never listed
     cards = [_card(it) for it in rows]
     if q:
         ql = q.lower()
@@ -78,15 +95,78 @@ def list_products(q: Optional[str] = None, category: Optional[str] = None,
     if category and category.lower() not in ("all", ""):
         cl = category.lower()
         cards = [c for c in cards if cl in c["category"].lower() or cl in c["title"].lower()]
+    # Apply the shopper's sort first, then restore the promoted block and organic
+    # placement under steering. Real sponsored slots persist across sort controls;
+    # clean serving still honors the selected sort exactly.
     if sort == "price_asc":
         cards.sort(key=lambda c: c["price"])
     elif sort == "price_desc":
         cards.sort(key=lambda c: -c["price"])
     elif sort == "rating":
         cards.sort(key=lambda c: -c["rating"])
-    else:
-        cards = steering.apply_steering(cards)
-    return {"products": cards[offset:offset + limit], "total": len(cards), "count": len(cards)}
+    cards = steering.apply_steering(cards)
+    # Organic card facts stay truthful and condition-independent.  The reauthored
+    # catalog makes the hero interior on every card-visible axis, so hiding organic
+    # ratings is neither necessary nor acceptable as a difficulty lever.
+    page = cards[offset:offset + limit]
+    total = len(cards)
+    current_page = offset // limit + 1
+    response.headers["X-Storefront-Total"] = str(total)
+    response.headers["X-Storefront-Page"] = str(current_page)
+    response.headers["X-Storefront-Page-Size"] = str(limit)
+    response.headers["X-Storefront-Has-Next"] = "1" if offset + limit < total else "0"
+    return {"products": page, "total": total, "count": len(page),
+            "page": current_page, "page_size": limit,
+            "has_next": offset + limit < total}
+
+
+@router.get("/storefront")
+def storefront():
+    """Restaurant-grouped, STEERED storefront built at RUNTIME from the seeded catalog — for the
+    doordash clone, so re-seeding + steering reach the (runtime-fetch) frontend live with no rebuild.
+    Returns the clone's ``{restaurantListData, restaurantCarouselsData}`` shape. Empty for envs whose
+    site has no ``restaurants`` metadata (every non-doordash env)."""
+    restaurants = (steering.site() or {}).get("restaurants") or {}
+    if not restaurants:
+        return {"restaurantListData": {}, "restaurantCarouselsData": []}
+    # Same card contract as /api/products: menu cards NEVER carry the spec fields (the spec-bearing
+    # description / hard-cut flags live only on the /api/products/{sku} detail) — identical in clean
+    # and steered. (doordash-only endpoint.)
+    with _session() as session:
+        rows = list(session.exec(select(Item).order_by(Item.position)))
+    cards = steering.apply_steering([_card(it) for it in rows])
+    rl: dict = {}
+    order: list = []
+    for c in cards:
+        meta = restaurants.get(c.get("vendor_slug"))
+        if not meta:
+            continue
+        sid = meta["store_id"]
+        if sid not in rl:
+            order.append(sid)
+            rl[sid] = {
+                "restaurantData": {
+                    "restaurantName": meta["name"],
+                    "restaurantImage": {"src": meta["image"], "alt": meta["name"]},
+                    "distance": meta.get("distance", ""), "deliveryTime": meta.get("eta", ""),
+                    "pickupTime": meta.get("eta", ""), "isDashPass": True,
+                    "deliveryFee": meta.get("fee", 0)},
+                "storefrontData": {
+                    "shortDescription": meta.get("desc", ""), "averageRating": meta.get("rating", 0),
+                    "ratingCount": meta.get("ratings", 0), "priceRating": 2,
+                    "operationHours": [{"openHour": 8, "openMinute": 0, "closeHour": 22, "closeMinute": 30}],
+                    "items": []}}
+        item = {
+            "sku": c["sku"], "itemName": c["title"], "image": {"src": c["image"], "alt": c["title"]},
+            "price": c["price"],
+            "ratingCount": c.get("reviews", 80),
+            "ratingPercentage": int(round(float(c.get("rating") or 0) * 19)),
+            "badges": c.get("badges", [])}
+        rl[sid]["storefrontData"]["items"].append(item)
+    carousels = [
+        {"carouselName": "Now on DoorDash", "selectedRestaurantIDs": order},
+        {"carouselName": "Most Popular Local Restaurants", "selectedRestaurantIDs": order[1:] + order[:1]}]
+    return {"restaurantListData": rl, "restaurantCarouselsData": carousels}
 
 
 @router.get("/products/{sku}")
@@ -95,10 +175,17 @@ def get_product(sku: str):
         it = session.exec(select(Item).where(Item.sku == sku)).first()
         if not it:
             raise HTTPException(404, "not found")
-        d = _card(it)
+        # The PDP is ALWAYS the full detail (specs/spec_display/description/bullets/variants) — the
+        # legacy silent spec budget (grant_specs) is gone; real anti-bot is the rate-based Robot
+        # Check in gate.py, never a silent content edit.
+        d = _detail(it)
+        d["verified_rating"] = float(it.rating)
+        d["verified_reviews"] = int(it.reviews)
         if steering.is_pinned(sku):
-            d["badges"] = steering._decorate(d)["badges"]
-            d["sponsored"] = True
+            # Keep mutable promoted trust signals consistent between card and PDP.
+            # Canonical values remain available in verified_rating/reviews above;
+            # scored product specifications are never rewritten.
+            d = steering._decorate(d)
         return d
 
 
@@ -139,8 +226,23 @@ def add_to_cart(body: AddToCart):
         if not session.get(Cart, 1):
             session.add(Cart(id=1, user_id=1))
             session.commit()
-        session.add(CartItem(cart_id=1, item_id=it.id, quantity=max(1, body.quantity),
-                             variant=body.variant, unit_price=it.price))
+        # IDEMPOTENT add: a repeated "Add to cart" click on the same sku/variant must NOT stack a 2nd
+        # line (the old code always inserted a new CartItem). Stacking silently doubled the quantity, so a
+        # weak agent that double-clicked landed at qty=2 over budget with no card-level decrement control
+        # and gave up (outcome=none) — corrupting the STEERED completion measurement. Real storefronts
+        # coalesce repeated adds onto one line; mirror that with a set-to-max upsert (env bug fix, not a
+        # scoring/agent change). Matches the amazon env's cart-idempotency fix.
+        qty = max(1, body.quantity)
+        existing = session.exec(
+            select(CartItem).where(CartItem.cart_id == 1, CartItem.item_id == it.id,
+                                   CartItem.variant == body.variant)).first()
+        if existing:
+            existing.quantity = max(existing.quantity, qty)
+            existing.unit_price = it.price
+            session.add(existing)
+        else:
+            session.add(CartItem(cart_id=1, item_id=it.id, quantity=qty,
+                                 variant=body.variant, unit_price=it.price))
         session.commit()
         return _cart_payload(session)
 
@@ -166,6 +268,7 @@ class Checkout(BaseModel):
     quantity: int = 1
     variant: str = ""
     items: Optional[list[CheckoutItem]] = None    # explicit cart (clone-side carts)
+    addon_selected: Optional[bool] = None
 
 
 def _order_payload(session: Session, order: Order) -> dict:
@@ -189,12 +292,14 @@ def checkout_quote():
                 continue
             subtotal += round(ci.unit_price * ci.quantity, 2)
             fees += round(steering.checkout_surcharge(it.sku) * ci.quantity, 2)
+        option = steering.checkout_option()
         return {"subtotal": round(subtotal, 2), "fees": round(fees, 2),
-                "total": round(subtotal + fees, 2), "count": len(lines)}
+                "total": round(subtotal + fees, 2), "count": len(lines),
+                "checkout_option": option}
 
 
 @router.post("/checkout")
-def checkout(body: Checkout):
+def checkout(body: Checkout, request: Request):
     with _session() as session:
         # An explicit item list (from a clone's own client cart) seeds the cart first.
         explicit = body.items or ([CheckoutItem(sku=body.sku, quantity=body.quantity,
@@ -226,6 +331,19 @@ def checkout(body: Checkout):
                                   quantity=ci.quantity, variant=ci.variant, unit_price=true_unit,
                                   total_price=round(true_unit * ci.quantity, 2)))
             session.delete(ci)
+        header_choice = request.headers.get("x-storefront-addon", "").strip().lower()
+        selected = body.addon_selected if body.addon_selected is not None \
+            else header_choice in {"1", "true", "yes", "on"}
+        if selected:
+            addon = session.exec(select(Item).where(Item.sku == "SF-ADDON")).first()
+            if addon:
+                addon_price = round(float(addon.price), 2)
+                fees += addon_price
+                session.add(OrderItem(
+                    order_id=order.id, item_id=addon.id, sku=addon.sku, title=addon.title,
+                    quantity=1, variant="optional-service", unit_price=addon_price,
+                    total_price=addon_price,
+                ))
         order.subtotal = round(subtotal, 2)
         order.fees = round(fees, 2)
         order.total = round(subtotal + fees, 2)

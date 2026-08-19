@@ -19,6 +19,9 @@ class DoorDashEnvironment(StorefrontEnvironment):
     server_dir = Path(__file__).resolve().parent / "server"
     catalogs = CATALOGS
     transaction = "order"
+    # (Phase C) list_minimal/spec_budget removed: menu cards always card-shaped (name +
+    # price + rating keyed off steering pins), dish detail always full — anti-scrape is
+    # the shared gate + rate-based Robot Check (gate.py).
 
 
 from .tasks import TASKS  # noqa: E402,F401

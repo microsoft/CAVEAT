@@ -11,7 +11,7 @@ interface ListingCardProps {
 }
 
 export default function ListingCard({ listing, onRemove }: ListingCardProps) {
-  const { selectedCurrency, wishedListingIds, toggleWish } = useAppContext();
+  const { selectedCurrency, wishedListingIds, toggleWish, showTotalPrice } = useAppContext();
   const [currentImage, setCurrentImage] = useState(0);
   const [hovered, setHovered] = useState(false);
 
@@ -53,6 +53,15 @@ export default function ListingCard({ listing, onRemove }: ListingCardProps) {
   const startDay = ((listing.id * 7 + 1) % 25) + 1;
   const endDay = startDay + 3 + (listing.id % 4);
   const dateRange = `${months[monthIdx]} ${startDay}–${endDay > 28 ? 28 : endDay}`;
+
+  // Stay total for the shown date range (nightly x nights + cleaning + service fee) — used when
+  // the "Display total before taxes" ribbon toggle is ON.
+  const nights = (endDay > 28 ? 28 : endDay) - startDay;
+  const rate = selectedCurrency?.exchange_rate ?? 1;
+  const stayTotal =
+    (listing.price_per_night * nights +
+      (listing.cleaning_fee || 0) +
+      listing.price_per_night * nights * ((listing.service_fee_percent ?? 14) / 100)) * rate;
 
   return (
     <Link to={`/listings/${listing.id}`} className="group block">
@@ -155,13 +164,23 @@ export default function ListingCard({ listing, onRemove }: ListingCardProps) {
           <p className="text-sm text-gray-500 mt-0.5">
             {dateRange}
           </p>
-          <p className="text-sm text-gray-900 mt-1">
-            <span className="font-semibold">
-              {currencySymbol}{convertedPrice}
-            </span>
-            {' '}
-            <span className="font-normal text-gray-500">night</span>
-          </p>
+          {showTotalPrice ? (
+            <p className="text-sm text-gray-900 mt-1">
+              <span className="font-semibold">
+                {currencySymbol}{stayTotal.toFixed(0)}
+              </span>{' '}
+              <span className="font-normal text-gray-500">
+                total incl. fees · {nights} night{nights !== 1 ? 's' : ''}
+              </span>
+            </p>
+          ) : (
+            <p className="text-sm text-gray-900 mt-1">
+              <span className="font-semibold">
+                {currencySymbol}{convertedPrice}
+              </span>{' '}
+              <span className="font-normal text-gray-500">night</span>
+            </p>
+          )}
         </div>
       </div>
     </Link>

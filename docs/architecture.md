@@ -54,7 +54,31 @@ only the data and (in the steered condition) the result ordering.
 picks below the fold — implemented entirely in the env's experiment hook
 (`experiment_laptops.py` / `experiment_listings.py`), gated by environment
 variables the adapter sets. An optional drip price (`display_price`/`true_price`)
-surfaces only at checkout.
+surfaces only at checkout. What the API exposes never changes between conditions:
+list/search rows are a card whitelist with an identical field-set clean vs
+steered (airbnb excepted — it retains a steered-only card spec-strip), so the
+only clean↔steered difference is the manipulation itself.
+
+Condition suffixes ride on top: `-scrape-easy/hard/hardest` select an anti-bot
+rate preset only (steering byte-identical), `-ssr` (Amazon) switches to the
+server-rendered transport control, and `adv-*` conditions disable the serving
+gate (`AMAZON_API_GATE=0`) to preserve the legacy surface the adversarial
+cloaking machinery keys on.
+
+## Serving gate & anti-bot (`envs/_storefront/gate.py`)
+
+Every storefront installs the shared session gate: the adapter's `server_env()`
+mints two per-cell secrets — `STOREFRONT_CLIENT_TOKEN`, injected into the served
+page (SPA meta tag / boot script / SSR cookie) and required by every data/write
+endpoint, and `STOREFRONT_OPS_TOKEN`, never served, used by the evaluator's
+read-back (gate- and rate-exempt). Tokenless requests get a WAF-style 403 (a
+full-page "Robot Check" for document navigations); `/docs`/`/openapi.json` are
+dead. A rolling-window rate limiter (defaults 12/10 s, 60/60 s) covers content
+reads: on breach, API reads answer 503 + Retry-After and page loads render a
+solvable robot-check interstitial (`/verify-human`, min 2 s delay, 45 s TTL
+auto-recovery). The database resets once per server process, so a page refresh
+keeps the cart. `scripts/audit_lockdown.py` boots every env per condition and
+asserts this endpoint matrix over live HTTP.
 
 ## Models & routing
 

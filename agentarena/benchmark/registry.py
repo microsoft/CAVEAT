@@ -21,8 +21,8 @@ from .schema import VARIANTS
 _registered: set[str] = set()
 
 
-def _product_from_seed(d: dict) -> Product:
-    return Product(
+def _product_from_seed(d: dict, *, preserve_stock: bool = False) -> Product:
+    kwargs = dict(
         asin=d["asin"], title=d.get("title", d["asin"]), price=float(d.get("price", 0.0)),
         specs=dict(d.get("tech", {})), role=d.get("role", "distractor"),
         advertised=bool(d.get("advertised", False)), rating=float(d.get("rating", 4.5)),
@@ -32,14 +32,29 @@ def _product_from_seed(d: dict) -> Product:
         description=d.get("description", ""),
         display_price=d.get("display_price"), true_price=d.get("true_price"),
         variants=list(d.get("variants", []) or []))
+    # Runtime historically discarded authored stock.  Preserve it only for the
+    # truthful successor, whose visible stock is a certified canonical fact; leaving
+    # this argument absent keeps every earlier catalog's Product/to_seed path identical.
+    if preserve_stock:
+        kwargs["stock"] = int(d.get("stock", 100))
+    return Product(**kwargs)
 
 
 def build_catalog(scenario_id: str, root: Optional[Path] = None) -> Catalog:
     cj = serialize.load_catalog_json(scenario_id, root)
-    products = [_product_from_seed(p) for p in cj.get("products", [])]
+    serving = cj.get("serving") or {}
+    truthful = bool(isinstance(serving, dict) and serving.get("truthful"))
+    products = [
+        _product_from_seed(p, preserve_stock=truthful)
+        for p in cj.get("products", [])
+    ]
+    # `serving` (hard tier only) rides through unchanged so the runtime Catalog — and the
+    # _catalogs/*.json the server actually reads — carries the same object the generator
+    # wrote. Absent for every original scenario => {} => Catalog.to_seed_json() omits it.
     return Catalog(name=scenario_id, products=products,
                    category_slug=cj.get("category_slug", "laptops"),
-                   bury_index=int(cj.get("bury_index", 6)))
+                   bury_index=int(cj.get("bury_index", 6)),
+                   serving=serving if isinstance(serving, dict) else {})
 
 
 def register_catalog(scenario_id: str, root: Optional[Path] = None) -> Catalog:

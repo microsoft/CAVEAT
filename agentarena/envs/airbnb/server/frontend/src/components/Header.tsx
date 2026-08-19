@@ -67,10 +67,9 @@ export default function Header() {
 
   const initials = user ? user.name.charAt(0).toUpperCase() : '';
 
+  // Only content that actually exists in this app is offered as a header tab.
   const tabs: { id: TabId; label: string; icon: React.ReactNode; isNew?: boolean }[] = [
     { id: 'homes', label: 'Homes', icon: <FiHome className="w-4 h-4" /> },
-    { id: 'experiences', label: 'Experiences', icon: <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z" /><path d="M12 8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" /><path d="M8.5 14.5c0 2 1.6 3.5 3.5 3.5s3.5-1.6 3.5-3.5" /></svg>, isNew: true },
-    { id: 'services', label: 'Services', icon: <FiBell className="w-4 h-4" />, isNew: true },
   ];
 
   return (

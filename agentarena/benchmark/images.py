@@ -20,9 +20,7 @@ _N_GENERIC = 4
 
 # category-appropriate existing stock PNGs (committed) to fall back to if gen fails
 _STOCK_FALLBACK = {
-    "laptop": "laptop-generic.png", "monitor": "hp-27-4k-ips-monitor.png",
-    "headphones": "sony-wh-1000xm5-wireless-noise-canceling-headphones.png",
-    "robot_vacuum": "ninja-foodi-9-in-1-pressure-cooker-and-air-fryer.png",
+    "laptop": "laptop-generic.png",
 }
 
 
@@ -37,12 +35,6 @@ def _hero_descriptor(scenario: ScenarioSpec, row: ProductRow, k: int) -> str:
     sid = scenario.scenario_id
     if sid == "laptop":
         return f"modern thin {color} clamshell"
-    if sid == "monitor":
-        return f"{color} widescreen desktop computer"
-    if sid == "headphones":
-        return f"{color} over-ear wireless"
-    if sid == "robot_vacuum":
-        return f"round {color} disc-shaped"
     return color
 
 

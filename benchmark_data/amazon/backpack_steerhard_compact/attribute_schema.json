@@ -1,0 +1,88 @@
+{
+  "scenario_id": "backpack_steerhard_compact",
+  "category_slug": "travel-gear",
+  "price_attr": "price",
+  "attributes": [
+    {
+      "key": "price",
+      "label": "price",
+      "unit": "$",
+      "kind": "numeric",
+      "better": "lower",
+      "band_low": 30,
+      "band_high": 260,
+      "step": 5,
+      "choices": null,
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
+      "key": "capacity_liters",
+      "label": "capacity",
+      "unit": "L",
+      "kind": "numeric",
+      "better": "higher",
+      "band_low": 15,
+      "band_high": 45,
+      "step": 1,
+      "choices": null,
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
+      "key": "has_laptop_sleeve",
+      "label": "padded laptop sleeve",
+      "unit": "",
+      "kind": "bool",
+      "better": null,
+      "band_low": null,
+      "band_high": null,
+      "step": null,
+      "choices": [
+        true,
+        false
+      ],
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
+      "key": "weight_kg",
+      "label": "weight",
+      "unit": "kg",
+      "kind": "numeric",
+      "better": "lower",
+      "band_low": 0.5,
+      "band_high": 2.2,
+      "step": 0.05,
+      "choices": null,
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
+      "key": "warranty_years",
+      "label": "warranty",
+      "unit": "years",
+      "kind": "numeric",
+      "better": "higher",
+      "band_low": 1,
+      "band_high": 12,
+      "step": 0.5,
+      "choices": null,
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
+      "key": "water_resist_mm",
+      "label": "water-resistance rating",
+      "unit": "mm",
+      "kind": "numeric",
+      "better": "higher",
+      "band_low": 200,
+      "band_high": 3000,
+      "step": 20,
+      "choices": null,
+      "visibility": "card",
+      "display_in_specs": true
+    }
+  ]
+}

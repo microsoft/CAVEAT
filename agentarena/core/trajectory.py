@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import io
 import json
+import os
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any, Optional
@@ -86,6 +87,16 @@ class Trajectory:
     def save(self, run_dir: Path | str) -> Path:
         run_dir = Path(run_dir)
         run_dir.mkdir(parents=True, exist_ok=True)
+        # AGENTARENA_NO_SHOT_PERSIST=1: skip writing per-step PNGs (2026-07-25 — screenshot
+        # persistence was the dominant disk-write load at scale, ~180MB/s saturating the disk
+        # across 30+ concurrent 250-step cells and destabilizing runs). Scores, actions,
+        # reasoning, URLs and the evaluation are unaffected; steps are marked has_image=False
+        # so the viewer's filmstrip degrades cleanly instead of 404ing. The agent still SEES
+        # screenshots in-run (vision input is untouched) — only trajectory persistence changes.
+        _no_shots = os.environ.get("AGENTARENA_NO_SHOT_PERSIST", "") == "1"
+        if _no_shots:
+            for s in self.steps:
+                s.screenshot = None
         for s in self.steps:
             if s.screenshot is not None:
                 (run_dir / f"step_{s.index:03d}.png").write_bytes(_png_bytes(s.screenshot))

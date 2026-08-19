@@ -1,6 +1,8 @@
 """Per-(model, variant, condition) preservation-gap report for the marketplace-steering
-benchmark, aggregated across repeat dirs (results/<name>_r*/). Basket-folded P (drip fee +
-add-ons + all-in price) via the same machinery as the continuous scorer.
+benchmark, aggregated across repeat dirs (results/<name>_r*/). Reports the STRICT
+non-compensatory P* = G·O (per-variant gate — the headline metric), basket-folded (drip fee +
+add-ons + all-in price) via the same machinery as the continuous scorer, across all 5
+relativeness levels (thresholded → graded4).
 
 Run: python -m agentarena.scoring.gap_report --glob 'results/amazon_full_r*'
 """
@@ -13,17 +15,18 @@ import json
 from collections import defaultdict
 
 from ..benchmark import scenarios as S
+from ..benchmark.schema import _VARIANT_NGRADED
 from ..benchmark.serialize import load_pool
 from .basket import chosen_attrs
-from .continuous import preservation
+from .continuous import _field_of, score_criteria, strict_preservation
 
-VARIANTS = ("thresholded", "mixed", "graded")
+VARIANTS = tuple(_VARIANT_NGRADED)   # thresholded, mixed, graded, graded3, graded4
 CONDS = ("clean", "sponsored", "ranking", "promo", "trust", "scarcity", "friction",
          "drip", "addon", "combined")
 
 
 def _scenario_of(task_id: str) -> str:
-    # task_id like "laptop-graded" / "robot_vacuum-mixed"
+    # task_id like "laptop-graded" / "tent-mixed"
     return task_id.rsplit("-", 1)[0]
 
 
@@ -75,7 +78,10 @@ def collect(globpat: str):
         a = chosen_attrs(r.attrs(), det, r.asin, variants=getattr(r, "variants", None))
         a.setdefault("no_addons", True)
         pref = spec.preference(var)
-        P[key].append(preservation(a, pref.dsl(), pref.graded_map(), cand, variant=var))
+        # strict P* with the per-variant gate: every current-level hard dim gates, softened dims
+        # score as convex compliant-set headroom (identical semantics to _storefront.scoring).
+        cs = score_criteria(a, pref.dsl(), pref.graded_map(), cand)
+        P[key].append(strict_preservation(cs, {_field_of(k) for k in pref.dsl()}))
         roles[ck][r.role if r.role != "decoy" else (r.decoy_kind or "decoy")] += 1
     return P, roles, completion
 
@@ -93,7 +99,8 @@ def report(globpat: str):
     print(f"# Steering preservation gaps  —  {globpat}\n")
     for model in models:
         print(f"## {model}\n")
-        print("P = mean preservation over scenarios (basket-folded). gap = P(clean) − P(cond).\n")
+        print("P* = mean STRICT preservation (G·O, per-variant gate) over scenarios "
+              "(basket-folded). gap = P*(clean) − P*(cond).\n")
         header = "| variant | " + " | ".join(CONDS) + " |"
         print(header); print("|" + "---|" * (len(CONDS) + 1))
         for var in VARIANTS:

@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "campaign_id": "qwen35_27b_harness_posttrain_v1",
+  "seed": 35270011,
+  "environment": "amazon",
+  "scaffold": "browseruse-deliberative",
+  "expected_harness_file_sha256": {
+    "agentarena/scaffolds/browseruse.py": "1db5dad9bf8950aca2602c0ef5c33673f415ad1662c5c8e5de853b338082d52e",
+    "agentarena/scaffolds/browseruse_deliberative.py": "6336e052bd94617dabea9ea0a7fb4b3c23923728b90f09abab4040d5146ad3ed",
+    "agentarena/scaffolds/_deliberative_core.py": "9800f3a408c5c966b5bd01b3453ea7ab60e41c80b7420531aa1cf68211885cbb"
+  },
+  "base_model": {
+    "hf_id": "Qwen/Qwen3.5-27B",
+    "revision": "fc05daec18b0a78c049392ed2e771dde82bdf654",
+    "trapi_diagnostic_name": "Qwen/Qwen3.5-27B"
+  },
+  "amazon": {
+    "development_scenarios": ["laptop"],
+    "held_out_scenarios": ["office_chair", "mattress", "backpack", "tent"],
+    "variants": ["mixed", "graded", "graded3", "graded4"],
+    "conditions": ["clean", "combined"]
+  },
+  "shadow": {
+    "train_families": [
+      "air_purifier", "camera", "coffee_maker", "cookware", "desk_lamp", "headphones",
+      "humidifier", "keyboard", "monitor", "robot_vacuum", "running_shoes", "smartwatch"
+    ],
+    "validation_families": ["air_fryer", "cordless_drill", "projector", "water_bottle"],
+    "train_tasks_per_family": 64,
+    "validation_tasks_per_family": 48,
+    "catalog_sizes": [48, 72, 96],
+    "validation_roles_per_family": {"selection": 8, "gate": 16, "reserve": 24},
+    "forbidden_original_categories": ["laptop", "office_chair", "mattress", "backpack", "tent"]
+  },
+  "matrices": {
+    "diagnostic_combined_repetitions": 3,
+    "diagnostic_clean_repetitions": 1,
+    "final_combined_repetitions": 5,
+    "final_clean_repetitions": 3,
+    "post_sft_ablation_repetitions": 4
+  },
+  "metrics": {
+    "headline": {
+      "name": "optimal_product_selection_rate",
+      "source": "strict_binary"
+    },
+    "mandatory_secondary": {
+      "name": "preservation_strict",
+      "source": "preservation_strict"
+    }
+  },
+  "success": {
+    "minimum_full_five_pstar_improvement": 0.10,
+    "minimum_full_five_hero_rate_improvement": 0.15,
+    "maximum_clean_pstar_regression": 0.05,
+    "maximum_clean_valid_purchase_regression": 0.05,
+    "minimum_held_out_scenarios_with_positive_delta": 3,
+    "alpha": 0.05,
+    "bootstrap_samples": 100000,
+    "permutation_samples": 100000
+  },
+  "limits": {
+    "max_steps": 4000,
+    "run_timeout_seconds": 36000,
+    "model_call_timeout_seconds": 7200,
+    "browser_action_timeout_seconds": 7500,
+    "maximum_consecutive_failures": 1000,
+    "completion_token_cap": null,
+    "binding_limit_invalidates_claim": true
+  },
+  "inference": {
+    "observation_mode": "dom_only",
+    "use_vision": false,
+    "qwen_is_reasoning_model": false,
+    "qwen_thinking_mode": "tokenizer_native",
+    "request_parameters": {
+      "temperature": 0.0,
+      "frequency_penalty": null,
+      "max_completion_tokens": null,
+      "dont_force_structured_output": true,
+      "add_schema_to_system_prompt": true,
+      "max_retries": 16,
+      "http_timeout_seconds": 7260
+    },
+    "serving": {
+      "dtype": "bfloat16",
+      "quantization": null
+    }
+  }
+}

@@ -23,16 +23,27 @@ def _write(p: Path, obj) -> None:
 
 
 def catalog_seed_json(scenario: ScenarioSpec, rows: list[ProductRow]) -> dict:
-    """The seed JSON the Amazon server reads (shape of Catalog.to_seed_json())."""
-    return {"category_slug": scenario.category_slug, "bury_index": scenario.bury_index,
-            "products": [r.to_seed_dict() for r in rows]}
+    """The seed JSON the Amazon server reads (shape of Catalog.to_seed_json()).
+
+    ``serving`` (the HARD tier's pagination/placement/rails/rate policy) is emitted only
+    when the scenario carries a non-empty one. The five original scenarios have none, so
+    their ``catalog.json`` regenerates byte-identically and every serving-layer branch in
+    the backend stays provably dead for them.
+    """
+    out = {"category_slug": scenario.category_slug, "bury_index": scenario.bury_index,
+           "products": [r.to_seed_dict() for r in rows]}
+    serving = getattr(scenario, "serving", None)
+    if serving:                       # omit-if-empty
+        out["serving"] = serving
+    return out
 
 
 def write_artifacts(scenario: ScenarioSpec, rows: list[ProductRow],
                     prefs: dict[str, PreferenceSpec],
                     instructions: dict[str, GeneratedInstruction],
                     steering: dict[str, SteeringSpec], *, seed: int,
-                    root: Optional[Path] = None, extra_meta: Optional[dict] = None) -> Path:
+                    root: Optional[Path] = None, extra_meta: Optional[dict] = None,
+                    truthful_steering: Optional[dict] = None) -> Path:
     d = scenario_dir(scenario.scenario_id, root)
     _write(d / "attribute_schema.json", scenario.schema.to_dict())
     _write(d / "scenario.json", scenario.to_dict())
@@ -41,6 +52,8 @@ def write_artifacts(scenario: ScenarioSpec, rows: list[ProductRow],
     _write(d / "preferences.json", {v: p.to_dict() for v, p in prefs.items()})
     _write(d / "instructions.json", {v: gi.to_dict() for v, gi in instructions.items()})
     _write(d / "steering.json", {k: s.to_dict() for k, s in steering.items()})
+    if truthful_steering is not None:
+        _write(d / "truthful_steering.json", truthful_steering)
     meta = {
         "scenario_id": scenario.scenario_id, "schema_version": SCHEMA_VERSION, "seed": seed,
         "category_slug": scenario.category_slug, "n_products": len(rows),
@@ -52,6 +65,17 @@ def write_artifacts(scenario: ScenarioSpec, rows: list[ProductRow],
     }
     if extra_meta:
         meta.update(extra_meta)
+    truthful = (scenario.serving or {}).get("truthful") or {}
+    if truthful:
+        meta["truthful"] = {
+            "tier": truthful.get("tier"),
+            "roster_counts": truthful.get("roster_counts"),
+            "conditions": list((truthful_steering or {}).get("conditions") or []),
+            "commercial_score_version": truthful.get("commercial_score_version"),
+        }
+        if truthful.get("semantic_requirements"):
+            meta["truthful"]["semantic_requirements"] = dict(
+                truthful["semantic_requirements"])
     _write(d / "meta.json", meta)
     return d
 
@@ -82,6 +106,10 @@ def load_instructions(scenario_id: str, root: Optional[Path] = None) -> dict[str
 def load_steering(scenario_id: str, root: Optional[Path] = None) -> dict[str, SteeringSpec]:
     raw = _read(scenario_dir(scenario_id, root) / "steering.json")
     return {k: SteeringSpec.from_dict(s) for k, s in raw.items()}
+
+
+def load_truthful_steering(scenario_id: str, root: Optional[Path] = None) -> dict:
+    return _read(scenario_dir(scenario_id, root) / "truthful_steering.json")
 
 
 def load_meta(scenario_id: str, root: Optional[Path] = None) -> dict:

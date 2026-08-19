@@ -57,10 +57,12 @@ export interface Listing {
   description: string;
   property_type: string;
   room_type: string;
-  max_guests: number;
-  bedrooms: number;
-  beds: number;
-  bathrooms: number;
+  // Spec fields may be absent from card payloads (minimal cards) and from detail responses
+  // once the session's listing-detail quota is exhausted — always guard before rendering.
+  max_guests?: number;
+  bedrooms?: number;
+  beds?: number;
+  bathrooms?: number;
   price_per_night: number;
   cleaning_fee: number;
   service_fee_percent: number;
@@ -205,6 +207,7 @@ export interface SearchFilters {
   min_bathrooms?: number;
   sort_by?: string;
   amenities?: string[];
+  instant_book?: boolean;
 }
 
 export interface SearchSuggestion {

@@ -141,7 +141,7 @@ body {
     height: 100%;
     width: 100%;
     background-position: right center;
-    background-image: url(https://www.instacart.com/image-server/x856/www.instacart.com/assets/homepage/homepage_background_full_m3_cropped-8d2d286263821da7decd7c61fb1db1eb0e3dec13e0c356277d6d3cb7484c024a.jpg);
+    background-image: url(/img/site/bg-home.jpg);
     background-color: rgb(222, 237, 214);
 }
 
@@ -169,7 +169,7 @@ body {
 }
 
 #select_country {
-    background-image: url(https://www.instacart.com/assets/homepage/country-chooser-arrow-0a7eab6d692d69c95f6e81f06eca541be78ab5ef452ff14bd2bc1a7d1a9481c9.svg);
+    background-image: url(/img/site/country-arrow.svg);
     appearance: none;
     border: none;
     width: 8px;
@@ -521,7 +521,7 @@ p {
 }
 
 .third_content_2_img>div {
-    background-image: url(https://www.instacart.com/assets/homepage/homepage_stats-538f51946acc9e8a72b982654287ee0ad8d7a848df2cd860935bbc3c2a97e84a.jpg);
+    background-image: url(/img/site/stats.jpg);
     background-repeat: no-repeat;
     background-size: contain;
     width: 100%;
@@ -982,3 +982,72 @@ css-154s8p4 {
 
 
 /*-----------------------------------------Footer------------------------------------------------*/
+/* ---- interactivity added in the realism pass ---- */
+
+.address>span {
+    display: none;
+}
+
+.address.error>span {
+    display: inline;
+}
+
+.store-hidden {
+    display: none;
+}
+
+.faq_answer {
+    display: none;
+    padding: 0 24px 22px 24px;
+    color: #56595e;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: left;
+}
+
+.third_content_3_item_1.open .faq_answer {
+    display: block;
+}
+
+.third_content_3_item_1 h3 button div img {
+    transition: transform .18s ease;
+}
+
+.third_content_3_item_1.open h3 button div img {
+    transform: rotate(45deg);
+}
+
+.menu {
+    position: relative;
+}
+
+#menu_dropdown {
+    display: none;
+    position: absolute;
+    top: 32px;
+    left: 0;
+    background: #fff;
+    border: 1px solid #e8e9eb;
+    border-radius: 10px;
+    box-shadow: rgb(0 0 0 / 16%) 0px 2px 8px;
+    min-width: 190px;
+    z-index: 40;
+    padding: 6px 0;
+}
+
+#menu_dropdown.on {
+    display: block;
+}
+
+#menu_dropdown a {
+    display: block;
+    padding: 10px 16px;
+    color: #343538;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#menu_dropdown a:hover {
+    background: #f6f7f8;
+}

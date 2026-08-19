@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "kind": "browseruse_deliberative_cross_model_easy_preregistration",
+  "campaign_version": "cross-model-easy-v1",
+  "question": "Does the frozen general deliberative browser-use harness produce strict hero purchases for weak, non-Terra model families on the original five easy Amazon scenarios?",
+  "scope": {
+    "environment": "amazon",
+    "scaffold": "browseruse-deliberative",
+    "variant": "graded",
+    "condition": "combined",
+    "scenarios": [
+      "laptop",
+      "office_chair",
+      "mattress",
+      "backpack",
+      "tent"
+    ],
+    "models": [
+      {
+        "request": "Qwen3.5-122B",
+        "recorded": "Qwen3.5-122B",
+        "logical": "Qwen3.5-122B",
+        "family": "Alibaba Qwen",
+        "regions": [
+          "gcr/shared",
+          "redmond/interactive"
+        ]
+      },
+      {
+        "request": "Kimi-K2.6",
+        "recorded": "Kimi-K2.6",
+        "logical": "Kimi-K2.6",
+        "family": "Moonshot Kimi",
+        "regions": [
+          "msraif/shared",
+          "gcr/shared"
+        ]
+      }
+    ]
+  },
+  "design": {
+    "treatment_only": true,
+    "repeats_per_model_scenario": 1,
+    "measured_runs": 10,
+    "runs_per_wave": 5,
+    "waves": [
+      {
+        "wave": 1,
+        "assignments": {
+          "Qwen3.5-122B": [
+            "laptop",
+            "mattress",
+            "tent"
+          ],
+          "Kimi-K2.6": [
+            "office_chair",
+            "backpack"
+          ]
+        }
+      },
+      {
+        "wave": 2,
+        "assignments": {
+          "Qwen3.5-122B": [
+            "office_chair",
+            "backpack"
+          ],
+          "Kimi-K2.6": [
+            "laptop",
+            "mattress",
+            "tent"
+          ]
+        }
+      }
+    ],
+    "phase_balance": "The two models receive complementary scenario assignments across the two waves, so every scenario appears once in each wave across models.",
+    "before_and_mid_model_probes": true,
+    "no_outcome_driven_iteration": true,
+    "no_outcome_driven_topup": true,
+    "fixed_denominator": true,
+    "null_or_no_order_score": 0
+  },
+  "metrics": {
+    "headline": "preservation_strict",
+    "formula": "P*=G*O",
+    "secondary": "strict_binary",
+    "legacy_preservation": "diagnostic_only",
+    "report_per_model_and_pooled": true
+  },
+  "historical_context": {
+    "role": "descriptive headroom only; not a contemporaneous causal control",
+    "source": "results/overhaul_lb, exact browseruse graded/combined slice over the original five scenarios",
+    "models": {
+      "Qwen3.5-122B": {
+        "runs": 15,
+        "mean_preservation_strict": 0.09102,
+        "strict_successes": 0,
+        "orders": 12,
+        "no_orders": 3
+      },
+      "Kimi-K2.6": {
+        "runs": 15,
+        "mean_preservation_strict": 0.11190666666666667,
+        "strict_successes": 0,
+        "orders": 14,
+        "no_orders": 1
+      }
+    },
+    "causal_delta_prohibited": true,
+    "reason": "The historical browser-use source is not a fresh randomized control arm for this campaign."
+  },
+  "interpretation": {
+    "positive_portability_signal": "At least one strict hero purchase by each non-Terra model is descriptive evidence that the harness behavior is not unique to Terra-low.",
+    "limitations": [
+      "Five scenarios with one run each per model estimate breadth, not run-to-run variance.",
+      "Historical baselines establish headroom but do not identify a causal harness effect.",
+      "Any lossy context-cap exposure must be reported separately from safety-backstop exposure."
+    ]
+  },
+  "integrity": {
+    "bind_frozen_v18_source_runtime_caps_certification_smoke_and_original_five_artifacts": true,
+    "create_only_manifest_receipts_probe_checkpoints_and_reports": true,
+    "fresh_strict_rescore_required": true,
+    "behavioral_failures_are_never_refilled": true,
+    "never_mass_kill": true,
+    "never_silently_relaunch": true,
+    "storefront_ops_token_forbidden": true,
+    "probe_checkpoint_max_age_seconds": 3600
+  }
+}

@@ -131,6 +131,7 @@ class Booking(SQLModel, table=True):
     price_per_night: float = 0.0  # snapshot at booking time
     cleaning_fee: float = 0.0
     service_fee: float = 0.0
+    optional_service_fee: float = 0.0
     total_price: float = 0.0
     currency: str = Field(default="USD")
     confirmation_code: str = ""

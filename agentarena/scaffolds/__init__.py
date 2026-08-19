@@ -7,4 +7,12 @@ Heavy third-party imports happen lazily inside ``run()``, so importing this pack
 never requires those deps to be installed.
 """
 
-from . import browseruse, playwright_mcp, simple, stagehand  # noqa: F401  (registration side effects)
+from . import (  # noqa: F401  (registration side effects)
+    browseruse,
+    browseruse_deliberative,
+    magentic_one,
+    playwright_mcp,
+    simple,
+    stagehand,
+    websurfer,
+)

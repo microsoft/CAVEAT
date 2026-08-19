@@ -32,8 +32,10 @@ Routing
 -------
 A logical model name (e.g. "gpt-5.5") maps to every endpoint that serves it; the
 router picks the least-in-flight healthy endpoint, cools down throttled ones (429),
-and fails over on error. Chat runs on TRAPI {gcr, msraif, redmond} + PhyAGI;
-embeddings are TRAPI-only and pinned to the region that actually serves them.
+and fails over on error. Chat runs on TRAPI {gcr, msraif, redmond} + PhyAGI, except
+where TRAPI_MODEL_REGIONS pins a model to specific regions (gpt-5.5 -> redmond/interactive,
+gpt-4.1 -> gcr+msraif/shared; see that map for why); embeddings are TRAPI-only and
+pinned to the region that actually serves them.
 
 PhyAGI session pinning (responses API) is not part of the routed chat path; for that
 use `create_phyagi_client(session_id=...)` directly (see bottom of this module).
@@ -111,6 +113,57 @@ def _phyagi_key() -> str | None:
 # --------------------------------------------------------------------------- #
 TRAPI_REGIONS = ["gcr/shared", "msraif/shared", "redmond/interactive"]
 
+# Per-model region pinning. Region health is PER-MODEL and DYNAMIC — re-probe before long runs.
+# This map is the single source of truth for both faces: the router (chat.completions) AND the
+# external-scaffold endpoint (ModelSpec.openai_endpoint picks pinned[0] as its single region).
+# Live probing 2026-06-17: gcr/shared 503s gpt-5.5 ("all backends for this model unavailable")
+# but still serves gpt-4.1 fine; msraif/shared serves gpt-5.5 clean + FAST (~1-3s); redmond/
+# interactive serves gpt-5.5 but SLOW (~6-8s). So gpt-5.5 -> [msraif, redmond]; keep gpt-4.1 on
+# [gcr, msraif] (gcr is healthy for it, and this keeps it off msraif so it doesn't contend with
+# gpt-5.5). Earlier (2026-06-15) msraif 503'd and redmond was the only good one — hence re-probe.
+# Models not listed here fall back to all TRAPI_REGIONS (router) / gcr/shared (scaffold default).
+TRAPI_MODEL_REGIONS: dict[str, list[str]] = {
+    "gpt-5.5": ["msraif/shared", "gcr/shared"],   # 2026-07-15 re-probe (scrape-policy run): msraif+gcr+redmond ALL 32-concurrent 100% ok; kept the two-region pin (redmond historically flaps + lies to single-call health checks; prior 07-09: msraif 32, gcr 4, redmond 0). Re-probe before each run — health flaps.
+    "gpt-4.1": ["gcr/shared", "msraif/shared", "redmond/interactive"],   # 2026-07-09 sustained probe: ALL THREE regions 32-concurrent for 4.1. gcr PRIMARY — a SEPARATE primary from gpt-5.5 (msraif) so the two pilot models don't contend; redmond third for routed-path overflow (4.1-only; it cannot carry gpt-5.5).
+    "gpt-5.6-sol": ["gcr/shared", "msraif/shared"],   # 2026-07-15 evening re-probe (scrape-policy run): gcr+msraif+redmond ALL 32-concurrent 100% ok; kept two-region pin (redmond flapped to 0 earlier this same day — untrustworthy).
+    "gpt-5.6-terra": ["msraif/shared", "gcr/shared", "redmond/interactive"],   # 2026-07-15 probe: ALL THREE 32-concurrent 100% ok. msraif PRIMARY to spread the 5.6 trio off sol's gcr.
+    "gpt-5.6-luna": ["gcr/shared", "msraif/shared", "redmond/interactive"],    # 2026-07-15 probe: ALL THREE 32-concurrent 100% ok. gcr primary (shares with sol; combined run load ≤8 concurrent, trivial vs 32/region).
+    # 2026-06-19 AM: gcr 404'd the gpt-5.x line + gpt-oss → pinned msraif. 2026-06-19 PM re-probe: gcr
+    # now serves ALL of them → spread gpt-5 + gpt-5.4-nano to gcr-FIRST so the max-TRAPI sweep runs across
+    # 3 regions (msraif + gcr + redmond) and can push higher concurrency without a per-region 429.
+    "gpt-5": ["gcr/shared", "msraif/shared"],
+    "gpt-5.1": ["msraif/shared", "redmond/interactive"],
+    "gpt-5.2": ["msraif/shared", "redmond/interactive"],
+    "gpt-5.3-chat": ["redmond/interactive", "gcr/shared"],  # 5.3-chat only; off msraif 2026-06-19 PM (msraif 503-blipped it; redmond healthy). Hot-read by new cells.
+    "gpt-5.4": ["msraif/shared", "redmond/interactive"],
+    "gpt-5.4-mini": ["msraif/shared", "redmond/interactive"],
+    "gpt-5.4-nano": ["gcr/shared", "msraif/shared"],
+    "gpt-oss-120b": ["msraif/shared", "redmond/interactive"],
+    # --- new models 2026-06-19 PM (all serve on all 3 regions; balanced across the 18-model sweep) ---
+    "gpt-4o": ["gcr/shared", "msraif/shared"],
+    "Kimi-K2.6": ["gcr/shared", "msraif/shared"],
+    "DeepSeek-V4-Flash": ["gcr/shared", "msraif/shared"],
+    "gpt-5-mini": ["msraif/shared", "gcr/shared"],
+    "DeepSeek-V4-Pro": ["msraif/shared", "gcr/shared"],
+    "gpt-5-nano": ["redmond/interactive", "msraif/shared"],
+    "grok-4-1-fast-reasoning": ["redmond/interactive", "msraif/shared"],
+    "Qwen3.5-397B": ["redmond/interactive", "msraif/shared"],
+    "Qwen3.5-122B": ["redmond/interactive", "gcr/shared"],
+}
+
+# Live health flaps per-region, so a long pilot can be pinned to the regions that are UP *right now*
+# without editing this file: set TRAPI_REGIONS_OVERRIDE to a JSON dict {logical: [region, ...]} and it
+# is merged in at import time. Cell subprocesses inherit it from the parent env, so a single parent-side
+# health probe (scripts/probe_regions.py) reorders routing for the whole run. Pure routing, not behavior.
+_REGIONS_OVERRIDE = os.environ.get("TRAPI_REGIONS_OVERRIDE")
+if _REGIONS_OVERRIDE:
+    try:
+        for _k, _v in json.loads(_REGIONS_OVERRIDE).items():
+            if isinstance(_v, list) and _v:
+                TRAPI_MODEL_REGIONS[_k] = list(_v)
+    except Exception:
+        pass
+
 TRAPI_DEPLOY: dict[str, str] = {
     # --- GPT-4.x ---
     "gpt-4.1": "gpt-4.1_2025-04-14",
@@ -128,6 +181,9 @@ TRAPI_DEPLOY: dict[str, str] = {
     "gpt-5.4-mini": "gpt-5.4-mini_2026-03-17",
     "gpt-5.4-nano": "gpt-5.4-nano_2026-03-17",
     "gpt-5.5": "gpt-5.5_2026-04-24",
+    "gpt-5.6-sol": "gpt-5.6-sol_2026-07-09",   # added to TRAPI 2026-07 (probed 2026-07-14)
+    "gpt-5.6-terra": "gpt-5.6-terra_2026-07-09",   # added to TRAPI 2026-07 (probed 2026-07-15)
+    "gpt-5.6-luna": "gpt-5.6-luna_2026-07-09",     # added to TRAPI 2026-07 (probed 2026-07-15)
     # --- chat (non-reasoning) variants ---
     "gpt-5-chat": "gpt-5-chat_2025-10-03",   # newer of the two deployments listed
     "gpt-5.1-chat": "gpt-5.1-chat_2025-11-13",
@@ -151,6 +207,8 @@ TRAPI_DEPLOY: dict[str, str] = {
     "model-router": "model-router_2025-11-18",   # newest of three deployments
     # --- third-party served via TRAPI (version-suffixed) ---
     "grok-4": "grok-4_1",
+    "grok-4.3": "grok-4.3_1",   # candidate deployment (user-requested 2026-07-24); probe before use
+
     "grok-4-1-fast-reasoning": "grok-4-1-fast-reasoning_1",
     "grok-4-1-fast-non-reasoning": "grok-4-1-fast-non-reasoning_1",
     "grok-4-20-reasoning": "grok-4-20-reasoning_1",
@@ -162,6 +220,8 @@ TRAPI_DEPLOY: dict[str, str] = {
     "Kimi-K2.6": "Kimi-K2.6_2026-04-20",
     "DeepSeek-R1": "DeepSeek-R1_1",
     "DeepSeek-V3.2": "DeepSeek-V3.2_1",
+    "DeepSeek-V4-Pro": "DeepSeek-V4-Pro_2026-04-23",
+    "DeepSeek-V4-Flash": "DeepSeek-V4-Flash_2026-04-23",
     # --- OSS / hosted, deployment name == logical name (identity passthrough) ---
     "gcr-fara-7b": "gcr-fara-7b",
     "gcr-llama-31-8b-instruct": "gcr-llama-31-8b-instruct",
@@ -177,13 +237,19 @@ TRAPI_DEPLOY: dict[str, str] = {
     "Qwen/Qwen3.5-27B": "Qwen/Qwen3.5-27B",
     "Qwen/Qwen3.5-122B-A10B": "Qwen/Qwen3.5-122B-A10B",
     "Qwen/Qwen3.5-397B-A17B-GPTQ-Int4": "Qwen/Qwen3.5-397B-A17B-GPTQ-Int4",
+    "Qwen3.5-397B": "Qwen/Qwen3.5-397B-A17B-GPTQ-Int4",   # slash-free alias for clean cell-dir names
+    "Qwen3.5-122B": "Qwen/Qwen3.5-122B-A10B",   # non-Int4 Qwen, swapped in for the broken 397B-Int4
     # (audio / image / realtime / transcribe / video deployments omitted: not chat-completable)
 }
 
 # Logical models PhyAGI also serves (bare names). Update if your gateway changes;
 # the TRAPI list above comes from models.list() and does NOT describe PhyAGI.
-PHYAGI_MODELS = {"gpt-5", "gpt-5-mini", "gpt-4.1", "gpt-4o", "gpt-5.1", "gpt-5.2",
-                 "gpt-5.4", "gpt-5.4-mini", "gpt-5.4-nano", "o4-mini"}
+# 2026-06-26: key EXPIRED (401) -> emptied, TRAPI-only. 2026-07-09: FRESH KEY in .env verified live
+# (both models 24/24 concurrent, med ~2.3s — faster than TRAPI). Restored per owner policy: TRAPI
+# stays primary everywhere (scaffold fallback prefers a 2nd TRAPI region); PhyAGI is the overflow /
+# never-block net — it enters the browseruse fallback only when a model has <2 live TRAPI regions
+# (see scaffolds/browseruse.py + scripts/probe_regions.py single-live-region handling).
+PHYAGI_MODELS: set[str] = {"gpt-5.5", "gpt-4.1"}
 
 # Embeddings are TRAPI-only and NOT mirrored across regions; pin each to a region
 # that actually serves it (unknown embed models fall back to gcr/shared in pick()).
@@ -387,14 +453,16 @@ class Router:
         return ep.client
 
     def endpoints_for(self, logical: str, embed: bool = False) -> list[Endpoint]:
-        trapi = [self.endpoints[f"trapi:{r}"] for r in TRAPI_REGIONS if f"trapi:{r}" in self.endpoints]
+        all_trapi = [self.endpoints[f"trapi:{r}"] for r in TRAPI_REGIONS if f"trapi:{r}" in self.endpoints]
         if embed:
             regions = EMBED_REGIONS.get(logical, ["gcr/shared"])
             eps = [self.endpoints[f"trapi:{r}"] for r in regions if f"trapi:{r}" in self.endpoints]
-            return eps or trapi or list(self.endpoints.values())
+            return eps or all_trapi or list(self.endpoints.values())
         eps: list[Endpoint] = []
         if logical in TRAPI_DEPLOY:
-            eps += trapi
+            # honor per-model region pinning (gpt-5.5 -> redmond, gpt-4.1 -> shared regions)
+            regions = TRAPI_MODEL_REGIONS.get(logical, TRAPI_REGIONS)
+            eps += [self.endpoints[f"trapi:{r}"] for r in regions if f"trapi:{r}" in self.endpoints]
         if logical in PHYAGI_MODELS and "phyagi" in self.endpoints:
             eps.append(self.endpoints["phyagi"])
         return eps or list(self.endpoints.values())
@@ -404,7 +472,11 @@ class Router:
         healthy = [e for e in eps if e.healthy()]
         if not healthy:
             return min(eps, key=lambda e: e.cooldown_until)        # soonest-free
-        return min(healthy, key=lambda e: (e.in_flight, e.calls))  # least loaded
+        # Owner policy (2026-07-09): PhyAGI is a LAST RESORT — prefer any healthy TRAPI endpoint
+        # (least-loaded among them); PhyAGI is picked only when every TRAPI endpoint for this model
+        # is unhealthy/cooling. On downgrade: re-probe (scripts/probe_regions.py), reroute within
+        # TRAPI first, PhyAGI last.
+        return min(healthy, key=lambda e: (e.kind != "trapi", e.in_flight, e.calls))
 
     def mark_throttle(self, ep: Endpoint, base: float = 4.0) -> None:
         ep.throttles += 1
@@ -525,7 +597,15 @@ class LLMClient:
             params.update(extra)
 
         logical = _logical(model)
-        key = self._cache_key({"model": logical, "messages": messages, "params": params})
+        key_payload: dict[str, Any] = {"model": logical, "messages": messages, "params": params}
+        # Repeat-independence: repeated experiments (e.g. <env>_r1..rN) set
+        # AGENTARENA_CACHE_NONCE per cell so identical prompts don't collapse into one
+        # cached response across repeats. Absent/empty nonce => key unchanged (old
+        # cache entries stay valid).
+        nonce = os.environ.get("AGENTARENA_CACHE_NONCE", "")
+        if nonce:
+            key_payload["nonce"] = nonce
+        key = self._cache_key(key_payload)
         hit = self._cache_read(key)
         if hit is not None:
             self.acct.calls += 1
@@ -592,6 +672,10 @@ class LLMClient:
                     continue
                 if any(s in name for s in ("APIConnection", "APITimeout", "InternalServer",
                                             "APIError", "Timeout")):
+                    # 503 "all backends unhealthy" / connection drops are PER-REGION: cool this
+                    # endpoint down so pick() rotates to the next healthy region instead of
+                    # hammering the same dead one for every attempt (the gpt-5.5 gcr-503 trap).
+                    self.router.mark_throttle(ep, base=2.0)
                     await asyncio.sleep(min(0.5 * (attempt + 1) + random.uniform(0, 0.5), 8.0))
                     continue
                 if "BadRequest" in name or "NotFound" in name or "Permission" in name:

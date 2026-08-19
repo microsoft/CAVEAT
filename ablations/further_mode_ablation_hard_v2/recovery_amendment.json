@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "kind": "further_mode_ablation_hard_v2_recovery_amendment",
+  "predecessor_campaign": "further_mode_ablation_v1",
+  "excluded_predecessor_block": 5,
+  "excluded_predecessor_runs": 28,
+  "exclusion_scope": "entire matched pilot block",
+  "omission": "C_coverage_only stats_snapshot lacked the generic deliberative limit_observations inventory",
+  "fix": {
+    "surface": "post-run stats_snapshot telemetry",
+    "inventory": ["structured_response_attempts"],
+    "touched_count": 0,
+    "attempts": 0,
+    "rejected_attempts": 0,
+    "exhaustions": 0,
+    "outcome_inert": true
+  },
+  "unchanged": [
+    "production benchmark files",
+    "frozen further_mode_ablation_v1 package",
+    "task and catalog",
+    "steering conditions",
+    "all prompts",
+    "all agent-visible tools and schemas",
+    "checkpoint logic and verdicts",
+    "browser transport and actions",
+    "models and routes",
+    "caps and attempt policy",
+    "metrics, contrasts, and analyzer estimands"
+  ],
+  "recovery_denominator": 112,
+  "reuse_policy": "no v1 block-5 row or outcome may enter, seed, retry, or replace a hard-v2 measured row"
+}

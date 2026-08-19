@@ -7,12 +7,21 @@ Verifies the load-bearing properties of the continuous scorer:
   * graded percentile fallback (no cut): best candidate -> 1, worst -> 0, mid -> ~0.5;
   * degree weighting: a mid-pack-on-degrees pick scores lower under graded than thresholded;
   * edge cases: equality/bool 0-1, contains fraction, missing attr -> 0.
+
+And of the UNIFIED strict metric P* = G·O (per-variant gate + compliant-set normalisation):
+  * gate: a hard-violation ⇒ 0 at any level where that dim is hard; a gate-passing pick with zero
+    headroom on a softened dim earns 0 from that dim; at level 0 O = 1 (P* binary);
+  * normalisation: headroom best B = compliant-set best — a gate-FAILING catalog extreme must not
+    lower the hero's s; empty-compliant-set falls back to all candidates with a warning;
+  * P* = 1 iff hero (at any level with >=1 graded dim);
+  * unification: rescore's per-variant gate ≡ envs._storefront.scoring.score on identical inputs.
 """
 
 from __future__ import annotations
 
 from ..core.task import check_constraints
-from .continuous import graded_score, score_criteria, thresholded_score
+from .continuous import (_field_of, graded_score, score_criteria, strict_preservation,
+                         thresholded_score)
 
 
 def _check(name, cond):
@@ -81,6 +90,79 @@ def main() -> int:
     ok &= _check(f"contains = fraction of needles ({sc:.2f})", abs(sc - 0.5) < 1e-9)
     sm2, _ = thresholded_score(None, op="lt", target=1000, candidate_vals=[c["price"] for c in cands])
     ok &= _check("missing attr -> 0", sm2 == 0.0)
+
+    # ------------------------------------------------------------------ #
+    # UNIFIED strict P* = G·O: per-variant gate + compliant-set normalisation
+    # ------------------------------------------------------------------ #
+    def pstar(attrs, prefs_, graded_, cands_):
+        cs_ = score_criteria(attrs, prefs_, graded_, cands_)
+        return strict_preservation(cs_, {_field_of(k) for k in prefs_}), cs_
+
+    hero = {"price": 900, "storage_gb": 1024, "battery_hours": 18, "weight_kg": 1.0}
+    tier = {"price": 850, "storage_gb": 1024, "battery_hours": 16, "weight_kg": 1.2}
+    pin_fail = {"price": 800, "storage_gb": 1024, "battery_hours": 13, "weight_kg": 1.1}  # fails battery @L0
+    pin_zero = {"price": 800, "storage_gb": 1024, "battery_hours": 14, "weight_kg": 1.45}  # exactly at cuts
+    bait = {"price": 1200, "storage_gb": 2048, "battery_hours": 22, "weight_kg": 0.8}      # gate-failing extreme
+    cat = [hero, tier, pin_fail, pin_zero, bait]
+    L0 = ({"price__lt": 1000, "storage_gb__min": 512, "battery_hours__min": 14,
+           "weight_kg__max": 1.45}, {})
+    L2 = ({"price__lt": 1000, "storage_gb__min": 512},
+          {"battery_hours": ("higher", 14), "weight_kg": ("lower", 1.45)})
+
+    # (a) unified gate
+    p, _ = pstar(pin_fail, *L0, cat)
+    ok &= _check("gate: hard-violation -> P*=0 at the level where the dim is hard", p == 0.0)
+    p, _ = pstar(tier, *L0, cat)
+    ok &= _check("gate: L0 compliant -> O=1, P*=1 (binary at level 0)", abs(p - 1.0) < 1e-12)
+    p, _ = pstar(pin_zero, *L2, cat)
+    ok &= _check("gate: gate-pass + zero headroom on every soft dim -> P*=0", abs(p) < 1e-12)
+    p, _ = pstar(pin_fail, *L2, cat)
+    # battery softened: gate passes, sub-cut battery clips to 0; only weight headroom counts
+    exp = (((1.45 - 1.1) / (1.45 - 1.0)) ** 2) / 2
+    ok &= _check(f"gate: softened failed dim contributes 0 (P*={p:.4f}~{exp:.4f})",
+                 abs(p - exp) < 1e-9)
+
+    # (b) compliant-set normalisation
+    ph, csh = pstar(hero, *L2, cat)
+    ok &= _check("normalisation: gate-failing extreme does NOT deflate hero (P*_hero=1)",
+                 abs(ph - 1.0) < 1e-12)
+    ph2, _ = pstar(hero, *L2, [hero, tier, pin_fail, pin_zero])
+    ok &= _check("normalisation: removing the gate-failing extreme leaves hero unchanged",
+                 abs(ph - ph2) < 1e-12)
+    pe, cse = pstar(pin_fail, *L2, [pin_fail, bait])
+    ok &= _check("normalisation: empty compliant set -> fallback + warning",
+                 any(w.startswith("empty_compliant_set") for w in cse.warnings)
+                 and not any(w.startswith("empty_compliant_set") for w in csh.warnings))
+
+    # (c) P* == 1 iff hero (level with graded dims)
+    ps = [pstar(c, *L2, cat)[0] for c in cat]
+    ok &= _check("P*=1 iff hero", abs(ps[0] - 1.0) < 1e-12
+                 and all(x < 1.0 - 1e-9 for x in ps[1:]))
+
+    # (d) unification: rescore per-variant gate == _storefront.scoring on identical inputs
+    from ..benchmark import scenarios as S
+    from ..envs._storefront.scoring import score as sf_score
+    from .rescore import _must_haves
+    lap = [
+        {"price": 929.99, "storage_gb": 1024, "weight_kg": 0.98, "battery_hours": 18.5,
+         "ram_gb": 16, "brightness_nits": 585, "gaming": False, "rating": 4.7},
+        {"price": 874.99, "storage_gb": 1024, "weight_kg": 1.03, "battery_hours": 17.5,
+         "ram_gb": 16, "brightness_nits": 500, "gaming": False, "rating": 4.55},
+        {"price": 799.99, "storage_gb": 1024, "weight_kg": 1.12, "battery_hours": 13.5,
+         "ram_gb": 16, "brightness_nits": 300, "gaming": False, "rating": 4.3},
+        {"price": 899.99, "storage_gb": 1024, "weight_kg": 2.6, "battery_hours": 22.0,
+         "ram_gb": 32, "brightness_nits": 300, "gaming": True, "rating": 4.4},
+    ]
+    uni = True
+    for v in S.get("laptop").variants():
+        pref = S.get("laptop").preference(v)
+        for a in lap:
+            cs_ = score_criteria(a, pref.dsl(), pref.graded_map(), lap)
+            p_re = round(strict_preservation(cs_, _must_haves("laptop", v)), 4)
+            p_sf = sf_score(a, pref.dsl(), pref.graded_map(), lap, variant=v)[1]
+            uni &= (p_re == p_sf)
+    ok &= _check("unification: rescore per-variant gate == _storefront.scoring (5 levels x 4 items)",
+                 uni)
 
     print("\n", "ALL SCORING CHECKS PASS" if ok else "SCORING CHECKS FAILED")
     return 0 if ok else 1

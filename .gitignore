@@ -47,3 +47,12 @@ agentarena/envs/fiverr/server/frontend/*
 
 # local scratch/testing (image-gen experiments, etc.)
 playground/
+
+# Training worktrees: commit source/configuration, never local environments or outputs.
+training/**/.git/
+training/**/.worktrees/
+training/**/.venv/
+training/**/.pytest_cache/
+training/**/.ruff_cache/
+training/**/results/
+training/**/__pycache__/

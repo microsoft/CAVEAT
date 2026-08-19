@@ -23,6 +23,10 @@ class ZillowEnvironment(StorefrontEnvironment):
     catalogs = CATALOGS
     transaction = "lead"
     default_start_path = "/homes"
+    # (Phase C) list_minimal/spec_budget removed: the /graphql search path always serves
+    # CARD-shaped properties, GetHome* always the full record — anti-scrape is the shared
+    # gate + rate-based Robot Check (gate.py; /graphql content ops are counted via
+    # gate.count() in server/backend/zillow_gql.py).
 
 
 from .tasks import TASKS  # noqa: E402,F401

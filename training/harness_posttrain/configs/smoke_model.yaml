@@ -1,0 +1,15 @@
+schema_version: 1
+primary:
+  model_id: "Qwen/Qwen3.5-27B"
+  revision: "fc05daec18b0a78c049392ed2e771dde82bdf654"
+fallback:
+  model_id: "Qwen/Qwen3.5-27B"
+  revision: "fc05daec18b0a78c049392ed2e771dde82bdf654"
+shared:
+  dtype: "bfloat16"
+  context_tokens: 262144
+  freeze_vision_tower: true
+  language_model_only: true
+  preserve_multimodal_wrapper: true
+  preserve_processor_and_chat_template: true
+  preserve_thinking: true

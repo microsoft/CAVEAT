@@ -20,6 +20,9 @@ class EtsyEnvironment(StorefrontEnvironment):
     server_dir = Path(__file__).resolve().parent / "server"
     catalogs = CATALOGS
     transaction = "order"
+    # (Phase C) list_minimal/spec_budget removed: cards always card-shaped (name + price +
+    # honest rating), detail always full — anti-scrape is the shared gate + rate-based
+    # Robot Check (gate.py).
     # Start on the homepage (it pre-fetches products); the agent opens a category tile.
     default_start_path = "/"
 
