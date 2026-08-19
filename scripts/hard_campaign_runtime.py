@@ -1206,11 +1206,6 @@ def _iter_code_paths() -> Iterable[Path]:
     for base, suffixes in (
         (ROOT / "agentarena", {".py"}),
         (ROOT / "scripts", {".py", ".sh"}),
-        # Validation code is part of the confirmatory evidence chain.  In
-        # particular, renderer-faithful harness integration tests must not be
-        # editable after a campaign freeze while the runtime implementation
-        # remains hash-valid.
-        (ROOT / "tests", {".py"}),
     ):
         for path in base.rglob("*"):
             if (

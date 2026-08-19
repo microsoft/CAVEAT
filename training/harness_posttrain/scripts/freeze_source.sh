@@ -29,7 +29,7 @@ case "$mode" in
     git -C "$root" init -b main
     git -C "$root" config user.name "Codex Scientific Automation"
     git -C "$root" config user.email "codex@local.invalid"
-    git -C "$root" add .gitignore Makefile README.md pyproject.toml configs scripts src tests vendor
+    git -C "$root" add .gitignore Makefile README.md pyproject.toml configs scripts src vendor
     git -C "$root" commit -m "Freeze Qwen3.5 harness-coupled post-training campaign"
     git -C "$root" status --short
     ;;

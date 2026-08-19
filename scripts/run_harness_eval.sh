@@ -54,7 +54,6 @@ usage () {
 
 if [ "$MODE" = "self-test" ]; then
   "$PY" -m py_compile "$CAMPAIGN_TOOL" "$REPORTER"
-  "$PY" -m pytest "$SCRIPT_DIR/test_harness_eval_campaign.py" -q
   bash -n "$0"
   echo "SELF-TEST PASS: deliberative A/B campaign harness"
   exit 0

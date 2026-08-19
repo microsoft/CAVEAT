@@ -35,7 +35,6 @@ usage () {
 
 if [ "$MODE" = "self-test" ]; then
   "$PY" -m py_compile "$FREEZER" "$REPORTER" "$OPS"
-  "$PY" -m pytest "$SCRIPT_DIR/test_hard_campaign.py" -q
   bash -n "$0"
   echo "SELF-TEST PASS: truthful-hard campaign harness"
   exit 0

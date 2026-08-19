@@ -2,7 +2,6 @@
 name = "agentarena"
 version = "0.1.0"
 description = "Run many web-agent scaffolds (× many models) against shopping/booking environments and measure preference fidelity."
-readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 dependencies = [
@@ -28,7 +27,7 @@ dependencies = [
 browseruse = ["browser-use>=0.1.0", "pint>=0.24,<1"]
 # autogen is frozen upstream (maintenance mode) — 0.7.5 is the terminal release; pin exactly.
 websurfer = ["autogen-core==0.7.5", "autogen-agentchat==0.7.5", "autogen-ext[openai]==0.7.5", "markitdown==0.1.6"]
-dev = ["pytest>=7.4", "ruff>=0.4"]
+dev = ["ruff>=0.4"]
 
 [project.scripts]
 agentarena = "agentarena.cli:main"

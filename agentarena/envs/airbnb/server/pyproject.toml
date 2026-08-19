@@ -11,12 +11,6 @@ dependencies = [
     "python-multipart>=0.0.22",
 ]
 
-[project.optional-dependencies]
-dev = [
-    "pytest>=7.4.0",
-    "httpx>=0.25.0",
-]
-
 [project.scripts]
 airbnb = "backend.app:main"
 
@@ -26,7 +20,3 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["backend"]
-
-[tool.pytest.ini_options]
-testpaths = ["tests"]
-pythonpath = ["."]

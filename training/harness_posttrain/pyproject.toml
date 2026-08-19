@@ -11,7 +11,7 @@ requires-python = ">=3.11"
 dependencies = ["PyYAML==6.0.3"]
 
 [project.optional-dependencies]
-dev = ["pytest==9.0.2", "ruff==0.15.6"]
+dev = ["ruff==0.15.6"]
 
 [project.scripts]
 harness-posttrain = "harness_posttrain.cli:main"
@@ -21,10 +21,6 @@ package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
-
-[tool.pytest.ini_options]
-addopts = "-ra --strict-markers"
-testpaths = ["tests"]
 
 [tool.ruff]
 line-length = 100
