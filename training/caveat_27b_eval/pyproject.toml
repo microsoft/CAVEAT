@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "CAVEAT-27B-Eval"
+version = "0.1.0"
+description = "Leakage-safe manifests and matched evaluation for CAVEAT-27B"
+requires-python = ">=3.12"
+
+[project.scripts]
+caveat-27b-eval = "caveat_27b_eval.cli:main"
+caveat-27b-candidate-eval = "caveat_27b_eval.fixed_v7_candidate_eval:main"
+caveat-27b-repair-endpoint-attest = "caveat_27b_eval.fixed_v7_repair_step24_endpoint_attestor:main"
+caveat-27b-grpo-fast-eval = "caveat_27b_eval.fixed_v7_grpo_fast_eval:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

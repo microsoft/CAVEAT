@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Create-only operational evidence for the truthful-hard campaign harness."""
+"""Create-only operational evidence for the CAVEAT truthful-hard campaign."""
 from __future__ import annotations
 
 import argparse

@@ -28,11 +28,11 @@ EPS = 1e-6
 
 def main():
     env = sys.argv[1]
-    from agentarena.envs._storefront.scoring import score, oracle_pstar
-    import agentarena.envs._storefront.tasks7 as t7
-    importlib.import_module(f"agentarena.envs.{env}")
-    cm = importlib.import_module(f"agentarena.envs.{env}.catalog")
-    tm = importlib.import_module(f"agentarena.envs.{env}.tasks")
+    from caveat.envs._storefront.scoring import score, oracle_pstar
+    import caveat.envs._storefront.tasks7 as t7
+    importlib.import_module(f"caveat.envs.{env}")
+    cm = importlib.import_module(f"caveat.envs.{env}.catalog")
+    tm = importlib.import_module(f"caveat.envs.{env}.tasks")
     cat = [v for v in vars(cm).values() if hasattr(v, "items") and hasattr(v, "name")][0]
     tasks = {x.task_id.rsplit("-", 1)[1]: x for x in tm.TASKS}
     items = [it for it in cat.items if getattr(it, "role", "") != "addon"]

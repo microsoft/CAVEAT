@@ -24,7 +24,7 @@ from _infra_classify import is_infra_fail          # noqa: E402
 VARIANT_ORDER = ["thresholded", "mixed", "graded", "graded3", "graded4"]
 
 # Infra-vs-capability is decided by the ONE shared implementation in
-# scripts/_infra_classify.py (which build_figure_data.py and _crash_sweep.py also import).
+# scripts/_infra_classify.py (which build_figure_data.py also imports).
 # Do not re-derive it here.  In short: a run leaves the sample only when INFRASTRUCTURE
 # terminated it (zero-step launch failure, or an endpoint/transport outage that ran out the
 # consecutive-failure guard).  Unparseable action JSON, giving up and looping are MODEL
@@ -61,7 +61,7 @@ def main() -> int:
         print(f"no experiment dirs match {pat}", file=sys.stderr)
         return 2
 
-    from agentarena.scoring.rescore import write_strict
+    from caveat.scoring.rescore import write_strict
     for d in exp_dirs:
         n = write_strict(d)
         print(f"[rescore] {d}: wrote strict P* into {n} summaries")

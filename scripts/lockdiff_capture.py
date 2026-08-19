@@ -35,7 +35,7 @@ carry a ``__meta__`` block with the sha256 + mtime of every engine file, and ``a
     which case it says so explicitly rather than letting a PASS imply more than it proves.
 
 The standing replacement for the arithmetic this script used to be the only witness of is
-``envs/amazon/server/tests/test_serving_contract.py``, which re-derives the legacy serving
+the legacy serving-contract check, which re-derives the serving
 window (limit/skip clamps, the page-9 repeat, the block insert and its tail collapse, the
 unbounded rails, ``max_pages() is None``) on every pytest run.
 
@@ -55,9 +55,9 @@ import urllib.request
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-import agentarena.envs.amazon  # noqa: F401,E402
-from agentarena.core.environment import ENVIRONMENTS  # noqa: E402
-from agentarena.benchmark import registry, serialize  # noqa: E402
+import caveat.envs.amazon  # noqa: F401,E402
+from caveat.core.environment import ENVIRONMENTS  # noqa: E402
+from caveat.benchmark import registry, serialize  # noqa: E402
 
 REPO = Path(__file__).resolve().parent.parent
 PORT = int(os.environ.get("LOCKDIFF_PORT") or 10410)
@@ -80,40 +80,40 @@ VOLATILE = {"created_at", "updated_at", "order_number", "order_date", "estimated
 # harness-only integration surfaces whose isolation this lockdiff is proving.
 # A comparison is informative only when at least one listed file changed.
 ENGINE_FILES = (
-    "agentarena/scaffolds/browseruse.py",
-    "agentarena/scaffolds/browseruse_deliberative.py",
-    "agentarena/scaffolds/_deliberative_core.py",
-    "agentarena/core/experiment.py",
-    "agentarena/core/environment.py",
-    "agentarena/benchmark/build.py",
-    "agentarena/benchmark/pool.py",
-    "agentarena/benchmark/registry.py",
-    "agentarena/benchmark/scenarios.py",
-    "agentarena/benchmark/schema.py",
-    "agentarena/benchmark/serialize.py",
-    "agentarena/benchmark/steering.py",
-    "agentarena/benchmark/validate.py",
-    "agentarena/envs/_storefront/gate.py",
-    "agentarena/envs/_storefront/placement.py",
-    "agentarena/envs/amazon/__init__.py",
-    "agentarena/envs/amazon/catalog.py",
-    "agentarena/envs/amazon/server/backend/app.py",
-    "agentarena/envs/amazon/server/backend/counting.py",
-    "agentarena/envs/amazon/server/backend/routes.py",
-    "agentarena/envs/amazon/server/backend/experiment_laptops.py",
-    "agentarena/envs/amazon/server/backend/seed.py",
-    "agentarena/envs/amazon/server/backend/ssr.py",
-    "agentarena/envs/amazon/server/backend/adversarial.py",
+    "caveat/scaffolds/browseruse.py",
+    "caveat/scaffolds/caveat_harness.py",
+    "caveat/scaffolds/_caveat_harness_core.py",
+    "caveat/core/experiment.py",
+    "caveat/core/environment.py",
+    "caveat/benchmark/build.py",
+    "caveat/benchmark/pool.py",
+    "caveat/benchmark/registry.py",
+    "caveat/benchmark/scenarios.py",
+    "caveat/benchmark/schema.py",
+    "caveat/benchmark/serialize.py",
+    "caveat/benchmark/steering.py",
+    "caveat/benchmark/validate.py",
+    "caveat/envs/_storefront/gate.py",
+    "caveat/envs/_storefront/placement.py",
+    "caveat/envs/amazon/__init__.py",
+    "caveat/envs/amazon/catalog.py",
+    "caveat/envs/amazon/server/backend/app.py",
+    "caveat/envs/amazon/server/backend/counting.py",
+    "caveat/envs/amazon/server/backend/routes.py",
+    "caveat/envs/amazon/server/backend/experiment_laptops.py",
+    "caveat/envs/amazon/server/backend/seed.py",
+    "caveat/envs/amazon/server/backend/ssr.py",
+    "caveat/envs/amazon/server/backend/adversarial.py",
     # Intentionally absent in the pre-successor baseline. None -> a real hash after the edit
     # makes the provenance comparison meaningful even if the integration points stay tiny.
-    "agentarena/envs/amazon/server/backend/truthful.py",
+    "caveat/envs/amazon/server/backend/truthful.py",
 )
 STALE_MIN = float(os.environ.get("LOCKDIFF_STALE_MIN") or 60)
 
 # The hard tier is backend-only and selects the existing classic SSR transport.
 # Rebuilding the one shared frontend would change every original condition even if the API
 # lock stayed green, so pin the exact pre-edit dist bytes.
-FRONTEND_DIST = REPO / "agentarena" / "envs" / "amazon" / "server" / "frontend" / "dist"
+FRONTEND_DIST = REPO / "caveat" / "envs" / "amazon" / "server" / "frontend" / "dist"
 FRONTEND_SHA256 = {
     "assets/index-IwcoZ3da.css":
         "1c3e45ba145e29a0c69108832a74afb0054a7c77f2c97c04ca63480cdd108abe",
@@ -164,7 +164,7 @@ def original_artifact_manifest() -> dict:
         d = REPO / "benchmark_data" / "amazon" / sid
         if d.exists():
             paths.extend(p for p in d.rglob("*") if p.is_file())
-        cat = REPO / "agentarena" / "envs" / "amazon" / "server" / "_catalogs"
+        cat = REPO / "caveat" / "envs" / "amazon" / "server" / "_catalogs"
         paths.append(cat / f"{sid}.json")
         paths.extend(cat / f"{sid}.{cond}.steering.json" for cond in ORIGINAL_CONDITIONS)
     out = {}

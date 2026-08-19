@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Fail-closed report for the exact truthful-hard sol-high campaign.
+"""Fail-closed report for the exact CAVEAT truthful-hard sol-high campaign.
 
 The reporter discovers only manifest-named run paths.  It never produces a
 headline mean from a partial denominator.  A run is excluded and marked for a
@@ -32,7 +32,7 @@ def _discover_root() -> Path:
     for candidate in candidates:
         if (
             candidate
-            and (candidate / "agentarena").is_dir()
+            and (candidate / "caveat").is_dir()
             and (candidate / "scripts").is_dir()
         ):
             return candidate.resolve()
@@ -61,7 +61,7 @@ CONFOUND_PATTERNS = {
         r"switching to fallback LLM \([^)]*\)",
     ),
     "sdk_retry_exhaustion": (
-        r"AGENTARENA_LLM_SDK_RETRIES_EXHAUSTED",
+        r"CAVEAT_LLM_SDK_RETRIES_EXHAUSTED",
         r"\bmax(?:imum)? retries exceeded\b",
         r"\bretr(?:y|ies|y attempts?).{0,100}"
         r"(?:exhausted|exceeded|gave up|giving up)\b",
@@ -87,7 +87,7 @@ HARNESS_PATTERNS = {
         r"TimeoutError:.{0,100}\bstep\b",
     ),
     "extract_llm_timeout": (
-        r"AGENTARENA_EXTRACT_LLM_TIMEOUT_BOUND",
+        r"CAVEAT_EXTRACT_LLM_TIMEOUT_BOUND",
         r"\bextract(?:ion)?\b.{0,160}\b(?:timed out|TimeoutError)\b",
     ),
     "event_handler_timeout": (
@@ -112,7 +112,7 @@ HARNESS_PATTERNS = {
         r"(?:reached|exceeded|stop)",
     ),
     "cell_timeout": (
-        r"\bAGENTARENA_CELL_TIMEOUT_BOUND\b",
+        r"\bCAVEAT_CELL_TIMEOUT_BOUND\b",
         r"\bcell(?:_timeout| timeout)\b",
     ),
     "clickable_elements_truncation": (
@@ -123,7 +123,7 @@ HARNESS_PATTERNS = {
     ),
     "evaluate_output_truncation": (
         r"\[Truncated after (?:20000|67108864) characters\]",
-        r"\bAGENTARENA_EVALUATE_(?:SINGLE_BOUND|STORE_"
+        r"\bCAVEAT_EVALUATE_(?:SINGLE_BOUND|STORE_"
         r"INTEGRITY_FAILURE)\b",
     ),
     "extract_chunk_truncation": (
@@ -598,7 +598,7 @@ def _ceiling_audit(rows: list[dict], caps: dict) -> dict:
         },
         "cell_timeout_seconds": {
             "configured": caps["cell_timeout_seconds"],
-            "source": "AGENTARENA_CELL_TIMEOUT / asyncio.wait_for",
+            "source": "CAVEAT_CELL_TIMEOUT / asyncio.wait_for",
             "touched_runs": ids(
                 lambda row: row.get("time_backstop_bound") is True
                 or harness("cell_timeout")(row)
@@ -606,7 +606,7 @@ def _ceiling_audit(rows: list[dict], caps: dict) -> dict:
         },
         "llm_timeout_seconds": {
             "configured": caps["llm_timeout_seconds"],
-            "source": "AGENTARENA_LLM_TIMEOUT / Agent.llm_timeout",
+            "source": "CAVEAT_LLM_TIMEOUT / Agent.llm_timeout",
             "touched_runs": ids(harness("llm_timeout")),
         },
         "llm_http_timeout_seconds": {
@@ -636,12 +636,12 @@ def _ceiling_audit(rows: list[dict], caps: dict) -> dict:
         },
         "max_consecutive_failures": {
             "configured": caps["max_consecutive_failures"],
-            "source": "AGENTARENA_MAX_FAILURES / Agent.max_failures",
+            "source": "CAVEAT_MAX_FAILURES / Agent.max_failures",
             "touched_runs": ids(harness("max_failures_stop")),
         },
         "max_completion_tokens": {
             "configured": caps["max_completion_tokens"],
-            "source": "AGENTARENA_MAX_COMPLETION_TOKENS",
+            "source": "CAVEAT_MAX_COMPLETION_TOKENS",
             "touched_runs": ids(confound("model_output_truncation")),
         },
         "llm_sdk_max_retries": {

@@ -44,9 +44,9 @@ sys.path.insert(0, str(ROOT))
 import os
 os.environ["AMAZON_SPEC_BUDGET"] = "0"
 
-import agentarena.envs.amazon  # noqa: F401,E402
-from agentarena.benchmark import registry, serialize          # noqa: E402
-from agentarena.core.environment import ENVIRONMENTS          # noqa: E402
+import caveat.envs.amazon  # noqa: F401,E402
+from caveat.benchmark import registry, serialize          # noqa: E402
+from caveat.core.environment import ENVIRONMENTS          # noqa: E402
 
 # Fields the SPA actually renders to a person (ProductCard.tsx / ProductDetail.tsx).
 HUMAN_VISIBLE = {"title", "price", "list_price", "rating", "rating_count", "review_count",

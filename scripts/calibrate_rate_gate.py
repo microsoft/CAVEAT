@@ -46,7 +46,7 @@ COUNTED = [
     re.compile(r"^/dp/[^/]+$"),
 ]
 
-PRESETS = {  # mirrors agentarena/envs/amazon/__init__.py _SCRAPE_RATE_PRESETS
+PRESETS = {  # mirrors caveat/envs/amazon/__init__.py _SCRAPE_RATE_PRESETS
     "medium": {},
     "hard": {"short_max": 6, "long_max": 30},
     "hardest": {"short_max": 3, "long_max": 15},

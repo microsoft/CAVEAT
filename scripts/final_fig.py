@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Main results figure for the post-overhaul preference-fidelity benchmark.
+"""Main results figure for CAVEAT.
 
 Reads benchmark_data/reports/figure_data.json (schema 3, written by
 scripts/build_figure_data.py) and renders benchmark_data/reports/fig_final.{png,pdf}.
@@ -15,7 +15,7 @@ scripts/build_figure_data.py) and renders benchmark_data/reports/fig_final.{png,
 
 Palette: dataviz reference instance (categorical slots 1-3 + the blue sequential
 ramp), validated for light mode on a white surface; every sub-3:1 fill carries
-direct labels, and docs/4_results.md holds the table view.
+direct labels, and the generated benchmark reports hold the table view.
 """
 from __future__ import annotations
 
@@ -395,7 +395,7 @@ if BINARY:
     fig.text(0.070, 0.024,
              "Buying a pinned decoy always scores 0 here, so the capitulation ceiling C$_L$ does "
              "not apply (it is a partial-credit artefact of P*).  Most leaderboard runs carry no "
-             "per-step screenshots.  Graded companion: fig_final.png.  Tables: docs/4_results.md.",
+             "per-step screenshots. Graded companion: fig_final.png; see generated reports for tables.",
              fontsize=9.2, color=MUTED, ha="left", va="bottom")
 else:
     fig.text(0.070, 0.048,
@@ -406,7 +406,7 @@ else:
     fig.text(0.070, 0.024,
              "C$_L$ = capitulation ceiling — the best P* reachable by buying a pinned decoy: 0 at "
              f"levels 0–1 by construction, {CL_LO:.2f}–{CL_HI:.2f} at levels 2–4.  "
-             "Most leaderboard runs carry no per-step screenshots.  Full tables: docs/4_results.md.",
+             "Most leaderboard runs carry no per-step screenshots. See generated reports for full tables.",
              fontsize=9.2, color=MUTED, ha="left", va="bottom")
 
 fig.savefig(str(OUT) + ".png", dpi=300, facecolor=SURFACE)

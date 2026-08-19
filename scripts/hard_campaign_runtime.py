@@ -1,4 +1,4 @@
-"""Frozen runtime and source-inventory helpers for the truthful hard campaign."""
+"""Frozen runtime and source-inventory helpers for the CAVEAT truthful-hard campaign."""
 from __future__ import annotations
 
 import hashlib
@@ -13,7 +13,7 @@ import sys
 from pathlib import Path
 from typing import Iterable
 
-from agentarena.core.environment import (
+from caveat.core.environment import (
     ENVIRONMENT_SERVER_EXITED,
     ENVIRONMENT_STARTUP_TIMEOUT,
     ENVIRONMENT_STARTUP_TIMEOUT_SECONDS,
@@ -141,7 +141,7 @@ POST_TASK_AUXILIARY_JUDGE_CONFIGURATION = {
     "agent_constructor_kwarg": "use_judge",
     "upstream_default": True,
     "authoritative_evaluator": (
-        "agentarena.core.experiment.run_cell:env.evaluate"
+        "caveat.core.experiment.run_cell:env.evaluate"
     ),
     "model_calls_after_agent_done": 0,
     "agent_action_behavior": "unchanged_before_done",
@@ -185,7 +185,7 @@ RUNTIME_SANITIZE_PREFIXES = (
     "AMAZON_",
     "STOREFRONT_",
     "SF_",
-    "AGENTARENA_",
+    "CAVEAT_",
     "BROWSER_USE_",
     "TIMEOUT_",
 )
@@ -299,19 +299,19 @@ def runtime_limit_contract(
             value["direct_maximum_observed"] = direct_maximum_observed
         return value
 
-    both = ("baseline", "deliberative")
-    deliberative = ("deliberative",)
+    both = ("baseline", "caveat_harness")
+    caveat_harness = ("caveat_harness",)
     payload = {
         "schema_version": LIMIT_AUDIT_SCHEMA_VERSION,
         "categories": {
             "safety_backstops": {
                 "max_steps": record(
                     CAPS["max_steps"], both,
-                    "agentarena benchmark CLI / Agent.run",
+                    "CAVEAT benchmark CLI / Agent.run",
                 ),
                 "whole_run_timeout_seconds": record(
                     CAPS["cell_timeout_seconds"], both,
-                    "agentarena/scaffolds/browseruse.py:_run",
+                    "caveat/scaffolds/browseruse.py:_run",
                 ),
                 "llm_timeout_seconds": record(
                     CAPS["llm_timeout_seconds"], both,
@@ -381,22 +381,22 @@ def runtime_limit_contract(
                 "evaluate_result_single_chars": record(
                     CAPS["evaluate_result_single_chars"],
                     both,
-                    "agentarena.scaffolds.browseruse common evaluate spill",
+                    "caveat.scaffolds.browseruse common evaluate spill",
                 ),
                 "evaluate_result_store_bytes": record(
                     CAPS["evaluate_result_store_bytes"],
                     both,
-                    "agentarena.scaffolds.browseruse._EvaluateResultStore",
+                    "caveat.scaffolds.browseruse._EvaluateResultStore",
                 ),
                 "evaluate_result_store_responses": record(
                     CAPS["evaluate_result_store_responses"],
                     both,
-                    "agentarena.scaffolds.browseruse._EvaluateResultStore",
+                    "caveat.scaffolds.browseruse._EvaluateResultStore",
                 ),
                 "structured_response_attempts": record(
                     4,
-                    deliberative,
-                    "browseruse_deliberative._structured",
+                    caveat_harness,
+                    "caveat_harness._structured",
                 ),
             },
             "lossy_context_limits": {
@@ -499,7 +499,7 @@ def runtime_limit_contract(
                         ),
                     },
                     both,
-                    "agentarena.scaffolds.browseruse common evaluate spill",
+                    "caveat.scaffolds.browseruse common evaluate spill",
                 ),
                 "extract_result_file_externalization": record(
                     EXTRACT_RESULT_FILE_EXTERNALIZATION_CONFIGURATION,
@@ -518,7 +518,7 @@ def runtime_limit_contract(
                     REPLACE_FILE_RECURSIVE_AMPLIFICATION_GUARD_CONFIGURATION,
                     both,
                     (
-                        "agentarena.scaffolds.browseruse common "
+                        "caveat.scaffolds.browseruse common "
                         "replace_file guard"
                     ),
                 ),
@@ -539,13 +539,13 @@ def runtime_limit_contract(
                         # runtime configuration.
                         "decision_checkpoint": "agent_invoked_optional",
                     },
-                    deliberative,
-                    "browseruse_deliberative compiler/checkpoint",
+                    caveat_harness,
+                    "caveat_harness compiler/checkpoint",
                 ),
-                "deliberative_sequence_terminators": record(
+                "caveat_harness_sequence_terminators": record(
                     ["decision_checkpoint"],
-                    deliberative,
-                    "browseruse_deliberative._install_tools",
+                    caveat_harness,
+                    "caveat_harness._install_tools",
                 ),
             },
             "diagnostic_truncations": {},
@@ -564,7 +564,7 @@ def runtime_limit_contract(
                         "early_exit_marker": ENVIRONMENT_SERVER_EXITED,
                     },
                     ("score",),
-                    "agentarena.core.environment",
+                    "caveat.core.environment",
                 ),
                 "environment_evaluator_get": record(
                     {
@@ -573,16 +573,16 @@ def runtime_limit_contract(
                         "linear_delay_seconds": 0.5,
                         "exhaustion_result": (
                             "raise:"
-                            "AGENTARENA_EVALUATOR_GET_RETRIES_EXHAUSTED"
+                            "CAVEAT_EVALUATOR_GET_RETRIES_EXHAUSTED"
                         ),
                     },
                     ("score",),
-                    "agentarena.core.environment.http_get_json",
+                    "caveat.core.environment.http_get_json",
                 ),
                 "runner_poll": record(
                     {"poll_seconds": 1.5, "worker_timeout": None},
                     ("score",),
-                    "agentarena.core.experiment",
+                    "caveat.core.experiment",
                 ),
             },
             "launch_only": {
@@ -599,7 +599,7 @@ def runtime_limit_contract(
                         "inventory_subprocess_timeout_seconds": 20,
                     },
                     ("launch",),
-                    "scripts/harness_eval_campaign.py",
+                    "scripts/caveat_harness_eval_campaign.py",
                 ),
             },
         },
@@ -746,7 +746,7 @@ def _sha_file(path: Path) -> str:
 
 
 def _find_browser_executable() -> Path:
-    configured = os.environ.get("AGENTARENA_CHROME")
+    configured = os.environ.get("CAVEAT_CHROME")
     if configured:
         candidates = [Path(configured)]
     else:
@@ -997,7 +997,7 @@ def runtime_dependency_manifest() -> dict:
         "browser": {
             "executable": str(executable),
             "version": browser_version,
-            "library_path": os.environ.get("AGENTARENA_CHROME_LIBS") or None,
+            "library_path": os.environ.get("CAVEAT_CHROME_LIBS") or None,
         },
         "installed_distributions": distributions,
         "installed_distribution_count": len(distributions),
@@ -1030,15 +1030,15 @@ def _runtime_environment_policy(runtime: dict) -> dict:
         "SF_RATE_SUSTAINED_MAX": "80",
         "SF_CHALLENGE_MIN_DELAY": "2",
         "SF_CHALLENGE_TTL": "45",
-        "AGENTARENA_CELL_TIMEOUT": str(CAPS["cell_timeout_seconds"]),
-        "AGENTARENA_LLM_TIMEOUT": str(CAPS["llm_timeout_seconds"]),
-        "AGENTARENA_MAX_FAILURES": str(CAPS["max_consecutive_failures"]),
-        "AGENTARENA_MAX_COMPLETION_TOKENS": str(
+        "CAVEAT_CELL_TIMEOUT": str(CAPS["cell_timeout_seconds"]),
+        "CAVEAT_LLM_TIMEOUT": str(CAPS["llm_timeout_seconds"]),
+        "CAVEAT_MAX_FAILURES": str(CAPS["max_consecutive_failures"]),
+        "CAVEAT_MAX_COMPLETION_TOKENS": str(
             CAPS["max_completion_tokens"]
         ),
-        "AGENTARENA_LLM_CACHE": "0",
-        "AGENTARENA_NO_SHOT_PERSIST": "1",
-        "AGENTARENA_SPAWN_STAGGER": str(CAPS["spawn_stagger_seconds"]),
+        "CAVEAT_LLM_CACHE": "0",
+        "CAVEAT_NO_SHOT_PERSIST": "1",
+        "CAVEAT_SPAWN_STAGGER": str(CAPS["spawn_stagger_seconds"]),
         "PYTHON_DOTENV_DISABLED": "1",
         "ANONYMIZED_TELEMETRY": "false",
         "BROWSER_USE_CLOUD_SYNC": "false",
@@ -1051,18 +1051,18 @@ def _runtime_environment_policy(runtime: dict) -> dict:
         "BROWSER_USE_EXTRACT_TIMEOUT_S": str(
             CAPS["extract_llm_timeout_seconds"]
         ),
-        "AGENTARENA_CHROME": runtime["browser"]["executable"],
+        "CAVEAT_CHROME": runtime["browser"]["executable"],
     }
     library_path = runtime["browser"].get("library_path")
     if library_path:
-        values["AGENTARENA_CHROME_LIBS"] = str(library_path)
+        values["CAVEAT_CHROME_LIBS"] = str(library_path)
     values.update({
         f"TIMEOUT_{name}": str(seconds)
         for name, seconds in CAPS["event_timeouts_seconds"].items()
     })
     required_absent = (
-        "AGENTARENA_CACHE_NONCE",
-        "AGENTARENA_NO_VISION",
+        "CAVEAT_CACHE_NONCE",
+        "CAVEAT_NO_VISION",
         "AMAZON_EXPERIMENT",
         "AMAZON_EXPERIMENT_CATALOG",
         "AMAZON_PIN_ASINS",
@@ -1204,7 +1204,7 @@ def _validate_caps(caps: dict) -> None:
 
 def _iter_code_paths() -> Iterable[Path]:
     for base, suffixes in (
-        (ROOT / "agentarena", {".py"}),
+        (ROOT / "caveat", {".py"}),
         (ROOT / "scripts", {".py", ".sh"}),
     ):
         for path in base.rglob("*"):
@@ -1214,7 +1214,7 @@ def _iter_code_paths() -> Iterable[Path]:
                 and "__pycache__" not in path.parts
             ):
                 yield path
-    frontend = ROOT / "agentarena/envs/amazon/server/frontend/dist"
+    frontend = ROOT / "caveat/envs/amazon/server/frontend/dist"
     if frontend.exists():
         yield from (path for path in frontend.rglob("*") if path.is_file())
     for name in ("pyproject.toml", "uv.lock", "pytest.ini"):

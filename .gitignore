@@ -4,19 +4,19 @@ build/
 .venv/
 results/
 *.db
-agentarena/envs/*/server/_catalogs/
-agentarena/envs/*/server/*.db
-agentarena/scaffolds/stagehand/node_modules/
+caveat/envs/*/server/_catalogs/
+caveat/envs/*/server/*.db
+caveat/scaffolds/stagehand/node_modules/
 # stagehand spawns stray windows-path browser-profile dirs + an npm log under its folder; never commit those
-agentarena/scaffolds/stagehand/*wsl.localhost*
-agentarena/scaffolds/stagehand/npm_install.log
-agentarena/envs/airbnb/server/frontend/node_modules/
+caveat/scaffolds/stagehand/*wsl.localhost*
+caveat/scaffolds/stagehand/npm_install.log
+caveat/envs/airbnb/server/frontend/node_modules/
 runs/llm_cache/
 .DS_Store
 .env
 
 *.egg-info/
-agentarena/runs/
+caveat/runs/
 runs/
 
 # external website clones fetched for adaptation (bulky; never committed) +
@@ -26,25 +26,25 @@ CHAT.md
 
 # node deps for any environment frontend (built dist/ IS served, so not ignored)
 node_modules/
-agentarena/envs/*/server/frontend/node_modules/
+caveat/envs/*/server/frontend/node_modules/
 webpage_example_screenshot/
 
 # per-env build workspaces (the harvested clone source + its node_modules + Next/webpack
 # build artifacts). Bulky and reconstructable; the BUILT frontend under server/frontend/
 # is what gets served + committed, so the envs run without these.
-agentarena/envs/*/server/_build/
+caveat/envs/*/server/_build/
 # served frontends ship the production bundles, not their source maps
-agentarena/envs/*/server/frontend/**/*.map
+caveat/envs/*/server/frontend/**/*.map
 
 # doordash / fiverr / nike were built in place under server/frontend/, so that dir still
 # holds the harvested source + node_modules around the built output. Only the built output
 # subdir is actually served (frontend/out, /build, /dist) — keep that, ignore the rest.
-agentarena/envs/doordash/server/frontend/*
-!agentarena/envs/doordash/server/frontend/out
-agentarena/envs/nike/server/frontend/*
-!agentarena/envs/nike/server/frontend/build
-agentarena/envs/fiverr/server/frontend/*
-!agentarena/envs/fiverr/server/frontend/dist
+caveat/envs/doordash/server/frontend/*
+!caveat/envs/doordash/server/frontend/out
+caveat/envs/nike/server/frontend/*
+!caveat/envs/nike/server/frontend/build
+caveat/envs/fiverr/server/frontend/*
+!caveat/envs/fiverr/server/frontend/dist
 
 # local scratch/testing (image-gen experiments, etc.)
 playground/

@@ -24,12 +24,12 @@ import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from agentarena.core.environment import ENVIRONMENTS  # noqa: E402
+from caveat.core.environment import ENVIRONMENTS  # noqa: E402
 
 
 def load(env):
-    importlib.import_module(f"agentarena.envs.{env}")
-    mod = sys.modules[f"agentarena.envs.{env}"]
+    importlib.import_module(f"caveat.envs.{env}")
+    mod = sys.modules[f"caveat.envs.{env}"]
     return ENVIRONMENTS.get(env)(), getattr(mod, "TASKS", [])
 
 

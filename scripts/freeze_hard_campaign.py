@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Create and verify the exact truthful-hard sol-high campaign freeze.
+"""Create and verify the exact CAVEAT truthful-hard sol-high campaign freeze.
 
 This is deliberately scoped to the headline hard experiment:
 
@@ -39,7 +39,7 @@ def _discover_root() -> Path:
     for candidate in candidates:
         if (
             candidate
-            and (candidate / "agentarena").is_dir()
+            and (candidate / "caveat").is_dir()
             and (candidate / "scripts").is_dir()
         ):
             return candidate.resolve()
@@ -476,10 +476,10 @@ def _runtime_contract() -> tuple[dict, dict]:
     }
     environment = _runtime_environment_policy(runtime)
     required_values = {
-        "AGENTARENA_CELL_TIMEOUT": str(CAPS["cell_timeout_seconds"]),
-        "AGENTARENA_NO_SHOT_PERSIST": "1",
-        "AGENTARENA_SPAWN_STAGGER": "10",
-        "AGENTARENA_MAX_COMPLETION_TOKENS": "off",
+        "CAVEAT_CELL_TIMEOUT": str(CAPS["cell_timeout_seconds"]),
+        "CAVEAT_NO_SHOT_PERSIST": "1",
+        "CAVEAT_SPAWN_STAGGER": "10",
+        "CAVEAT_MAX_COMPLETION_TOKENS": "off",
         "SF_RATE_ENABLED": "0",
     }
     wrong = {

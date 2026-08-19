@@ -44,19 +44,19 @@ from bs4 import BeautifulSoup
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-import agentarena.envs.amazon  # noqa: E402,F401
-from agentarena.benchmark import registry, serialize  # noqa: E402
-from agentarena.benchmark.pool import hard_pstar  # noqa: E402
-from agentarena.benchmark.scenarios import SCENARIOS  # noqa: E402
-from agentarena.benchmark.validate_hard import (  # noqa: E402
+import caveat.envs.amazon  # noqa: E402,F401
+from caveat.benchmark import registry, serialize  # noqa: E402
+from caveat.benchmark.pool import hard_pstar  # noqa: E402
+from caveat.benchmark.scenarios import SCENARIOS  # noqa: E402
+from caveat.benchmark.validate_hard import (  # noqa: E402
     ASIN_RE,
     CONDITIONS,
     EXPECTED_ACCESS,
     EXPECTED_ROLE_MIX,
     check_hard,
 )
-from agentarena.core.environment import ENVIRONMENTS  # noqa: E402
-from agentarena.scoring.continuous import (  # noqa: E402
+from caveat.core.environment import ENVIRONMENTS  # noqa: E402
+from caveat.scoring.continuous import (  # noqa: E402
     _field_of,
     score_criteria,
     strict_binary,
@@ -81,7 +81,7 @@ OPS_NAME_RE = re.compile(
 NUMBER_RE = re.compile(
     r"[-+]?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?")
 FRONTEND_DIST = (
-    ROOT / "agentarena/envs/amazon/server/frontend/dist"
+    ROOT / "caveat/envs/amazon/server/frontend/dist"
 )
 FRONTEND_SHA256 = {
     "assets/index-IwcoZ3da.css":

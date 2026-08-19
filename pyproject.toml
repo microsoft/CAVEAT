@@ -1,7 +1,7 @@
 [project]
-name = "agentarena"
+name = "CAVEAT"
 version = "0.1.0"
-description = "Run many web-agent scaffolds (× many models) against shopping/booking environments and measure preference fidelity."
+description = "Run models on the CAVEAT benchmark and measure preference fidelity."
 requires-python = ">=3.10"
 license = { text = "MIT" }
 dependencies = [
@@ -30,17 +30,17 @@ websurfer = ["autogen-core==0.7.5", "autogen-agentchat==0.7.5", "autogen-ext[ope
 dev = ["ruff>=0.4"]
 
 [project.scripts]
-agentarena = "agentarena.cli:main"
+caveat = "caveat.cli:main"
 
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-include = ["agentarena*"]
+include = ["caveat*"]
 
 [tool.setuptools.package-data]
-"agentarena" = [
+"caveat" = [
     "llm_client.py",
     "envs/amazon/server/**/*", "envs/airbnb/server/**/*",
     "scaffolds/stagehand/*.mjs", "scaffolds/stagehand/*.json", "scaffolds/stagehand/*.md",

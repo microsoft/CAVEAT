@@ -43,7 +43,7 @@ def counts() -> dict[str, tuple[int, int]]:
             raise RuntimeError(f"expected 96 clone runs for {condition}, found {len(rows)}")
         clone[condition] = sum(int(row["literal_hero"]) for row in rows)
 
-    # Audited literal-hero overlay in docs/benchmark_results_and_harness_improvement.md,
+    # Audited literal-hero overlay in the generated CAVEAT benchmark report,
     # also frozen as AMAZON_RELATIVE in the nine-environment suite's plot.py.
     amazon = {"clean": 59, "steered": 31}
     return {condition: (amazon[condition] + clone[condition], 156)

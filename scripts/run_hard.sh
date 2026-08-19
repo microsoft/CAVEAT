@@ -1,5 +1,5 @@
 #!/bin/bash
-# Exact real gpt-5.6-sol-high campaign for the certified truthful hard tier.
+# Exact real gpt-5.6-sol-high campaign for the certified CAVEAT truthful-hard tier.
 #
 # Usage:
 #   scripts/run_hard.sh prepare [campaign-dir] [cert-report]
@@ -14,14 +14,13 @@
 # Interrupts wait for active runs. No mode mass-kills or silently relaunches work.
 set -euo pipefail
 
-ROOT=/home/t-yuxuanli/preference-fidelity
-cd "$ROOT"
-
 SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+ROOT=$(cd "$SCRIPT_DIR/.." && pwd)
+cd "$ROOT"
 FREEZER="$SCRIPT_DIR/freeze_hard_campaign.py"
 REPORTER="$SCRIPT_DIR/report_hard_campaign.py"
 OPS="$SCRIPT_DIR/hard_campaign_ops.py"
-PY=.venv/bin/python
+PY=${CAVEAT_PYTHON:-.venv/bin/python}
 
 MODE=${1:-}
 CAMPAIGN_INPUT=${2:-results/hard_sol_high_n2}
@@ -36,7 +35,7 @@ usage () {
 if [ "$MODE" = "self-test" ]; then
   "$PY" -m py_compile "$FREEZER" "$REPORTER" "$OPS"
   bash -n "$0"
-  echo "SELF-TEST PASS: truthful-hard campaign harness"
+  echo "SELF-TEST PASS: CAVEAT truthful-hard campaign"
   exit 0
 fi
 if [ "$MODE" != "prepare" ] && [ "$MODE" != "launch" ] \
@@ -265,7 +264,7 @@ run_rows () {
     max_steps=$(manifest_value caps.max_steps)
     echo "launch run=$run_id primary=$primary port=$port attempt receipt-created"
     (
-      exec "$PY" -m agentarena.benchmark.run \
+      exec "$PY" -m caveat.benchmark.run \
         --name "$run_name" \
         --scenarios "$scenario" \
         --conditions "$condition" \
@@ -324,7 +323,7 @@ rescore_exact_runs () {
   while IFS= read -r experiment; do
     if find "$CAMPAIGN/$experiment" -name summary.json -type f -print -quit \
       2>/dev/null | grep -q .; then
-      "$PY" -m agentarena.scoring.rescore \
+      "$PY" -m caveat.scoring.rescore \
         --glob "$CAMPAIGN/$experiment" --strict
     fi
   done < <(

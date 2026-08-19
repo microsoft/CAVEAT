@@ -5,7 +5,7 @@
 set -u
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/.." && pwd)"
 cd "$ROOT"
-SCR=/tmp/claude-1000/-home-t-yuxuanli-agent-arena/70db66b6-d604-42ab-b86c-43f576b04c7d/scratchpad
+SCR="$ROOT/.tmprun"
 ENV="${1:?usage: tune_env.sh <env> [reps] [jobs]}"
 REPS="${2:-2}"
 JOBS="${3:-8}"

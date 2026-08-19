@@ -37,9 +37,9 @@ from pathlib import Path
 warnings.filterwarnings("ignore")
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from agentarena.benchmark import scenarios as S                      # noqa: E402
-from agentarena.benchmark import serialize                           # noqa: E402
-from agentarena.scoring.continuous import (_field_of, score_criteria,  # noqa: E402
+from caveat.benchmark import scenarios as S                      # noqa: E402
+from caveat.benchmark import serialize                           # noqa: E402
+from caveat.scoring.continuous import (_field_of, score_criteria,  # noqa: E402
                                            strict_preservation)
 
 HARD_LEVELS = ("thresholded", "mixed")
@@ -137,11 +137,11 @@ def audit_clone(env: str) -> bool:
     """C_L for one harvested-clone env over its advertised items (catalog.py + tasks.py)."""
     import importlib
     try:
-        from agentarena.envs._storefront.scoring import score
-        from agentarena.envs._storefront.tasks7 import VARIANTS7, project
-        importlib.import_module(f"agentarena.envs.{env}")
-        spec = importlib.import_module(f"agentarena.envs.{env}.tasks").PREF7
-        cat_mod = importlib.import_module(f"agentarena.envs.{env}.catalog")
+        from caveat.envs._storefront.scoring import score
+        from caveat.envs._storefront.tasks7 import VARIANTS7, project
+        importlib.import_module(f"caveat.envs.{env}")
+        spec = importlib.import_module(f"caveat.envs.{env}.tasks").PREF7
+        cat_mod = importlib.import_module(f"caveat.envs.{env}.catalog")
     except Exception as e:  # noqa: BLE001
         print(f"== clone/{env}: SKIP (not importable: {e})")
         return True

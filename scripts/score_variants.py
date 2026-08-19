@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """Sweep every amazon result snapshot and compute the candidate strict-metric family
-(agentarena.scoring.strict_variants) per cell -> benchmark_data/reports/scoring_variants_data.json.
+(caveat.scoring.strict_variants) per cell -> benchmark_data/reports/scoring_variants_data.json.
 
 READ-ONLY over results/: never writes summary.json (the measured pipeline stays frozen). The
 catalog-staleness guard drops any cell whose recorded basket no longer matches the current pool.
@@ -15,9 +15,9 @@ from collections import Counter
 
 sys.path.insert(0, __file__.rsplit("scripts/", 1)[0] or ".")  # repo root (portable: works from any checkout)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))         # scripts/ (shared rule)
-from agentarena.scoring.strict_variants import METRICS, cell_variants  # noqa: E402
+from caveat.scoring.strict_variants import METRICS, cell_variants  # noqa: E402
 # Infra-vs-capability is decided by the ONE shared implementation in scripts/_infra_classify.py
-# (build_figure_data.py and _crash_sweep.py import the same module).  Here it only TAGS each
+# (build_figure_data.py imports the same module). Here it only TAGS each
 # record (rec["infra"]); nothing is dropped from the emitted dataset.
 from _infra_classify import is_infra_fail                              # noqa: E402
 

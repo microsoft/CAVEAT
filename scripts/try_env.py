@@ -19,12 +19,12 @@ import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from agentarena.core.environment import ENVIRONMENTS, http_get, http_json  # noqa: E402
+from caveat.core.environment import ENVIRONMENTS, http_get, http_json  # noqa: E402
 
 
 def load_env(name):
-    importlib.import_module(f"agentarena.envs.{name}")          # registers + exposes TASKS
-    mod = sys.modules[f"agentarena.envs.{name}"]
+    importlib.import_module(f"caveat.envs.{name}")          # registers + exposes TASKS
+    mod = sys.modules[f"caveat.envs.{name}"]
     try:
         envcls = ENVIRONMENTS.get(name)
     except Exception:
@@ -82,7 +82,7 @@ def main():
     print(f"   task: {task.instruction[:140]}")
     print(f"   preferences: {task.preferences}")
 
-    from agentarena.envs._storefront.scoring import oracle_pstar
+    from caveat.envs._storefront.scoring import oracle_pstar
     meta = getattr(task, "metadata", None) or {}
     work = Path(tempfile.mkdtemp(prefix=f"tryenv-{args.env}-"))
     handle = env.start(args.port, task, work_dir=work)
@@ -131,7 +131,7 @@ def main():
             print(f"  checkout: subtotal {quote.get('subtotal')} + fees {quote.get('fees')} "
                   f"= total {res.get('total')}  (order {res.get('order_number')})")
         ev = env.evaluate(handle, task)
-        from agentarena.envs._storefront.scoring import oracle_pstar
+        from caveat.envs._storefront.scoring import oracle_pstar
         cat = env._catalog_obj(None)
         meta = getattr(task, "metadata", None) or {}
         orac = oracle_pstar([it.attrs() for it in cat.items], task.preferences,

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://caveat.local/schemas/caveat-27b-frozen-manifest-v1.json",
+  "title": "CAVEAT-27B frozen evaluation manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "campaign", "split_sha256", "source_contract", "benchmark_lock",
+    "model_contract", "inference_contract", "treatment_difference", "manifest_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "campaign": {"type": "object"},
+    "split_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_contract": {"type": "object"},
+    "benchmark_lock": {"type": "object"},
+    "model_contract": {"type": "object"},
+    "inference_contract": {"type": "object"},
+    "treatment_difference": {
+      "const": "The final base and trained arms differ only in model weight identity."
+    },
+    "manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit and report a three-repeat standard-Amazon evaluation.
+"""Audit and report a three-repeat CAVEAT standard-Amazon evaluation.
 
 The headline quantity is literal unique-hero identity, not the transaction
 ``strict_binary`` field.  The reporter fails closed on an incomplete matrix,
@@ -131,7 +131,7 @@ def build_report(root: Path, repo: Path, max_steps: int) -> dict:
     records.sort(key=lambda row: (row["repeat"], SCENARIOS.index(row["scenario"]),
                                   VARIANTS.index(row["variant"])))
     return {
-        "schema": "agentarena.standard-amazon-literal-hero-report.v1",
+        "schema": "caveat.standard-amazon-literal-hero-report.v1",
         "root": str(root.relative_to(repo)),
         "model": models.pop(),
         "protocol": {

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Rebuild benchmark_data/reports/figure_data.json from the POST-OVERHAUL result trees.
+"""Rebuild benchmark_data/reports/figure_data.json from CAVEAT result trees.
 
 Sources (all committed under results/):
   * results/overhaul_b80/overhaul_b80_r*        headline Amazon matrix, max_steps 80, n=5
@@ -17,7 +17,7 @@ gate-failure / optimality-shortfall decomposition.
 
 Runs are dropped from the sample ONLY when infrastructure invalidated the measurement.
 That call is made by scripts/_infra_classify.py, the single shared implementation that
-scripts/_crash_sweep.py also uses -- read its docstring before changing anything here.
+other benchmark reporting scripts also use -- read its docstring before changing anything here.
 A model that could not emit a valid action, gave up, or looped has FAILED THE TASK and
 scores 0; it is never excluded.
 
@@ -50,7 +50,7 @@ CPILOT = "results/overhaul_c_pilot2"
 OUT = ROOT / "benchmark_data/reports/figure_data.json"
 
 # Infra-vs-capability is decided by ONE shared implementation -- scripts/_infra_classify.py
-# -- which _crash_sweep.py also imports.  Do not re-derive it here; read that module's
+# -- which the other benchmark reporting scripts also import. Do not re-derive it here; read that module's
 # docstring for the rule and the per-signature justification.  In short: only a run that
 # INFRASTRUCTURE terminated is excluded (zero-step launch failure, an endpoint/transport
 # outage that ran out the consecutive-failure guard).  Anything the MODEL did wrong --
@@ -155,7 +155,7 @@ def matrix(rows, models):
 
 # --------------------------------------------------------------------- capitulation ceilings
 def ceilings() -> dict:
-    from agentarena.scoring.rescore import capitulation_ceiling
+    from caveat.scoring.rescore import capitulation_ceiling
     out = {}
     for sc in PRODUCTS:
         for v in VARIANTS:
@@ -175,7 +175,7 @@ def clone_envs() -> dict:
 
     def advertised(env):
         try:
-            cat_mod = importlib.import_module(f"agentarena.envs.{env}.catalog")
+            cat_mod = importlib.import_module(f"caveat.envs.{env}.catalog")
             cats = [v for v in vars(cat_mod).values()
                     if hasattr(v, "name") and (hasattr(v, "items") or hasattr(v, "listings"))]
             skus = {getattr(it, "sku", None) for cat in cats
@@ -187,10 +187,10 @@ def clone_envs() -> dict:
 
     def cl_echo(env):
         try:
-            from agentarena.envs._storefront.scoring import score
-            from agentarena.envs._storefront.tasks7 import project
-            spec = importlib.import_module(f"agentarena.envs.{env}.tasks").PREF7
-            cat_mod = importlib.import_module(f"agentarena.envs.{env}.catalog")
+            from caveat.envs._storefront.scoring import score
+            from caveat.envs._storefront.tasks7 import project
+            spec = importlib.import_module(f"caveat.envs.{env}.tasks").PREF7
+            cat_mod = importlib.import_module(f"caveat.envs.{env}.catalog")
             cats = [v for v in vars(cat_mod).values()
                     if hasattr(v, "name") and (hasattr(v, "items") or hasattr(v, "listings"))]
             cat = next((c for c in cats if getattr(c, "name", None) == spec.catalog), cats[0])
@@ -276,7 +276,7 @@ def main() -> int:
     a = ap.parse_args()
 
     if not a.no_rescore:
-        from agentarena.scoring.rescore import write_strict
+        from caveat.scoring.rescore import write_strict
         for pat in (B80, B50, SUPP) + (() if a.skip_lb else (LB,)):
             for d in sorted(glob.glob(str(ROOT / pat))):
                 if Path(d).is_dir():
@@ -345,7 +345,7 @@ def main() -> int:
                 row[c]["level_mean_M"] = round(statistics.mean([x["M"] for x in lv]), 4) if lv else None
             summary[m] = row
         done_marker = (ROOT / "results/overhaul_lb/final.log")
-        # AGENTARENA_NO_SHOT_PERSIST=1 was set from 2026-07-25; cells run before that switch
+        # CAVEAT_NO_SHOT_PERSIST=1 was set from 2026-07-25; cells run before that switch
         # still carry a filmstrip, so report the measured split rather than asserting "none".
         cells_on_disk = [d.parent for d in Path(ROOT / "results/overhaul_lb").glob(
             "overhaul_lb_r*/*/summary.json")]
@@ -359,7 +359,7 @@ def main() -> int:
                          if done_marker.exists() else False),
             "screenshots": {"cells_on_disk": len(cells_on_disk), "with_filmstrip": with_shots,
                             "without_filmstrip": len(cells_on_disk) - with_shots,
-                            "note": "AGENTARENA_NO_SHOT_PERSIST=1 from 2026-07-25; scores, "
+                            "note": "CAVEAT_NO_SHOT_PERSIST=1 from 2026-07-25; scores, "
                                     "actions, reasoning and URLs are complete either way"},
             "per_model": perlb, "pooled": poollb, "summary": summary,
         }

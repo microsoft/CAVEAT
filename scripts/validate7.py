@@ -23,9 +23,9 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from agentarena.core.task import check_constraints  # noqa: E402
-from agentarena.envs._storefront.scoring import oracle_pstar, score  # noqa: E402
-from agentarena.envs._storefront.tasks7 import VARIANTS7, project  # noqa: E402
+from caveat.core.task import check_constraints  # noqa: E402
+from caveat.envs._storefront.scoring import oracle_pstar, score  # noqa: E402
+from caveat.envs._storefront.tasks7 import VARIANTS7, project  # noqa: E402
 
 HARD_LEVELS = ("thresholded", "mixed")
 SOFT_LEVELS = ("graded", "graded3", "graded4")
@@ -35,8 +35,8 @@ EPS = 1e-6
 
 
 def check(env, legacy=False):
-    spec = importlib.import_module(f"agentarena.envs.{env}.tasks").PREF7
-    cat_mod = importlib.import_module(f"agentarena.envs.{env}.catalog")
+    spec = importlib.import_module(f"caveat.envs.{env}.tasks").PREF7
+    cat_mod = importlib.import_module(f"caveat.envs.{env}.catalog")
     # storefront envs expose _storefront.Catalog(items=...); airbnb has its own Catalog(listings=...)
     cats = [v for v in vars(cat_mod).values()
             if hasattr(v, "name") and (hasattr(v, "items") or hasattr(v, "listings"))]

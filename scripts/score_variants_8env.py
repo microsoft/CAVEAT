@@ -2,7 +2,7 @@
 """Compute the candidate strict-metric family for the harvested-clone (storefront) envs
 over results/byenv_v2 -> benchmark_data/reports/scoring_variants_8env.json.
 
-Mirrors the storefront eval path EXACTLY (agentarena/envs/_storefront/adapter.py):
+Mirrors the storefront eval path EXACTLY (caveat/envs/_storefront/adapter.py):
 chosen attrs = catalog item attrs with price overridden to the recorded all-in
 (paid + add-ons); gate = ALL hard preference fields of the task (storefront
 must_have_fields convention — note this differs from amazon's across-variant
@@ -24,13 +24,13 @@ from collections import Counter
 
 sys.path.insert(0, __file__.rsplit("scripts/", 1)[0] or ".")  # repo root (portable: works from any checkout)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))  # scripts/ (shared rule)
-from agentarena.core.environment import ENVIRONMENTS  # noqa: E402
-from agentarena.core.task import check_constraints  # noqa: E402
-from agentarena.envs._storefront.scoring import must_have_fields  # noqa: E402
-from agentarena.scoring.continuous import (STRICT_GAMMA, score_criteria,  # noqa: E402
+from caveat.core.environment import ENVIRONMENTS  # noqa: E402
+from caveat.core.task import check_constraints  # noqa: E402
+from caveat.envs._storefront.scoring import must_have_fields  # noqa: E402
+from caveat.scoring.continuous import (STRICT_GAMMA, score_criteria,  # noqa: E402
                                            strict_preservation)
 # Infra-vs-capability is decided by the ONE shared implementation in scripts/_infra_classify.py
-# (build_figure_data.py and _crash_sweep.py import the same module).  Here it only TAGS each
+# (build_figure_data.py imports the same module). Here it only TAGS each
 # record (rec["infra"]); nothing is dropped from the emitted dataset.
 from _infra_classify import is_infra_fail  # noqa: E402
 
@@ -45,7 +45,7 @@ _env_cache: dict = {}
 def env_ctx(env_name: str):
     """(tasks_by_id, env_instance) with the env module imported for registration."""
     if env_name not in _env_cache:
-        mod = importlib.import_module(f"agentarena.envs.{env_name}")
+        mod = importlib.import_module(f"caveat.envs.{env_name}")
         env = ENVIRONMENTS.create(env_name)
         _env_cache[env_name] = ({t.task_id: t for t in mod.TASKS}, env)
     return _env_cache[env_name]
@@ -134,7 +134,7 @@ def cell_record(tj: str):
     return rec, "scored"
 
 
-# vgeo is the sole reported fidelity metric (see agentarena/scoring/strict_variants).
+# vgeo is the sole reported fidelity metric (see caveat/scoring/strict_variants).
 METRICS = {
     "vgeo": lambda c: c["gate"] * c["o_geo"],
 }

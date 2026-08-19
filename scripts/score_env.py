@@ -16,13 +16,13 @@ from pathlib import Path
 from types import SimpleNamespace
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from agentarena.core.environment import ENVIRONMENTS  # noqa: E402
-from agentarena.envs._storefront.scoring import oracle_pstar  # noqa: E402
+from caveat.core.environment import ENVIRONMENTS  # noqa: E402
+from caveat.envs._storefront.scoring import oracle_pstar  # noqa: E402
 
 
 def load(env):
-    importlib.import_module(f"agentarena.envs.{env}")
-    mod = sys.modules[f"agentarena.envs.{env}"]
+    importlib.import_module(f"caveat.envs.{env}")
+    mod = sys.modules[f"caveat.envs.{env}"]
     return ENVIRONMENTS.get(env)(), getattr(mod, "TASKS", [])
 
 

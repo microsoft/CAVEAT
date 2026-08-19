@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Per-environment results figure (preference fidelity) for the marketplace steering benchmark.
+"""Per-environment results figure (preference fidelity) for the CAVEAT benchmark.
 
 8 subfigures (2x4), one per env, each styled EXACTLY like panel (a) of fig_final.png
 (scripts/final_fig.py): per model group an OPAQUE aggregated-steered bar (value label inside,
@@ -42,7 +42,7 @@ RESULTS = os.environ.get("PILOT_RESULTS", "results/byenv_v2")
 
 # ------------------------------------------------------------------ data (= pilot_report5.py)
 # Infra-vs-capability is decided by the ONE shared implementation in scripts/_infra_classify.py,
-# exactly as pilot_report5.py (and build_figure_data.py / _crash_sweep.py) do.  Only a run that
+# exactly as pilot_report5.py and build_figure_data.py do. Only a run that
 # INFRASTRUCTURE terminated is excluded; unparseable output, give-ups and loops score 0.
 from _infra_classify import is_infra_fail   # noqa: E402
 

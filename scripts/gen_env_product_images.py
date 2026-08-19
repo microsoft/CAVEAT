@@ -21,7 +21,7 @@ import argparse, asyncio, base64, io, json, sys, time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from agentarena.llm_client import create_client, _trapi_base_url, TRAPI_DEPLOY
+from caveat.llm_client import create_client, _trapi_base_url, TRAPI_DEPLOY
 
 DEP = TRAPI_DEPLOY.get("gpt-image-1", "gpt-image-1")
 REGIONS = ["gcr/shared", "msraif/shared", "redmond/interactive"]

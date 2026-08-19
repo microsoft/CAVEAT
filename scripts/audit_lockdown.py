@@ -156,7 +156,7 @@ def _burst_and_recover(m: Matrix, base: str, counted_url: str, hdr: dict,
 # amazon matrix (unchanged behavior)
 # --------------------------------------------------------------------------- #
 def run_condition_amazon(env, catalog: str, condition: str, work_dir: Path) -> Matrix:
-    from agentarena.core.task import TaskSpec
+    from caveat.core.task import TaskSpec
 
     task = TaskSpec(task_id=f"audit-{condition}", env="amazon",
                     instruction="audit", catalog=catalog, condition=condition)
@@ -265,7 +265,7 @@ def run_condition_amazon(env, catalog: str, condition: str, work_dir: Path) -> M
 # --------------------------------------------------------------------------- #
 def run_condition_storefront(env, catalog, condition: str, work_dir: Path,
                              keysets: dict) -> Matrix:
-    from agentarena.core.task import TaskSpec
+    from caveat.core.task import TaskSpec
 
     task = TaskSpec(task_id=f"audit-{env.name}-{condition}", env=env.name,
                     instruction="audit", catalog=catalog, condition=condition)
@@ -408,7 +408,7 @@ def run_condition_storefront(env, catalog, condition: str, work_dir: Path,
 # airbnb matrix (best-effort port of the same gate)
 # --------------------------------------------------------------------------- #
 def run_condition_airbnb(env, catalog, condition: str, work_dir: Path) -> Matrix:
-    from agentarena.core.task import TaskSpec
+    from caveat.core.task import TaskSpec
 
     task = TaskSpec(task_id=f"audit-airbnb-{condition}", env="airbnb",
                     instruction="audit", catalog=catalog, condition=condition)
@@ -507,8 +507,8 @@ def main():
                     help="default: amazon->clean/combined/adv-hidden, others->clean/steered")
     args = ap.parse_args()
 
-    import agentarena.envs  # noqa: F401  (registration side effects)
-    from agentarena.core.environment import ENVIRONMENTS
+    import caveat.envs  # noqa: F401  (registration side effects)
+    from caveat.core.environment import ENVIRONMENTS
 
     work = Path(tempfile.mkdtemp(prefix="audit_lockdown_"))
     any_failed = False

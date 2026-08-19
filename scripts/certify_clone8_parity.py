@@ -65,12 +65,12 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from agentarena.core.task import check_constraints  # noqa: E402
-from agentarena.envs._storefront.scoring import score  # noqa: E402
-from agentarena.envs._storefront.tasks7 import VARIANTS7, project  # noqa: E402
+from caveat.core.task import check_constraints  # noqa: E402
+from caveat.envs._storefront.scoring import score  # noqa: E402
+from caveat.envs._storefront.tasks7 import VARIANTS7, project  # noqa: E402
 
 
-SCHEMA_VERSION = "agentarena.clone8-amazon-parity.v1"
+SCHEMA_VERSION = "caveat.clone8-amazon-parity.v1"
 ENVIRONMENTS = (
     "airbnb",
     "doordash",
@@ -173,8 +173,8 @@ def _same_value(a: Any, b: Any) -> bool:
 def load_catalog_context(env_name: str) -> dict[str, Any]:
     if env_name not in ENVIRONMENTS:
         raise ValueError(f"unsupported clone env {env_name!r}")
-    tasks_module = importlib.import_module(f"agentarena.envs.{env_name}.tasks")
-    catalog_module = importlib.import_module(f"agentarena.envs.{env_name}.catalog")
+    tasks_module = importlib.import_module(f"caveat.envs.{env_name}.tasks")
+    catalog_module = importlib.import_module(f"caveat.envs.{env_name}.catalog")
     spec = tasks_module.PREF7
     catalogs = getattr(catalog_module, "CATALOGS", {})
     if spec.catalog not in catalogs:
@@ -353,7 +353,7 @@ def _temporary_environ(updates: Mapping[str, str]):
 
 
 def _simulate_shared_order(ctx: Mapping[str, Any]) -> list[str]:
-    from agentarena.envs._storefront import steering
+    from caveat.envs._storefront import steering
 
     seed = ctx["catalog"].to_seed_json()
     pins = [_row_id(row) for row in ctx["rows"] if getattr(row, "advertised", False)]
@@ -379,7 +379,7 @@ def _simulate_airbnb_order(ctx: Mapping[str, Any]) -> list[str]:
     """Call Airbnb's real special-case reorderer in an isolated interpreter."""
     seed = ctx["catalog"].to_seed_json()
     pins = [_row_id(row) for row in ctx["rows"] if getattr(row, "advertised", False)]
-    server = REPO_ROOT / "agentarena" / "envs" / "airbnb" / "server"
+    server = REPO_ROOT / "caveat" / "envs" / "airbnb" / "server"
     code = (
         "import json,os;"
         "from backend import experiment_listings as e;"
@@ -672,7 +672,7 @@ def _scan_frontend_ops_markers() -> list[dict[str, str]]:
     markers = (b"STOREFRONT_OPS_TOKEN", b"X-Storefront-Ops", b"x-storefront-ops")
     findings: list[dict[str, str]] = []
     for env_name in ENVIRONMENTS:
-        frontend = REPO_ROOT / "agentarena" / "envs" / env_name / "server" / "frontend"
+        frontend = REPO_ROOT / "caveat" / "envs" / env_name / "server" / "frontend"
         if not frontend.exists():
             continue
         for path in sorted(frontend.rglob("*")):
@@ -707,16 +707,16 @@ def _scan_frontend_ops_markers() -> list[dict[str, str]]:
 
 
 def certify_static_surfaces(env_names: Sequence[str]) -> dict[str, Any]:
-    shared_app_path = REPO_ROOT / "agentarena" / "envs" / "_storefront" / "app.py"
-    shared_routes_path = REPO_ROOT / "agentarena" / "envs" / "_storefront" / "routes.py"
-    shared_seed_path = REPO_ROOT / "agentarena" / "envs" / "_storefront" / "seed.py"
-    shared_adapter_path = REPO_ROOT / "agentarena" / "envs" / "_storefront" / "adapter.py"
-    shared_steering_path = REPO_ROOT / "agentarena" / "envs" / "_storefront" / "steering.py"
-    gate_path = REPO_ROOT / "agentarena" / "envs" / "_storefront" / "gate.py"
-    airbnb_app_path = REPO_ROOT / "agentarena" / "envs" / "airbnb" / "server" / "backend" / "app.py"
-    airbnb_routes_path = REPO_ROOT / "agentarena" / "envs" / "airbnb" / "server" / "backend" / "routes.py"
-    airbnb_models_path = REPO_ROOT / "agentarena" / "envs" / "airbnb" / "server" / "backend" / "models.py"
-    airbnb_adapter_path = REPO_ROOT / "agentarena" / "envs" / "airbnb" / "__init__.py"
+    shared_app_path = REPO_ROOT / "caveat" / "envs" / "_storefront" / "app.py"
+    shared_routes_path = REPO_ROOT / "caveat" / "envs" / "_storefront" / "routes.py"
+    shared_seed_path = REPO_ROOT / "caveat" / "envs" / "_storefront" / "seed.py"
+    shared_adapter_path = REPO_ROOT / "caveat" / "envs" / "_storefront" / "adapter.py"
+    shared_steering_path = REPO_ROOT / "caveat" / "envs" / "_storefront" / "steering.py"
+    gate_path = REPO_ROOT / "caveat" / "envs" / "_storefront" / "gate.py"
+    airbnb_app_path = REPO_ROOT / "caveat" / "envs" / "airbnb" / "server" / "backend" / "app.py"
+    airbnb_routes_path = REPO_ROOT / "caveat" / "envs" / "airbnb" / "server" / "backend" / "routes.py"
+    airbnb_models_path = REPO_ROOT / "caveat" / "envs" / "airbnb" / "server" / "backend" / "models.py"
+    airbnb_adapter_path = REPO_ROOT / "caveat" / "envs" / "airbnb" / "__init__.py"
     shared_app = shared_app_path.read_text(encoding="utf-8")
     shared_routes = shared_routes_path.read_text(encoding="utf-8")
     shared_seed = shared_seed_path.read_text(encoding="utf-8")
@@ -735,10 +735,10 @@ def certify_static_surfaces(env_names: Sequence[str]) -> dict[str, Any]:
     # The hardened runtime keeps the auditable route inventory in its own pure
     # module and imports it into app.py.  Resolve that single source of truth rather
     # than falsely treating an import as an empty literal assignment.
-    from agentarena.envs._storefront.counting import PAGED_PATHS
+    from caveat.envs._storefront.counting import PAGED_PATHS
 
     if not counted:
-        from agentarena.envs._storefront.counting import COUNTED_PATHS
+        from caveat.envs._storefront.counting import COUNTED_PATHS
 
         counted = tuple(COUNTED_PATHS)
     exempt = _assigned_tuple(app_tree, "_EXEMPT_PATHS")
@@ -924,8 +924,8 @@ def certify_static_surfaces(env_names: Sequence[str]) -> dict[str, Any]:
 
     token_observations: dict[str, Any] = {}
     try:
-        import agentarena.envs  # noqa: F401  (registration side effects)
-        from agentarena.core.environment import ENVIRONMENTS as REGISTRY
+        import caveat.envs  # noqa: F401  (registration side effects)
+        from caveat.core.environment import ENVIRONMENTS as REGISTRY
 
         for env_name in env_names:
             ctx = load_catalog_context(env_name)
@@ -1295,8 +1295,8 @@ def certify_environment_live(
     work_dir: Path,
     preferred_port: int | None = None,
 ) -> dict[str, Any]:
-    import agentarena.envs  # noqa: F401
-    from agentarena.core.environment import ENVIRONMENTS as REGISTRY
+    import caveat.envs  # noqa: F401
+    from caveat.core.environment import ENVIRONMENTS as REGISTRY
 
     env = REGISTRY.get(env_name)()
     task = next(
@@ -1616,8 +1616,8 @@ def certify_environment_clean_addon(
     preferred_port: int | None = None,
 ) -> dict[str, Any]:
     """Prove the optional checkout lure is absent from the clean condition."""
-    import agentarena.envs  # noqa: F401
-    from agentarena.core.environment import ENVIRONMENTS as REGISTRY
+    import caveat.envs  # noqa: F401
+    from caveat.core.environment import ENVIRONMENTS as REGISTRY
 
     env = REGISTRY.get(env_name)()
     task = next(
@@ -1813,8 +1813,8 @@ def certify_environment_rate_gate(
     credential; the only privileged requests are the environment adapter's internal
     pre-transaction snapshot during ``start``.
     """
-    import agentarena.envs  # noqa: F401
-    from agentarena.core.environment import ENVIRONMENTS as REGISTRY
+    import caveat.envs  # noqa: F401
+    from caveat.core.environment import ENVIRONMENTS as REGISTRY
 
     env = REGISTRY.get(env_name)()
     task = next(

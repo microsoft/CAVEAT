@@ -9,10 +9,10 @@ from pathlib import Path
 import tempfile
 
 sys.path.insert(0, __file__.rsplit("scripts/", 1)[0] or ".")  # repo root (portable: works from any checkout)
-import agentarena.envs  # noqa: F401  (registers envs)
+import caveat.envs  # noqa: F401  (registers envs)
 import importlib
-from agentarena.core.environment import ENVIRONMENTS
-from agentarena.scaffolds._browser import BrowserConfig
+from caveat.core.environment import ENVIRONMENTS
+from caveat.scaffolds._browser import BrowserConfig
 
 OUT = Path("/tmp/env_shots"); OUT.mkdir(parents=True, exist_ok=True)
 ENVS = ["amazon", "ebay", "etsy", "stockx", "nike",
@@ -32,7 +32,7 @@ with sync_playwright() as p:
         handle = None
         try:
             env = ENVIRONMENTS.create(name)
-            mod = importlib.import_module(f"agentarena.envs.{name}")
+            mod = importlib.import_module(f"caveat.envs.{name}")
             task = replace(mod.TASKS[0], condition="clean")
             port = PORT0 + i
             handle = env.start(port, task, work_dir=Path(tempfile.mkdtemp(prefix=f"shot_{name}_")))

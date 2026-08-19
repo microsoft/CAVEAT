@@ -33,11 +33,11 @@ def _model_arg(name: str) -> str:
 
 def _run_one(args):
     task_id, model_name, condition, port, out_root, max_steps = args
-    import agentarena.envs      # register envs + benchmark catalogs
-    import agentarena.scaffolds
-    from agentarena.benchmark import registry
-    from agentarena.core.experiment import run_cell
-    from agentarena.core.models import ModelSpec
+    import caveat.envs      # register envs + benchmark catalogs
+    import caveat.scaffolds
+    from caveat.benchmark import registry
+    from caveat.core.experiment import run_cell
+    from caveat.core.models import ModelSpec
 
     scenario, variant = task_id.rsplit("-", 1)
     task = registry.benchmark_tasks(scenario, variants=[variant])[0]

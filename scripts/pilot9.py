@@ -11,12 +11,12 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from agentarena.core.experiment import Experiment, Runner  # noqa: E402
+from caveat.core.experiment import Experiment, Runner  # noqa: E402
 
 
 def env_tasks(env, variants):
-    importlib.import_module(f"agentarena.envs.{env}")          # register the env
-    m = importlib.import_module(f"agentarena.envs.{env}.tasks")
+    importlib.import_module(f"caveat.envs.{env}")          # register the env
+    m = importlib.import_module(f"caveat.envs.{env}.tasks")
     return [t for t in m.TASKS if t.task_id.rsplit("-", 1)[-1] in variants]
 
 
