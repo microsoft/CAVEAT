@@ -1,6 +1,6 @@
 # CAVEAT
 
-CAVEAT evaluates whether a web agent follows a user's stated preferences and ultimately makes an optimal selection. It ships nine high-fidelity local environments, two benchmark tiers, the BrowserUse baseline, CAVEAT-Harness, and supporting training code for CAVEAT-27B.
+CAVEAT evaluates whether a web agent follows a user's stated preferences and ultimately makes an optimal selection. It ships nine high-fidelity local environments, two benchmark tiers, the BrowserUse baseline, and CAVEAT-Harness.
 
 The CAVEAT environment names and visual identities are fictional. This project is not affiliated with or endorsed by any commercial platform represented by the underlying shopping and service tasks.
 
@@ -114,7 +114,7 @@ Plugin modules are imported in both the controller and each isolated worker. Env
 
 ## CAVEAT-27B
 
-Model checkpoint forthcoming.
+We post-train Qwen3.5-27B with general SFT, iterative SFT, and on-policy distillation. The CAVEAT-27B model checkpoint is forthcoming.
 
 ## Repository layout
 
@@ -125,7 +125,6 @@ caveat/                 benchmark runtime
 ├── envs/               all nine environments and benchmark data
 ├── scaffolds/          BrowserUse and CAVEAT-Harness
 └── scoring/            optimal-selection rate
-training/caveat_27b/    CAVEAT-27B training code
 ```
 
 The project is licensed under the [MIT License](LICENSE). Report security vulnerabilities using [SECURITY.md](SECURITY.md), not a public issue.

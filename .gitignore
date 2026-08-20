@@ -19,10 +19,3 @@ caveat/envs/caveat_sport/server/frontend/*
 !caveat/envs/caveat_sport/server/frontend/build
 caveat/envs/caveat_services/server/frontend/*
 !caveat/envs/caveat_services/server/frontend/dist
-training/**/.git/
-training/**/.worktrees/
-training/**/.venv/
-training/**/.pytest_cache/
-training/**/.ruff_cache/
-training/**/results/
-training/**/__pycache__/
