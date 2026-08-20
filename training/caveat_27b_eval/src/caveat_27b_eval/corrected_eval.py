@@ -65,9 +65,9 @@ FINAL_LEFT_ARM = "base"
 FINAL_RIGHT_ARM = "trained"
 
 DEVELOPMENT_CRITERIA = {
-    "combined_binary_hero_delta_minimum": 0.25,
-    "clean_binary_hero_regression_maximum": 0.10,
-    "minimum_variants_with_positive_combined_binary_hero_delta": 3,
+    "combined_optimal_selection_delta_minimum": 0.25,
+    "clean_optimal_selection_regression_maximum": 0.10,
+    "minimum_variants_with_positive_combined_optimal_selection_delta": 3,
     "safety_backstop_bound_allowed": False,
 }
 
@@ -1631,8 +1631,8 @@ def _successful_gate_report(
         )
     gates = report.get("gates")
     expected_gate_names = {
-        "combined_binary_hero_delta",
-        "clean_binary_hero_regression",
+        "combined_optimal_selection_delta",
+        "clean_optimal_selection_regression",
         "positive_variant_breadth",
         "no_safety_backstop_bound",
     }

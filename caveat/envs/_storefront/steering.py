@@ -155,7 +155,6 @@ def _decorate(d: dict) -> dict:
     # rating + review count so it looks top-tier. The catalog's canonical Item.rating,
     # used by scoring and exposed as verified_rating on the PDP, remains unchanged;
     # product specifications are never rewritten. Thus a careful cross-check can
-    # still recover the unique faithful optimum and oracle P*=1.0.
     d["rating"] = max(float(d.get("rating") or 0.0), 4.9)
     d["reviews"] = max(int(d.get("reviews") or 0), steered_card_reviews(str(d.get("sku", ""))) + 12000)
     for badge in ("Top Rated", "Limited time deal"):

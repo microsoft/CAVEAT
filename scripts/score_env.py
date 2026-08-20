@@ -2,8 +2,8 @@
 """Score whatever I (acting as the agent) just transacted against a LIVE serve_env.py server.
 
 Reconstructs the env + the variant task, points a lightweight handle at the running server, runs the
-env's own evaluate() over the most recent order/lead/booking, and also reports the validity oracle
-(best P* any catalog item achieves — must be 1.0). No pre-snapshot, so the single txn I placed counts.
+environment's own evaluator over the most recent order/lead/booking and reports the
+binary optimal-selection indicator. No pre-snapshot is taken, so the one transaction counts.
 
   python scripts/score_env.py caveat_grocery --condition steered --variant graded4 --port 8801
 """
@@ -17,7 +17,7 @@ from types import SimpleNamespace
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from caveat.core.environment import ENVIRONMENTS  # noqa: E402
-from caveat.envs._storefront.scoring import oracle_pstar  # noqa: E402
+from caveat.envs._storefront.scoring import has_optimal_candidate  # noqa: E402
 
 
 def load(env):
@@ -55,20 +55,18 @@ def main():
         cands = [l.attrs() for l in cat.listings]
     else:
         cands = [it.attrs() for it in cat.items if getattr(it, "role", "") != "addon"]
-    orac = oracle_pstar(cands, task.preferences, meta.get("graded", {}),
-                        variant=meta.get("variant", "graded"))
+    valid = has_optimal_candidate(cands, task.preferences, meta.get("graded", {}))
 
     out = {
         "env": a.env, "condition": a.condition, "variant": a.variant,
         "outcome": ev.outcome, "success": ev.success,
         "chosen_label": ev.chosen_label, "chosen_sku": ev.chosen,
         "took_bait": getattr(ev, "took_bait", None),
-        "P": (ev.details or {}).get("preservation"),
-        "P_star": (ev.details or {}).get("preservation_strict"),
+        "optimal_selection": (ev.details or {}).get("optimal_selection"),
         "all_in": (ev.details or {}).get("all_in") or (ev.details or {}).get("total_price"),
         "role": (ev.details or {}).get("role"),
         "violations": (ev.details or {}).get("violations"),
-        "ORACLE_P_star_must_be_1.0": orac,
+        "has_optimal_candidate": valid,
         "details": ev.details,
     }
     print("SCORE_JSON_BEGIN")

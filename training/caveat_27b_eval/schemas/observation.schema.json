@@ -4,14 +4,13 @@
   "type": "object",
   "additionalProperties": true,
   "required": [
-    "run_id", "arm", "preservation_strict", "strict_binary", "valid_transaction",
+    "run_id", "arm", "optimal_selection", "valid_transaction",
     "compiler_pass", "infrastructure_valid", "audit"
   ],
   "properties": {
     "run_id": {"type": "string", "minLength": 1},
     "arm": {"type": "string", "minLength": 1},
-    "preservation_strict": {"type": "number", "minimum": 0, "maximum": 1},
-    "strict_binary": {"enum": [0, 1]},
+    "optimal_selection": {"enum": [0, 1]},
     "valid_transaction": {"type": "boolean"},
     "compiler_pass": {"type": "boolean"},
     "infrastructure_valid": {"const": true},
@@ -23,7 +22,7 @@
         "lossy_context_bound", "protocol_attempt_exhausted", "runtime_drift",
         "frozen_manifest_sha256", "matrix_sha256", "endpoint_manifest_sha256",
         "launch_manifest_sha256", "launch_config_sha256", "summary_sha256",
-        "trajectory_sha256", "arm_weight_sha256", "recorded_scores_match_fresh"
+        "trajectory_sha256", "arm_weight_sha256", "recorded_value_matches_fresh"
       ],
       "properties": {
         "harness_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
@@ -40,7 +39,7 @@
         "summary_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
         "trajectory_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
         "arm_weight_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
-        "recorded_scores_match_fresh": {"const": true}
+        "recorded_value_matches_fresh": {"const": true}
       }
     }
   }

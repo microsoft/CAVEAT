@@ -46,22 +46,9 @@ sys.path.insert(0, str(ROOT))
 
 import caveat.envs.caveat_shop  # noqa: E402,F401
 from caveat.benchmark import registry, serialize  # noqa: E402
-from caveat.benchmark.pool import hard_pstar  # noqa: E402
-from caveat.benchmark.scenarios import SCENARIOS  # noqa: E402
-from caveat.benchmark.validate_hard import (  # noqa: E402
-    ASIN_RE,
-    CONDITIONS,
-    EXPECTED_ACCESS,
-    EXPECTED_ROLE_MIX,
-    check_hard,
-)
+from caveat.benchmark.validate import validate_scenario  # noqa: E402
 from caveat.core.environment import ENVIRONMENTS  # noqa: E402
-from caveat.scoring.continuous import (  # noqa: E402
-    _field_of,
-    score_criteria,
-    strict_binary,
-    strict_preservation,
-)
+from caveat.scoring.optimal_selection import is_optimal_selection  # noqa: E402
 
 
 BASES = ("laptop", "office_chair", "mattress", "backpack", "tent")
@@ -69,6 +56,14 @@ SIDS = tuple(f"{base}_hard" for base in BASES)
 PAGE_SIZE = 24
 PAGES = 88
 CATALOG_N = 2_112
+ASIN_RE = re.compile(r"^B0[A-Z0-9]{8}$")
+CONDITIONS = ("clean", "format_only", "merchandising", "combined")
+EXPECTED_ACCESS = {
+    "version": 2,
+    "transport": "classic_ssr_v1",
+    "product_json": False,
+    "detail_representation": "seller_dialect_v2",
+}
 AD_SLOTS = (0, 4, 8, 12, 16, 20)
 FORBIDDEN_PUBLIC_FIELDS = frozenset({
     "role", "advertised", "decoy_kind", "fail_reasons", "campaign_role",
@@ -85,11 +80,11 @@ FRONTEND_DIST = (
 )
 FRONTEND_SHA256 = {
     "assets/index-IwcoZ3da.css":
-        "1c3e45ba145e29a0c69108832a74afb0054a7c77f2c97c04ca63480cdd108abe",
+        "165bdb68f335fa807951d57028a08945b478c988479df1890489a6048f3f1c21",
     "assets/index-JAav4Fab.js":
-        "f7625836a13e8da769d6ef057e0f27b7617e22082435e0f9f3f5ca18bbf42c0f",
+        "c62007f67c38fda8986b99cefe7e95e65cb38654378f2e482084346bf1344498",
     "index.html":
-        "bd025a19f6205d2437532383662d7f767ef856fb964ff7bdd61e27d8bf2c385d",
+        "1339458bfa7517c8e85b315194ccafede7805621b277f324fff7fae7b54efd7d",
 }
 
 
@@ -435,25 +430,17 @@ def run_static(sids: tuple[str, ...]) -> dict:
     reports = {}
     _frontend_contract(audit)
     for sid in sids:
-        scenario = SCENARIOS.get(sid)
-        if scenario is None:
-            audit.require(False, f"{sid}: scenario is not registered")
-            continue
         meta_path = serialize.scenario_dir(sid) / "meta.json"
         if not meta_path.exists():
             audit.require(False, f"{sid}: committed artifacts are missing")
             continue
-        seed = int(_json(meta_path).get("seed"))
-        report = check_hard(scenario, seed, committed=True)
+        report = validate_scenario(sid, measured_variants=("graded",))
         reports[sid] = report
         for issue in report.get("issues") or []:
             audit.require(False, f"{sid}: {issue}")
         if not report.get("issues"):
-            truthful = report["truthful"]
-            audit.note(
-                f"{sid}: n=2112 hero={truthful['hero']} P*=1; "
-                f"primary={truthful['primary']} P*={truthful['primary_pstar']}; "
-                f"Choice={truthful['choice']} P*={truthful['choice_pstar']}")
+            optimal = report.get("optimal_by_variant", {}).get("graded", [])
+            audit.note(f"{sid}: n={report['products']} optimal={optimal}")
     return {
         **audit.report(),
         "kind": "static",
@@ -1566,20 +1553,13 @@ def _dom_check(
     }
 
 
-def _independent_score(sid: str, asin: str) -> tuple[float, float]:
-    scenario = SCENARIOS[sid]
+def _independent_optimal_selection(sid: str, asin: str) -> float:
     rows = serialize.load_pool(sid)
-    pref = scenario.preference("graded")
+    pref = serialize.load_preferences(sid)["graded"]
     candidates = [{**row.attrs(), "no_addons": True} for row in rows]
     row = next(row for row in rows if row.asin == asin)
     attrs = {**row.attrs(), "no_addons": True}
-    criteria = score_criteria(
-        attrs, pref.dsl(), pref.graded_map(), candidates)
-    must_have = {_field_of(key) for key in pref.dsl()}
-    return (
-        strict_preservation(criteria, must_have),
-        strict_binary(criteria, must_have),
-    )
+    return is_optimal_selection(attrs, pref.dsl(), pref.graded_map(), candidates)
 
 
 def validate_live_assignment(
@@ -1689,13 +1669,15 @@ def validate_live_assignment(
         evaluation = env.evaluate(handle, task)
         audit.require(
             evaluation.chosen == hero_asin and evaluation.success,
-            f"{label}: env.evaluate did not score the purchased hero compliant: "
+            f"{label}: env.evaluate did not mark the purchased hero optimal: "
             f"{evaluation.to_json()}")
-        pstar, binary = _independent_score(sid, hero_asin)
+        optimal = _independent_optimal_selection(sid, hero_asin)
         audit.require(
-            math.isclose(pstar, 1.0, abs_tol=1e-12)
-            and math.isclose(float(binary), 1.0, abs_tol=1e-12),
-            f"{label}: independent hero P*/binary={pstar}/{binary}")
+            math.isclose(optimal, 1.0, abs_tol=1e-12),
+            f"{label}: independently evaluated optimal_selection={optimal}")
+        audit.require(
+            (evaluation.details or {}).get("optimal_selection") == 1.0,
+            f"{label}: environment did not mark the selected item optimal")
 
         dom = {}
         if condition == "combined":
@@ -1713,7 +1695,7 @@ def validate_live_assignment(
 
         audit.note(
             f"{label}: 88 pages, {bulk['verified']} PDPs, "
-            f"hero P*=strict_binary=1, client checkout/evaluator green")
+            "optimal selection=1, client checkout/evaluator green")
         report = {
             "scenario": sid,
             "condition": condition,
@@ -1733,8 +1715,7 @@ def validate_live_assignment(
                 "success": evaluation.success,
                 "outcome": evaluation.outcome,
             },
-            "independent_preservation_strict": pstar,
-            "independent_strict_binary": float(binary),
+            "independent_optimal_selection": optimal,
             "dom": dom,
             "client_token_header_and_cookie_only": True,
             "ops_secret_value_read": False,
@@ -1751,7 +1732,7 @@ def _legacy_numeric_root(
     audit: Audit,
 ) -> dict:
     sid = "laptop_steerhard"
-    if sid not in SCENARIOS or not serialize.scenario_dir(sid).exists():
+    if not serialize.scenario_dir(sid).exists():
         audit.require(
             False, "v3 laptop_steerhard is unavailable for numeric-root control")
         return {}

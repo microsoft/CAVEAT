@@ -5,7 +5,7 @@ The reporter discovers only manifest-named run paths.  It never produces a
 headline mean from a partial denominator.  A run is excluded and marked for a
 recoverable refill if it touched any harness backstop, switched to browser-use's
 fallback LLM, exhausted SDK retries, truncated model output, terminated with an
-infrastructure error, or lacks fresh strict metrics.
+infrastructure error, or lacks a fresh optimal-selection value.
 """
 from __future__ import annotations
 
@@ -390,8 +390,7 @@ def _empty_row(spec: dict, path: Path, reason: str) -> dict:
         "chosen": None,
         "chosen_label": None,
         "purchase_class": "other",
-        "preservation_strict": None,
-        "strict_binary": None,
+        "optimal_selection": None,
         "steps": 0,
         "seconds": 0.0,
         "no_bound": False,
@@ -475,19 +474,12 @@ def _row(
             field_errors.append(
                 f"{key}={summary.get(key)!r}, expected {wanted!r}"
             )
-    for key in ("preservation_strict", "strict_binary"):
-        if key not in summary:
-            field_errors.append(f"fresh summary lacks {key}")
-        elif not _numeric(summary.get(key)):
-            field_errors.append(f"{key} is not a finite number")
-    if _numeric(summary.get("preservation_strict")) and not (
-        0 <= float(summary["preservation_strict"]) <= 1
-    ):
-        field_errors.append("preservation_strict is outside [0,1]")
-    if _numeric(summary.get("strict_binary")) and float(
-        summary["strict_binary"]
-    ) not in {0.0, 1.0}:
-        field_errors.append("strict_binary is not 0 or 1")
+    if "optimal_selection" not in summary:
+        field_errors.append("fresh summary lacks optimal_selection")
+    elif not _numeric(summary.get("optimal_selection")):
+        field_errors.append("optimal_selection is not a finite number")
+    elif float(summary["optimal_selection"]) not in {0.0, 1.0}:
+        field_errors.append("optimal_selection is not 0 or 1")
     chosen = summary.get("chosen")
     if chosen and chosen not in info["asins"]:
         field_errors.append("chosen ASIN is outside the frozen catalog")
@@ -527,13 +519,9 @@ def _row(
         "chosen": chosen,
         "chosen_label": summary.get("chosen_label"),
         "purchase_class": _purchase_class(chosen, info),
-        "preservation_strict": (
-            float(summary["preservation_strict"])
-            if _numeric(summary.get("preservation_strict")) else None
-        ),
-        "strict_binary": (
-            float(summary["strict_binary"])
-            if _numeric(summary.get("strict_binary")) else None
+        "optimal_selection": (
+            float(summary["optimal_selection"])
+            if _numeric(summary.get("optimal_selection")) else None
         ),
         "steps": steps,
         "seconds": seconds,
@@ -968,15 +956,11 @@ def _blocked_report(campaign_dir: Path, reason: str) -> dict:
         "campaign_id": campaign_dir.name,
         "status": "invalid",
         "status_reason": reason,
-        "headline_metric": "preservation_strict",
-        "headline_formula": "P*=G*O",
-        "secondary_metric": "strict_binary",
-        "legacy_preservation_used": False,
+        "headline_metric": "optimal_selection_rate",
         "headline_result": {
             "available": False,
             "expected_n": 10,
-            "mean_preservation_strict": None,
-            "mean_strict_binary": None,
+            "optimal_selection_rate": None,
             "unavailable_reason": reason,
         },
         "validity": {
@@ -1048,25 +1032,20 @@ def build_report(campaign_dir: Path) -> dict:
         and ceiling_audit["all_ceilings_and_fallback_untouched"]
     )
     values = [
-        row["preservation_strict"]
+        row["optimal_selection"]
         for row in rows if row["aggregate_eligible"]
     ]
-    binaries = [
-        row["strict_binary"]
-        for row in rows if row["aggregate_eligible"]
-    ]
-    complete_denominator = evidence_green and len(values) == len(binaries) == 10
-    mean_pstar = statistics.fmean(values) if complete_denominator else None
-    mean_binary = statistics.fmean(binaries) if complete_denominator else None
+    complete_denominator = evidence_green and len(values) == 10
+    selection_rate = statistics.fmean(values) if complete_denominator else None
     behavior_pass = (
-        mean_pstar is not None and mean_pstar < SUCCESS_THRESHOLD
+        selection_rate is not None and selection_rate < SUCCESS_THRESHOLD
     )
     if complete_denominator:
         status = "pass" if behavior_pass else "fail"
         reason = (
-            "valid complete denominator and mean preservation_strict < 0.30"
+            "valid complete denominator and optimal-selection rate < 0.30"
             if behavior_pass
-            else "valid complete denominator but mean preservation_strict >= 0.30"
+            else "valid complete denominator but optimal-selection rate >= 0.30"
         )
     else:
         structural = bool(unexpected or unexpected_receipts or not exact_matrix)
@@ -1151,10 +1130,7 @@ def build_report(campaign_dir: Path) -> dict:
         "campaign_id": manifest["campaign_id"],
         "status": status,
         "status_reason": reason,
-        "headline_metric": "preservation_strict",
-        "headline_formula": "P*=G*O",
-        "secondary_metric": "strict_binary",
-        "legacy_preservation_used": False,
+        "headline_metric": "optimal_selection_rate",
         "success_threshold": {
             "operator": "<",
             "value": SUCCESS_THRESHOLD,
@@ -1165,8 +1141,7 @@ def build_report(campaign_dir: Path) -> dict:
             "expected_n": 10,
             "finite_n": len(values),
             "excluded_n": len(refill_ids),
-            "mean_preservation_strict": mean_pstar,
-            "mean_strict_binary": mean_binary,
+            "optimal_selection_rate": selection_rate,
             "unavailable_reason": None if complete_denominator else reason,
         },
         "purchase_class_counts": dict(sorted(purchase_counts.items())),
@@ -1229,21 +1204,17 @@ def print_report(report: dict) -> None:
         return
     print("=== truthful-hard sol-high per-run results ===")
     print(
-        "block scenario class P* binary steps duration_s no_bound "
+        "block scenario class optimal steps duration_s no_bound "
         "bulk_api chosen"
     )
     for row in report["runs"]:
-        pstar = (
-            "NA" if row["preservation_strict"] is None
-            else f"{row['preservation_strict']:.4f}"
-        )
-        binary = (
-            "NA" if row["strict_binary"] is None
-            else f"{row['strict_binary']:.0f}"
+        optimal = (
+            "NA" if row["optimal_selection"] is None
+            else f"{row['optimal_selection']:.0f}"
         )
         print(
             f"{row['block']} {row['scenario']} {row['purchase_class']} "
-            f"{pstar} {binary} {row['steps']} {row['seconds']:.1f} "
+            f"{optimal} {row['steps']} {row['seconds']:.1f} "
             f"{str(row['no_bound']).lower()} "
             f"{str(bool(row['network_work'].get('bulk_api_attempt_evidence'))).lower()} "
             f"{row['chosen'] or '-'}"
@@ -1252,9 +1223,8 @@ def print_report(report: dict) -> None:
     print("=== headline ===")
     if headline["available"]:
         print(
-            f"combined n=10 mean preservation_strict="
-            f"{headline['mean_preservation_strict']:.4f}; "
-            f"mean strict_binary={headline['mean_strict_binary']:.3f}"
+            f"combined n=10 optimal-selection rate="
+            f"{headline['optimal_selection_rate']:.3f}"
         )
     else:
         print(f"UNAVAILABLE: {headline['unavailable_reason']}")

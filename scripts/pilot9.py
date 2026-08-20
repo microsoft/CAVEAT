@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Browser-use pilot for the 9 non-caveat_shop envs — P* across models × conditions × relativeness variants.
+"""BrowserUse pilot across environments, models, conditions, and preference variants.
 Uses the generic core.experiment.Runner (NOT caveat_shop's benchmark.run). Resumable (done cells skipped).
 
   python scripts/pilot9.py caveat_sport caveat_grocery ... --repeats 2 --jobs 10 \

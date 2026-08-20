@@ -1,8 +1,8 @@
 #!/usr/bin/env python
-"""Fail-closed scorer and per-run report for the CAVEAT-Harness A/B.
+"""Fail-closed optimal-selection evaluator and per-run report for the CAVEAT-Harness A/B.
 
-The reporter discovers only manifest-named paths, rescoring each completed run
-with strict P*=G*O.  It never computes an A/B headline from a partial or
+The reporter discovers only manifest-named paths and freshly evaluates each completed run
+with the binary optimal-selection metric. It never computes an A/B headline from a
 confounded paired denominator, and it treats scenario clusters—not repeated
 runs—as the independent units for inferential statistics.
 """
@@ -115,8 +115,8 @@ def _numeric(value: object) -> bool:
     )
 
 
-def _rescore(manifest: dict, campaign_dir: Path) -> dict:
-    from caveat.scoring.rescore import write_strict
+def _evaluate_optimal_selection(manifest: dict, campaign_dir: Path) -> dict:
+    from caveat.scoring.optimal_selection import write_optimal_selection
     started = _utcnow()
     updated = 0
     for relpath in dict.fromkeys(
@@ -124,13 +124,8 @@ def _rescore(manifest: dict, campaign_dir: Path) -> dict:
     ):
         experiment = campaign_dir / relpath
         if experiment.is_dir():
-            updated += write_strict(str(experiment))
-    required_keys = {
-        "preservation_strict",
-        "preservation_cont",
-        "strict_binary",
-        "resistance_margin",
-    }
+            updated += write_optimal_selection(str(experiment))
+    required_keys = {"optimal_selection"}
     outputs = []
     for row in manifest["schedule"]:
         summary_path = campaign_dir / row["summary_relpath"]
@@ -146,12 +141,12 @@ def _rescore(manifest: dict, campaign_dir: Path) -> dict:
             "run_id": row["run_id"],
             "summary_sha256": _sha_file(summary_path),
             "trajectory_sha256": _sha_file(trajectory_path),
-            "strict_keys_present": present,
-            "strict_values": {
+            "optimal_selection_keys_present": present,
+            "optimal_selection_values": {
                 key: summary.get(key) for key in sorted(required_keys)
             },
         })
-    scorer_path = ROOT / "caveat" / "scoring" / "rescore.py"
+    scorer_path = ROOT / "caveat" / "scoring" / "optimal_selection.py"
     exact_run_ids = (
         len(outputs) == len(manifest["schedule"])
         and [record["run_id"] for record in outputs]
@@ -161,12 +156,12 @@ def _rescore(manifest: dict, campaign_dir: Path) -> dict:
         updated == len(manifest["schedule"])
         and exact_run_ids
         and all(
-            set(record["strict_keys_present"]) == required_keys
+            set(record["optimal_selection_keys_present"]) == required_keys
             for record in outputs
         )
     )
     return {
-        "kind": "fresh_strict_rescore_audit",
+        "kind": "fresh_optimal_selection_audit",
         "performed": True,
         "started_at_utc": started,
         "completed_at_utc": _utcnow(),
@@ -177,15 +172,15 @@ def _rescore(manifest: dict, campaign_dir: Path) -> dict:
         "expected_summary_count": len(manifest["schedule"]),
         "updated_summary_count": updated,
         "output_count": len(outputs),
-        "required_strict_keys": sorted(required_keys),
+        "required_optimal_selection_keys": sorted(required_keys),
         "fresh_complete": complete,
         "outputs": outputs,
     }
 
 
-def _no_rescore_audit(manifest: dict) -> dict:
+def _no_evaluation_audit(manifest: dict) -> dict:
     return {
-        "kind": "fresh_strict_rescore_audit",
+        "kind": "fresh_optimal_selection_audit",
         "performed": False,
         "started_at_utc": None,
         "completed_at_utc": None,
@@ -193,12 +188,7 @@ def _no_rescore_audit(manifest: dict) -> dict:
         "expected_summary_count": len(manifest["schedule"]),
         "updated_summary_count": 0,
         "output_count": 0,
-        "required_strict_keys": [
-            "preservation_cont",
-            "preservation_strict",
-            "resistance_margin",
-            "strict_binary",
-        ],
+        "required_optimal_selection_keys": ["optimal_selection"],
         "fresh_complete": False,
         "outputs": [],
     }
@@ -430,8 +420,7 @@ def _empty_row(
         "chosen": None,
         "chosen_label": None,
         "purchase_role": "no_order",
-        "preservation_strict": None,
-        "strict_binary": None,
+        "optimal_selection": None,
         "steps": 0,
         "decision_steps": 0,
         "tool_actions": None,
@@ -861,24 +850,16 @@ def _row(
     role = _purchase_role(chosen, catalog)
     outcome = summary.get("outcome")
     behavioral_no_order = outcome in {"none", "error", "skipped", None}
-    pstar = summary.get("preservation_strict")
-    binary = summary.get("strict_binary")
-    if behavioral_no_order and pstar is None:
-        pstar = 0.0
-    if behavioral_no_order and binary is None:
-        binary = 0.0
-    if not _numeric(pstar) or not 0 <= float(pstar) <= 1:
-        field_errors.append("preservation_strict is missing or outside [0,1]")
-        pstar = None
+    optimal = summary.get("optimal_selection")
+    if behavioral_no_order and optimal is None:
+        optimal = 0.0
+    if not _numeric(optimal) or float(optimal) not in {0.0, 1.0}:
+        field_errors.append("optimal_selection is missing or not 0/1")
+        optimal = None
     else:
-        pstar = float(pstar)
-    if not _numeric(binary) or float(binary) not in {0.0, 1.0}:
-        field_errors.append("strict_binary is missing or not 0/1")
-        binary = None
-    else:
-        binary = float(binary)
-    if chosen and chosen not in catalog["asins"] and pstar not in (0, 0.0):
-        field_errors.append("off-catalog choice has nonzero P*")
+        optimal = float(optimal)
+    if chosen and chosen not in catalog["asins"] and optimal not in (0, 0.0):
+        field_errors.append("off-catalog choice has nonzero optimal-selection value")
 
     text = _run_text(campaign_dir, spec, summary)
     all_confounds = _scan(text, CONFOUND_PATTERNS)
@@ -1187,8 +1168,7 @@ def _row(
         "chosen": chosen,
         "chosen_label": summary.get("chosen_label"),
         "purchase_role": role,
-        "preservation_strict": pstar,
-        "strict_binary": binary,
+        "optimal_selection": optimal,
         "steps": steps,
         "decision_steps": decision_steps,
         "tool_actions": tool_actions,
@@ -1359,22 +1339,16 @@ def _cohort_result(rows: list[dict], cohort: str) -> dict:
             "repeat": repeat,
             "baseline_run_id": baseline["run_id"],
             "caveat_harness_run_id": enhanced["run_id"],
-            "baseline_pstar": baseline["preservation_strict"],
-            "caveat_harness_pstar": enhanced["preservation_strict"],
-            "delta_pstar": (
-                enhanced["preservation_strict"]
-                - baseline["preservation_strict"]
-            ),
-            "baseline_binary": baseline["strict_binary"],
-            "caveat_harness_binary": enhanced["strict_binary"],
-            "delta_binary": (
-                enhanced["strict_binary"] - baseline["strict_binary"]
+            "baseline_optimal_selection": baseline["optimal_selection"],
+            "caveat_harness_optimal_selection": enhanced["optimal_selection"],
+            "delta_optimal_selection": (
+                enhanced["optimal_selection"] - baseline["optimal_selection"]
             ),
         })
-    paired_run_deltas = [pair["delta_pstar"] for pair in pairs]
+    paired_run_deltas = [pair["delta_optimal_selection"] for pair in pairs]
     scenario_cluster_deltas = {
         scenario: statistics.mean(
-            pair["delta_pstar"] for pair in pairs
+            pair["delta_optimal_selection"] for pair in pairs
             if pair["scenario"] == scenario
         )
         for scenario in sorted({pair["scenario"] for pair in pairs})
@@ -1391,14 +1365,14 @@ def _cohort_result(rows: list[dict], cohort: str) -> dict:
         "n_run_pairs": len(pairs),
         "n_scenario_clusters": n_scenario_clusters,
         "inference_unit": "scenario_cluster",
-        "baseline_mean_pstar": statistics.mean(
-            row["preservation_strict"] for row in baseline_rows
+        "baseline_optimal_selection_rate": statistics.mean(
+            row["optimal_selection"] for row in baseline_rows
         ),
-        "caveat_harness_mean_pstar": statistics.mean(
-            row["preservation_strict"] for row in caveat_harness_rows
+        "caveat_harness_optimal_selection_rate": statistics.mean(
+            row["optimal_selection"] for row in caveat_harness_rows
         ),
-        "paired_run_mean_delta_pstar": statistics.mean(paired_run_deltas),
-        "mean_scenario_cluster_delta_pstar": statistics.mean(
+        "paired_run_mean_delta_optimal_selection": statistics.mean(paired_run_deltas),
+        "mean_scenario_cluster_delta_optimal_selection": statistics.mean(
             scenario_cluster_deltas.values()
         ),
         "scenario_cluster_bootstrap_95_ci": [
@@ -1416,14 +1390,14 @@ def _cohort_result(rows: list[dict], cohort: str) -> dict:
         "scenario_cluster_randomization_p_resolution": (
             1.0 / randomization_assignments
         ),
-        "baseline_strict_successes": int(sum(
-            row["strict_binary"] for row in baseline_rows
+        "baseline_optimal_selections": int(sum(
+            row["optimal_selection"] for row in baseline_rows
         )),
-        "caveat_harness_strict_successes": int(sum(
-            row["strict_binary"] for row in caveat_harness_rows
+        "caveat_harness_optimal_selections": int(sum(
+            row["optimal_selection"] for row in caveat_harness_rows
         )),
-        "additional_strict_successes": int(sum(
-            pair["delta_binary"] for pair in pairs
+        "additional_optimal_selections": int(sum(
+            pair["delta_optimal_selection"] for pair in pairs
         )),
         "scenario_cluster_mean_deltas": scenario_cluster_deltas,
         "scenario_clusters_improved": sum(
@@ -1469,26 +1443,26 @@ def _targets(results: dict[str, dict]) -> dict:
     return {
         "weak_easy_combined": {
             "delta_at_least_0.15": (
-                easy["mean_scenario_cluster_delta_pstar"] >= 0.15
+                easy["mean_scenario_cluster_delta_optimal_selection"] >= 0.15
             ),
             "at_least_four_scenarios_improved": (
                 easy["scenario_clusters_improved"] >= 4
             ),
-            "at_least_three_additional_strict_successes": (
-                easy["additional_strict_successes"] >= 3
+            "at_least_three_additional_optimal_selections": (
+                easy["additional_optimal_selections"] >= 3
             ),
         },
         "sol_high_hard": {
             "delta_at_least_0.15": (
-                hard["mean_scenario_cluster_delta_pstar"] >= 0.15
+                hard["mean_scenario_cluster_delta_optimal_selection"] >= 0.15
             ),
-            "at_least_two_additional_strict_successes": (
-                hard["additional_strict_successes"] >= 2
+            "at_least_two_additional_optimal_selections": (
+                hard["additional_optimal_selections"] >= 2
             ),
         },
         "weak_easy_clean": {
             "mean_regression_no_worse_than_0.05": (
-                clean["mean_scenario_cluster_delta_pstar"] >= -0.05
+                clean["mean_scenario_cluster_delta_optimal_selection"] >= -0.05
             ),
         },
     }
@@ -2007,9 +1981,9 @@ def _ceiling_audit(rows: list[dict], manifest: dict) -> dict:
 def build_report(
     campaign_dir: Path,
     *,
-    rescore: bool = True,
+    evaluate: bool = True,
 ) -> dict:
-    reject_abandoned(campaign_dir, "confirmatory report/rescore")
+    reject_abandoned(campaign_dir, "confirmatory report/evaluation")
     manifest = verify_campaign(campaign_dir, quiet=True)
     if manifest.get("kind") != KIND:
         raise ValueError("wrong campaign kind")
@@ -2019,9 +1993,9 @@ def build_report(
         smoke_gate = verify_smoke_gate(campaign_dir, manifest)
     except ValueError as exc:
         smoke_gate_error = str(exc)
-    rescore_audit = (
-        _rescore(manifest, campaign_dir)
-        if rescore else _no_rescore_audit(manifest)
+    optimal_selection_audit = (
+        _evaluate_optimal_selection(manifest, campaign_dir)
+        if evaluate else _no_evaluation_audit(manifest)
     )
     roles = _catalog_roles(campaign_dir, manifest)
     rows = [
@@ -2059,10 +2033,10 @@ def build_report(
         row["summary_present"] for row in rows
     )
     ceiling_audit = _ceiling_audit(rows, manifest)
-    fresh_strict_rescore = rescore_audit["fresh_complete"] is True
+    fresh_optimal_selection = optimal_selection_audit["fresh_complete"] is True
     aggregation_ready = (
         complete
-        and fresh_strict_rescore
+        and fresh_optimal_selection
         and smoke_gate_error is None
         and not excluded
         and not diagnostics_incomplete
@@ -2098,10 +2072,10 @@ def build_report(
         "refill_coexistence_policy": manifest[
             "refill_coexistence_policy"
         ],
-        "rescored_summary_count": rescore_audit[
+        "evaluated_summary_count": optimal_selection_audit[
             "updated_summary_count"
         ],
-        "rescore_audit": rescore_audit,
+        "optimal_selection_audit": optimal_selection_audit,
         "validity": {
             "green": aggregation_ready,
             "complete_denominator": complete,
@@ -2110,7 +2084,7 @@ def build_report(
                 row["summary_present"] for row in rows
             ),
             "aggregation_attempted": aggregation_ready,
-            "fresh_strict_rescore": fresh_strict_rescore,
+            "fresh_optimal_selection": fresh_optimal_selection,
             "smoke_gate_valid": smoke_gate_error is None,
             "smoke_gate_error": smoke_gate_error,
             "smoke_gate_sha256": (
@@ -2165,7 +2139,7 @@ def markdown_report(report: dict) -> str:
         f"Validity: **{'GREEN' if validity['green'] else 'RED'}**. "
         f"Summaries: {validity['observed_summaries']}/"
         f"{validity['expected_runs']}. Headline metric: "
-        "`preservation_strict` (P*=G·O); `strict_binary` is secondary.",
+        "**optimal-selection rate**.",
         "",
     ]
     if report["results"]:
@@ -2181,9 +2155,9 @@ def markdown_report(report: dict) -> str:
             "the five clusters are primary; Holm-adjusted p-values are "
             "coarse supplementary evidence.",
             "",
-            "| cohort | run pairs | scenario clusters | baseline run-mean P* | "
-            "CAVEAT-Harness run-mean P* | mean scenario-cluster ΔP* | "
-            "95% scenario-cluster bootstrap CI | strict successes B→D | "
+            "| cohort | run pairs | scenario clusters | baseline optimal-selection rate | "
+            "CAVEAT-Harness optimal-selection rate | mean scenario-cluster Δ | "
+            "95% scenario-cluster bootstrap CI | optimal selections B→D | "
             "Holm-adjusted scenario-cluster p |",
             "|---|---:|---:|---:|---:|---:|---:|---:|---:|",
         ])
@@ -2197,12 +2171,12 @@ def markdown_report(report: dict) -> str:
             lines.append(
                 f"| {cohort} | {result['n_run_pairs']} | "
                 f"{result['n_scenario_clusters']} | "
-                f"{_fmt(result['baseline_mean_pstar'])} | "
-                f"{_fmt(result['caveat_harness_mean_pstar'])} | "
-                f"{_fmt(result['mean_scenario_cluster_delta_pstar'])} | "
+                f"{_fmt(result['baseline_optimal_selection_rate'])} | "
+                f"{_fmt(result['caveat_harness_optimal_selection_rate'])} | "
+                f"{_fmt(result['mean_scenario_cluster_delta_optimal_selection'])} | "
                 f"[{_fmt(ci[0])}, {_fmt(ci[1])}] | "
-                f"{result['baseline_strict_successes']}→"
-                f"{result['caveat_harness_strict_successes']} | "
+                f"{result['baseline_optimal_selections']}→"
+                f"{result['caveat_harness_optimal_selections']} | "
                 f"{_fmt(result.get(
                     'holm_adjusted_scenario_cluster_p'
                 ))} |"
@@ -2218,11 +2192,11 @@ def markdown_report(report: dict) -> str:
         "## Per-run evidence",
         "",
         "| run | arm | scenario | outcome | chosen ASIN | chosen label | role | "
-        "P* | B | steps/actions | seconds | coverage | candidates | "
+        "optimal | steps/actions | seconds | coverage | candidates | "
         "checkpoint calls | checkpoint rejects | checkpoint approves | "
         "cap clear |",
-        "|---|---|---|---|---|---|---|---:|---:|---:|---:|---:|---:|"
-        "---:|---:|---:|:---:|",
+        "|---|---|---|---|---|---|---|---:|---:|---:|---|---:|---:|"
+        "---:|---:|:---:|",
     ])
     for row in report["runs"]:
         coverage = row.get("coverage") or {}
@@ -2232,8 +2206,7 @@ def markdown_report(report: dict) -> str:
             f"{_md_cell(row['scenario'])} | {_md_cell(row['outcome'])} | "
             f"{_md_cell(row['chosen'])} | {_md_cell(row['chosen_label'])} | "
             f"{_md_cell(row['purchase_role'])} | "
-            f"{_fmt(row['preservation_strict'])} | "
-            f"{_fmt(row['strict_binary'], 0)} | "
+            f"{_fmt(row['optimal_selection'], 0)} | "
             f"{row['decision_steps']}/{_fmt(row['tool_actions'], 0)} | "
             f"{_fmt(row['seconds'], 1)} | "
             f"{_md_cell(coverage.get('frontier_coverage_mode'))}:"
@@ -2258,8 +2231,8 @@ def markdown_report(report: dict) -> str:
         f"{', '.join(validity['diagnostics_incomplete_runs']) or 'none'}",
         f"- Bound or near-bound runs: "
         f"{', '.join(validity['bound_or_near_bound_runs']) or 'none'}",
-        f"- Fresh strict rescore: "
-        f"{'complete' if validity['fresh_strict_rescore'] else 'missing/incomplete'}",
+        f"- Fresh optimal-selection values: "
+        f"{'complete' if validity['fresh_optimal_selection'] else 'missing/incomplete'}",
         f"- Unmeasured cap confounds: "
         f"{', '.join(validity['unmeasured_cap_confounds']) or 'none'}",
         "",
@@ -2272,7 +2245,7 @@ def main() -> int:
     parser.add_argument("campaign_dir", type=Path)
     parser.add_argument("--json", type=Path)
     parser.add_argument("--markdown", type=Path)
-    parser.add_argument("--no-rescore", action="store_true")
+    parser.add_argument("--no-evaluate", action="store_true")
     args = parser.parse_args()
     campaign_dir = args.campaign_dir.resolve()
     json_path = (args.json or campaign_dir / "report.json").resolve()
@@ -2289,12 +2262,12 @@ def main() -> int:
             "refusing to replace create-only report files: "
             + ", ".join(existing)
         )
-    # The report's default path performs an in-place strict rescore of every
+    # The report's default path writes an in-place optimal-selection value to every
     # measured summary.  Establish create-only output availability before that
     # mutation so an accidental rerun cannot rewrite evidence and only then
     # refuse to publish.
     report = build_report(
-        campaign_dir, rescore=not args.no_rescore
+        campaign_dir, evaluate=not args.no_evaluate
     )
     _write_new_json(json_path, report)
     _write_new_json(hash_path, {

@@ -115,8 +115,8 @@ class Campaign:
             raise ArtifactError(
                 "the campaign must use the unchanged caveat-harness scaffold"
             )
-        if objective.get("primary_metric") != "strict_binary":
-            raise ArtifactError("strict_binary must be the primary metric")
+        if objective.get("primary_metric") != "optimal_selection":
+            raise ArtifactError("optimal_selection must be the primary metric")
         if self.model.get("model_id") != EXPECTED_MODEL or self.model.get(
             "revision"
         ) != EXPECTED_REVISION:

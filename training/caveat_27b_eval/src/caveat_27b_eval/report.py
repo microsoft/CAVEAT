@@ -12,7 +12,6 @@ def _percent(value: float) -> str:
 
 def render_markdown(report: dict[str, Any]) -> str:
     headline = report["headline"]
-    secondary = report["mandatory_secondary"]
     held_out = report["held_out"]
     clean = report["clean_guards"]
     lines = [
@@ -25,47 +24,31 @@ def render_markdown(report: dict[str, Any]) -> str:
         "| Measure | Base | Selected | Difference |",
         "|---|---:|---:|---:|",
         (
-            f"| Optimal-product selection | {_percent(headline['base_hero_rate'])} | "
-            f"{_percent(headline['selected_hero_rate'])} | "
-            f"{_percent(headline['hero_rate_difference'])} |"
+            f"| Optimal-selection rate | {_percent(headline['base_optimal_selection_rate'])} | "
+            f"{_percent(headline['selected_optimal_selection_rate'])} | "
+            f"{_percent(headline['optimal_selection_rate_difference'])} |"
         ),
         "",
         (
-            "Optimal-product one-sided 95% lower bound: "
-            f"{headline['hero_rate_one_sided_95_lower_bound']:.4f}; exact McNemar p="
-            f"{headline['mcnemar']['pvalue_one_sided']:.6g}."
-        ),
-        "",
-        "## Mandatory secondary: preservation strict",
-        "",
-        "| Measure | Base | Selected | Difference |",
-        "|---|---:|---:|---:|",
-        (
-            f"| Preservation strict (P*) | {_percent(secondary['base_mean_pstar'])} | "
-            f"{_percent(secondary['selected_mean_pstar'])} | "
-            f"{_percent(secondary['pstar_difference'])} |"
-        ),
-        "",
-        (
-            "P* one-sided 95% lower bound: "
-            f"{secondary['pstar_one_sided_95_lower_bound']:.4f}; "
-            f"sign-randomization p={secondary['pstar_sign_randomization_pvalue']:.6g}."
+            "Optimal-selection-rate one-sided 95% lower bound: "
+            f"{headline['optimal_selection_rate_one_sided_95_lower_bound']:.4f}; "
+            f"exact McNemar p={headline['mcnemar']['pvalue_one_sided']:.6g}; "
+            f"sign-randomization p={headline['sign_randomization_pvalue']:.6g}."
         ),
         "",
         "## Leakage-safe held-out transfer",
         "",
-        f"Held-out optimal-product difference: {_percent(held_out['hero_rate_difference'])}.",
+        f"Held-out optimal-selection-rate difference: "
+        f"{_percent(held_out['optimal_selection_rate_difference'])}.",
         (
-            "Held-out optimal-product one-sided 95% lower bound: "
-            f"{held_out['hero_rate_one_sided_95_lower_bound']:.4f}."
+            "Held-out optimal-selection-rate one-sided 95% lower bound: "
+            f"{held_out['optimal_selection_rate_one_sided_95_lower_bound']:.4f}."
         ),
         f"Held-out scenarios improving: {held_out['positive_scenarios']}/4.",
-        f"Held-out P* difference: {_percent(held_out['pstar_difference'])}.",
-        f"Held-out P* one-sided 95% lower bound: {held_out['pstar_one_sided_95_lower_bound']:.4f}.",
-        "",
         "## Clean guards and confounds",
         "",
-        f"Clean P* difference: {_percent(clean['pstar_difference'])}.",
+        f"Clean optimal-selection-rate difference: "
+        f"{_percent(clean['optimal_selection_rate_difference'])}.",
         f"Clean valid-purchase difference: {_percent(clean['valid_purchase_difference'])}.",
         "",
     ]
@@ -79,11 +62,11 @@ def render_markdown(report: dict[str, Any]) -> str:
         lines.append(f"- {name}: `{value}`")
     lines.extend(["", "## Compiler decomposition", ""])
     for arm, values in report["compiler_decomposition"].items():
-        conditional = values["conditional_pstar"]
+        conditional = values["conditional_optimal_selection_rate"]
         conditional_text = "n/a" if conditional is None else _percent(conditional)
         lines.append(
             f"- {arm}: contract pass {_percent(values['pass_rate'])}; "
-            f"conditional P* {conditional_text}."
+            f"conditional optimal-selection rate {conditional_text}."
         )
     if "post_sft_contribution" in report:
         contribution = report["post_sft_contribution"]
@@ -93,7 +76,8 @@ def render_markdown(report: dict[str, Any]) -> str:
                 "## Post-SFT contribution",
                 "",
                 f"Paired runs: {contribution['pair_count']}.",
-                f"P* difference over SFT parent: {_percent(contribution['pstar_difference'])}.",
+                "Optimal-selection-rate difference over SFT parent: "
+                f"{_percent(contribution['optimal_selection_rate_difference'])}.",
                 (
                     "One-sided 95% lower bound: "
                     f"{contribution['one_sided_95_lower_bound']:.4f}; "

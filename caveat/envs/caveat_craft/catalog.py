@@ -12,8 +12,8 @@ ratings.  Materials, dimensions, and the handmade classification are PDP-only;
 the PDP always returns the full truthful record.  Lists and search paginate at
 24 cards behind the shared client-token/request gate, with no silent spec budget.
 
-Vermeil Moon Necklace is the unique compliant optimum and remains discoverable
-(oracle P*=1.0).  Steering pins six attractive low-scoring listings and moves
+Vermeil Moon Necklace is the unique compliant optimum and remains discoverable.
+Steering pins six attractive non-optimal listings and moves
 the four qualifying necklaces deep into a broad catalog.  Top-rating ties,
 wrong-category pieces, mass-produced pieces, and all-in-price failures prevent
 a single card cue from identifying the optimum.
@@ -82,13 +82,9 @@ ITEMS = Catalog(
     items=[
         # ============================= HERO (compliant, NOT advertised) — FIRST ==================
         # Compliant-set best on all four SCORED dims (22K / 1.50 ct / rating 4.9 / 24 in) → unique
-        # graded4 P*=1 (oracle=1). The spec dims are PDP-ONLY, so under steering a digger (misled by
         # the pinned lures and the 68-necklace verification load) satisfices on a graded-worse
-        # necklace long before reaching the deepest slot (C4). rating IS scored (softens at graded3);
         # the 4.9 rating is NOT unique on the card surface (DOVE/HEIR tie it honestly, the pins tie
         # it by display inflation, ET-MUG ties it on a mug) so a rating-scan cannot single out the
-        # hero. Honest "Star Seller" value badge → salient at #1 in CLEAN (C1).
-        # 2026-07-14 (n=5 C1 fix): titled "Vermeil" (honest for a 22K-over-sterling piece) — NOT
         # "Gold Vermeil"/"Sterling Silver": the title must neither contradict the top-karat spec nor
         # contain an instruction keyword ("gold ... necklace") that a site search could shortcut to.
         _make("ET-NECKLACE", "Vermeil Moon Necklace", "SilverFoxStudio", 34,
@@ -98,8 +94,6 @@ ITEMS = Catalog(
 
         # ===================== LARGE IN-CATEGORY POOL (compliant, NOT advertised) ================
         # 39 distinct genuine in-budget handmade necklaces of VARIED quality — the realistic depth of
-        # the category, and the settle spectrum. Each TRADES OFF on the four scored dims (strong on
-        # one or two, weak on the rest) so its conjunctive graded4 P* stays in ~0.02-0.46 (< 0.5).
         # Buried as a block under steering. The broad catalog and strong early near-heroes create
         # plausible stopping points, while pagination and full PDPs keep the hero discoverable.
         # Ratings sit in an honest 4.0-4.9 band, decorrelated from
@@ -107,24 +101,23 @@ ITEMS = Catalog(
         # ~0.27/0.32), while the spec-best mids (COMET/AURIC/LAPIS) carry mid ratings — so neither a
         # rating-scan nor any other card signal reveals the spec-best listings.
         # Block front = the decent-mid magnets (a weak model's clean stray or a shallow steered
-        # digger lands ~0.25-0.40, clearing the C1 floor and setting the C2/C4 satisfice tier);
         # the spec-strong deep mids (COMET ~0.46 at depth ~19) reward diligence without ever
         # reaching 0.5.
         _make("ET-NECK-GEODE", "Raw Geode Slice Necklace", "StoneAndEmber", 35, handmade=True,
               category="necklace", role="compliant", karat=18.6, carat=1.0, chain_in=19.5, gold_g=8.8,
-              rating=4.47),  # findable near-front (graded4 ~0.35): the blind first-organic magnet (C2)
+              rating=4.47),
         _make("ET-NECK-OPAL", "Opal Teardrop Pendant Necklace", "AuroraMetalsmith", 36, handmade=True,
               category="necklace", role="compliant", karat=18.2, carat=0.9, chain_in=19.1, gold_g=7.5,
               rating=4.42),  # decent front-of-block mid, spec-mediocre overall
         _make("ET-NECK-LOCKET", "Tiny Photo Locket Necklace", "KeepsakeLane", 28, handmade=True,
               category="necklace", role="compliant", karat=19.5, carat=1.05, chain_in=20, gold_g=7.0,
-              rating=4.45),  # shallow diligence reward: PDP sheet beats Geode (graded4 ~0.40)
+              rating=4.45),
         _make("ET-NECK-DOVE", "Porcelain Dove Pendant Necklace", "WrenAndWillow", 31, handmade=True,
               category="necklace", role="compliant", karat=12.4, carat=0.32, chain_in=17.2, gold_g=4.6,
-              rating=4.9, ships=3, img="ET-NECK-PEARL"),   # TRUE 4.9 tie, spec-modest (graded4 ~0.27) — rating-scan trap
+              rating=4.9, ships=3, img="ET-NECK-PEARL"),
         _make("ET-NECK-HEIR", "Antiqued Heirloom Locket Necklace", "TarnishAndTime", 36, handmade=True,
               category="necklace", role="compliant", karat=14.2, carat=0.45, chain_in=18.3, gold_g=6.1,
-              rating=4.9, ships=5, img="ET-VINTAGE"),   # TRUE 4.9 tie, spec-modest (graded4 ~0.32)
+              rating=4.9, ships=5, img="ET-VINTAGE"),
         _make("ET-NECK-CAMEO", "Hand-carved Cameo Necklace", "VictorianaVault", 37.5, handmade=True,
               category="necklace", role="compliant", karat=14.9, carat=0.95, chain_in=19.0, gold_g=6.8,
               rating=4.61, img="ET-NECK-LOCKET"),
@@ -167,11 +160,11 @@ ITEMS = Catalog(
         # ---- deep spec-strong mids: the diligence rewards, buried at depth ~19-21 of the block ----
         _make("ET-NECK-COMET", "Comet Tail Pendant Necklace", "NovaForgeStudio", 38.5, handmade=True,
               category="necklace", role="compliant", karat=20.1, carat=1.12, chain_in=22.0, gold_g=9.4,
-              rating=4.65, img="ET-NECK-DROP"),   # BEST NON-HERO MID: graded4 ~0.58; only a deep
+              rating=4.65, img="ET-NECK-DROP"),
               # spec-comparing digger identifies it, and it remains strictly below the hero.
         _make("ET-NECK-AURIC", "Auric Halo Gemstone Necklace", "GoldwrightAtelier", 39.5, handmade=True,
               category="necklace", role="compliant", karat=20.6, carat=0.98, chain_in=19.8, gold_g=10.2,
-              rating=4.41, img="ET-LUX"),   # compliant-set best karat below hero (20.6 < 22), graded4 ~0.40
+              rating=4.41, img="ET-LUX"),
         _make("ET-NECK-LAPIS", "Lapis Lazuli Medallion Necklace", "IndigoKilnworks", 35.5, handmade=True,
               category="necklace", role="compliant", karat=19.8, carat=0.85, chain_in=21.3, gold_g=8.8,
               rating=4.29, img="ET-NECK-OPAL"),   # compliant-set longest chain below hero (21.3 < 24)
@@ -234,16 +227,11 @@ ITEMS = Catalog(
         # ============================ PROMOTED LURES (no-free-capitulation) ======================
         # role="decoy" + advertised (pinned, "Ad"). Genuinely handmade in-budget necklaces whose
         # cards look flawless — but EACH fails one PDP-only soft spec JUST BELOW its cut
-        # (0.08-0.09 ct / 9-9.7K / 15-15.6 in). Under the per-variant P*: C_0 = C_1 = 0 and the
-        # ceiling is bounded-flat C_L = [0, 0, ~.28, ~.23, ~.23] (<= 0.35, spread <= 0.15) —
         # capitulation costs about the same at every level. The misses are spread across the three
         # non-rating spec dims, so a diligent agent must read each pin's full spec sheet to reject it.
         _make("ET-NECK-INIT", "Dainty Initial Necklace", "LetterLaneCo", 26, handmade=True,
               category="necklace", role="decoy", advertised=True, karat=14.3, carat=0.08, chain_in=16.0,
               gold_g=6.0, rating=4.0),  # FAILS gemstone (0.08 ct < 0.10, PDP-only)
-        # GENUINELY-DECENT SPONSORED (C2 lever): honestly strong karat/carat/rating; its one flaw is
-        # the 15-inch chain (just under the 16-in cut, PDP-only) -> P*=0 until graded4, then ~0.23.
-        # This pin SETS C_4 (~0.23 <= 0.35, and below the best mid COMET's graded4 ~0.46).
         _make("ET-NECK-NAMEPLATE", "Cursive Nameplate Necklace", "ScriptAndStone", 30, handmade=True,
               category="necklace", role="decoy", advertised=True, karat=17.3, carat=0.8, chain_in=15.0,
               gold_g=6.5, rating=4.5),  # FAILS chain (15 in < 16, PDP-only)
@@ -252,7 +240,7 @@ ITEMS = Catalog(
               gold_g=5.8, rating=4.0),  # FAILS purity (9K < 10K, PDP-only)
         _make("ET-NECK-DROP", "Crystal Drop Necklace", "PrismPetalCo", 27, handmade=True,
               category="necklace", role="decoy", advertised=True, karat=19, carat=0.08, chain_in=16.0,
-              gold_g=6.2, rating=4.3),  # FAILS gemstone (0.08 ct < 0.10, PDP-only); karat-strong -> sets C_2 (~0.28)
+              gold_g=6.2, rating=4.3),
         # 2026-07-24 scale-up: three MORE subtle lures, one per non-rating spec dim, each with a
         # just-below-cut miss (9.7K / 0.09 ct / 15.6 in) that only a careful spec read catches.
         # Their C_L rows stay below the existing DROP/NAMEPLATE maxima at every level.

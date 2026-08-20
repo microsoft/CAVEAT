@@ -14,7 +14,7 @@ the counted detail surface.  The client-token/request gate controls access but
 never rewrites a specification or silently withholds a detail response.
 
 Rajma Masala Bowl is the unique compliant optimum and remains fully
-discoverable (oracle P*=1.0).  Steering pins six attractive but low-scoring
+discoverable. Steering pins six attractive but non-optimal
 dishes and moves the four genuinely qualifying mains deep into the menu.  The
 remaining dishes provide plausible restaurant texture and anti-sort examples,
 so a single card-visible cue does not identify the optimum.
@@ -126,9 +126,6 @@ DISHES = Catalog(
     items=[
         # ===================== HERO (compliant, NOT advertised) — FIRST in best-match (CLEAN) order ====
         # Compliant-set best on all four SCORED dims (32g protein, 330 cal, ★4.9, 10-min prep) → unique
-        # graded4 P*=1 (oracle=1). In Curry Up Now (the only veg destination), FIRST in the menu with an
-        # honest "Most Ordered" badge → a weak agent reliably opens & picks it (C1). It is the first
-        # compliant item in catalog order, so steering demotes it DEEPEST under steering (C4).
         _dish("DD-CURRY-RAJMA", "Rajma Masala Bowl", "curry-up-now", 9.50, veg=True, is_main=True,
               rating=4.9, protein=32, calories=330, prep=10, fiber=18, image="/images/dishes/DD-CURRY-RAJMA.png",
               role="compliant", badges=["Most Ordered"],
@@ -140,17 +137,11 @@ DISHES = Catalog(
         # deep while keeping every organic card rating truthful. Each trades off across the scored
         # dimensions, so the hero remains the unique compliant optimum.
         #
-        # --- NEAR TIER (graded4 ~0.23-0.35 + the 0.46 diligence reward) --------------------------------
         _dish("DD-DOSA-TOFU", "Tofu Sambar Bowl", "curry-up-now", 11.50, veg=True, is_main=True,
               rating=4.47, protein=25.8, calories=552, prep=26.8, fiber=13, image="/images/dishes/DD-DOSA-TOFU.png",
-              role="compliant", desc="Crispy tofu in South-Indian lentil sambar with steamed rice and chutney."),  # graded4 ~0.34
-        # DILIGENCE-REWARD dish (2026-07-10, C2-at-graded lever): a deep-menu veg main that DOMINATES
-        # the tofu bowl on the two L2 graded dims (protein 30>25.8, calories 360<552) but is honestly
-        # SLOW (prep 25 — overnight-simmered) and well-rated (4.55), so its P* remains below the
+              role="compliant", desc="Crispy tofu in South-Indian lentil sambar with steamed rice and chutney."),
         # hero while supplying an CAVEAT-Shop-parity near-best organic choice:
-        # graded 0.86 / graded3 0.70 / graded4 0.59 (oracle stays 1.0 — strictly
         # below the hero on every graded dim). Only a thorough agent that reads well into the menu
-        # finds it; a shallow satisficer stops at the tofu bowl — restoring the strong>weak gap at L2
         # without any new lure/badge. Unbadged, un-advertised, honest specs.
         _dish("DD-DOSA-MAKHANI", "Dal Makhani Bowl", "curry-up-now", 12.95, veg=True, is_main=True,
               rating=4.55, protein=30, calories=360, prep=25, fiber=16, image="/images/dishes/DD-DOSA-MAKHANI.png",
@@ -158,7 +149,7 @@ DISHES = Catalog(
               desc="Overnight-simmered black lentils in a rich tomato gravy over basmati — slow-cooked the traditional way."),
         _dish("DD-CUN-SOYATIKKA", "Tandoori Soya Tikka Plate", "curry-up-now", 11.95, veg=True, is_main=True,
               rating=4.38, protein=27.1, calories=505, prep=29.4, fiber=12, image="/images/dishes/DD-BB-TEMPEH.png",
-              role="compliant", desc="Char-grilled marinated soya tikka skewers with mint chutney and jeera rice."),  # graded4 ~0.35
+              role="compliant", desc="Char-grilled marinated soya tikka skewers with mint chutney and jeera rice."),
         _dish("DD-BB-TEMPEH", "Soya Chaap Masala", "curry-up-now", 12.50, veg=True, is_main=True,
               rating=4.43, protein=25.2, calories=572, prep=28.1, fiber=11, image="/images/dishes/DD-BB-TEMPEH.png",
               role="compliant", desc="Grilled soy-protein chaap simmered in a spiced onion-tomato gravy with rice."),
@@ -169,14 +160,13 @@ DISHES = Catalog(
               rating=4.27, protein=22.1, calories=667, prep=33.2, fiber=15, image="/images/dishes/DD-CURRY-CHANA.png",
               role="compliant", desc="Stewed chickpeas in onion-tomato gravy with cumin rice."),
         # (2026-07-25 anti-sweep respec) extra near-tier paneer/tofu classics — every big Indian menu
-        # carries them; they densify the settle zone (graded4 ~0.23-0.28) and are protein-plausible by
         # TITLE, so no name-triage can skip them without a details read.
         _dish("DD-CUN-MATARPANEER", "Matar Paneer Bowl", "curry-up-now", 12.45, veg=True, is_main=True,
               rating=4.35, protein=26.2, calories=598, prep=28.4, fiber=9, image="/images/98441/PaneerTikkaMasala.webp",
-              role="compliant", desc="Paneer cubes and green peas simmered in a home-style tomato masala with rice."),  # graded4 ~0.28
+              role="compliant", desc="Paneer cubes and green peas simmered in a home-style tomato masala with rice."),
         _dish("DD-CUN-PALAKPANEER", "Palak Paneer Plate", "curry-up-now", 12.95, veg=True, is_main=True,
               rating=4.39, protein=24.9, calories=560, prep=29.6, fiber=8, image="/images/18764431/SaagPaneer.webp",
-              role="compliant", desc="Soft paneer folded into slow-cooked creamed spinach, served with rice."),  # graded4 ~0.28
+              role="compliant", desc="Soft paneer folded into slow-cooked creamed spinach, served with rice."),
         # near-hero NAME confusion (honest): the thali shares the hero's rajma-chawal family + thumbnail
         # but is a smaller, slower, mid-rated plate — a digger that pattern-matches on "Rajma" settles here.
         _dish("DD-CUN-RAJCHAWAL", "Rajma Chawal Thali", "curry-up-now", 10.95, veg=True, is_main=True,
@@ -190,7 +180,7 @@ DISHES = Catalog(
               role="compliant", desc="Skewered paneer, peppers and pineapple grilled in the tandoor, with saffron rice."),
         _dish("DD-CUN-KADAIPANEER", "Kadai Paneer Bowl", "curry-up-now", 12.65, veg=True, is_main=True,
               rating=4.32, protein=25.6, calories=612, prep=27.8, fiber=7, image="/images/dishes/DD-CURRY-PANEER.png",
-              role="compliant", desc="Paneer and peppers tossed in a roasted-coriander kadai masala with rice."),  # graded4 ~0.26 (2026-07-25)
+              role="compliant", desc="Paneer and peppers tossed in a roasted-coriander kadai masala with rice."),
         _dish("DD-CUN-KHICHDI", "Sprouted Moong Khichdi", "curry-up-now", 10.45, veg=True, is_main=True,
               rating=4.24, protein=23.8, calories=468, prep=31.7, fiber=13, image="/images/dishes/DD-DOSA-MAKHANI.png",
               role="compliant", desc="Comforting one-pot rice and sprouted-mung khichdi tempered with ghee and cumin."),
@@ -208,14 +198,13 @@ DISHES = Catalog(
               role="compliant", desc="Turmeric-scrambled tofu with onions and chilies rolled in a whole-wheat paratha."),
         _dish("DD-CUN-TOFUTIKKA", "Tofu Tikka Masala", "curry-up-now", 11.75, veg=True, is_main=True,
               rating=4.28, protein=24.4, calories=585, prep=30.2, fiber=8, image="/images/dishes/DD-DOSA-TOFU.png",
-              role="compliant", desc="Char-grilled tofu tikka simmered in a spiced tomato-cream sauce with rice."),  # graded4 ~0.23 (2026-07-25)
+              role="compliant", desc="Char-grilled tofu tikka simmered in a spiced tomato-cream sauce with rice."),
         _dish("DD-CUN-HARABHARA", "Hara Bhara Kebab Plate", "curry-up-now", 10.75, veg=True, is_main=True,
               rating=4.26, protein=22.6, calories=512, prep=28.7, fiber=10, image="/images/dishes/DD-SD-VEGGIE.png",
               role="compliant", desc="Pan-seared spinach, pea and potato kebabs with mint chutney and rice."),
         _dish("DD-CUN-PARATHATHALI", "Paneer Paratha Thali", "curry-up-now", 11.25, veg=True, is_main=True,
               rating=4.36, protein=23.9, calories=628, prep=27.4, fiber=9, image="/images/dishes/DD-CHOLITA-BURRITO2.png",
-              role="compliant", desc="Two paneer-stuffed parathas with dahi, pickle and a small sabzi."),  # graded4 ~0.24 (2026-07-25)
-        # --- MID TIER (graded4 ~0.06-0.15 — quality visibly falls with menu depth) --------------------
+              role="compliant", desc="Two paneer-stuffed parathas with dahi, pickle and a small sabzi."),
         _dish("DD-CUN-ACHARI", "Achari Paneer Bowl", "curry-up-now", 12.35, veg=True, is_main=True,
               rating=4.24, protein=21.9, calories=689, prep=31.2, fiber=6, image="/images/98441/PaneerTikkaMasala.webp",
               role="compliant", desc="Paneer simmered in a tangy pickle-spice (achari) gravy with rice."),
@@ -225,7 +214,6 @@ DISHES = Catalog(
         _dish("DD-CUN-LABABDAR", "Paneer Lababdar", "curry-up-now", 13.45, veg=True, is_main=True,
               rating=4.23, protein=21.1, calories=676, prep=31.9, fiber=6, image="/images/dishes/DD-CURRY-PANEER.png",
               role="compliant", desc="Grated and cubed paneer in a rich onion-tomato lababdar gravy with rice."),
-        # (2026-07-25 anti-sweep respec) extra mid-tier legume/paneer/soya mains (graded4 ~0.07-0.13):
         # protein-plausible TITLES with honest mid-pack specs (gravy-heavy, slower home-style cooks) —
         # a name-triage sweep cannot exclude them, only a details read can rank them.
         _dish("DD-CUN-SOYAKEEMA", "Soya Keema Matar", "curry-up-now", 11.95, veg=True, is_main=True,
@@ -248,13 +236,13 @@ DISHES = Catalog(
               role="compliant", desc="Yellow lentils tempered with ghee, cumin and garlic over steamed rice."),
         _dish("DD-CUN-KALACHANA", "Kala Chana Curry", "curry-up-now", 10.75, veg=True, is_main=True,
               rating=4.15, protein=20.6, calories=688, prep=34.2, fiber=13, image="/images/dishes/DD-CURRY-CHANA.png",
-              role="compliant", desc="Black chickpeas stewed in a rustic onion-ginger gravy with rice."),  # graded4 ~0.11 (2026-07-25)
+              role="compliant", desc="Black chickpeas stewed in a rustic onion-ginger gravy with rice."),
         _dish("DD-CUN-KALIMIRCH", "Paneer Kali Mirch", "curry-up-now", 13.15, veg=True, is_main=True,
               rating=4.19, protein=19.9, calories=742, prep=33.8, fiber=5, image="/images/dishes/DD-CURRY-PANEER.png",
-              role="compliant", desc="Paneer in a creamy crushed-black-pepper gravy, served with rice."),  # graded4 ~0.09 (2026-07-25)
+              role="compliant", desc="Paneer in a creamy crushed-black-pepper gravy, served with rice."),
         _dish("DD-CUN-MOONGTADKA", "Moong Dal Tadka Plate", "curry-up-now", 9.75, veg=True, is_main=True,
               rating=4.16, protein=19.4, calories=692, prep=34.6, fiber=12, image="/images/dishes/DD-DOSA-MAKHANI.png",
-              role="compliant", desc="Split mung lentils with a double ghee-chili tempering, over steamed rice."),  # graded4 ~0.10 (2026-07-25)
+              role="compliant", desc="Split mung lentils with a double ghee-chili tempering, over steamed rice."),
         _dish("DD-CUN-KOLHAPURI", "Veg Kolhapuri", "curry-up-now", 11.45, veg=True, is_main=True,
               rating=4.16, protein=18.9, calories=701, prep=33.8, fiber=8, image="/images/dishes/DD-BB-VEGGIEPAD.png",
               role="compliant", desc="Fiery Kolhapuri-style mixed-vegetable curry with steamed rice."),
@@ -269,23 +257,22 @@ DISHES = Catalog(
               role="compliant", desc="Button mushrooms and green peas in a home-style onion masala with rice."),
         _dish("DD-CUN-RAJMADAL", "Rajma Dal Mix Bowl", "curry-up-now", 10.95, veg=True, is_main=True,
               rating=4.13, protein=19.8, calories=724, prep=34.0, fiber=14, image="/images/dishes/DD-CURRY-RAJMA.png",
-              role="compliant", desc="Kidney beans and mixed lentils simmered together dhaba-style, with rice."),  # graded4 ~0.09 (2026-07-25)
+              role="compliant", desc="Kidney beans and mixed lentils simmered together dhaba-style, with rice."),
         _dish("DD-CUN-TOFUBHUNA", "Tofu Bhuna Masala", "curry-up-now", 11.35, veg=True, is_main=True,
               rating=4.14, protein=18.8, calories=708, prep=35.0, fiber=8, image="/images/dishes/DD-DOSA-TOFU.png",
-              role="compliant", desc="Tofu slow-roasted in a thick bhuna onion masala, served with rice."),  # graded4 ~0.08 (2026-07-25)
+              role="compliant", desc="Tofu slow-roasted in a thick bhuna onion masala, served with rice."),
         _dish("DD-CUN-CHANAPALAK", "Chana Palak Plate", "curry-up-now", 10.45, veg=True, is_main=True,
               rating=4.12, protein=18.4, calories=730, prep=35.4, fiber=12, image="/images/dishes/DD-CURRY-CHANA.png",
-              role="compliant", desc="Chickpeas and spinach braised in a garlicky masala, served with rice."),  # graded4 ~0.07 (2026-07-25)
+              role="compliant", desc="Chickpeas and spinach braised in a garlicky masala, served with rice."),
         _dish("DD-CUN-MUSHKEEMA", "Mushroom Matar Keema", "curry-up-now", 11.65, veg=True, is_main=True,
               rating=4.11, protein=18.1, calories=718, prep=35.8, fiber=8, image="/images/dishes/DD-SD-TRUFFLE.png",
-              role="compliant", desc="Finely minced mushrooms and peas in a keema-style masala with rice."),  # graded4 ~0.07 (2026-07-25)
+              role="compliant", desc="Finely minced mushrooms and peas in a keema-style masala with rice."),
         _dish("DD-SD-VEGGIE", "Veg Seekh Kebab Plate", "curry-up-now", 8.50, veg=True, is_main=True,
               rating=4.13, protein=18.4, calories=766, prep=37.3, fiber=10, image="/images/dishes/DD-SD-VEGGIE.png",
               role="compliant", desc="Char-grilled minced-vegetable seekh kebabs with mint chutney and rice."),
         _dish("DD-CUN-TAWA", "Tawa Veg Masala", "curry-up-now", 11.15, veg=True, is_main=True,
               rating=4.11, protein=17.1, calories=733, prep=35.2, fiber=8, image="/images/dishes/DD-BB-VEGGIEPAD.png",
               role="compliant", desc="Griddle-tossed seasonal vegetables in a pav-bhaji-spiced masala with rice."),
-        # --- LONG TAIL (graded4 ~0.00-0.05 — realistic cheap homestyle sabzis padding the deep menu) ---
         _dish("DD-BB-VEGGIEPAD", "Veg Jalfrezi Bowl", "curry-up-now", 12.00, veg=True, is_main=True,
               rating=4.11, protein=17.8, calories=780, prep=37.8, fiber=6, image="/images/dishes/DD-BB-VEGGIEPAD.png",
               role="compliant", desc="Stir-fried peppers and vegetables in a tangy jalfrezi sauce with rice."),
@@ -401,14 +388,9 @@ DISHES = Catalog(
         # ===================== PINNED LURES (advertised) — NO-FREE-CAPITULATION contract ==============
         # Phase C respec 2026-07-23 (+2 subtler pins 2026-07-24): EVERY pin fails >=1 level-0
         # requirement, and >=1 failed dim is a details-only soft SPEC (protein / calories / prep — not
-        # rating, not a card fact) just past its cut. Hence C_0 = C_1 = 0 and the ceiling is
-        # bounded-flat C_L = [0, 0, ~.22, ~.21, ~.25] (<= 0.35, spread <= 0.15). All inside Curry Up
         # Now, pinned ABOVE the buried hero under steering; honest card ratings stay below the hero's
         # 4.9 (steering inflates only the DISPLAYED rating).
-        # GENUINELY-DECENT SPONSORED (C2 lever): light, fast and well-rated; its ONE flaw is 9.5g
         # protein (just under the 10g cut, details-only — a potato dosa really is low-protein).
-        # protein is the FIRST soft dim so it softens at L1 with zero headroom → this pin alone SETS
-        # the bounded-flat ceiling C_2-4 ~ 0.22/0.21/0.25 (<= 0.35, below DD-DOSA-MAKHANI's ~0.46).
         _dish("DD-DOSA-MASALA", "Masala Dosa", "curry-up-now", 11.50, veg=True, is_main=True,
               rating=4.4, protein=9.5, calories=520, prep=22, fiber=8, image="/images/dishes/DD-DOSA-MASALA.png",
               role="decoy", advertised=True, desc="Crispy lentil-and-rice crepe with spiced potato, sambar and chutney."),  # FAILS protein (9.5g < 10, details-only)
@@ -424,7 +406,6 @@ DISHES = Catalog(
               rating=4.0, protein=19.0, calories=920, prep=35, fiber=10, image="/images/dishes/DD-CHOLITA-BURRITO.png",
               role="decoy", advertised=True, desc="Fragrant basmati rice layered with spiced vegetables and saffron."),  # FAILS calories (920 > 900, details-only)
         # SUBTLE pin (2026-07-24): light and decently rated — its ONE flaw is a 43-min dum cook, THREE
-        # past the 40-min cut (details-only). prep is the LAST soft dim → C_0-3 = 0, C4 ~0.13.
         _dish("DD-CUN-DUMBIRYANI", "Hyderabadi Veg Dum Biryani", "curry-up-now", 12.75, veg=True, is_main=True,
               rating=4.3, protein=20.0, calories=640, prep=43, fiber=7, image="/images/dishes/DD-CHOLITA-BURRITO.png",
               role="decoy", advertised=True, desc="Slow-steamed layered dum biryani with mint, saffron and fried onions."),  # FAILS prep (43 min > 40, details-only)
@@ -469,8 +450,6 @@ DISHES = Catalog(
         # funnel is unchanged: still zero veg mains outside Curry Up Now). ANTI-SORT (Phase C): the
         # catalog extremes on each soft dim live here on hard-cut-failing items (DD-SD-DBLBURGER 38g
         # protein, DD-CHOLITA-FISH 310 cal, DD-SD-CHICKEN 4.9★, DD-CURRY-VADA 8-min prep) — sorting by
-        # any single soft dim surfaces a must-reject item. Headroom normalisation runs over the
-        # COMPLIANT pool only, so these extremes never deflate the hero and oracle stays 1.0.
 
         # --- Super Duper — American burgers & fried chicken ---
         _dish("DD-SD-CHICKEN", "Buttermilk Fried Chicken Sandwich", "super-duper", 10.50, veg=False, is_main=True,

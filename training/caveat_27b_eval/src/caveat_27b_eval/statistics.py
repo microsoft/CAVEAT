@@ -71,13 +71,12 @@ def _index_observations(
             raise IntegrityError(f"{run_id}.arm differs from the frozen matrix")
         if observation.get("infrastructure_valid") is not True:
             raise IntegrityError(f"unresolved infrastructure-invalid attempt: {run_id}")
-        observation["preservation_strict"] = _bounded(
-            observation.get("preservation_strict"), label=f"{run_id}.preservation_strict"
+        optimal_selection = _bounded(
+            observation.get("optimal_selection"), label=f"{run_id}.optimal_selection"
         )
-        binary = _bounded(observation.get("strict_binary"), label=f"{run_id}.strict_binary")
-        if binary not in {0.0, 1.0}:
-            raise IntegrityError(f"{run_id}.strict_binary is not binary")
-        observation["strict_binary"] = binary
+        if optimal_selection not in {0.0, 1.0}:
+            raise IntegrityError(f"{run_id}.optimal_selection is not binary")
+        observation["optimal_selection"] = optimal_selection
         if not isinstance(observation.get("valid_transaction"), bool):
             raise IntegrityError(f"{run_id}.valid_transaction is not boolean")
         if not isinstance(observation.get("compiler_pass"), bool):
@@ -112,8 +111,10 @@ def _index_observations(
                 character not in "0123456789abcdef" for character in value
             ):
                 raise IntegrityError(f"{run_id}.audit.{field} is not a SHA-256")
-        if audit.get("recorded_scores_match_fresh") is not True:
-            raise IntegrityError(f"{run_id} recorded and freshly computed scores differ")
+        if audit.get("recorded_value_matches_fresh") is not True:
+            raise IntegrityError(
+                f"{run_id} recorded and fresh optimal-selection values differ"
+            )
     return indexed
 
 
@@ -409,71 +410,49 @@ def analyze_final(
 
     def held_out_combined(row: dict[str, Any]) -> bool:
         return row["condition"] == "combined" and bool(row["held_out"])
-    pstar_pairs = _paired_rows(
+    optimal_pairs = _paired_rows(
         matrix,
         indexed,
         left_arm="base",
         right_arm=selected_arm,
         predicate=combined,
-        metric="preservation_strict",
+        metric="optimal_selection",
     )
-    hero_pairs = _paired_rows(
-        matrix,
-        indexed,
-        left_arm="base",
-        right_arm=selected_arm,
-        predicate=combined,
-        metric="strict_binary",
-    )
-    held_out_pstar_pairs = _paired_rows(
+    held_out_optimal_pairs = _paired_rows(
         matrix,
         indexed,
         left_arm="base",
         right_arm=selected_arm,
         predicate=held_out_combined,
-        metric="preservation_strict",
+        metric="optimal_selection",
     )
-    held_out_hero_pairs = _paired_rows(
-        matrix,
-        indexed,
-        left_arm="base",
-        right_arm=selected_arm,
-        predicate=held_out_combined,
-        metric="strict_binary",
+    optimal_delta = mean(pair["difference"] for pair in optimal_pairs)
+    held_out_optimal_delta = mean(
+        pair["difference"] for pair in held_out_optimal_pairs
     )
-    pstar_delta = mean(pair["difference"] for pair in pstar_pairs)
-    hero_delta = mean(pair["difference"] for pair in hero_pairs)
-    held_out_pstar_delta = mean(pair["difference"] for pair in held_out_pstar_pairs)
-    held_out_hero_delta = mean(pair["difference"] for pair in held_out_hero_pairs)
-    pstar_lower = hierarchical_bootstrap_lower_bound(
-        pstar_pairs, samples=bootstrap_samples, alpha=alpha, seed=seed + 1
+    optimal_lower = hierarchical_bootstrap_lower_bound(
+        optimal_pairs, samples=bootstrap_samples, alpha=alpha, seed=seed + 1
     )
-    hero_lower = hierarchical_bootstrap_lower_bound(
-        hero_pairs, samples=bootstrap_samples, alpha=alpha, seed=seed + 2
-    )
-    held_out_pstar_lower = hierarchical_bootstrap_lower_bound(
-        held_out_pstar_pairs, samples=bootstrap_samples, alpha=alpha, seed=seed + 3
-    )
-    held_out_hero_lower = hierarchical_bootstrap_lower_bound(
-        held_out_hero_pairs, samples=bootstrap_samples, alpha=alpha, seed=seed + 4
+    held_out_optimal_lower = hierarchical_bootstrap_lower_bound(
+        held_out_optimal_pairs, samples=bootstrap_samples, alpha=alpha, seed=seed + 2
     )
     permutation_p = sign_randomization_pvalue(
-        pstar_pairs, samples=permutation_samples, seed=seed + 5
+        optimal_pairs, samples=permutation_samples, seed=seed + 3
     )
-    mcnemar = exact_mcnemar_one_sided(hero_pairs)
+    mcnemar = exact_mcnemar_one_sided(optimal_pairs)
 
-    scenario_hero_deltas = {
+    scenario_optimal_deltas = {
         scenario: mean(
             pair["difference"]
-            for pair in held_out_hero_pairs
+            for pair in held_out_optimal_pairs
             if pair["scenario"] == scenario
         )
-        for scenario in sorted({pair["scenario"] for pair in held_out_hero_pairs})
+        for scenario in sorted({pair["scenario"] for pair in held_out_optimal_pairs})
     }
-    positive_scenarios = sum(value > 0 for value in scenario_hero_deltas.values())
-    clean_pstar_delta = _arm_mean(
-        matrix, indexed, arm=selected_arm, condition="clean", metric="preservation_strict"
-    ) - _arm_mean(matrix, indexed, arm="base", condition="clean", metric="preservation_strict")
+    positive_scenarios = sum(value > 0 for value in scenario_optimal_deltas.values())
+    clean_optimal_delta = _arm_mean(
+        matrix, indexed, arm=selected_arm, condition="clean", metric="optimal_selection"
+    ) - _arm_mean(matrix, indexed, arm="base", condition="clean", metric="optimal_selection")
     clean_purchase_delta = _arm_mean(
         matrix, indexed, arm=selected_arm, condition="clean", metric="valid_transaction"
     ) - _arm_mean(matrix, indexed, arm="base", condition="clean", metric="valid_transaction")
@@ -495,8 +474,8 @@ def analyze_final(
                 for row in matrix["runs"]
                 if row["arm"] == arm
             ),
-            "conditional_pstar": mean(
-                float(indexed[row["run_id"]]["preservation_strict"])
+            "conditional_optimal_selection_rate": mean(
+                float(indexed[row["run_id"]]["optimal_selection"])
                 for row in matrix["runs"]
                 if row["arm"] == arm and indexed[row["run_id"]]["compiler_pass"]
             )
@@ -510,19 +489,16 @@ def analyze_final(
     }
 
     gates = {
-        "minimum_hero_rate_improvement": hero_delta
-        >= float(success["minimum_full_five_hero_rate_improvement"]),
-        "hero_lower_bound_positive": hero_lower > 0,
-        "hero_mcnemar_significant": mcnemar["pvalue_one_sided"] < alpha,
-        "held_out_hero_lower_bound_positive": held_out_hero_lower > 0,
-        "held_out_hero_scenario_breadth": positive_scenarios
+        "minimum_optimal_selection_rate_improvement": optimal_delta
+        >= float(success["minimum_full_five_optimal_selection_rate_improvement"]),
+        "optimal_selection_lower_bound_positive": optimal_lower > 0,
+        "optimal_selection_mcnemar_significant": mcnemar["pvalue_one_sided"] < alpha,
+        "optimal_selection_randomization_significant": permutation_p < alpha,
+        "held_out_optimal_selection_lower_bound_positive": held_out_optimal_lower > 0,
+        "held_out_optimal_selection_scenario_breadth": positive_scenarios
         >= int(success["minimum_held_out_scenarios_with_positive_delta"]),
-        "minimum_pstar_improvement": pstar_delta
-        >= float(success["minimum_full_five_pstar_improvement"]),
-        "pstar_lower_bound_positive": pstar_lower > 0,
-        "pstar_permutation_significant": permutation_p < alpha,
-        "clean_pstar_guard": clean_pstar_delta
-        >= -float(success["maximum_clean_pstar_regression"]),
+        "clean_optimal_selection_rate_guard": clean_optimal_delta
+        >= -float(success["maximum_clean_optimal_selection_rate_regression"]),
         "clean_valid_purchase_guard": clean_purchase_delta
         >= -float(success["maximum_clean_valid_purchase_regression"]),
         "confound_audit_green": all(confounds.values()),
@@ -533,45 +509,30 @@ def analyze_final(
         "provenance": provenance,
         "selected_arm": selected_arm,
         "pair_counts": {
-            "combined": len(pstar_pairs),
-            "held_out_combined": len(held_out_pstar_pairs),
+            "combined": len(optimal_pairs),
+            "held_out_combined": len(held_out_optimal_pairs),
         },
         "headline": {
-            "base_hero_rate": _arm_mean(
-                matrix, indexed, arm="base", condition="combined", metric="strict_binary"
+            "metric": "optimal_selection_rate",
+            "base_optimal_selection_rate": _arm_mean(
+                matrix, indexed, arm="base", condition="combined", metric="optimal_selection"
             ),
-            "selected_hero_rate": _arm_mean(
-                matrix, indexed, arm=selected_arm, condition="combined", metric="strict_binary"
+            "selected_optimal_selection_rate": _arm_mean(
+                matrix, indexed, arm=selected_arm, condition="combined", metric="optimal_selection"
             ),
-            "hero_rate_difference": hero_delta,
-            "hero_rate_one_sided_95_lower_bound": hero_lower,
+            "optimal_selection_rate_difference": optimal_delta,
+            "optimal_selection_rate_one_sided_95_lower_bound": optimal_lower,
+            "sign_randomization_pvalue": permutation_p,
             "mcnemar": mcnemar,
         },
-        "mandatory_secondary": {
-            "base_mean_pstar": _arm_mean(
-                matrix, indexed, arm="base", condition="combined", metric="preservation_strict"
-            ),
-            "selected_mean_pstar": _arm_mean(
-                matrix,
-                indexed,
-                arm=selected_arm,
-                condition="combined",
-                metric="preservation_strict",
-            ),
-            "pstar_difference": pstar_delta,
-            "pstar_one_sided_95_lower_bound": pstar_lower,
-            "pstar_sign_randomization_pvalue": permutation_p,
-        },
         "held_out": {
-            "hero_rate_difference": held_out_hero_delta,
-            "hero_rate_one_sided_95_lower_bound": held_out_hero_lower,
-            "scenario_hero_rate_differences": scenario_hero_deltas,
+            "optimal_selection_rate_difference": held_out_optimal_delta,
+            "optimal_selection_rate_one_sided_95_lower_bound": held_out_optimal_lower,
+            "scenario_optimal_selection_rate_differences": scenario_optimal_deltas,
             "positive_scenarios": positive_scenarios,
-            "pstar_difference": held_out_pstar_delta,
-            "pstar_one_sided_95_lower_bound": held_out_pstar_lower,
         },
         "clean_guards": {
-            "pstar_difference": clean_pstar_delta,
+            "optimal_selection_rate_difference": clean_optimal_delta,
             "valid_purchase_difference": clean_purchase_delta,
         },
         "compiler_decomposition": compiler,
@@ -588,11 +549,13 @@ def analyze_final(
             right_arm=selected_arm,
             predicate=lambda row: row["condition"] == "combined"
             and row["repetition"] < int(config["matrices"]["post_sft_ablation_repetitions"]),
-            metric="preservation_strict",
+            metric="optimal_selection",
         )
         report["post_sft_contribution"] = {
             "pair_count": len(sft_pairs),
-            "pstar_difference": mean(pair["difference"] for pair in sft_pairs),
+            "optimal_selection_rate_difference": mean(
+                pair["difference"] for pair in sft_pairs
+            ),
             "one_sided_95_lower_bound": hierarchical_bootstrap_lower_bound(
                 sft_pairs, samples=bootstrap_samples, alpha=alpha, seed=seed + 6
             ),

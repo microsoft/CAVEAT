@@ -3,7 +3,7 @@ name = "CAVEAT"
 version = "0.1.0"
 description = "Run models on the CAVEAT benchmark and measure preference fidelity."
 requires-python = ">=3.10"
-license = { text = "MIT" }
+license = "MIT"
 dependencies = [
     # framework + model layer
     "openai>=1.30.0",
@@ -12,6 +12,7 @@ dependencies = [
     "pillow>=10.0.0",
     "requests>=2.31.0",
     "python-dotenv>=1.0.0",
+    "beautifulsoup4>=4.12.0",
     # the bundled environment servers (FastAPI apps) run in this same venv
     "fastapi>=0.100.0",
     "uvicorn>=0.23.0",
@@ -19,14 +20,12 @@ dependencies = [
     "python-multipart>=0.0.6",
     "passlib[bcrypt]>=1.7.4",
     "python-jose[cryptography]>=3.3.0",
-    # the `simple` reference scaffold drives Playwright directly
+    # BrowserUse and the environment validation utilities drive Playwright
     "playwright>=1.40.0",
 ]
 
 [project.optional-dependencies]
 browseruse = ["browser-use>=0.1.0", "pint>=0.24,<1"]
-# autogen is frozen upstream (maintenance mode) — 0.7.5 is the terminal release; pin exactly.
-websurfer = ["autogen-core==0.7.5", "autogen-agentchat==0.7.5", "autogen-ext[openai]==0.7.5", "markitdown==0.1.6"]
 dev = ["ruff>=0.4"]
 
 [project.scripts]
@@ -42,7 +41,5 @@ include = ["caveat*"]
 [tool.setuptools.package-data]
 "caveat" = [
     "llm_client.py",
-    "envs/caveat_shop/data/**/*", "envs/caveat_shop/server/**/*", "envs/caveat_stay/server/**/*",
-    "scaffolds/stagehand/*.mjs", "scaffolds/stagehand/*.json", "scaffolds/stagehand/*.md",
-    "viewer/static/*",
+    "envs/**/*",
 ]

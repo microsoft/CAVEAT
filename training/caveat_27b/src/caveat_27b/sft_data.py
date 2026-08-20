@@ -24,8 +24,7 @@ SFT_SOURCE_SCHEMA = "caveat-27b.sft-source.v1"
 SFT_MANIFEST_SCHEMA = "caveat-27b.sft-manifest.v1"
 FORBIDDEN_VISIBLE_KEYS = {
     "hero_asin",
-    "preservation_strict",
-    "strict_binary",
+    "optimal_selection",
     "evaluator_score",
     "evaluator_truth",
     "storefront_ops_token",

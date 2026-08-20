@@ -20,18 +20,10 @@ HARNESS_FILES = (
 )
 SCIENTIFIC_FILES = (
     "caveat/benchmark/__init__.py",
-    "caveat/benchmark/build.py",
-    "caveat/benchmark/copy_gen.py",
-    "caveat/benchmark/faithfulness.py",
-    "caveat/benchmark/instruction_gen.py",
-    "caveat/benchmark/pool.py",
-    "caveat/benchmark/preferences.py",
     "caveat/benchmark/registry.py",
     "caveat/benchmark/run.py",
-    "caveat/benchmark/scenarios.py",
     "caveat/benchmark/schema.py",
     "caveat/benchmark/serialize.py",
-    "caveat/benchmark/steering.py",
     "caveat/benchmark/validate.py",
     "caveat/core/environment.py",
     "caveat/core/experiment.py",
@@ -62,9 +54,7 @@ SCIENTIFIC_FILES = (
     "caveat/run_cell.py",
     "caveat/scaffolds/__init__.py",
     "caveat/scaffolds/_browser.py",
-    "caveat/scoring/basket.py",
-    "caveat/scoring/continuous.py",
-    "caveat/scoring/rescore.py",
+    "caveat/scoring/optimal_selection.py",
     "scripts/hard_campaign_runtime.py",
 )
 ORIGINAL_SCENARIOS = ("laptop", "office_chair", "mattress", "backpack", "tent")

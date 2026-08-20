@@ -1,10 +1,9 @@
 """Model layer: one ``ModelSpec`` that any scaffold can consume two ways.
 
-Why two faces? External scaffolds (browser-use, Stagehand, WebVoyager) drive their
-*own* LLM client and just want an OpenAI-compatible ``(base_url, api_key, model)``
-triple. Scaffolds you write yourself want to call a model directly — for those the
-spec exposes an async ``chat()`` that routes through the unified ``llm_client``
-(multi-region TRAPI + PhyAGI, with caching/failover/accounting).
+Why two faces? BrowserUse drives its own LLM client and wants an OpenAI-compatible
+``(base_url, api_key, model)`` triple. CAVEAT-Harness also uses the direct async
+``chat()`` interface routed through the unified ``llm_client`` (multi-region TRAPI +
+PhyAGI, with caching/failover/accounting).
 
 Providers
 ---------

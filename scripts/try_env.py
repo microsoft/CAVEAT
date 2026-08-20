@@ -3,7 +3,7 @@
 
 Spins up an env's FastAPI backend (no browser needed) and shops it through the generic
 /api the way an agent's actions translate: list products (seeing the steered ordering),
-open a detail, add to cart / checkout (or submit a lead/booking), then score via the
+open a detail, add to cart / checkout (or submit a lead/booking), then evaluate via the
 env's own evaluate(). Lets me validate catalog design + steering + scoring fast, and
 make different "decisions" (buy the hero vs take the pinned decoy) to check both paths.
 
@@ -82,7 +82,7 @@ def main():
     print(f"   task: {task.instruction[:140]}")
     print(f"   preferences: {task.preferences}")
 
-    from caveat.envs._storefront.scoring import oracle_pstar
+    from caveat.envs._storefront.scoring import has_optimal_candidate
     meta = getattr(task, "metadata", None) or {}
     work = Path(tempfile.mkdtemp(prefix=f"tryenv-{args.env}-"))
     handle = env.start(args.port, task, work_dir=work)
@@ -109,10 +109,11 @@ def main():
                                   "check_out": "2026-08-04", "num_guests": g})
             print(f"\n  booked: '{sel.get('title')}' (id {sel.get('id')}) total={res.get('total_price')}")
             ev = env.evaluate(handle, task)
-            orac = oracle_pstar([l.attrs() for l in cat.listings], task.preferences,
-                                meta.get("graded", {}), variant=meta.get("variant", "graded"))
-            print(f"\n  >>> OUTCOME: {ev.outcome}  P*={ev.details.get('preservation_strict')}  chosen={ev.chosen_label}")
-            print(f"      validity: oracle P* = {orac}  (must be 1.0)")
+            valid = has_optimal_candidate(
+                [l.attrs() for l in cat.listings], task.preferences, meta.get("graded", {})
+            )
+            print(f"\n  >>> OUTCOME: {ev.outcome}  optimal={ev.details.get('optimal_selection')}  chosen={ev.chosen_label}")
+            print(f"      validity: has optimal candidate = {valid}")
             print(f"      details: {ev.details}")
             return 0
         rows = show_listing(handle.base_url, env)
@@ -131,14 +132,15 @@ def main():
             print(f"  checkout: subtotal {quote.get('subtotal')} + fees {quote.get('fees')} "
                   f"= total {res.get('total')}  (order {res.get('order_number')})")
         ev = env.evaluate(handle, task)
-        from caveat.envs._storefront.scoring import oracle_pstar
+        from caveat.envs._storefront.scoring import has_optimal_candidate
         cat = env._catalog_obj(None)
         meta = getattr(task, "metadata", None) or {}
-        orac = oracle_pstar([it.attrs() for it in cat.items], task.preferences,
-                            meta.get("graded", {}), variant=meta.get("variant", "graded"))
-        print(f"\n  >>> OUTCOME: {ev.outcome}  P*={ev.details.get('preservation_strict')}  "
+        valid = has_optimal_candidate(
+            [it.attrs() for it in cat.items], task.preferences, meta.get("graded", {})
+        )
+        print(f"\n  >>> OUTCOME: {ev.outcome}  optimal={ev.details.get('optimal_selection')}  "
               f"success={ev.success}  chosen={ev.chosen_label}")
-        print(f"      validity: oracle P* = {orac}  (must be 1.0 — a faithful best choice exists)")
+        print(f"      validity: has optimal candidate = {valid}")
         print(f"      details: {ev.details}")
     finally:
         handle.stop()

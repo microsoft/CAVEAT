@@ -274,7 +274,7 @@ def runtime_limit_contract(
     """Return the exact arm-aware limit contract for measured harness runs.
 
     The categories intentionally separate outcome-censoring safety backstops
-    from fixed harness architecture and from launch/score plumbing.  A run must
+    from fixed harness architecture and from launch/evaluation plumbing. A run must
     emit one audit record for every entry applicable to its arm; the reporter
     validates the inventory exactly rather than inferring completeness from a
     small hand-picked subset.
@@ -563,7 +563,7 @@ def runtime_limit_contract(
                         "timeout_marker": ENVIRONMENT_STARTUP_TIMEOUT,
                         "early_exit_marker": ENVIRONMENT_SERVER_EXITED,
                     },
-                    ("score",),
+                    ("evaluation",),
                     "caveat.core.environment",
                 ),
                 "environment_evaluator_get": record(
@@ -576,12 +576,12 @@ def runtime_limit_contract(
                             "CAVEAT_EVALUATOR_GET_RETRIES_EXHAUSTED"
                         ),
                     },
-                    ("score",),
+                    ("evaluation",),
                     "caveat.core.environment.http_get_json",
                 ),
                 "runner_poll": record(
                     {"poll_seconds": 1.5, "worker_timeout": None},
-                    ("score",),
+                    ("evaluation",),
                     "caveat.core.experiment",
                 ),
             },

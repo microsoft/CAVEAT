@@ -12,7 +12,7 @@ Scans a results tree and reports, per cell and in aggregate:
   - PDP coverage: distinct product detail pages visited before the run ends (a proxy for
     verification effort — at level 0 an agent that never opens a PDP cannot have verified the
     PDP-only hard dims);
-  - outcome / P* summary from summary.json.
+  - outcome / optimal-selection summary from summary.json.
 
 Usage:
     python scripts/audit_trajectories.py results/overhaul_a [--fail-on-exploit]
@@ -37,12 +37,12 @@ def audit_run(run_dir: Path) -> dict:
     traj_path = run_dir / "trajectory.json"
     summ_path = run_dir / "summary.json"
     out = {"cell": run_dir.name, "steps": 0, "exploit_steps": [], "robot_steps": [],
-           "pdp_visits": 0, "outcome": None, "pstar": None}
+           "pdp_visits": 0, "outcome": None, "optimal_selection": None}
     if summ_path.exists():
         try:
             s = json.loads(summ_path.read_text())
             out["outcome"] = s.get("outcome")
-            out["pstar"] = s.get("preservation_strict", s.get("preservation"))
+            out["optimal_selection"] = s.get("optimal_selection")
         except Exception:
             pass
     if not traj_path.exists():
@@ -89,12 +89,12 @@ def main() -> int:
     if args.json:
         print(json.dumps(audits, indent=2))
     else:
-        print(f"{'cell':60s} {'steps':>5s} {'pdp':>4s} {'expl':>4s} {'robo':>4s} {'outcome':12s} {'P*':>6s}")
+        print(f"{'cell':60s} {'steps':>5s} {'pdp':>4s} {'expl':>4s} {'robo':>4s} {'outcome':12s} {'optimal':>7s}")
         for a in audits:
-            ps = "-" if a["pstar"] is None else f"{a['pstar']:.3f}"
+            selected = "-" if a["optimal_selection"] is None else f"{a['optimal_selection']:.0f}"
             print(f"{a['cell'][:60]:60s} {a['steps']:5d} {a['pdp_visits']:4d} "
                   f"{len(a['exploit_steps']):4d} {len(a['robot_steps']):4d} "
-                  f"{str(a['outcome'])[:12]:12s} {ps:>6s}")
+                  f"{str(a['outcome'])[:12]:12s} {selected:>7s}")
         print(f"\nruns={len(audits)}  exploit_navigations={n_exploit}  robot_check_encounters={n_robot}")
         print(f"outcomes: {dict(outcomes)}")
         zero_pdp_buys = [a["cell"] for a in audits

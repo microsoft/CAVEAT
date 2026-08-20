@@ -7,8 +7,8 @@ WHY THIS EXISTS
 A run whose `outcome` is "none" (nothing was purchased), or whose evaluator could not
 read the transaction record, is worth excluding from the benchmark ONLY if infrastructure
 prevented the measurement.  If the MODEL is what went wrong -- malformed action JSON,
-giving up, looping, arguing with the page -- the model FAILED THE TASK and the run must
-score 0.  Dropping those runs flatters exactly the models that fail that way.
+giving up, looping, arguing with the page -- the model FAILED THE TASK and its
+optimal-selection value must be 0. Dropping those runs flatters exactly those models.
 
 The old rule was a bare substring scan of run.log:
 
@@ -61,7 +61,7 @@ scaffold recovered from are irrelevant: the agent got its turn.
        -- kept as a narrow forward guard, tail-scoped so a mid-run blip the scaffold
        recovered from cannot trigger it.
 
-  CAPABILITY (score 0) -- everything else, in particular:
+  CAPABILITY (optimal-selection value 0) -- everything else, in particular:
     - killed by the consecutive-failure guard on a streak of `validation error for
       AgentOutput` / `Invalid JSON`: the model could not emit a parseable action.
     - the run reached its own ending (called done(), hit the step cap, got a Judge
@@ -80,7 +80,7 @@ scaffold recovered from are irrelevant: the agent got its turn.
 
   AMBIGUOUS -- a terminal streak whose trailing block decides nothing (e.g. a single
   endpoint blip finishing off a streak the model's own output faults had already built).
-  Reported separately and KEPT (scored 0) rather than silently dropped.
+  Reported separately and KEPT (optimal-selection value 0) rather than silently dropped.
 
 Deliberately NOT infra signatures:
     "consecutive failures"  - names the guard, not the cause.  Fires for both classes.
@@ -89,7 +89,7 @@ Deliberately NOT infra signatures:
     "Fallback LLM also failed" / "no more fallbacks available" - wrappers (see 2 above).
     ModelOutputTruncatedError / "Model output was truncated at max_completion_tokens"
                             - the model overran the response cap.  That is the model's
-                              doing, so it scores 0 -- but the cap is a harness parameter
+                              doing, so its optimal-selection value is 0 -- but the cap is a harness parameter
                               and binds unequally across models, so it is reported under
                               its own code (cap_truncation) for review.  Never terminal in
                               the current corpus.
@@ -101,12 +101,12 @@ import json
 import os
 import re
 
-__all__ = ["classify_run", "is_infra_fail", "INFRA", "CAPABILITY", "AMBIGUOUS", "SCORED"]
+__all__ = ["classify_run", "is_infra_fail", "INFRA", "CAPABILITY", "AMBIGUOUS", "EVALUATED"]
 
 INFRA = "infra"
 CAPABILITY = "capability"
 AMBIGUOUS = "ambiguous"
-SCORED = "scored"          # not an excluded run at all
+EVALUATED = "evaluated"          # not an excluded run at all
 
 # --- log grammar (browser-use scaffold) ------------------------------------------------
 RE_FAILED = re.compile(r"Result failed (\d+)/(\d+) times: (.*)")
@@ -159,13 +159,13 @@ def classify_run(cell_dir: str) -> dict:
     """Classify one result cell.
 
     Returns {"class", "code", "evidence", "steps", "outcome"}.
-    "class" is one of SCORED / INFRA / CAPABILITY / AMBIGUOUS.
+    "class" is one of EVALUATED / INFRA / CAPABILITY / AMBIGUOUS.
     """
     try:
         with open(os.path.join(cell_dir, "summary.json")) as fh:
             s = json.load(fh)
     except Exception:                                              # noqa: BLE001
-        return {"class": SCORED, "code": "no_summary", "evidence": "", "steps": None,
+        return {"class": EVALUATED, "code": "no_summary", "evidence": "", "steps": None,
                 "outcome": None}
 
     outcome = s.get("outcome")
@@ -173,7 +173,7 @@ def classify_run(cell_dir: str) -> dict:
     base = {"steps": steps, "outcome": outcome}
 
     # The agent may have completed and even attempted a transaction, but no
-    # behavioral score exists if the evaluator endpoint stayed unavailable
+    # No behavioral evaluation exists if the evaluator endpoint stayed unavailable
     # through all retries.  run_cell records this exact fail-closed marker in
     # summary.error.  Keep this case narrow so arbitrary local evaluator bugs
     # remain measured failures instead of becoming redraws.
@@ -191,7 +191,7 @@ def classify_run(cell_dir: str) -> dict:
 
     # A run that transacted is a measurement, full stop -- never excluded.
     if outcome != "none":
-        return {"class": SCORED, "code": "transacted", "evidence": "", **base}
+        return {"class": EVALUATED, "code": "transacted", "evidence": "", **base}
 
     # Z. zero-step launch failure.
     if steps == 0:
@@ -269,5 +269,5 @@ def classify_run(cell_dir: str) -> dict:
 
 def is_infra_fail(cell_dir: str) -> bool:
     """True only for runs that infrastructure invalidated.  Ambiguous runs are KEPT
-    (and score 0) -- excluding on a guess is the failure mode we are fixing."""
+    (with optimal-selection value 0) -- excluding on a guess is the failure mode we are fixing."""
     return classify_run(cell_dir)["class"] == INFRA

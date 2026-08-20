@@ -6,8 +6,7 @@ stack_config: "configs/stack.yaml"
 objective:
   scaffold: "caveat-harness"
   scaffold_must_be_unchanged: true
-  primary_metric: "strict_binary"
-  diagnostic_metric: "preservation_strict"
+  primary_metric: "optimal_selection"
 
 splits:
   train:

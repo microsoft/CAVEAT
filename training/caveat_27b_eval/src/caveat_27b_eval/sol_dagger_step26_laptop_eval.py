@@ -1,7 +1,7 @@
 """Exact sealed-r4 eight-cell replay for the focused step-26 candidate.
 
 This module supplies only candidate lineage and reporting labels.  All config
-cloning, projection checks, launching, conversion, and scoring execute through
+cloning, projection checks, launching, conversion, and optimal-selection evaluation execute through
 ``sol_dagger_laptop_eval`` so the model-facing harness remains the exact prior
 r4 harness after the same narrow endpoint/output/nonce/port projection.
 """
@@ -36,7 +36,7 @@ SCIENTIFIC_LABEL = (
     "same_task_laptop_steered_sol_dagger_cleanup_step26_development_replay"
 )
 DIRECTIONAL_TARGET = {
-    "strict_successes_at_least": 3,
+    "optimal_selections_at_least": 3,
     "hero_opened_at_least": 4,
     "hero_chosen_at_least": 4,
     "addon_present_at_most": 2,

@@ -532,7 +532,7 @@ def _response_score(
 def _gate_scored_baseline_row(
     row: Mapping[str, Any], output_model: type[Any]
 ) -> dict[str, Any]:
-    """Rescore frozen step-20 evidence with the same observable-field policy."""
+    """Score frozen step-20 evidence with the same observable-field policy."""
 
     result = copy.deepcopy(dict(row))
     if result.get("kind") == "browser_action":

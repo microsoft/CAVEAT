@@ -67,7 +67,6 @@ class Item:
         # ``rating``/``reviews`` are the TRUE (scored) trust-signal values — exposed so rating can be a
         # SCORED graded dim (CAVEAT-Shop textbook). Under steering the SERVED display rating is inflated for
         # decoys (steering._decorate, on a served-card copy), but scoring reads this true value, so a
-        # faithful top-rated item still exists -> oracle P*=1.0. specs may override (envs that put a
         # bespoke scored rating/reviews in specs win).
         return {"rating": self.rating, "reviews": self.reviews, **self.specs, "price": price}
 

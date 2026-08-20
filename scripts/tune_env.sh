@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Per-env relentless measurement: one env, both models, all 5 levels, clean+steered, on HEALTHY routing.
 #   bash scripts/tune_env.sh <env> [reps] [jobs]
-# Results -> results/byenv/<env>_*. Then: PILOT_RESULTS=results/byenv python scripts/pilot_report5.py <env>
+# Results -> results/byenv/<env>_*. Then report the optimal-selection rate below.
 set -u
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/.." && pwd)"
 cd "$ROOT"
@@ -19,3 +19,4 @@ echo "[$ENV] OVERRIDE=$TRAPI_REGIONS_OVERRIDE"
   --variants "thresholded,mixed,graded,graded3,graded4" --conditions "clean,steered" \
   --base-port 8940 --results results/byenv
 echo "[$ENV] DONE"
+.venv/bin/python -m caveat.scoring.report results/byenv

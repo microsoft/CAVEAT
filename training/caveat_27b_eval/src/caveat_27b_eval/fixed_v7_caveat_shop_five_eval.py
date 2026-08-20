@@ -5,7 +5,7 @@ This protocol reuses every raw and refinement-step-20 observation in the
 canonical 320-cell final matrix and schedules exactly one fixed-v7 candidate
 run for each of its 160 matched cells.  Freezing and rendering never open a
 result, trajectory, observation, report, or score.  In particular, there is
-no development-score gate and no outcome-dependent candidate selection.
+no development optimal-selection gate and no outcome-dependent candidate selection.
 """
 
 from __future__ import annotations
@@ -90,10 +90,7 @@ CONTROL_RUN_COUNT = 320
 ANALYSIS_SPEC = {
     "status": "preregistered_before_caveat_shop_five_candidate_execution",
     "arms": ["raw", "step20", "fixed_v7"],
-    "metrics": {
-        "primary": "strict_binary",
-        "secondary": "preservation_strict",
-    },
+    "metric": "optimal_selection",
     "canonical_cells": {
         "scenarios": list(SCENARIOS),
         "variants": list(VARIANTS),
@@ -123,10 +120,10 @@ ANALYSIS_SPEC = {
     },
     "decision_policy": {
         "score_gate": None,
-        "candidate_selection_from_scores": False,
-        "retuning_from_scores": False,
-        "retraining_from_scores": False,
-        "early_stopping_from_scores": False,
+        "candidate_selection_from_optimal_selection": False,
+        "retuning_from_optimal_selection": False,
+        "retraining_from_optimal_selection": False,
+        "early_stopping_from_optimal_selection": False,
         "launch_all_160_if_infrastructure_valid": True,
     },
 }
@@ -466,7 +463,7 @@ def render(arguments: argparse.Namespace) -> None:
                     "fixed_v7_caveat_shop_five_cell_contract_sha256": contract[
                         "cell_contract_sha256"
                     ],
-                    "fixed_v7_caveat_shop_five_no_score_gate": True,
+                    "fixed_v7_caveat_shop_five_optimal_selection_not_gated": True,
                 }
             )
             result = results_root / (
@@ -699,7 +696,9 @@ def audit_bundle(
             != contract["task_sha256"]
             or audit.get("harness_sha256") != contract["harness_sha256"]
             or audit.get("limit_contract_sha256") != contract["limit_contract_sha256"]
-            or audit.get("fixed_v7_caveat_shop_five_no_score_gate") is not True
+            or audit.get(
+                "fixed_v7_caveat_shop_five_optimal_selection_not_gated"
+            ) is not True
             or mapping.get("cell_contract_sha256") != contract["cell_contract_sha256"]
         ):
             raise IntegrityError(f"CAVEAT-Shop-five candidate config changed: {run_id}")
@@ -778,8 +777,7 @@ def _report_core(
             ("fixed_v7", candidate),
         ):
             pair[name] = {
-                "strict_binary": float(observation["strict_binary"]),
-                "preservation_strict": float(observation["preservation_strict"]),
+                "optimal_selection": float(observation["optimal_selection"]),
                 "valid_transaction": bool(observation["valid_transaction"]),
                 "result": observation.get("result"),
             }
@@ -837,8 +835,8 @@ def _report_core(
             "fresh_fixed_v7_runs": PAIR_COUNT,
             "infrastructure_invalid_runs": 0,
             "bound_runs": 0,
-            "fresh_scores_recomputed": True,
-            "candidate_selection_or_retuning_from_scores": False,
+            "fresh_optimal_selection_recomputed": True,
+            "candidate_selection_or_retuning_from_optimal_selection": False,
             "development_gate_used": False,
             "identical_task_seed_causal_harness_and_limits": True,
         },
@@ -894,7 +892,7 @@ def finalize(arguments: argparse.Namespace) -> None:
     lines = [
         "# Fixed-v7 CAVEAT-Shop-five final completion",
         "",
-        "This report is descriptive/confirmatory and has no score-based selection gate.",
+        "This report is descriptive/confirmatory and has no optimal-selection-based selection gate.",
         "",
         "| Scenario | Condition | n | Raw | Step20 | Fixed-v7 | Fixed-v7 - raw |",
         "|---|---|---:|---:|---:|---:|---:|",
@@ -902,7 +900,7 @@ def finalize(arguments: argparse.Namespace) -> None:
     for scenario in SCENARIOS:
         for condition in CONDITIONS:
             summary = core["scenario_condition"][scenario][condition]
-            metric = summary["strict_binary"]
+            metric = summary["optimal_selection"]
             lines.append(
                 f"| {scenario} | {condition} | {summary['n']} | {metric['raw_mean']:.1%} | "
                 f"{metric['step20_mean']:.1%} | {metric['fixed_v7_mean']:.1%} | "

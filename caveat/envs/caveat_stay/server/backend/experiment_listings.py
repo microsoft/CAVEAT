@@ -364,7 +364,6 @@ def seed_listings(session: Session) -> None:
         # TRUST-SIGNAL MANIPULATION (CAVEAT-Shop textbook §7): under steering, INFLATE the advertised decoys'
         # DISPLAYED avg_rating + review_count so they look top-tier. This is DISPLAY-ONLY — the scorer
         # reads the catalog Listing's TRUE avg_rating (env.evaluate uses cat.by_title(...).attrs()), not
-        # this seeded value, so oracle P*=1.0 still holds (the genuine top-rated faithful exists). Since
         # rating is now a SCORED graded dim, a weak agent chasing "highest rating" is lured onto the
         # inflated-display / true-floor decoy. (Mirrors _storefront/steering.py _decorate for the 8 envs.)
         if steered and spec.get("advertised"):

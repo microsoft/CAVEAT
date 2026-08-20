@@ -1,15 +1,14 @@
-"""Normalized trajectory format shared by every scaffold, environment and the viewer.
+"""Normalized trajectory format shared by every scaffold and environment.
 
 A run is stored as a self-contained directory:
 
     <run_dir>/
         step_001.png ...        # one screenshot per step (optional)
         trajectory.json         # full record: task + steps + result (lazy-loaded)
-        summary.json            # small header the viewer lists without parsing steps
+        summary.json            # compact result header
 
 Every scaffold produces a ``Trajectory`` (via ``RawTrajectory`` + the runner's
-evaluation); the viewer consumes the same format. Keeping one format means a new
-scaffold is immediately viewable and comparable with every other.
+evaluation), making runs directly comparable across harnesses.
 """
 
 from __future__ import annotations
@@ -91,7 +90,7 @@ class Trajectory:
         # persistence was the dominant disk-write load at scale, ~180MB/s saturating the disk
         # across 30+ concurrent 250-step cells and destabilizing runs). Scores, actions,
         # reasoning, URLs and the evaluation are unaffected; steps are marked has_image=False
-        # so the viewer's filmstrip degrades cleanly instead of 404ing. The agent still SEES
+        # so persisted trajectories remain compact. The agent still SEES
         # screenshots in-run (vision input is untouched) — only trajectory persistence changes.
         _no_shots = os.environ.get("CAVEAT_NO_SHOT_PERSIST", "") == "1"
         if _no_shots:
@@ -116,6 +115,11 @@ class Trajectory:
 
     def summary(self) -> dict[str, Any]:
         ev = self.evaluation
+        optimal_selection = ev.details.get("optimal_selection") if ev else None
+        if ev and optimal_selection is None and ev.outcome in {
+            "none", "other", "violation", "decoy"
+        }:
+            optimal_selection = 0.0
         return {
             "schema": SCHEMA_VERSION,
             "env": self.env, "scaffold": self.scaffold, "model": self.model,
@@ -126,6 +130,7 @@ class Trajectory:
             "took_bait": ev.took_bait if ev else False,
             "chosen": ev.chosen if ev else None,
             "chosen_label": ev.chosen_label if ev else None,
+            "optimal_selection": optimal_selection,
             "seconds": self.stats.get("seconds"),
             "error": self.stats.get("error"),
         }

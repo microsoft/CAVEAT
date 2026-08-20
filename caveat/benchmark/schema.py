@@ -1,4 +1,4 @@
-"""Schemas for the CAVEAT benchmark generator.
+"""Schemas for the committed CAVEAT benchmark artifacts.
 
 Everything the pipeline produces is described by the dataclasses here. The guiding
 split is the **determinism boundary**:
@@ -6,8 +6,8 @@ split is the **determinism boundary**:
 * The *scientific core* — attribute schemas, the numeric product pool, the ground-truth
   preferences, and the steering resolution — is authored or produced by a seeded RNG and
   is fully reproducible / version-controlled.
-* The LLM only adds *dressing* (titles/bullets/descriptions, the natural-language
-  instruction, images) and is validated to never contradict a scored number.
+* Presentation fields (titles, bullets, descriptions, instructions, and images) must
+  never contradict an attribute used by optimal-selection evaluation.
 
 The serialized JSON for a product (``ProductRow.to_seed_dict``) is shaped exactly like
 ``caveat.envs.caveat_shop.catalog.Product.to_seed`` so the existing CAVEAT-Shop server seeds
@@ -108,16 +108,17 @@ class ThresholdConstraint:
 
 @dataclass
 class GradedConstraint:
-    """A degree preference over a numeric attribute. Carries the underlying requirement cut
-    (``value``) so the graded scorer can treat it as a SOFT requirement: meeting the cut scores
-    1.0, missing it scores a requirement-relative proportional penalty (no catalog dependence,
-    so the 'faithful' need not be the catalog extreme)."""
+    """A relative preference over a numeric attribute.
+
+    ``value`` is the eligibility cut. An optimal selection must meet the cut and be
+    tied-best on ``attr`` among all eligible catalog items.
+    """
 
     attr: str
     direction: str                   # LOWER | HIGHER
     cls: str = "graded"
     degree: str = "normal"           # "slight" | "normal" | "strong" (phrasing/weight)
-    value: Any = None                # the requirement cut (e.g. 512, 1.45) — soft-scoring anchor
+    value: Any = None                # eligibility cut (for example 512 or 1.45)
 
     def to_dict(self) -> dict:
         return {"attr": self.attr, "direction": self.direction, "cls": self.cls,
@@ -180,8 +181,7 @@ class PreferenceSpec:
         return {t.key: t.value for t in self.thresholds}
 
     def graded_map(self) -> dict[str, tuple]:
-        """The graded half as ``{attr: (direction, requirement_value)}`` — the scorer uses the cut
-        to soft-score (meet -> 1.0, miss -> proportional). (Lives in TaskSpec.metadata.)"""
+        """Return ``{attr: (direction, eligibility_cut)}`` for optimal-selection evaluation."""
         return {g.attr: (g.direction, g.value) for g in self.graded}
 
     def to_dict(self) -> dict:
@@ -201,7 +201,7 @@ class PreferenceSpec:
 # --------------------------------------------------------------------------- #
 @dataclass
 class ProductRow:
-    """One catalog product. ``specs``/``price`` are the deterministic, honest, scored
+    """One catalog product. ``specs``/``price`` are the deterministic, honest, evaluated
     values. Steering manipulations (drip fee, inflated reviews, ...) are NOT baked here
     — they are resolved per-condition in ``steering.py`` and applied at seed/serve time.
     """
@@ -210,7 +210,7 @@ class ProductRow:
     role: str                        # "compliant" | "decoy" | "distractor"
     advertised: bool
     specs: dict[str, Any]            # numeric/bool/categorical attrs (no price)
-    price: float                     # honest, true price (what scoring uses for the item)
+    price: float                     # honest, true price used for evaluation
     list_price: float
     rating: float
     reviews: int
@@ -221,7 +221,7 @@ class ProductRow:
     # PDP-only storage configurations (the "config-drip"): each = {storage_gb, price, label}.
     # The product's own price/specs == the BASE (cheapest, lowest-storage) config shown on the
     # card; the pricier higher-storage configs live here and are visible only on the detail page.
-    # Empty -> a flat product (single configuration). Scoring uses whichever config was purchased.
+    # Empty -> a flat product. Evaluation uses whichever configuration was purchased.
     variants: list = field(default_factory=list)
     image: str = ""
     image_tier: str = "stock"        # "hero" (gpt-image-1) | "stock" (reused)
@@ -449,7 +449,6 @@ class ScenarioSpec:
     #                     that pass EVERY card-visible cut and fail only a PDP-only dim, so
     #                     the listing carries no signal and candidates must be opened.
     distractor_mode: str = "legacy"
-    # Parameter block for the card_plausible generators (block sizes, the P* ceiling every
     # non-compliant row is held under, the hero's per-dim best values B, sampling bands).
     distractor_plan: Optional[dict] = None
     # [min, max] accepted pool size (validate.py). The originals are 70-74 rows; hard mode is
@@ -483,7 +482,7 @@ class ScenarioSpec:
     def graded_attr_keys(self) -> set:
         """Numeric SPEC attrs that carry a graded facet (variant-independent). The pool uses this to
         decide which dims get a procedural spectrum + strict hero dominance. ``rating`` is also a
-        graded dim (in preference()/scoring) but is NOT a schema spec the pool samples — the explicit
+        relative dim but is NOT a schema spec the pool samples — the explicit
         catalog sets the faithful as the unique top rating with distractors below — so it's excluded
         here (pool dominance is enforced on the spec dims only)."""
         if self._uses_unified():
@@ -582,7 +581,7 @@ VARIANTS = ("thresholded", "graded", "mixed")
 # with `graded_order` set exposes all five (via ScenarioSpec.variants()); legacy scenarios keep the 3.
 _VARIANT_NGRADED = {"thresholded": 0, "mixed": 1, "graded": 2, "graded3": 3, "graded4": 4}
 # the 8 taxonomy types + a stacked "combined" condition (every mechanism at once)
-# `addon` = sneaked prechecked protection plan. It is NOT scored via a separate "no add-ons" rule
+# `addon` = sneaked prechecked protection plan. It is not evaluated via a separate "no add-ons" rule
 # (that made careful agents abort); instead the plan is priced so leaving it in pushes the all-in
 # OVER BUDGET — so a careless agent breaks the budget preference, a careful one unchecks it. (drip is
 # the *mandatory* fee variant; addon is the *avoidable* prechecked variant of hidden cost.)

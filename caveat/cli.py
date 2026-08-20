@@ -3,7 +3,6 @@
     caveat ls                          # list environments, scaffolds, tasks
     caveat run --env caveat_shop --scaffolds browseruse --models gpt-5.5 gpt-4.1 \
                    --conditions clean steered --jobs 4
-    caveat view                        # launch the trajectory viewer
     caveat setup                       # build the caveat_stay UI + check the browser
 """
 
@@ -52,7 +51,7 @@ def _build_experiment(cfg: dict):
         raise SystemExit("no tasks selected")
     return Experiment(
         name=cfg.get("name", "exp"),
-        scaffolds=cfg.get("scaffolds", ["simple"]),
+        scaffolds=cfg.get("scaffolds", ["browseruse"]),
         models=cfg.get("models", ["gpt-5.5"]),
         tasks=tasks,
         conditions=cfg.get("conditions", ["clean"]),
@@ -117,12 +116,6 @@ def cmd_clear(args) -> int:
     return 0
 
 
-def cmd_view(args) -> int:
-    from caveat.viewer.app import serve
-    serve(results_dir=args.results, port=args.port)
-    return 0
-
-
 def cmd_ls(args) -> int:
     import caveat.envs   # noqa: F401
     import caveat.scaffolds  # noqa: F401
@@ -148,8 +141,6 @@ def cmd_setup(args) -> int:
     from caveat.scaffolds._browser import find_chromium
     root = Path(__file__).resolve().parent
     print("→ Chromium:", find_chromium() or "NOT FOUND (run `python -m playwright install chromium`)")
-    print("→ Node:", shutil.which("node") or "not found (needed only for the stagehand scaffold)")
-
     caveat_stay_fe = root / "envs" / "caveat_stay" / "server" / "frontend"
     if not (caveat_stay_fe / "dist" / "index.html").exists() and shutil.which("npm"):
         print(f"→ Building caveat_stay frontend in {caveat_stay_fe} ...")
@@ -157,7 +148,7 @@ def cmd_setup(args) -> int:
         subprocess.run(["npm", "run", "build"], cwd=caveat_stay_fe, check=False)
     print("→ caveat_stay dist:", "built" if (caveat_stay_fe / "dist" / "index.html").exists() else "MISSING")
     print("→ caveat_shop dist:", "built" if (root / "envs/caveat_shop/server/frontend/dist/index.html").exists() else "MISSING")
-    print("\nDone. Try:  caveat run --env caveat_shop --scaffolds simple --models gpt-5.5")
+    print("\nDone. Try:  caveat run --env caveat_shop --scaffolds browseruse --models gpt-5.5")
     return 0
 
 
@@ -176,10 +167,6 @@ def main() -> int:
     r.add_argument("--results", default="results")
     r.add_argument("--no-headless", action="store_true"); r.add_argument("--force", action="store_true")
     r.set_defaults(func=cmd_run)
-
-    v = sub.add_parser("view", help="launch the trajectory viewer")
-    v.add_argument("--results", default="results"); v.add_argument("--port", type=int, default=8800)
-    v.set_defaults(func=cmd_view)
 
     c = sub.add_parser("clear", help="delete previous runs' data (results + scratch)")
     c.add_argument("--results", default="results", help="results dir to clear")

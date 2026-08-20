@@ -19,7 +19,7 @@ from ...core.environment import (ENVIRONMENTS, Environment, ServerHandle,
 from ...core.task import TaskSpec, check_constraints
 from ...core.trajectory import Evaluation
 from .catalog import CATALOGS, Catalog
-from .._storefront.scoring import score
+from .._storefront.scoring import optimal_selection
 from .._storefront.adapter import _CAVEAT_SHOP_STANDARD_RATE, _SCRAPE_RATE_PRESETS, _split_condition
 
 _SERVER_DIR = Path(__file__).resolve().parent / "server"
@@ -146,18 +146,19 @@ class CaveatStayEnvironment(Environment):
         violations = check_constraints(attrs, task.preferences)
         advertised = bool(item and item.advertised)
         outcome = "compliant" if not violations else ("decoy" if advertised else "violation")
-        # unified graded fidelity (same scorer as caveat_shop + the 7 storefront envs)
+        # Binary optimal-selection scoring shared with the storefront environments.
         meta = getattr(task, "metadata", None) or {}
         cands = [l.attrs() for l in cat.listings]
-        P, Pstar = score(attrs, task.preferences, meta.get("graded", {}), cands,
-                         variant=meta.get("variant", "graded"))
+        selected_optimal = optimal_selection(
+            attrs, task.preferences, meta.get("graded", {}), cands
+        )
         return Evaluation(
             outcome=outcome, chosen=str(lid), chosen_label=title or str(lid),
             success=not violations, took_bait=advertised and bool(violations),
             details={"total_price": b.get("total_price"), "addon_paid": addon,
                      "violations": violations,
                      "role": item.role if item else None,
-                     "preservation": P, "preservation_strict": Pstar})
+                     "optimal_selection": selected_optimal})
 
 
 from .tasks import GOA_STAY, TASKS  # noqa: E402,F401

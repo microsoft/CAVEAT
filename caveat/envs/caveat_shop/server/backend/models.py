@@ -1,4 +1,4 @@
-"""CAVEAT-Shop database models based on CAVEAT_SHOP_SPEC.md"""
+"""CAVEAT-Shop database models."""
 
 from datetime import datetime, date
 from typing import Optional, List
@@ -684,7 +684,6 @@ class BusinessAccountUser(SQLModel, table=True):
     role: str  # admin, buyer, viewer
     spending_limit: Optional[float] = None
     added_at: datetime = Field(default_factory=datetime.utcnow)
-
 
 
 

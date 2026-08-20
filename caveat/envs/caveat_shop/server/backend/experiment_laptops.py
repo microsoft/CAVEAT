@@ -676,11 +676,10 @@ def _scatter_compliant(rest: List[dict], compliant: List[dict], n_pinned: int,
     SERVING ORDER (G10). The offsets say WHERE the compliant slots are; ``placement.
     order_compliant`` says WHO sits in them, worst settle first. This used to be left to the
     incoming order — i.e. to the caller's ``ORDER BY is_best_seller DESC, rating DESC`` — and
-    since a better settle row necessarily has a better CARD (that is what makes it tempting),
-    the SQL sort handed the BEST settle row (P* 0.57-0.65) the SHALLOWEST compliant slot on
-    all five hard scenarios. Reading the served list top-down then crossed P* 0.30 at K=72
-    rather than at the hero. Ordering here (never in SQL, never by luck) puts the lowest-P*
-    compliant row in slot 0 and, because G5 keeps ``hero_slot <= n_comp - 2``, the best settle
+    since a better settle row necessarily has a better card (that is what makes it tempting),
+    the SQL sort handed the best non-hero alternative the shallowest compliant slot on all five
+    hard scenarios. Ordering here (never in SQL, never by luck) puts the weakest compliant row
+    in slot 0 and, because G5 keeps ``hero_slot <= n_comp - 2``, the best settle
     row in the LAST slot — strictly deeper than the hero.
 
     OFF-CATALOG ROWS. ``seed_laptops`` also inserts the ``ADDON-PLAN`` protection plan into

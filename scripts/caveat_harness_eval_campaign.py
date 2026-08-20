@@ -167,27 +167,24 @@ SMOKE_POLICY = {
     "create_only_launcher_required": True,
     "smokes": SMOKE_SPECS,
     # The smokes are operational integration checks. A completed wrong order
-    # is valid smoke evidence and must not be filtered by preference score.
-    "score_threshold": None,
+    # is valid smoke evidence and must not be filtered by its optimal-selection value.
+    "optimal_selection_gate": None,
     "operational_gate": {
-        "score_neutral": True,
+        "optimal_selection_value_neutral": True,
         "nonempty_choice_required": True,
-        "strict_score_fields_required": [
-            "preservation_strict",
-            "strict_binary",
-        ],
+        "required_evaluation_fields": ["optimal_selection"],
         # Purchase completion is established out of band from evaluator
         # state.  The gate intentionally knows nothing about scaffold action
         # names, checkout controls, receipt wording, or agent-side
         # transaction diagnostics.
-        # This is an operational check, not a hidden score threshold.  A
+        # This is an operational check, not a hidden metric threshold. A
         # steered add-on or another extra line item is behavioral evidence and
         # remains part of the measured basket; it must not make a completed
         # smoke look like an infrastructure failure.  Independently require
         # only that the evaluator-selected item was actually placed once at
         # the requested quantity in one unambiguous new order.
         "evaluator_selected_item_exact_quantity_required": True,
-        "additional_line_items_are_score_neutral": True,
+        "additional_line_items_do_not_affect_operational_gate": True,
     },
     "purpose": "excluded operational integration checks, never measured runs",
 }
@@ -211,7 +208,7 @@ RETIREMENT_POLICY = {
     "unlaunched_runs_retained_as_unlaunched_evidence": True,
     "selective_redraw_prohibited": True,
     "all_later_launches_prohibited": True,
-    "reporting_and_rescoring_prohibited": True,
+    "reporting_and_reevaluation_prohibited": True,
     "refill_archival_and_relaunch_prohibited": True,
     "successor_requires_new_source_freeze_and_fresh_smokes": True,
 }
@@ -221,7 +218,7 @@ PRELAUNCH_SUPERSESSION_POLICY = {
     "any_excluded_smokes_retained_as_pilot_failure_evidence": True,
     "selective_redraw_prohibited": True,
     "all_later_launches_prohibited": True,
-    "reporting_and_rescoring_prohibited": True,
+    "reporting_and_reevaluation_prohibited": True,
     "refill_archival_and_relaunch_prohibited": True,
     "successor_requires_new_source_freeze_and_fresh_smokes": True,
 }
@@ -3069,10 +3066,8 @@ def prepare_campaign(
         "base_port": base_port,
         "schedule": schedule,
         "metric_policy": {
-            "headline": "preservation_strict",
-            "formula": "P*=G*O",
-            "secondary": "strict_binary",
-            "legacy_preservation": "diagnostic_only",
+            "headline": "optimal_selection_rate",
+            "per_run": "optimal_selection",
             "complete_paired_denominators_required": True,
         },
         "probe_policy": {
@@ -3583,7 +3578,7 @@ def _probe_predecessor_evidence(
         evidence.append({
             "run_id": row["run_id"],
             "block": row["block"],
-            # Strict rescoring may legitimately rewrite summary.json after a
+            # Fresh optimal-selection evaluation may legitimately rewrite summary.json after a
             # probe. Its presence proves completion; the immutable trajectory,
             # logs and create-only launch receipt carry the hash evidence.
             "completion_summary_path": row["summary_relpath"],
@@ -4313,8 +4308,8 @@ def _validate_smoke_run(
             "smoke summary outcome identity differs from trajectory "
             "evaluation"
         )
-    strict_scores = {}
-    for field in ("preservation_strict", "strict_binary"):
+    optimal_selection_values = {}
+    for field in ("optimal_selection",):
         value = summary.get(field)
         if (
             not isinstance(value, (int, float))
@@ -4323,9 +4318,9 @@ def _validate_smoke_run(
             or not 0 <= float(value) <= 1
         ):
             raise ValueError(
-                f"smoke strict score is missing or malformed: {field}"
+                f"smoke optimal-selection value is missing or malformed: {field}"
             )
-        strict_scores[field] = float(value)
+        optimal_selection_values[field] = float(value)
     steps = summary.get("num_steps")
     seconds = summary.get("seconds")
     if (
@@ -4823,7 +4818,7 @@ def _validate_smoke_run(
         "outcome": outcome,
         "success": success,
         "chosen": chosen,
-        "strict_scores": strict_scores,
+        "optimal_selection_values": optimal_selection_values,
         "evaluator_order_proven": True,
         "order_evidence": order_evidence,
         "diagnostics_present": True,
@@ -6025,10 +6020,10 @@ def archive_refills(campaign_dir: Path, report_path: Path) -> None:
     ):
         raise SystemExit("report kind/schema/campaign binding is invalid")
     # A self-consistent but stale report is not authority to redraw a run.
-    # Reclassify current evidence without mutating scores and require the
+    # Reclassify current evidence without mutating optimal-selection values and require the
     # archived decision and all run records to be identical.
     from report_caveat_harness_eval import build_report
-    current = build_report(campaign_dir, rescore=False)
+    current = build_report(campaign_dir, evaluate=False)
     for field in ("refill_run_ids", "excluded_runs"):
         if (
             report.get("validity", {}).get(field)

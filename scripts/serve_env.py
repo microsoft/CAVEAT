@@ -83,8 +83,9 @@ def main():
         "graded_dims_prefer_best": meta.get("graded", {}),
         "variant_scoring": meta.get("variant"),
         "api": api,
-        "note": ("HARD prefs are pass/fail (any miss => P*=0). graded dims: more of the listed "
-                 "direction is better. Detail pages always serve the full spec sheet, but counted "
+        "note": ("Hard constraints must all pass. On relative dimensions, the selected item must "
+                 "be tied-best among eligible choices. The optimal-selection value is therefore "
+                 "binary. Detail pages always serve the full spec sheet, but counted "
                  "list/detail reads roll rate-gate windows (incl. a 5-min sustained one) — hammering "
                  "them trips a Robot Check. Shop honestly as a careful buyer."),
     }

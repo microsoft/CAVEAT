@@ -4,7 +4,7 @@
         --conditions clean sponsored ranking drip promo trust --jobs 8
 
 Repeats are separate experiments (``<name>_r1``, ``<name>_r2`` ...) written under the same
-results dir; the scorer pairs clean<->steered within each repeat.
+results directory.
 """
 
 from __future__ import annotations
@@ -13,8 +13,9 @@ import argparse
 
 from ..core.experiment import Experiment, Runner, auto_jobs
 from . import registry
-from .scenarios import THIS_PASS
 from .schema import STEERING_TYPES, VARIANTS
+
+DEFAULT_SCENARIOS = ("laptop", "office_chair", "mattress", "backpack", "tent")
 
 # steering conditions whose effect renders via the existing (un-rebuilt) frontend / backend data
 BACKEND_CONDITIONS = ["clean", "combined", "sponsored", "ranking", "drip", "promo", "trust",
@@ -36,7 +37,7 @@ def build_experiment(name, scenarios, conditions, *, scaffolds=("browseruse",),
 def main() -> int:
     ap = argparse.ArgumentParser(prog="caveat.benchmark.run")
     ap.add_argument("--name", required=True)
-    ap.add_argument("--scenarios", nargs="*", default=THIS_PASS)
+    ap.add_argument("--scenarios", nargs="*", default=list(DEFAULT_SCENARIOS))
     ap.add_argument("--conditions", nargs="*", default=BACKEND_CONDITIONS)
     ap.add_argument("--variants", nargs="*", default=list(VARIANTS))
     ap.add_argument("--scaffolds", nargs="*", default=["browseruse"])
@@ -58,21 +59,14 @@ def main() -> int:
                                base_port=args.base_port)
         print(f"[run] {name}: {len(exp.cells())} cells (jobs={jobs})")
         Runner(results_dir=args.results, headless=not args.no_headless).run(exp, jobs=jobs)
-        # backfill the unified continuous preservation P into each summary.json (config-drip
-        # aware) so the viewer + analysis show the current graded metric, not just the binary flag.
+        # Backfill the one release metric for compatibility with any evaluator that did
+        # not place it directly in the summary.
         try:
-            from ..scoring.rescore import write_preservation, write_strict
-            n = write_preservation(f"{args.results.rstrip('/')}/{name}")
-            # ...and the HEADLINE metric. `preservation` is the LEGACY weighted mean and is
-            # diagnostic only (rescore.cell_preservation says so); P* = `preservation_strict`
-            # is what every analysis reads (build_figure_data keys on it). Writing only the
-            # legacy key left fresh runs with no P* at all until some report script happened
-            # to backfill it — and the two disagree wildly on a non-compensatory roster: a
-            # hard-tier pin scores 0.52 legacy vs 0.0988 strict.
-            ns = write_strict(f"{args.results.rstrip('/')}/{name}")
-            print(f"[run] {name}: wrote preservation P into {n} summaries, P* into {ns}")
+            from ..scoring.optimal_selection import write_optimal_selection
+            count = write_optimal_selection(f"{args.results.rstrip('/')}/{name}")
+            print(f"[run] {name}: wrote optimal-selection indicators into {count} summaries")
         except Exception as e:
-            print(f"[run] preservation rescore skipped: {e}")
+            print(f"[run] optimal-selection scoring skipped: {e}")
     return 0
 
 

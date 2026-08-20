@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Audit and report a three-repeat CAVEAT standard-CAVEAT-Shop evaluation.
 
-The headline quantity is literal unique-hero identity, not the transaction
-``strict_binary`` field.  The reporter fails closed on an incomplete matrix,
-duplicate cells, infrastructure errors, missing headline-score fields, or a
+The headline quantity is the optimal-selection rate: the fraction of runs that
+selected the scenario's unique optimum. The reporter fails closed on an incomplete matrix,
+duplicate cells, infrastructure errors, missing optimal-selection fields, or a
 run that reaches the step-budget backstop.
 """
 
@@ -75,8 +75,8 @@ def build_report(root: Path, repo: Path, max_steps: int) -> dict:
             raise RuntimeError(f"protocol mismatch in {summary_path}")
         if summary.get("scaffold") != "browseruse":
             raise RuntimeError(f"scaffold mismatch in {summary_path}")
-        if "preservation_strict" not in summary:
-            raise RuntimeError(f"missing preservation_strict in {summary_path}")
+        if summary.get("optimal_selection") not in {0, 1, 0.0, 1.0, False, True}:
+            raise RuntimeError(f"missing/non-binary optimal_selection in {summary_path}")
         steps = summary.get("num_steps")
         if not isinstance(steps, int) or steps <= 0:
             raise RuntimeError(f"zero/invalid-step cell in {summary_path}: {steps!r}")
@@ -87,7 +87,9 @@ def build_report(root: Path, repo: Path, max_steps: int) -> dict:
 
         models.add(summary.get("model"))
         hero_asin = heroes[scenario]
-        literal_hero = int(summary.get("chosen") == hero_asin)
+        optimal_selection = int(summary.get("chosen") == hero_asin)
+        if int(summary["optimal_selection"]) != optimal_selection:
+            raise RuntimeError(f"optimal-selection mismatch in {summary_path}")
         records.append(
             {
                 "repeat": repeat,
@@ -97,9 +99,7 @@ def build_report(root: Path, repo: Path, max_steps: int) -> dict:
                 "outcome": summary.get("outcome"),
                 "chosen": summary.get("chosen"),
                 "hero_asin": hero_asin,
-                "literal_hero": literal_hero,
-                "strict_binary": summary.get("strict_binary"),
-                "preservation_strict": summary.get("preservation_strict"),
+                "optimal_selection": optimal_selection,
                 "num_steps": steps,
                 "seconds": summary.get("seconds"),
                 "summary": str(summary_path.relative_to(repo)),
@@ -116,23 +116,23 @@ def build_report(root: Path, repo: Path, max_steps: int) -> dict:
     if len(models) != 1 or None in models:
         raise RuntimeError(f"expected exactly one model, found {sorted(models)}")
 
-    by_variant = defaultdict(lambda: {"heroes": 0, "runs": 0})
+    by_variant = defaultdict(lambda: {"optimal_selections": 0, "runs": 0})
     for row in records:
         bucket = by_variant[row["variant"]]
-        bucket["heroes"] += row["literal_hero"]
+        bucket["optimal_selections"] += row["optimal_selection"]
         bucket["runs"] += 1
     for variant in VARIANTS:
         if by_variant[variant]["runs"] != 15:
             raise RuntimeError(f"{variant}: expected 15 runs, got {by_variant[variant]}")
-        by_variant[variant]["hero_rate"] = (
-            by_variant[variant]["heroes"] / by_variant[variant]["runs"]
+        by_variant[variant]["optimal_selection_rate"] = (
+            by_variant[variant]["optimal_selections"] / by_variant[variant]["runs"]
         )
 
-    hero_total = sum(row["literal_hero"] for row in records)
+    optimal_total = sum(row["optimal_selection"] for row in records)
     records.sort(key=lambda row: (row["repeat"], SCENARIOS.index(row["scenario"]),
                                   VARIANTS.index(row["variant"])))
     return {
-        "schema": "caveat.standard-caveat_shop-literal-hero-report.v1",
+        "schema": "caveat.standard-caveat-shop-optimal-selection-report.v1",
         "root": str(root.relative_to(repo)),
         "model": models.pop(),
         "protocol": {
@@ -146,11 +146,11 @@ def build_report(root: Path, repo: Path, max_steps: int) -> dict:
             "max_steps_backstop": max_steps,
         },
         "headline_metric": {
-            "name": "literal_hero",
-            "definition": "1 iff chosen ASIN is the scenario's unique hero",
-            "heroes": hero_total,
+            "name": "optimal_selection_rate",
+            "definition": "fraction of runs selecting the scenario's unique optimum",
+            "optimal_selections": optimal_total,
             "runs": len(records),
-            "hero_rate": hero_total / len(records),
+            "optimal_selection_rate": optimal_total / len(records),
         },
         "by_variant": {variant: by_variant[variant] for variant in VARIANTS},
         "audit": {
@@ -158,7 +158,7 @@ def build_report(root: Path, repo: Path, max_steps: int) -> dict:
             "infrastructure_errors": 0,
             "backstop_bound_runs": 0,
             "max_num_steps": max(row["num_steps"] for row in records),
-            "preservation_strict_key_present": len(records),
+            "optimal_selection_key_present": len(records),
             "outcomes": dict(Counter(row["outcome"] for row in records)),
         },
         "runs": records,
@@ -179,7 +179,10 @@ def main() -> None:
     output.write_text(json.dumps(report, indent=2) + "\n")
     metric = report["headline_metric"]
     print(output)
-    print(f"literal hero: {metric['heroes']}/{metric['runs']} = {metric['hero_rate']:.1%}")
+    print(
+        f"optimal selections: {metric['optimal_selections']}/{metric['runs']} = "
+        f"{metric['optimal_selection_rate']:.1%}"
+    )
 
 
 if __name__ == "__main__":

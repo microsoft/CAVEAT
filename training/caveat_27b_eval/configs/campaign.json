@@ -41,18 +41,13 @@
   },
   "metrics": {
     "headline": {
-      "name": "optimal_product_selection_rate",
-      "source": "strict_binary"
-    },
-    "mandatory_secondary": {
-      "name": "preservation_strict",
-      "source": "preservation_strict"
+      "name": "optimal_selection_rate",
+      "source": "optimal_selection"
     }
   },
   "success": {
-    "minimum_full_five_pstar_improvement": 0.10,
-    "minimum_full_five_hero_rate_improvement": 0.15,
-    "maximum_clean_pstar_regression": 0.05,
+    "minimum_full_five_optimal_selection_rate_improvement": 0.15,
+    "maximum_clean_optimal_selection_rate_regression": 0.05,
     "maximum_clean_valid_purchase_regression": 0.05,
     "minimum_held_out_scenarios_with_positive_delta": 3,
     "alpha": 0.05,

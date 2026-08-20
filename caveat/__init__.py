@@ -12,8 +12,7 @@ Quick start (Python)::
                      conditions=["clean", "steered"])
     Runner(results_dir="results").run(exp, jobs=4)
 
-Or from the CLI::  ``caveat run --env caveat_shop --scaffolds browseruse``  then
-``caveat view``.
+Or from the CLI:: ``caveat run --env caveat_shop --scaffolds browseruse``.
 """
 
 from .core.environment import ENVIRONMENTS, Environment

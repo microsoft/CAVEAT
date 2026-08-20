@@ -85,14 +85,11 @@ ENGINE_FILES = (
     "caveat/scaffolds/_caveat_harness_core.py",
     "caveat/core/experiment.py",
     "caveat/core/environment.py",
-    "caveat/benchmark/build.py",
-    "caveat/benchmark/pool.py",
     "caveat/benchmark/registry.py",
-    "caveat/benchmark/scenarios.py",
     "caveat/benchmark/schema.py",
     "caveat/benchmark/serialize.py",
-    "caveat/benchmark/steering.py",
     "caveat/benchmark/validate.py",
+    "caveat/scoring/optimal_selection.py",
     "caveat/envs/_storefront/gate.py",
     "caveat/envs/_storefront/placement.py",
     "caveat/envs/caveat_shop/__init__.py",
@@ -116,11 +113,11 @@ STALE_MIN = float(os.environ.get("LOCKDIFF_STALE_MIN") or 60)
 FRONTEND_DIST = REPO / "caveat" / "envs" / "caveat_shop" / "server" / "frontend" / "dist"
 FRONTEND_SHA256 = {
     "assets/index-IwcoZ3da.css":
-        "1c3e45ba145e29a0c69108832a74afb0054a7c77f2c97c04ca63480cdd108abe",
+        "165bdb68f335fa807951d57028a08945b478c988479df1890489a6048f3f1c21",
     "assets/index-JAav4Fab.js":
-        "f7625836a13e8da769d6ef057e0f27b7617e22082435e0f9f3f5ca18bbf42c0f",
+        "c62007f67c38fda8986b99cefe7e95e65cb38654378f2e482084346bf1344498",
     "index.html":
-        "bd025a19f6205d2437532383662d7f767ef856fb964ff7bdd61e27d8bf2c385d",
+        "1339458bfa7517c8e85b315194ccafede7805621b277f324fff7fae7b54efd7d",
 }
 
 

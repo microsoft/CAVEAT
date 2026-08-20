@@ -1,4 +1,7 @@
-"""Continuous preservation scoring + clean-vs-steered analysis suite."""
+"""CAVEAT's binary optimal-selection metric."""
 
-from .continuous import (CriteriaScore, graded_score, oracle, preservation,
-                         score_criteria, thresholded_score)  # noqa: F401
+from .optimal_selection import (  # noqa: F401
+    is_optimal_selection,
+    optimal_indices,
+    optimal_selection_rate,
+)

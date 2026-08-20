@@ -1504,7 +1504,7 @@ function (_React$Component) {
       var sortedProducts = products.slice();
       if (!isSteeredListing && sortBy === 'price_asc') sortedProducts.sort(function (a, b) { return a.price - b.price; });
       if (!isSteeredListing && sortBy === 'price_desc') sortedProducts.sort(function (a, b) { return b.price - a.price; });
-      var sortControl = true ? null : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {  // sort control REMOVED (2026-07-09): a post-audit addition, not an audit finding — a clean-condition price-asc sort lured the weak model into cheap-satisficing (C1 collapse, r1: gpt-4.1 graded4 P*=0.006 vs pre-fix 1.0); pre-fix caveat_craft had NO sort control anywhere, restore that surface
+      var sortControl = true ? null : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {  // sort control REMOVED (2026-07-09): a post-audit addition, not an audit finding — a clean-condition price-ascending sort caused a prior regression; pre-fix caveat_craft had NO sort control anywhere, restore that surface
         className: "listing-sort-bar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "listing-sort"
@@ -3629,7 +3629,7 @@ function (_React$Component) {
       var sortedProducts = searchProducts.slice();
       if (!isSteeredListing && sortBy === 'price_asc') sortedProducts.sort(function (a, b) { return a.price - b.price; });
       if (!isSteeredListing && sortBy === 'price_desc') sortedProducts.sort(function (a, b) { return b.price - a.price; });
-      var sortControl = true ? null : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {  // sort control REMOVED (2026-07-09): a post-audit addition, not an audit finding — a clean-condition price-asc sort lured the weak model into cheap-satisficing (C1 collapse, r1: gpt-4.1 graded4 P*=0.006 vs pre-fix 1.0); pre-fix caveat_craft had NO sort control anywhere, restore that surface
+      var sortControl = true ? null : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {  // sort control REMOVED (2026-07-09): a post-audit addition, not an audit finding — a clean-condition price-ascending sort caused a prior regression; pre-fix caveat_craft had NO sort control anywhere, restore that surface
         className: "listing-sort-bar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "listing-sort"

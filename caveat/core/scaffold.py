@@ -1,7 +1,7 @@
 """Scaffold interface + registry — the seam for plugging in agent harnesses.
 
-A scaffold is one way of turning a model into a web agent (browser-use, Stagehand,
-WebVoyager, your own loop, ...). To add one you implement a single method::
+A scaffold is one way of turning a model into a web agent. The release includes the
+BrowserUse baseline and CAVEAT-Harness. To add another locally, implement one method::
 
     from caveat.core.scaffold import Scaffold, RunContext, RawTrajectory, SCAFFOLDS
 
@@ -14,7 +14,7 @@ WebVoyager, your own loop, ...). To add one you implement a single method::
 
 The runner gives you a ``RunContext`` (task, start_url, model, budget, scratch dir)
 and takes back a ``RawTrajectory`` (the steps + final answer). Everything else —
-servers, evaluation, persistence, the viewer, parallelism — is handled for you.
+servers, evaluation, persistence, and parallelism — is handled for you.
 """
 
 from __future__ import annotations

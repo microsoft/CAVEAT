@@ -4706,7 +4706,7 @@ async def _run(ctx: RunContext, *, extension=None) -> RawTrajectory:
         #                       60, not 5 or 20: models DO recover from long failure streaks (Qwen
         #                       recovers from 5 routinely), so a low value censors a live run, while
         #                       a model that cannot emit one parseable action in 60 tries has
-        #                       genuinely failed and should score 0 rather than be excluded.
+        #                       genuinely failed and should receive optimal-selection value 0.
         # Behavioural knobs (max_actions_per_step, loop detection, planning nudges) are deliberately
         # left at their defaults: those shape how the agent works, they do not censor outcomes.
         # The single remaining backstop is CAVEAT_CELL_TIMEOUT below.

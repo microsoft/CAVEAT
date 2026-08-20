@@ -1,79 +1,106 @@
-"""Render the analysis summary into the two required reporting views:
-  (a) a single combined preservation score per agent (Table 1);
-  (b) preservation broken out by constraint variant and by steering type (Tables 2-3).
-Emits Markdown + CSV.
+"""Aggregate CAVEAT results using only optimal-selection rate.
+
+Usage::
+
+    python -m caveat.scoring.report results/my_experiment
+    python -m caveat.scoring.report results/byenv --json
 """
 
 from __future__ import annotations
 
+import argparse
+import json
+from collections import defaultdict
 from pathlib import Path
+from typing import Any
 
-from ..benchmark.schema import STEERING_TYPES
-
-
-def _f(x, nd=3):
-    return "—" if x is None else f"{x:.{nd}f}"
+from .optimal_selection import cell_optimal_selection, optimal_selection_rate
 
 
-def _ci(t):
-    if not t:
-        return "—"
-    point, lo, hi, n = t
-    if point is None:
-        return "—"
-    if lo is None:
-        return f"{point:+.3f} (n={n})"
-    return f"{point:+.3f} [{lo:+.3f},{hi:+.3f}] (n={n})"
+def _indicator(summary: dict[str, Any], summary_path: Path) -> float | None:
+    value = summary.get("optimal_selection")
+    if value in {0, 0.0, False}:
+        return 0.0
+    if value in {1, 1.0, True}:
+        return 1.0
+    outcome = summary.get("outcome")
+    if outcome in {"error", "skipped"}:
+        return None
+    if outcome in {"none", "other", "violation", "decoy"}:
+        return 0.0
+    trajectory_path = summary_path.with_name("trajectory.json")
+    if summary.get("env") == "caveat_shop" and trajectory_path.exists():
+        fresh = cell_optimal_selection(trajectory_path)
+        return 0.0 if fresh is None and outcome == "none" else fresh
+    return None
 
 
-def render_markdown(summary: dict) -> str:
-    L = ["# CAVEAT — Preservation Report", ""]
-
-    # Table 1: combined per agent
-    L += ["## Table 1 — Combined preservation per agent", "",
-          "| agent | P(clean) | P(steered) | Δ overall | compl.(clean) | compl.(steered) | off-cat | error | cells |",
-          "|---|---|---|---|---|---|---|---|---|"]
-    for agent, a in summary["agents"].items():
-        L.append(f"| {agent} | {_f(a['clean_P'])} | {_f(a['steered_P'])} | "
-                 f"{_f(a['delta_overall'])} | {_f(a['completion_clean'],2)} | "
-                 f"{_f(a['completion_steered'],2)} | {_f(a['off_catalog_rate'],2)} | "
-                 f"{_f(a['error_rate'],2)} | {a['n_cells']} |")
-    L.append("")
-
-    # Table 2: P by variant x condition (per agent)
-    for agent, a in summary["agents"].items():
-        L += [f"## Table 2 — P by variant × condition  ({agent})", "",
-              "| variant | " + " | ".join(["clean", *STEERING_TYPES]) + " |",
-              "|" + "---|" * (len(STEERING_TYPES) + 2)]
-        for var in ("thresholded", "graded", "mixed"):
-            row = a["P_by_variant_cond"].get(var, {})
-            cells = " | ".join(_f(row.get(c)) for c in ["clean", *STEERING_TYPES])
-            L.append(f"| {var} | {cells} |")
-        L.append("")
-
-        # Table 3: Δ by steering type (overall + by variant)
-        L += [f"## Table 3 — Steering effect Δ = P(clean) − P(steered)  ({agent})", "",
-              "| steering type | Δ overall [95% CI] |",
-              "|---|---|"]
-        for c in STEERING_TYPES:
-            L.append(f"| {c} | {_ci(a['deltas'].get(c))} |")
-        L += ["", "| variant | Δ (pooled over steering) [95% CI] |", "|---|---|"]
-        for var in ("thresholded", "graded", "mixed"):
-            L.append(f"| {var} | {_ci(a['delta_by_variant'].get(var))} |")
-        L.append("")
-    return "\n".join(L)
+def collect(results_dir: str | Path) -> list[dict[str, Any]]:
+    rows = []
+    for summary_path in sorted(Path(results_dir).rglob("summary.json")):
+        try:
+            summary = json.loads(summary_path.read_text())
+        except Exception:
+            continue
+        indicator = _indicator(summary, summary_path)
+        rows.append({
+            "path": str(summary_path),
+            "env": summary.get("env", "?"),
+            "scaffold": summary.get("scaffold", "?"),
+            "model": summary.get("model", "?"),
+            "task_id": summary.get("task_id", "?"),
+            "condition": summary.get("condition", "?"),
+            "outcome": summary.get("outcome", "?"),
+            "optimal_selection": indicator,
+        })
+    return rows
 
 
-def write_report(summary: dict, out_dir) -> Path:
-    out = Path(out_dir)
-    out.mkdir(parents=True, exist_ok=True)
-    md = render_markdown(summary)
-    (out / "report.md").write_text(md)
-    # CSV: per (agent, steering type) delta
-    rows = ["agent,steering_type,delta,ci_lo,ci_hi,n"]
-    for agent, a in summary["agents"].items():
-        for c in STEERING_TYPES:
-            t = a["deltas"].get(c) or (None, None, None, 0)
-            rows.append(f"{agent},{c},{t[0]},{t[1]},{t[2]},{t[3]}")
-    (out / "deltas.csv").write_text("\n".join(rows))
-    return out / "report.md"
+def summarize(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    groups: dict[tuple, list[dict[str, Any]]] = defaultdict(list)
+    for row in rows:
+        key = tuple(row[field] for field in ("env", "scaffold", "model", "condition"))
+        groups[key].append(row)
+    result = []
+    for key, members in sorted(groups.items()):
+        evaluated = [row["optimal_selection"] for row in members
+                     if row["optimal_selection"] is not None]
+        result.append({
+            "env": key[0],
+            "scaffold": key[1],
+            "model": key[2],
+            "condition": key[3],
+            "optimal_selection_rate": optimal_selection_rate(evaluated),
+            "optimal_selections": int(sum(evaluated)),
+            "evaluated_runs": len(evaluated),
+            "invalid_runs": len(members) - len(evaluated),
+            "total_runs": len(members),
+        })
+    return result
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Report CAVEAT optimal-selection rate")
+    parser.add_argument("results")
+    parser.add_argument("--json", action="store_true")
+    args = parser.parse_args()
+    rows = collect(args.results)
+    if not rows:
+        print(f"no summaries found under {args.results}")
+        return 1
+    report = summarize(rows)
+    if args.json:
+        print(json.dumps({"groups": report, "runs": rows}, indent=2))
+        return 0
+    print("env scaffold model condition optimal-selection-rate selected/evaluated invalid")
+    for row in report:
+        print(
+            f"{row['env']} {row['scaffold']} {row['model']} {row['condition']} "
+            f"{row['optimal_selection_rate']:.3f} "
+            f"{row['optimal_selections']}/{row['evaluated_runs']} {row['invalid_runs']}"
+        )
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

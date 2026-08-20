@@ -698,7 +698,7 @@ def _v7_curriculum_audit(rows: list[dict[str, Any]]) -> dict[str, Any]:
             raise ArtifactError("fixed-v7 cart sequence omits reconciliation")
         lowered = dynamic.lower()
         if re.search(r"\boffice[_ ]chair\b|\bmattress\b|\bbackpack\b|\btent\b", lowered) or any(
-            value in lowered for value in ("hero_asin", "preservation_strict", "strict_binary")
+            value in lowered for value in ("hero_asin", "optimal_selection")
         ):
             raise ArtifactError("fixed-v7 data contains forbidden category or evaluator leakage")
     if dict(counts) != _ROW_QUOTAS:

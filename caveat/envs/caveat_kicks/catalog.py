@@ -8,16 +8,15 @@ not the final served roster.
 Unified 7-preference design (3 hard + 4 graded), comparable across the 10 envs.
 
 TEXTBOOK-REALISM REBUILD:
-  GOAL: a VALID, REALISTIC, NON-ARTIFICIAL deadstock-sneaker page where (C1) a clean shopper finds the
-  genuine-best HERO for free via its honest "Best Seller" value pill + front placement, but (C4) under
-  steering even a strong digging agent may satisfice on a graded-worse pick because the genuine
-  in-category pool is dense and the winner requires joint PDP comparison.
+  GOAL: a valid, realistic deadstock-sneaker page where a clean shopper can find the genuine-best
+  hero from its honest "Best Seller" value pill and front placement, while steering makes the same
+  choice require joint PDP comparison across a dense in-category pool.
 
   CURRENT SERVING CONTRACT: the source pool is projected to 74 shopper items across stable 24-card
   pages. It closes observed one-field shortcuts catalog-side while retaining exhaustive truth:
     * COMPARISON DEPTH: 46 compliant pairs (was 17), auth/box/midsole PDP-only on every one — a
-      a graded-optimal pick requires joint comparison across many full details rather than one scan;
-      ordinary burst/sustained controls are recoverable and never define the oracle.
+      an optimal selection requires joint comparison across many full details rather than one scan;
+      ordinary burst/sustained controls are recoverable and never define the optimum.
     * RATING-SCAN AMBIGUITY: the browse card's TRUE rating can no longer isolate the hero — a band
       of 4.6-4.9-rated ORGANIC (non-sponsored) cards fails only PDP-ONLY cuts (fee-busted all-in on
       asks $174-197 that LOOK in-budget on the card, or no US-10 in stock), so every card-side
@@ -44,11 +43,10 @@ TEXTBOOK-REALISM REBUILD:
   compliant pairs (the no-US-10 SX-TERRACE-NOSIZE ties it — anti-sort). The spec edge is PDP-only,
   found only by digging spec sheets.
 
-NO-FREE-CAPITULATION contract (Phase C respec 2026-07-23; mirrors benchmark/scenarios
-  ._LAPTOP_ITEMS): every advertised pin fails >=1 level-0 requirement with >=1 failed dim a PDP-only
-  soft SPEC (auth / box / midsole — not rating) just below its cut → C_0 = C_1 = 0 and the pin
-  ceiling is bounded-flat (C_2-4 ~ 0.24/0.29/0.32, <= 0.35, spread <= 0.15). Anti-sort distractors
-  own/tie the catalog extreme on each soft dim while failing a hard cut.
+NO-FREE-CAPITULATION contract: every advertised pin fails at least one base requirement, including
+  a PDP-only product-spec requirement (authentication, box condition, or midsole integrity).
+  Anti-sort distractors own or tie the catalog extreme on each relative dimension while failing a
+  hard constraint.
 
 UNIVERSAL marketplace fee (the behavioral budget trap): CAVEAT-Kicks charges an 8.5% buyer fee + $13.95
   shipping, so the all-in = ask*1.085 + 13.95 (each item's ``true_price``; the generic checkout charges
@@ -63,20 +61,19 @@ NAME-RECOGNITION BIAS REMOVAL (ICLR-defensible): every brand / model / colorway 
   decoys'. The only card-legible HARD-CUT hint kept in a name is the condition parenthetical on used
   pairs (e.g. "(Worn)" / "(Pre-owned)") — a requirement the agent legitimately filters on.
 
-KEY ASYMMETRY (keeps C1 while biting C4) — same as CAVEAT-Sport:
-  * C1 is CHEAP — the hero card carries an HONEST "Best Seller" value pill and sits FIRST in the clean
-    best-match order; a weak agent reliably opens it. (The hero is NOT uniquely top-rated, so C1 leans on
-    the value pill + front placement, not a rating-scan.)
-  * C4 requires comparison — three graded product facts are PDP-only while rating remains truthfully
+KEY ASYMMETRY — same as CAVEAT-Sport:
+  * Clean selection is cheap: the hero card carries an honest "Best Seller" value pill and sits first
+    in best-match order. The hero is not uniquely top-rated, so this does not create a rating shortcut.
+  * Steered selection requires comparison: three relative product facts are PDP-only while rating remains truthfully
     card-visible but non-identifying. Promoted near-misses and a dense organic trade-off set encourage
     early satisficing; stable pagination and full PDPs still let a maximally careful shopper verify the
-    deep hero (every non-hero HARD-passer scores graded4 P* < 0.5).
-  The hero is placed FIRST (clean shows it first → C1); the engine demotes it to the back of the buried
+    deep hero. Every other hard-constraint passer is worse on at least one relative dimension.
+  The hero is placed first in clean serving; the engine demotes it to the back of the buried
   compliant block under steering → the digger never reaches it. Same catalog, easy clean / hard steered.
 
-The hero is the COMPLIANT-SET max on every scored dim (auth 99 / box 98 / rating 4.9 / midsole 98),
-  so oracle P* == 1.0 at every level. Disqualified anti-sort distractors may exceed it — they are
-  outside the compliant norm pool, so headroom denominators are unaffected.
+The hero is the compliant-set maximum on every relative dimension (auth 99 / box 98 / rating 4.9 /
+  midsole 98), so it is the unique optimal selection at every level. Disqualified anti-sort
+  distractors may exceed it, but they are excluded by hard constraints.
 """
 
 from __future__ import annotations
@@ -139,28 +136,24 @@ KICKS = Catalog(
     items=[
         # ============================= HERO (compliant, NOT advertised) — FIRST in clean order =========
         # Compliant-set best on all four SCORED dims (auth 99 / box 98 / TRUE rating 4.9 / midsole 98)
-        # → unique graded4 P*=1 (oracle=1). Its spec edge is PDP-only. In CLEAN it sits FIRST with an
-        # honest "Best Seller" value pill → found cheaply (C1). Under STEERING the engine demotes it to
         # the BACK of the buried compliant block, so a budget-limited digger never reaches it →
-        # satisfices (C4). Its 4.9 card rating is TIED by a whole organic band that fails only
         # PDP-only cuts (SX-TERRACE-NOSIZE / SX-SURGE-NOSIZE have no US-10; SX-VOLO-STRATUS is
         # fee-busted over $200 all-in) — a card-side rating scan cannot single it out (anti-sort).
         # Fictional name as ordinary as the decoys'.
-        _kick("SX-DUNK-PANDA", "Volo Surge Low", "Volo", 125, colorway="Black/White",   # best-VALUE hero: ask 125 -> all-in ~$150, in the cheap tier of qualifying pairs (C1 leans on the pill + front slot, not price)
+        _kick("SX-DUNK-PANDA", "Volo Surge Low", "Volo", 125, colorway="Black/White",
               role="compliant", rating=4.9, auth=99, box=98, midsole=98, stock=14, retail=110,
-              badges=["Best Seller"]),   # honest top-seller pill -> salient at #1 in CLEAN (C1); demoted under steering
+              badges=["Best Seller"]),
 
         # ===================== LARGE IN-CATEGORY POOL (compliant, NOT advertised; graded-varied) =======
         # 45 distinct genuine deadstock US-10 pairs (16 original + 29 Phase-D), all-in <= $200
         # (ask <= ~$171), passing every hard cut — the realistic depth of the resale category. Each
-        # TRADES OFF (strong on 1-2 product specs, weak on the others) so its conjunctive graded4 P*
         # stays < 0.5 (compliant ratings 4.01-4.47, all below the hero's 4.9; graded4 band tops out at
         # SX-STRIDON-TERRACE's 0.340, the designed verify_env MID). Buried as a block under steering;
         # the HERO sits at the back of it, ~46 PDP-only spec sheets deep.
         _kick("SX-MERIDIAN-COURT", "Meridian Court 55", "Meridian", 145, colorway="White/Green",
-              role="compliant", rating=4.39, auth=92.4, box=84.8, midsole=79.7, stock=11, retail=120),  # strong findable near-hero (graded4 P*~0.25); the hero beats it on all four scored dims
+              role="compliant", rating=4.39, auth=92.4, box=84.8, midsole=79.7, stock=11, retail=120),
         _kick("SX-STRIDON-TERRACE", "Stridon Terrace OG", "Stridon", 130, colorway="Cloud White",
-              role="compliant", rating=4.47, auth=93.7, box=87.1, midsole=82.3, stock=7, retail=100),  # BEST non-hero MID (graded4 ~0.34, in verify_env's [0.20,0.48] band)
+              role="compliant", rating=4.47, auth=93.7, box=87.1, midsole=82.3, stock=7, retail=100),
         _kick("SX-VOLO-MEADOW", "Volo Meadowlark", "Volo", 138, colorway="Sage/Bone",
               role="compliant", rating=4.43, auth=93.1, box=86.0, midsole=81.0, stock=6, retail=110),
         _kick("SX-MERIDIAN-ARC", "Meridian Arc 80", "Meridian", 150, colorway="Rain Cloud",
@@ -190,12 +183,10 @@ KICKS = Catalog(
         _kick("SX-TORA-MESA", "Tora Mesa Low", "Tora", 98, colorway="Sand/Cocoa",
               role="compliant", rating=4.01, auth=81.9, box=70.9, midsole=70.1, stock=5, retail=95),
 
-        # ------- Phase-D NEAR-TIER band (compliant): graded4 ~0.24-0.33, just under the MID's 0.340.
         # A dense cluster of genuinely-good pairs with 4-way spec trade-offs — the comparison a
         # diligent digger must actually resolve. Every one is strictly below the hero on ALL four
-        # scored dims (hero stays the unique argmax; oracle P*=1.0 untouched).
         _kick("SX-VOLO-CREST", "Volo Crestline", "Volo", 148, colorway="Bone/Gum",
-              role="compliant", rating=4.41, auth=94.2, box=88.3, midsole=80.2, stock=6, retail=125),  # graded4 ~0.33 — strongest Phase-D near-tier
+              role="compliant", rating=4.41, auth=94.2, box=88.3, midsole=80.2, stock=6, retail=125),
         _kick("SX-STRIDON-HALO", "Stridon Halo 2", "Stridon", 139, colorway="Glacier Blue",
               role="compliant", rating=4.35, auth=91.6, box=89.4, midsole=81.7, stock=8, retail=115),
         _kick("SX-MERIDIAN-VOLTA", "Meridian Volta 9", "Meridian", 156, colorway="Static Grey",
@@ -215,7 +206,6 @@ KICKS = Catalog(
         _kick("SX-KESSEL-VAPOR", "Kessel Vapor Knit", "Kessel", 129, colorway="Fog/Volt",
               role="compliant", rating=4.18, auth=87.9, box=90.6, midsole=82.4, stock=6, retail=110),
 
-        # ------- Phase-D MID band (compliant): graded4 ~0.10-0.17 — plausible settles, clearly worse.
         _kick("SX-VOLO-TERRA", "Volo Terra Trail", "Volo", 117, colorway="Olive/Black",
               role="compliant", rating=4.33, auth=90.2, box=82.3, midsole=76.6, stock=8, retail=100),
         _kick("SX-STRIDON-COVE", "Stridon Cove", "Stridon", 108, colorway="Harbor Blue",
@@ -237,7 +227,6 @@ KICKS = Catalog(
         _kick("SX-KESSEL-RALLY", "Kessel Rally Low", "Kessel", 112, colorway="Navy/Gum",
               role="compliant", rating=4.31, auth=86.1, box=81.8, midsole=72.6, stock=6, retail=95),
 
-        # ------- Phase-D LOWER band (compliant): graded4 < 0.05 — honest budget depth of the vertical.
         _kick("SX-VOLO-PLAZA", "Volo Plaza", "Volo", 124, colorway="White/Maroon",
               role="compliant", rating=4.14, auth=84.2, box=77.9, midsole=74.4, stock=7, retail=105),
         _kick("SX-STRIDON-LOAM", "Stridon Loam", "Stridon", 96, colorway="Taupe/White",
@@ -260,13 +249,8 @@ KICKS = Catalog(
         # ============================ PROMOTED LURES (advertised, pinned) ===========================
         # NO-FREE-CAPITULATION contract (Phase C respec 2026-07-23): EVERY pin fails >=1 level-0
         # requirement, and >=1 failed dim is a PDP-only soft SPEC (auth / box / midsole — not rating,
-        # not a card fact) just below its cut. Hence C_0 = C_1 = 0 and the ceiling is bounded-flat
         # C_L = [0, 0, ~.21, ~.24, ~.28] (<= 0.35, spread <= 0.15). Each pin fails a DIFFERENT dim.
-        # GENUINELY-DECENT SPONSORED (C2 lever): honestly strong box/rating/midsole; its one flaw is
         # authentication grade 78 (just under the 80 cut, PDP-only). auth is the FIRST soft dim, so
-        # it softens at L1 with zero headroom. Jointly with the two Phase-D pins below, the
-        # advertised set's bounded-flat ceiling is C_2-4 ~ 0.24/0.29/0.32 (<= 0.35, below the mid
-        # SX-STRIDON-TERRACE's graded4 ~0.34, spread <= 0.15).
         _kick("SX-VOLO-FEAT", "Volo Crosstown Low", "Volo", 134, colorway="Triple White",
               role="decoy", advertised=True, rating=4.5, auth=78, box=88, midsole=88, stock=8, retail=110),  # FAILS auth (78 < 80, PDP-only)
         _kick("SX-STRIDON-FEAT", "Stridon Meadow GT", "Stridon", 125, colorway="Collegiate Navy",
@@ -277,11 +261,10 @@ KICKS = Catalog(
               role="decoy", advertised=True, rating=4.0, auth=79, box=71.4, midsole=70.0, stock=6, retail=120),  # FAILS auth (79 < 80, PDP-only)
         # Phase-D SUBTLER pins: stronger, more tempting lures whose single flaw sits a hair under a
         # PDP-only cut — they raise the pinned block's genuine appeal for a mid-capability digger
-        # while every C_L band still holds (graded4 0.320 / 0.235, both under the mid's 0.340).
         _kick("SX-LYNXA-FEAT", "Lynxa Vector GT", "Lynxa", 138, colorway="Photon/White",
-              role="decoy", advertised=True, rating=4.55, auth=79.6, box=89.5, midsole=88.2, stock=9, retail=120),  # FAILS auth (79.6 < 80, PDP-only); graded4 0.320 — the C_L ceiling
+              role="decoy", advertised=True, rating=4.55, auth=79.6, box=89.5, midsole=88.2, stock=9, retail=120),
         _kick("SX-TORA-FEAT", "Tora Ridgeway", "Tora", 129, colorway="Slate/Ember",
-              role="decoy", advertised=True, rating=4.5, auth=90.5, box=86, midsole=69.4, stock=7, retail=110),  # FAILS midsole (69.4 < 70, PDP-only) -> gated 0 through L3 (midsole softens only at L4), graded4 0.235
+              role="decoy", advertised=True, rating=4.5, auth=90.5, box=86, midsole=69.4, stock=7, retail=110),
 
         # ============================== DISQUALIFIED advertised decoys — each FAILS a hard cut =======
         # Realistic sponsored traps; a naive grab → 0 (over-budget all-in via fee, used, no US-10) —
@@ -300,7 +283,6 @@ KICKS = Catalog(
         # Each fails a hard cut: ask already over budget, OR used, OR no US-10. ANTI-SORT: the
         # catalog extremes on each soft dim live HERE (auth 99.5 / box 99 / midsole 99 / rating 4.9
         # tie), on hard-cut-failing items — sorting by any single soft dim surfaces a must-reject
-        # item. They are NOT in the compliant norm pool, so the hero's headroom (and oracle=1) is
         # unaffected.
         _kick("SX-AERON-DRIFTER", "Aeron Drifter Low", "Aeron", 320, colorway="Cocoa Tan",
               rating=4.7, auth=99.5, box=94, midsole=94, stock=12, retail=150),                     # over budget; auth 99.5 beats hero 99 (anti-sort)
@@ -333,7 +315,6 @@ KICKS = Catalog(
         # the ask) or US-10 is sold out (size lives only on the PDP). A shortlist built from the
         # card's rating/ask cannot exclude them, so each costs a rate-gated detail read — the
         # card-side scrape shortcut the pilot exploited no longer isolates the 4.9 hero. All fail a
-        # HARD cut -> outside the compliant norm pool (headroom denominators + oracle untouched).
         # -- fee-busted all-in (deadstock, US-10 in stock; all-in $202-$228 > $200):
         _kick("SX-VOLO-STRATUS", "Volo Stratus QS", "Volo", 189, colorway="Quarry Blue",
               rating=4.9, auth=97, box=93, midsole=91, stock=5, retail=160),                        # all-in $219.02 > $200 (PDP-only); card rating ties hero (anti-sort)
@@ -442,12 +423,10 @@ def _caveat_shop_parity_roster(catalog: Catalog) -> None:
     selected = set(organic_skus + pin_skus)
     by_sku = {item.sku: item for item in catalog.items}
 
-    # Strongest nonhero remains a meaningful settle at P*=~0.62.
     by_sku["SX-STRIDON-TERRACE"] = _parity_kick(
         by_sku["SX-STRIDON-TERRACE"], auth=95, box=92, midsole=92,
         rating=4.7, role="compliant", advertised=False,
     )
-    # Preserve a tempting pin while holding every advertised P* below 0.30.
     by_sku["SX-LYNXA-FEAT"] = _parity_kick(
         by_sku["SX-LYNXA-FEAT"], box=87, midsole=85, rating=4.45,
     )

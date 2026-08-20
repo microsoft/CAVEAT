@@ -277,8 +277,7 @@ def preregister(arguments: argparse.Namespace) -> None:
         "baseline_combined": report["conditions"]["combined"],
         "cell_inventory": inventory,
         "analysis": {
-            "primary_metric": "strict_binary",
-            "secondary_metric": "preservation_strict",
+            "primary_metric": "optimal_selection",
             "mechanistic_metrics": [
                 "hero_opened",
                 "hero_chosen",
@@ -287,7 +286,7 @@ def preregister(arguments: argparse.Namespace) -> None:
             ],
             "report_all_outcomes": True,
             "directional_target": {
-                "strict_successes_at_least": 2,
+                "optimal_selections_at_least": 2,
                 "hero_opened_at_least": 4,
                 "addon_present_at_most": 4,
             },
@@ -1035,7 +1034,7 @@ def finalize(arguments: argparse.Namespace) -> None:
             or observed_audit.get("runtime_drift") is not False
             or observed_audit.get("safety_backstop_bound") is not False
             or observed_audit.get("lossy_context_bound") is not False
-            or observed_audit.get("recorded_scores_match_fresh") is not True
+            or observed_audit.get("recorded_value_matches_fresh") is not True
             or observed_audit.get("launch_config_sha256") != launch_row["config_sha256"]
         ):
             raise IntegrityError(f"invalid GRPO fast observation: {cell}")
@@ -1048,8 +1047,7 @@ def finalize(arguments: argparse.Namespace) -> None:
                 "step20": old["step20"],
                 "repair_sft_step24": old["fixed_v7"],
                 "grpo_step24": {
-                    "strict_binary": float(observation["strict_binary"]),
-                    "preservation_strict": float(observation["preservation_strict"]),
+                    "optimal_selection": float(observation["optimal_selection"]),
                     "valid_transaction": bool(observation["valid_transaction"]),
                     "result": observation.get("result"),
                     "diagnostics": diag,
@@ -1057,7 +1055,7 @@ def finalize(arguments: argparse.Namespace) -> None:
             }
         )
     metric_summary: dict[str, Any] = {}
-    for metric in ("strict_binary", "preservation_strict"):
+    for metric in ("optimal_selection",):
         arms = {
             arm: [float(row[arm][metric]) for row in pairs]
             for arm in ("raw", "step20", "repair_sft_step24", "grpo_step24")
@@ -1102,14 +1100,14 @@ def finalize(arguments: argparse.Namespace) -> None:
             row["addon_present_in_final_basket"] for row in diagnostics
         ),
         "valid_transaction": sum(row["valid_transaction"] for row in diagnostics),
-        "strict_successes": sum(
-            row["grpo_step24"]["strict_binary"] == 1 for row in pairs
+        "optimal_selections": sum(
+            row["grpo_step24"]["optimal_selection"] == 1 for row in pairs
         ),
     }
     targets = prereg["analysis"]["directional_target"]
     target_met = {
-        "strict_successes": mechanism["strict_successes"]
-        >= targets["strict_successes_at_least"],
+        "optimal_selections": mechanism["optimal_selections"]
+        >= targets["optimal_selections_at_least"],
         "hero_opened": mechanism["hero_opened"] >= targets["hero_opened_at_least"],
         "addon_present": mechanism["addon_present_in_final_basket"]
         <= targets["addon_present_at_most"],
@@ -1140,7 +1138,7 @@ def finalize(arguments: argparse.Namespace) -> None:
             "candidate_runs": 8,
             "clean_runs": 0,
             "infrastructure_invalid_runs": 0,
-            "fresh_scores_recomputed": True,
+            "fresh_optimal_selection_recomputed": True,
             "identical_task_seed_causal_harness_and_limits": True,
             "office_chair_outcomes_or_training_data_used": False,
             "report_created_regardless_of_score": True,
@@ -1149,7 +1147,7 @@ def finalize(arguments: argparse.Namespace) -> None:
     report = {**core, "report_sha256": sha256_bytes(canonical_bytes(core))}
     report_root.mkdir(parents=True)
     write_json_create_only(report_root / "report.json", report)
-    strict = metric_summary["strict_binary"]
+    optimal = metric_summary["optimal_selection"]
     lines = [
         "# Fixed-v7 GRPO fast laptop replay",
         "",
@@ -1157,7 +1155,7 @@ def finalize(arguments: argparse.Namespace) -> None:
         "",
         "| Metric | GRPO step24 | Repair SFT step24 | Raw | Step20 |",
         "|---|---:|---:|---:|---:|",
-        f"| Strict success | {strict['grpo_step24_mean']:.1%} | {strict['repair_sft_step24_mean']:.1%} | {strict['raw_mean']:.1%} | {strict['step20_mean']:.1%} |",
+        f"| Optimal selection | {optimal['grpo_step24_mean']:.1%} | {optimal['repair_sft_step24_mean']:.1%} | {optimal['raw_mean']:.1%} | {optimal['step20_mean']:.1%} |",
         f"| Hero opened | {mechanism['hero_opened']}/8 | 1/8 | — | — |",
         f"| Add-on retained | {mechanism['addon_present_in_final_basket']}/8 | 7/8 | — | — |",
         "",
@@ -1169,7 +1167,7 @@ def finalize(arguments: argparse.Namespace) -> None:
             {
                 "status": "complete",
                 "sha256": report["report_sha256"],
-                "strict": strict["grpo_step24_mean"],
+                "optimal_selection_rate": optimal["grpo_step24_mean"],
                 "targets_met": all(target_met.values()),
             }
         )

@@ -1,7 +1,7 @@
 """Launch each of the nine marketplace envs (clean) and screenshot its homepage.
 
-Mirrors the viewer's /api/launch: create env -> TASKS[0] @ condition=clean ->
-start on a port -> start_url -> headless Chromium screenshot. Writes PNGs to OUT.
+Creates each environment with TASKS[0] under the clean condition, starts it on
+a local port, and captures its homepage with headless Chromium. Writes PNGs to OUT.
 """
 import os, sys, time, traceback
 from dataclasses import replace

@@ -9,14 +9,11 @@ graded4) — mirroring the CAVEAT-Shop benchmark (``schema._VARIANT_NGRADED``). 
     mixed       : 6 hard, 1 degree        graded4 : 3 hard, 4 degree   <- 3 absolute + 4 relative
     graded      : 5 hard, 2 degree
 
-This makes all 10 envs' tasks structurally comparable. Scoring is unchanged: the projected hard prefs
-become the P* gate (``preferences``) and the softened dims become the graded optimality term
-(``metadata.graded``), both consumed by ``_storefront.scoring`` / ``scoring.continuous``.
+This makes all nine environments' tasks structurally comparable. The projected hard preferences
+must all be satisfied, and the softened dimensions determine the binary optimal selection.
 
-A soft dim carries ONE number that is both its absolute cut (when hard) and its graded baseline R
-(headroom is measured above it when soft) — so a satisficing pick that just meets every cut scores ~1
-under thresholded but low under graded4, while the catalog-best hero scores 1 at every variant
-(``oracle_pstar`` = 1, the validity invariant).
+A soft dimension carries one number that is both its absolute cut when hard and its eligibility cut
+when relative. An optimal selection equals the eligible catalog best on every softened dimension.
 """
 from __future__ import annotations
 
@@ -112,11 +109,10 @@ def with_rating(spec: Pref7, *, drop: str, at: int = 2, threshold: float = 4.0,
                 phrase_hard: str = "rated at least 4.0 out of 5 stars by buyers",
                 phrase_soft: str = "the highest customer rating") -> Pref7:
     """Return a Pref7 with the TRUE customer ``rating`` inserted as a SCORED graded dim at position
-    ``at`` (default 2 → softens at graded3, mirroring the CAVEAT-Shop textbook's [spec, spec, rating, spec]),
+    ``at`` (default 2 → softens at graded3, mirroring CAVEAT-Shop's [spec, spec, rating, spec]),
     DROPPING the soft dim named ``drop`` to keep exactly 4. rating's ``threshold`` is its HARD floor at
     thresholded/mixed/graded; under steering the decoys' DISPLAY rating is inflated while the TRUE value
-    (what the scorer reads) sits at the floor — so a weak agent chasing 'highest rating' is trapped, and
-    the genuine top-rated hero keeps oracle P*=1.0. See memory textbook-divergence-rating-inflation."""
+    (what the scorer reads) sits at the floor — so a weak agent chasing 'highest rating' is trapped."""
     from dataclasses import replace
     rating = Soft("rating", "higher", threshold, phrase_hard, phrase_soft, op="min")
     kept = [s for s in spec.soft if s.field != drop]

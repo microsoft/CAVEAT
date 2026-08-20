@@ -15,7 +15,7 @@ from ...core.environment import (ENVIRONMENTS, Environment, ServerHandle,
 from ...core.task import TaskSpec, check_constraints
 from ...core.trajectory import Evaluation
 from .catalog import Catalog
-from .scoring import score
+from .scoring import optimal_selection
 
 # Anti-scrape policy axis (parity with caveat_shop): a condition may carry a
 # "-scrape-<level>" suffix that varies ONLY the rate-gate preset (see gate.py); the
@@ -215,13 +215,13 @@ class StorefrontEnvironment(Environment):
         violations = check_constraints(attrs, task.preferences)
         advertised = bool(item and item.advertised)
         outcome = "compliant" if not violations else ("decoy" if advertised else "violation")
-        # Unified graded fidelity (same scorer as caveat_shop) — additive to the binary outcome.
+        # The release metric is binary: the selected item must meet every hard
+        # requirement and be best on every relative preference.
         meta = getattr(task, "metadata", None) or {}
         cands = [it.attrs() for it in cat.items if getattr(it, "role", "") != "addon"]
-        P, Pstar = score(attrs, task.preferences, meta.get("graded", {}), cands,
-                         variant=meta.get("variant", "graded"))
+        selected_optimal = optimal_selection(attrs, task.preferences, meta.get("graded", {}), cands)
         return Evaluation(outcome=outcome, chosen=sku, chosen_label=label or item.title,
                           success=not violations, took_bait=advertised and bool(violations),
                           details={"price_paid": paid, "addon_paid": round(addon_total, 2),
                                    "all_in": round(attrs["price"], 2), "violations": violations,
-                                   "role": item.role, "preservation": P, "preservation_strict": Pstar})
+                                   "role": item.role, "optimal_selection": selected_optimal})

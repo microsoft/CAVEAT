@@ -2,7 +2,7 @@
 
 This module changes only candidate lineage, reporting labels, and the
 preregistered directional gate.  Config cloning, projection auditing,
-launching, conversion, and scoring continue to execute through
+launching, conversion, and optimal-selection evaluation continue to execute through
 ``sol_dagger_laptop_eval`` so the model-facing evaluation harness remains the
 exact prior r4 harness after its already-sealed narrow projection.
 """
@@ -37,7 +37,7 @@ SCIENTIFIC_LABEL = (
     "same_task_laptop_steered_interactive_sol_dagger_r1_development_replay"
 )
 DIRECTIONAL_TARGET = {
-    "strict_successes_at_least": 4,
+    "optimal_selections_at_least": 4,
     "hero_opened_at_least": 6,
     "hero_chosen_at_least": 6,
     "addon_present_at_most": 2,

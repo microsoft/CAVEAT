@@ -4,7 +4,7 @@
 The evaluation reuses the exact raw and step-20 controls frozen by the fixed-v6
 prospective protocol.  Both fresh candidate category bundles are rendered and
 bound together before either category is executed.  Marketplace outcomes are
-first opened by ``finalize-category`` after execution; no score can change the
+first opened by ``finalize-category`` after execution; no optimal-selection result can change the
 already-rendered office-chair candidate.
 """
 
@@ -122,10 +122,7 @@ SYNTHESIS_ANALYSIS_SPEC = {
         },
     },
     "conditions": {"combined": 8, "clean": 4},
-    "metrics": {
-        "primary": "strict_binary",
-        "secondary": "preservation_strict",
-    },
+    "metric": "optimal_selection",
     "arms": ["raw", "step20", "fixed_v7"],
     "paired_effects": ["fixed_v7_minus_raw", "fixed_v7_minus_step20"],
     "exact_inference": {
@@ -146,9 +143,9 @@ SYNTHESIS_ANALYSIS_SPEC = {
         "substitute_for_office_chair_claim": False,
     },
     "decision_policy": {
-        "candidate_selection_from_scores": False,
-        "retuning_from_scores": False,
-        "retraining_from_scores": False,
+        "candidate_selection_from_optimal_selection": False,
+        "retuning_from_optimal_selection": False,
+        "retraining_from_optimal_selection": False,
         "office_chair_launch_score_independent": True,
         "threshold_gate": None,
     },
@@ -508,8 +505,7 @@ def freeze(arguments: argparse.Namespace) -> None:
             "max_steps": 4000,
             "whole_run_timeout_seconds": 36000,
             "max_concurrency": MAX_CONCURRENCY,
-            "headline_metric": "strict_binary",
-            "secondary_metric": "preservation_strict",
+            "headline_metric": "optimal_selection",
             "backstops_are_not_measured_constraints": True,
         },
         "categories": {
@@ -522,7 +518,7 @@ def freeze(arguments: argparse.Namespace) -> None:
                 "label": labels["office_chair"]["label"],
                 "claim": "untouched-category generalization confirmation",
                 "training_contamination_allowed": False,
-                "launch_gate": "laptop infrastructure-validity only; score-independent",
+                "launch_gate": "laptop infrastructure-validity only; optimal-selection-independent",
             },
         },
         "scientific_rules": {
@@ -1332,7 +1328,7 @@ def _valid_observation(row: dict[str, Any], config_sha256: str, label: str) -> N
     if (
         row.get("infrastructure_valid") is not True
         or audit.get("launch_config_sha256") != config_sha256
-        or audit.get("recorded_scores_match_fresh") is not True
+        or audit.get("recorded_value_matches_fresh") is not True
         or audit.get("safety_backstop_bound") is not False
         or audit.get("lossy_context_bound") is not False
         or audit.get("protocol_attempt_exhausted") is not False
@@ -1575,7 +1571,7 @@ def _convert_atomic(
 
 def _summarize(pairs: list[dict[str, Any]]) -> dict[str, Any]:
     summary: dict[str, Any] = {"n": len(pairs)}
-    for metric in ("strict_binary", "preservation_strict"):
+    for metric in ("optimal_selection",):
         arms = {
             arm: [row[arm][metric] for row in pairs]
             for arm in ("raw", "step20", "fixed_v7")
@@ -1721,8 +1717,7 @@ def finalize_category(arguments: argparse.Namespace) -> None:
             ("fixed_v7", candidate),
         ):
             row[name] = {
-                "strict_binary": float(observation["strict_binary"]),
-                "preservation_strict": float(observation["preservation_strict"]),
+                "optimal_selection": float(observation["optimal_selection"]),
                 "valid_transaction": bool(observation["valid_transaction"]),
                 "result": observation.get("result"),
             }
@@ -1741,8 +1736,7 @@ def finalize_category(arguments: argparse.Namespace) -> None:
         "candidate_composite_sha256": endpoint["candidate"]["composite_sha256"],
         "category": category,
         "label": LABELS[category],
-        "headline_metric": "strict_binary",
-        "secondary_metric": "preservation_strict",
+        "headline_metric": "optimal_selection",
         "conditions": conditions,
         "pairs": pairs,
         "invariants": {
@@ -1753,7 +1747,7 @@ def finalize_category(arguments: argparse.Namespace) -> None:
             "combined_runs_per_arm": 8,
             "infrastructure_invalid_runs": 0,
             "bound_runs": 0,
-            "fresh_scores_recomputed": True,
+            "fresh_optimal_selection_recomputed": True,
             "identical_task_seed_causal_harness_and_limits": True,
             "both_candidate_categories_frozen_before_laptop_execution": True,
             "candidate_selection_or_retuning_from_laptop_score": False,
@@ -1780,17 +1774,15 @@ def finalize_category(arguments: argparse.Namespace) -> None:
             "",
             f"Scientific label: `{LABELS[category]}`.",
             "",
-            "| Condition | Runs/arm | Raw optimal-product rate | Step20 optimal-product rate | Fixed-v7 optimal-product rate | Fixed-v7 P* |",
-            "|---|---:|---:|---:|---:|---:|",
+            "| Condition | Runs/arm | Raw optimal-selection rate | Step20 optimal-selection rate | Fixed-v7 optimal-selection rate |",
+            "|---|---:|---:|---:|---:|",
         ]
         for condition in ("combined", "clean"):
             value = conditions[condition]
-            binary = value["strict_binary"]
-            pstar = value["preservation_strict"]
+            metric = value["optimal_selection"]
             lines.append(
-                f"| {condition} | {value['n']} | {binary['raw_mean']:.1%} | "
-                f"{binary['step20_mean']:.1%} | {binary['fixed_v7_mean']:.1%} | "
-                f"{pstar['fixed_v7_mean']:.3f} |"
+                f"| {condition} | {value['n']} | {metric['raw_mean']:.1%} | "
+                f"{metric['step20_mean']:.1%} | {metric['fixed_v7_mean']:.1%} |"
             )
         write_text_create_only(stage / "report.md", "\n".join(lines) + "\n")
         if category == "laptop":
@@ -1868,17 +1860,13 @@ def _audit_category_report_for_synthesis(
                 not isinstance(value, dict)
                 or set(value)
                 != {
-                    "strict_binary",
-                    "preservation_strict",
+                    "optimal_selection",
                     "valid_transaction",
                     "result",
                 }
-                or not isinstance(value["strict_binary"], (int, float))
-                or isinstance(value["strict_binary"], bool)
-                or float(value["strict_binary"]) not in {0.0, 1.0}
-                or not isinstance(value["preservation_strict"], (int, float))
-                or isinstance(value["preservation_strict"], bool)
-                or not math.isfinite(float(value["preservation_strict"]))
+                or not isinstance(value["optimal_selection"], (int, float))
+                or isinstance(value["optimal_selection"], bool)
+                or float(value["optimal_selection"]) not in {0.0, 1.0}
                 or not isinstance(value["valid_transaction"], bool)
             ):
                 raise IntegrityError(
@@ -1892,7 +1880,7 @@ def _audit_category_report_for_synthesis(
         "combined_runs_per_arm": 8,
         "infrastructure_invalid_runs": 0,
         "bound_runs": 0,
-        "fresh_scores_recomputed": True,
+        "fresh_optimal_selection_recomputed": True,
         "identical_task_seed_causal_harness_and_limits": True,
         "both_candidate_categories_frozen_before_laptop_execution": True,
         "candidate_selection_or_retuning_from_laptop_score": False,
@@ -1915,8 +1903,7 @@ def _audit_category_report_for_synthesis(
         != plan["endpoint_receipt"]["candidate_composite_sha256"]
         or report.get("category") != category
         or report.get("label") != LABELS[category]
-        or report.get("headline_metric") != "strict_binary"
-        or report.get("secondary_metric") != "preservation_strict"
+        or report.get("headline_metric") != "optimal_selection"
         or report.get("invariants") != expected_invariants
         or observed_cells != expected_cells
         or report.get("conditions") != expected_conditions
@@ -1937,7 +1924,7 @@ def _audit_category_report_for_synthesis(
 
 def _descriptive_summary(pairs: list[dict[str, Any]]) -> dict[str, Any]:
     summary = _summarize(pairs)
-    for metric in ("strict_binary", "preservation_strict"):
+    for metric in ("optimal_selection",):
         summary[metric].pop("fixed_v7_vs_raw_one_sided_sign_p")
     return summary
 
@@ -2016,9 +2003,9 @@ def _synthesis_report_core(
             "category_specific_inference_is_primary": True,
             "category_reports_sealed_before_synthesis": True,
             "pooled_summary_is_descriptive_only": True,
-            "candidate_selection_from_scores": False,
-            "retuning_from_scores": False,
-            "retraining_from_scores": False,
+            "candidate_selection_from_optimal_selection": False,
+            "retuning_from_optimal_selection": False,
+            "retraining_from_optimal_selection": False,
             "threshold_gate": None,
             "office_chair_launch_was_score_independent": True,
         },
@@ -2138,7 +2125,7 @@ def authorize_office_chair(arguments: argparse.Namespace) -> None:
         != endpoint["candidate"]["composite_sha256"]
     ):
         raise IntegrityError(
-            "fixed-v7 office-chair score-independent authorization changed"
+            "fixed-v7 office-chair optimal-selection-independent authorization changed"
         )
     print(
         json.dumps(

@@ -77,12 +77,12 @@ G9  **composition stability** — nothing in the seeded part of the formula is a
     therefore never re-roll the placement, which is what let a stray off-catalog row (the
     seeder's ``ADDON-PLAN``) move the served hero by 13 ranks against the prediction.
 G10 **worst settle first** (:func:`order_compliant`) — the compliant block is served in
-    ASCENDING settle quality, so slot 0 holds the LOWEST-scoring compliant row and the best
+    ASCENDING settle quality, so slot 0 holds the weakest compliant row and the best
     non-hero settle row lands in the last slot, i.e. AFTER the hero. Placement decides the
     ranks; this decides who occupies them, and without it the block simply inherited the
-    caller's SQL sort (``rating DESC``) — which put the BEST settle row (P* 0.57-0.65) in the
-    SHALLOWEST compliant slot on all five hard scenarios, so reading the list in order crossed
-    P* 0.30 at K=72 instead of at the hero. Because the hero is spliced at ``hero_slot`` and
+    caller's SQL sort (``rating DESC``) — which put the best non-hero alternative in the
+    shallowest compliant slot on all five hard scenarios. Because the hero is spliced at
+    ``hero_slot`` and
     G5 keeps ``hero_slot <= n_comp - 2``, the best settle row is *always* deeper than the hero.
 G11 **filter affordance** (:func:`clamp_rating`) — the served rating filter is snapped down to
     the chip grid the left rail actually offers (``{1,2,3,4}`` stars, "X & up"). The SPA reads
@@ -402,10 +402,8 @@ def plan(n_pinned: int, n_rest: int, n_comp: int, *, pages: int, key,
     #
     # The tilt is drawn per BUCKET of `gap` rows and then INTERPOLATED between adjacent
     # buckets, which is the whole G9 story: a step function would move the hero by up to
-    # `2*frac_amp*n_rest` rows whenever a single row crossed a bucket edge — the same
     # +-1-row re-roll (via a different mechanism) that the n_rest-seeded jitter used to cause.
     # Interpolated, the depth is Lipschitz in n_rest (|d hero_off / d n_rest| <= 1 +
-    # 2*frac_amp*n_rest/gap ~ 1.7 rows at the hard tier's sizes), so composition noise moves
     # the hero by a row or two at most while different QUERIES still get different depths.
     ub = n_rest / max(1, gap)
     b0 = int(ub)
@@ -482,7 +480,6 @@ def ranks_for(n_pinned: int, offsets: Sequence[int]) -> list[int]:
 # it was simply whatever the caller's `ORDER BY is_best_seller DESC, rating DESC` handed over.
 # Since a better settle row has a better card (that is what makes it a temptation), the SQL
 # sort placed the BEST settle row in the SHALLOWEST compliant slot, and an agent reading the
-# served list top-down banked P* 0.57-0.65 long before reaching the hero.
 # --------------------------------------------------------------------------- #
 _TIER_RE = re.compile(r"^tier[_\-]?(\d+)$", re.IGNORECASE)
 
@@ -509,12 +506,10 @@ def settle_key(entry: Optional[Mapping], cfg: Optional[dict] = None) -> tuple:
        ``serving.placement``. The escape hatch for a roster whose settle ranking is not
        recoverable from the rows; unknown asins sort after the listed ones.
     1. ``entry["settle_rank"]`` — an explicit per-row ascending rank.
-    2. ``entry["decoy_kind"] == "tier<N>"`` — the hard rosters' own naming, in which a LARGER
-       N is a WORSE settle row (``tier4`` ~ P* 0.15, ``tier2`` ~ P* 0.60), so the key negates N.
-    3. card quality ascending (rating, then reviews, then bought). The last-resort rule, and
-       the reason it is last: it is only a *proxy* for P*. ``validate.check_serving`` asserts
-       the resulting order really is P*-ascending, so a roster this proxy would mis-order fails
-       the validator instead of silently shipping.
+    2. ``entry["decoy_kind"] == "tier<N>"`` — the hard rosters' own naming, in which a larger
+       N is a weaker settle row, so the key negates N.
+    3. card quality ascending (rating, then reviews, then bought). This is only a deterministic
+       last-resort proxy for authored settle order.
 
     A row tagged ``decoy_kind == "hero"`` (or named by ``cfg["hero_asin"]``) sorts LAST in every
     case: the hero is spliced in at ``hero_slot`` by :func:`order_compliant`, and on the

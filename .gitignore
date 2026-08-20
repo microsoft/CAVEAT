@@ -6,10 +6,6 @@ results/
 *.db
 caveat/envs/*/server/_catalogs/
 caveat/envs/*/server/*.db
-caveat/scaffolds/stagehand/node_modules/
-# stagehand spawns stray windows-path browser-profile dirs + an npm log under its folder; never commit those
-caveat/scaffolds/stagehand/*wsl.localhost*
-caveat/scaffolds/stagehand/npm_install.log
 caveat/envs/caveat_stay/server/frontend/node_modules/
 runs/llm_cache/
 .DS_Store

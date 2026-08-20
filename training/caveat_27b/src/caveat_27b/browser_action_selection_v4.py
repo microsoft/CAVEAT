@@ -293,7 +293,7 @@ def _allowlist(
             "finish_reason",
             "provenance",
         ],
-        "score_fields_read_before_freeze": [],
+        "metric_fields_read_before_freeze": [],
         "rows": rows,
     }
     return escalated, body
@@ -638,7 +638,7 @@ def _validate_adaptive_selection_artifacts(
     }
     if (
         len(allowed) != 10
-        or allowlist.get("score_fields_read_before_freeze") != []
+        or allowlist.get("metric_fields_read_before_freeze") != []
         or allowlist.get("derivation")
         != "exact_frozen_request_inventory_minus_all_valid_v3_stop_rows"
     ):

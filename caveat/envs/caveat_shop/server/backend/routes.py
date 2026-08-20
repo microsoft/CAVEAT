@@ -1,4 +1,4 @@
-"""CAVEAT-Shop API routes based on CAVEAT_SHOP_SPEC.md"""
+"""CAVEAT-Shop API routes."""
 
 import json
 import os

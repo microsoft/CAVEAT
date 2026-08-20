@@ -105,7 +105,7 @@ def _identity_errors(
     return errors
 
 
-def _finite_score(value: Any) -> float | None:
+def _finite_indicator(value: Any) -> float | None:
     if isinstance(value, bool):
         return None
     try:
@@ -117,11 +117,13 @@ def _finite_score(value: Any) -> float | None:
     return result
 
 
-def _fresh_scores(trajectory_path: Path, *, repository_root: Path) -> tuple[float | None, float | None]:
-    from caveat.scoring.rescore import cell_binary, cell_strict
+def _fresh_optimal_selection(
+    trajectory_path: Path, *, repository_root: Path
+) -> float | None:
+    from caveat.scoring.optimal_selection import cell_optimal_selection
 
     with _working_directory(repository_root):
-        return cell_strict(str(trajectory_path)), cell_binary(str(trajectory_path))
+        return cell_optimal_selection(str(trajectory_path))
 
 
 def _convert_one(
@@ -180,17 +182,16 @@ def _convert_one(
     }
 
     if no_purchase:
-        preservation_strict, strict_binary = 0.0, 0.0
+        optimal_selection = 0.0
     else:
-        preservation_strict, strict_binary = _fresh_scores(
+        optimal_selection = _fresh_optimal_selection(
             trajectory_path, repository_root=repository_root
         )
-        preservation_strict = _finite_score(preservation_strict)
-        strict_binary = _finite_score(strict_binary)
-        if preservation_strict is None or strict_binary not in {0.0, 1.0}:
+        optimal_selection = _finite_indicator(optimal_selection)
+        if optimal_selection not in {0.0, 1.0}:
             classification.update(
                 classification="unscorable",
-                reasons=["fresh strict rescoring did not produce P* and a binary hero score"],
+                reasons=["fresh evaluation did not produce a binary optimal-selection value"],
             )
             return None, classification
 
@@ -219,21 +220,18 @@ def _convert_one(
     if caveat_harness.get("evaluation_input_attestation") != frozen_identity["matrix_sha256"]:
         runtime_reasons.append("evaluation-input attestation differs from launch matrix")
 
-    recorded_pstar = _finite_score(summary.get("preservation_strict"))
-    recorded_binary = _finite_score(summary.get("strict_binary"))
-    score_audit = {
-        "recorded_pstar": recorded_pstar,
-        "recorded_strict_binary": recorded_binary,
-        "recorded_scores_match_fresh": (
-            (recorded_pstar is None or recorded_pstar == preservation_strict)
-            and (recorded_binary is None or recorded_binary == strict_binary)
+    recorded_optimal_selection = _finite_indicator(summary.get("optimal_selection"))
+    optimal_selection_audit = {
+        "recorded_optimal_selection": recorded_optimal_selection,
+        "recorded_value_matches_fresh": (
+            recorded_optimal_selection is None
+            or recorded_optimal_selection == optimal_selection
         ),
     }
     observation = {
         "run_id": run_id,
         "arm": launch["arm"],
-        "preservation_strict": preservation_strict,
-        "strict_binary": strict_binary,
+        "optimal_selection": optimal_selection,
         "valid_transaction": chosen is not None,
         "compiler_pass": compiler_pass,
         "infrastructure_valid": True,
@@ -262,7 +260,7 @@ def _convert_one(
             "trajectory_sha256": sha256_file(trajectory_path),
             "limit_contract_sha256": limit_audit.get("contract_sha256"),
             "arm_weight_sha256": _weight_sha256(frozen_manifest, launch["arm"]),
-            **score_audit,
+            **optimal_selection_audit,
         },
         "result": {
             "outcome": outcome,

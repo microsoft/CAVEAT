@@ -568,12 +568,10 @@ def prepare_campaign(
         "base_port": base_port,
         "schedule": schedule,
         "metric_policy": {
-            "headline": "preservation_strict",
-            "formula": "P*=G*O",
-            "secondary": "strict_binary",
-            "legacy_preservation": "diagnostic_only_and_not_aggregated",
+            "headline": "optimal_selection_rate",
+            "per_run": "optimal_selection",
             "success_threshold": {
-                "metric": "mean_preservation_strict",
+                "metric": "optimal_selection_rate",
                 "operator": "<",
                 "value": SUCCESS_THRESHOLD,
             },

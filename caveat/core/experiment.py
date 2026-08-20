@@ -38,11 +38,7 @@ from .trajectory import Evaluation, Trajectory
 # (The budget is invisible to the agent, so raising it cannot change uncapped trajectories;
 # supplement data showed budget-capped give-ups were mostly agents still productively
 # searching.) Report per-arm cap-rates with every run; they should be ~0.
-DEFAULT_STEPS = {"browseruse": 250, "caveat-harness": 250,
-                 "playwright-mcp": 150, "stagehand": 120, "webvoyager": 150,
-                 "simple": 100,
-                 "websurfer": 250,     # 1 atomic action per step (finer-grained than browser-use's packed steps)
-                 "magentic-one": 250}  # 1 orchestrator round = 1 surfer action; ledger calls are free overhead
+DEFAULT_STEPS = {"browseruse": 250, "caveat-harness": 250}
 
 
 def auto_jobs() -> int:
@@ -235,7 +231,7 @@ class Runner:
                 time.sleep(1.5)
 
         self._write_index(exp, exp_dir)
-        print(f"\nView:  caveat view --results {self.results_dir}\n")
+        print(f"\nResults: {exp_dir}\n")
         return exp_dir
 
     def _write_index(self, exp: Experiment, exp_dir: Path) -> None:

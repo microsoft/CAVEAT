@@ -316,15 +316,15 @@ run_rows () {
   "$PY" "$FREEZER" verify --campaign-dir "$CAMPAIGN"
 }
 
-rescore_exact_runs () {
+score_exact_runs () {
   "$PY" "$FREEZER" verify --campaign-dir "$CAMPAIGN"
   apply_frozen_runtime_env
   local experiment
   while IFS= read -r experiment; do
     if find "$CAMPAIGN/$experiment" -name summary.json -type f -print -quit \
       2>/dev/null | grep -q .; then
-      "$PY" -m caveat.scoring.rescore \
-        --glob "$CAMPAIGN/$experiment" --strict
+      "$PY" -m caveat.scoring.optimal_selection \
+        --glob "$CAMPAIGN/$experiment"
     fi
   done < <(
     "$PY" - "$CAMPAIGN/campaign_manifest.json" <<'PY'
@@ -339,7 +339,7 @@ PY
 }
 
 emit_report () {
-  rescore_exact_runs
+  score_exact_runs
   set +e
   "$PY" "$REPORTER" "$CAMPAIGN" --json "$CAMPAIGN/report.json"
   local code=$?

@@ -28,8 +28,7 @@ OPD_PLAN_SCHEMA = "caveat-27b.optional-opd-plan.v1"
 FORBIDDEN_PRIVILEGED_KEYS = {
     "hero_asin",
     "reward",
-    "strict_binary",
-    "preservation_strict",
+    "optimal_selection",
     "evaluator",
     "evaluator_truth",
     "private_catalog",

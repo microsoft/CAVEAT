@@ -137,16 +137,12 @@ def _conversion_bundle(
             raise IntegrityError(
                 f"{run_id} observation arm/validity differs from launch"
             )
-        observation["preservation_strict"] = _bounded(
-            observation.get("preservation_strict"),
-            label=f"{run_id}.preservation_strict",
+        optimal_selection = _bounded(
+            observation.get("optimal_selection"), label=f"{run_id}.optimal_selection"
         )
-        binary = _bounded(
-            observation.get("strict_binary"), label=f"{run_id}.strict_binary"
-        )
-        if binary not in {0.0, 1.0}:
-            raise IntegrityError(f"{run_id}.strict_binary is not binary")
-        observation["strict_binary"] = binary
+        if optimal_selection not in {0.0, 1.0}:
+            raise IntegrityError(f"{run_id}.optimal_selection is not binary")
+        observation["optimal_selection"] = optimal_selection
         if not isinstance(observation.get("valid_transaction"), bool) or not isinstance(
             observation.get("compiler_pass"), bool
         ):
@@ -161,8 +157,10 @@ def _conversion_bundle(
                 )
         if evidence.get("launch_config_sha256") != launch["config_sha256"]:
             raise IntegrityError(f"{run_id} converted launch config hash differs")
-        if evidence.get("recorded_scores_match_fresh") is not True:
-            raise IntegrityError(f"{run_id} recorded scores differ from fresh scores")
+        if evidence.get("recorded_value_matches_fresh") is not True:
+            raise IntegrityError(
+                f"{run_id} recorded and fresh optimal-selection values differ"
+            )
         for field in ("safety_backstop_bound", "lossy_context_bound", "runtime_drift"):
             if not isinstance(evidence.get(field), bool):
                 raise IntegrityError(f"{run_id}.audit.{field} is not boolean")
@@ -322,8 +320,8 @@ def bind_evaluation_observations(
             "safety_backstop_bound": evidence_audit["safety_backstop_bound"],
             "lossy_context_bound": evidence_audit["lossy_context_bound"],
             "runtime_drift": evidence_audit["runtime_drift"],
-            "recorded_scores_match_fresh": evidence_audit[
-                "recorded_scores_match_fresh"
+            "recorded_value_matches_fresh": evidence_audit[
+                "recorded_value_matches_fresh"
             ],
         }
         bound_audit = {
@@ -334,8 +332,7 @@ def bind_evaluation_observations(
             {
                 "run_id": target_run_id,
                 "arm": target_row["arm"],
-                "preservation_strict": observation["preservation_strict"],
-                "strict_binary": observation["strict_binary"],
+                "optimal_selection": observation["optimal_selection"],
                 "valid_transaction": observation["valid_transaction"],
                 "compiler_pass": observation["compiler_pass"],
                 "infrastructure_valid": True,
@@ -523,8 +520,7 @@ def _bound_observations(
         if set(observation) != {
             "run_id",
             "arm",
-            "preservation_strict",
-            "strict_binary",
+            "optimal_selection",
             "valid_transaction",
             "compiler_pass",
             "infrastructure_valid",
@@ -536,16 +532,12 @@ def _bound_observations(
             or observation.get("infrastructure_valid") is not True
         ):
             raise IntegrityError(f"{run_id} bound arm/validity differs from matrix")
-        observation["preservation_strict"] = _bounded(
-            observation.get("preservation_strict"),
-            label=f"{run_id}.preservation_strict",
+        optimal_selection = _bounded(
+            observation.get("optimal_selection"), label=f"{run_id}.optimal_selection"
         )
-        binary = _bounded(
-            observation.get("strict_binary"), label=f"{run_id}.strict_binary"
-        )
-        if binary not in {0.0, 1.0}:
-            raise IntegrityError(f"{run_id}.strict_binary is not binary")
-        observation["strict_binary"] = binary
+        if optimal_selection not in {0.0, 1.0}:
+            raise IntegrityError(f"{run_id}.optimal_selection is not binary")
+        observation["optimal_selection"] = optimal_selection
         if not isinstance(observation.get("valid_transaction"), bool) or not isinstance(
             observation.get("compiler_pass"), bool
         ):
@@ -577,8 +569,7 @@ def _bound_observations(
         ):
             raise IntegrityError(f"{run_id} bound source task/config/seed changed")
         for field in (
-            "preservation_strict",
-            "strict_binary",
+            "optimal_selection",
             "valid_transaction",
             "compiler_pass",
         ):
@@ -610,7 +601,7 @@ def _bound_observations(
             "safety_backstop_bound": source_audit["safety_backstop_bound"],
             "lossy_context_bound": source_audit["lossy_context_bound"],
             "runtime_drift": False,
-            "recorded_scores_match_fresh": source_audit["recorded_scores_match_fresh"],
+            "recorded_value_matches_fresh": source_audit["recorded_value_matches_fresh"],
         }
         expected_evidence = {
             **binding_core,
@@ -655,7 +646,7 @@ def analyze_development_gate(
         left_arm=left_arm,
         right_arm=right_arm,
         predicate=lambda row: row["condition"] == "combined",
-        metric="strict_binary",
+        metric="optimal_selection",
     )
     clean_pairs = _paired_rows(
         matrix,
@@ -663,7 +654,7 @@ def analyze_development_gate(
         left_arm=left_arm,
         right_arm=right_arm,
         predicate=lambda row: row["condition"] == "clean",
-        metric="strict_binary",
+        metric="optimal_selection",
     )
     if len(combined_pairs) != 8 or len(clean_pairs) != 4:
         raise IntegrityError("development report is not based on n=2/n=1 per variant")
@@ -686,12 +677,12 @@ def analyze_development_gate(
     if criteria != DEVELOPMENT_CRITERIA:
         raise IntegrityError("development report criteria changed")
     gates = {
-        "combined_binary_hero_delta": combined_delta
-        >= criteria["combined_binary_hero_delta_minimum"],
-        "clean_binary_hero_regression": clean_regression
-        <= criteria["clean_binary_hero_regression_maximum"],
+        "combined_optimal_selection_delta": combined_delta
+        >= criteria["combined_optimal_selection_delta_minimum"],
+        "clean_optimal_selection_regression": clean_regression
+        <= criteria["clean_optimal_selection_regression_maximum"],
         "positive_variant_breadth": positive_variants
-        >= criteria["minimum_variants_with_positive_combined_binary_hero_delta"],
+        >= criteria["minimum_variants_with_positive_combined_optimal_selection_delta"],
         "no_safety_backstop_bound": no_backstop
         and criteria["safety_backstop_bound_allowed"] is False,
     }
@@ -719,39 +710,39 @@ def analyze_development_gate(
         },
         "criteria": criteria,
         "rates": {
-            "step20_combined_binary_hero": _arm_mean(
+            "step20_combined_optimal_selection": _arm_mean(
                 matrix,
                 indexed,
                 arm=left_arm,
                 condition="combined",
-                metric="strict_binary",
+                metric="optimal_selection",
             ),
-            "corrected_combined_binary_hero": _arm_mean(
+            "corrected_combined_optimal_selection": _arm_mean(
                 matrix,
                 indexed,
                 arm=right_arm,
                 condition="combined",
-                metric="strict_binary",
+                metric="optimal_selection",
             ),
-            "combined_binary_hero_delta": combined_delta,
-            "step20_clean_binary_hero": _arm_mean(
+            "combined_optimal_selection_delta": combined_delta,
+            "step20_clean_optimal_selection": _arm_mean(
                 matrix,
                 indexed,
                 arm=left_arm,
                 condition="clean",
-                metric="strict_binary",
+                metric="optimal_selection",
             ),
-            "corrected_clean_binary_hero": _arm_mean(
+            "corrected_clean_optimal_selection": _arm_mean(
                 matrix,
                 indexed,
                 arm=right_arm,
                 condition="clean",
-                metric="strict_binary",
+                metric="optimal_selection",
             ),
-            "clean_binary_hero_delta": clean_delta,
-            "clean_binary_hero_regression": clean_regression,
+            "clean_optimal_selection_delta": clean_delta,
+            "clean_optimal_selection_regression": clean_regression,
         },
-        "variant_combined_binary_hero_deltas": variant_deltas,
+        "variant_combined_optimal_selection_deltas": variant_deltas,
         "positive_variants": positive_variants,
         "safety_backstop_bound_runs": sum(
             observation["audit"]["safety_backstop_bound"]
@@ -802,39 +793,23 @@ def analyze_corrected_final(
     def heldout_combined(row: dict[str, Any]) -> bool:
         return row["condition"] == "combined" and bool(row["held_out"])
 
-    pstar_pairs = _paired_rows(
+    optimal_pairs = _paired_rows(
         matrix,
         indexed,
         left_arm=left_arm,
         right_arm=right_arm,
         predicate=combined,
-        metric="preservation_strict",
+        metric="optimal_selection",
     )
-    hero_pairs = _paired_rows(
-        matrix,
-        indexed,
-        left_arm=left_arm,
-        right_arm=right_arm,
-        predicate=combined,
-        metric="strict_binary",
-    )
-    heldout_pstar = _paired_rows(
+    heldout_optimal = _paired_rows(
         matrix,
         indexed,
         left_arm=left_arm,
         right_arm=right_arm,
         predicate=heldout_combined,
-        metric="preservation_strict",
+        metric="optimal_selection",
     )
-    heldout_hero = _paired_rows(
-        matrix,
-        indexed,
-        left_arm=left_arm,
-        right_arm=right_arm,
-        predicate=heldout_combined,
-        metric="strict_binary",
-    )
-    if len(pstar_pairs) != 100 or len(heldout_pstar) != 80:
+    if len(optimal_pairs) != 100 or len(heldout_optimal) != 80:
         raise IntegrityError(
             "corrected final pair counts differ from the 320-cell design"
         )
@@ -843,45 +818,39 @@ def analyze_corrected_final(
     bootstrap_samples = int(success["bootstrap_samples"])
     permutation_samples = int(success["permutation_samples"])
     seed = int(audited["campaign"]["seed"])
-    pstar_delta = mean(pair["difference"] for pair in pstar_pairs)
-    hero_delta = mean(pair["difference"] for pair in hero_pairs)
-    heldout_pstar_delta = mean(pair["difference"] for pair in heldout_pstar)
-    heldout_hero_delta = mean(pair["difference"] for pair in heldout_hero)
-    pstar_lower = hierarchical_bootstrap_lower_bound(
-        pstar_pairs, samples=bootstrap_samples, alpha=alpha, seed=seed + 1
+    optimal_delta = mean(pair["difference"] for pair in optimal_pairs)
+    heldout_optimal_delta = mean(
+        pair["difference"] for pair in heldout_optimal
     )
-    hero_lower = hierarchical_bootstrap_lower_bound(
-        hero_pairs, samples=bootstrap_samples, alpha=alpha, seed=seed + 2
+    optimal_lower = hierarchical_bootstrap_lower_bound(
+        optimal_pairs, samples=bootstrap_samples, alpha=alpha, seed=seed + 1
     )
-    heldout_pstar_lower = hierarchical_bootstrap_lower_bound(
-        heldout_pstar, samples=bootstrap_samples, alpha=alpha, seed=seed + 3
+    heldout_optimal_lower = hierarchical_bootstrap_lower_bound(
+        heldout_optimal, samples=bootstrap_samples, alpha=alpha, seed=seed + 2
     )
-    heldout_hero_lower = hierarchical_bootstrap_lower_bound(
-        heldout_hero, samples=bootstrap_samples, alpha=alpha, seed=seed + 4
+    optimal_permutation = sign_randomization_pvalue(
+        optimal_pairs, samples=permutation_samples, seed=seed + 3
     )
-    pstar_permutation = sign_randomization_pvalue(
-        pstar_pairs, samples=permutation_samples, seed=seed + 5
-    )
-    mcnemar = exact_mcnemar_one_sided(hero_pairs)
+    mcnemar = exact_mcnemar_one_sided(optimal_pairs)
     scenario_deltas = {
         scenario: mean(
-            pair["difference"] for pair in heldout_hero if pair["scenario"] == scenario
+            pair["difference"] for pair in heldout_optimal if pair["scenario"] == scenario
         )
-        for scenario in sorted({pair["scenario"] for pair in heldout_hero})
+        for scenario in sorted({pair["scenario"] for pair in heldout_optimal})
     }
     positive_scenarios = sum(value > 0 for value in scenario_deltas.values())
-    clean_pstar_delta = _arm_mean(
+    clean_optimal_delta = _arm_mean(
         matrix,
         indexed,
         arm=right_arm,
         condition="clean",
-        metric="preservation_strict",
+        metric="optimal_selection",
     ) - _arm_mean(
         matrix,
         indexed,
         arm=left_arm,
         condition="clean",
-        metric="preservation_strict",
+        metric="optimal_selection",
     )
     clean_purchase_delta = _arm_mean(
         matrix,
@@ -916,19 +885,16 @@ def analyze_corrected_final(
         "no_runtime_drift": not any(audit["runtime_drift"] for audit in audits),
     }
     gates = {
-        "minimum_hero_rate_improvement": hero_delta
-        >= float(success["minimum_full_five_hero_rate_improvement"]),
-        "hero_lower_bound_positive": hero_lower > 0,
-        "hero_mcnemar_significant": mcnemar["pvalue_one_sided"] < alpha,
-        "held_out_hero_lower_bound_positive": heldout_hero_lower > 0,
-        "held_out_hero_scenario_breadth": positive_scenarios
+        "minimum_optimal_selection_rate_improvement": optimal_delta
+        >= float(success["minimum_full_five_optimal_selection_rate_improvement"]),
+        "optimal_selection_lower_bound_positive": optimal_lower > 0,
+        "optimal_selection_mcnemar_significant": mcnemar["pvalue_one_sided"] < alpha,
+        "optimal_selection_randomization_significant": optimal_permutation < alpha,
+        "held_out_optimal_selection_lower_bound_positive": heldout_optimal_lower > 0,
+        "held_out_optimal_selection_scenario_breadth": positive_scenarios
         >= int(success["minimum_held_out_scenarios_with_positive_delta"]),
-        "minimum_pstar_improvement": pstar_delta
-        >= float(success["minimum_full_five_pstar_improvement"]),
-        "pstar_lower_bound_positive": pstar_lower > 0,
-        "pstar_permutation_significant": pstar_permutation < alpha,
-        "clean_pstar_guard": clean_pstar_delta
-        >= -float(success["maximum_clean_pstar_regression"]),
+        "clean_optimal_selection_rate_guard": clean_optimal_delta
+        >= -float(success["maximum_clean_optimal_selection_rate_regression"]),
         "clean_valid_purchase_guard": clean_purchase_delta
         >= -float(success["maximum_clean_valid_purchase_regression"]),
         "confound_audit_green": all(confounds.values()),
@@ -946,57 +912,37 @@ def analyze_corrected_final(
         "binding_receipt_sha256": binding_receipt["binding_receipt_sha256"],
         "observations_sha256": sha256_file(observations_path),
         "pair_counts": {
-            "combined": len(pstar_pairs),
-            "held_out_combined": len(heldout_pstar),
+            "combined": len(optimal_pairs),
+            "held_out_combined": len(heldout_optimal),
         },
         "headline": {
-            "raw_hero_rate": _arm_mean(
+            "raw_optimal_selection_rate": _arm_mean(
                 matrix,
                 indexed,
                 arm=left_arm,
                 condition="combined",
-                metric="strict_binary",
+                metric="optimal_selection",
             ),
-            "corrected_hero_rate": _arm_mean(
+            "corrected_optimal_selection_rate": _arm_mean(
                 matrix,
                 indexed,
                 arm=right_arm,
                 condition="combined",
-                metric="strict_binary",
+                metric="optimal_selection",
             ),
-            "hero_rate_difference": hero_delta,
-            "hero_rate_one_sided_95_lower_bound": hero_lower,
+            "optimal_selection_rate_difference": optimal_delta,
+            "optimal_selection_rate_one_sided_95_lower_bound": optimal_lower,
+            "sign_randomization_pvalue": optimal_permutation,
             "mcnemar": mcnemar,
         },
-        "mandatory_secondary": {
-            "raw_mean_pstar": _arm_mean(
-                matrix,
-                indexed,
-                arm=left_arm,
-                condition="combined",
-                metric="preservation_strict",
-            ),
-            "corrected_mean_pstar": _arm_mean(
-                matrix,
-                indexed,
-                arm=right_arm,
-                condition="combined",
-                metric="preservation_strict",
-            ),
-            "pstar_difference": pstar_delta,
-            "pstar_one_sided_95_lower_bound": pstar_lower,
-            "pstar_sign_randomization_pvalue": pstar_permutation,
-        },
         "held_out": {
-            "hero_rate_difference": heldout_hero_delta,
-            "hero_rate_one_sided_95_lower_bound": heldout_hero_lower,
-            "scenario_hero_rate_differences": scenario_deltas,
+            "optimal_selection_rate_difference": heldout_optimal_delta,
+            "optimal_selection_rate_one_sided_95_lower_bound": heldout_optimal_lower,
+            "scenario_optimal_selection_rate_differences": scenario_deltas,
             "positive_scenarios": positive_scenarios,
-            "pstar_difference": heldout_pstar_delta,
-            "pstar_one_sided_95_lower_bound": heldout_pstar_lower,
         },
         "clean_guards": {
-            "pstar_difference": clean_pstar_delta,
+            "optimal_selection_rate_difference": clean_optimal_delta,
             "valid_purchase_difference": clean_purchase_delta,
         },
         "confound_audit": confounds,
@@ -1014,8 +960,8 @@ def render_corrected_markdown(report: dict[str, Any]) -> str:
             "",
             f"Selection: **{'PASS' if report['selected'] else 'FAIL'}**",
             "",
-            f"Combined binary hero delta: {rates['combined_binary_hero_delta']:.3f}.",
-            f"Clean binary hero regression: {rates['clean_binary_hero_regression']:.3f}.",
+            f"Combined optimal-selection-rate delta: {rates['combined_optimal_selection_delta']:.3f}.",
+            f"Clean optimal-selection-rate regression: {rates['clean_optimal_selection_regression']:.3f}.",
             f"Positive variants: {report['positive_variants']}/4.",
             f"Safety-backstop-bound runs: {report['safety_backstop_bound_runs']}.",
             "",
@@ -1028,11 +974,8 @@ def render_corrected_markdown(report: dict[str, Any]) -> str:
             "",
             f"Outcome: **{'SUCCESS' if report['success'] else 'NOT ESTABLISHED'}**",
             "",
-            f"Combined binary hero delta: {report['headline']['hero_rate_difference']:.3f}.",
-            (
-                "Combined preservation-strict delta: "
-                f"{report['mandatory_secondary']['pstar_difference']:.3f}."
-            ),
+            f"Combined optimal-selection-rate delta: "
+            f"{report['headline']['optimal_selection_rate_difference']:.3f}.",
             "",
             "## Gates",
             "",
