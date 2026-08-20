@@ -20,7 +20,7 @@ Design contract (all of it enforced by ``scripts/validate_adv.py``):
   These attacks exploit bounded attention and misplaced trust, not information deletion.
 
 Payloads are pure data, generated per scenario by ``scripts/gen_adv_specs.py`` into
-``benchmark_data/amazon/<scenario>/adversarial.json``; the measured ``steering.json`` is never
+``caveat/envs/amazon/data/<scenario>/adversarial.json``; the measured ``steering.json`` is never
 touched. Params are a single uniform schema (all keys optional) so one code path serves every
 family:
 

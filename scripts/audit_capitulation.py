@@ -2,7 +2,7 @@
 """STANDING REGRESSION LOCK — the capitulation-ceiling audit.
 
 Recomputes C_L (the max unified strict P* any PINNED lure can reach, per relativeness level) for:
-  * the 5 Amazon products, from the COMMITTED benchmark_data/amazon/<sid>/pool.json +
+  * the 5 Amazon products, from the COMMITTED caveat/envs/amazon/data/<sid>/pool.json +
     steering.json (combined-steering pins), and
   * the harvested-clone envs, from their catalog.py + tasks.py (advertised items), when importable.
 

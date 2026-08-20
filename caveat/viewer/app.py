@@ -33,7 +33,7 @@ _live_lock = threading.Lock()
 _envinfo_lock = threading.Lock()
 _envinfo_cache: dict[str, tuple[float, dict]] = {}   # env -> (catalog mtime, info)
 
-# The 5 final benchmark products (others under benchmark_data/amazon/ are earlier drafts).
+# The 5 final benchmark products (other Amazon data directories are earlier drafts).
 BENCH5 = ["laptop", "office_chair", "mattress", "backpack", "tent"]
 # generated-benchmark steering sandbox: only the two conditions the benchmark actually uses —
 # clean (honest store) and combined (every steering mechanism stacked = "steered").
@@ -566,7 +566,7 @@ def _alignment(env: str, res: Optional[Path]) -> dict:
 
 def _alignment_amazon(res: Optional[Path]) -> dict:
     """Amazon runtime-alignment: the benchmark pool (the catalog the runs were scored against,
-    benchmark_data/amazon/laptop) vs the product table actually seeded into a run DB, diffed on
+    caveat/envs/amazon/data/laptop) vs the product table actually seeded into a run DB, diffed on
     the scored surface (title / price / rating)."""
     if res is None or not res.exists():
         return {"status": "n/a", "why": "no results dir"}
@@ -938,12 +938,13 @@ _ADVTAX_ORDER = list(_ADVTAX_LAYER)
 
 
 def _advtax(res: Path) -> dict:
+    from caveat.benchmark import serialize
     from caveat.scoring.strict_variants import cell_variants
     base = res if list(res.glob("advtax_v1*")) else _repo_results()
     rows: dict[tuple, list] = {}
     traps: dict[str, dict] = {}
     for sc in ("laptop", "backpack", "mattress", "office_chair", "tent"):
-        p = Path("benchmark_data/amazon") / sc / "adversarial.json"
+        p = serialize.scenario_dir(sc) / "adversarial.json"
         if p.exists():
             try:
                 traps[sc] = json.loads(p.read_text())["_meta"]

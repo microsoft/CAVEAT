@@ -38,7 +38,7 @@ from _infra_classify import INFRA, classify_run
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_EASY_ROOT = REPO_ROOT / "results" / "overhaul_lb"
 DEFAULT_HARD_ROOT = REPO_ROOT / "results" / "truthful_hard_v4_sol_high_n2"
-DEFAULT_CATALOG_ROOT = REPO_ROOT / "benchmark_data" / "amazon"
+DEFAULT_CATALOG_ROOT = REPO_ROOT / "caveat" / "envs" / "amazon" / "data"
 DEFAULT_OUTPUT = REPO_ROOT / "results" / "caveat_harness_analysis" / "analysis.json"
 DEFAULT_MARKDOWN = REPO_ROOT / "results" / "caveat_harness_analysis" / "analysis.md"
 

@@ -3397,12 +3397,12 @@ def check_truthful_successor(scenario: ScenarioSpec, seed: int, *,
 
 
 def _shipped_seed(sid: str):
-    """The committed seed for one sid, from ``benchmark_data/amazon/<sid>/meta.json``
+    """The committed seed for one sid, from ``caveat/envs/amazon/data/<sid>/meta.json``
     (None when nothing is shipped)."""
     import json                                                 # noqa: PLC0415
-    from pathlib import Path                                    # noqa: PLC0415
+    from . import serialize                                     # noqa: PLC0415
 
-    p = Path(__file__).resolve().parents[2] / "benchmark_data" / "amazon" / sid / "meta.json"
+    p = serialize.scenario_dir(sid) / "meta.json"
     if not p.exists():
         return None
     return int(json.loads(p.read_text()).get("seed", 7))
@@ -3426,7 +3426,7 @@ def main(argv=None):
             s = _shipped_seed(sid)
             if s is None:
                 print(f"\n=== {sid} — no shipped seed "
-                      f"(benchmark_data/amazon/{sid}/meta.json missing) ===")
+                      f"(caveat/envs/amazon/data/{sid}/meta.json missing) ===")
                 all_ok = False
                 continue
             sid_seeds = [s]

@@ -37,6 +37,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
+from caveat.benchmark import serialize  # noqa: E402
+
 VARIANTS = ["thresholded", "mixed", "graded", "graded3", "graded4"]   # relativeness 0..4
 PRODUCTS = ["laptop", "office_chair", "mattress", "backpack", "tent"]
 HEADLINE_MODELS = ["gpt-5.5-high", "gpt-5.5-low", "gpt-4.1"]
@@ -64,7 +66,7 @@ _pin_cache: dict = {}
 def pinned_skus(scenario: str) -> set:
     if scenario not in _pin_cache:
         try:
-            st = json.loads((ROOT / "benchmark_data/amazon" / scenario / "steering.json").read_text())
+            st = json.loads((serialize.scenario_dir(scenario) / "steering.json").read_text())
             spec = st.get("combined", st) if isinstance(st, dict) else {}
             _pin_cache[scenario] = set(spec.get("decoy_skus") or [])
         except OSError:

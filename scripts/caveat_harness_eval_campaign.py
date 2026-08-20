@@ -33,6 +33,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT_DIR = Path(__file__).resolve().parent
+AMAZON_DATA_RELATIVE = Path("caveat") / "envs" / "amazon" / "data"
+AMAZON_DATA_ROOT = ROOT / AMAZON_DATA_RELATIVE
+FROZEN_AMAZON_DATA_RELATIVE = Path("frozen_inputs") / AMAZON_DATA_RELATIVE
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(SCRIPT_DIR))
 
@@ -1728,7 +1731,7 @@ def _original_artifact_manifest(repo_root: Path) -> dict[str, dict]:
         / "_catalogs"
     )
     for scenario in EASY_SCENARIOS:
-        source = repo_root / "benchmark_data" / "amazon" / scenario
+        source = repo_root / AMAZON_DATA_RELATIVE / scenario
         if not source.is_dir():
             raise ValueError(
                 f"original benchmark artifact root is missing: {source}"
@@ -1819,7 +1822,7 @@ def _validate_lockdiff(
         "/_catalogs/" in path for path in current_artifacts
     )
     benchmark_count = sum(
-        path.startswith("benchmark_data/amazon/")
+        path.startswith(f"{AMAZON_DATA_RELATIVE.as_posix()}/")
         for path in current_artifacts
     )
     if (catalog_count, benchmark_count) != (55, 50):
@@ -2853,7 +2856,7 @@ def _validate_refill_coexistence_record(
 
 def _artifact_roots() -> tuple[Path, ...]:
     return tuple(
-        ROOT / "benchmark_data" / "amazon" / scenario
+        AMAZON_DATA_ROOT / scenario
         for scenario in (*EASY_SCENARIOS, *HARD_SCENARIOS)
     )
 
@@ -2964,7 +2967,7 @@ def prepare_campaign(
         limit_contract=limit_contract,
     )
     artifacts = {}
-    frozen_root = campaign_dir / "frozen_inputs" / "benchmark_data" / "amazon"
+    frozen_root = campaign_dir / FROZEN_AMAZON_DATA_RELATIVE
     if frozen_root.exists():
         raise SystemExit(
             "partial frozen input tree exists; preserve it and choose a new "
@@ -3104,7 +3107,7 @@ def prepare_campaign(
         },
         "artifacts": artifacts,
         "frozen_artifact_root": (
-            "frozen_inputs/benchmark_data/amazon"
+            FROZEN_AMAZON_DATA_RELATIVE.as_posix()
         ),
         "frozen_artifact_inventory": frozen_inventory,
         "frozen_artifact_inventory_sha256": _inventory_sha(
@@ -3259,7 +3262,7 @@ def verify_campaign(campaign_dir: Path, *, quiet: bool = False) -> dict:
         "frozen artifact snapshot",
     )
     for scenario, record in manifest["artifacts"].items():
-        current = ROOT / "benchmark_data" / "amazon" / scenario
+        current = AMAZON_DATA_ROOT / scenario
         _verify_inventory(current, record["files"], f"runtime {scenario}")
         _verify_inventory(
             frozen_root / scenario,

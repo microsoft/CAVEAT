@@ -1,4 +1,4 @@
-"""Read/write CAVEAT's versioned per-scenario artifacts under ``benchmark_data/amazon/``."""
+"""Read/write Amazon's versioned CAVEAT artifacts from its environment package."""
 
 from __future__ import annotations
 
@@ -10,7 +10,8 @@ from .schema import (SCHEMA_VERSION, GeneratedInstruction, PreferenceSpec, Produ
                      ScenarioSpec, SteeringSpec)
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-DATA_ROOT = REPO_ROOT / "benchmark_data" / "amazon"
+DATA_RELATIVE_PATH = Path("caveat") / "envs" / "amazon" / "data"
+DATA_ROOT = REPO_ROOT / DATA_RELATIVE_PATH
 
 
 def scenario_dir(scenario_id: str, root: Optional[Path] = None) -> Path:

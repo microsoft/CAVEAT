@@ -161,7 +161,7 @@ def original_artifact_manifest() -> dict:
     """Full-byte manifest for every original task artifact and regenerated server sidecar."""
     paths = []
     for sid in ORIGINAL_SCENARIOS:
-        d = REPO / "benchmark_data" / "amazon" / sid
+        d = serialize.DATA_ROOT / sid
         if d.exists():
             paths.extend(p for p in d.rglob("*") if p.is_file())
         cat = REPO / "caveat" / "envs" / "amazon" / "server" / "_catalogs"

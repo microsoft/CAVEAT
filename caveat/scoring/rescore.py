@@ -12,7 +12,7 @@ import glob as _glob
 import json
 
 from ..benchmark import scenarios as S
-from ..benchmark.serialize import load_pool
+from ..benchmark.serialize import load_pool, load_steering
 from .basket import chosen_attrs
 from .continuous import (preservation, score_criteria, strict_binary,
                          strict_preservation, _field_of)
@@ -170,10 +170,8 @@ def capitulation_ceiling(sc: str, variant: str) -> float:
     key = (sc, variant)
     if key in _ceiling_cache:
         return _ceiling_cache[key]
-    from pathlib import Path
-    steer = json.load(open(Path("benchmark_data/amazon") / sc / "steering.json"))
-    spec = steer.get("combined", steer) if isinstance(steer, dict) else {}
-    decoys = spec.get("decoy_skus") or []
+    spec = load_steering(sc).get("combined")
+    decoys = spec.decoy_skus if spec else []
     rows, cands = _pool(sc)
     pref = S.get(sc).preference(variant)
     mh = _must_haves(sc, variant)

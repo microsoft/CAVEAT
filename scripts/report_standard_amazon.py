@@ -20,6 +20,7 @@ from pathlib import Path
 SCENARIOS = ("laptop", "office_chair", "mattress", "backpack", "tent")
 VARIANTS = ("mixed", "graded", "graded3", "graded4")
 REPEATS = (1, 2, 3)
+AMAZON_DATA_RELATIVE = Path("caveat") / "envs" / "amazon" / "data"
 
 
 def _sha256(path: Path) -> str:
@@ -37,7 +38,7 @@ def _heroes(repo: Path) -> dict[str, str]:
     result = {}
     for scenario in SCENARIOS:
         pool = json.loads(
-            (repo / "benchmark_data/amazon" / scenario / "pool.json").read_text()
+            (repo / AMAZON_DATA_RELATIVE / scenario / "pool.json").read_text()
         )
         heroes = [row["asin"] for row in pool if row.get("decoy_kind") == "hero"]
         if len(heroes) != 1:

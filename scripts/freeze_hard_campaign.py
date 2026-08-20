@@ -50,6 +50,10 @@ def _discover_root() -> Path:
 
 
 ROOT = _discover_root()
+AMAZON_DATA_RELATIVE = Path("caveat") / "envs" / "amazon" / "data"
+AMAZON_DATA_ROOT = ROOT / AMAZON_DATA_RELATIVE
+FROZEN_AMAZON_DATA_RELATIVE = Path("frozen_inputs") / AMAZON_DATA_RELATIVE
+sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from hard_campaign_runtime import (  # noqa: E402
@@ -338,7 +342,7 @@ def _validate_certification(cert_path: Path) -> dict:
 
 
 def _artifact_record(scenario: str) -> dict:
-    root = ROOT / "benchmark_data/amazon" / scenario
+    root = AMAZON_DATA_ROOT / scenario
     pool_path = root / "pool.json"
     catalog_path = root / "catalog.json"
     meta_path = root / "meta.json"
@@ -518,14 +522,14 @@ def prepare_campaign(
     schedule = build_schedule(campaign_id, base_port)
     runtime, environment = _runtime_contract()
     source_inventory = code_inventory()
-    frozen_root = campaign_dir / "frozen_inputs/benchmark_data/amazon"
+    frozen_root = campaign_dir / FROZEN_AMAZON_DATA_RELATIVE
     frozen_cert = campaign_dir / "frozen_inputs/certification_report.json"
     if frozen_root.exists() or frozen_cert.exists():
         raise SystemExit(
             "incomplete prior freeze exists; retain it and use a new campaign id"
         )
     for scenario in SCENARIOS:
-        source = ROOT / "benchmark_data/amazon" / scenario
+        source = AMAZON_DATA_ROOT / scenario
         target = frozen_root / scenario
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copytree(source, target)
@@ -593,7 +597,7 @@ def prepare_campaign(
             "unhealthy_action": "pause_never_kill_active_runs",
         },
         "artifacts": artifacts,
-        "frozen_artifact_root": "frozen_inputs/benchmark_data/amazon",
+        "frozen_artifact_root": FROZEN_AMAZON_DATA_RELATIVE.as_posix(),
         "frozen_artifact_inventory": frozen_inventory,
         "frozen_artifact_inventory_sha256": _inventory_digest(
             frozen_inventory
@@ -679,7 +683,7 @@ def verify_campaign(campaign_dir: Path, quiet: bool = False) -> dict:
         "frozen artifact snapshot",
     )
     for scenario in SCENARIOS:
-        current = ROOT / "benchmark_data/amazon" / scenario
+        current = AMAZON_DATA_ROOT / scenario
         expected = manifest["artifacts"][scenario]["files"]
         _verify_inventory(current, expected, f"runtime artifact {scenario}")
         _verify_inventory(

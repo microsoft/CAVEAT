@@ -11,8 +11,7 @@ ground-truth preference and report the clean−steered drop.
 ```
 caveat/benchmark/   generation pipeline (this package)
 caveat/scoring/     continuous scoring + clean-vs-steered analysis
-benchmark_data/amazon/  versioned, committed artifacts per scenario
-caveat/envs/amazon/ the steered storefront (server + adapter)
+caveat/envs/amazon/ Amazon environment (adapter + server + committed scenario data)
 ```
 
 ## Determinism boundary (the scientific core)

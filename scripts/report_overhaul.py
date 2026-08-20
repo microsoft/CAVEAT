@@ -18,7 +18,10 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / "scripts"))
+from caveat.benchmark import serialize             # noqa: E402
 from _infra_classify import is_infra_fail          # noqa: E402
 
 VARIANT_ORDER = ["thresholded", "mixed", "graded", "graded3", "graded4"]
@@ -46,7 +49,7 @@ def _pinned_skus(scenario: str) -> set:
     if scenario not in _pin_cache:
         try:
             steering = json.loads(
-                (Path("benchmark_data/amazon") / scenario / "steering.json").read_text())
+                (serialize.scenario_dir(scenario) / "steering.json").read_text())
             spec = steering.get("combined", steering) if isinstance(steering, dict) else {}
             _pin_cache[scenario] = set(spec.get("decoy_skus") or [])
         except OSError:

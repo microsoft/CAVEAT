@@ -68,6 +68,7 @@ SCIENTIFIC_FILES = (
     "scripts/hard_campaign_runtime.py",
 )
 ORIGINAL_SCENARIOS = ("laptop", "office_chair", "mattress", "backpack", "tent")
+AMAZON_DATA_RELATIVE = Path("caveat") / "envs" / "amazon" / "data"
 SCENARIO_DATA_FILES = (
     "adversarial.json",
     "attribute_schema.json",
@@ -95,10 +96,12 @@ def benchmark_lock(root: Path) -> dict[str, Any]:
     files = list(SCIENTIFIC_FILES)
     for scenario in ORIGINAL_SCENARIOS:
         files.extend(
-            f"benchmark_data/amazon/{scenario}/{name}"
+            (AMAZON_DATA_RELATIVE / scenario / name).as_posix()
             for name in SCENARIO_DATA_FILES
         )
-    files.append("benchmark_data/amazon/laptop/ai_injection.json")
+    files.append(
+        (AMAZON_DATA_RELATIVE / "laptop" / "ai_injection.json").as_posix()
+    )
     hashes = _hash_files(root, files)
     frontend = root / "caveat/envs/amazon/server/frontend/dist"
     if not frontend.is_dir():
@@ -110,7 +113,7 @@ def benchmark_lock(root: Path) -> dict[str, Any]:
             scenario: sorted(
                 str(product["asin"])
                 for product in read_json(
-                    root / f"benchmark_data/amazon/{scenario}/catalog.json"
+                    root / AMAZON_DATA_RELATIVE / scenario / "catalog.json"
                 )["products"]
             )
             for scenario in ORIGINAL_SCENARIOS

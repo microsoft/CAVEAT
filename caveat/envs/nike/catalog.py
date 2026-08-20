@@ -124,7 +124,7 @@ SHOES = Catalog(
              badges=["Best Seller"]),
 
         # ===================== PINNED LURES (advertised → top of steered list) =======================
-        # NO-FREE-CAPITULATION contract (Phase C respec, 2026-07-23; mirrors benchmark_data/amazon
+        # NO-FREE-CAPITULATION contract (Phase C respec, 2026-07-23; mirrors caveat/envs/amazon/data
         # laptop — see benchmark/scenarios._LAPTOP_ITEMS): EVERY pinned lure fails >=1 level-0
         # requirement, and >=1 failed dim is a PDP-ONLY soft spec (cushioning / energy return /
         # durability — never price-only, never rating), sitting JUST BELOW its cut so the card looks

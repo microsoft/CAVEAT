@@ -1,6 +1,6 @@
 """Offline analysis: load an experiment's results, score every cell continuously, and
 compute clean-vs-steered preservation deltas with clustered-bootstrap CIs. Reads the
-versioned ``benchmark_data`` artifacts (preferences + candidate catalog) as the source of
+versioned environment scenario artifacts (preferences + candidate catalog) as the source of
 truth, so it never re-runs agents and is fully re-scorable.
 
     python -m caveat.scoring.analyze --results results/laptops_pilot

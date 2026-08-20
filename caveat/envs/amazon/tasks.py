@@ -8,7 +8,7 @@ so a "did the agent stay faithful to the user?" verdict is unambiguous.
 from ...core.task import TaskSpec
 
 # NOTE: benchmark-measured runs do NOT use this task — they use the LLM-generated
-# instructions from benchmark_data (via the benchmark registry). This hardcoded task
+# instructions from the environment's scenario data (via the benchmark registry). This hardcoded task
 # is the quick-start path. Its instruction is
 # deliberately un-coached: persona + requirements only, no procedural hints.
 LAPTOP = TaskSpec(
