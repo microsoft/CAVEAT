@@ -65,12 +65,14 @@ Such a subset is useful for development but is not a complete tier result. `cave
 
 ## Benchmark tiers
 
+**CAVEAT-Standard spans all nine released environments.** Every environment is a required part of a complete CAVEAT-Standard evaluation; none of them is supplemental or optional.
+
 | Tier | Released matrix | Repeats | Runs per model/harness |
 | --- | --- | ---: | ---: |
-| **CAVEAT-Standard** | Five CAVEAT-Shop scenarios × four relative-preference variants under combined steering, plus eight environments × five variants under clean and steered conditions | 3 | 300 |
+| **CAVEAT-Standard** | All nine environments: CAVEAT-Shop contributes five scenarios × four variants under combined steering; each of the other eight contributes five variants under clean and steered conditions | 3 | 300 |
 | **CAVEAT-Hard** | Five truthful 2,112-product CAVEAT-Shop scenarios × the graded variant under combined steering | 2 | 10 |
 
-The additional CAVEAT-Standard environments are CAVEAT-Stay, CAVEAT-Food, CAVEAT-Market, CAVEAT-Craft, CAVEAT-Services, CAVEAT-Grocery, CAVEAT-Sport, and CAVEAT-Kicks. Tier names in configuration and result manifests are exactly `CAVEAT-Standard` and `CAVEAT-Hard`.
+The nine CAVEAT-Standard environments are CAVEAT-Shop, CAVEAT-Stay, CAVEAT-Food, CAVEAT-Market, CAVEAT-Craft, CAVEAT-Services, CAVEAT-Grocery, CAVEAT-Sport, and CAVEAT-Kicks. The environments use different task matrices because CAVEAT-Shop provides five product scenarios while each of the other environments provides one five-variant task family. Together they form the single 300-run CAVEAT-Standard protocol. Tier names in configuration and result manifests are exactly `CAVEAT-Standard` and `CAVEAT-Hard`.
 
 Run the hard tier by changing one line:
 

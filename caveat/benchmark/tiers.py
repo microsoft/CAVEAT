@@ -1,7 +1,7 @@
 """Canonical CAVEAT tier definitions.
 
 The two tiers intentionally have different matrices.  CAVEAT-Standard combines
-the five CAVEAT-Shop scenarios with the eight additional environments.  The
+the five CAVEAT-Shop scenarios with the other eight coequal environments.  The
 truthful, large-catalog CAVEAT-Hard tier uses only its five dedicated scenarios.
 """
 
