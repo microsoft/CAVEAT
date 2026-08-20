@@ -242,17 +242,22 @@ def mount_static(app: FastAPI, static_path: Path):
             # look like a live docs endpoint to a probing agent.
             if full_path in ("docs", "redoc", "openapi.json"):
                 return PlainTextResponse("Not Found", status_code=404)
-            static_root = os.path.realpath(static_dir)
-            file_path = os.path.realpath(os.path.join(static_root, full_path))
-            if (
-                file_path != static_root
-                and not file_path.startswith(static_root + os.sep)
-            ):
-                return PlainTextResponse("Not Found", status_code=404)
-            file_path = Path(file_path)
-            if (full_path and full_path != "index.html"
-                    and file_path.exists() and file_path.is_file()):
-                return FileResponse(file_path)
+            if full_path and full_path != "index.html":
+                static_root = os.path.realpath(static_dir)
+                static_prefix = static_root + os.sep
+                resolved_path = os.path.realpath(
+                    os.path.join(static_prefix, full_path)
+                )
+                # A path resolving to the root is a directory and therefore falls
+                # through to the SPA shell, just as it did before. Every filesystem
+                # access for a user-derived path remains directly inside the
+                # normalized-prefix guard so static analyzers can verify containment.
+                if resolved_path != static_root:
+                    if not resolved_path.startswith(static_prefix):
+                        return PlainTextResponse("Not Found", status_code=404)
+                    file_path = Path(resolved_path)
+                    if file_path.exists() and file_path.is_file():
+                        return FileResponse(file_path)
             # Falling through to the SPA shell means a real document load (initial
             # visit or a browser refresh) — client-side route changes never hit the
             # server. Reset ONCE per server process (initial load only): a refresh

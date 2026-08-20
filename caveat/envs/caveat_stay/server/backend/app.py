@@ -181,18 +181,35 @@ def mount_static(app: FastAPI, static_path: Path):
             # The disabled API-docs surface must be dead, not the SPA shell with a 200.
             if full_path in ("docs", "redoc", "openapi.json"):
                 return PlainTextResponse("Not Found", status_code=404)
-            static_root = os.path.realpath(static_dir)
-            file_path = os.path.realpath(os.path.join(static_root, full_path))
-            if (
-                file_path != static_root
-                and not file_path.startswith(static_root + os.sep)
-            ):
-                return PlainTextResponse("Not Found", status_code=404)
-            file_path = Path(file_path)
-            if file_path.exists() and file_path.is_file():
-                if file_path.suffix.lower() == ".html":
-                    return _html_response(file_path)
-                return FileResponse(file_path)
+            if full_path and full_path != "index.html":
+                static_root = os.path.realpath(static_dir)
+                static_prefix = static_root + os.sep
+                resolved_path = os.path.realpath(
+                    os.path.join(static_prefix, full_path)
+                )
+                # Keep every filesystem access for a user-derived path in the same
+                # normalized-prefix-guarded block. In particular, do not pass the
+                # checked path to _html_response: CodeQL cannot carry the checked
+                # state across that helper boundary.
+                if resolved_path != static_root:
+                    if not resolved_path.startswith(static_prefix):
+                        return PlainTextResponse("Not Found", status_code=404)
+                    file_path = Path(resolved_path)
+                    if file_path.exists() and file_path.is_file():
+                        if file_path.suffix.lower() == ".html":
+                            try:
+                                html = file_path.read_text(encoding="utf-8")
+                            except Exception:
+                                return FileResponse(file_path)
+                            return HTMLResponse(
+                                _inject_boot(html),
+                                headers={
+                                    "Cache-Control": (
+                                        "no-cache, no-store, must-revalidate"
+                                    )
+                                },
+                            )
+                        return FileResponse(file_path)
             return _html_response(static_dir / "index.html")
 
 
