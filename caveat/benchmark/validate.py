@@ -1,21 +1,30 @@
 """Validate the committed CAVEAT benchmark and its binary scoring contract.
 
-The release validator is intentionally artifact-based: the shipped JSON is the
-benchmark. It validates the binary optimal-selection contract without regenerating
-catalogs. Run it with no arguments to validate the five release scenarios, or pass
-other shipped scenario directory names explicitly.
+The validator is intentionally artifact-based: the shipped data is the benchmark.
+It validates both canonical tiers without regenerating catalogs.
 """
 
 from __future__ import annotations
 
+import importlib
 import json
 from collections import Counter
+from collections.abc import Iterable
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any
 
 from ..scoring.optimal_selection import optimal_indices
 from . import serialize
-from .run import DEFAULT_SCENARIOS
+from .tiers import (
+    CAVEAT_HARD,
+    CAVEAT_STANDARD,
+    HARD_VARIANTS,
+    SHOP_HARD_SCENARIOS,
+    SHOP_STANDARD_SCENARIOS,
+    STANDARD_SHOP_VARIANTS,
+    STOREFRONT_ENVIRONMENTS,
+    TIER_NAMES,
+)
 
 REQUIRED_FILES = {
     "attribute_schema.json",
@@ -41,7 +50,7 @@ def shipped_scenarios() -> tuple[str, ...]:
 def _read_json(path: Path) -> Any:
     try:
         return json.loads(path.read_text())
-    except Exception as exc:
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
         raise ValueError(f"{path.name}: invalid JSON: {exc}") from exc
 
 
@@ -91,7 +100,7 @@ def validate_scenario(
         meta = serialize.load_meta(scenario_id)
         steering = _read_json(root / "steering.json")
         schema = _read_json(root / "attribute_schema.json")
-    except Exception as exc:
+    except (OSError, ValueError, KeyError, TypeError) as exc:
         issues.append(str(exc))
         return {"scenario": scenario_id, "issues": issues}
 
@@ -116,7 +125,10 @@ def validate_scenario(
         issues.append("meta scenario_id differs from directory name")
     if meta.get("n_products") != len(products):
         issues.append("meta n_products differs from catalog size")
-    if schema.get("scenario_id") not in {scenario_id, scenario_id.removesuffix("_hard")}:
+    if schema.get("scenario_id") not in {
+        scenario_id,
+        scenario_id.removesuffix("_hard"),
+    }:
         issues.append("attribute schema scenario_id is inconsistent")
 
     variants = set(preferences)
@@ -130,7 +142,7 @@ def validate_scenario(
 
     try:
         rows = serialize.load_pool(scenario_id)
-    except Exception as exc:
+    except (OSError, ValueError, KeyError, TypeError) as exc:
         rows = []
         issues.append(f"pool schema error: {exc}")
     candidates = [{**row.attrs(), "no_addons": True} for row in rows]
@@ -188,32 +200,112 @@ def validate_scenario(
 
 
 def validate(scenarios: Iterable[str] | None = None) -> list[dict[str, Any]]:
-    selected = tuple(scenarios or DEFAULT_SCENARIOS)
+    selected = tuple(scenarios or SHOP_STANDARD_SCENARIOS)
     return [validate_scenario(scenario_id) for scenario_id in selected]
 
 
-def main(argv: list[str] | None = None) -> int:
-    import sys
+def validate_storefront_environment(environment: str) -> dict[str, Any]:
+    """Validate one non-shop environment's binary optimal-selection oracle."""
+    from ..envs._storefront.tasks7 import VARIANTS7, project
 
-    selected = list(sys.argv[1:] if argv is None else argv)
-    known = set(shipped_scenarios())
-    unknown = sorted(set(selected) - known)
-    if unknown:
-        print(f"unknown shipped scenarios: {', '.join(unknown)}")
-        return 2
-    reports = validate(selected or None)
-    passed = True
-    for report in reports:
-        ok = not report["issues"]
-        passed &= ok
-        print(
-            f"{report['scenario']}: {'OK' if ok else 'FAIL'} "
-            f"products={report.get('products', 0)} variants={len(report.get('variants', []))}"
+    spec = importlib.import_module(f"caveat.envs.{environment}.tasks").PREF7
+    catalog_module = importlib.import_module(f"caveat.envs.{environment}.catalog")
+    catalogs = [
+        value
+        for value in vars(catalog_module).values()
+        if hasattr(value, "name")
+        and (hasattr(value, "items") or hasattr(value, "listings"))
+    ]
+    catalog = next(
+        (value for value in catalogs if getattr(value, "name", None) == spec.catalog),
+        catalogs[0],
+    )
+    items = list(getattr(catalog, "items", None) or catalog.listings)
+    items = [item for item in items if getattr(item, "role", "") != "addon"]
+    candidates = [item.attrs() for item in items]
+    heroes = {index for index, item in enumerate(items) if item.role == "hero"}
+    advertised = {index for index, item in enumerate(items) if item.advertised}
+    issues: list[str] = []
+    optimal_by_variant: dict[str, list[str]] = {}
+    shared_relative_winner: set[int] | None = None
+
+    for variant in VARIANTS7:
+        preferences, graded = project(spec, variant)
+        winners = optimal_indices(candidates, preferences, graded)
+        optimal_by_variant[variant] = sorted(
+            str(
+                getattr(items[index], "sku", None)
+                or getattr(items[index], "listing_id", None)
+                or getattr(items[index], "title", "?")
+            )
+            for index in winners
         )
-        for issue in report["issues"]:
-            print(f"  ISSUE: {issue}")
+        if not winners:
+            issues.append(f"{variant}: no optimal selection")
+        if graded and len(winners) != 1:
+            issues.append(
+                f"{variant}: expected one unique optimum, found {len(winners)}"
+            )
+        if graded and len(winners) == 1:
+            if shared_relative_winner is None:
+                shared_relative_winner = winners
+            elif winners != shared_relative_winner:
+                issues.append(f"{variant}: relative optimum differs across variants")
+        if heroes and not heroes.issubset(winners):
+            issues.append(f"{variant}: authored reference item is not optimal")
+        if advertised & winners:
+            issues.append(f"{variant}: an advertised item is optimal")
+    return {
+        "environment": environment,
+        "products": len(items),
+        "optimal_by_variant": optimal_by_variant,
+        "issues": issues,
+    }
+
+
+def validate_tier(tier: str) -> list[dict[str, Any]]:
+    """Validate every oracle used by one canonical tier."""
+    if tier == CAVEAT_STANDARD:
+        reports = [
+            validate_scenario(scenario, measured_variants=STANDARD_SHOP_VARIANTS)
+            for scenario in SHOP_STANDARD_SCENARIOS
+        ]
+        reports.extend(
+            validate_storefront_environment(env) for env in STOREFRONT_ENVIRONMENTS
+        )
+        return reports
+    if tier == CAVEAT_HARD:
+        return [
+            validate_scenario(scenario, measured_variants=HARD_VARIANTS)
+            for scenario in SHOP_HARD_SCENARIOS
+        ]
+    raise ValueError(f"unknown tier {tier!r}")
+
+
+def print_validation(tiers: Iterable[str]) -> bool:
+    passed = True
+    for tier in tiers:
+        print(f"{tier}:")
+        for report in validate_tier(tier):
+            label = report.get("scenario") or report.get("environment") or "?"
+            ok = not report["issues"]
+            passed &= ok
+            print(
+                f"  {label}: {'OK' if ok else 'FAIL'} products={report.get('products', 0)}"
+            )
+            for issue in report["issues"]:
+                print(f"    ISSUE: {issue}")
     print("ALL OK" if passed else "FAILURES PRESENT")
-    return 0 if passed else 1
+    return passed
+
+
+def main(argv: list[str] | None = None) -> int:
+    import argparse
+
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--tier", choices=TIER_NAMES, action="append")
+    args = parser.parse_args(argv)
+    return 0 if print_validation(args.tier or TIER_NAMES) else 1
 
 
 if __name__ == "__main__":

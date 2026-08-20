@@ -1,0 +1,32 @@
+diff --git a/src/prime_rl/trainer/models/layers/lora/multi_linear.py b/src/prime_rl/trainer/models/layers/lora/multi_linear.py
+index 073944b..a64bb89 100644
+--- a/src/prime_rl/trainer/models/layers/lora/multi_linear.py
++++ b/src/prime_rl/trainer/models/layers/lora/multi_linear.py
+@@ -9,9 +9,25 @@
++class _ContiguousGroupedMMGrad(torch.autograd.Function):
++    """Keep grouped-MM forward values while canonicalizing its incoming gradient layout."""
++
++    @staticmethod
++    def forward(ctx, tensor: torch.Tensor) -> torch.Tensor:
++        return tensor
++
++    @staticmethod
++    def backward(ctx, grad: torch.Tensor) -> torch.Tensor:
++        return grad.contiguous()
++
++
+ def _run_lora_grouped_mm(
+     x: torch.Tensor,
+     lora_A: torch.Tensor,
+     lora_B: torch.Tensor,
+     offsets: torch.LongTensor,
+ ) -> torch.Tensor:
+-    _a_out = torch._grouped_mm(x, lora_A.transpose(-2, -1), offsets)
+-    lora_out = torch._grouped_mm(_a_out, lora_B.transpose(-2, -1), offsets)
++    _a_out = _ContiguousGroupedMMGrad.apply(
++        torch._grouped_mm(x, lora_A.transpose(-2, -1), offsets)
++    )
++    lora_out = _ContiguousGroupedMMGrad.apply(
++        torch._grouped_mm(_a_out, lora_B.transpose(-2, -1), offsets)
++    )
+     return lora_out

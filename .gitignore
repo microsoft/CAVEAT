@@ -4,48 +4,21 @@ build/
 .venv/
 results/
 *.db
-caveat/envs/*/server/_catalogs/
-caveat/envs/*/server/*.db
-caveat/envs/caveat_stay/server/frontend/node_modules/
-runs/llm_cache/
 .DS_Store
 .env
-
 *.egg-info/
 caveat/runs/
-runs/
-
-# external website clones fetched for adaptation (bulky; never committed) +
-# local session bootstrapping for the "8 new marketplaces" build-out
-clones/
-CHAT.md
-
-# node deps for any environment frontend (built dist/ IS served, so not ignored)
 node_modules/
-caveat/envs/*/server/frontend/node_modules/
-webpage_example_screenshot/
-
-# per-env build workspaces (the harvested clone source + its node_modules + Next/webpack
-# build artifacts). Bulky and reconstructable; the BUILT frontend under server/frontend/
-# is what gets served + committed, so the envs run without these.
 caveat/envs/*/server/_build/
-# served frontends ship the production bundles, not their source maps
+caveat/envs/*/server/_catalogs/
+caveat/envs/*/server/*.db
 caveat/envs/*/server/frontend/**/*.map
-
-# caveat_food / caveat_services / caveat_sport were built in place under server/frontend/, so that dir still
-# holds the harvested source + node_modules around the built output. Only the built output
-# subdir is actually served (frontend/out, /build, /dist) — keep that, ignore the rest.
 caveat/envs/caveat_food/server/frontend/*
 !caveat/envs/caveat_food/server/frontend/out
 caveat/envs/caveat_sport/server/frontend/*
 !caveat/envs/caveat_sport/server/frontend/build
 caveat/envs/caveat_services/server/frontend/*
 !caveat/envs/caveat_services/server/frontend/dist
-
-# local scratch/testing (image-gen experiments, etc.)
-playground/
-
-# Training worktrees: commit source/configuration, never local environments or outputs.
 training/**/.git/
 training/**/.worktrees/
 training/**/.venv/

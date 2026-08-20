@@ -1,11 +1,9 @@
 """Experiments = a matrix of (environment × scaffold × model × task × condition),
 run in parallel and written to disk in the shared trajectory format.
 
-Parallelism is at two levels: the runner fans the matrix out across a pool of
-worker *processes* (one isolated browser + server per cell), and native scaffolds
-additionally get the unified llm_client's internal request concurrency. Each cell
-runs in its own subprocess so one crash (or a wedged browser) can't poison the run,
-and the matrix is resumable — a cell whose result already exists is skipped.
+The runner fans the matrix out across worker processes, with one isolated browser
+and environment server per cell. One crash cannot poison the full run, and the
+matrix is resumable: a completed cell is skipped on restart.
 
     exp = Experiment(name="laptops", scaffolds=["browseruse"],
                      models=["gpt-5.5", "gpt-4.1"], tasks=tasks,
@@ -22,7 +20,6 @@ import sys
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Iterable, Optional
 
 from .environment import ENVIRONMENTS, ServerHandle
 from .models import ModelSpec
@@ -46,6 +43,7 @@ def auto_jobs() -> int:
     a server (~0.7GB RAM, mostly I/O-bound waiting on the model), so we cap by both
     CPU and memory and leave some headroom."""
     import os
+
     cpu = os.cpu_count() or 4
     mem_gb = _total_mem_gb()
     by_mem = int(mem_gb / 1.5) if mem_gb else cpu
@@ -54,13 +52,15 @@ def auto_jobs() -> int:
 
 def _total_mem_gb() -> float:
     import os
+
     try:
-        return os.sysconf("SC_PHYS_PAGES") * os.sysconf("SC_PAGE_SIZE") / (1024 ** 3)
+        return os.sysconf("SC_PHYS_PAGES") * os.sysconf("SC_PAGE_SIZE") / (1024**3)
     except (ValueError, OSError, AttributeError):
         try:
-            for line in open("/proc/meminfo"):
-                if line.startswith("MemTotal"):
-                    return int(line.split()[1]) / (1024 ** 2)
+            with open("/proc/meminfo") as meminfo:
+                for line in meminfo:
+                    if line.startswith("MemTotal"):
+                        return int(line.split()[1]) / (1024**2)
         except OSError:
             pass
     return 0.0
@@ -78,19 +78,31 @@ class Cell:
     @property
     def name(self) -> str:
         safe = lambda s: str(s).replace("/", "-")
-        return "__".join(safe(x) for x in
-                         (self.env, self.scaffold, self.model.name, self.task.task_id, self.condition))
+        return "__".join(
+            safe(x)
+            for x in (
+                self.env,
+                self.scaffold,
+                self.model.name,
+                self.task.task_id,
+                self.condition,
+            )
+        )
 
 
 @dataclass
 class Experiment:
     name: str
     scaffolds: list[str]
-    models: list                            # list[str | dict | ModelSpec]
+    models: list  # list[str | dict | ModelSpec]
     tasks: list[TaskSpec]
     conditions: list[str] = field(default_factory=lambda: ["clean"])
-    max_steps: dict[str, int] = field(default_factory=dict)   # per-scaffold override
+    max_steps: dict[str, int] = field(default_factory=dict)  # per-scaffold override
     base_port: int = 9100
+    plugins: list[str] = field(
+        default_factory=list
+    )  # import paths registering custom scaffolds
+    tier: str | None = None
 
     def model_specs(self) -> list[ModelSpec]:
         return [ModelSpec.parse(m) for m in self.models]
@@ -102,8 +114,16 @@ class Experiment:
             for scaffold in self.scaffolds:
                 for model in self.model_specs():
                     for cond in self.conditions:
-                        out.append(Cell(task.env, scaffold, model, task, cond,
-                                        self.base_port + i))
+                        out.append(
+                            Cell(
+                                task.env,
+                                scaffold,
+                                model,
+                                task,
+                                cond,
+                                self.base_port + i,
+                            )
+                        )
                         i += 1
         return out
 
@@ -114,9 +134,18 @@ class Experiment:
 # --------------------------------------------------------------------------- #
 # Run a single cell (this is what each worker process executes)
 # --------------------------------------------------------------------------- #
-def run_cell(env_name: str, scaffold_name: str, model: ModelSpec, task: TaskSpec,
-             condition: str, port: int, out_dir: Path, *, max_steps: int = 30,
-             headless: bool = True) -> Trajectory:
+def run_cell(
+    env_name: str,
+    scaffold_name: str,
+    model: ModelSpec,
+    task: TaskSpec,
+    condition: str,
+    port: int,
+    out_dir: Path,
+    *,
+    max_steps: int = 30,
+    headless: bool = True,
+) -> Trajectory:
     """Execute one (env, scaffold, model, task, condition) cell and save it."""
     out_dir = Path(out_dir)
     env = ENVIRONMENTS.create(env_name)
@@ -125,35 +154,74 @@ def run_cell(env_name: str, scaffold_name: str, model: ModelSpec, task: TaskSpec
 
     ok, reason = scaffold.supports(model)
     if not ok:
-        traj = Trajectory(env_name, scaffold_name, model.name, task.task_id, condition,
-                          task.instruction, task.preferences,
-                          evaluation=Evaluation("skipped", success=False),
-                          stats={"error": f"unsupported: {reason}", "skipped": True})
+        traj = Trajectory(
+            env_name,
+            scaffold_name,
+            model.name,
+            task.task_id,
+            condition,
+            task.instruction,
+            task.preferences,
+            evaluation=Evaluation("skipped", success=False),
+            stats={"error": f"unsupported: {reason}", "skipped": True},
+        )
         traj.save(out_dir)
         return traj
 
-    handle: Optional[ServerHandle] = None
+    handle: ServerHandle | None = None
     t0 = time.time()
-    task.condition = condition          # the env seeds the right (clean/steered) catalog
+    task.condition = condition  # the env seeds the right (clean/steered) catalog
     try:
-        handle = env.start(port, task, work_dir=out_dir)   # server DB lives in the cell dir
-        ctx = RunContext(task=task, start_url=env.start_url(port, task), model=model,
-                         work_dir=out_dir / "_work", max_steps=max_steps, headless=headless)
+        handle = env.start(
+            port, task, work_dir=out_dir
+        )  # server DB lives in the cell dir
+        ctx = RunContext(
+            task=task,
+            start_url=env.start_url(port, task),
+            model=model,
+            work_dir=out_dir / "_work",
+            max_steps=max_steps,
+            headless=headless,
+        )
         ctx.work_dir.mkdir(parents=True, exist_ok=True)
         raw: RawTrajectory = scaffold.run(ctx)
         evaluation = env.evaluate(handle, task)
-        stats = {"seconds": round(time.time() - t0, 1), "num_steps": len(raw.steps), **raw.stats}
-        traj = Trajectory(env_name, scaffold_name, model.name, task.task_id, condition,
-                          task.instruction, task.preferences, steps=raw.steps,
-                          answer=raw.answer, evaluation=evaluation, stats=stats)
+        stats = {
+            "seconds": round(time.time() - t0, 1),
+            "num_steps": len(raw.steps),
+            **raw.stats,
+        }
+        traj = Trajectory(
+            env_name,
+            scaffold_name,
+            model.name,
+            task.task_id,
+            condition,
+            task.instruction,
+            task.preferences,
+            steps=raw.steps,
+            answer=raw.answer,
+            evaluation=evaluation,
+            stats=stats,
+        )
     except Exception as e:  # noqa: BLE001
         import traceback
-        traj = Trajectory(env_name, scaffold_name, model.name, task.task_id, condition,
-                          task.instruction, task.preferences,
-                          evaluation=Evaluation("error", success=False),
-                          stats={"seconds": round(time.time() - t0, 1),
-                                 "error": f"{type(e).__name__}: {e}",
-                                 "traceback": traceback.format_exc()[-2000:]})
+
+        traj = Trajectory(
+            env_name,
+            scaffold_name,
+            model.name,
+            task.task_id,
+            condition,
+            task.instruction,
+            task.preferences,
+            evaluation=Evaluation("error", success=False),
+            stats={
+                "seconds": round(time.time() - t0, 1),
+                "error": f"{type(e).__name__}: {e}",
+                "traceback": traceback.format_exc()[-2000:],
+            },
+        )
     finally:
         if handle is not None:
             handle.stop()
@@ -164,20 +232,37 @@ def run_cell(env_name: str, scaffold_name: str, model: ModelSpec, task: TaskSpec
 # --------------------------------------------------------------------------- #
 # Runner — fan the matrix out across worker processes
 # --------------------------------------------------------------------------- #
-_GLYPH = {"compliant": "✓", "success": "✓", "violation": "○", "decoy": "⚠",
-          "advertised": "⚠", "none": "–", "error": "✗", "skipped": "·"}
+_GLYPH = {
+    "compliant": "✓",
+    "success": "✓",
+    "violation": "○",
+    "decoy": "⚠",
+    "advertised": "⚠",
+    "none": "–",
+    "error": "✗",
+    "skipped": "·",
+}
 
 
 class Runner:
-    def __init__(self, results_dir: Path | str = "results", headless: bool = True) -> None:
+    def __init__(
+        self, results_dir: Path | str = "results", headless: bool = True
+    ) -> None:
         # Absolute so per-cell DB/output paths survive the cwd=server_dir subprocesses.
         self.results_dir = Path(results_dir).resolve()
         self.headless = headless
 
     def run(self, exp: Experiment, *, jobs: int = 1, force: bool = False) -> Path:
+        if exp.plugins:
+            import importlib
+
+            for module in exp.plugins:
+                importlib.import_module(module)
         exp_dir = self.results_dir / exp.name
         exp_dir.mkdir(parents=True, exist_ok=True)
-        (exp_dir / "experiment.json").write_text(json.dumps(_exp_manifest(exp), indent=2, default=str))
+        (exp_dir / "experiment.json").write_text(
+            json.dumps(_exp_manifest(exp), indent=2, default=str)
+        )
 
         cells = [c for c in exp.cells() if force or not _is_done(exp_dir / c.name)]
         skipped = len(exp.cells()) - len(cells)
@@ -193,21 +278,22 @@ class Runner:
                 out_dir = exp_dir / cell.name
                 out_dir.mkdir(parents=True, exist_ok=True)
                 spec = _cell_spec(exp, cell, out_dir, self.headless)
-                log = open(out_dir / "run.log", "w")
-                # CAVEAT_CACHE_NONCE makes the llm_client disk-cache key unique per
-                # (experiment, cell): repeats live in differently-named experiments
-                # (e.g. <env>_r1..rN), so native-chat scaffolds can't collapse n repeats
-                # into one cached response. Measured scaffolds build their own clients
-                # and ignore it.
-                cell_env = {**os.environ,
-                            "CAVEAT_CACHE_NONCE": f"{exp.name}/{cell.name}"}
-                p = subprocess.Popen([sys.executable, "-m", "caveat.run_cell"],
-                                     stdin=subprocess.PIPE, stdout=log, stderr=subprocess.STDOUT,
-                                     text=True, env=cell_env)
+                # The process poll loop owns and closes this long-lived stream.
+                log = open(out_dir / "run.log", "w")  # noqa: SIM115
+                p = subprocess.Popen(
+                    [sys.executable, "-m", "caveat.run_cell"],
+                    stdin=subprocess.PIPE,
+                    stdout=log,
+                    stderr=subprocess.STDOUT,
+                    text=True,
+                    env=os.environ.copy(),
+                )
                 p.stdin.write(json.dumps(spec))
                 p.stdin.close()
                 running.append((cell, p, log))
-                print(f"  ▶ {cell.name}  (port {cell.port})  [{len(running)} running, {len(pending)} queued]")
+                print(
+                    f"  ▶ {cell.name}  (port {cell.port})  [{len(running)} running, {len(pending)} queued]"
+                )
                 # Optional launch pacing: N chromiums + env servers cold-starting in the same
                 # instant can starve each other into mass navigation timeouts (0-step cells).
                 # CAVEAT_SPAWN_STAGGER=<seconds> spaces out spawns; 0/absent = no pacing.
@@ -223,9 +309,11 @@ class Runner:
                 done += 1
                 s = _read_summary(exp_dir / cell.name)
                 g = _GLYPH.get(s.get("outcome", "error"), "?")
-                print(f"  {g} {cell.name}  → {s.get('outcome')} "
-                      f"chosen={s.get('chosen_label') or s.get('chosen')} "
-                      f"({s.get('seconds')}s)  [{done}/{len(cells)}]")
+                print(
+                    f"  {g} {cell.name}  → {s.get('outcome')} "
+                    f"chosen={s.get('chosen_label') or s.get('chosen')} "
+                    f"({s.get('seconds')}s)  [{done}/{len(cells)}]"
+                )
             running = still
             if pending or running:
                 time.sleep(1.5)
@@ -240,8 +328,11 @@ class Runner:
             s = _read_summary(exp_dir / cell.name)
             if s:
                 results.append(s)
-        (exp_dir / "index.json").write_text(json.dumps({"experiment": exp.name, "results": results},
-                                                       indent=2, default=str))
+        (exp_dir / "index.json").write_text(
+            json.dumps(
+                {"experiment": exp.name, "results": results}, indent=2, default=str
+            )
+        )
 
 
 # --------------------------------------------------------------------------- #
@@ -249,31 +340,54 @@ class Runner:
 # --------------------------------------------------------------------------- #
 def _cell_spec(exp: Experiment, cell: Cell, out_dir: Path, headless: bool) -> dict:
     return {
-        "env": cell.env, "scaffold": cell.scaffold, "condition": cell.condition,
-        "port": cell.port, "out_dir": str(out_dir), "headless": headless,
+        "env": cell.env,
+        "scaffold": cell.scaffold,
+        "condition": cell.condition,
+        "port": cell.port,
+        "out_dir": str(out_dir),
+        "headless": headless,
         "max_steps": exp.steps_for(cell.scaffold),
+        "plugins": exp.plugins,
         "model": _model_to_dict(cell.model),
         "task": _task_to_dict(cell.task),
     }
 
 
 def _model_to_dict(m: ModelSpec) -> dict:
-    return {"name": m.name, "provider": m.provider, "base_url": m.base_url,
-            "api_key": m.api_key, "deployment": m.deployment, "vision": m.vision,
-            "region": m.region, "extra": m.extra}
+    return {
+        "name": m.name,
+        "provider": m.provider,
+        "base_url": m.base_url,
+        "api_key": m.api_key,
+        "deployment": m.deployment,
+        "vision": m.vision,
+        "extra": m.extra,
+    }
 
 
 def _task_to_dict(t: TaskSpec) -> dict:
-    return {"task_id": t.task_id, "env": t.env, "instruction": t.instruction,
-            "preferences": t.preferences, "catalog": t.catalog, "start_path": t.start_path,
-            "params": t.params, "metadata": t.metadata}
+    return {
+        "task_id": t.task_id,
+        "env": t.env,
+        "instruction": t.instruction,
+        "preferences": t.preferences,
+        "catalog": t.catalog,
+        "start_path": t.start_path,
+        "params": t.params,
+        "metadata": t.metadata,
+    }
 
 
 def _exp_manifest(exp: Experiment) -> dict:
-    return {"name": exp.name, "scaffolds": exp.scaffolds,
-            "models": [m.name for m in exp.model_specs()],
-            "conditions": exp.conditions,
-            "tasks": [_task_to_dict(t) for t in exp.tasks]}
+    return {
+        "name": exp.name,
+        "tier": exp.tier,
+        "scaffolds": exp.scaffolds,
+        "models": [m.name for m in exp.model_specs()],
+        "conditions": exp.conditions,
+        "plugins": exp.plugins,
+        "tasks": [_task_to_dict(t) for t in exp.tasks],
+    }
 
 
 def _read_summary(cell_dir: Path) -> dict:

@@ -3,30 +3,30 @@ name = "CAVEAT"
 version = "0.1.0"
 description = "Run models on the CAVEAT benchmark and measure preference fidelity."
 requires-python = ">=3.10"
+readme = "README.md"
 license = "MIT"
+authors = [{name = "Yuxuan Li", email = "yuxuanll@andrew.cmu.edu"}]
 dependencies = [
-    # framework + model layer
     "openai>=1.30.0",
-    "azure-identity>=1.15.0",
     "pyyaml>=6.0",
     "pillow>=10.0.0",
     "requests>=2.31.0",
-    "python-dotenv>=1.0.0",
-    "beautifulsoup4>=4.12.0",
-    # the bundled environment servers (FastAPI apps) run in this same venv
     "fastapi>=0.100.0",
     "uvicorn>=0.23.0",
     "sqlmodel>=0.0.14",
     "python-multipart>=0.0.6",
     "passlib[bcrypt]>=1.7.4",
     "python-jose[cryptography]>=3.3.0",
-    # BrowserUse and the environment validation utilities drive Playwright
     "playwright>=1.40.0",
 ]
 
 [project.optional-dependencies]
-browseruse = ["browser-use>=0.1.0", "pint>=0.24,<1"]
+browser = ["browser-use==0.13.6", "pint>=0.24,<1"]
 dev = ["ruff>=0.4"]
+
+[project.urls]
+Repository = "https://github.com/microsoft/CAVEAT"
+Issues = "https://github.com/microsoft/CAVEAT/issues"
 
 [project.scripts]
 caveat = "caveat.cli:main"
@@ -40,6 +40,8 @@ include = ["caveat*"]
 
 [tool.setuptools.package-data]
 "caveat" = [
-    "llm_client.py",
     "envs/**/*",
 ]
+
+[tool.setuptools.exclude-package-data]
+"*" = ["**/__pycache__/*", "**/*.pyc", "**/*.pyo"]

@@ -19,10 +19,10 @@ import re
 import stat
 import tempfile
 import time
+from collections.abc import Mapping
 from functools import wraps
-from functools import lru_cache
 from pathlib import Path
-from typing import Any, Literal, Mapping, Optional
+from typing import Any, Literal, Optional
 from urllib.parse import urlsplit
 
 from pydantic import BaseModel, Field, ValidationError
@@ -31,7 +31,6 @@ from ..core.models import ModelSpec
 from ..core.scaffold import SCAFFOLDS, RawTrajectory, RunContext, Scaffold
 from ..core.trajectory import Step
 from ._browser import BrowserConfig
-
 
 _LOG = logging.getLogger(__name__)
 _BROWSER_USE_VERSION = "0.13.6"
@@ -61,23 +60,18 @@ _BROWSER_USE_MESSAGE_MANAGER_METHOD_SIGNATURE = (
     "result: 'list[ActionResult] | None' = None, "
     "step_info: 'AgentStepInfo | None' = None) -> 'None'"
 )
-_LOSSLESS_READ_STATE_RECOVERY_ENV = (
-    "CAVEAT_LOSSLESS_READ_STATE_RECOVERY_JSON"
-)
+_LOSSLESS_READ_STATE_RECOVERY_ENV = "CAVEAT_LOSSLESS_READ_STATE_RECOVERY_JSON"
 _LOSSLESS_READ_STATE_RECOVERY_SCHEMA = (
     "caveat.lossless-read-state-recovery-authorization.v1"
 )
 _LOSSLESS_READ_STATE_RECOVERY_MODE = "hash_bound_singleton_retry"
-_LOSSLESS_READ_STATE_RECOVERY_CAMPAIGN_UUID = (
-    "c38400ed-ccb1-427a-a749-a8e895a0dea8"
-)
+_LOSSLESS_READ_STATE_RECOVERY_CAMPAIGN_UUID = "c38400ed-ccb1-427a-a749-a8e895a0dea8"
 _LOSSLESS_READ_STATE_RECOVERY_MANIFEST_SHA256 = (
     "d7e1046483fea0f42ce9b20c961b4e31382414c85479042064d2686b0108fa91"
 )
 _LOSSLESS_READ_STATE_RECOVERY_RUN_INDEX = 598
 _LOSSLESS_READ_STATE_RECOVERY_RUN_ID = (
-    "caveat_grocery_r1/"
-    "caveat_grocery__browseruse__Kimi-K2.6__greens-graded4__clean"
+    "caveat_grocery_r1/caveat_grocery__browseruse__Kimi-K2.6__greens-graded4__clean"
 )
 _LOSSLESS_READ_STATE_RECOVERY_PRIOR_ATTEMPT = 1
 _LOSSLESS_READ_STATE_RECOVERY_PRIOR_COMPLETION_SHA256 = (
@@ -87,15 +81,11 @@ _LOSSLESS_READ_STATE_RECOVERY_PRIOR_TRAJECTORY_SHA256 = (
     "608fb22554db6eb662d16ebe5955cfccfa291a279336b121a376c5d5c1c339b4"
 )
 _READ_STATE_CONTENT_LIMIT_CHARS = 60000
-_READ_STATE_TRUNCATION_MARKER = (
-    "\n... [Content truncated at 60k characters]"
-)
+_READ_STATE_TRUNCATION_MARKER = "\n... [Content truncated at 60k characters]"
 _UPSTREAM_EXTRACT_TIMEOUT_S = 120.0
 _UPSTREAM_ACTION_ERROR_PROMPT_CHARS = 200
 _EFFECTIVE_ACTION_ERROR_PROMPT_CHARS = 20000
-_EFFECTIVE_ACTION_ERROR_PROMPT_EDGE_CHARS = (
-    _EFFECTIVE_ACTION_ERROR_PROMPT_CHARS // 2
-)
+_EFFECTIVE_ACTION_ERROR_PROMPT_EDGE_CHARS = _EFFECTIVE_ACTION_ERROR_PROMPT_CHARS // 2
 _EFFECTIVE_MESSAGE_MANAGER_METHOD_CONSTANTS = (
     "Update the agent history description",
     None,
@@ -135,18 +125,14 @@ _EFFECTIVE_MESSAGE_MANAGER_METHOD_CONSTANTS = (
 )
 _UPSTREAM_EVALUATE_OUTPUT_CHARS = 20000
 _UPSTREAM_EVALUATE_OUTPUT_PREFIX_CHARS = 19950
-_UPSTREAM_EVALUATE_OUTPUT_MARKER = (
-    "\n... [Truncated after 20000 characters]"
-)
+_UPSTREAM_EVALUATE_OUTPUT_MARKER = "\n... [Truncated after 20000 characters]"
 _UPSTREAM_EVALUATE_MEMORY_CHARS = 10000
 # Browser Use stops retaining the literal result in long-term memory at this
 # boundary.  Keep every value below it byte-for-byte inline, and spill every
 # value at or above it so no result crosses the lossy memory-routing branch.
 _EVALUATE_INLINE_CHARS = _UPSTREAM_EVALUATE_MEMORY_CHARS - 1
 _EVALUATE_SINGLE_MAX_CHARS = 64 * 1024**2
-_EVALUATE_SINGLE_MARKER = (
-    "\n... [Truncated after 67108864 characters]"
-)
+_EVALUATE_SINGLE_MARKER = "\n... [Truncated after 67108864 characters]"
 _EVALUATE_SINGLE_PREFIX_CHARS = (
     _EVALUATE_SINGLE_MAX_CHARS - len(_EVALUATE_SINGLE_MARKER) + 1
 )
@@ -160,9 +146,7 @@ _EVALUATE_INSPECT_DEFAULT_LIST = 50
 _EVALUATE_INSPECT_MAX_LIST = 100
 _EVALUATE_RECEIPT_PREVIEW_CHARS = 500
 _EVALUATE_RESULT_SPILL_CONFIGURATION = {
-    "install_point": (
-        "after_optional_extension_prepare_before_context_audit"
-    ),
+    "install_point": ("after_optional_extension_prepare_before_context_audit"),
     "inline_chars": _EVALUATE_INLINE_CHARS,
     "single_bound_signal_chars": _EVALUATE_SINGLE_MAX_CHARS + 1,
     "addressing": "eval-sha256",
@@ -179,8 +163,7 @@ _EVALUATE_RESULT_SPILL_CONFIGURATION = {
     "store_directory_mode": "0700",
     "store_file_mode": "0600",
     "upstream_browser_use_version_guard": _BROWSER_USE_VERSION,
-    "upstream_tools_service_sha256_guard":
-        _BROWSER_USE_TOOLS_SERVICE_SHA256,
+    "upstream_tools_service_sha256_guard": _BROWSER_USE_TOOLS_SERVICE_SHA256,
 }
 _EXTRACT_RESULT_FILE_EXTERNALIZATION_CONFIGURATION = {
     "inline_chars_max": 9999,
@@ -193,8 +176,7 @@ _EXTRACT_RESULT_FILE_EXTERNALIZATION_CONFIGURATION = {
     "recovery_tool": "read_file",
     "separate_read_state_limit_chars": 60000,
     "upstream_browser_use_version_guard": _BROWSER_USE_VERSION,
-    "upstream_tools_service_sha256_guard":
-        _BROWSER_USE_TOOLS_SERVICE_SHA256,
+    "upstream_tools_service_sha256_guard": _BROWSER_USE_TOOLS_SERVICE_SHA256,
     "upstream_file_system_sha256_guard": _BROWSER_USE_FILE_SYSTEM_SHA256,
 }
 _AGENT_OUTPUT_VALIDATION_FEEDBACK_RENDERING_CONFIGURATION = {
@@ -213,9 +195,7 @@ _AGENT_OUTPUT_VALIDATION_FEEDBACK_RENDERING_CONFIGURATION = {
     "agent_visible_behavior": "unchanged",
     "unknown_errors_fail_closed": True,
     "upstream_browser_use_version_guard": _BROWSER_USE_VERSION,
-    "upstream_agent_service_sha256_guard": (
-        _BROWSER_USE_AGENT_SERVICE_SHA256
-    ),
+    "upstream_agent_service_sha256_guard": (_BROWSER_USE_AGENT_SERVICE_SHA256),
     "upstream_message_manager_service_sha256_guard": (
         _BROWSER_USE_MESSAGE_MANAGER_SERVICE_SHA256
     ),
@@ -224,42 +204,28 @@ _POST_TASK_AUXILIARY_JUDGE_CONFIGURATION = {
     "enabled": False,
     "agent_constructor_kwarg": "use_judge",
     "upstream_default": True,
-    "authoritative_evaluator": (
-        "caveat.core.experiment.run_cell:env.evaluate"
-    ),
+    "authoritative_evaluator": ("caveat.core.experiment.run_cell:env.evaluate"),
     "model_calls_after_agent_done": 0,
     "agent_action_behavior": "unchanged_before_done",
     "browser_shutdown": (
         "unchanged_Agent.close_then_scaffold_finally_BrowserSession.kill"
     ),
-    "cleanup_bounds": (
-        "existing_frozen_whole_run_and_browser_event_timeouts"
-    ),
+    "cleanup_bounds": ("existing_frozen_whole_run_and_browser_event_timeouts"),
     "new_cleanup_mechanism": False,
     "upstream_browser_use_version_guard": _BROWSER_USE_VERSION,
-    "upstream_agent_service_sha256_guard": (
-        _BROWSER_USE_AGENT_SERVICE_SHA256
-    ),
-    "upstream_browser_session_sha256_guard": (
-        _BROWSER_USE_BROWSER_SESSION_SHA256
-    ),
+    "upstream_agent_service_sha256_guard": (_BROWSER_USE_AGENT_SERVICE_SHA256),
+    "upstream_browser_session_sha256_guard": (_BROWSER_USE_BROWSER_SESSION_SHA256),
 }
 _REPLACE_FILE_RECURSIVE_AMPLIFICATION_GUARD_CONFIGURATION = {
-    "trigger_predicate": (
-        "content.count(old_str) > 1 and new_str.count(old_str) > 1"
-    ),
+    "trigger_predicate": ("content.count(old_str) > 1 and new_str.count(old_str) > 1"),
     "match_semantics": "str_count_non_overlapping",
     "applies_to": "all_replace_file_calls_both_arms",
-    "install_point": (
-        "after_optional_extension_prepare_before_context_audit"
-    ),
+    "install_point": ("after_optional_extension_prepare_before_context_audit"),
     "trigger_behavior": "ActionResult.error_and_file_unchanged",
     "silent_truncation": False,
     "upstream_browser_use_version_guard": _BROWSER_USE_VERSION,
-    "upstream_tools_service_sha256_guard":
-        _BROWSER_USE_TOOLS_SERVICE_SHA256,
-    "upstream_file_system_sha256_guard":
-        _BROWSER_USE_FILE_SYSTEM_SHA256,
+    "upstream_tools_service_sha256_guard": _BROWSER_USE_TOOLS_SERVICE_SHA256,
+    "upstream_file_system_sha256_guard": _BROWSER_USE_FILE_SYSTEM_SHA256,
 }
 _CONTEXT_CAPS = {
     "action_error_chars": (_EFFECTIVE_ACTION_ERROR_PROMPT_CHARS, ">"),
@@ -272,12 +238,11 @@ _CONTEXT_CAPS = {
     "read_state_chars": (60000, ">"),
 }
 _LOSSY_CONTEXT_CAPS = {
-    name: value for name, value in _CONTEXT_CAPS.items()
+    name: value
+    for name, value in _CONTEXT_CAPS.items()
     if name != "extract_memory_chars"
 }
-_CLICKABLE_ELEMENTS_MARKER = (
-    "Interactive elements (truncated to 40000 characters):"
-)
+_CLICKABLE_ELEMENTS_MARKER = "Interactive elements (truncated to 40000 characters):"
 
 
 class _InspectEvaluateResult(BaseModel):
@@ -378,18 +343,15 @@ class _EvaluateResultStore:
         )
         if stat.S_ISLNK(observed.st_mode) or not correct_type:
             raise _EvaluateResultStoreIntegrityError(
-                f"evaluate-result {kind} has an unsafe file type: "
-                f"{path.name}"
+                f"evaluate-result {kind} has an unsafe file type: {path.name}"
             )
         if stat.S_IMODE(observed.st_mode) != expected_mode:
             raise _EvaluateResultStoreIntegrityError(
-                f"evaluate-result {kind} mode is not "
-                f"{expected_mode:04o}: {path.name}"
+                f"evaluate-result {kind} mode is not {expected_mode:04o}: {path.name}"
             )
         if hasattr(os, "getuid") and observed.st_uid != os.getuid():
             raise _EvaluateResultStoreIntegrityError(
-                f"evaluate-result {kind} is not owned by this process user: "
-                f"{path.name}"
+                f"evaluate-result {kind} is not owned by this process user: {path.name}"
             )
         return observed
 
@@ -424,18 +386,19 @@ class _EvaluateResultStore:
                 raise _EvaluateResultStoreIntegrityError(
                     "incomplete evaluate-result atomic write is present"
                 )
-            if re.fullmatch(
-                r"eval-[0-9a-f]{64}\.(?:data|json)",
-                path.name,
-            ) is None:
+            if (
+                re.fullmatch(
+                    r"eval-[0-9a-f]{64}\.(?:data|json)",
+                    path.name,
+                )
+                is None
+            ):
                 raise _EvaluateResultStoreIntegrityError(
                     f"unexpected evaluate-result store entry: {path.name}"
                 )
             self._assert_secure_file(path)
             allowed_names.add(path.name)
-        record_ids = {
-            name.rsplit(".", 1)[0] for name in allowed_names
-        }
+        record_ids = {name.rsplit(".", 1)[0] for name in allowed_names}
         for result_id in record_ids:
             if {
                 f"{result_id}.data",
@@ -493,8 +456,7 @@ class _EvaluateResultStore:
                 )
             except FileExistsError as exc:
                 raise _EvaluateResultStoreIntegrityError(
-                    f"evaluate-result destination appeared concurrently: "
-                    f"{path.name}"
+                    f"evaluate-result destination appeared concurrently: {path.name}"
                 ) from exc
             except OSError as exc:
                 raise _EvaluateResultStoreIntegrityError(
@@ -511,9 +473,7 @@ class _EvaluateResultStore:
 
     def note_serialized(self, chars: int, *, bound_touched: bool) -> None:
         chars = max(0, int(chars))
-        self._max_serialized_chars = max(
-            self._max_serialized_chars, chars
-        )
+        self._max_serialized_chars = max(self._max_serialized_chars, chars)
         if bound_touched:
             self._single_bound_touched += 1
 
@@ -617,8 +577,7 @@ class _EvaluateResultStore:
             or metadata["chars"] < 0
             or type(metadata["bytes"]) is not int
             or metadata["bytes"] < 0
-            or self._assert_secure_file(data_path).st_size
-            != metadata["bytes"]
+            or self._assert_secure_file(data_path).st_size != metadata["bytes"]
         ):
             raise _EvaluateResultStoreIntegrityError(
                 "evaluate-result metadata/data disagree"
@@ -653,7 +612,7 @@ class _EvaluateResultStore:
     def list_records(self, start: int, limit: int) -> dict[str, Any]:
         self._assert_secure_root()
         ids = sorted(path.stem for path in self.root.glob("eval-*.json"))
-        page = [self.stat(result_id) for result_id in ids[start:start + limit]]
+        page = [self.stat(result_id) for result_id in ids[start : start + limit]]
         return {
             "total": len(ids),
             "start": start,
@@ -701,8 +660,7 @@ class _EvaluateResultStore:
             "byte_bound_touched_count": self._byte_bound_touched,
             "max_responses": self.max_responses,
             "responses": self._responses,
-            "response_bound_touched_count":
-                self._response_bound_touched,
+            "response_bound_touched_count": self._response_bound_touched,
             "records": self._records,
         }
 
@@ -730,12 +688,8 @@ def _lift_action_error_prompt_cap() -> dict[str, Any]:
         getattr(implementation, "__qualname__", "")
         != "MessageManager._update_agent_history_description"
     ):
-        raise RuntimeError(
-            "browser-use action-error formatter changed under cap guard"
-        )
-    source_path = Path(
-        inspect.getsourcefile(implementation) or ""
-    ).resolve()
+        raise RuntimeError("browser-use action-error formatter changed under cap guard")
+    source_path = Path(inspect.getsourcefile(implementation) or "").resolve()
     source_sha256 = hashlib.sha256(source_path.read_bytes()).hexdigest()
     if source_sha256 != _BROWSER_USE_MESSAGE_MANAGER_SERVICE_SHA256:
         raise RuntimeError(
@@ -746,68 +700,40 @@ def _lift_action_error_prompt_cap() -> dict[str, Any]:
     constants = implementation.__code__.co_consts
     upstream_shape = (
         constants.count(_UPSTREAM_ACTION_ERROR_PROMPT_CHARS) == 1
-        and constants.count(
-            _UPSTREAM_ACTION_ERROR_PROMPT_CHARS // 2
-        ) == 1
-        and constants.count(
-            -(_UPSTREAM_ACTION_ERROR_PROMPT_CHARS // 2)
-        ) == 1
+        and constants.count(_UPSTREAM_ACTION_ERROR_PROMPT_CHARS // 2) == 1
+        and constants.count(-(_UPSTREAM_ACTION_ERROR_PROMPT_CHARS // 2)) == 1
         and constants.count(_EFFECTIVE_ACTION_ERROR_PROMPT_CHARS) == 0
-        and constants.count(
-            _EFFECTIVE_ACTION_ERROR_PROMPT_EDGE_CHARS
-        ) == 0
-        and constants.count(
-            -_EFFECTIVE_ACTION_ERROR_PROMPT_EDGE_CHARS
-        ) == 0
+        and constants.count(_EFFECTIVE_ACTION_ERROR_PROMPT_EDGE_CHARS) == 0
+        and constants.count(-_EFFECTIVE_ACTION_ERROR_PROMPT_EDGE_CHARS) == 0
     )
     effective_shape = (
         constants.count(_UPSTREAM_ACTION_ERROR_PROMPT_CHARS) == 0
-        and constants.count(
-            _UPSTREAM_ACTION_ERROR_PROMPT_CHARS // 2
-        ) == 0
-        and constants.count(
-            -(_UPSTREAM_ACTION_ERROR_PROMPT_CHARS // 2)
-        ) == 0
+        and constants.count(_UPSTREAM_ACTION_ERROR_PROMPT_CHARS // 2) == 0
+        and constants.count(-(_UPSTREAM_ACTION_ERROR_PROMPT_CHARS // 2)) == 0
         and constants.count(_EFFECTIVE_ACTION_ERROR_PROMPT_CHARS) == 1
-        and constants.count(
-            _EFFECTIVE_ACTION_ERROR_PROMPT_EDGE_CHARS
-        ) == 1
-        and constants.count(
-            -_EFFECTIVE_ACTION_ERROR_PROMPT_EDGE_CHARS
-        ) == 1
+        and constants.count(_EFFECTIVE_ACTION_ERROR_PROMPT_EDGE_CHARS) == 1
+        and constants.count(-_EFFECTIVE_ACTION_ERROR_PROMPT_EDGE_CHARS) == 1
     )
     if upstream_shape:
         replacements = {
-            _UPSTREAM_ACTION_ERROR_PROMPT_CHARS:
-                _EFFECTIVE_ACTION_ERROR_PROMPT_CHARS,
-            _UPSTREAM_ACTION_ERROR_PROMPT_CHARS // 2:
-                _EFFECTIVE_ACTION_ERROR_PROMPT_EDGE_CHARS,
-            -(_UPSTREAM_ACTION_ERROR_PROMPT_CHARS // 2):
-                -_EFFECTIVE_ACTION_ERROR_PROMPT_EDGE_CHARS,
+            _UPSTREAM_ACTION_ERROR_PROMPT_CHARS: _EFFECTIVE_ACTION_ERROR_PROMPT_CHARS,
+            _UPSTREAM_ACTION_ERROR_PROMPT_CHARS
+            // 2: _EFFECTIVE_ACTION_ERROR_PROMPT_EDGE_CHARS,
+            -(
+                _UPSTREAM_ACTION_ERROR_PROMPT_CHARS // 2
+            ): -_EFFECTIVE_ACTION_ERROR_PROMPT_EDGE_CHARS,
         }
         implementation.__code__ = implementation.__code__.replace(
-            co_consts=tuple(
-                replacements.get(value, value) for value in constants
-            )
+            co_consts=tuple(replacements.get(value, value) for value in constants)
         )
         constants = implementation.__code__.co_consts
         effective_shape = (
             constants.count(_UPSTREAM_ACTION_ERROR_PROMPT_CHARS) == 0
-            and constants.count(
-                _UPSTREAM_ACTION_ERROR_PROMPT_CHARS // 2
-            ) == 0
-            and constants.count(
-                -(_UPSTREAM_ACTION_ERROR_PROMPT_CHARS // 2)
-            ) == 0
-            and constants.count(
-                _EFFECTIVE_ACTION_ERROR_PROMPT_CHARS
-            ) == 1
-            and constants.count(
-                _EFFECTIVE_ACTION_ERROR_PROMPT_EDGE_CHARS
-            ) == 1
-            and constants.count(
-                -_EFFECTIVE_ACTION_ERROR_PROMPT_EDGE_CHARS
-            ) == 1
+            and constants.count(_UPSTREAM_ACTION_ERROR_PROMPT_CHARS // 2) == 0
+            and constants.count(-(_UPSTREAM_ACTION_ERROR_PROMPT_CHARS // 2)) == 0
+            and constants.count(_EFFECTIVE_ACTION_ERROR_PROMPT_CHARS) == 1
+            and constants.count(_EFFECTIVE_ACTION_ERROR_PROMPT_EDGE_CHARS) == 1
+            and constants.count(-_EFFECTIVE_ACTION_ERROR_PROMPT_EDGE_CHARS) == 1
         )
     if not effective_shape:
         raise RuntimeError(
@@ -834,8 +760,9 @@ def _lift_action_error_prompt_cap() -> dict[str, Any]:
     return attestation
 
 
-def _lossless_read_state_recovery_authorization_from_environment(
-) -> dict[str, Any] | None:
+def _lossless_read_state_recovery_authorization_from_environment() -> (
+    dict[str, Any] | None
+):
     """Parse the create-only, singleton recovery authority.
 
     Absence is the only inactive state.  An empty, malformed, copied, or
@@ -945,8 +872,7 @@ def _lossless_read_state_recovery_authorization_from_environment(
     nonce_sha256 = hashlib.sha256(nonce.encode("utf-8")).hexdigest()
     if authorization["cache_nonce_sha256"] != nonce_sha256:
         raise RuntimeError(
-            f"invalid {_LOSSLESS_READ_STATE_RECOVERY_ENV}: "
-            "cache nonce digest differs"
+            f"invalid {_LOSSLESS_READ_STATE_RECOVERY_ENV}: cache nonce digest differs"
         )
     return dict(authorization)
 
@@ -981,9 +907,7 @@ class _LosslessReadStateRecoveryAudit:
 
     def fail(self, message: str) -> None:
         self.complete = False
-        self.error = (
-            f"{self.error}; {message}" if self.error else message
-        )
+        self.error = f"{self.error}; {message}" if self.error else message
 
     def observe(self, record: Mapping[str, Any]) -> None:
         if not self.complete:
@@ -992,13 +916,9 @@ class _LosslessReadStateRecoveryAudit:
 
     def snapshot(self) -> dict[str, Any]:
         raw_crossings = sum(
-            int(record.get("raw_crossed") is True)
-            for record in self.records
+            int(record.get("raw_crossed") is True) for record in self.records
         )
-        restored = sum(
-            int(record.get("restored") is True)
-            for record in self.records
-        )
+        restored = sum(int(record.get("restored") is True) for record in self.records)
         return {
             "schema_version": 1,
             "active": True,
@@ -1007,8 +927,7 @@ class _LosslessReadStateRecoveryAudit:
             "authorization": dict(self.authorization),
             "authorization_sha256": _json_sha256(self.authorization),
             "installation": (
-                dict(self.installation)
-                if self.installation is not None else None
+                dict(self.installation) if self.installation is not None else None
             ),
             "call_count": len(self.records),
             "raw_crossing_count": raw_crossings,
@@ -1096,30 +1015,23 @@ def _install_lossless_read_state_recovery(
             "browser-use message-manager source changed under lossless "
             f"read-state guard: {source_sha256}"
         )
-    if (
-        method_source_sha256
-        != _BROWSER_USE_MESSAGE_MANAGER_METHOD_SOURCE_SHA256
-    ):
+    if method_source_sha256 != _BROWSER_USE_MESSAGE_MANAGER_METHOD_SOURCE_SHA256:
         raise RuntimeError(
             "browser-use read-state method source changed under guard: "
             f"{method_source_sha256}"
         )
     if code_sha256 != _BROWSER_USE_MESSAGE_MANAGER_METHOD_CODE_SHA256:
         raise RuntimeError(
-            "browser-use read-state method bytecode changed under guard: "
-            f"{code_sha256}"
+            f"browser-use read-state method bytecode changed under guard: {code_sha256}"
         )
     if (
         getattr(implementation, "__qualname__", "")
         != "MessageManager._update_agent_history_description"
     ):
-        raise RuntimeError(
-            "browser-use read-state method qualname changed under guard"
-        )
+        raise RuntimeError("browser-use read-state method qualname changed under guard")
     if signature != _BROWSER_USE_MESSAGE_MANAGER_METHOD_SIGNATURE:
         raise RuntimeError(
-            "browser-use read-state method signature changed under guard: "
-            f"{signature}"
+            f"browser-use read-state method signature changed under guard: {signature}"
         )
     if implementation.__code__.co_consts != (
         _EFFECTIVE_MESSAGE_MANAGER_METHOD_CONSTANTS
@@ -1131,17 +1043,16 @@ def _install_lossless_read_state_recovery(
 
     manager = getattr(agent, "_message_manager", None)
     if type(manager) is not MessageManager:
-        raise RuntimeError(
-            "agent message manager is not the guarded browser-use class"
-        )
+        raise RuntimeError("agent message manager is not the guarded browser-use class")
     if "_update_agent_history_description" in manager.__dict__:
         raise RuntimeError(
             "agent message manager already has an instance method override"
         )
     upstream = manager._update_agent_history_description
-    if getattr(upstream, "__self__", None) is not manager or getattr(
-        upstream, "__func__", None
-    ) is not implementation:
+    if (
+        getattr(upstream, "__self__", None) is not manager
+        or getattr(upstream, "__func__", None) is not implementation
+    ):
         raise RuntimeError(
             "cannot bind exact upstream read-state method to agent instance"
         )
@@ -1177,16 +1088,15 @@ def _install_lossless_read_state_recovery(
             full = raw.strip("\n")
             raw_crossed = len(raw) > _READ_STATE_CONTENT_LIMIT_CHARS
             expected_upstream = (
-                raw[:_READ_STATE_CONTENT_LIMIT_CHARS]
-                + _READ_STATE_TRUNCATION_MARKER
-                if raw_crossed else raw
+                raw[:_READ_STATE_CONTENT_LIMIT_CHARS] + _READ_STATE_TRUNCATION_MARKER
+                if raw_crossed
+                else raw
             ).strip("\n")
             state = manager.state
             observed_upstream = state.read_state_description
             if observed_upstream != expected_upstream:
                 raise RuntimeError(
-                    "upstream read-state rendering differs from guarded "
-                    "60k semantics"
+                    "upstream read-state rendering differs from guarded 60k semantics"
                 )
 
             non_target = _read_state_non_target_snapshot(manager)
@@ -1207,50 +1117,49 @@ def _install_lossless_read_state_recovery(
                 raise RuntimeError(
                     "lossless read-state recovery did not restore exact text"
                 )
-            collector.observe({
-                "call_index": len(collector.records) + 1,
-                "step_number": (
-                    getattr(step_info, "step_number", None)
-                    if step_info is not None else None
-                ),
-                "raw_chars": len(raw),
-                "raw_sha256": hashlib.sha256(
-                    raw.encode("utf-8")
-                ).hexdigest(),
-                "raw_crossed": raw_crossed,
-                "upstream_chars": len(observed_upstream),
-                "upstream_sha256": upstream_sha256,
-                "expected_upstream_sha256": hashlib.sha256(
-                    expected_upstream.encode("utf-8")
-                ).hexdigest(),
-                "restored": restored,
-                "effective_chars": len(effective),
-                "effective_sha256": hashlib.sha256(
-                    effective.encode("utf-8")
-                ).hexdigest(),
-                "effective_loss": effective != full,
-                "history_items": len(state.agent_history_items),
-                "read_state_images": len(state.read_state_images),
-                "action_results_sha256": _json_sha256([
-                    getattr(item, "action_results", None)
-                    for item in state.agent_history_items
-                ]),
-            })
+            collector.observe(
+                {
+                    "call_index": len(collector.records) + 1,
+                    "step_number": (
+                        getattr(step_info, "step_number", None)
+                        if step_info is not None
+                        else None
+                    ),
+                    "raw_chars": len(raw),
+                    "raw_sha256": hashlib.sha256(raw.encode("utf-8")).hexdigest(),
+                    "raw_crossed": raw_crossed,
+                    "upstream_chars": len(observed_upstream),
+                    "upstream_sha256": upstream_sha256,
+                    "expected_upstream_sha256": hashlib.sha256(
+                        expected_upstream.encode("utf-8")
+                    ).hexdigest(),
+                    "restored": restored,
+                    "effective_chars": len(effective),
+                    "effective_sha256": hashlib.sha256(
+                        effective.encode("utf-8")
+                    ).hexdigest(),
+                    "effective_loss": effective != full,
+                    "history_items": len(state.agent_history_items),
+                    "read_state_images": len(state.read_state_images),
+                    "action_results_sha256": _json_sha256(
+                        [
+                            getattr(item, "action_results", None)
+                            for item in state.agent_history_items
+                        ]
+                    ),
+                }
+            )
         except Exception as exc:
             collector.fail(f"{type(exc).__name__}: {exc}")
             raise
 
     manager._update_agent_history_description = lossless_update
     if (
-        manager.__dict__.get("_update_agent_history_description")
-        is not lossless_update
-        or MessageManager._update_agent_history_description
-        is not implementation
+        manager.__dict__.get("_update_agent_history_description") is not lossless_update
+        or MessageManager._update_agent_history_description is not implementation
     ):
         del manager.__dict__["_update_agent_history_description"]
-        raise RuntimeError(
-            "lossless read-state wrapper did not remain instance-local"
-        )
+        raise RuntimeError("lossless read-state wrapper did not remain instance-local")
     collector.installed(attestation)
     _LOG.info(
         "CAVEAT_LOSSLESS_READ_STATE_RECOVERY_INSTALLED "
@@ -1297,9 +1206,7 @@ def _tools_with_lifted_extract_timeout(Tools):
         )
     ]
     if len(implementations) != 1:
-        raise RuntimeError(
-            "cannot uniquely resolve browser-use extract implementation"
-        )
+        raise RuntimeError("cannot uniquely resolve browser-use extract implementation")
     implementation = implementations[0]
     source_path = Path(inspect.getsourcefile(implementation) or "").resolve()
     source_sha256 = hashlib.sha256(source_path.read_bytes()).hexdigest()
@@ -1412,9 +1319,7 @@ def _lift_evaluate_serialization_backstop(tools: Any) -> dict[str, Any]:
             continue
         source_path = Path(source_name).resolve()
         try:
-            source_sha256 = hashlib.sha256(
-                source_path.read_bytes()
-            ).hexdigest()
+            source_sha256 = hashlib.sha256(source_path.read_bytes()).hexdigest()
         except OSError:
             continue
         if source_sha256 == _BROWSER_USE_TOOLS_SERVICE_SHA256:
@@ -1427,9 +1332,7 @@ def _lift_evaluate_serialization_backstop(tools: Any) -> dict[str, Any]:
     implementation, source_sha256 = implementations[0]
 
     def shapes(constants: tuple[Any, ...]) -> tuple[bool, bool]:
-        memory_is_unchanged = (
-            constants.count(_UPSTREAM_EVALUATE_MEMORY_CHARS) == 1
-        )
+        memory_is_unchanged = constants.count(_UPSTREAM_EVALUATE_MEMORY_CHARS) == 1
         upstream = (
             memory_is_unchanged
             and constants.count(_UPSTREAM_EVALUATE_OUTPUT_CHARS) == 1
@@ -1454,21 +1357,14 @@ def _lift_evaluate_serialization_backstop(tools: Any) -> dict[str, Any]:
     upstream_shape, effective_shape = shapes(constants)
     if upstream_shape:
         replacements = {
-            _UPSTREAM_EVALUATE_OUTPUT_CHARS:
-                _EVALUATE_SINGLE_MAX_CHARS,
-            _UPSTREAM_EVALUATE_OUTPUT_PREFIX_CHARS:
-                _EVALUATE_SINGLE_PREFIX_CHARS,
-            _UPSTREAM_EVALUATE_OUTPUT_MARKER:
-                _EVALUATE_SINGLE_MARKER,
+            _UPSTREAM_EVALUATE_OUTPUT_CHARS: _EVALUATE_SINGLE_MAX_CHARS,
+            _UPSTREAM_EVALUATE_OUTPUT_PREFIX_CHARS: _EVALUATE_SINGLE_PREFIX_CHARS,
+            _UPSTREAM_EVALUATE_OUTPUT_MARKER: _EVALUATE_SINGLE_MARKER,
         }
         implementation.__code__ = implementation.__code__.replace(
-            co_consts=tuple(
-                replacements.get(value, value) for value in constants
-            )
+            co_consts=tuple(replacements.get(value, value) for value in constants)
         )
-        upstream_shape, effective_shape = shapes(
-            implementation.__code__.co_consts
-        )
+        upstream_shape, effective_shape = shapes(implementation.__code__.co_consts)
     if upstream_shape or not effective_shape:
         raise RuntimeError(
             "browser-use evaluate serialization literals do not match "
@@ -1503,9 +1399,7 @@ def _updated_action_result(
 ) -> Any:
     model_copy = getattr(result, "model_copy", None)
     if not callable(model_copy):
-        raise RuntimeError(
-            "evaluate returned a non-ActionResult large payload"
-        )
+        raise RuntimeError("evaluate returned a non-ActionResult large payload")
     return model_copy(update=update)
 
 
@@ -1587,15 +1481,15 @@ def _install_evaluate_result_spill(
         store.note_serialized(
             (
                 max(len(text), _EVALUATE_SINGLE_MAX_CHARS + 1)
-                if single_bound_touched else len(text)
+                if single_bound_touched
+                else len(text)
             ),
             bound_touched=single_bound_touched,
         )
         if single_bound_touched:
             audit_record = {
                 "single_max_chars": _EVALUATE_SINGLE_MAX_CHARS,
-                "minimum_original_chars":
-                    _EVALUATE_SINGLE_MAX_CHARS + 1,
+                "minimum_original_chars": _EVALUATE_SINGLE_MAX_CHARS + 1,
             }
             return compact_failure(
                 result,
@@ -1625,9 +1519,7 @@ def _install_evaluate_result_spill(
             )
         except Exception as exc:
             store.note_integrity_failure()
-            _LOG.exception(
-                "CAVEAT_EVALUATE_STORE_INTEGRITY_FAILURE"
-            )
+            _LOG.exception("CAVEAT_EVALUATE_STORE_INTEGRITY_FAILURE")
             return compact_failure(
                 result,
                 kind="caveat_evaluate_result_unavailable",
@@ -1648,12 +1540,8 @@ def _install_evaluate_result_spill(
             "operations": ["stat", "list", "search", "read"],
             "head_preview": text[:_EVALUATE_RECEIPT_PREVIEW_CHARS],
             "tail_preview": text[-_EVALUATE_RECEIPT_PREVIEW_CHARS:],
-            "head_preview_chars": min(
-                len(text), _EVALUATE_RECEIPT_PREVIEW_CHARS
-            ),
-            "tail_preview_chars": min(
-                len(text), _EVALUATE_RECEIPT_PREVIEW_CHARS
-            ),
+            "head_preview_chars": min(len(text), _EVALUATE_RECEIPT_PREVIEW_CHARS),
+            "tail_preview_chars": min(len(text), _EVALUATE_RECEIPT_PREVIEW_CHARS),
         }
         receipt = json.dumps(
             receipt_record,
@@ -1694,8 +1582,7 @@ def _install_evaluate_result_spill(
             elif params.operation == "list":
                 payload = store.list_records(params.start, params.limit)
                 memory = (
-                    "Listed preserved evaluate-result IDs at "
-                    f"offset {params.start}"
+                    f"Listed preserved evaluate-result IDs at offset {params.start}"
                 )
             elif params.operation == "search":
                 if not params.result_id:
@@ -1706,18 +1593,13 @@ def _install_evaluate_result_spill(
                     start=params.start,
                     max_hits=params.max_hits,
                 )
-                memory = (
-                    f"Searched preserved evaluate result "
-                    f"{params.result_id}"
-                )
+                memory = f"Searched preserved evaluate result {params.result_id}"
             else:
                 if not params.result_id:
                     raise ValueError("read requires result_id")
                 metadata = store.stat(params.result_id)
                 text = store.read_text(params.result_id)
-                chunk = text[
-                    params.start:params.start + params.length
-                ]
+                chunk = text[params.start : params.start + params.length]
                 header = json.dumps(
                     {
                         "result_id": params.result_id,
@@ -1750,9 +1632,7 @@ def _install_evaluate_result_spill(
             )
         except (_EvaluateResultStoreIntegrityError, OSError) as exc:
             store.note_integrity_failure()
-            _LOG.exception(
-                "CAVEAT_EVALUATE_STORE_INTEGRITY_FAILURE"
-            )
+            _LOG.exception("CAVEAT_EVALUATE_STORE_INTEGRITY_FAILURE")
             return ActionResult(
                 error=(
                     "evaluate-result inspection failed: "
@@ -1763,8 +1643,7 @@ def _install_evaluate_result_spill(
         except Exception as exc:
             return ActionResult(
                 error=(
-                    "evaluate-result inspection failed: "
-                    f"{type(exc).__name__}: {exc}"
+                    f"evaluate-result inspection failed: {type(exc).__name__}: {exc}"
                 )
             )
 
@@ -1873,9 +1752,7 @@ class _ReplaceFileSafetyCollector:
     def installed(self) -> None:
         self.installation_count += 1
         if self.installation_count != 1:
-            self.fail(
-                "replace_file recursive-amplification guard installed twice"
-            )
+            self.fail("replace_file recursive-amplification guard installed twice")
 
     def invoked(self) -> None:
         self.invocations += 1
@@ -1893,9 +1770,7 @@ class _ReplaceFileSafetyCollector:
         replacement_matches: int,
     ) -> dict[str, Any] | None:
         self.checked_invocations += 1
-        self.max_current_chars = max(
-            self.max_current_chars, current_chars
-        )
+        self.max_current_chars = max(self.max_current_chars, current_chars)
         self.max_current_matches = max(
             self.max_current_matches,
             current_matches,
@@ -1937,9 +1812,7 @@ class _ReplaceFileSafetyCollector:
             "max_current_chars": self.max_current_chars,
             "max_current_matches": self.max_current_matches,
             "max_replacement_matches": self.max_replacement_matches,
-            "trigger_records": [
-                dict(record) for record in self.trigger_records
-            ],
+            "trigger_records": [dict(record) for record in self.trigger_records],
             "errors": list(self.errors),
         }
 
@@ -2013,21 +1886,14 @@ def _install_replace_file_recursive_amplification_guard(
         if file_system is None or not old_str:
             collector.passthrough()
             return await original_replace(*args, **kwargs)
-        if not all(
-            type(value) is str
-            for value in (file_name, old_str, new_str)
-        ):
-            collector.fail(
-                "replace_file received non-string validated parameters"
-            )
+        if not all(type(value) is str for value in (file_name, old_str, new_str)):
+            collector.fail("replace_file received non-string validated parameters")
             raise RuntimeError(
                 "replace_file safety preflight could not certify parameters"
             )
 
         try:
-            resolved, _was_sanitized = file_system._resolve_filename(
-                file_name
-            )
+            resolved, _was_sanitized = file_system._resolve_filename(file_name)
             if not file_system._is_valid_filename(resolved):
                 collector.passthrough()
                 return await original_replace(*args, **kwargs)
@@ -2042,8 +1908,7 @@ def _install_replace_file_recursive_amplification_guard(
             replacement_matches = new_str.count(old_str)
         except Exception as exc:
             collector.fail(
-                "replace_file safety preflight failed: "
-                f"{type(exc).__name__}: {exc}"
+                f"replace_file safety preflight failed: {type(exc).__name__}: {exc}"
             )
             raise RuntimeError(
                 "replace_file safety preflight could not certify the "
@@ -2087,9 +1952,7 @@ def _install_replace_file_recursive_amplification_guard(
     collector.installed()
     attestation = {
         **_REPLACE_FILE_RECURSIVE_AMPLIFICATION_GUARD_CONFIGURATION,
-        "observed_tools_service_sha256": source_hashes[
-            "browser_use.tools.service"
-        ],
+        "observed_tools_service_sha256": source_hashes["browser_use.tools.service"],
         "observed_file_system_sha256": source_hashes[
             "browser_use.filesystem.file_system"
         ],
@@ -2142,9 +2005,7 @@ class _ContextCapToolCollector:
         configured, comparison = _CONTEXT_CAPS[name]
         if touched is None:
             touched = (
-                observed > configured
-                if comparison == ">"
-                else observed >= configured
+                observed > configured if comparison == ">" else observed >= configured
             )
         self.observations[name].append(
             (max(0, int(observed)), bool(touched), bool(lower_bound))
@@ -2155,9 +2016,7 @@ class _ContextCapToolCollector:
 
 
 _ACTION_ERROR_AUDIT_SCHEMA_VERSION = 1
-_ACTION_ERROR_PROVENANCE_ATTRIBUTE = (
-    "_caveat_action_error_provenance_collector"
-)
+_ACTION_ERROR_PROVENANCE_ATTRIBUTE = "_caveat_action_error_provenance_collector"
 
 
 def _is_agent_output_validation_error(error: BaseException) -> bool:
@@ -2175,10 +2034,7 @@ def _is_agent_output_validation_error(error: BaseException) -> bool:
     seen: set[int] = set()
     while current is not None and id(current) not in seen:
         seen.add(id(current))
-        if (
-            isinstance(current, ValidationError)
-            and current.title == "AgentOutput"
-        ):
+        if isinstance(current, ValidationError) and current.title == "AgentOutput":
             return True
         cause = current.__cause__
         current = cause if isinstance(cause, BaseException) else None
@@ -2200,9 +2056,7 @@ class _ActionErrorProvenanceCollector:
     def mark_agent_output_validation(self, result: Any) -> None:
         error = _field(result, "error")
         if error is None:
-            self.fail(
-                "agent-output validation handler produced no error result"
-            )
+            self.fail("agent-output validation handler produced no error result")
             return
         identity = id(result)
         existing = self.agent_output_validation_results.get(identity)
@@ -2215,9 +2069,7 @@ class _ActionErrorProvenanceCollector:
         self.agent_output_validation_results[identity] = result
 
     def is_agent_output_validation(self, result: Any) -> bool:
-        return (
-            self.agent_output_validation_results.get(id(result)) is result
-        )
+        return self.agent_output_validation_results.get(id(result)) is result
 
     def fail(self, message: str) -> None:
         self.errors.append(str(message))
@@ -2250,14 +2102,12 @@ def _install_action_error_provenance_audit(
         except BaseException:
             if model_validation:
                 collector.fail(
-                    "Agent._handle_step_error raised before provenance could "
-                    "be bound"
+                    "Agent._handle_step_error raised before provenance could be bound"
                 )
             raise
         if model_validation:
             results = list(
-                getattr(getattr(agent, "state", None), "last_result", ())
-                or ()
+                getattr(getattr(agent, "state", None), "last_result", ()) or ()
             )
             if len(results) != 1:
                 collector.fail(
@@ -2320,10 +2170,8 @@ def _action_error_audit(
         if raw_items is None:
             raise AttributeError("AgentHistory.history unavailable")
         items = list(raw_items)
-    except Exception as exc:  # noqa: BLE001 - audit must fail closed
-        errors.append(
-            f"AgentHistory unreadable: {type(exc).__name__}: {exc}"
-        )
+    except Exception as exc:
+        errors.append(f"AgentHistory unreadable: {type(exc).__name__}: {exc}")
         audit["complete"] = False
         audit["error"] = "; ".join(dict.fromkeys(errors))
         return audit
@@ -2349,20 +2197,16 @@ def _action_error_audit(
                     collector is not None
                     and collector.is_agent_output_validation(result)
                 )
-                bucket_name = (
-                    "agent_output_validation"
-                    if known else "other_or_unknown"
-                )
+                bucket_name = "agent_output_validation" if known else "other_or_unknown"
                 observe(bucket_name, chars)
                 if known:
                     identity = id(result)
                     marked_occurrences[identity] = (
                         marked_occurrences.get(identity, 0) + 1
                     )
-    except Exception as exc:  # noqa: BLE001 - audit must fail closed
+    except Exception as exc:
         errors.append(
-            f"AgentHistory action errors unreadable: "
-            f"{type(exc).__name__}: {exc}"
+            f"AgentHistory action errors unreadable: {type(exc).__name__}: {exc}"
         )
 
     if collector is not None:
@@ -2371,8 +2215,7 @@ def _action_error_audit(
         missing = expected - observed
         unexpected = observed - expected
         duplicated = sorted(
-            identity for identity, count in marked_occurrences.items()
-            if count != 1
+            identity for identity, count in marked_occurrences.items() if count != 1
         )
         if missing:
             errors.append(
@@ -2448,10 +2291,9 @@ def _install_context_cap_tool_audit(
         registry = tools.registry.registry.actions
         extract_registration = registry["extract"]
         evaluate_registration = registry["evaluate"]
-    except Exception as exc:  # noqa: BLE001 - absence must be reported, not hidden
+    except Exception as exc:
         collector.fail(
-            f"context-cap tool registration unavailable: "
-            f"{type(exc).__name__}: {exc}"
+            f"context-cap tool registration unavailable: {type(exc).__name__}: {exc}"
         )
         return
 
@@ -2467,10 +2309,8 @@ def _install_context_cap_tool_audit(
                     "evaluate_memory_chars",
                     len(str(extracted)),
                 )
-        except Exception as exc:  # noqa: BLE001 - never perturb the agent
-            collector.fail(
-                f"evaluate cap audit failed: {type(exc).__name__}: {exc}"
-            )
+        except Exception as exc:
+            collector.fail(f"evaluate cap audit failed: {type(exc).__name__}: {exc}")
         return result
 
     evaluate_registration.function = audited_evaluate
@@ -2481,16 +2321,19 @@ def _install_context_cap_tool_audit(
     async def audited_extract(*args, **kwargs):
         params = kwargs.get("params")
         try:
-            already_collected = _field(
-                params,
-                "already_collected",
-                (),
-            ) or ()
+            already_collected = (
+                _field(
+                    params,
+                    "already_collected",
+                    (),
+                )
+                or ()
+            )
             collector.observe(
                 "extract_already_collected_items",
                 len(already_collected),
             )
-        except Exception as exc:  # noqa: BLE001 - never perturb the agent
+        except Exception as exc:
             collector.fail(
                 f"extract input cap audit failed: {type(exc).__name__}: {exc}"
             )
@@ -2512,9 +2355,7 @@ def _install_context_cap_tool_audit(
                     **clean_kwargs,
                 )
                 try:
-                    start_from_char = int(
-                        _field(params, "start_from_char", 0) or 0
-                    )
+                    start_from_char = int(_field(params, "start_from_char", 0) or 0)
                     chunks = markdown_module.chunk_markdown_by_structure(
                         content,
                         max_chunk_chars=100000,
@@ -2537,7 +2378,7 @@ def _install_context_cap_tool_audit(
                             0,
                             touched=False,
                         )
-                except Exception as exc:  # noqa: BLE001 - preserve tool result
+                except Exception as exc:
                     collector.fail(
                         "extract page-chunk cap audit failed: "
                         f"{type(exc).__name__}: {exc}"
@@ -2545,10 +2386,9 @@ def _install_context_cap_tool_audit(
                 return content, content_stats
 
             markdown_module.extract_clean_markdown = observed_clean_markdown
-        except Exception as exc:  # noqa: BLE001 - wrapper remains transparent
+        except Exception as exc:
             collector.fail(
-                f"extract markdown audit unavailable: "
-                f"{type(exc).__name__}: {exc}"
+                f"extract markdown audit unavailable: {type(exc).__name__}: {exc}"
             )
 
         try:
@@ -2559,13 +2399,8 @@ def _install_context_cap_tool_audit(
                 and original_clean_markdown is not None
                 and observed_clean_markdown is not None
             ):
-                if (
-                    markdown_module.extract_clean_markdown
-                    is observed_clean_markdown
-                ):
-                    markdown_module.extract_clean_markdown = (
-                        original_clean_markdown
-                    )
+                if markdown_module.extract_clean_markdown is observed_clean_markdown:
+                    markdown_module.extract_clean_markdown = original_clean_markdown
                 else:
                     collector.fail(
                         "extract markdown audit wrapper changed concurrently"
@@ -2575,7 +2410,7 @@ def _install_context_cap_tool_audit(
             extracted = _field(result, "extracted_content")
             if extracted is not None:
                 collector.observe("extract_memory_chars", len(str(extracted)))
-        except Exception as exc:  # noqa: BLE001 - never perturb the agent
+        except Exception as exc:
             collector.fail(
                 f"extract result cap audit failed: {type(exc).__name__}: {exc}"
             )
@@ -2611,7 +2446,7 @@ def _context_cap_audit(
                 error="AgentHistory.history unavailable",
             )
         items = list(raw_items)
-    except Exception as exc:  # noqa: BLE001 - diagnostic must fail closed
+    except Exception as exc:
         return _empty_context_cap_audit(
             complete=False,
             error=f"AgentHistory unreadable: {type(exc).__name__}: {exc}",
@@ -2634,9 +2469,7 @@ def _context_cap_audit(
         configured, comparison = _CONTEXT_CAPS[name]
         if touched is None:
             touched = (
-                observed > configured
-                if comparison == ">"
-                else observed >= configured
+                observed > configured if comparison == ">" else observed >= configured
             )
         if touched:
             record["touched_count"] += 1
@@ -2686,21 +2519,15 @@ def _context_cap_audit(
         # Each stored state message proves that the preceding item's raw
         # results were transformed into the two capped prompt channels.
         for previous_item in items[:-1]:
-            previous_results = list(
-                _field(previous_item, "result", ()) or ()
-            )
-            read_chars, action_chars = result_context_lengths(
-                previous_results
-            )
+            previous_results = list(_field(previous_item, "result", ()) or ())
+            read_chars, action_chars = result_context_lengths(previous_results)
             observe("read_state_chars", read_chars)
             observe("action_results_chars", action_chars)
 
         for item in items:
             state_message = _field(item, "state_message")
             if state_message is None:
-                incomplete_reasons.append(
-                    "AgentHistory item lacks state_message"
-                )
+                incomplete_reasons.append("AgentHistory item lacks state_message")
             elif _CLICKABLE_ELEMENTS_MARKER in str(state_message):
                 observe(
                     "max_clickable_elements_chars",
@@ -2724,9 +2551,8 @@ def _context_cap_audit(
                         "action dump must contain exactly one non-null action"
                     )
                 action_name, params = next(iter(dumped.items()))
-                if (
-                    action_name not in {"evaluate", "extract"}
-                    or action_index >= len(results)
+                if action_name not in {"evaluate", "extract"} or action_index >= len(
+                    results
                 ):
                     continue
 
@@ -2743,11 +2569,14 @@ def _context_cap_audit(
                             len(str(extracted)),
                         )
                 else:
-                    already_collected = _field(
-                        params,
-                        "already_collected",
-                        (),
-                    ) or ()
+                    already_collected = (
+                        _field(
+                            params,
+                            "already_collected",
+                            (),
+                        )
+                        or ()
+                    )
                     observe(
                         "extract_already_collected_items",
                         len(already_collected),
@@ -2793,7 +2622,7 @@ def _context_cap_audit(
                             max(0, final_chars - start_chars),
                             touched=bool(is_partial),
                         )
-    except Exception as exc:  # noqa: BLE001 - incomplete audits must be explicit
+    except Exception as exc:
         incomplete_reasons.append(
             f"AgentHistory audit failed: {type(exc).__name__}: {exc}"
         )
@@ -2822,13 +2651,16 @@ def _context_cap_audit(
 # browsers, with mass first-navigation timeouts above it — while the machine sat near-idle.
 # These are ceilings, not added latency: healthy cells are unaffected; burst-hit cells now wait
 # out the spike instead of dying. setdefault -> operators can still override per run.
-for _ev, _secs in (("TIMEOUT_NavigateToUrlEvent", "120"),
-                   ("TIMEOUT_BrowserStateRequestEvent", "90"),
-                   ("TIMEOUT_ScreenshotEvent", "60"),
-                   ("TIMEOUT_ClickElementEvent", "45"),
-                   ("TIMEOUT_ClickCoordinateEvent", "45"),
-                   ("TIMEOUT_ScrollEvent", "30")):
+for _ev, _secs in (
+    ("TIMEOUT_NavigateToUrlEvent", "120"),
+    ("TIMEOUT_BrowserStateRequestEvent", "90"),
+    ("TIMEOUT_ScreenshotEvent", "60"),
+    ("TIMEOUT_ClickElementEvent", "45"),
+    ("TIMEOUT_ClickCoordinateEvent", "45"),
+    ("TIMEOUT_ScrollEvent", "30"),
+):
     os.environ.setdefault(_ev, _secs)
+
 
 # --- Completion-token ceiling (2026-07 validity fix) ----------------------------------------
 # browser-use's ChatOpenAI defaults max_completion_tokens=4096, and for reasoning models that
@@ -2842,15 +2674,6 @@ for _ev, _secs in (("TIMEOUT_NavigateToUrlEvent", "120"),
 # Default: None -> the parameter is omitted from the request entirely and each model uses its own
 # provider-side output limit (browser-use handles the None case; per-attempt timeout=180s still
 # bounds a runaway). Set CAVEAT_MAX_COMPLETION_TOKENS=<int> to re-impose an explicit ceiling.
-@lru_cache(maxsize=1)
-def _trapi_token_provider_cached():
-    """azure.identity's bearer-token provider, built once per process. The provider itself caches
-    the token and refreshes it when it nears expiry, so calling it per request is cheap and always
-    returns a live token."""
-    from ..core.models import _trapi_token_provider
-    return _trapi_token_provider()
-
-
 def _llm_timeout_s() -> int:
     """Per-LLM-call ceiling, shared by the HTTP client and browser-use's Agent (see the long note
     at the Agent(...) call site). One value for every model — a speed-dependent ceiling ranks models
@@ -2957,28 +2780,15 @@ def _patch_fence_tolerance(ChatOpenAI) -> None:
     def _get_client(self):
         client = _orig_get_client(self)
         _orig_create = client.chat.completions.create
-        # TRAPI bearer tokens live ~1h, but ModelSpec.openai_endpoint() resolves ONE token string at
-        # cell start and browser-use holds it for the life of the client. That was invisible while
-        # runs finished inside the hour; once the harness ceilings were lifted (10h cell timeout,
-        # 2000 steps) runs began outliving their token and dying in a cascade of 401s -> consecutive
-        # failures. caveat's own router already avoids this by passing a CALLABLE api_key
-        # ("tokens are minted fresh per request and never go stale", llm_client.create_trapi_client);
-        # browser-use types api_key as str, so mint per request here instead. Only for TRAPI hosts —
-        # PhyAGI and OpenAI keys are static and must pass through untouched.
-        _is_trapi = "trapi" in str(getattr(client, "base_url", "")).lower()
-        _token = _trapi_token_provider_cached() if _is_trapi else None
 
         async def _create(*a, **k):
-            if _token is not None:
-                hdrs = dict(k.get("extra_headers") or {})
-                hdrs["Authorization"] = f"Bearer {_token()}"
-                k["extra_headers"] = hdrs
             try:
                 resp = await _orig_create(*a, **k)
             except Exception as exc:
                 status = getattr(exc, "status_code", None)
                 retryable = (
-                    type(exc).__name__ in {
+                    type(exc).__name__
+                    in {
                         "APIConnectionError",
                         "APITimeoutError",
                         "RateLimitError",
@@ -2998,7 +2808,7 @@ def _patch_fence_tolerance(ChatOpenAI) -> None:
                     )
                 raise
             try:
-                for ch in (resp.choices or []):
+                for ch in resp.choices or []:
                     c = getattr(ch.message, "content", None)
                     if c:
                         ch.message.content = _strip_fences(c)
@@ -3061,9 +2871,7 @@ def _new_limit_audit(
                     continue
                 observations = {}
                 if record.get("observation_basis") is not None:
-                    observations["observation_basis"] = record[
-                        "observation_basis"
-                    ]
+                    observations["observation_basis"] = record["observation_basis"]
                 if record.get("direct_maximum_observed") is not None:
                     observations["direct_maximum_observed"] = record[
                         "direct_maximum_observed"
@@ -3077,9 +2885,7 @@ def _new_limit_audit(
                 categories[category] = applicable
     return {
         "schema_version": _LIMIT_AUDIT_SCHEMA_VERSION,
-        "contract_sha256": (
-            contract.get("sha256") if contract is not None else None
-        ),
+        "contract_sha256": (contract.get("sha256") if contract is not None else None),
         "arm": arm,
         "complete": contract is not None and error is None,
         "error": error,
@@ -3092,9 +2898,7 @@ def _limit_record(
     category: str,
     name: str,
 ) -> dict[str, Any] | None:
-    return (
-        (audit.get("categories") or {}).get(category, {}).get(name)
-    )
+    return (audit.get("categories") or {}).get(category, {}).get(name)
 
 
 def _observe_limit(
@@ -3109,8 +2913,7 @@ def _observe_limit(
     if record is None:
         audit["complete"] = False
         audit["error"] = (
-            f"runtime attempted to observe undeclared limit "
-            f"{category}.{name}"
+            f"runtime attempted to observe undeclared limit {category}.{name}"
         )
         return
     record["touched_count"] += max(0, int(touched))
@@ -3145,29 +2948,30 @@ def _validate_runtime_limit_configuration(
             extract_externalization_actual[key] = hashlib.sha256(
                 source_path.read_bytes()
             ).hexdigest()
-        except Exception as exc:  # noqa: BLE001 - audit must fail closed
+        except Exception as exc:
             dependency_hash_errors.append(
-                f"{module_name} source hash unavailable: "
-                f"{type(exc).__name__}: {exc}"
+                f"{module_name} source hash unavailable: {type(exc).__name__}: {exc}"
             )
 
-    replace_guard_declared = _limit_record(
-        audit,
-        "fixed_architecture",
-        "replace_file_recursive_amplification_guard",
-    ) is not None
+    replace_guard_declared = (
+        _limit_record(
+            audit,
+            "fixed_architecture",
+            "replace_file_recursive_amplification_guard",
+        )
+        is not None
+    )
     replace_guard_actual = dict(
         _REPLACE_FILE_RECURSIVE_AMPLIFICATION_GUARD_CONFIGURATION
     )
     if replace_guard_declared:
         try:
-            replace_guard_actual[
-                "upstream_browser_use_version_guard"
-            ] = importlib_metadata.version("browser-use")
-        except Exception as exc:  # noqa: BLE001 - audit must fail closed
+            replace_guard_actual["upstream_browser_use_version_guard"] = (
+                importlib_metadata.version("browser-use")
+            )
+        except Exception as exc:
             dependency_hash_errors.append(
-                "browser-use version unavailable: "
-                f"{type(exc).__name__}: {exc}"
+                f"browser-use version unavailable: {type(exc).__name__}: {exc}"
             )
         for key, module_name in (
             (
@@ -3185,34 +2989,35 @@ def _validate_runtime_limit_configuration(
                 replace_guard_actual[key] = hashlib.sha256(
                     source_path.read_bytes()
                 ).hexdigest()
-            except Exception as exc:  # noqa: BLE001 - fail closed
+            except Exception as exc:
                 dependency_hash_errors.append(
                     f"{module_name} source hash unavailable: "
                     f"{type(exc).__name__}: {exc}"
                 )
 
-    auxiliary_judge_declared = _limit_record(
-        audit,
-        "fixed_architecture",
-        "post_task_auxiliary_judge",
-    ) is not None
-    auxiliary_judge_actual = dict(
-        _POST_TASK_AUXILIARY_JUDGE_CONFIGURATION
+    auxiliary_judge_declared = (
+        _limit_record(
+            audit,
+            "fixed_architecture",
+            "post_task_auxiliary_judge",
+        )
+        is not None
     )
+    auxiliary_judge_actual = dict(_POST_TASK_AUXILIARY_JUDGE_CONFIGURATION)
     if auxiliary_judge_declared:
         try:
-            auxiliary_judge_actual[
-                "upstream_browser_use_version_guard"
-            ] = importlib_metadata.version("browser-use")
+            auxiliary_judge_actual["upstream_browser_use_version_guard"] = (
+                importlib_metadata.version("browser-use")
+            )
             from browser_use.agent.service import Agent as UpstreamAgent
 
-            parameter = inspect.signature(
-                UpstreamAgent.__init__
-            ).parameters.get("use_judge")
+            parameter = inspect.signature(UpstreamAgent.__init__).parameters.get(
+                "use_judge"
+            )
             auxiliary_judge_actual["upstream_default"] = (
                 parameter.default if parameter is not None else None
             )
-        except Exception as exc:  # noqa: BLE001 - audit must fail closed
+        except Exception as exc:
             dependency_hash_errors.append(
                 "browser-use auxiliary-judge surface unavailable: "
                 f"{type(exc).__name__}: {exc}"
@@ -3233,24 +3038,27 @@ def _validate_runtime_limit_configuration(
                 auxiliary_judge_actual[key] = hashlib.sha256(
                     source_path.read_bytes()
                 ).hexdigest()
-            except Exception as exc:  # noqa: BLE001 - fail closed
+            except Exception as exc:
                 dependency_hash_errors.append(
                     f"{module_name} source hash unavailable: "
                     f"{type(exc).__name__}: {exc}"
                 )
 
-    validation_feedback_declared = _limit_record(
-        audit,
-        "fixed_architecture",
-        "agent_output_validation_feedback_rendering",
-    ) is not None
+    validation_feedback_declared = (
+        _limit_record(
+            audit,
+            "fixed_architecture",
+            "agent_output_validation_feedback_rendering",
+        )
+        is not None
+    )
     validation_feedback_actual = dict(
         _AGENT_OUTPUT_VALIDATION_FEEDBACK_RENDERING_CONFIGURATION
     )
     if validation_feedback_declared:
-        validation_feedback_actual[
-            "upstream_browser_use_version_guard"
-        ] = importlib_metadata.version("browser-use")
+        validation_feedback_actual["upstream_browser_use_version_guard"] = (
+            importlib_metadata.version("browser-use")
+        )
         for key, module_name in (
             (
                 "upstream_agent_service_sha256_guard",
@@ -3267,7 +3075,7 @@ def _validate_runtime_limit_configuration(
                 validation_feedback_actual[key] = hashlib.sha256(
                     source_path.read_bytes()
                 ).hexdigest()
-            except Exception as exc:  # noqa: BLE001 - audit must fail closed
+            except Exception as exc:
                 dependency_hash_errors.append(
                     f"{module_name} source hash unavailable: "
                     f"{type(exc).__name__}: {exc}"
@@ -3279,10 +3087,8 @@ def _validate_runtime_limit_configuration(
             os.environ.get("CAVEAT_CELL_TIMEOUT", "10800")
         ),
         ("safety_backstops", "llm_timeout_seconds"): _llm_timeout_s(),
-        ("safety_backstops", "llm_http_timeout_seconds"):
-            _llm_timeout_s() + 60,
-        ("safety_backstops", "step_timeout_seconds"):
-            _llm_timeout_s() + 300,
+        ("safety_backstops", "llm_http_timeout_seconds"): _llm_timeout_s() + 60,
+        ("safety_backstops", "step_timeout_seconds"): _llm_timeout_s() + 300,
         ("safety_backstops", "extract_llm_timeout_seconds"): float(
             os.environ.get("BROWSER_USE_EXTRACT_TIMEOUT_S", "7500")
         ),
@@ -3302,41 +3108,50 @@ def _validate_runtime_limit_configuration(
             "retry_after_max_seconds": 60,
             "exponential_backoff_max_seconds": 8,
         },
-        ("safety_backstops", "evaluate_result_single_chars"):
-            _EVALUATE_SINGLE_MAX_CHARS,
-        ("safety_backstops", "evaluate_result_store_bytes"):
-            _EVALUATE_STORE_MAX_BYTES,
-        ("safety_backstops", "evaluate_result_store_responses"):
-            _EVALUATE_STORE_MAX_RESPONSES,
+        (
+            "safety_backstops",
+            "evaluate_result_single_chars",
+        ): _EVALUATE_SINGLE_MAX_CHARS,
+        ("safety_backstops", "evaluate_result_store_bytes"): _EVALUATE_STORE_MAX_BYTES,
+        (
+            "safety_backstops",
+            "evaluate_result_store_responses",
+        ): _EVALUATE_STORE_MAX_RESPONSES,
         ("fixed_architecture", "max_completion_tokens"): (
             "off" if _completion_cap() is None else _completion_cap()
         ),
-        ("fixed_architecture", "evaluate_result_spill"):
-            _EVALUATE_RESULT_SPILL_CONFIGURATION,
-        ("fixed_architecture", "extract_result_file_externalization"):
-            extract_externalization_actual,
+        (
+            "fixed_architecture",
+            "evaluate_result_spill",
+        ): _EVALUATE_RESULT_SPILL_CONFIGURATION,
+        (
+            "fixed_architecture",
+            "extract_result_file_externalization",
+        ): extract_externalization_actual,
     }
     if replace_guard_declared:
-        actual[(
-            "fixed_architecture",
-            "replace_file_recursive_amplification_guard",
-        )] = replace_guard_actual
+        actual[
+            (
+                "fixed_architecture",
+                "replace_file_recursive_amplification_guard",
+            )
+        ] = replace_guard_actual
     if auxiliary_judge_declared:
-        actual[(
-            "fixed_architecture",
-            "post_task_auxiliary_judge",
-        )] = auxiliary_judge_actual
+        actual[
+            (
+                "fixed_architecture",
+                "post_task_auxiliary_judge",
+            )
+        ] = auxiliary_judge_actual
     if validation_feedback_declared:
-        actual[(
-            "fixed_architecture",
-            "agent_output_validation_feedback_rendering",
-        )] = validation_feedback_actual
-    event_record = _limit_record(
-        audit, "safety_backstops", "event_timeouts_seconds"
-    )
-    if event_record is not None and isinstance(
-        event_record.get("configured"), dict
-    ):
+        actual[
+            (
+                "fixed_architecture",
+                "agent_output_validation_feedback_rendering",
+            )
+        ] = validation_feedback_actual
+    event_record = _limit_record(audit, "safety_backstops", "event_timeouts_seconds")
+    if event_record is not None and isinstance(event_record.get("configured"), dict):
         actual[("safety_backstops", "event_timeouts_seconds")] = {
             name: float(os.environ[f"TIMEOUT_{name}"])
             for name in event_record["configured"]
@@ -3348,28 +3163,20 @@ def _validate_runtime_limit_configuration(
             errors.append(f"missing {category}.{name}")
             continue
         configured = record["configured"]
-        if isinstance(configured, (int, float)) and isinstance(
-            observed, (int, float)
-        ):
+        if isinstance(configured, (int, float)) and isinstance(observed, (int, float)):
             matches = float(configured) == float(observed)
         else:
             matches = configured == observed
         record["observations"]["runtime_configured"] = observed
         if not matches:
-            errors.append(
-                f"{category}.{name}={observed!r}, expected {configured!r}"
-            )
-    context = (audit.get("categories") or {}).get(
-        "lossy_context_limits", {}
-    )
+            errors.append(f"{category}.{name}={observed!r}, expected {configured!r}")
+    context = (audit.get("categories") or {}).get("lossy_context_limits", {})
     if set(context) != set(_LOSSY_CONTEXT_CAPS):
         errors.append("lossy context-limit inventory differs from runtime")
     else:
         for name, (configured, _comparison) in _LOSSY_CONTEXT_CAPS.items():
             if context[name]["configured"] != configured:
-                errors.append(
-                    f"lossy_context_limits.{name} differs from runtime"
-                )
+                errors.append(f"lossy_context_limits.{name} differs from runtime")
     if errors:
         audit["complete"] = False
         audit["error"] = "; ".join(errors)
@@ -3393,8 +3200,12 @@ def _action_error_audit_errors(
 
     errors: list[str] = []
     expected_top = {
-        "schema_version", "complete", "error", "all",
-        "agent_output_validation", "other_or_unknown",
+        "schema_version",
+        "complete",
+        "error",
+        "all",
+        "agent_output_validation",
+        "other_or_unknown",
     }
     expected_bucket = {"count", "over_cap_count", "max_chars"}
     if not isinstance(value, dict) or set(value) != expected_top:
@@ -3410,32 +3221,24 @@ def _action_error_audit_errors(
         if not isinstance(bucket, dict) or set(bucket) != expected_bucket:
             errors.append(f"action_error_audit.{name} is malformed")
             continue
-        if any(type(bucket.get(key)) is not int or bucket[key] < 0
-               for key in expected_bucket):
-            errors.append(
-                f"action_error_audit.{name} counters are malformed"
-            )
+        if any(
+            type(bucket.get(key)) is not int or bucket[key] < 0
+            for key in expected_bucket
+        ):
+            errors.append(f"action_error_audit.{name} counters are malformed")
             continue
         if bucket["over_cap_count"] > bucket["count"]:
-            errors.append(
-                f"action_error_audit.{name} over-cap count exceeds count"
-            )
+            errors.append(f"action_error_audit.{name} over-cap count exceeds count")
         if bucket["count"] == 0 and bucket["max_chars"] != 0:
-            errors.append(
-                f"action_error_audit.{name} empty bucket has nonzero max"
-            )
+            errors.append(f"action_error_audit.{name} empty bucket has nonzero max")
         if (
             bucket["over_cap_count"] == 0
-            and bucket["max_chars"]
-            > _EFFECTIVE_ACTION_ERROR_PROMPT_CHARS
+            and bucket["max_chars"] > _EFFECTIVE_ACTION_ERROR_PROMPT_CHARS
         ) or (
             bucket["over_cap_count"] > 0
-            and bucket["max_chars"]
-            <= _EFFECTIVE_ACTION_ERROR_PROMPT_CHARS
+            and bucket["max_chars"] <= _EFFECTIVE_ACTION_ERROR_PROMPT_CHARS
         ):
-            errors.append(
-                f"action_error_audit.{name} boundary counters disagree"
-            )
+            errors.append(f"action_error_audit.{name} boundary counters disagree")
         buckets[name] = bucket
 
     if len(buckets) == 3:
@@ -3448,12 +3251,8 @@ def _action_error_audit_errors(
             all_bucket["over_cap_count"]
             != known["over_cap_count"] + unknown["over_cap_count"]
         ):
-            errors.append(
-                "action_error_audit over-cap counts do not partition all"
-            )
-        if all_bucket["max_chars"] != max(
-            known["max_chars"], unknown["max_chars"]
-        ):
+            errors.append("action_error_audit over-cap counts do not partition all")
+        if all_bucket["max_chars"] != max(known["max_chars"], unknown["max_chars"]):
             errors.append("action_error_audit maxima do not partition all")
 
     if not isinstance(raw_context_record, dict):
@@ -3463,15 +3262,9 @@ def _action_error_audit_errors(
             _EFFECTIVE_ACTION_ERROR_PROMPT_CHARS
         ):
             errors.append("raw action-error cap configuration differs")
-        if raw_context_record.get("touched_count") != buckets["all"][
-            "over_cap_count"
-        ]:
-            errors.append(
-                "raw and provenance action-error touched counts disagree"
-            )
-        if raw_context_record.get("max_observed") != buckets["all"][
-            "max_chars"
-        ]:
+        if raw_context_record.get("touched_count") != buckets["all"]["over_cap_count"]:
+            errors.append("raw and provenance action-error touched counts disagree")
+        if raw_context_record.get("max_observed") != buckets["all"]["max_chars"]:
             errors.append("raw and provenance action-error maxima disagree")
     return errors
 
@@ -3496,34 +3289,24 @@ def _replace_file_safety_audit_errors(value: Any) -> list[str]:
     if not isinstance(value, dict) or set(value) != expected_top:
         return ["replace_file safety audit top-level schema is not exact"]
     errors: list[str] = []
-    if value.get("schema_version") != (
-        _REPLACE_FILE_SAFETY_AUDIT_SCHEMA_VERSION
-    ):
+    if value.get("schema_version") != (_REPLACE_FILE_SAFETY_AUDIT_SCHEMA_VERSION):
         errors.append("replace_file safety audit schema_version differs")
-    numeric_names = expected_top - {
-        "schema_version", "trigger_records", "errors"
-    }
+    numeric_names = expected_top - {"schema_version", "trigger_records", "errors"}
     if any(
-        type(value.get(name)) is not int or value[name] < 0
-        for name in numeric_names
+        type(value.get(name)) is not int or value[name] < 0 for name in numeric_names
     ):
         errors.append("replace_file safety audit counters are malformed")
         return errors
     if value["installation_count"] not in (0, 1):
         errors.append("replace_file guard installation count is not zero/one")
-    if (
-        value["installation_count"] == 0
-        and value["invocations"] != 0
-    ):
+    if value["installation_count"] == 0 and value["invocations"] != 0:
         errors.append("replace_file guard ran before installation")
     if value["invocations"] != (
-        value["checked_invocations"]
-        + value["passthrough_invocations"]
+        value["checked_invocations"] + value["passthrough_invocations"]
     ):
         errors.append("replace_file invocation partition disagrees")
     if value["checked_invocations"] != (
-        value["passed_invocations"]
-        + value["rejected_invocations"]
+        value["passed_invocations"] + value["rejected_invocations"]
     ):
         errors.append("replace_file checked-call partition disagrees")
     if value["checked_invocations"] == 0 and (
@@ -3538,10 +3321,7 @@ def _replace_file_safety_audit_errors(value: Any) -> list[str]:
     ):
         errors.append("replace_file safety audit errors are malformed")
     elif raw_errors:
-        errors.append(
-            "replace_file safety collector failed: "
-            + "; ".join(raw_errors)
-        )
+        errors.append("replace_file safety collector failed: " + "; ".join(raw_errors))
 
     trigger_records = value.get("trigger_records")
     if not isinstance(trigger_records, list):
@@ -3562,16 +3342,10 @@ def _replace_file_safety_audit_errors(value: Any) -> list[str]:
     }
     for index, trigger in enumerate(trigger_records, start=1):
         if not isinstance(trigger, dict) or set(trigger) != expected_trigger:
-            errors.append(
-                f"replace_file trigger record {index} schema is not exact"
-            )
+            errors.append(f"replace_file trigger record {index} schema is not exact")
             continue
-        current_matches = trigger.get(
-            "current_non_overlapping_matches"
-        )
-        replacement_matches = trigger.get(
-            "replacement_non_overlapping_matches"
-        )
+        current_matches = trigger.get("current_non_overlapping_matches")
+        replacement_matches = trigger.get("replacement_non_overlapping_matches")
         reason = trigger.get("reason")
         if (
             trigger.get("trigger_index") != index
@@ -3589,18 +3363,13 @@ def _replace_file_safety_audit_errors(value: Any) -> list[str]:
             or trigger.get("agent_result") != "error"
             or reason != "recursive_all_sites_amplification"
         ):
-            errors.append(
-                f"replace_file trigger record {index} is malformed"
-            )
+            errors.append(f"replace_file trigger record {index} is malformed")
             continue
         if (
             current_matches > value["max_current_matches"]
-            or replacement_matches
-            > value["max_replacement_matches"]
+            or replacement_matches > value["max_replacement_matches"]
         ):
-            errors.append(
-                f"replace_file trigger record {index} exceeds maxima"
-            )
+            errors.append(f"replace_file trigger record {index} exceeds maxima")
     return errors
 
 
@@ -3614,10 +3383,19 @@ def _lossless_read_state_recovery_audit_errors(
     if not isinstance(value, dict):
         return [f"{prefix} is absent or malformed"]
     exact = {
-        "schema_version", "active", "complete", "error",
-        "authorization", "authorization_sha256", "installation",
-        "call_count", "raw_crossing_count", "restored_crossing_count",
-        "raw_max_chars", "effective_loss_touched_count", "records",
+        "schema_version",
+        "active",
+        "complete",
+        "error",
+        "authorization",
+        "authorization_sha256",
+        "installation",
+        "call_count",
+        "raw_crossing_count",
+        "restored_crossing_count",
+        "raw_max_chars",
+        "effective_loss_touched_count",
+        "records",
     }
     errors: list[str] = []
     if set(value) != exact:
@@ -3632,10 +3410,19 @@ def _lossless_read_state_recovery_audit_errors(
 
     authorization = value.get("authorization")
     authorization_keys = {
-        "schema", "mode", "campaign_uuid", "manifest_sha256",
-        "amendment_sha256", "scheduler_sha256", "run_index", "run_id",
-        "prior_attempt", "attempt", "prior_completion_sha256",
-        "prior_trajectory_sha256", "cache_nonce_sha256",
+        "schema",
+        "mode",
+        "campaign_uuid",
+        "manifest_sha256",
+        "amendment_sha256",
+        "scheduler_sha256",
+        "run_index",
+        "run_id",
+        "prior_attempt",
+        "attempt",
+        "prior_completion_sha256",
+        "prior_trajectory_sha256",
+        "cache_nonce_sha256",
     }
     fixed = {
         "schema": _LOSSLESS_READ_STATE_RECOVERY_SCHEMA,
@@ -3662,7 +3449,8 @@ def _lossless_read_state_recovery_audit_errors(
             not isinstance(authorization.get(name), str)
             or re.fullmatch(r"[0-9a-f]{64}", authorization[name]) is None
             for name in (
-                "amendment_sha256", "scheduler_sha256",
+                "amendment_sha256",
+                "scheduler_sha256",
                 "cache_nonce_sha256",
             )
         )
@@ -3675,9 +3463,7 @@ def _lossless_read_state_recovery_audit_errors(
     expected_installation = {
         "browser_use_version": _BROWSER_USE_VERSION,
         "source_sha256": _BROWSER_USE_MESSAGE_MANAGER_SERVICE_SHA256,
-        "method_source_sha256": (
-            _BROWSER_USE_MESSAGE_MANAGER_METHOD_SOURCE_SHA256
-        ),
+        "method_source_sha256": (_BROWSER_USE_MESSAGE_MANAGER_METHOD_SOURCE_SHA256),
         "method_code_sha256": _BROWSER_USE_MESSAGE_MANAGER_METHOD_CODE_SHA256,
         "method_qualname": "MessageManager._update_agent_history_description",
         "method_signature": _BROWSER_USE_MESSAGE_MANAGER_METHOD_SIGNATURE,
@@ -3693,11 +3479,21 @@ def _lossless_read_state_recovery_audit_errors(
 
     records = value.get("records")
     record_keys = {
-        "call_index", "step_number", "raw_chars", "raw_sha256",
-        "raw_crossed", "upstream_chars", "upstream_sha256",
-        "expected_upstream_sha256", "restored", "effective_chars",
-        "effective_sha256", "effective_loss", "history_items",
-        "read_state_images", "action_results_sha256",
+        "call_index",
+        "step_number",
+        "raw_chars",
+        "raw_sha256",
+        "raw_crossed",
+        "upstream_chars",
+        "upstream_sha256",
+        "expected_upstream_sha256",
+        "restored",
+        "effective_chars",
+        "effective_sha256",
+        "effective_loss",
+        "history_items",
+        "read_state_images",
+        "action_results_sha256",
     }
     valid_records: list[dict[str, Any]] = []
     if not isinstance(records, list):
@@ -3708,12 +3504,18 @@ def _lossless_read_state_recovery_audit_errors(
             errors.append(f"{prefix} record {position} schema is not exact")
             continue
         hash_names = (
-            "raw_sha256", "upstream_sha256", "expected_upstream_sha256",
-            "effective_sha256", "action_results_sha256",
+            "raw_sha256",
+            "upstream_sha256",
+            "expected_upstream_sha256",
+            "effective_sha256",
+            "action_results_sha256",
         )
         integer_names = (
-            "raw_chars", "upstream_chars", "effective_chars",
-            "history_items", "read_state_images",
+            "raw_chars",
+            "upstream_chars",
+            "effective_chars",
+            "history_items",
+            "read_state_images",
         )
         if (
             record.get("call_index") != position
@@ -3737,25 +3539,19 @@ def _lossless_read_state_recovery_audit_errors(
             errors.append(f"{prefix} record {position} is malformed")
             continue
         crossed = record["raw_chars"] > _READ_STATE_CONTENT_LIMIT_CHARS
-        expected_effective_chars = (
-            record["raw_chars"] - 1 if record["raw_chars"] else 0
-        )
+        expected_effective_chars = record["raw_chars"] - 1 if record["raw_chars"] else 0
         if (
             record["raw_crossed"] is not crossed
             or record["restored"] is not crossed
             or record["effective_loss"] is not False
             or record["effective_chars"] != expected_effective_chars
-            or record["upstream_sha256"]
-            != record["expected_upstream_sha256"]
+            or record["upstream_sha256"] != record["expected_upstream_sha256"]
             or (
-                crossed and record["upstream_chars"]
-                != _READ_STATE_CONTENT_LIMIT_CHARS
-                + len(_READ_STATE_TRUNCATION_MARKER)
+                crossed
+                and record["upstream_chars"]
+                != _READ_STATE_CONTENT_LIMIT_CHARS + len(_READ_STATE_TRUNCATION_MARKER)
             )
-            or (
-                not crossed
-                and record["upstream_chars"] != expected_effective_chars
-            )
+            or (not crossed and record["upstream_chars"] != expected_effective_chars)
         ):
             errors.append(
                 f"{prefix} record {position} does not prove exact restoration"
@@ -3763,15 +3559,9 @@ def _lossless_read_state_recovery_audit_errors(
             continue
         valid_records.append(record)
 
-    raw_crossings = sum(
-        int(record["raw_crossed"] is True) for record in valid_records
-    )
-    restored = sum(
-        int(record["restored"] is True) for record in valid_records
-    )
-    raw_max = max(
-        (record["raw_chars"] for record in valid_records), default=0
-    )
+    raw_crossings = sum(int(record["raw_crossed"] is True) for record in valid_records)
+    restored = sum(int(record["restored"] is True) for record in valid_records)
+    raw_max = max((record["raw_chars"] for record in valid_records), default=0)
     aggregates_match = (
         type(value.get("call_count")) is int
         and value.get("call_count") == len(records)
@@ -3782,8 +3572,7 @@ def _lossless_read_state_recovery_audit_errors(
         and type(value.get("raw_max_chars")) is int
         and value.get("raw_max_chars") == raw_max
         and type(value.get("effective_loss_touched_count")) is int
-        and value.get("effective_loss_touched_count")
-        == raw_crossings - restored
+        and value.get("effective_loss_touched_count") == raw_crossings - restored
     )
     if not aggregates_match or len(valid_records) != len(records):
         errors.append(f"{prefix} aggregate counters differ")
@@ -3815,8 +3604,7 @@ def _finalize_limit_audit(
     lossless_read_state_recovery_audit: dict[str, Any] | None = None,
 ) -> None:
     safety_text = "\n".join(
-        value for value in (history_error_text, run_error or "")
-        if value
+        value for value in (history_error_text, run_error or "") if value
     )
     max_steps = _limit_record(audit, "safety_backstops", "max_steps")
     if max_steps is not None:
@@ -3840,20 +3628,18 @@ def _finalize_limit_audit(
     )
     step_timeout_value = (
         step_timeout_record.get("configured")
-        if step_timeout_record is not None else None
+        if step_timeout_record is not None
+        else None
     )
     step_timeout_markers = ()
     if isinstance(step_timeout_value, (int, float)):
         rendered = f"{float(step_timeout_value):g}"
-        step_timeout_markers = (
-            f" timed out after {rendered} seconds",
-        )
+        step_timeout_markers = (f" timed out after {rendered} seconds",)
     failures_record = _limit_record(
         audit, "safety_backstops", "max_consecutive_failures"
     )
     failures_value = (
-        failures_record.get("configured")
-        if failures_record is not None else None
+        failures_record.get("configured") if failures_record is not None else None
     )
     failures_markers = ()
     if isinstance(failures_value, int):
@@ -3863,20 +3649,23 @@ def _finalize_limit_audit(
         )
     marker_map = {
         "llm_timeout_seconds": (
-            "llm call timed out", "llm timed out", "TimeoutError: LLM",
+            "llm call timed out",
+            "llm timed out",
+            "TimeoutError: LLM",
         ),
         "llm_http_timeout_seconds": (
-            "APITimeoutError", "httpx.ReadTimeout",
-            "httpx.ConnectTimeout", "httpx.WriteTimeout",
+            "APITimeoutError",
+            "httpx.ReadTimeout",
+            "httpx.ConnectTimeout",
+            "httpx.WriteTimeout",
             "httpx.PoolTimeout",
         ),
         "step_timeout_seconds": step_timeout_markers,
-        "extract_llm_timeout_seconds": (
-            "CAVEAT_EXTRACT_LLM_TIMEOUT_BOUND",
-        ),
+        "extract_llm_timeout_seconds": ("CAVEAT_EXTRACT_LLM_TIMEOUT_BOUND",),
         "cdp_request_timeout_seconds": ("CDP request timed out",),
         "browser_action_timeout_seconds": (
-            "Browser action timed out", "Action timed out",
+            "Browser action timed out",
+            "Action timed out",
         ),
         "max_consecutive_failures": failures_markers,
         "llm_sdk_max_retries": (
@@ -3884,7 +3673,8 @@ def _finalize_limit_audit(
             "max retries exceeded",
         ),
         "event_timeouts_seconds": (
-            "Error in event handler", "EventBus",
+            "Error in event handler",
+            "EventBus",
         ),
         "dependency_inner_timeouts": (
             "Page.navigate() timed out",
@@ -3902,12 +3692,10 @@ def _finalize_limit_audit(
     limits = context_cap_audit.get("limits")
     if context_cap_audit.get("complete") is not True:
         audit["complete"] = False
-        audit["error"] = (
-            "common context-limit audit is incomplete"
-            + (
-                f": {context_cap_audit.get('error')}"
-                if context_cap_audit.get("error") else ""
-            )
+        audit["error"] = "common context-limit audit is incomplete" + (
+            f": {context_cap_audit.get('error')}"
+            if context_cap_audit.get("error")
+            else ""
         )
     validation_feedback_record = _limit_record(
         audit,
@@ -3917,8 +3705,7 @@ def _finalize_limit_audit(
     validation_split_errors: list[str] = []
     if validation_feedback_record is not None:
         raw_action_error = (
-            limits.get("action_error_chars")
-            if isinstance(limits, dict) else None
+            limits.get("action_error_chars") if isinstance(limits, dict) else None
         )
         validation_split_errors = _action_error_audit_errors(
             action_error_audit,
@@ -3928,8 +3715,7 @@ def _finalize_limit_audit(
             audit["complete"] = False
             message = "; ".join(validation_split_errors)
             audit["error"] = (
-                f"{audit['error']}; {message}"
-                if audit.get("error") else message
+                f"{audit['error']}; {message}" if audit.get("error") else message
             )
 
     if isinstance(limits, dict):
@@ -3942,180 +3728,150 @@ def _finalize_limit_audit(
                 )
                 if record is None:
                     audit["complete"] = False
-                    audit["error"] = (
-                        "missing fixed extraction externalization audit"
-                    )
+                    audit["error"] = "missing fixed extraction externalization audit"
                     continue
                 externalized = int(source.get("touched_count", 0))
                 record["touched_count"] = externalized
-                record["observations"].update({
-                    "raw_context_audit_name": name,
-                    "externalized_results": externalized,
-                    "max_result_chars": int(
-                        source.get("max_observed", 0)
-                    ),
-                    "threshold_chars": int(
-                        source.get("configured", 0)
-                    ),
-                })
+                record["observations"].update(
+                    {
+                        "raw_context_audit_name": name,
+                        "externalized_results": externalized,
+                        "max_result_chars": int(source.get("max_observed", 0)),
+                        "threshold_chars": int(source.get("configured", 0)),
+                    }
+                )
                 continue
             if (
                 name == "read_state_chars"
                 and lossless_read_state_recovery_audit is not None
             ):
-                record = _limit_record(
-                    audit, "lossy_context_limits", name
-                )
+                record = _limit_record(audit, "lossy_context_limits", name)
                 if record is None:
                     audit["complete"] = False
-                    audit["error"] = (
-                        "missing lossy read-state audit record"
-                    )
+                    audit["error"] = "missing lossy read-state audit record"
                     continue
                 raw_touched = int(source.get("touched_count", 0))
                 raw_max = int(source.get("max_observed", 0))
-                recovery_errors = (
-                    _lossless_read_state_recovery_audit_errors(
-                        lossless_read_state_recovery_audit,
-                        source,
-                    )
+                recovery_errors = _lossless_read_state_recovery_audit_errors(
+                    lossless_read_state_recovery_audit,
+                    source,
                 )
                 # Preserve the untouched raw context observations regardless
                 # of proof status.  Only a complete, exact proof is permitted
                 # to subtract restored crossings from the effective lossy
                 # count; every other state retains the conservative raw count.
                 record["observations"] = {
-                    key: value for key, value in source.items()
-                    if key != "configured"
+                    key: value for key, value in source.items() if key != "configured"
                 }
-                record["observations"].update({
-                    "raw_touched_count": raw_touched,
-                    "raw_max_observed": raw_max,
-                    "lossless_recovery_audit": (
-                        lossless_read_state_recovery_audit
-                    ),
-                })
+                record["observations"].update(
+                    {
+                        "raw_touched_count": raw_touched,
+                        "raw_max_observed": raw_max,
+                        "lossless_recovery_audit": (lossless_read_state_recovery_audit),
+                    }
+                )
                 if recovery_errors:
                     record["touched_count"] = raw_touched
-                    record["observations"].update({
-                        "recovery_complete": False,
-                        "effective_touched_count": raw_touched,
-                    })
+                    record["observations"].update(
+                        {
+                            "recovery_complete": False,
+                            "effective_touched_count": raw_touched,
+                        }
+                    )
                     audit["complete"] = False
                     message = "; ".join(recovery_errors)
                     audit["error"] = (
                         f"{audit['error']}; {message}"
-                        if audit.get("error") else message
+                        if audit.get("error")
+                        else message
                     )
                     continue
                 restored = int(
-                    lossless_read_state_recovery_audit[
-                        "restored_crossing_count"
-                    ]
+                    lossless_read_state_recovery_audit["restored_crossing_count"]
                 )
                 effective = raw_touched - restored
                 record["touched_count"] = effective
-                record["observations"].update({
-                    "recovery_complete": True,
-                    "restored_touched_count": restored,
-                    "effective_touched_count": effective,
-                })
-                continue
-            if (
-                name == "action_error_chars"
-                and validation_feedback_record is not None
-            ):
-                record = _limit_record(
-                    audit, "lossy_context_limits", name
+                record["observations"].update(
+                    {
+                        "recovery_complete": True,
+                        "restored_touched_count": restored,
+                        "effective_touched_count": effective,
+                    }
                 )
+                continue
+            if name == "action_error_chars" and validation_feedback_record is not None:
+                record = _limit_record(audit, "lossy_context_limits", name)
                 if record is None:
                     audit["complete"] = False
-                    audit["error"] = (
-                        "missing lossy action-error audit record"
-                    )
+                    audit["error"] = "missing lossy action-error audit record"
                     continue
                 if validation_split_errors:
                     # Conservative fallback is diagnostic only because the
                     # incomplete audit already invalidates the run.
-                    record["touched_count"] = int(
-                        source.get("touched_count", 0)
+                    record["touched_count"] = int(source.get("touched_count", 0))
+                    record["observations"].update(
+                        {
+                            "classification_complete": False,
+                            "raw_touched_count": int(source.get("touched_count", 0)),
+                            "raw_max_observed": int(source.get("max_observed", 0)),
+                        }
                     )
-                    record["observations"].update({
-                        "classification_complete": False,
-                        "raw_touched_count": int(
-                            source.get("touched_count", 0)
-                        ),
-                        "raw_max_observed": int(
-                            source.get("max_observed", 0)
-                        ),
-                    })
-                    validation_feedback_record["observations"].update({
-                        "classification_complete": False,
-                    })
+                    validation_feedback_record["observations"].update(
+                        {
+                            "classification_complete": False,
+                        }
+                    )
                     continue
 
                 assert action_error_audit is not None
                 all_bucket = action_error_audit["all"]
-                known = action_error_audit[
-                    "agent_output_validation"
-                ]
+                known = action_error_audit["agent_output_validation"]
                 unknown = action_error_audit["other_or_unknown"]
                 record["touched_count"] = unknown["over_cap_count"]
-                record["observations"].update({
-                    "classification_complete": True,
-                    "raw_touched_count": all_bucket["over_cap_count"],
-                    "raw_max_observed": all_bucket["max_chars"],
-                    "other_or_unknown_count": unknown["count"],
-                    "other_or_unknown_touched_count": unknown[
-                        "over_cap_count"
-                    ],
-                    "max_observed": unknown["max_chars"],
-                    "classified_agent_output_validation_count": known[
-                        "count"
-                    ],
-                    "classified_agent_output_validation_touched_count": (
-                        known["over_cap_count"]
-                    ),
-                    "classified_agent_output_validation_max_observed": (
-                        known["max_chars"]
-                    ),
-                })
-                validation_feedback_record["touched_count"] = known[
-                    "over_cap_count"
-                ]
-                validation_feedback_record["observations"].update({
-                    "classification_complete": True,
-                    "raw_context_audit_name": "action_error_chars",
-                    "all_error_count": all_bucket["count"],
-                    "all_over_cap_count": all_bucket["over_cap_count"],
-                    "all_max_chars": all_bucket["max_chars"],
-                    "agent_output_validation_count": known["count"],
-                    "agent_output_validation_over_cap_count": known[
-                        "over_cap_count"
-                    ],
-                    "agent_output_validation_max_chars": known[
-                        "max_chars"
-                    ],
-                    "other_or_unknown_count": unknown["count"],
-                    "other_or_unknown_over_cap_count": unknown[
-                        "over_cap_count"
-                    ],
-                    "other_or_unknown_max_chars": unknown["max_chars"],
-                })
+                record["observations"].update(
+                    {
+                        "classification_complete": True,
+                        "raw_touched_count": all_bucket["over_cap_count"],
+                        "raw_max_observed": all_bucket["max_chars"],
+                        "other_or_unknown_count": unknown["count"],
+                        "other_or_unknown_touched_count": unknown["over_cap_count"],
+                        "max_observed": unknown["max_chars"],
+                        "classified_agent_output_validation_count": known["count"],
+                        "classified_agent_output_validation_touched_count": (
+                            known["over_cap_count"]
+                        ),
+                        "classified_agent_output_validation_max_observed": (
+                            known["max_chars"]
+                        ),
+                    }
+                )
+                validation_feedback_record["touched_count"] = known["over_cap_count"]
+                validation_feedback_record["observations"].update(
+                    {
+                        "classification_complete": True,
+                        "raw_context_audit_name": "action_error_chars",
+                        "all_error_count": all_bucket["count"],
+                        "all_over_cap_count": all_bucket["over_cap_count"],
+                        "all_max_chars": all_bucket["max_chars"],
+                        "agent_output_validation_count": known["count"],
+                        "agent_output_validation_over_cap_count": known[
+                            "over_cap_count"
+                        ],
+                        "agent_output_validation_max_chars": known["max_chars"],
+                        "other_or_unknown_count": unknown["count"],
+                        "other_or_unknown_over_cap_count": unknown["over_cap_count"],
+                        "other_or_unknown_max_chars": unknown["max_chars"],
+                    }
+                )
                 continue
-            record = _limit_record(
-                audit, "lossy_context_limits", name
-            )
+            record = _limit_record(audit, "lossy_context_limits", name)
             if record is None:
                 audit["complete"] = False
                 audit["error"] = f"unexpected context-limit audit: {name}"
                 continue
-            record["touched_count"] = int(
-                source.get("touched_count", 0)
-            )
+            record["touched_count"] = int(source.get("touched_count", 0))
             record["observations"] = {
-                key: value for key, value in source.items()
-                if key != "configured"
+                key: value for key, value in source.items() if key != "configured"
             }
     else:
         audit["complete"] = False
@@ -4127,28 +3883,25 @@ def _finalize_limit_audit(
         "replace_file_recursive_amplification_guard",
     )
     if replace_record is not None:
-        replace_errors = _replace_file_safety_audit_errors(
-            replace_file_safety_audit
-        )
+        replace_errors = _replace_file_safety_audit_errors(replace_file_safety_audit)
         if replace_errors:
             audit["complete"] = False
             message = "; ".join(replace_errors)
             audit["error"] = (
-                f"{audit['error']}; {message}"
-                if audit.get("error") else message
+                f"{audit['error']}; {message}" if audit.get("error") else message
             )
-            replace_record["observations"].update({
-                "audit_complete": False,
-            })
+            replace_record["observations"].update(
+                {
+                    "audit_complete": False,
+                }
+            )
         else:
             assert replace_file_safety_audit is not None
             _observe_limit(
                 audit,
                 "fixed_architecture",
                 "replace_file_recursive_amplification_guard",
-                touched=replace_file_safety_audit[
-                    "rejected_invocations"
-                ],
+                touched=replace_file_safety_audit["rejected_invocations"],
                 audit_complete=True,
                 **{
                     key: value
@@ -4178,13 +3931,12 @@ def _finalize_limit_audit(
         or evaluate_result_store.get("schema_version") != 1
     ):
         audit["complete"] = False
-        audit["error"] = (
-            "common evaluate-result store audit is absent or malformed"
-        )
+        audit["error"] = "common evaluate-result store audit is absent or malformed"
     else:
         numeric_names = store_fields - {"schema_version"}
         malformed = [
-            name for name in numeric_names
+            name
+            for name in numeric_names
             if type(evaluate_result_store.get(name)) is not int
             or evaluate_result_store[name] < 0
         ]
@@ -4195,20 +3947,14 @@ def _finalize_limit_audit(
                 + ", ".join(sorted(malformed))
             )
         elif (
-            evaluate_result_store["inline_chars"]
-            != _EVALUATE_INLINE_CHARS
-            or evaluate_result_store["single_max_chars"]
-            != _EVALUATE_SINGLE_MAX_CHARS
-            or evaluate_result_store["max_bytes"]
-            != _EVALUATE_STORE_MAX_BYTES
-            or evaluate_result_store["max_responses"]
-            != _EVALUATE_STORE_MAX_RESPONSES
-            or evaluate_result_store["bytes"]
-            > evaluate_result_store["max_bytes"]
+            evaluate_result_store["inline_chars"] != _EVALUATE_INLINE_CHARS
+            or evaluate_result_store["single_max_chars"] != _EVALUATE_SINGLE_MAX_CHARS
+            or evaluate_result_store["max_bytes"] != _EVALUATE_STORE_MAX_BYTES
+            or evaluate_result_store["max_responses"] != _EVALUATE_STORE_MAX_RESPONSES
+            or evaluate_result_store["bytes"] > evaluate_result_store["max_bytes"]
             or evaluate_result_store["responses"]
             > evaluate_result_store["max_responses"]
-            or evaluate_result_store["records"]
-            > evaluate_result_store["responses"]
+            or evaluate_result_store["records"] > evaluate_result_store["responses"]
             or (
                 evaluate_result_store["responses"] == 0
                 and (
@@ -4230,34 +3976,26 @@ def _finalize_limit_audit(
             or (
                 evaluate_result_store["max_serialized_chars"]
                 > evaluate_result_store["single_max_chars"]
-                and evaluate_result_store[
-                    "single_bound_touched_count"
-                ] == 0
+                and evaluate_result_store["single_bound_touched_count"] == 0
             )
         ):
             audit["complete"] = False
             audit["error"] = (
-                "common evaluate-result store differs from the runtime "
-                "contract"
+                "common evaluate-result store differs from the runtime contract"
             )
         else:
             _observe_limit(
                 audit,
                 "safety_backstops",
                 "evaluate_result_single_chars",
-                touched=evaluate_result_store[
-                    "single_bound_touched_count"
-                ],
-                max_serialized_chars=evaluate_result_store[
-                    "max_serialized_chars"
-                ],
+                touched=evaluate_result_store["single_bound_touched_count"],
+                max_serialized_chars=evaluate_result_store["max_serialized_chars"],
                 maximum=evaluate_result_store["single_max_chars"],
             )
             byte_touched = max(
                 evaluate_result_store["byte_bound_touched_count"],
                 int(
-                    evaluate_result_store["bytes"]
-                    >= evaluate_result_store["max_bytes"]
+                    evaluate_result_store["bytes"] >= evaluate_result_store["max_bytes"]
                 ),
             )
             _observe_limit(
@@ -4268,8 +4006,7 @@ def _finalize_limit_audit(
                 used=evaluate_result_store["bytes"],
                 maximum=evaluate_result_store["max_bytes"],
                 utilization=(
-                    evaluate_result_store["bytes"]
-                    / evaluate_result_store["max_bytes"]
+                    evaluate_result_store["bytes"] / evaluate_result_store["max_bytes"]
                 ),
                 records=evaluate_result_store["records"],
             )
@@ -4301,9 +4038,7 @@ def _finalize_limit_audit(
                 spilled_responses=evaluate_result_store["responses"],
                 unique_records=evaluate_result_store["records"],
                 stored_bytes=evaluate_result_store["bytes"],
-                max_serialized_chars=evaluate_result_store[
-                    "max_serialized_chars"
-                ],
+                max_serialized_chars=evaluate_result_store["max_serialized_chars"],
             )
             if evaluate_result_store["integrity_failure_count"] > 0:
                 audit["complete"] = False
@@ -4326,8 +4061,7 @@ def _finalize_limit_audit(
         audit, "fixed_architecture", "max_actions_per_step"
     )
     max_actions_configured = (
-        max_actions_record.get("configured")
-        if max_actions_record is not None else None
+        max_actions_record.get("configured") if max_actions_record is not None else None
     )
     _observe_limit(
         audit,
@@ -4347,7 +4081,8 @@ def _finalize_limit_audit(
     if auxiliary_judge_record is not None:
         effective_use_judge = (
             getattr(getattr(agent, "settings", None), "use_judge", None)
-            if agent is not None else None
+            if agent is not None
+            else None
         )
         _observe_limit(
             audit,
@@ -4356,43 +4091,32 @@ def _finalize_limit_audit(
             touched=0,
             agent_constructed=agent is not None,
             effective_use_judge=effective_use_judge,
-            authoritative_evaluator=(
-                "caveat.core.experiment.run_cell:env.evaluate"
-            ),
+            authoritative_evaluator=("caveat.core.experiment.run_cell:env.evaluate"),
         )
         if agent is not None and effective_use_judge is not False:
             audit["complete"] = False
             message = "post-task auxiliary judge is not disabled"
             audit["error"] = (
-                f"{audit['error']}; {message}"
-                if audit.get("error") else message
+                f"{audit['error']}; {message}" if audit.get("error") else message
             )
     if agent is not None:
         _observe_limit(
             audit,
             "fixed_architecture",
             "fallback_llm_depth",
-            touched=int(bool(
-                getattr(agent, "is_using_fallback_llm", False)
-            )),
-            fallback_was_used=bool(
-                getattr(agent, "is_using_fallback_llm", False)
-            ),
+            touched=int(bool(getattr(agent, "is_using_fallback_llm", False))),
+            fallback_was_used=bool(getattr(agent, "is_using_fallback_llm", False)),
         )
         manager = getattr(agent, "_message_manager", None)
         manager_state = getattr(manager, "state", None)
-        compaction_count = int(
-            getattr(manager_state, "compaction_count", 0) or 0
-        )
+        compaction_count = int(getattr(manager_state, "compaction_count", 0) or 0)
         _observe_limit(
             audit,
             "fixed_architecture",
             "message_compaction",
             touched=compaction_count,
             compaction_count=compaction_count,
-            last_compaction_step=getattr(
-                manager_state, "last_compaction_step", None
-            ),
+            last_compaction_step=getattr(manager_state, "last_compaction_step", None),
         )
 
     if not isinstance(extension_stats, dict):
@@ -4400,8 +4124,7 @@ def _finalize_limit_audit(
             audit["complete"] = False
             message = "CAVEAT-Harness extension stats are absent"
             audit["error"] = (
-                f"{audit['error']}; {message}"
-                if audit.get("error") else message
+                f"{audit['error']}; {message}" if audit.get("error") else message
             )
         return
     supplied = extension_stats.get("limit_observations")
@@ -4409,14 +4132,17 @@ def _finalize_limit_audit(
         audit, "fixed_architecture", "compiler_and_checkpoint_shape"
     )
     if compiler is not None:
-        compiler["observations"].update({
-            "contract_compile_calls":
-                extension_stats.get("contract_compile_calls"),
-            "decision_checkpoint_calls":
-                extension_stats.get("decision_checkpoint_calls"),
-            "decision_checkpoint_rejections":
-                extension_stats.get("decision_checkpoint_rejections"),
-        })
+        compiler["observations"].update(
+            {
+                "contract_compile_calls": extension_stats.get("contract_compile_calls"),
+                "decision_checkpoint_calls": extension_stats.get(
+                    "decision_checkpoint_calls"
+                ),
+                "decision_checkpoint_rejections": extension_stats.get(
+                    "decision_checkpoint_rejections"
+                ),
+            }
+        )
     if supplied is not None:
         by_name = {
             name: record
@@ -4437,14 +4163,15 @@ def _finalize_limit_audit(
                 if record is None or not isinstance(observation, dict):
                     audit["complete"] = False
                     audit["error"] = (
-                        f"unknown/malformed CAVEAT-Harness limit observation: "
-                        f"{name}"
+                        f"unknown/malformed CAVEAT-Harness limit observation: {name}"
                     )
                     continue
                 touched = observation.get("touched_count", 0)
                 details = observation.get("observations", {})
-                if not isinstance(touched, int) or touched < 0 or not isinstance(
-                    details, dict
+                if (
+                    not isinstance(touched, int)
+                    or touched < 0
+                    or not isinstance(details, dict)
                 ):
                     audit["complete"] = False
                     audit["error"] = (
@@ -4474,16 +4201,12 @@ async def _await_whole_run(awaitable: Any, timeout_seconds: float) -> Any:
     """
     task = asyncio.create_task(awaitable)
     try:
-        done, _pending = await asyncio.wait(
-            {task}, timeout=timeout_seconds
-        )
+        done, _pending = await asyncio.wait({task}, timeout=timeout_seconds)
         if done:
             return await task
         task.cancel()
         await asyncio.gather(task, return_exceptions=True)
-        raise _WholeRunTimeoutError(
-            f"whole run exceeded {timeout_seconds} seconds"
-        )
+        raise _WholeRunTimeoutError(f"whole run exceeded {timeout_seconds} seconds")
     except BaseException:
         if not task.done():
             task.cancel()
@@ -4499,66 +4222,42 @@ async def _run(ctx: RunContext, *, extension=None) -> RawTrajectory:
         ChatOpenAI,
         Tools,
     )
+
     _patch_fence_tolerance(ChatOpenAI)
 
     ep = ctx.model.openai_endpoint()
     bc = BrowserConfig.from_env(headless=ctx.headless)
     if bc.lib_path:
-        os.environ["LD_LIBRARY_PATH"] = bc.lib_path + ":" + os.environ.get("LD_LIBRARY_PATH", "")
+        os.environ["LD_LIBRARY_PATH"] = (
+            bc.lib_path + ":" + os.environ.get("LD_LIBRARY_PATH", "")
+        )
 
-    # max_retries: the OpenAI SDK retries 429/503 with exponential backoff (respecting the
-    # Retry-After header) transparently inside each call, so transient TRAPI rate-limits /
-    # backend-health blips are absorbed before the agent's own step-retry kicks in. Without this
-    # (SDK default 2) a big concurrent run loses cells to "none" when TRAPI throttles. timeout
-    # caps a single attempt so a hung reasoning call can't stall a cell forever.
-    llm_kwargs = dict(model=ep.model, base_url=ep.base_url, api_key=ep.api_key,
-                      dont_force_structured_output=True, add_schema_to_system_prompt=True,
-                      max_retries=16, timeout=float(_llm_timeout_s() + 60),
-                      max_completion_tokens=_completion_cap())
+    # The OpenAI SDK absorbs transient endpoint failures before the agent's own
+    # step retry. The timeout caps one attempt so a hung model cannot stall a cell.
+    llm_kwargs = dict(
+        model=ep.model,
+        base_url=ep.base_url,
+        api_key=ep.api_key,
+        dont_force_structured_output=True,
+        add_schema_to_system_prompt=True,
+        max_retries=16,
+        timeout=float(_llm_timeout_s() + 60),
+        max_completion_tokens=_completion_cap(),
+    )
     has_frequency_penalty, frequency_penalty = _explicit_frequency_penalty(ctx.model)
     if has_frequency_penalty:
         # ChatOpenAI's default is 0.3.  Preserve an explicitly frozen model
         # request contract, including None (which omits the wire parameter).
         llm_kwargs["frequency_penalty"] = frequency_penalty
     if ep.reasoning:
-        llm_kwargs["reasoning_models"] = [ep.model]   # max_completion_tokens, no temperature
-        if ep.reasoning_effort:                       # reasoning-effort sweep (low/medium/high)
+        llm_kwargs["reasoning_models"] = [
+            ep.model
+        ]  # max_completion_tokens, no temperature
+        if ep.reasoning_effort:  # reasoning-effort sweep (low/medium/high)
             llm_kwargs["reasoning_effort"] = ep.reasoning_effort
     else:
         llm_kwargs["temperature"] = 0.0
     llm = ChatOpenAI(**llm_kwargs)
-
-    # Reliability: TRAPI regions flap 503 ("all-backends-unhealthy") and this scaffold drives a SINGLE
-    # endpoint, so a persistent region outage kills the cell (the SDK's retries can't revive a down
-    # backend). If browser-use's Agent supports a fallback LLM and PhyAGI serves this model, build a
-    # PhyAGI-routed twin and pass it as fallback_llm — TRAPI stays primary (max TRAPI), PhyAGI is the
-    # safety net so a flap fails over instead of losing the cell.
-    # Reliability + MAX TRAPI: a transient single-region TRAPI 502/timeout should fail over to a SECOND
-    # TRAPI region (stays on TRAPI) rather than the slow/flaky PhyAGI. So the fallback_llm is a TRAPI twin
-    # pointed at pinned-region[1] (e.g. gpt-5.5 redmond->msraif, gpt-4.1 msraif->gcr). PhyAGI is only used
-    # if TRAPI has no 2nd region for the model. Pure routing (which server answers), not agent behavior.
-    fallback_llm = None
-    try:
-        import inspect
-        from ..llm_client import (TRAPI_MODEL_REGIONS, _trapi_base_url, _logical,
-                                   PHYAGI_MODELS, _phyagi_key)
-        logical = _logical(ctx.model.deployment or ctx.model.name)
-        regions = TRAPI_MODEL_REGIONS.get(logical, [])
-        if "fallback_llm" in inspect.signature(Agent.__init__).parameters and ctx.model.provider != "phyagi":
-            if len(regions) >= 2:                                   # 2nd TRAPI region (keep traffic on TRAPI)
-                fb_kwargs = dict(llm_kwargs)
-                fb_kwargs.update(base_url=_trapi_base_url(regions[1]))   # same TRAPI model + key, diff region
-                fallback_llm = ChatOpenAI(**fb_kwargs)
-            elif _phyagi_key() and logical in PHYAGI_MODELS:        # no 2nd TRAPI region -> PhyAGI net
-                fb = ModelSpec(name=ctx.model.name, provider="phyagi", deployment=logical,
-                               vision=ctx.model.vision, extra=dict(ctx.model.extra)).openai_endpoint()
-                fb_kwargs = dict(llm_kwargs)
-                fb_kwargs.update(model=fb.model, base_url=fb.base_url, api_key=fb.api_key)
-                if "reasoning_models" in fb_kwargs:
-                    fb_kwargs["reasoning_models"] = [fb.model]
-                fallback_llm = ChatOpenAI(**fb_kwargs)
-    except Exception:
-        fallback_llm = None
 
     # The assigned site is the complete browser scope.  Deriving this boundary
     # from the task URL keeps navigation isolation independent of any vendor or
@@ -4575,10 +4274,15 @@ async def _run(ctx: RunContext, *, extension=None) -> RawTrajectory:
         udd = str(udd)
     except Exception:
         udd = None
-    profile = BrowserProfile(executable_path=bc.executable, headless=bc.headless,
-                             args=bc.args, env=bc.child_env(),
-                             allowed_domains=[start_host], user_data_dir=udd,
-                             window_size={"width": bc.width, "height": bc.height})
+    profile = BrowserProfile(
+        executable_path=bc.executable,
+        headless=bc.headless,
+        args=bc.args,
+        env=bc.child_env(),
+        allowed_domains=[start_host],
+        user_data_dir=udd,
+        window_size={"width": bc.width, "height": bc.height},
+    )
     bs = BrowserSession(browser_profile=profile)
     steps: list[Step] = []
     answer = ""
@@ -4600,28 +4304,24 @@ async def _run(ctx: RunContext, *, extension=None) -> RawTrajectory:
     )
     read_state_recovery_collector = (
         _LosslessReadStateRecoveryAudit(read_state_recovery_authorization)
-        if read_state_recovery_authorization is not None else None
+        if read_state_recovery_authorization is not None
+        else None
     )
     agent_construction_started = False
     evaluate_result_store: _EvaluateResultStore | None = None
     arm = "caveat_harness" if extension is not None else "baseline"
-    limit_contract, limit_contract_error = (
-        _limit_contract_from_environment()
-    )
+    limit_contract, limit_contract_error = _limit_contract_from_environment()
     limit_audit = _new_limit_audit(
         limit_contract,
         arm,
         error=limit_contract_error,
     )
     try:
-        _validate_runtime_limit_configuration(
-            limit_audit, ctx=ctx, arm=arm
-        )
+        _validate_runtime_limit_configuration(limit_audit, ctx=ctx, arm=arm)
     except Exception as exc:  # audit failure must not perturb the agent
         limit_audit["complete"] = False
         limit_audit["error"] = (
-            f"runtime limit configuration audit failed: "
-            f"{type(exc).__name__}: {exc}"
+            f"runtime limit configuration audit failed: {type(exc).__name__}: {exc}"
         )
 
     async def execute_browser_run() -> None:
@@ -4629,16 +4329,16 @@ async def _run(ctx: RunContext, *, extension=None) -> RawTrajectory:
         nonlocal context_cap_audit, action_error_audit
         nonlocal history_error_text, steps
         nonlocal evaluate_result_store
-        evaluate_result_store = _EvaluateResultStore(
-            ctx.work_dir / "evaluate_results"
-        )
+        evaluate_result_store = _EvaluateResultStore(ctx.work_dir / "evaluate_results")
         await bs.start()
         await bs.navigate_to(ctx.start_url)
         # The browser already starts on the site under test; tell the agent to stay there
         # rather than typing a real web address (which is also hard-blocked above).
-        task_text = ("(You are already on the website you need for this task. Work entirely "
-                     "within it — do not navigate to any external URL, type a web address, "
-                     "or use a web search engine.)\n\n") + ctx.task.instruction
+        task_text = (
+            "(You are already on the website you need for this task. Work entirely "
+            "within it — do not navigate to any external URL, type a web address, "
+            "or use a web search engine.)\n\n"
+        ) + ctx.task.instruction
         # CAVEAT_NO_VISION=1 drops the per-step screenshot (huge image tokens) to cut TPM under a
         # throttled deployment — the steering (badges/ratings/deal framing) is in the DOM text too.
         _vision = ctx.model.has_vision and not os.environ.get("CAVEAT_NO_VISION")
@@ -4678,11 +4378,8 @@ async def _run(ctx: RunContext, *, extension=None) -> RawTrajectory:
         # SDK retries) before Agent.run returns.  Disabling it changes neither
         # the prompt nor any model action before done().
         _agent_kwargs["use_judge"] = False
-        if fallback_llm is not None:
-            _agent_kwargs["fallback_llm"] = fallback_llm
-        # browser-use caps each LLM call at llm_timeout and on timeout switches to the fallback LLM,
-        # then STAYS on it — so a slow step can wrongly demote the cell onto a flaky fallback, and a
-        # cell that keeps timing out dies at "5 consecutive failures".
+        # browser-use caps each LLM call at llm_timeout. A cell that repeatedly
+        # times out eventually ends after consecutive failures.
         #
         # This ceiling is a LATENCY twin of the completion-token ceiling (see _completion_cap): it
         # binds hardest on whichever models are slowest to produce a step, so it ranks models by
@@ -4711,9 +4408,11 @@ async def _run(ctx: RunContext, *, extension=None) -> RawTrajectory:
         # left at their defaults: those shape how the agent works, they do not censor outcomes.
         # The single remaining backstop is CAVEAT_CELL_TIMEOUT below.
         _sig = inspect.signature(Agent.__init__).parameters
-        for _k, _v in (("llm_timeout", _llm_timeout_s()),
-                       ("step_timeout", _llm_timeout_s() + 300),
-                       ("max_failures", int(os.environ.get("CAVEAT_MAX_FAILURES", "60")))):
+        for _k, _v in (
+            ("llm_timeout", _llm_timeout_s()),
+            ("step_timeout", _llm_timeout_s() + 300),
+            ("max_failures", int(os.environ.get("CAVEAT_MAX_FAILURES", "60"))),
+        ):
             if _k in _sig:
                 _agent_kwargs[_k] = _v
         _lift_action_error_prompt_cap()
@@ -4727,12 +4426,8 @@ async def _run(ctx: RunContext, *, extension=None) -> RawTrajectory:
                 agent,
                 read_state_recovery_collector,
             )
-        if getattr(
-            getattr(agent, "settings", None), "use_judge", None
-        ) is not False:
-            raise RuntimeError(
-                "browser-use post-task auxiliary judge was not disabled"
-            )
+        if getattr(getattr(agent, "settings", None), "use_judge", None) is not False:
+            raise RuntimeError("browser-use post-task auxiliary judge was not disabled")
         _install_action_error_provenance_audit(
             agent,
             action_error_collector,
@@ -4760,9 +4455,7 @@ async def _run(ctx: RunContext, *, extension=None) -> RawTrajectory:
     # distinguishes this outer deadline from an inner operation raising
     # TimeoutError on its own.
     nonlocal_values = {"tool_actions": 0}
-    cell_timeout = float(
-        os.environ.get("CAVEAT_CELL_TIMEOUT", "10800")
-    )
+    cell_timeout = float(os.environ.get("CAVEAT_CELL_TIMEOUT", "10800"))
     try:
         try:
             await _await_whole_run(execute_browser_run(), cell_timeout)
@@ -4775,17 +4468,12 @@ async def _run(ctx: RunContext, *, extension=None) -> RawTrajectory:
                 cell_timeout,
             )
             raise RuntimeError(
-                "CAVEAT_CELL_TIMEOUT_BOUND: whole run exceeded "
-                f"{cell_timeout} seconds"
+                f"CAVEAT_CELL_TIMEOUT_BOUND: whole run exceeded {cell_timeout} seconds"
             ) from exc
-    except Exception as e:  # noqa: BLE001
+    except Exception as e:
         if not agent_construction_started:
-            context_cap_audit = (
-                _context_cap_audit_before_agent_construction()
-            )
-            action_error_audit = (
-                _action_error_audit_before_agent_construction()
-            )
+            context_cap_audit = _context_cap_audit_before_agent_construction()
+            action_error_audit = _action_error_audit_before_agent_construction()
         error = f"{type(e).__name__}: {e}"
     finally:
         try:
@@ -4798,20 +4486,15 @@ async def _run(ctx: RunContext, *, extension=None) -> RawTrajectory:
         "tool_actions": nonlocal_values["tool_actions"],
         "context_cap_audit": context_cap_audit,
         "action_error_audit": action_error_audit,
-        "replace_file_safety_audit":
-            replace_file_safety_collector.snapshot(),
+        "replace_file_safety_audit": replace_file_safety_collector.snapshot(),
     }
     evaluate_result_store_stats = None
     if evaluate_result_store is not None:
         try:
             evaluate_result_store_stats = evaluate_result_store.snapshot()
-            stats["evaluate_result_store"] = (
-                evaluate_result_store_stats
-            )
+            stats["evaluate_result_store"] = evaluate_result_store_stats
         except Exception as exc:
-            stats["evaluate_result_store_error"] = (
-                f"{type(exc).__name__}: {exc}"
-            )
+            stats["evaluate_result_store_error"] = f"{type(exc).__name__}: {exc}"
     extension_stats = None
     if extension is not None:
         try:
@@ -4835,12 +4518,8 @@ async def _run(ctx: RunContext, *, extension=None) -> RawTrajectory:
         extension_stats=extension_stats,
         agent=agent,
         action_error_audit=action_error_audit,
-        replace_file_safety_audit=stats[
-            "replace_file_safety_audit"
-        ],
-        lossless_read_state_recovery_audit=(
-            read_state_recovery_stats
-        ),
+        replace_file_safety_audit=stats["replace_file_safety_audit"],
+        lossless_read_state_recovery_audit=(read_state_recovery_stats),
     )
     stats["limit_audit"] = limit_audit
     if error:

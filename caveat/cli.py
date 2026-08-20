@@ -1,184 +1,284 @@
-"""``caveat`` command-line interface.
-
-    caveat ls                          # list environments, scaffolds, tasks
-    caveat run --env caveat_shop --scaffolds browseruse --models gpt-5.5 gpt-4.1 \
-                   --conditions clean steered --jobs 4
-    caveat setup                       # build the caveat_stay UI + check the browser
-"""
+"""Run, validate, and score the CAVEAT benchmark."""
 
 from __future__ import annotations
 
 import argparse
+import importlib
 import json
+import os
 import sys
 from pathlib import Path
 
 
 def _load_config(path: str) -> dict:
-    text = Path(path).read_text()
-    if path.endswith((".yaml", ".yml")):
+    source = Path(path)
+    text = source.read_text()
+    if source.suffix.lower() in {".yaml", ".yml"}:
         import yaml
-        return yaml.safe_load(text)
-    return json.loads(text)
+
+        value = yaml.safe_load(text)
+    else:
+        value = json.loads(text)
+    if value is None:
+        return {}
+    if not isinstance(value, dict):
+        raise SystemExit(f"{path}: run config must be a mapping")
+    return value
 
 
-def _resolve_tasks(items, envs):
-    import caveat.envs as E
-    from caveat.core.task import TaskSpec, load_tasks
-    by_id = {f"{t.env}:{t.task_id}": t for t in E.ALL_TASKS}
-    by_id.update({t.task_id: t for t in E.ALL_TASKS})
-    if not items:
-        return [t for t in E.ALL_TASKS if not envs or t.env in envs]
-    out = []
-    for it in items:
-        if isinstance(it, str):
-            if it in by_id:
-                out.append(by_id[it])
-            elif Path(it).exists():
-                out.extend(load_tasks(it))
-            else:
-                raise SystemExit(f"unknown task {it!r}. Known: {', '.join(sorted(by_id))}")
-        else:
-            out.append(TaskSpec.parse(it))
-    return out
-
-
-def _build_experiment(cfg: dict):
-    from caveat.core.experiment import Experiment
-    envs = cfg.get("envs") or []
-    tasks = _resolve_tasks(cfg.get("tasks"), envs)
-    if not tasks:
-        raise SystemExit("no tasks selected")
-    return Experiment(
-        name=cfg.get("name", "exp"),
-        scaffolds=cfg.get("scaffolds", ["browseruse"]),
-        models=cfg.get("models", ["gpt-5.5"]),
-        tasks=tasks,
-        conditions=cfg.get("conditions", ["clean"]),
-        max_steps=cfg.get("max_steps", {}),
-        base_port=cfg.get("base_port", 9100),
+def _cli_models(args, config: dict) -> list:
+    configured = config.get("models")
+    if configured is None and config.get("model") is not None:
+        configured = [config["model"]]
+    models = list(
+        args.model
+        or configured
+        or ([os.environ["OPENAI_MODEL"]] if os.environ.get("OPENAI_MODEL") else [])
     )
+    if not models:
+        raise SystemExit(
+            "no model configured; set models in the config, pass --model, or set OPENAI_MODEL"
+        )
+    endpoint_overrides = any(
+        value is not None
+        for value in (args.base_url, args.api_key, args.deployment, args.vision)
+    )
+    if endpoint_overrides:
+        if len(models) != 1 or not isinstance(models[0], str):
+            raise SystemExit(
+                "endpoint flags require exactly one --model; use config mappings for multiple models"
+            )
+        models[0] = {
+            "name": models[0],
+            "base_url": args.base_url,
+            "api_key": args.api_key,
+            "deployment": args.deployment,
+            "vision": args.vision,
+        }
+    return models
+
+
+def _max_steps(value, scaffolds: list[str]) -> dict[str, int]:
+    if value is None:
+        return {}
+    if isinstance(value, int):
+        return {scaffold: value for scaffold in scaffolds}
+    if isinstance(value, dict):
+        return {str(key): int(item) for key, item in value.items()}
+    raise SystemExit("max_steps must be an integer or a scaffold-to-integer mapping")
+
+
+def _build_experiments(config: dict, args) -> tuple[Path, list]:
+    import caveat.envs
+    import caveat.scaffolds  # noqa: F401  (register built-ins)
+    from caveat.benchmark.tiers import CAVEAT_STANDARD, DEFAULT_REPEATS, tier_groups
+    from caveat.core.experiment import Experiment
+    from caveat.core.models import ModelSpec
+    from caveat.core.scaffold import SCAFFOLDS
+
+    tier = args.tier or config.get("tier") or CAVEAT_STANDARD
+    environments = args.environment or config.get("environments")
+    scaffolds = list(args.scaffold or config.get("scaffolds") or ["caveat-harness"])
+    plugins = list(args.plugin or config.get("plugins") or [])
+    for module in plugins:
+        try:
+            importlib.import_module(module)
+        except Exception as exc:
+            raise SystemExit(
+                f"could not import harness plugin {module!r}: {exc}"
+            ) from exc
+    unknown_scaffolds = sorted(set(scaffolds) - set(SCAFFOLDS.names()))
+    if unknown_scaffolds:
+        raise SystemExit(
+            f"unknown harnesses: {', '.join(unknown_scaffolds)}; "
+            f"registered: {', '.join(SCAFFOLDS.names())}"
+        )
+
+    models = _cli_models(args, config)
+    try:
+        model_specs = [ModelSpec.parse(model) for model in models]
+        groups = tier_groups(tier, environments)
+    except ValueError as exc:
+        raise SystemExit(str(exc)) from exc
+    if not args.dry_run:
+        for model in model_specs:
+            try:
+                model.openai_endpoint()
+            except ValueError as exc:
+                raise SystemExit(str(exc)) from exc
+
+    repeats = (
+        args.repeats
+        if args.repeats is not None
+        else int(config.get("repeats", DEFAULT_REPEATS[tier]))
+    )
+    if repeats < 1:
+        raise SystemExit("repeats must be at least 1")
+    name = args.name or config.get("name") or tier.lower()
+    result_root = Path(args.results) / name
+    max_steps = _max_steps(
+        args.max_steps if args.max_steps is not None else config.get("max_steps"),
+        scaffolds,
+    )
+    base_port = int(
+        args.base_port if args.base_port is not None else config.get("base_port", 9100)
+    )
+
+    experiments = []
+    for repeat in range(1, repeats + 1):
+        for group_index, group in enumerate(groups):
+            experiments.append(
+                Experiment(
+                    name=f"{tier}__{group.name}__r{repeat}",
+                    tier=tier,
+                    scaffolds=scaffolds,
+                    models=models,
+                    tasks=list(group.tasks),
+                    conditions=list(group.conditions),
+                    max_steps=max_steps,
+                    base_port=base_port + group_index * 1000,
+                    plugins=plugins,
+                )
+            )
+    return result_root, experiments
 
 
 def cmd_run(args) -> int:
-    import caveat.envs   # noqa: F401  (register)
-    import caveat.scaffolds  # noqa: F401
     from caveat.core.experiment import Runner, auto_jobs
 
-    cfg = _load_config(args.config) if args.config else {}
-    for key, val in (("name", args.name), ("scaffolds", args.scaffolds),
-                     ("models", args.models), ("conditions", args.conditions),
-                     ("tasks", args.tasks)):
-        if val:
-            cfg[key] = val
-    if args.env:
-        cfg["envs"] = [args.env]
-    exp = _build_experiment(cfg)
-    jobs = args.jobs if args.jobs is not None else auto_jobs()
-    if args.jobs is None:
-        print(f"(auto) jobs={jobs}  —  override with --jobs N")
-    Runner(results_dir=args.results, headless=not args.no_headless).run(
-        exp, jobs=jobs, force=args.force)
+    config = _load_config(args.config) if args.config else {}
+    result_root, experiments = _build_experiments(config, args)
+    cells = sum(len(experiment.cells()) for experiment in experiments)
+    print(f"tier: {experiments[0].tier}")
+    print(f"harnesses: {', '.join(experiments[0].scaffolds)}")
+    print(f"models: {', '.join(model.name for model in experiments[0].model_specs())}")
+    print(f"runs: {cells} -> {result_root}")
+    if args.dry_run:
+        for experiment in experiments:
+            print(f"  {experiment.name}: {len(experiment.cells())}")
+        return 0
+
+    jobs = (
+        args.jobs if args.jobs is not None else int(config.get("jobs") or auto_jobs())
+    )
+    runner = Runner(results_dir=result_root, headless=not args.no_headless)
+    for experiment in experiments:
+        runner.run(experiment, jobs=jobs, force=args.force)
+    print(f"Score this run with: caveat score {result_root}")
     return 0
 
 
-def cmd_clear(args) -> int:
-    import shutil
-
-    root = Path(__file__).resolve().parent
-    res = Path(args.results)
-    targets: list[Path] = []
-    if res.exists():
-        targets += [d for d in res.iterdir()] if args.keep_dir else [res]
-    # scratch the framework leaves around
-    if args.cache:
-        cache = root / "runs"
-        if cache.exists():
-            targets.append(cache)
-    for server in (root / "envs").glob("*/server"):
-        cat = server / "_catalogs"
-        if cat.exists():
-            targets.append(cat)
-        targets += list(server.glob("*.db"))
-    targets = [t for t in targets if t.exists()]
-    if not targets:
-        print("nothing to clear.")
-        return 0
-    print("will remove:")
-    for t in targets:
-        print("   ", t)
-    if not args.yes and input("proceed? [y/N] ").strip().lower() not in ("y", "yes"):
-        print("aborted.")
-        return 0
-    for t in targets:
-        shutil.rmtree(t, ignore_errors=True) if t.is_dir() else t.unlink(missing_ok=True)
-    print(f"cleared {len(targets)} item(s).")
-    return 0
-
-
-def cmd_ls(args) -> int:
-    import caveat.envs   # noqa: F401
+def cmd_list(_args) -> int:
     import caveat.scaffolds  # noqa: F401
-    from caveat.core.environment import ENVIRONMENTS
+    from caveat.benchmark.tiers import (
+        ALL_ENVIRONMENTS,
+        CAVEAT_HARD,
+        CAVEAT_STANDARD,
+        DEFAULT_REPEATS,
+        expected_runs,
+    )
     from caveat.core.scaffold import SCAFFOLDS
-    from caveat.envs import ALL_TASKS
-    from caveat.llm_client import TRAPI_DEPLOY
 
-    print("environments:", ", ".join(ENVIRONMENTS.names()))
-    print("scaffolds:   ", ", ".join(SCAFFOLDS.names()))
-    print("\ntasks:")
-    for t in ALL_TASKS:
-        print(f"  {t.env}:{t.task_id:12s}  {t.instruction[:70]}...")
-    print("\nmodels (trapi logical names; or bring your own via a dict):")
-    print("  " + ", ".join(sorted(TRAPI_DEPLOY)[:24]) + ", ...")
+    print("tiers:")
+    for tier in (CAVEAT_STANDARD, CAVEAT_HARD):
+        print(
+            f"  {tier}: {expected_runs(tier)} runs/model/harness ({DEFAULT_REPEATS[tier]} repeats)"
+        )
+    print("environments:", ", ".join(ALL_ENVIRONMENTS))
+    print("harnesses:", ", ".join(SCAFFOLDS.names()))
     return 0
 
 
-def cmd_setup(args) -> int:
-    import shutil
-    import subprocess
+def cmd_score(args) -> int:
+    from caveat.scoring.report import main
 
+    forwarded = [args.results]
+    if args.json:
+        forwarded.append("--json")
+    if args.output:
+        forwarded.extend(["--output", args.output])
+    return main(forwarded)
+
+
+def cmd_validate(args) -> int:
+    from caveat.benchmark.tiers import TIER_NAMES
+    from caveat.benchmark.validate import print_validation
+
+    return 0 if print_validation(args.tier or TIER_NAMES) else 1
+
+
+def cmd_setup(_args) -> int:
     from caveat.scaffolds._browser import find_chromium
-    root = Path(__file__).resolve().parent
-    print("→ Chromium:", find_chromium() or "NOT FOUND (run `python -m playwright install chromium`)")
-    caveat_stay_fe = root / "envs" / "caveat_stay" / "server" / "frontend"
-    if not (caveat_stay_fe / "dist" / "index.html").exists() and shutil.which("npm"):
-        print(f"→ Building caveat_stay frontend in {caveat_stay_fe} ...")
-        subprocess.run(["npm", "install"], cwd=caveat_stay_fe, check=False)
-        subprocess.run(["npm", "run", "build"], cwd=caveat_stay_fe, check=False)
-    print("→ caveat_stay dist:", "built" if (caveat_stay_fe / "dist" / "index.html").exists() else "MISSING")
-    print("→ caveat_shop dist:", "built" if (root / "envs/caveat_shop/server/frontend/dist/index.html").exists() else "MISSING")
-    print("\nDone. Try:  caveat run --env caveat_shop --scaffolds browseruse --models gpt-5.5")
-    return 0
+
+    browser = find_chromium()
+    if browser:
+        print(f"Chromium: {browser}")
+        print("CAVEAT is ready.")
+        return 0
+    print(
+        "Chromium was not found. Install it with: python -m playwright install chromium"
+    )
+    return 1
 
 
-def main() -> int:
-    p = argparse.ArgumentParser(prog="caveat", description=__doc__,
-                                formatter_class=argparse.RawDescriptionHelpFormatter)
-    sub = p.add_subparsers(dest="cmd", required=True)
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(prog="caveat", description=__doc__)
+    subparsers = parser.add_subparsers(dest="command", required=True)
 
-    r = sub.add_parser("run", help="run an experiment")
-    r.add_argument("config", nargs="?", help="YAML/JSON experiment config (optional)")
-    r.add_argument("--name"); r.add_argument("--env")
-    r.add_argument("--scaffolds", nargs="+"); r.add_argument("--models", nargs="+")
-    r.add_argument("--tasks", nargs="+"); r.add_argument("--conditions", nargs="+")
-    r.add_argument("--jobs", type=int, default=None,
-                   help="parallel cells (default: auto — sized to this machine)")
-    r.add_argument("--results", default="results")
-    r.add_argument("--no-headless", action="store_true"); r.add_argument("--force", action="store_true")
-    r.set_defaults(func=cmd_run)
+    run = subparsers.add_parser("run", help="run CAVEAT-Standard or CAVEAT-Hard")
+    run.add_argument("config", nargs="?", help="YAML or JSON run config")
+    run.add_argument("--tier", choices=("CAVEAT-Standard", "CAVEAT-Hard"))
+    run.add_argument("--name", help="result-set name")
+    run.add_argument(
+        "--environment", action="append", help="run a tier subset (repeatable)"
+    )
+    run.add_argument("--scaffold", action="append", help="harness name (repeatable)")
+    run.add_argument(
+        "--plugin", action="append", help="Python module registering a custom harness"
+    )
+    run.add_argument(
+        "--model", action="append", help="model display/wire name (repeatable)"
+    )
+    run.add_argument("--base-url", help="OpenAI-compatible API base URL")
+    run.add_argument("--api-key", help="API key or env:VARIABLE")
+    run.add_argument("--deployment", help="model identifier sent to the endpoint")
+    run.add_argument("--vision", action=argparse.BooleanOptionalAction, default=None)
+    run.add_argument(
+        "--repeats", type=int, help="override the tier's publication repetitions"
+    )
+    run.add_argument("--jobs", type=int, help="parallel browser workers")
+    run.add_argument("--max-steps", type=int, help="per-run safety backstop")
+    run.add_argument("--base-port", type=int)
+    run.add_argument("--results", default="results", help="parent result directory")
+    run.add_argument("--no-headless", action="store_true")
+    run.add_argument("--force", action="store_true", help="rerun completed cells")
+    run.add_argument(
+        "--dry-run", action="store_true", help="show the resolved matrix and exit"
+    )
+    run.set_defaults(func=cmd_run)
 
-    c = sub.add_parser("clear", help="delete previous runs' data (results + scratch)")
-    c.add_argument("--results", default="results", help="results dir to clear")
-    c.add_argument("--keep-dir", action="store_true", help="empty the results dir but keep the folder")
-    c.add_argument("--cache", action="store_true", help="also clear the cached model responses")
-    c.add_argument("-y", "--yes", action="store_true", help="skip the confirmation prompt")
-    c.set_defaults(func=cmd_clear)
+    score = subparsers.add_parser("score", help="compute optimal-selection rate")
+    score.add_argument("results", help="run or result directory")
+    score.add_argument("--json", action="store_true")
+    score.add_argument("--output", help="write a JSON report")
+    score.set_defaults(func=cmd_score)
 
-    sub.add_parser("ls", help="list environments / scaffolds / tasks").set_defaults(func=cmd_ls)
-    sub.add_parser("setup", help="build UIs + check the browser").set_defaults(func=cmd_setup)
+    validate = subparsers.add_parser(
+        "validate", help="validate committed benchmark oracles"
+    )
+    validate.add_argument(
+        "--tier", choices=("CAVEAT-Standard", "CAVEAT-Hard"), action="append"
+    )
+    validate.set_defaults(func=cmd_validate)
 
-    args = p.parse_args()
+    subparsers.add_parser(
+        "list", aliases=["ls"], help="list tiers, environments, and harnesses"
+    ).set_defaults(func=cmd_list)
+    subparsers.add_parser("setup", help="check the browser installation").set_defaults(
+        func=cmd_setup
+    )
+
+    args = parser.parse_args(argv)
     return args.func(args)
 
 

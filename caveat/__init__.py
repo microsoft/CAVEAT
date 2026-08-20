@@ -1,18 +1,8 @@
-"""CAVEAT — run many web-agent scaffolds (× many models) against shopping/booking
-environments, and measure how faithfully they honor the user's stated preferences.
+"""CAVEAT measures whether web agents make the user's optimal selection.
 
-Quick start (Python)::
-
-    import caveat.envs, caveat.scaffolds          # register plugins
-    from caveat import Experiment, Runner
-    from caveat.envs.caveat_shop import LAPTOP
-
-    exp = Experiment(name="laptops", scaffolds=["browseruse"],
-                     models=["gpt-5.5", "gpt-4.1"], tasks=[LAPTOP],
-                     conditions=["clean", "steered"])
-    Runner(results_dir="results").run(exp, jobs=4)
-
-Or from the CLI:: ``caveat run --env caveat_shop --scaffolds browseruse``.
+The public command-line path runs an OpenAI-compatible model endpoint on the
+CAVEAT-Standard or CAVEAT-Hard tier and reports optimal-selection rate.  The
+Python API remains available for custom harness integrations.
 """
 
 from .core.environment import ENVIRONMENTS, Environment
@@ -25,7 +15,20 @@ from .core.trajectory import Evaluation, Step, Trajectory
 __version__ = "0.1.0"
 
 __all__ = [
-    "Experiment", "Runner", "run_cell", "ModelSpec", "TaskSpec", "load_tasks",
-    "check_constraints", "Scaffold", "RunContext", "RawTrajectory", "SCAFFOLDS",
-    "Environment", "ENVIRONMENTS", "Trajectory", "Step", "Evaluation",
+    "ENVIRONMENTS",
+    "SCAFFOLDS",
+    "Environment",
+    "Evaluation",
+    "Experiment",
+    "ModelSpec",
+    "RawTrajectory",
+    "RunContext",
+    "Runner",
+    "Scaffold",
+    "Step",
+    "TaskSpec",
+    "Trajectory",
+    "check_constraints",
+    "load_tasks",
+    "run_cell",
 ]
