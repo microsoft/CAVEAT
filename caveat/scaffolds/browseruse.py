@@ -2829,7 +2829,10 @@ _LIMIT_AUDIT_SCHEMA_VERSION = 1
 def _limit_contract_from_environment() -> tuple[dict | None, str | None]:
     raw = os.environ.get("CAVEAT_LIMIT_CONTRACT_JSON")
     if not raw:
-        return None, "CAVEAT_LIMIT_CONTRACT_JSON is absent"
+        # Limit-contract auditing is an opt-in campaign diagnostic, not part of
+        # an ordinary public CAVEAT run.  Do not emit a failed audit merely
+        # because the private campaign contract was not requested.
+        return None, None
     try:
         contract = json.loads(raw)
     except json.JSONDecodeError as exc:
@@ -4311,18 +4314,25 @@ async def _run(ctx: RunContext, *, extension=None) -> RawTrajectory:
     evaluate_result_store: _EvaluateResultStore | None = None
     arm = "caveat_harness" if extension is not None else "baseline"
     limit_contract, limit_contract_error = _limit_contract_from_environment()
-    limit_audit = _new_limit_audit(
-        limit_contract,
-        arm,
-        error=limit_contract_error,
-    )
-    try:
-        _validate_runtime_limit_configuration(limit_audit, ctx=ctx, arm=arm)
-    except Exception as exc:  # audit failure must not perturb the agent
-        limit_audit["complete"] = False
-        limit_audit["error"] = (
-            f"runtime limit configuration audit failed: {type(exc).__name__}: {exc}"
+    limit_audit = (
+        _new_limit_audit(
+            limit_contract,
+            arm,
+            error=limit_contract_error,
         )
+        if limit_contract is not None or limit_contract_error is not None
+        else None
+    )
+    if limit_contract is not None:
+        try:
+            assert limit_audit is not None
+            _validate_runtime_limit_configuration(limit_audit, ctx=ctx, arm=arm)
+        except Exception as exc:  # audit failure must not perturb the agent
+            limit_audit["complete"] = False
+            limit_audit["error"] = (
+                "runtime limit configuration audit failed: "
+                f"{type(exc).__name__}: {exc}"
+            )
 
     async def execute_browser_run() -> None:
         nonlocal answer, agent, agent_construction_started
@@ -4506,22 +4516,25 @@ async def _run(ctx: RunContext, *, extension=None) -> RawTrajectory:
     if read_state_recovery_collector is not None:
         read_state_recovery_stats = read_state_recovery_collector.snapshot()
         stats["lossless_read_state_recovery"] = read_state_recovery_stats
-    _finalize_limit_audit(
-        limit_audit,
-        steps=steps,
-        elapsed_seconds=time.time() - t0,
-        context_cap_audit=context_cap_audit,
-        history_error_text=history_error_text,
-        run_error=error,
-        total_timeout_touched=total_timeout_touched,
-        evaluate_result_store=evaluate_result_store_stats,
-        extension_stats=extension_stats,
-        agent=agent,
-        action_error_audit=action_error_audit,
-        replace_file_safety_audit=stats["replace_file_safety_audit"],
-        lossless_read_state_recovery_audit=(read_state_recovery_stats),
-    )
-    stats["limit_audit"] = limit_audit
+    if limit_contract is not None:
+        assert limit_audit is not None
+        _finalize_limit_audit(
+            limit_audit,
+            steps=steps,
+            elapsed_seconds=time.time() - t0,
+            context_cap_audit=context_cap_audit,
+            history_error_text=history_error_text,
+            run_error=error,
+            total_timeout_touched=total_timeout_touched,
+            evaluate_result_store=evaluate_result_store_stats,
+            extension_stats=extension_stats,
+            agent=agent,
+            action_error_audit=action_error_audit,
+            replace_file_safety_audit=stats["replace_file_safety_audit"],
+            lossless_read_state_recovery_audit=(read_state_recovery_stats),
+        )
+    if limit_audit is not None:
+        stats["limit_audit"] = limit_audit
     if error:
         stats["error"] = error
     return RawTrajectory(steps=steps, answer=str(answer), stats=stats)
