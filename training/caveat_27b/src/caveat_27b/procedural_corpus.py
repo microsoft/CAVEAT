@@ -46,7 +46,7 @@ EXPECTED_GENERATOR_HASHES = {
 EXPECTED_GENERATOR_WHEEL_SHA256 = (
     "239100a9a6296187abaee4835c42ba8e3954332d52691c848d41738c4774d8e1"
 )
-FORBIDDEN_AMAZON_DOMAINS = (
+FORBIDDEN_CAVEAT_SHOP_DOMAINS = (
     "laptop",
     "office_chair",
     "office chair",
@@ -498,16 +498,16 @@ def _leakage_audit(rows: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
         visible = {"messages": row.get("messages"), "tools": row.get("tools")}
         _scan_visible(visible)
         text = canonical_json(visible).casefold()
-        for term in FORBIDDEN_AMAZON_DOMAINS:
+        for term in FORBIDDEN_CAVEAT_SHOP_DOMAINS:
             pattern = rf"(?<![a-z0-9]){re.escape(term)}(?![a-z0-9])"
             if re.search(pattern, text):
                 hits[term] += 1
     if hits:
-        raise ArtifactError(f"sealed Amazon category text entered SFT rows: {dict(hits)}")
+        raise ArtifactError(f"sealed CAVEAT-Shop category text entered SFT rows: {dict(hits)}")
     return {
         "rows_scanned": len(rows),
         "forbidden_private_keys_found": 0,
-        "sealed_amazon_category_terms_found": 0,
+        "sealed_caveat_shop_category_terms_found": 0,
     }
 
 

@@ -1,7 +1,7 @@
 """One-candidate corrective continuation from the exact refinement step 20.
 
 This stage is deliberately outcome blind: it uses only the frozen procedural
-training split, produces exactly one step-26 adapter, and performs no Amazon
+training split, produces exactly one step-26 adapter, and performs no CAVEAT-Shop
 evaluation or checkpoint selection.  The curriculum targets two observable
 weaknesses found before this stage was designed: browser checkpoints were rare,
 and source URLs/objective units were not consistently present in model-visible
@@ -216,13 +216,13 @@ def _materialize_curriculum(
             "contract_tasks_with_explicit_units": _CONTRACT_TASKS,
             "contract_repeats": _CONTRACT_REPEATS,
             "model_visible_source_urls": True,
-            "amazon_outcomes_consulted": False,
+            "caveat_shop_outcomes_consulted": False,
             "candidate_sweep": False,
         },
         "counts": dict(sorted(counts.items())),
         "assistant_wire_format": "browser-use AgentOutput.action JSON",
         "native_function_call_targets": 0,
-        "heldout_amazon_scenarios_present": False,
+        "heldout_caveat_shop_scenarios_present": False,
         "leakage_audit": leakage,
         "output": {"path": data_path.name, "sha256": sha256_file(data_path), "rows": len(rows)},
     }
@@ -471,7 +471,7 @@ def prepare_browser_action_fixed_v5(
             "path": str((training / "prime_output/weights/step_26/lora_adapters").resolve()),
         },
         "selection_performed": False,
-        "amazon_outcomes_consulted": False,
+        "caveat_shop_outcomes_consulted": False,
         "training_policy": {
             "optimizer": "adamw",
             "learning_rate": _LEARNING_RATE,
@@ -632,7 +632,7 @@ def write_browser_action_fixed_v5_receipt(
         "training_policy": policy,
         "candidate": candidate,
         "selection_performed": False,
-        "amazon_outcomes_consulted": False,
+        "caveat_shop_outcomes_consulted": False,
         "original_refinement_unchanged_after_training": True,
     }
     receipt = dict(body)

@@ -3,7 +3,7 @@
 This is an isolated, provenance-bound campaign for one narrow claim:
 
 > Post-trained `Qwen/Qwen3.5-27B` with the unchanged
-> CAVEAT-Harness should select the optimal Amazon product
+> CAVEAT-Harness should select the optimal CAVEAT-Shop product
 > more often than the exact raw model with that same harness.
 
 The earlier training campaign is not part of this release. CAVEAT-27B does not
@@ -16,15 +16,15 @@ the model cooperates more reliably with CAVEAT-Harness.
 
 - Training: generated procedural `train` families only.
 - Checkpoint selection: generated procedural `validation` families only.
-- Development transfer check: Amazon laptop only; it never selects a checkpoint
+- Development transfer check: CAVEAT-Shop laptop only; it never selects a checkpoint
   and no laptop product fact enters training.
-- Confirmatory evaluation: Amazon office chair, mattress, backpack, and tent,
+- Confirmatory evaluation: CAVEAT-Shop office chair, mattress, backpack, and tent,
   plus generated procedural `test` families. These remain sealed until the
   final model is frozen.
 
 Every derived artifact binds the campaign digest and frozen split manifest.
-Training materialization rejects Amazon rows and any task outside procedural
-train. The real 4,800-row corpora contain no Amazon-five literal facts, private
+Training materialization rejects CAVEAT-Shop rows and any task outside procedural
+train. The real 4,800-row corpora contain no CAVEAT-Shop-five literal facts, private
 catalog fields, evaluator labels, or storefront operations token.
 
 ## Campaign
@@ -40,7 +40,7 @@ catalog fields, evaluator labels, or storefront operations token.
 3. Serve all nine adapters together and score them on 64 fixed procedural
    validation contracts plus eight checkpoint-tool rehearsals. Select by exact
    contract semantics, then syntax validity, then checkpoint-tool validity;
-   Amazon data is not used.
+   CAVEAT-Shop data is not used.
 4. Numerically verify and merge the selected adapter into the pinned full base.
    The merge must differ from base logits, preserve the adapter's output
    distribution under a BF16-aware behavioral-equivalence gate, reload as a
@@ -146,8 +146,8 @@ scripts/launch_sft_campaign.sh --phase post --execute
 scripts/launch_sft_campaign.sh --phase refine --execute
 ```
 
-The campaign deliberately stops before using the confirmatory Amazon scenarios
-for model or checkpoint decisions. Final baseline-vs-trained Amazon evaluation
+The campaign deliberately stops before using the confirmatory CAVEAT-Shop scenarios
+for model or checkpoint decisions. Final baseline-vs-trained CAVEAT-Shop evaluation
 must use the unchanged harness, identical run matrix and generous safety
 backstops, report `strict_binary` as the primary metric, and audit that no
 backstop bound any run.
@@ -187,7 +187,7 @@ scripts/serve_exact_lora_evaluation_arm.sh trained /data/caveat-27b/CAMPAIGN_DIG
 
 The wrapper uses the supported `vllm serve` launcher with four data-parallel
 replicas and four API frontends. After starting each endpoint, run the
-evaluation package's concurrent `dp-canary` before any route gate or Amazon
+evaluation package's concurrent `dp-canary` before any route gate or CAVEAT-Shop
 run. A valid canary receipt proves that one live request burst occupied engines
 0, 1, 2, and 3; launch flags alone are not sufficient evidence of balanced
 serving.

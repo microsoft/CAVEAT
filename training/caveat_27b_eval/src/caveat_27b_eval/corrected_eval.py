@@ -11,7 +11,7 @@ There are two prospective evaluations:
 
 * a 24-cell laptop development gate (step20 versus corrected; combined n=2
   and clean n=1 for each of four nonabsolute variants), and
-* the canonical 320-cell Amazon-five final matrix (raw zero-control versus
+* the canonical 320-cell CAVEAT-Shop-five final matrix (raw zero-control versus
   corrected; combined n=5 and clean n=3).
 
 Only the corrected cells need new execution.  Reuse is authorized cell by
@@ -58,7 +58,7 @@ CORRECTED_LAUNCH_SCHEMA = "caveat-27b-eval.corrected-completion-launch.v1"
 DERIVED_FREEZE_SCHEMA = 2
 
 DEVELOPMENT_EVALUATION = "laptop_development_gate"
-FINAL_EVALUATION = "amazon_five_final"
+FINAL_EVALUATION = "caveat_shop_five_final"
 DEVELOPMENT_LEFT_ARM = "step20"
 DEVELOPMENT_RIGHT_ARM = "corrected"
 FINAL_LEFT_ARM = "base"
@@ -566,7 +566,7 @@ def development_gate_matrix(
 ) -> dict[str, Any]:
     """Build the preregistered 24-cell, laptop-only corrected gate."""
 
-    variants = tuple(config.get("amazon", {}).get("variants", ()))
+    variants = tuple(config.get("caveat_shop", {}).get("variants", ()))
     if (
         len(variants) != 4
         or len(set(variants)) != 4
@@ -575,7 +575,7 @@ def development_gate_matrix(
         raise IntegrityError(
             "development gate requires exactly four nonabsolute variants"
         )
-    development_scenarios = config.get("amazon", {}).get("development_scenarios")
+    development_scenarios = config.get("caveat_shop", {}).get("development_scenarios")
     if development_scenarios != ["laptop"]:
         raise IntegrityError(
             "development gate requires laptop as the sole development scenario"
@@ -679,7 +679,7 @@ def audit_corrected_matrix(
         if counts != expected_counts:
             raise IntegrityError("development gate repetitions differ from n=2/n=1")
         variants = {row.get("variant") for row in rows}
-        if variants != set(config["amazon"]["variants"]) or any(
+        if variants != set(config["caveat_shop"]["variants"]) or any(
             "absolute" in str(variant).casefold() for variant in variants
         ):
             raise IntegrityError(
@@ -1697,7 +1697,7 @@ def render_corrected_completion_bundle(
 ) -> dict[str, Any]:
     """Render only the missing corrected arm; never execute it.
 
-    ``amazon_five_final`` is fail-closed behind a matching successful laptop
+    ``caveat_shop_five_final`` is fail-closed behind a matching successful laptop
     gate report.  The static final matrix may be preregistered before the gate,
     but no held-out launch config can be rendered before selection is frozen.
     """

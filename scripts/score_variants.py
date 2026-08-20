@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Sweep every amazon result snapshot and compute the candidate strict-metric family
+"""Sweep every caveat_shop result snapshot and compute the candidate strict-metric family
 (caveat.scoring.strict_variants) per cell -> benchmark_data/reports/scoring_variants_data.json.
 
 READ-ONLY over results/: never writes summary.json (the measured pipeline stays frozen). The
@@ -22,11 +22,11 @@ from caveat.scoring.strict_variants import METRICS, cell_variants  # noqa: E402
 from _infra_classify import is_infra_fail                              # noqa: E402
 
 SNAPSHOTS = {
-    "mm_v1":     "results/mm_v1/*/amazon__*/trajectory.json",         # all scaffolds (browseruse + playwright-mcp)
-    "cu_v3":     "results/cu_v3/cu3_r*/amazon__magentic-one__*__*/trajectory.json",
-    "cu_v1":     "results/cu_v1/cu_r*/amazon__websurfer__*__*/trajectory.json",
-    "mech8_v1":  "results/mech8_v1/mech8_r*/amazon__browseruse__*__*/trajectory.json",
-    "scrape_v1": "results/scrape_v1/sc_r*/amazon__browseruse__*__*/trajectory.json",
+    "mm_v1":     "results/mm_v1/*/caveat_shop__*/trajectory.json",         # all scaffolds (browseruse + playwright-mcp)
+    "cu_v3":     "results/cu_v3/cu3_r*/caveat_shop__magentic-one__*__*/trajectory.json",
+    "cu_v1":     "results/cu_v1/cu_r*/caveat_shop__websurfer__*__*/trajectory.json",
+    "mech8_v1":  "results/mech8_v1/mech8_r*/caveat_shop__browseruse__*__*/trajectory.json",
+    "scrape_v1": "results/scrape_v1/sc_r*/caveat_shop__browseruse__*__*/trajectory.json",
 }
 IDENTITY = ("model", "scaffold", "condition", "task_id", "outcome", "num_steps")
 OUT = "benchmark_data/reports/scoring_variants_data.json"

@@ -211,7 +211,7 @@ def _verified_dataset(
         or curriculum.get("campaign_digest") != campaign.digest
         or curriculum.get("assistant_wire_format") != "browser-use AgentOutput.action JSON"
         or curriculum.get("native_function_call_targets") != 0
-        or curriculum.get("heldout_amazon_scenarios_present") is not False
+        or curriculum.get("heldout_caveat_shop_scenarios_present") is not False
         or recorded_body_hash != sha256_bytes(canonical_json(curriculum_body).encode())
     ):
         raise ArtifactError("browser-action curriculum manifest is incompatible or drifted")

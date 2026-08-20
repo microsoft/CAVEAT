@@ -5,7 +5,7 @@ Reconstructs the env + the variant task, points a lightweight handle at the runn
 env's own evaluate() over the most recent order/lead/booking, and also reports the validity oracle
 (best P* any catalog item achieves — must be 1.0). No pre-snapshot, so the single txn I placed counts.
 
-  python scripts/score_env.py instacart --condition steered --variant graded4 --port 8801
+  python scripts/score_env.py caveat_grocery --condition steered --variant graded4 --port 8801
 """
 import argparse
 import dataclasses
@@ -51,7 +51,7 @@ def main():
     ev = env.evaluate(handle, task)
 
     cat = env._catalog_obj(task.catalog)
-    if a.env == "airbnb":
+    if a.env == "caveat_stay":
         cands = [l.attrs() for l in cat.listings]
     else:
         cands = [it.attrs() for it in cat.items if getattr(it, "role", "") != "addon"]

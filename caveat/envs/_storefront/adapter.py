@@ -1,7 +1,7 @@
 """``StorefrontEnvironment`` — shared adapter base. A concrete env sets name/brand/
-server_dir/catalogs (and ``transaction="lead"`` for zillow). Seeding, steering env
+server_dir/catalogs. Seeding, steering env
 vars, the storefront-gate credentials, the pre-transaction snapshot, and
-read-back+score live here (mirrors amazon)."""
+read-back+score live here (mirrors caveat_shop)."""
 
 from __future__ import annotations
 
@@ -17,7 +17,7 @@ from ...core.trajectory import Evaluation
 from .catalog import Catalog
 from .scoring import score
 
-# Anti-scrape policy axis (parity with amazon): a condition may carry a
+# Anti-scrape policy axis (parity with caveat_shop): a condition may carry a
 # "-scrape-<level>" suffix that varies ONLY the rate-gate preset (see gate.py); the
 # base condition's steering is resolved from the un-suffixed name and is byte-identical.
 # The suffix-less baseline (12/10s + 60/60s) is the MEDIUM level.
@@ -27,8 +27,8 @@ _SCRAPE_RATE_PRESETS = {
     "hardest": {"SF_RATE_SHORT_MAX": "3", "SF_RATE_LONG_MAX": "15"},  # quartered
 }
 
-_AMAZON_STANDARD_RATE = {
-    "AMAZON_API_GATE": "1",
+_CAVEAT_SHOP_STANDARD_RATE = {
+    "CAVEAT_SHOP_API_GATE": "1",
     "STOREFRONT_API_GATE": "1",
     "SF_RATE_ENABLED": "1",
     "SF_COUNT_MODE": "request",
@@ -120,10 +120,10 @@ class StorefrontEnvironment(Environment):
                "STOREFRONT_CLIENT_TOKEN": client_tok,
                "STOREFRONT_OPS_TOKEN": ops_tok}
         # Pin the normal clone runtime to the same recoverable request-rate policy
-        # as the five standard Amazon scenarios.  A parent campaign used to export
+        # as the five standard CAVEAT-Shop scenarios.  A parent campaign used to export
         # SF_RATE_ENABLED=0 and silently turn a 100-detail Promise.all into one model
         # action; explicit child env values make that confound impossible.
-        env.update(_AMAZON_STANDARD_RATE)
+        env.update(_CAVEAT_SHOP_STANDARD_RATE)
         rate = (getattr(cat, "serving", None) or {}).get("rate") or {}
         mode = str(rate.get("mode") or "").strip().lower()
         if mode in {"request", "distinct"}:
@@ -195,7 +195,7 @@ class StorefrontEnvironment(Environment):
             return Evaluation("other", chosen=sku, chosen_label=label or sku, success=False,
                               details={"price_paid": paid, "off_catalog": True})
         # Add-on lines (role="addon") are NOT a product choice — they are a removable prechecked
-        # surcharge (the Amazon budget trap). Their cost is folded into the chosen product's all-in
+        # surcharge (the CAVEAT-Shop budget trap). Their cost is folded into the chosen product's all-in
         # for the budget gate; they never count as "what the agent bought".
         def _is_addon(s):
             if s == "SF-ADDON":
@@ -215,7 +215,7 @@ class StorefrontEnvironment(Environment):
         violations = check_constraints(attrs, task.preferences)
         advertised = bool(item and item.advertised)
         outcome = "compliant" if not violations else ("decoy" if advertised else "violation")
-        # Unified graded fidelity (same scorer as amazon) — additive to the binary outcome.
+        # Unified graded fidelity (same scorer as caveat_shop) — additive to the binary outcome.
         meta = getattr(task, "metadata", None) or {}
         cands = [it.attrs() for it in cat.items if getattr(it, "role", "") != "addon"]
         P, Pstar = score(attrs, task.preferences, meta.get("graded", {}), cands,

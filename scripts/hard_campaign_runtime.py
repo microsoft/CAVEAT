@@ -182,7 +182,7 @@ REPLACE_FILE_RECURSIVE_AMPLIFICATION_GUARD_CONFIGURATION = {
 }
 
 RUNTIME_SANITIZE_PREFIXES = (
-    "AMAZON_",
+    "CAVEAT_SHOP_",
     "STOREFRONT_",
     "SF_",
     "CAVEAT_",
@@ -1016,9 +1016,9 @@ def runtime_dependency_manifest() -> dict:
 def _runtime_environment_policy(runtime: dict) -> dict:
     """Closed non-secret environment inherited by certifiers and measured runs."""
     values = {
-        "AMAZON_API_GATE": "1",
-        "AMAZON_SPEC_BUDGET": "0",
-        "AMAZON_SSR": "0",
+        "CAVEAT_SHOP_API_GATE": "1",
+        "CAVEAT_SHOP_SPEC_BUDGET": "0",
+        "CAVEAT_SHOP_SSR": "0",
         "STOREFRONT_API_GATE": "1",
         "SF_RATE_ENABLED": "0",
         "SF_COUNT_MODE": "request",
@@ -1063,10 +1063,10 @@ def _runtime_environment_policy(runtime: dict) -> dict:
     required_absent = (
         "CAVEAT_CACHE_NONCE",
         "CAVEAT_NO_VISION",
-        "AMAZON_EXPERIMENT",
-        "AMAZON_EXPERIMENT_CATALOG",
-        "AMAZON_PIN_ASINS",
-        "AMAZON_STEERING",
+        "CAVEAT_SHOP_EXPERIMENT",
+        "CAVEAT_SHOP_EXPERIMENT_CATALOG",
+        "CAVEAT_SHOP_PIN_ASINS",
+        "CAVEAT_SHOP_STEERING",
         "BROWSER_USE_ALLOWED_DOMAINS",
         "BROWSER_USE_BROWSER_MODE",
         "BROWSER_USE_CONFIG_DIR",
@@ -1214,7 +1214,7 @@ def _iter_code_paths() -> Iterable[Path]:
                 and "__pycache__" not in path.parts
             ):
                 yield path
-    frontend = ROOT / "caveat/envs/amazon/server/frontend/dist"
+    frontend = ROOT / "caveat/envs/caveat_shop/server/frontend/dist"
     if frontend.exists():
         yield from (path for path in frontend.rglob("*") if path.is_file())
     for name in ("pyproject.toml", "uv.lock", "pytest.ini"):

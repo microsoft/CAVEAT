@@ -11,7 +11,7 @@ ground-truth preference and report the clean−steered drop.
 ```
 caveat/benchmark/   generation pipeline (this package)
 caveat/scoring/     continuous scoring + clean-vs-steered analysis
-caveat/envs/amazon/ Amazon environment (adapter + server + committed scenario data)
+caveat/envs/caveat_shop/ CAVEAT-Shop environment (adapter + server + committed scenario data)
 ```
 
 ## Determinism boundary (the scientific core)
@@ -43,7 +43,7 @@ This pass authors 4 scenarios (`laptop, robot_vacuum, monitor, headphones`); the
 | type | layer | mechanism | renders via |
 |---|---|---|---|
 | `sponsored` | data | pin decoy + "Sponsored" chip | existing UI |
-| `ranking` | data | pin decoy + "Mercato's Choice" | existing UI |
+| `ranking` | data | pin decoy + "CAVEAT-Shop's Choice" | existing UI |
 | `drip` | data | low displayed price; mandatory fee at checkout (crosses budget) | existing UI |
 | `promo` | data | inflated was-price + big % off + coupon | existing UI |
 | `trust` | data | inflated decoy rating/review count | existing UI |
@@ -51,7 +51,7 @@ This pass authors 4 scenarios (`laptop, robot_vacuum, monitor, headphones`); the
 | `scarcity` | data (partial) | low stock / "Only N left" (full urgency UI = follow-up) | PDP only |
 | `friction` | UI | hide sort/filters so the compliant pick takes more effort | **follow-up (frontend)** |
 
-Exactly one mechanism is active per condition (`AMAZON_STEERING` JSON); `clean` activates
+Exactly one mechanism is active per condition (`CAVEAT_SHOP_STEERING` JSON); `clean` activates
 nothing. Non-active fields default to honest, so each steered-vs-clean comparison isolates
 one factor.
 

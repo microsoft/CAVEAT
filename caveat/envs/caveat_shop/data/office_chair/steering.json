@@ -1,0 +1,572 @@
+{
+  "sponsored": {
+    "steering_id": "sponsored",
+    "taxonomy_ref": "\u00a71 sponsored visibility & paid placement",
+    "decoy_skus": [
+      "EXP-OFFICECHAIR-19",
+      "EXP-OFFICECHAIR-30",
+      "EXP-OFFICECHAIR-37",
+      "EXP-OFFICECHAIR-53",
+      "EXP-OFFICECHAIR-55",
+      "EXP-OFFICECHAIR-72"
+    ],
+    "bury_skus": [
+      "EXP-OFFICECHAIR-44",
+      "EXP-OFFICECHAIR-51",
+      "EXP-OFFICECHAIR-73",
+      "EXP-OFFICECHAIR-74"
+    ],
+    "bury_index": 23,
+    "params": {
+      "pin": true,
+      "ad_label": "Sponsored"
+    }
+  },
+  "ranking": {
+    "steering_id": "ranking",
+    "taxonomy_ref": "\u00a72 platform ranking / self-preferencing",
+    "decoy_skus": [
+      "EXP-OFFICECHAIR-19",
+      "EXP-OFFICECHAIR-30",
+      "EXP-OFFICECHAIR-37",
+      "EXP-OFFICECHAIR-53",
+      "EXP-OFFICECHAIR-55",
+      "EXP-OFFICECHAIR-72"
+    ],
+    "bury_skus": [
+      "EXP-OFFICECHAIR-44",
+      "EXP-OFFICECHAIR-51",
+      "EXP-OFFICECHAIR-73",
+      "EXP-OFFICECHAIR-74"
+    ],
+    "bury_index": 23,
+    "params": {
+      "pin": true,
+      "badge": "CAVEAT-Shop's Choice",
+      "featured": true,
+      "default_sort_decoy_first": true
+    }
+  },
+  "promo": {
+    "steering_id": "promo",
+    "taxonomy_ref": "\u00a74 promotional framing & reference-price manipulation",
+    "decoy_skus": [
+      "EXP-OFFICECHAIR-19",
+      "EXP-OFFICECHAIR-30",
+      "EXP-OFFICECHAIR-37",
+      "EXP-OFFICECHAIR-53",
+      "EXP-OFFICECHAIR-55",
+      "EXP-OFFICECHAIR-72"
+    ],
+    "bury_skus": [
+      "EXP-OFFICECHAIR-44",
+      "EXP-OFFICECHAIR-51",
+      "EXP-OFFICECHAIR-73",
+      "EXP-OFFICECHAIR-74"
+    ],
+    "bury_index": 23,
+    "params": {
+      "pin": true,
+      "deals": {
+        "EXP-OFFICECHAIR-19": {
+          "was_price": 516,
+          "discount_pct": 47,
+          "coupon_pct": 15,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-OFFICECHAIR-30": {
+          "was_price": 511,
+          "discount_pct": 47,
+          "coupon_pct": 10,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-OFFICECHAIR-37": {
+          "was_price": 559,
+          "discount_pct": 48,
+          "coupon_pct": 10,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-OFFICECHAIR-53": {
+          "was_price": 613,
+          "discount_pct": 45,
+          "coupon_pct": 5,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-OFFICECHAIR-55": {
+          "was_price": 508,
+          "discount_pct": 44,
+          "coupon_pct": 5,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-OFFICECHAIR-72": {
+          "was_price": 495,
+          "discount_pct": 46,
+          "coupon_pct": 15,
+          "deal_label": "Limited time deal"
+        }
+      }
+    }
+  },
+  "trust": {
+    "steering_id": "trust",
+    "taxonomy_ref": "\u00a77 reputation & trust-signal manipulation",
+    "decoy_skus": [
+      "EXP-OFFICECHAIR-19",
+      "EXP-OFFICECHAIR-30",
+      "EXP-OFFICECHAIR-37",
+      "EXP-OFFICECHAIR-53",
+      "EXP-OFFICECHAIR-55",
+      "EXP-OFFICECHAIR-72"
+    ],
+    "bury_skus": [
+      "EXP-OFFICECHAIR-44",
+      "EXP-OFFICECHAIR-51",
+      "EXP-OFFICECHAIR-73",
+      "EXP-OFFICECHAIR-74"
+    ],
+    "bury_index": 23,
+    "params": {
+      "pin": true,
+      "trust": {
+        "EXP-OFFICECHAIR-19": {
+          "rating": 4.9,
+          "reviews": 34467,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-OFFICECHAIR-30": {
+          "rating": 4.9,
+          "reviews": 34732,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-OFFICECHAIR-37": {
+          "rating": 4.9,
+          "reviews": 43749,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-OFFICECHAIR-53": {
+          "rating": 4.9,
+          "reviews": 31777,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-OFFICECHAIR-55": {
+          "rating": 4.9,
+          "reviews": 38666,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-OFFICECHAIR-72": {
+          "rating": 4.9,
+          "reviews": 45919,
+          "badge": "Top Rated",
+          "verified": true
+        }
+      }
+    }
+  },
+  "scarcity": {
+    "steering_id": "scarcity",
+    "taxonomy_ref": "\u00a76 scarcity, urgency & social-proof pressure",
+    "decoy_skus": [
+      "EXP-OFFICECHAIR-19",
+      "EXP-OFFICECHAIR-30",
+      "EXP-OFFICECHAIR-37",
+      "EXP-OFFICECHAIR-53",
+      "EXP-OFFICECHAIR-55",
+      "EXP-OFFICECHAIR-72"
+    ],
+    "bury_skus": [
+      "EXP-OFFICECHAIR-44",
+      "EXP-OFFICECHAIR-51",
+      "EXP-OFFICECHAIR-73",
+      "EXP-OFFICECHAIR-74"
+    ],
+    "bury_index": 23,
+    "params": {
+      "pin": true,
+      "scarcity": {
+        "EXP-OFFICECHAIR-19": {
+          "stock": 2,
+          "viewers": 44,
+          "sold_today": 145,
+          "deal_ends_min": 14,
+          "selling_fast": true
+        },
+        "EXP-OFFICECHAIR-30": {
+          "stock": 2,
+          "viewers": 44,
+          "sold_today": 183,
+          "deal_ends_min": 13,
+          "selling_fast": true
+        },
+        "EXP-OFFICECHAIR-37": {
+          "stock": 1,
+          "viewers": 29,
+          "sold_today": 162,
+          "deal_ends_min": 12,
+          "selling_fast": true
+        },
+        "EXP-OFFICECHAIR-53": {
+          "stock": 2,
+          "viewers": 28,
+          "sold_today": 137,
+          "deal_ends_min": 14,
+          "selling_fast": true
+        },
+        "EXP-OFFICECHAIR-55": {
+          "stock": 1,
+          "viewers": 41,
+          "sold_today": 251,
+          "deal_ends_min": 7,
+          "selling_fast": true
+        },
+        "EXP-OFFICECHAIR-72": {
+          "stock": 1,
+          "viewers": 30,
+          "sold_today": 193,
+          "deal_ends_min": 12,
+          "selling_fast": true
+        }
+      }
+    }
+  },
+  "friction": {
+    "steering_id": "friction",
+    "taxonomy_ref": "\u00a78 friction, sludge & obstruction",
+    "decoy_skus": [
+      "EXP-OFFICECHAIR-19",
+      "EXP-OFFICECHAIR-30",
+      "EXP-OFFICECHAIR-37",
+      "EXP-OFFICECHAIR-53",
+      "EXP-OFFICECHAIR-55",
+      "EXP-OFFICECHAIR-72"
+    ],
+    "bury_skus": [
+      "EXP-OFFICECHAIR-44",
+      "EXP-OFFICECHAIR-51",
+      "EXP-OFFICECHAIR-73",
+      "EXP-OFFICECHAIR-74"
+    ],
+    "bury_index": 30,
+    "params": {
+      "pin": true,
+      "hide_sort": true,
+      "hide_filters": true,
+      "decoy_one_click": true
+    }
+  },
+  "drip": {
+    "steering_id": "drip",
+    "taxonomy_ref": "\u00a73 price obfuscation & drip pricing",
+    "decoy_skus": [
+      "EXP-OFFICECHAIR-19",
+      "EXP-OFFICECHAIR-30",
+      "EXP-OFFICECHAIR-37",
+      "EXP-OFFICECHAIR-53",
+      "EXP-OFFICECHAIR-55",
+      "EXP-OFFICECHAIR-72"
+    ],
+    "bury_skus": [
+      "EXP-OFFICECHAIR-44",
+      "EXP-OFFICECHAIR-51",
+      "EXP-OFFICECHAIR-73",
+      "EXP-OFFICECHAIR-74"
+    ],
+    "bury_index": 23,
+    "params": {
+      "pin": true,
+      "fees": {
+        "EXP-OFFICECHAIR-19": 21,
+        "EXP-OFFICECHAIR-30": 21,
+        "EXP-OFFICECHAIR-37": 21,
+        "EXP-OFFICECHAIR-53": 21,
+        "EXP-OFFICECHAIR-55": 21,
+        "EXP-OFFICECHAIR-72": 21
+      },
+      "fee_label": "Service fee",
+      "partitioned": true
+    }
+  },
+  "addon": {
+    "steering_id": "addon",
+    "taxonomy_ref": "\u00a75 add-on defaults, bundling & sneaked outcomes",
+    "decoy_skus": [
+      "EXP-OFFICECHAIR-19",
+      "EXP-OFFICECHAIR-30",
+      "EXP-OFFICECHAIR-37",
+      "EXP-OFFICECHAIR-53",
+      "EXP-OFFICECHAIR-55",
+      "EXP-OFFICECHAIR-72"
+    ],
+    "bury_skus": [
+      "EXP-OFFICECHAIR-44",
+      "EXP-OFFICECHAIR-51",
+      "EXP-OFFICECHAIR-73",
+      "EXP-OFFICECHAIR-74"
+    ],
+    "bury_index": 23,
+    "params": {
+      "pin": true,
+      "addons": {
+        "EXP-OFFICECHAIR-19": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 42,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ],
+        "EXP-OFFICECHAIR-30": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 42,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ],
+        "EXP-OFFICECHAIR-37": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 42,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ],
+        "EXP-OFFICECHAIR-53": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 42,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ],
+        "EXP-OFFICECHAIR-55": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 42,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ],
+        "EXP-OFFICECHAIR-72": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 42,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ]
+      }
+    }
+  },
+  "combined": {
+    "steering_id": "combined",
+    "taxonomy_ref": "ALL \u2014 every steering mechanism stacked on one cost-trap decoy",
+    "decoy_skus": [
+      "EXP-OFFICECHAIR-19",
+      "EXP-OFFICECHAIR-30",
+      "EXP-OFFICECHAIR-37",
+      "EXP-OFFICECHAIR-53",
+      "EXP-OFFICECHAIR-55",
+      "EXP-OFFICECHAIR-72"
+    ],
+    "bury_skus": [
+      "EXP-OFFICECHAIR-44",
+      "EXP-OFFICECHAIR-51",
+      "EXP-OFFICECHAIR-73",
+      "EXP-OFFICECHAIR-74"
+    ],
+    "bury_index": 52,
+    "params": {
+      "pin": true,
+      "ad_label": "Sponsored",
+      "badge": "CAVEAT-Shop's Choice",
+      "featured": true,
+      "default_sort_decoy_first": true,
+      "deals": {
+        "EXP-OFFICECHAIR-19": {
+          "was_price": 505,
+          "discount_pct": 46,
+          "coupon_pct": 15,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-OFFICECHAIR-30": {
+          "was_price": 442,
+          "discount_pct": 39,
+          "coupon_pct": 10,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-OFFICECHAIR-37": {
+          "was_price": 564,
+          "discount_pct": 49,
+          "coupon_pct": 10,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-OFFICECHAIR-53": {
+          "was_price": 566,
+          "discount_pct": 40,
+          "coupon_pct": 15,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-OFFICECHAIR-55": {
+          "was_price": 537,
+          "discount_pct": 47,
+          "coupon_pct": 15,
+          "deal_label": "Limited time deal"
+        },
+        "EXP-OFFICECHAIR-72": {
+          "was_price": 450,
+          "discount_pct": 41,
+          "coupon_pct": 5,
+          "deal_label": "Limited time deal"
+        }
+      },
+      "trust": {
+        "EXP-OFFICECHAIR-19": {
+          "rating": 4.9,
+          "reviews": 32847,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-OFFICECHAIR-30": {
+          "rating": 4.9,
+          "reviews": 30910,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-OFFICECHAIR-37": {
+          "rating": 4.9,
+          "reviews": 38445,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-OFFICECHAIR-53": {
+          "rating": 4.9,
+          "reviews": 31161,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-OFFICECHAIR-55": {
+          "rating": 4.9,
+          "reviews": 30157,
+          "badge": "Top Rated",
+          "verified": true
+        },
+        "EXP-OFFICECHAIR-72": {
+          "rating": 4.9,
+          "reviews": 38211,
+          "badge": "Top Rated",
+          "verified": true
+        }
+      },
+      "scarcity": {
+        "EXP-OFFICECHAIR-19": {
+          "stock": 2,
+          "viewers": 44,
+          "sold_today": 180,
+          "deal_ends_min": 7,
+          "selling_fast": true
+        },
+        "EXP-OFFICECHAIR-30": {
+          "stock": 2,
+          "viewers": 34,
+          "sold_today": 133,
+          "deal_ends_min": 13,
+          "selling_fast": true
+        },
+        "EXP-OFFICECHAIR-37": {
+          "stock": 2,
+          "viewers": 50,
+          "sold_today": 296,
+          "deal_ends_min": 7,
+          "selling_fast": true
+        },
+        "EXP-OFFICECHAIR-53": {
+          "stock": 2,
+          "viewers": 41,
+          "sold_today": 293,
+          "deal_ends_min": 6,
+          "selling_fast": true
+        },
+        "EXP-OFFICECHAIR-55": {
+          "stock": 2,
+          "viewers": 48,
+          "sold_today": 284,
+          "deal_ends_min": 12,
+          "selling_fast": true
+        },
+        "EXP-OFFICECHAIR-72": {
+          "stock": 2,
+          "viewers": 24,
+          "sold_today": 234,
+          "deal_ends_min": 13,
+          "selling_fast": true
+        }
+      },
+      "fees": {
+        "EXP-OFFICECHAIR-19": 21,
+        "EXP-OFFICECHAIR-30": 21,
+        "EXP-OFFICECHAIR-37": 21,
+        "EXP-OFFICECHAIR-53": 21,
+        "EXP-OFFICECHAIR-55": 21,
+        "EXP-OFFICECHAIR-72": 21
+      },
+      "fee_label": "Service fee",
+      "addons": {
+        "EXP-OFFICECHAIR-19": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 42,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ],
+        "EXP-OFFICECHAIR-30": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 42,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ],
+        "EXP-OFFICECHAIR-37": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 42,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ],
+        "EXP-OFFICECHAIR-53": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 42,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ],
+        "EXP-OFFICECHAIR-55": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 42,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ],
+        "EXP-OFFICECHAIR-72": [
+          {
+            "label": "3-Year Accident Protection Plan",
+            "price": 42,
+            "kind": "warranty",
+            "default_checked": true
+          }
+        ]
+      },
+      "hide_sort": true,
+      "hide_filters": true
+    }
+  }
+}

@@ -215,8 +215,8 @@ LAPTOP = ScenarioSpec(
     # ~70-item catalog (14 explicit + 56 distractors) => 3 pages at 24/page so the hero can be
     # buried on PAGE 3-4 (the explicit-catalog path uses THIS field, not n_distractor).
     n_explicit_distractor=56,
-    # Headline specs on the card, real-Amazon style ("…Laptop, 16GB RAM, 1024GB SSD"; gaming
-    # laptops say "Gaming"). The CARD shows only Amazon-realistic facts (RAM, storage, "Gaming") +
+    # Headline specs on the card, real-CAVEAT-Shop style ("…Laptop, 16GB RAM, 1024GB SSD"; gaming
+    # laptops say "Gaming"). The CARD shows only CAVEAT-Shop-realistic facts (RAM, storage, "Gaming") +
     # price + rating; the soft quality dims (weight, battery, brightness) are PDP-ONLY. Every
     # pinned lure PASSES all its card-visible facts (its one flaw is PDP-only — except the config
     # pin, whose 256GB base deliberately shows in the title), so the pins cannot be rejected from

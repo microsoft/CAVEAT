@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Hard-tier Amazon literal-hero selection for GPT-5.6-Sol-high.
+"""Hard-tier CAVEAT-Shop literal-hero selection for GPT-5.6-Sol-high.
 
 Clean is the complete 10-run clean arm in truthful_hard_confirmatory_v3.
 Incentive-misaligned is the authoritative green 10-run combined baseline in

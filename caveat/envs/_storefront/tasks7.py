@@ -1,9 +1,9 @@
 """Unified 7-preference × 5-variant task builder for the harvested-clone envs.
 
-Every non-amazon env declares ONE ``Pref7`` scenario: exactly **3 always-absolute must-haves** + **4
+Every non-caveat_shop env declares ONE ``Pref7`` scenario: exactly **3 always-absolute must-haves** + **4
 ordered soft (gradable) dims** = 7 preference dimensions. The 5 relativeness variants soften the first
 N soft dims into "best-on-X" degrees (N = 0,1,2,3,4 for thresholded / mixed / graded / graded3 /
-graded4) — mirroring the Amazon benchmark (``schema._VARIANT_NGRADED``). So:
+graded4) — mirroring the CAVEAT-Shop benchmark (``schema._VARIANT_NGRADED``). So:
 
     thresholded : 7 hard, 0 degree        graded3 : 4 hard, 3 degree
     mixed       : 6 hard, 1 degree        graded4 : 3 hard, 4 degree   <- 3 absolute + 4 relative
@@ -112,7 +112,7 @@ def with_rating(spec: Pref7, *, drop: str, at: int = 2, threshold: float = 4.0,
                 phrase_hard: str = "rated at least 4.0 out of 5 stars by buyers",
                 phrase_soft: str = "the highest customer rating") -> Pref7:
     """Return a Pref7 with the TRUE customer ``rating`` inserted as a SCORED graded dim at position
-    ``at`` (default 2 → softens at graded3, mirroring the Amazon textbook's [spec, spec, rating, spec]),
+    ``at`` (default 2 → softens at graded3, mirroring the CAVEAT-Shop textbook's [spec, spec, rating, spec]),
     DROPPING the soft dim named ``drop`` to keep exactly 4. rating's ``threshold`` is its HARD floor at
     thresholded/mixed/graded; under steering the decoys' DISPLAY rating is inflated while the TRUE value
     (what the scorer reads) sits at the floor — so a weak agent chasing 'highest rating' is trapped, and

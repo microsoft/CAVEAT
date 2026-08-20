@@ -14,7 +14,7 @@ checkout→purchase flow.
   `execute()`, so we poll `page.screenshot()` concurrently and pair frames to
   the agent's actions for the replay viewer.
 - `run_stagehand.py` — Python wrapper (mirrors `run_webvoyager.py`): seeds the
-  amazon server, sets env, runs the Node agent, normalizes output → shared
+  caveat_shop server, sets env, runs the Node agent, normalizes output → shared
   `step_NN.png` + `trace.json` + `summary.json`.
 
 ## TRAPI compatibility fixes (required for non-OpenAI models)

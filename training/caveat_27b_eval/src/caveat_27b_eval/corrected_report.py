@@ -676,7 +676,7 @@ def analyze_development_gate(
         )
         for variant in sorted({pair["variant"] for pair in combined_pairs})
     }
-    if set(variant_deltas) != set(audited["campaign"]["amazon"]["variants"]):
+    if set(variant_deltas) != set(audited["campaign"]["caveat_shop"]["variants"]):
         raise IntegrityError("development report variant set changed")
     positive_variants = sum(value > 0 for value in variant_deltas.values())
     no_backstop = not any(
@@ -1024,7 +1024,7 @@ def render_corrected_markdown(report: dict[str, Any]) -> str:
         ]
     elif report.get("schema") == FINAL_REPORT_SCHEMA:
         lines = [
-            "# Corrected raw-versus-trained Amazon-five final",
+            "# Corrected raw-versus-trained CAVEAT-Shop-five final",
             "",
             f"Outcome: **{'SUCCESS' if report['success'] else 'NOT ESTABLISHED'}**",
             "",

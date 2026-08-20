@@ -2,7 +2,7 @@
 semantics for the whole benchmark.
 
 The per-variant gate implemented here (G over the CURRENT-variant hard ``preferences``; O over the
-current graded dims) is the reference reading of P* = G·O: ``scoring.rescore`` (Amazon),
+current graded dims) is the reference reading of P* = G·O: ``scoring.rescore`` (CAVEAT-Shop),
 ``scoring.gap_report`` and ``benchmark.validate`` all reproduce exactly this projection
 (``rescore._must_haves(sc, variant)`` ≡ ``must_have_fields(preference(variant).dsl())``), so ALL
 10 envs report the SAME metric — a defensible, consistent benchmark rather than ten ad-hoc binary

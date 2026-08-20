@@ -1020,7 +1020,7 @@ def select_browser_action_checkpoint_v4(
             "status": "complete",
             "campaign_digest": campaign.digest,
             "selection_split": "procedural_validation",
-            "amazon_data_used": False,
+            "caveat_shop_data_used": False,
             "inputs": inputs,
             "training_bindings": bindings,
             "base_model": str(parent),

@@ -5,7 +5,7 @@ Boots the env per condition exactly the way the benchmark harness does (seed_db 
 subprocess server + health wait), then runs an endpoint matrix against the live
 server and prints a PASS/FAIL table.
 
---env amazon (default; conditions clean/combined/adv-hidden):
+--env caveat_shop (default; conditions clean/combined/adv-hidden):
   * tokenless /api reads   -> 403 (full-page Robot Check for document requests)
   * legacy 'web' constant  -> 403
   * client-token reads     -> 200, card rows whitelist-only (no spec fields)
@@ -20,7 +20,7 @@ server and prints a PASS/FAIL table.
   absence), so their expectations invert: the matrix asserts the legacy-open
   surface is preserved there.
 
---env <clone> (nike/ebay/etsy/fiverr/stockx/zillow/doordash/instacart; conditions
+--env <clone> (caveat_sport/caveat_market/caveat_craft/caveat_services/caveat_kicks/caveat_food/caveat_grocery; conditions
 clean/steered): the shared-storefront matrix —
   * tokenless 403 + Robot Check document; tokened 200;
   * card rows carry NO specs/spec_display/description/bullets/variants/advertised
@@ -30,16 +30,16 @@ clean/steered): the shared-storefront matrix —
     truthful and are never silently stripped;
   * detail always full (specs + description present); limit clamped <= 24;
   * docs 404; robots.txt restrictive; served page carries the boot credential;
-  * etsy: the product WRITE surface is dead (404/405);
+  * caveat_craft: the product WRITE surface is dead (404/405);
   * burst -> 503 challenge -> /verify-human recovery; refresh keeps the cart.
 
---env airbnb (best-effort port of the same gate): tokenless 403, tokened 200,
+--env caveat_stay (best-effort port of the same gate): tokenless 403, tokened 200,
 steered cards spec-stripped, detail full, docs 404, burst/verify-human, ops reads.
 
 Usage:
   .venv/bin/python scripts/audit_lockdown.py
-  .venv/bin/python scripts/audit_lockdown.py --env nike ebay etsy
-  .venv/bin/python scripts/audit_lockdown.py --env amazon --catalog office_chair \
+  .venv/bin/python scripts/audit_lockdown.py --env caveat_sport caveat_market caveat_craft
+  .venv/bin/python scripts/audit_lockdown.py --env caveat_shop --catalog office_chair \
       --conditions clean combined adv-hidden
 """
 
@@ -60,7 +60,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
-CLONES = ("nike", "ebay", "etsy", "fiverr", "stockx", "zillow", "doordash", "instacart")
+CLONES = ("caveat_sport", "caveat_market", "caveat_craft", "caveat_services", "caveat_kicks", "caveat_food", "caveat_grocery")
 
 # The card whitelist contract for the shared-storefront clones (Phase C): the LIST
 # payload must never carry these — in either condition.
@@ -135,8 +135,7 @@ def _burst_and_recover(m: Matrix, base: str, counted_url: str, hdr: dict,
             s == 503 and "Type the characters" in t, f"{s}")
     if ops_hdr:
         s, _, _ = req(f"{base}/api/orders?limit=1", headers=ops_hdr)
-        # any 2xx/404 means the request was NOT throttled/blocked (zillow: /api/orders
-        # exists on the generic router, so 200 is the norm everywhere)
+        # Any 2xx/404 means the request was not throttled or blocked.
         m.check("ops token rate-exempt during challenge", s == 200, f"{s}")
     # recover through the human path: read the code, wait past the min human delay, submit
     s, _, t = req(f"{base}/verify-human", headers={"Accept": "text/html"})
@@ -153,19 +152,19 @@ def _burst_and_recover(m: Matrix, base: str, counted_url: str, hdr: dict,
 
 
 # --------------------------------------------------------------------------- #
-# amazon matrix (unchanged behavior)
+# caveat_shop matrix (unchanged behavior)
 # --------------------------------------------------------------------------- #
-def run_condition_amazon(env, catalog: str, condition: str, work_dir: Path) -> Matrix:
+def run_condition_caveat_shop(env, catalog: str, condition: str, work_dir: Path) -> Matrix:
     from caveat.core.task import TaskSpec
 
-    task = TaskSpec(task_id=f"audit-{condition}", env="amazon",
+    task = TaskSpec(task_id=f"audit-{condition}", env="caveat_shop",
                     instruction="audit", catalog=catalog, condition=condition)
     port = free_port()
     handle = env.start(port, task, work_dir=work_dir)
     base = handle.base_url
     client_tok = handle.env.get("STOREFRONT_CLIENT_TOKEN", "")
     ops_tok = handle.env.get("STOREFRONT_OPS_TOKEN", "")
-    gate_on = handle.env.get("AMAZON_API_GATE", "1") != "0"
+    gate_on = handle.env.get("CAVEAT_SHOP_API_GATE", "1") != "0"
     hdr = {"X-Storefront-Client": client_tok}
     m = Matrix()
     try:
@@ -368,13 +367,13 @@ def run_condition_storefront(env, catalog, condition: str, work_dir: Path,
         s, _, _ = req(f"{base}{txn}?limit=500", headers=ops_hdr)
         m.check("ops token evaluator read", s == 200, f"{s}")
 
-        if env.name == "etsy":
-            s1, _, _ = req(f"{base}/etsy/shops/1001/products", method="POST",
+        if env.name == "caveat_craft":
+            s1, _, _ = req(f"{base}/caveat_craft/shops/1001/products", method="POST",
                            headers=hdr, form={"product[title]": "x"})
-            s2, _, _ = req(f"{base}/etsy/products/1", method="PATCH",
+            s2, _, _ = req(f"{base}/caveat_craft/products/1", method="PATCH",
                            headers=hdr, form={"product[title]": "x"})
-            s3, _, _ = req(f"{base}/etsy/products/1", method="DELETE", headers=hdr)
-            m.check("etsy product write surface dead",
+            s3, _, _ = req(f"{base}/caveat_craft/products/1", method="DELETE", headers=hdr)
+            m.check("caveat_craft product write surface dead",
                     all(x in (404, 405) for x in (s1, s2, s3)), f"{s1}/{s2}/{s3}")
 
         # ---- refresh keeps the cart; burst LAST (poisons the session) ----
@@ -405,12 +404,12 @@ def run_condition_storefront(env, catalog, condition: str, work_dir: Path,
 
 
 # --------------------------------------------------------------------------- #
-# airbnb matrix (best-effort port of the same gate)
+# caveat_stay matrix (best-effort port of the same gate)
 # --------------------------------------------------------------------------- #
-def run_condition_airbnb(env, catalog, condition: str, work_dir: Path) -> Matrix:
+def run_condition_caveat_stay(env, catalog, condition: str, work_dir: Path) -> Matrix:
     from caveat.core.task import TaskSpec
 
-    task = TaskSpec(task_id=f"audit-airbnb-{condition}", env="airbnb",
+    task = TaskSpec(task_id=f"audit-caveat_stay-{condition}", env="caveat_stay",
                     instruction="audit", catalog=catalog, condition=condition)
     port = free_port()
     handle = env.start(port, task, work_dir=work_dir)
@@ -497,14 +496,14 @@ def run_condition_airbnb(env, catalog, condition: str, work_dir: Path) -> Matrix
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--env", nargs="+", default=["amazon"],
-                    help="env(s) to audit: amazon, airbnb, or any of "
+    ap.add_argument("--env", nargs="+", default=["caveat_shop"],
+                    help="env(s) to audit: caveat_shop, caveat_stay, or any of "
                          + ", ".join(CLONES))
     ap.add_argument("--catalog", default=None,
-                    help="catalog/scenario to boot (default: amazon->laptop, "
-                         "clones/airbnb->their first registered catalog)")
+                    help="catalog/scenario to boot (default: caveat_shop->laptop, "
+                         "clones/caveat_stay->their first registered catalog)")
     ap.add_argument("--conditions", nargs="*", default=None,
-                    help="default: amazon->clean/combined/adv-hidden, others->clean/steered")
+                    help="default: caveat_shop->clean/combined/adv-hidden, others->clean/steered")
     args = ap.parse_args()
 
     import caveat.envs  # noqa: F401  (registration side effects)
@@ -516,7 +515,7 @@ def main():
 
     for env_name in args.env:
         env = ENVIRONMENTS.get(env_name)()
-        if env_name == "amazon":
+        if env_name == "caveat_shop":
             conditions = args.conditions or ["clean", "combined", "adv-hidden"]
             catalog = args.catalog or "laptop"
         else:
@@ -526,11 +525,11 @@ def main():
         keysets: dict = {}
         for cond in conditions:
             try:
-                if env_name == "amazon":
+                if env_name == "caveat_shop":
                     cats = (catalog, "office_chair")
                     for attempt, cat in enumerate(cats):
                         try:
-                            m = run_condition_amazon(env, cat, cond, work)
+                            m = run_condition_caveat_shop(env, cat, cond, work)
                             catalog_used = cat
                             break
                         except Exception as e:
@@ -538,8 +537,8 @@ def main():
                             if attempt == len(cats) - 1:
                                 raise
                             time.sleep(2)
-                elif env_name == "airbnb":
-                    m = run_condition_airbnb(env, catalog, cond, work)
+                elif env_name == "caveat_stay":
+                    m = run_condition_caveat_stay(env, catalog, cond, work)
                     catalog_used = catalog or next(iter(env.catalogs), "-")
                 else:
                     m = run_condition_storefront(env, catalog, cond, work, keysets)

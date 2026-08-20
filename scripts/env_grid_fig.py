@@ -3,7 +3,7 @@
 
 Reads committed shots from benchmark_data/reports/env_shots/<env>.png and writes
 benchmark_data/reports/fig_environments.png — a 3x3 grid (the 8 harvested brand clones +
-the generated Amazon benchmark; zillow excluded), each tile titled with the brand name only,
+the generated CAVEAT-Shop benchmark), each tile titled with the environment name only,
 brand colour-coded. Sized 16:9 to fill a PowerPoint slide (no suptitle / no vertical
 descriptions — slide layout, 2026-07-15); each shot is bottom-cropped IN-PLOT to the tile's
 box aspect so tiles fill edge-to-edge without distortion (source shots untouched).
@@ -20,15 +20,15 @@ import matplotlib.image as mpimg
 SHOTS = Path("benchmark_data/reports/env_shots")
 # (file, Brand, vertical, brand colour)
 TILES = [
-    ("amazon",    "Amazon",    "general retail",        "#ff9900"),
-    ("ebay",      "eBay",      "auction / resale",      "#e53238"),
-    ("etsy",      "Etsy",      "handmade goods",        "#f1641e"),
-    ("stockx",    "StockX",    "sneaker resale",        "#006340"),
-    ("nike",      "Nike",      "athletic footwear",     "#111111"),
-    ("doordash",  "DoorDash",  "food delivery",         "#ff3008"),
-    ("instacart", "Instacart", "grocery delivery",      "#43b02a"),
-    ("airbnb",    "Airbnb",    "vacation rentals",      "#ff5a5f"),
-    ("fiverr",    "Fiverr",    "freelance services",    "#1dbf73"),
+    ("caveat_shop",    "CAVEAT-Shop",    "general retail",        "#ff9900"),
+    ("caveat_market",      "CAVEAT-Market",      "auction / resale",      "#e53238"),
+    ("caveat_craft",      "CAVEAT-Craft",      "handmade goods",        "#f1641e"),
+    ("caveat_kicks",    "CAVEAT-Kicks",    "sneaker resale",        "#006340"),
+    ("caveat_sport",      "CAVEAT-Sport",      "athletic footwear",     "#111111"),
+    ("caveat_food",  "CAVEAT-Food",  "food delivery",         "#ff3008"),
+    ("caveat_grocery", "CAVEAT-Grocery", "grocery delivery",      "#43b02a"),
+    ("caveat_stay",    "CAVEAT-Stay",    "vacation rentals",      "#ff5a5f"),
+    ("caveat_services",    "CAVEAT-Services",    "freelance services",    "#1dbf73"),
 ]
 NCOL, NROW = 3, 3
 # 16:9 — fills a widescreen PowerPoint slide (13.333 x 7.5 in)

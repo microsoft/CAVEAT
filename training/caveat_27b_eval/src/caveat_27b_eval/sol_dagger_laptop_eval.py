@@ -599,7 +599,7 @@ def render(arguments: argparse.Namespace) -> None:
     for index, (source_row, source_config, (variant, repetition)) in enumerate(rows):
         result_path = (
             results_root
-            / f"amazon__caveat-harness__{CANDIDATE_RUN_SLUG}__laptop-{variant}__combined__r{repetition:02d}"
+            / f"caveat_shop__caveat-harness__{CANDIDATE_RUN_SLUG}__laptop-{variant}__combined__r{repetition:02d}"
         )
         config_path = (
             bundle_root

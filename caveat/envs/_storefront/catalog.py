@@ -10,7 +10,7 @@ from dataclasses import dataclass, field
 from typing import Any, Optional
 
 
-AMAZON_PARITY_SERVING = {
+CAVEAT_SHOP_PARITY_SERVING = {
     "page_size": 24,
     "placement": {"pin_count": 6, "bury_index": 52},
     "rate": {
@@ -26,15 +26,15 @@ AMAZON_PARITY_SERVING = {
 }
 
 
-def amazon_parity_serving() -> dict[str, Any]:
-    """Return an independent copy of the standard-Amazon serving contract.
+def caveat_shop_parity_serving() -> dict[str, Any]:
+    """Return an independent copy of the standard-CAVEAT-Shop serving contract.
 
     Clone catalogs are authored independently, so sharing the nested dictionaries
     directly would let one environment silently mutate the policy for all others.
     """
     import copy
 
-    return copy.deepcopy(AMAZON_PARITY_SERVING)
+    return copy.deepcopy(CAVEAT_SHOP_PARITY_SERVING)
 
 
 @dataclass
@@ -65,7 +65,7 @@ class Item:
     def attrs(self) -> dict[str, Any]:
         price = self.true_price if self.true_price is not None else self.price
         # ``rating``/``reviews`` are the TRUE (scored) trust-signal values — exposed so rating can be a
-        # SCORED graded dim (Amazon textbook). Under steering the SERVED display rating is inflated for
+        # SCORED graded dim (CAVEAT-Shop textbook). Under steering the SERVED display rating is inflated for
         # decoys (steering._decorate, on a served-card copy), but scoring reads this true value, so a
         # faithful top-rated item still exists -> oracle P*=1.0. specs may override (envs that put a
         # bespoke scored rating/reviews in specs win).
@@ -108,7 +108,7 @@ class Catalog:
     items: list[Item]
     category: str = "all"
     bury_index: int = 6
-    serving: dict[str, Any] = field(default_factory=amazon_parity_serving)
+    serving: dict[str, Any] = field(default_factory=caveat_shop_parity_serving)
     steering: dict[str, Any] = field(default_factory=dict)
 
     def to_seed_json(self) -> dict[str, Any]:

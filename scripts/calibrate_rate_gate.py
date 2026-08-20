@@ -12,7 +12,7 @@ Inputs (auto-detected):
         {"t": <seconds-offset>, "url": "/api/products?limit=1"}
     or a bare URL string (then --interval spaces them).
 
-Counted requests mirror the amazon gate exactly: /api/products (list),
+Counted requests mirror the caveat_shop gate exactly: /api/products (list),
 /api/search, /api/products/asin/*, /api/products/{id}, and the SSR document GETs
 /s and /dp/*. Everything else is ignored.
 
@@ -46,7 +46,7 @@ COUNTED = [
     re.compile(r"^/dp/[^/]+$"),
 ]
 
-PRESETS = {  # mirrors caveat/envs/amazon/__init__.py _SCRAPE_RATE_PRESETS
+PRESETS = {  # mirrors caveat/envs/caveat_shop/__init__.py _SCRAPE_RATE_PRESETS
     "medium": {},
     "hard": {"short_max": 6, "long_max": 30},
     "hardest": {"short_max": 3, "long_max": 15},

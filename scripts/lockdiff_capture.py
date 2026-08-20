@@ -55,7 +55,7 @@ import urllib.request
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-import caveat.envs.amazon  # noqa: F401,E402
+import caveat.envs.caveat_shop  # noqa: F401,E402
 from caveat.core.environment import ENVIRONMENTS  # noqa: E402
 from caveat.benchmark import registry, serialize  # noqa: E402
 
@@ -95,25 +95,25 @@ ENGINE_FILES = (
     "caveat/benchmark/validate.py",
     "caveat/envs/_storefront/gate.py",
     "caveat/envs/_storefront/placement.py",
-    "caveat/envs/amazon/__init__.py",
-    "caveat/envs/amazon/catalog.py",
-    "caveat/envs/amazon/server/backend/app.py",
-    "caveat/envs/amazon/server/backend/counting.py",
-    "caveat/envs/amazon/server/backend/routes.py",
-    "caveat/envs/amazon/server/backend/experiment_laptops.py",
-    "caveat/envs/amazon/server/backend/seed.py",
-    "caveat/envs/amazon/server/backend/ssr.py",
-    "caveat/envs/amazon/server/backend/adversarial.py",
+    "caveat/envs/caveat_shop/__init__.py",
+    "caveat/envs/caveat_shop/catalog.py",
+    "caveat/envs/caveat_shop/server/backend/app.py",
+    "caveat/envs/caveat_shop/server/backend/counting.py",
+    "caveat/envs/caveat_shop/server/backend/routes.py",
+    "caveat/envs/caveat_shop/server/backend/experiment_laptops.py",
+    "caveat/envs/caveat_shop/server/backend/seed.py",
+    "caveat/envs/caveat_shop/server/backend/ssr.py",
+    "caveat/envs/caveat_shop/server/backend/adversarial.py",
     # Intentionally absent in the pre-successor baseline. None -> a real hash after the edit
     # makes the provenance comparison meaningful even if the integration points stay tiny.
-    "caveat/envs/amazon/server/backend/truthful.py",
+    "caveat/envs/caveat_shop/server/backend/truthful.py",
 )
 STALE_MIN = float(os.environ.get("LOCKDIFF_STALE_MIN") or 60)
 
 # The hard tier is backend-only and selects the existing classic SSR transport.
 # Rebuilding the one shared frontend would change every original condition even if the API
 # lock stayed green, so pin the exact pre-edit dist bytes.
-FRONTEND_DIST = REPO / "caveat" / "envs" / "amazon" / "server" / "frontend" / "dist"
+FRONTEND_DIST = REPO / "caveat" / "envs" / "caveat_shop" / "server" / "frontend" / "dist"
 FRONTEND_SHA256 = {
     "assets/index-IwcoZ3da.css":
         "1c3e45ba145e29a0c69108832a74afb0054a7c77f2c97c04ca63480cdd108abe",
@@ -164,7 +164,7 @@ def original_artifact_manifest() -> dict:
         d = serialize.DATA_ROOT / sid
         if d.exists():
             paths.extend(p for p in d.rglob("*") if p.is_file())
-        cat = REPO / "caveat" / "envs" / "amazon" / "server" / "_catalogs"
+        cat = REPO / "caveat" / "envs" / "caveat_shop" / "server" / "_catalogs"
         paths.append(cat / f"{sid}.json")
         paths.extend(cat / f"{sid}.{cond}.steering.json" for cond in ORIGINAL_CONDITIONS)
     out = {}
@@ -263,7 +263,7 @@ def _try(base, path):
 
 
 def capture(scen, cond):
-    env = ENVIRONMENTS.get("amazon")()
+    env = ENVIRONMENTS.get("caveat_shop")()
     task = dataclasses.replace(registry.benchmark_tasks(scen, variants=["graded4"])[0],
                                condition=cond)
     h = env.start(PORT, task, work_dir=Path(tempfile.mkdtemp(prefix="lockdiff-")))

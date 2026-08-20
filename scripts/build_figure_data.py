@@ -2,7 +2,7 @@
 """Rebuild benchmark_data/reports/figure_data.json from CAVEAT result trees.
 
 Sources (all committed under results/):
-  * results/overhaul_b80/overhaul_b80_r*        headline Amazon matrix, max_steps 80, n=5
+  * results/overhaul_b80/overhaul_b80_r*        headline CAVEAT-Shop matrix, max_steps 80, n=5
   * results/overhaul_b/overhaul_b_*_r*          the 50-step twin (budget-sensitivity arm)
   * results/overhaul_b_supp80/supp80            at-cap give-up supplement (re-run at 80 steps)
   * results/overhaul_lb/overhaul_lb_r*          leaderboard, 14 model configs, max_steps 250, n=3
@@ -42,7 +42,7 @@ from caveat.benchmark import serialize  # noqa: E402
 VARIANTS = ["thresholded", "mixed", "graded", "graded3", "graded4"]   # relativeness 0..4
 PRODUCTS = ["laptop", "office_chair", "mattress", "backpack", "tent"]
 HEADLINE_MODELS = ["gpt-5.5-high", "gpt-5.5-low", "gpt-4.1"]
-CLONE_ENVS = ["nike", "ebay", "etsy", "fiverr", "stockx", "zillow", "doordash", "instacart", "airbnb"]
+CLONE_ENVS = ["caveat_sport", "caveat_market", "caveat_craft", "caveat_services", "caveat_kicks", "caveat_food", "caveat_grocery", "caveat_stay"]
 
 B80 = "results/overhaul_b80/overhaul_b80_r*"
 B50 = "results/overhaul_b/overhaul_b_*_r*"
@@ -368,7 +368,7 @@ def main() -> int:
 
     # ---- clone envs + ceilings ---------------------------------------------
     out["clone_envs"] = clone_envs()
-    out["capitulation_ceilings_amazon"] = ceilings()
+    out["capitulation_ceilings_caveat_shop"] = ceilings()
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(out, indent=1))

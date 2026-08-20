@@ -31,7 +31,7 @@ from .task import TaskSpec
 from .trajectory import Evaluation, Trajectory
 
 # browseruse raised 40->60 (2026-06-28, owner-approved: max_steps is a resource budget, not the harness):
-# the nested envs (zillow/doordash) need room for the agent to browse listings + complete via the UI
+# Nested environments need room for the agent to browse listings and complete via the UI
 # rather than prematurely calling done() when it senses a tight step budget.
 # 2026-07 policy: step budgets are a SAFETY BACKSTOP against pathological loops, not a
 # measured constraint — set high enough that a persistent agent never fails because of them.

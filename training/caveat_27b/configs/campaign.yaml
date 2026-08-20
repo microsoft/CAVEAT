@@ -12,16 +12,16 @@ objective:
 splits:
   train:
     procedural: ["procedural_train"]
-    amazon: []
+    caveat_shop: []
   selection:
     procedural: ["procedural_validation"]
-    amazon: []
+    caveat_shop: []
   development:
     procedural: []
-    amazon: ["laptop"]
+    caveat_shop: ["laptop"]
   final:
     procedural: ["procedural_test"]
-    amazon: ["office_chair", "mattress", "backpack", "tent"]
+    caveat_shop: ["office_chair", "mattress", "backpack", "tent"]
   require_disjoint_scenarios: true
 
 targeted_sft:

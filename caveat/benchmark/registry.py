@@ -1,9 +1,9 @@
-"""Turn generated artifacts into runnable objects: reconstruct an Amazon ``Catalog`` from
+"""Turn generated artifacts into runnable objects: reconstruct an CAVEAT-Shop ``Catalog`` from
 ``catalog.json`` (so the existing adapter seeds/evaluates unchanged) and emit one
 ``TaskSpec`` per (scenario, variant). The condition (clean / 8 steering types) is supplied
 by the experiment matrix, not baked into the task.
 
-``register_all_generated()`` is called at Amazon-env import time so the generated catalogs
+``register_all_generated()`` is called at CAVEAT-Shop-env import time so the generated catalogs
 exist in every process — including the ``run_cell`` worker subprocesses, which look catalogs
 up by name.
 """
@@ -14,7 +14,7 @@ from pathlib import Path
 from typing import Optional
 
 from ..core.task import TaskSpec
-from ..envs.amazon.catalog import Catalog, Product
+from ..envs.caveat_shop.catalog import Catalog, Product
 from . import serialize
 from .schema import VARIANTS
 
@@ -58,7 +58,7 @@ def build_catalog(scenario_id: str, root: Optional[Path] = None) -> Catalog:
 
 
 def register_catalog(scenario_id: str, root: Optional[Path] = None) -> Catalog:
-    from ..envs.amazon.catalog import CATALOGS
+    from ..envs.caveat_shop.catalog import CATALOGS
     cat = build_catalog(scenario_id, root)
     CATALOGS[scenario_id] = cat
     _registered.add(scenario_id)
@@ -92,7 +92,7 @@ def benchmark_tasks(scenario_id: str, root: Optional[Path] = None,
         pref = prefs[v]
         gi = insts[v]
         tasks.append(TaskSpec(
-            task_id=f"{scenario_id}-{v}", env="amazon", catalog=scenario_id,
+            task_id=f"{scenario_id}-{v}", env="caveat_shop", catalog=scenario_id,
             instruction=gi.text, preferences=pref.dsl(),
             metadata={"scenario_id": scenario_id, "variant": v,
                       "graded": pref.graded_map(),

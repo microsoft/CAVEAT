@@ -1,4 +1,4 @@
-"""Launch each of the 10 marketplace envs (clean) and screenshot its homepage.
+"""Launch each of the nine marketplace envs (clean) and screenshot its homepage.
 
 Mirrors the viewer's /api/launch: create env -> TASKS[0] @ condition=clean ->
 start on a port -> start_url -> headless Chromium screenshot. Writes PNGs to OUT.
@@ -15,8 +15,8 @@ from caveat.core.environment import ENVIRONMENTS
 from caveat.scaffolds._browser import BrowserConfig
 
 OUT = Path("/tmp/env_shots"); OUT.mkdir(parents=True, exist_ok=True)
-ENVS = ["amazon", "ebay", "etsy", "stockx", "nike",
-        "doordash", "instacart", "airbnb", "zillow", "fiverr"]
+ENVS = ["caveat_shop", "caveat_market", "caveat_craft", "caveat_kicks", "caveat_sport",
+        "caveat_food", "caveat_grocery", "caveat_stay", "caveat_services"]
 PORT0 = 9700
 VW, VH = 1366, 940
 

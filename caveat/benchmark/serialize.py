@@ -1,4 +1,4 @@
-"""Read/write Amazon's versioned CAVEAT artifacts from its environment package."""
+"""Read/write CAVEAT-Shop's versioned CAVEAT artifacts from its environment package."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ from .schema import (SCHEMA_VERSION, GeneratedInstruction, PreferenceSpec, Produ
                      ScenarioSpec, SteeringSpec)
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-DATA_RELATIVE_PATH = Path("caveat") / "envs" / "amazon" / "data"
+DATA_RELATIVE_PATH = Path("caveat") / "envs" / "caveat_shop" / "data"
 DATA_ROOT = REPO_ROOT / DATA_RELATIVE_PATH
 
 
@@ -24,7 +24,7 @@ def _write(p: Path, obj) -> None:
 
 
 def catalog_seed_json(scenario: ScenarioSpec, rows: list[ProductRow]) -> dict:
-    """The seed JSON the Amazon server reads (shape of Catalog.to_seed_json()).
+    """The seed JSON the CAVEAT-Shop server reads (shape of Catalog.to_seed_json()).
 
     ``serving`` (the HARD tier's pagination/placement/rails/rate policy) is emitted only
     when the scenario carries a non-empty one. The five original scenarios have none, so

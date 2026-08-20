@@ -92,7 +92,7 @@ def _gate_descriptor(gate_path: Path) -> dict[str, Any]:
         gate.get("status") != "complete"
         or gate.get("selection_performed") is not False
         or gate.get("fixed_candidate") != "step26"
-        or gate.get("amazon_data_used") is not False
+        or gate.get("caveat_shop_data_used") is not False
         or gate.get("passed") is not True
         or not isinstance(gate.get("gate_checks"), Mapping)
         or not gate["gate_checks"]
@@ -109,7 +109,7 @@ def _gate_descriptor(gate_path: Path) -> dict[str, Any]:
         or sha256_file(Path(str(evidence.get("path", "")))) != evidence.get("sha256")
         or sha256_file(policy_path) != gate.get("gate_policy_sha256")
         or policy.get("status") != "frozen_before_candidate_inference"
-        or policy.get("amazon_data_used") is not False
+        or policy.get("caveat_shop_data_used") is not False
         or policy.get("selection_performed") is not False
         or gate.get("gate_policy_body_sha256") != policy.get("policy_body_sha256")
     ):

@@ -1,6 +1,6 @@
 """Shared, invisible backend engine for the harvested-clone marketplace envs.
 
-Each new env (doordash, ebay, …) vendors its OWN real frontend clone (so each LOOKS
+Each new env (caveat_food, caveat_market, …) vendors its OWN real frontend clone (so each LOOKS
 like the actual site) and wires that clone's data layer to this one generic API:
 catalog list/detail with clean/steered ordering, cart, checkout -> order, soft
 leads, and an auto-logged-in user. Only the *data* differs between envs and between

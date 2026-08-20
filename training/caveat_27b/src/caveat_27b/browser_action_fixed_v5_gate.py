@@ -1,6 +1,6 @@
 """Pre-registered one-candidate procedural gate for fixed-v5 correction.
 
-The gate never selects among checkpoints and never reads Amazon data.  It
+The gate never selects among checkpoints and never reads CAVEAT-Shop data.  It
 compares the single, predeclared step-26 adapter with the already frozen
 step-20 procedural baseline.  All decision thresholds are materialized before
 the first candidate inference, and only observable response fields are used.
@@ -82,7 +82,7 @@ _REQUEST_EXECUTION = {
 
 # Frozen before candidate inference.  These criteria deliberately test the
 # corrected action-state behavior without demanding saturation of the sealed
-# suite.  The actual Amazon laptop arm remains the scientific development gate.
+# suite.  The actual CAVEAT-Shop laptop arm remains the scientific development gate.
 _GATE_CRITERIA = {
     "minimum_action_transition_exact_count_delta": 2,
     "minimum_complete_plus_repair_exact_count_delta": 2,
@@ -335,7 +335,7 @@ def _policy_body(
         "status": "frozen_before_candidate_inference",
         "campaign_digest": campaign.digest,
         "selection_performed": False,
-        "amazon_data_used": False,
+        "caveat_shop_data_used": False,
         "evaluation_split": "procedural_validation",
         "baseline": dict(baseline),
         "candidate": dict(candidate),
@@ -984,7 +984,7 @@ def _gate_locked(
             "campaign_digest": campaign.digest,
             "selection_performed": False,
             "fixed_candidate": "step26",
-            "amazon_data_used": False,
+            "caveat_shop_data_used": False,
             "evaluation_split": "procedural_validation",
             "gate_policy": str((output / "gate_policy.json").resolve()),
             "gate_policy_sha256": sha256_file(output / "gate_policy.json"),

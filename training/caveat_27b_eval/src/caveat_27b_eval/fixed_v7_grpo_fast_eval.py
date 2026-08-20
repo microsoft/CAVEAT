@@ -220,7 +220,7 @@ def preregister(arguments: argparse.Namespace) -> None:
         or training_release.get("release_sha256") != TRAINING_RELEASE_BODY
         or training_release.get("source", {}).get("git_sha") != SOURCE_GIT_SHA
         or training_release.get("purpose")
-        != "amazon_grpo_step24_trainer_resume_from_shipped_cohort_world8"
+        != "caveat_shop_grpo_step24_trainer_resume_from_shipped_cohort_world8"
         or training_release.get("laptop_r01_outcomes_read") is not False
         or training_release.get("office_chair_outcomes_read") is not False
     ):
@@ -337,7 +337,7 @@ def _training_receipt(path: Path) -> dict[str, Any]:
     final_dcp = value.get("final_dcp") or {}
     recovery_path = Path(str(recovery.get("receipt_path", ""))).resolve()
     if (
-        value.get("schema") != "harness-distill.amazon-grpo-training-receipt.v1"
+        value.get("schema") != "harness-distill.caveat_shop-grpo-training-receipt.v1"
         or value.get("status") != "ok"
         or value.get("scientific_label") != "same_task_laptop_r00_grpo_adaptation"
         or value.get("artifact_source_git_sha") != SOURCE_GIT_SHA
@@ -351,7 +351,7 @@ def _training_receipt(path: Path) -> dict[str, Any]:
         or value.get("laptop_r01_used") is not False
         or value.get("office_chair_used") is not False
         or value.get("selection_performed") is not False
-        or candidate.get("name") != "step24-amazon-grpo-r00"
+        or candidate.get("name") != "step24-caveat_shop-grpo-r00"
         or candidate.get("update") != 24
         or not all(type(candidate.get(key)) is int for key in ("files", "bytes"))
         or HEX64.fullmatch(str(candidate.get("tree_sha256", ""))) is None
@@ -364,7 +364,7 @@ def _training_receipt(path: Path) -> dict[str, Any]:
         or recovery.get("trainer_topology") != EXPECTED_TOPOLOGY
         or recovery.get("equivalence_contract") != EXPECTED_EQUIVALENCE
         or recovery_path
-        != path.resolve().parent / "amazon_grpo_trainer_only_recovery_receipt.json"
+        != path.resolve().parent / "caveat_shop_grpo_trainer_only_recovery_receipt.json"
         or not recovery_path.is_file()
         or sha256_file(recovery_path) != recovery.get("receipt_file_sha256")
         or rollouts.get("all_count") != 32
@@ -463,11 +463,11 @@ def render_serve_release(arguments: argparse.Namespace) -> None:
     adapter = Path(candidate["path"]).resolve()
     expected_root = Path(
         "/data/caveat-27b/4e6c4fe10d62d660f85c1063e3c1cecd0aed6e30/"
-        f"browser_action_fixed_v7_amazon_grpo_trainer_recovery/{SOURCE_GIT_SHA}/trainer_only_r7"
+        f"browser_action_fixed_v7_caveat_shop_grpo_trainer_recovery/{SOURCE_GIT_SHA}/trainer_only_r7"
     )
     if (
         arguments.training_receipt.resolve()
-        != expected_root / "amazon_grpo_training_receipt.json"
+        != expected_root / "caveat_shop_grpo_training_receipt.json"
         or adapter != expected_root / "weights/step_24/lora_adapters"
     ):
         raise IntegrityError("W7 receipt/candidate path changed")
@@ -480,7 +480,7 @@ def render_serve_release(arguments: argparse.Namespace) -> None:
         "status": "released",
         "source_git_sha": SOURCE_GIT_SHA,
         "original_rollout_source_git_sha": ROLLOUT_SOURCE_GIT_SHA,
-        "candidate_name": "step24-amazon-grpo-r00",
+        "candidate_name": "step24-caveat_shop-grpo-r00",
         "candidate_update": 24,
         "evaluation_label": "same_task_laptop_r00_grpo_development_replay",
         "selection_performed": False,
@@ -606,7 +606,7 @@ def attest_endpoint(arguments: argparse.Namespace) -> None:
         "outcome_blind": True,
         "scientific_label": "same_task_laptop_steered_development_replay",
         "candidate": {
-            "name": "step24-amazon-grpo-r00",
+            "name": "step24-caveat_shop-grpo-r00",
             "update": 24,
             "adapter_path": receipt["candidate"]["path"],
             "parent_tree_sha256": PARENT_TREE,
@@ -686,12 +686,12 @@ def _endpoint(path: Path) -> dict[str, Any]:
         or value.get("outcome_blind") is not True
         or value.get("scientific_label")
         != "same_task_laptop_steered_development_replay"
-        or candidate.get("name") != "step24-amazon-grpo-r00"
+        or candidate.get("name") != "step24-caveat_shop-grpo-r00"
         or candidate.get("update") != 24
         or Path(str(candidate.get("adapter_path", ""))).resolve()
         != Path(
             "/data/caveat-27b/4e6c4fe10d62d660f85c1063e3c1cecd0aed6e30/"
-            f"browser_action_fixed_v7_amazon_grpo_trainer_recovery/{SOURCE_GIT_SHA}/"
+            f"browser_action_fixed_v7_caveat_shop_grpo_trainer_recovery/{SOURCE_GIT_SHA}/"
             "trainer_only_r7/weights/step_24/lora_adapters"
         )
         or candidate.get("parent_tree_sha256") != PARENT_TREE
@@ -802,7 +802,7 @@ def render(arguments: argparse.Namespace) -> None:
         pair_id = f"grpo_fast::laptop::{variant}::combined::r{repetition:02d}"
         result_path = (
             results_root
-            / f"amazon__caveat-harness__grpo_step24__laptop-{variant}__combined__r{repetition:02d}"
+            / f"caveat_shop__caveat-harness__grpo_step24__laptop-{variant}__combined__r{repetition:02d}"
         )
         config_path = (
             bundle_root

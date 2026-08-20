@@ -42,12 +42,12 @@ def _run_one(args):
     scenario, variant = task_id.rsplit("-", 1)
     task = registry.benchmark_tasks(scenario, variants=[variant])[0]
     model = ModelSpec.parse(_model_arg(model_name))
-    cell_name = f"amazon__browseruse__{model.name}__{task_id}__{condition}"
+    cell_name = f"caveat_shop__browseruse__{model.name}__{task_id}__{condition}"
     out_dir = Path(out_root) / cell_name
     if (out_dir / "summary.json").exists():
         return f"skip {cell_name}"
     try:
-        traj = run_cell("amazon", "browseruse", model, task, condition, port, out_dir,
+        traj = run_cell("caveat_shop", "browseruse", model, task, condition, port, out_dir,
                         max_steps=max_steps, headless=True)
         return f"done {cell_name} -> {traj.evaluation.outcome if traj.evaluation else '?'}"
     except Exception as e:

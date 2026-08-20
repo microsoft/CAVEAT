@@ -21,27 +21,27 @@ class Surface:
 
 SURFACES = (
     Surface(r"^/api/products$", "card_list", True),
-    Surface(r"^/api/storefront$", "card_list", False),       # DoorDash long menu
+    Surface(r"^/api/storefront$", "card_list", False),       # CAVEAT-Food long menu
     Surface(r"^/api/products/[^/]+$", "detail"),
     Surface(r"^/api/gigs$", "card_list", True),
     Surface(r"^/api/gigs/single/[^/]+$", "detail"),
     Surface(r"^/api/reviews/[^/]+$", "detail"),
-    Surface(r"^/ebay/products$", "card_list", True),
-    Surface(r"^/ebay/products/search-by-name/.*$", "card_list", True),
-    Surface(r"^/ebay/products/get-random$", "card_rail"),
-    Surface(r"^/ebay/product/[^/]+$", "detail"),
-    Surface(r"^/etsy/products$", "card_list", True),
-    Surface(r"^/etsy/search_products$", "card_list", True),
-    Surface(r"^/etsy/products/\d+$", "detail"),
-    Surface(r"^/etsy/products/\d+/reviews$", "detail"),
-    Surface(r"^/stockx/sneakers/?$", "card_list", True),
-    Surface(r"^/stockx/search/.*$", "card_list", True),
-    Surface(r"^/stockx/sneakers/\d+$", "detail"),
-    Surface(r"^/stockx/sneakers/\d+/listingitems$", "card_rail"),
-    Surface(r"^/stockx/listingitems/\d+$", "card_rail"),
-    Surface(r"^/stockx/follows$", "card_list", True),
+    Surface(r"^/caveat_market/products$", "card_list", True),
+    Surface(r"^/caveat_market/products/search-by-name/.*$", "card_list", True),
+    Surface(r"^/caveat_market/products/get-random$", "card_rail"),
+    Surface(r"^/caveat_market/product/[^/]+$", "detail"),
+    Surface(r"^/caveat_craft/products$", "card_list", True),
+    Surface(r"^/caveat_craft/search_products$", "card_list", True),
+    Surface(r"^/caveat_craft/products/\d+$", "detail"),
+    Surface(r"^/caveat_craft/products/\d+/reviews$", "detail"),
+    Surface(r"^/caveat_kicks/sneakers/?$", "card_list", True),
+    Surface(r"^/caveat_kicks/search/.*$", "card_list", True),
+    Surface(r"^/caveat_kicks/sneakers/\d+$", "detail"),
+    Surface(r"^/caveat_kicks/sneakers/\d+/listingitems$", "card_rail"),
+    Surface(r"^/caveat_kicks/listingitems/\d+$", "card_rail"),
+    Surface(r"^/caveat_kicks/follows$", "card_list", True),
     # POST/DELETE both return the caller-selected product card.  Middleware only
-    # prices GET reads, so stockx_api explicitly charges this declared mutation via
+    # prices GET reads, so caveat_kicks_api explicitly charges this declared mutation via
     # gate.count_identities().
     Surface(r"^/api/follows$", "card_mutation"),
 )

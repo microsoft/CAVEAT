@@ -1,7 +1,7 @@
 """Verify and freeze the repair step-24 adapter against its exact trained parent.
 
 This is an outcome-independent candidate operation.  It consumes only the sealed
-training receipt and immutable model artifacts; Amazon evaluation results are
+training receipt and immutable model artifacts; CAVEAT-Shop evaluation results are
 neither accepted nor inspected.  The resulting merged checkpoint is therefore a
 prospective candidate artifact, not evidence that the candidate was selected.
 """
@@ -30,7 +30,7 @@ from .parent_merge import (
     verify_parent_aware_merge,
 )
 
-TRAINING_RECEIPT_SCHEMA = "harness-distill.amazon-r00-repair-sft-training-receipt.v1"
+TRAINING_RECEIPT_SCHEMA = "harness-distill.caveat_shop-r00-repair-sft-training-receipt.v1"
 MERGE_RECEIPT_SCHEMA = "caveat-27b.repair-step24-candidate-merge.v1"
 FULL_GIT_SHA = re.compile(r"[0-9a-f]{40}")
 SHA256 = re.compile(r"[0-9a-f]{64}")
@@ -47,7 +47,7 @@ EXPECTED_TRAINING_EXECUTOR_GIT_SHA = "6cf2d5a0154ff644f6766b03648663bdbed10ec8"
 EXPECTED_REPLAY_EXECUTOR_GIT_SHA = "7ceed1104fea9807a8acd3d3cc0503dfb208c498"
 EXPECTED_REPLAY_VALIDATOR_GIT_SHA = "86e7f2cab46dedcb2b44b7fe0931d1ed60fc8dc1"
 EXPECTED_SCIENTIFIC_LABEL = "same_task_laptop_r00_real_state_cart_repair_sft"
-EXPECTED_CANDIDATE_NAME = "step24-amazon-r00-repair-sft"
+EXPECTED_CANDIDATE_NAME = "step24-caveat_shop-r00-repair-sft"
 EXPECTED_LEARNING_RATE = 5.0e-7
 
 

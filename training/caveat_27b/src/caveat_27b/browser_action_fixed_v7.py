@@ -1,12 +1,12 @@
 """Sequence-level laptop adaptation in browser-use's real action interface.
 
 Fixed-v6 learned isolated next actions but did not enter those behaviors during
-long Amazon runs.  Fixed-v7 therefore trains complete short histories: persist
+long CAVEAT-Shop runs.  Fixed-v7 therefore trains complete short histories: persist
 through pagination into a literal PDP and checkpoint, reconcile a dirty cart
 before ordering, and recover the exact assigned localhost after a bad external
 navigation.  Released laptop development histories are used and explicitly
 attested; later laptop results are same-task adaptation evidence, not held-out
-generalization.  No other Amazon category is consulted.
+generalization.  No other CAVEAT-Shop category is consulted.
 """
 
 from __future__ import annotations
@@ -60,26 +60,26 @@ _LEARNING_RATE = 2.0e-6
 _PROCEDURAL_TASKS = 32
 _GIT_SHA = re.compile(r"[0-9a-f]{40}")
 _KINDS = (
-    "amazon-discovery-sequence",
-    "amazon-cart-sequence",
-    "amazon-recovery-sequence",
-    "amazon-preservation-sequence",
+    "caveat_shop-discovery-sequence",
+    "caveat_shop-cart-sequence",
+    "caveat_shop-recovery-sequence",
+    "caveat_shop-preservation-sequence",
     "procedural-discovery-sequence",
     "procedural-cart-sequence",
     "procedural-recovery-sequence",
     "procedural-preservation-sequence",
 )
 _ROW_QUOTAS = {
-    "amazon-discovery-sequence": 24,
-    "amazon-cart-sequence": 24,
-    "amazon-recovery-sequence": 12,
-    "amazon-preservation-sequence": 8,
+    "caveat_shop-discovery-sequence": 24,
+    "caveat_shop-cart-sequence": 24,
+    "caveat_shop-recovery-sequence": 12,
+    "caveat_shop-preservation-sequence": 8,
     "procedural-discovery-sequence": 20,
     "procedural-cart-sequence": 16,
     "procedural-recovery-sequence": 12,
     "procedural-preservation-sequence": 12,
 }
-_AMAZON_SOURCE = Path(__file__).resolve().parents[2] / "configs/fixed_v7_laptop_adaptation.json"
+_CAVEAT_SHOP_SOURCE = Path(__file__).resolve().parents[2] / "configs/fixed_v7_laptop_adaptation.json"
 
 
 def _git_sha(value: str | None, label: str) -> str:
@@ -440,7 +440,7 @@ def _sequence_rows(
     return result
 
 
-def _amazon_contract(variant: Mapping[str, Any]) -> dict[str, Any]:
+def _caveat_shop_contract(variant: Mapping[str, Any]) -> dict[str, Any]:
     descriptions = {
         "price": ("Price under $1000", "lt", 1000, "$"),
         "ssd_storage": ("SSD storage at least 512GB", "ge", 512, "GB"),
@@ -485,14 +485,14 @@ def _amazon_contract(variant: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
-def _amazon_checkpoint(
+def _caveat_shop_checkpoint(
     variant: Mapping[str, Any],
     selected: Mapping[str, Any],
     *,
     total: int,
     origin: str,
 ) -> dict[str, Any]:
-    contract = _amazon_contract(variant)
+    contract = _caveat_shop_contract(variant)
     values = {
         "price": selected["price"],
         "ssd_storage": selected["storage_gb"],
@@ -540,9 +540,9 @@ def _amazon_checkpoint(
 def _validate_adaptation_row(row: Mapping[str, Any], *, kind: str) -> dict[str, Any]:
     messages = row.get("messages")
     if row.get("schema") != SFT_SOURCE_SCHEMA or not isinstance(messages, list):
-        raise ArtifactError("fixed-v7 Amazon adaptation row is malformed")
+        raise ArtifactError("fixed-v7 CAVEAT-Shop adaptation row is malformed")
     if len(messages) < 7 or messages[-1].get("role") != "assistant":
-        raise ArtifactError("fixed-v7 Amazon row is not a multi-turn sequence")
+        raise ArtifactError("fixed-v7 CAVEAT-Shop row is not a multi-turn sequence")
     _scan_visible({"messages": messages, "tools": row.get("tools", [])})
     return {
         "messages": list(messages),
@@ -652,12 +652,12 @@ def _audit_coverage(messages: list[dict[str, Any]], *, kind: str) -> dict[str, A
     proposed = checkpoint_ids[0]
     if proposed not in seen_ids or proposed not in pdp_ids:
         raise ArtifactError("fixed-v7 checkpoint candidate lacks literal card and PDP evidence")
-    if kind.startswith("amazon-"):
+    if kind.startswith("caveat_shop-"):
         selected_page = next(page for page, ids in page_to_ids.items() if proposed in ids)
         if selected_page >= page_count or proposed in page_to_ids[page_count]:
-            raise ArtifactError("fixed-v7 Amazon sequence does not continue after finding the hero")
+            raise ArtifactError("fixed-v7 CAVEAT-Shop sequence does not continue after finding the hero")
         if len(origins) != 1 or not next(iter(origins)).startswith("http://127.0.0.1:"):
-            raise ArtifactError("fixed-v7 Amazon sequence has an ambiguous assigned origin")
+            raise ArtifactError("fixed-v7 CAVEAT-Shop sequence has an ambiguous assigned origin")
     if kind.endswith("recovery-sequence") and navigate_url != recovery_url:
         raise ArtifactError("fixed-v7 recovery action does not copy the exact visible assigned URL")
     return {
@@ -674,7 +674,7 @@ def _v7_curriculum_audit(rows: list[dict[str, Any]]) -> dict[str, Any]:
     counts: Counter[str] = Counter()
     assistant_turns: Counter[str] = Counter()
     coverage_audits: list[dict[str, Any]] = []
-    amazon_origins: set[str] = set()
+    caveat_shop_origins: set[str] = set()
     for row in rows:
         kind = str(row["metadata"]["stage"])
         counts[kind] += 1
@@ -689,8 +689,8 @@ def _v7_curriculum_audit(rows: list[dict[str, Any]]) -> dict[str, Any]:
         if kind.endswith(("discovery-sequence", "recovery-sequence")):
             coverage = _audit_coverage(messages, kind=kind)
             coverage_audits.append({"sample_id": row["metadata"]["sample_id"], **coverage})
-            if kind.startswith("amazon-"):
-                amazon_origins.update(coverage["origins"])
+            if kind.startswith("caveat_shop-"):
+                caveat_shop_origins.update(coverage["origins"])
         if kind.endswith("cart-sequence") and not all(
             marker in dynamic
             for marker in ("/gp/buy/spc", "/gp/cart", "ADDON-PLAN", "Place your order")
@@ -705,21 +705,21 @@ def _v7_curriculum_audit(rows: list[dict[str, Any]]) -> dict[str, Any]:
         raise ArtifactError("fixed-v7 exact sequence quotas drifted")
     if any(not (counts[kind] * 3 <= assistant_turns[kind] <= counts[kind] * 6) for kind in _KINDS):
         raise ArtifactError("fixed-v7 sequences must contain three to six assistant transitions")
-    if len(amazon_origins) < 8:
-        raise ArtifactError("fixed-v7 Amazon rows do not diversify assigned localhost ports")
+    if len(caveat_shop_origins) < 8:
+        raise ArtifactError("fixed-v7 CAVEAT-Shop rows do not diversify assigned localhost ports")
     return {
         "row_counts": dict(sorted(counts.items())),
         "assistant_turns": dict(sorted(assistant_turns.items())),
         "minimum_assistant_turns_per_sequence": 3,
         "maximum_assistant_turns_per_sequence": 6,
         "coverage_audits": coverage_audits,
-        "distinct_amazon_origins": sorted(amazon_origins),
+        "distinct_caveat_shop_origins": sorted(caveat_shop_origins),
         "ledger_counts_derived_from_literal_history": True,
         "pagination_to_pdp_to_checkpoint_required": True,
         "buy_now_to_cart_cleanup_to_order_required": True,
         "exact_localhost_recovery_to_checkpoint_required": True,
         "hidden_target_fields_present": False,
-        "non_laptop_amazon_category_tokens_present": False,
+        "non_laptop_caveat_shop_category_tokens_present": False,
         "gate_passed": True,
     }
 
@@ -759,7 +759,7 @@ def _materialize_curriculum(
     rows: list[dict[str, Any]] = []
     counts: Counter[str] = Counter()
 
-    # Procedural/non-Amazon sequences preserve generality and provide a clean
+    # Procedural/non-CAVEAT-Shop sequences preserve generality and provide a clean
     # contrast to the explicitly labeled laptop adaptation rows.
     procedural_bank: dict[str, list[tuple[Mapping[str, Any], dict[str, Any]]]] = {
         kind: [] for kind in _KINDS if kind.startswith("procedural-")
@@ -838,17 +838,17 @@ def _materialize_curriculum(
     # Released laptop development histories are intentionally used here.  This
     # is same-task adaptation; the source manifest records every consulted
     # trajectory hash, and held-out category data is prohibited by audit.
-    amazon_source = read_json(_AMAZON_SOURCE)
+    caveat_shop_source = read_json(_CAVEAT_SHOP_SOURCE)
     if (
-        not isinstance(amazon_source, Mapping)
-        or amazon_source.get("schema") != "caveat-27b.fixed-v7-laptop-development-source.v1"
-        or amazon_source.get("scientific_label") != "same_task_laptop_development_adaptation"
-        or len(amazon_source.get("trajectory_sha256", [])) != 12
+        not isinstance(caveat_shop_source, Mapping)
+        or caveat_shop_source.get("schema") != "caveat-27b.fixed-v7-laptop-development-source.v1"
+        or caveat_shop_source.get("scientific_label") != "same_task_laptop_development_adaptation"
+        or len(caveat_shop_source.get("trajectory_sha256", [])) != 12
     ):
         raise ArtifactError("fixed-v7 laptop adaptation source is incompatible")
-    variants = amazon_source.get("laptop_public_task_variants")
-    catalog = amazon_source.get("public_catalog_subset")
-    search_cards = amazon_source.get("public_search_cards")
+    variants = caveat_shop_source.get("laptop_public_task_variants")
+    catalog = caveat_shop_source.get("public_catalog_subset")
+    search_cards = caveat_shop_source.get("public_search_cards")
     if (
         not isinstance(variants, list)
         or len(variants) != 4
@@ -865,12 +865,12 @@ def _materialize_curriculum(
     ]
     if not isinstance(selected_item, Mapping):
         raise ArtifactError("fixed-v7 laptop public source omits the selected item")
-    for kind in (item for item in _KINDS if item.startswith("amazon-")):
+    for kind in (item for item in _KINDS if item.startswith("caveat_shop-")):
         quota = _ROW_QUOTAS[kind]
         for index in range(quota):
             variant = variants[index % len(variants)]
             origin = f"http://127.0.0.1:{30401 + (index % 12)}"
-            contract = _amazon_contract(variant)
+            contract = _caveat_shop_contract(variant)
             contract_row = {
                 "messages": [{"role": "assistant", "content": canonical_json(contract)}]
             }
@@ -878,8 +878,8 @@ def _materialize_curriculum(
             task_identity = f"{variant['task_id']}-adapt-r{index:02d}"
             sequences = _sequence_rows(
                 task_id=task_identity,
-                source="amazon_laptop_development",
-                scenario="amazon_laptop_same_task_adaptation",
+                source="caveat_shop_laptop_development",
+                scenario="caveat_shop_laptop_same_task_adaptation",
                 system=row_system,
                 instruction=str(variant["instruction"]),
                 origin=origin,
@@ -888,8 +888,8 @@ def _materialize_curriculum(
                 selected=selected_item,
                 extra=extras[index % len(extras)],
                 search_cards=search_cards,
-                arguments=_amazon_checkpoint(variant, selected_item, total=37, origin=origin),
-                prefix="amazon",
+                arguments=_caveat_shop_checkpoint(variant, selected_item, total=37, origin=origin),
+                prefix="caveat_shop",
                 output_model=output_model,
             )
             row = sequences[kind]
@@ -911,10 +911,10 @@ def _materialize_curriculum(
             "rehearsal": {"path": str(rehearsal_path), "sha256": sha256_file(rehearsal_path)},
             "contract": {"path": str(contract_path), "sha256": sha256_file(contract_path)},
             "laptop_development_source": {
-                "path": str(_AMAZON_SOURCE),
-                "sha256": sha256_file(_AMAZON_SOURCE),
-                "trajectory_sha256": amazon_source["trajectory_sha256"],
-                "source_report": amazon_source["source_report"],
+                "path": str(_CAVEAT_SHOP_SOURCE),
+                "sha256": sha256_file(_CAVEAT_SHOP_SOURCE),
+                "trajectory_sha256": caveat_shop_source["trajectory_sha256"],
+                "source_report": caveat_shop_source["source_report"],
             },
         },
         "counts": dict(sorted(counts.items())),
@@ -925,14 +925,14 @@ def _materialize_curriculum(
             "all_assistant_turns_trainable": True,
             "literal_identity_required": True,
             "dirty_cart_reconciliation_required": True,
-            "amazon_laptop_development_trajectories_consulted": True,
-            "amazon_laptop_public_histories_used_for_training": True,
+            "caveat_shop_laptop_development_trajectories_consulted": True,
+            "caveat_shop_laptop_public_histories_used_for_training": True,
             "later_laptop_evaluation_label": "same_task_adaptation_only",
-            "office_chair_or_other_amazon_categories_consulted": False,
+            "office_chair_or_other_caveat_shop_categories_consulted": False,
             "candidate_sweep": False,
         },
         "assistant_wire_format": "browser-use AgentOutput.action JSON",
-        "heldout_non_laptop_amazon_scenarios_present": False,
+        "heldout_non_laptop_caveat_shop_scenarios_present": False,
         "curriculum_audit": audit,
         "output": {"path": data.name, "sha256": sha256_file(data), "rows": len(rows)},
     }
@@ -1062,8 +1062,8 @@ def _token_mix_audit(stage: Path) -> dict[str, Any]:
         raise ArtifactError("fixed-v7 token audit omits a frozen sequence kind")
     fractions = {kind: totals[kind] / total for kind in _KINDS}
     grouped = {
-        "amazon_laptop_adaptation": sum(
-            fractions[kind] for kind in _KINDS if kind.startswith("amazon-")
+        "caveat_shop_laptop_adaptation": sum(
+            fractions[kind] for kind in _KINDS if kind.startswith("caveat_shop-")
         ),
         "procedural_rehearsal": sum(
             fractions[kind] for kind in _KINDS if kind.startswith("procedural-")
@@ -1076,7 +1076,7 @@ def _token_mix_audit(stage: Path) -> dict[str, Any]:
     # Sequence lengths intentionally differ, so this gate prevents source or
     # behavior collapse without pretending row quotas are token quotas.
     bounds = {
-        "amazon_laptop_adaptation": [0.35, 0.80],
+        "caveat_shop_laptop_adaptation": [0.35, 0.80],
         "procedural_rehearsal": [0.20, 0.65],
         "discovery": [0.12, 0.42],
         "cart_reconciliation": [0.25, 0.65],
@@ -1217,7 +1217,7 @@ def prepare_browser_action_fixed_v7(
             "path": str((training / "prime_output/weights/step_23/lora_adapters").resolve()),
         },
         "selection_performed": False,
-        "amazon_outcomes_consulted": True,
+        "caveat_shop_outcomes_consulted": True,
         "scientific_label": "same_task_laptop_development_adaptation",
         "training_policy": {
             "optimizer": "adamw",
@@ -1279,7 +1279,7 @@ def write_browser_action_fixed_v7_receipt(
         or plan.get("source_step20_adapter_receipt_tree_sha256")
         != source["adapter_receipt_tree_sha256"]
         or plan.get("selection_performed") is not False
-        or plan.get("amazon_outcomes_consulted") is not True
+        or plan.get("caveat_shop_outcomes_consulted") is not True
         or plan.get("scientific_label") != "same_task_laptop_development_adaptation"
     ):
         raise ArtifactError("fixed-v7 plan binding drifted")
@@ -1409,9 +1409,9 @@ def write_browser_action_fixed_v7_receipt(
         "training_policy": plan["training_policy"],
         "candidate": {"name": "step23", **candidate},
         "selection_performed": False,
-        "amazon_outcomes_consulted": True,
+        "caveat_shop_outcomes_consulted": True,
         "scientific_label": "same_task_laptop_development_adaptation",
-        "office_chair_or_other_amazon_categories_consulted": False,
+        "office_chair_or_other_caveat_shop_categories_consulted": False,
         "original_refinement_unchanged_after_training": True,
     }
     receipt = dict(body)

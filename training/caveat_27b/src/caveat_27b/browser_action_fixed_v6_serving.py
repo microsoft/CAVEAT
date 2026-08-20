@@ -131,7 +131,7 @@ def prepare_fixed_v6_pair_manifest(
         validated.get("schema") != FIXED_V6_RECEIPT_SCHEMA
         or validated.get("status") != "ok"
         or validated.get("selection_performed") is not False
-        or validated.get("amazon_outcomes_consulted") is not False
+        or validated.get("caveat_shop_outcomes_consulted") is not False
         or validated.get("optimizer_updates") != 24
         or validated.get("new_optimizer_updates") != 4
         or validated.get("checkpoint_updates") != [24]
@@ -214,7 +214,7 @@ def prepare_fixed_v6_pair_manifest(
         "science_policy": {
             "outcome_blind": True,
             "selection_performed": False,
-            "amazon_outcomes_consulted": False,
+            "caveat_shop_outcomes_consulted": False,
             "behavioral_gate_pass_required_before_marketplace_evaluation": True,
             "not_a_final_publication": True,
         },

@@ -34,7 +34,7 @@ _JUDGE_SYSTEM = (
 
 # steering / answer-leakage tokens the instruction must never contain
 _BACKSTOP_TERMS = [
-    "exp-", "sponsored", "advertis", "amazon's choice", "amazons choice", "best seller",
+    "exp-", "sponsored", "advertis", "caveat_shop's choice", "caveat_shops choice", "best seller",
     "bestseller", "top rated", "top-rated", "best value", "highest rated", "most popular",
     "recommended pick", "the deal", "coupon", "% off",
 ]

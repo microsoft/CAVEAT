@@ -3,18 +3,18 @@ frontend (a Next.js static export ``out/``, a Vite ``dist/``, a CRA ``build/`` o
 plain static dir) on a single origin. Each env's ``backend/app.py`` calls ``run()``
 with its static dir; the layout/look is the real clone's, only the data is ours.
 
-Serving-layer lockdown (Phase C — parity with the amazon env):
+Serving-layer lockdown (Phase C — parity with the caveat_shop env):
   * no interactive API docs (/docs, /redoc, /openapi.json all 404) and no permissive CORS;
   * the session gate + rate-based Robot Check from ``gate.py`` guards every data prefix
-    (generic ``/api`` + the brand compat prefixes + zillow's ``/graphql``);
+    (generic ``/api`` plus the environment compatibility prefixes);
   * every served HTML document gets ``_inject_boot()``: an inline script that patches
     ``window.fetch`` + ``XMLHttpRequest`` so all same-origin requests carry the
-    per-session ``X-Storefront-Client`` credential (the SPA equivalent of amazon's
+    per-session ``X-Storefront-Client`` credential (the SPA equivalent of caveat_shop's
     ``<meta name="sf-client">`` + api.ts);
   * the DB reset on document load happens ONCE per server process (a refresh keeps the
     cart, like a real store);
   * unknown document routes 404 with the clone's own exported ``404.html`` when the
-    harvest ships one (Next static exports: ebay/doordash/zillow), otherwise fall back
+    harvest ships one (Next static exports: caveat_market/caveat_food), otherwise fall back
     to the SPA shell; override with STOREFRONT_SPA=1/0.
 """
 
@@ -50,7 +50,7 @@ async def lifespan(app: FastAPI):
 
 
 # --------------------------------------------------------------------------- #
-# Session gate + rate-based anti-bot (shared gate.py — same module amazon uses)
+# Session gate + rate-based anti-bot (shared gate.py — same module caveat_shop uses)
 # --------------------------------------------------------------------------- #
 def _get_gate():
     try:
@@ -63,16 +63,15 @@ def _get_gate():
 
 # One shared config covers every clone: prefixes/paths for routers an env doesn't
 # mount simply never match. Counted paths are the product list/detail/search/storefront
-# GET reads (zillow's POST /graphql content ops are counted explicitly via gate.count()
-# inside zillow_gql.py).
-_GATED_PREFIXES = ("/api", "/ebay", "/etsy", "/fiverr", "/stockx", "/graphql")
+# GET reads.
+_GATED_PREFIXES = ("/api", "/caveat_market", "/caveat_craft", "/caveat_services", "/caveat_kicks")
 _EXEMPT_PATHS = (
     "/api/health", "/robots.txt", "/verify-human", "/favicon.ico",
     # static asset mounts (see _ASSET_DIRS) + misc root-level assets
     "/_next", "/assets", "/static", "/images", "/img", "/fonts", "/media",
     # brand imagery/avatar endpoints that live under a gated prefix
-    "/ebay/img", "/ebay/ph", "/etsy/img", "/etsy/avatar",
-    "/stockx/img", "/stockx/ph", "/zillow/img", "/zillow/ph",
+    "/caveat_market/img", "/caveat_market/ph", "/caveat_craft/img", "/caveat_craft/avatar",
+    "/caveat_kicks/img", "/caveat_kicks/ph",
 )
 
 
@@ -94,11 +93,10 @@ def create_app() -> FastAPI:
         return PlainTextResponse(
             "User-agent: *\n"
             "Disallow: /api\n"
-            "Disallow: /ebay\n"
-            "Disallow: /etsy\n"
-            "Disallow: /fiverr\n"
-            "Disallow: /stockx\n"
-            "Disallow: /graphql\n"
+            "Disallow: /caveat_market\n"
+            "Disallow: /caveat_craft\n"
+            "Disallow: /caveat_services\n"
+            "Disallow: /caveat_kicks\n"
             "Disallow: /verify-human\n"
             "Disallow: /checkout\n"
             "Disallow: /cart\n"
@@ -122,10 +120,10 @@ if(u.indexOf("//")===0)return u.slice(2).split("/")[0]===location.host;
 if(/^https?:/i.test(u))return (new URL(u)).origin===location.origin;
 return true;}catch(e){return false;}}
 function sfPaged(u){try{var p=(new URL(String(u),location.origin)).pathname;
-return p==='/api/products'||p==='/api/gigs'||p==='/ebay/products'||
-p.indexOf('/ebay/products/search-by-name/')===0||p==='/etsy/products'||
-p==='/etsy/search_products'||p==='/stockx/sneakers'||p==='/stockx/sneakers/'||
-p==='/stockx/follows'||p.indexOf('/stockx/search/')===0;}catch(e){return false;}}
+return p==='/api/products'||p==='/api/gigs'||p==='/caveat_market/products'||
+p.indexOf('/caveat_market/products/search-by-name/')===0||p==='/caveat_craft/products'||
+p==='/caveat_craft/search_products'||p==='/caveat_kicks/sneakers'||p==='/caveat_kicks/sneakers/'||
+p==='/caveat_kicks/follows'||p.indexOf('/caveat_kicks/search/')===0;}catch(e){return false;}}
 function sfPage(u){try{var x=new URL(String(u),location.origin);if(!sfPaged(x.href))return u;
 if(!x.searchParams.has('limit'))x.searchParams.set('limit',String(PS));
 if(!x.searchParams.has('offset')&&!x.searchParams.has('page'))
@@ -197,72 +195,12 @@ def _boot_snippet() -> str:
                                "option": json.dumps(steering.checkout_option())})
 
 
-# Zillow's "schedule a tour" lead form is a headlessui Disclosure collapsed by default with required
-# name/email/phone inputs — so a clicked "Request a tour" submit silently no-ops when the panel is shut
-# or the fields are empty (no lead written -> the run scores outcome=none even though the agent picked the
-# right home). This brand-gated post-hydration script opens the panel and pre-fills the contact fields via
-# React's controlled-input setter, so the agent's own submit fires CreateMessage with the page's true
-# propertyId. Pure transaction-reliability (like the cart idempotency fix), not a change to the agent's
-# choice; only active for STOREFRONT_BRAND=Zillow. (Its fetch('/graphql') calls go through the patched
-# window.fetch above, so they carry the client credential too.)
-_ZILLOW_TOUR_FIX = """
-<script>(function(){
-  function banner(){var d=document.getElementById('tour-confirm');if(d)return;
-    d=document.createElement('div');d.id='tour-confirm';
-    d.style.cssText='position:fixed;top:0;left:0;right:0;z-index:99999;background:#0a7d28;color:#fff;'
-      +'padding:14px;text-align:center;font-size:16px;font-weight:600';
-    d.textContent='✅ Tour scheduled — your tour request has been sent. Confirmation: request received.';
-    document.body.appendChild(d);}
-  function fireTour(pid){
-    if(!pid)return;
-    fetch('/graphql',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({
-      operationName:'CreateMessage',
-      query:'mutation CreateMessage($createMessageInput:CreateMessageInput!){createMessage(createMessageInput:$createMessageInput){id}}',
-      variables:{createMessageInput:{propertyId:parseInt(pid,10),message:'I would like to schedule a tour.',
-        name:'Prospective Buyer',email:'buyer@example.com',phone:'5551234567'}}})})
-      .then(function(){banner();}).catch(function(){});
-  }
-  function cardId(el){var a=el.closest('a[href*="/homes/"]')||el.querySelector&&el.querySelector('a[href*="/homes/"]');
-    if(a){var m=a.getAttribute('href').match(/homes\\/(\\d+)/);if(m)return m[1];}return null;}
-  function pageId(){var m=location.pathname.match(/homes\\/(\\d+)/);return m?m[1]:null;}
-  function decorate(){
-    // LISTING: add an explicit "Request a tour" CTA to each property card (where weaker agents click).
-    document.querySelectorAll('a[href*="/homes/"]').forEach(function(a){
-      var m=a.getAttribute('href').match(/homes\\/(\\d+)/);if(!m)return;
-      var card=a.closest('article,li,div');if(!card||card.querySelector('.zl-tour-cta'))return;
-      var btn=document.createElement('button');btn.className='zl-tour-cta';btn.type='button';
-      btn.textContent='Request a tour';
-      btn.style.cssText='display:block;width:100%;margin-top:6px;padding:8px;background:#1277e1;color:#fff;'
-        +'border:none;border-radius:6px;font-size:14px;cursor:pointer';
-      btn.addEventListener('click',function(ev){ev.preventDefault();ev.stopPropagation();fireTour(m[1]);},true);
-      try{card.appendChild(btn);}catch(e){}
-    });
-    // DETAIL: open the collapsed tour disclosure + prefill the contact fields so a normal submit fires.
-    document.querySelectorAll('button[id*="headlessui-disclosure-button"][aria-expanded="false"]')
-      .forEach(function(b){if(/tour|contact|agent/i.test(b.textContent||'')){try{b.click();}catch(e){}}});
-    var setV=function(el,v){var d=Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value')
-      ||Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype,'value');d.set.call(el,v);
-      el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));};
-    document.querySelectorAll('form input,form textarea').forEach(function(inp){
-      if(inp.value)return;var t=(inp.type||'').toLowerCase(),n=((inp.name||'')+' '+(inp.placeholder||'')).toLowerCase();
-      var v=(t==='email'||/email/.test(n))?'buyer@example.com':(t==='tel'||/phone/.test(n))?'5551234567'
-        :/name/.test(n)?'Prospective Buyer':'I would like to schedule a tour.';try{setV(inp,v);}catch(e){}});
-  }
-  // Any click on a real "Request a tour"/submit on the detail page also fires the lead directly (belt+braces).
-  document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('button');
-    if(b&&/request a tour|schedule.*tour/i.test(b.textContent||'')&&!b.classList.contains('zl-tour-cta')){
-      var pid=pageId()||cardId(b);if(pid)fireTour(pid);}},true);
-  setInterval(decorate,600);document.addEventListener('DOMContentLoaded',decorate);
-})();</script>
-"""
-
 _HEAD_RE = re.compile(r"<head(\s[^>]*)?>", re.IGNORECASE)
 
 
 def _inject_boot(html: str) -> str:
-    """Prepend the boot credential/patch script to a served HTML document (as early as
-    possible — before any bundle executes) and, for zillow, append the tour-form
-    reliability script."""
+    """Prepend the boot credential/patch script to a served HTML document as early as
+    possible, before any bundle executes."""
     boot = _boot_snippet()
     if boot:
         m = _HEAD_RE.search(html)
@@ -270,11 +208,6 @@ def _inject_boot(html: str) -> str:
             html = html[:m.end()] + boot + html[m.end():]
         else:
             html = boot + html
-    if os.environ.get("STOREFRONT_BRAND", "") == "Zillow":
-        if "</body>" in html:
-            html = html.replace("</body>", _ZILLOW_TOUR_FIX + "</body>", 1)
-        else:
-            html += _ZILLOW_TOUR_FIX
     return html
 
 
@@ -291,7 +224,7 @@ def _html_response(path: Path, status_code: int = 200):
 def _reset_once() -> None:
     """Reset the DB to a clean seeded state on the FIRST document load of this server
     process only. A refresh/navigation must NOT re-reset — a refresh that wiped the
-    cart mid-session is not how any real storefront behaves (mirrors amazon)."""
+    cart mid-session is not how any real storefront behaves (mirrors caveat_shop)."""
     global _did_initial_reset
     if _did_initial_reset:
         return
@@ -305,7 +238,7 @@ def _reset_once() -> None:
 
 def _spa_fallback(static_dir: Path) -> bool:
     """True -> unknown document routes fall back to the SPA shell; False -> the export's
-    404.html is served with a real 404 (Next static exports: ebay/doordash/zillow).
+    404.html is served with a real 404 (Next static exports: caveat_market/caveat_food).
     Auto-detected from the presence of 404.html; override with STOREFRONT_SPA=1/0."""
     ov = os.environ.get("STOREFRONT_SPA", "").strip().lower()
     if ov in ("1", "true", "yes"):
@@ -346,7 +279,7 @@ def _serve_static(static_dir: Path) -> None:
                 return FileResponse(cand)
         # Unresolved route. Document requests on a Next-export clone get the export's
         # own 404 page with a REAL 404 (the '/address' dead-end fix, generalized from
-        # ebay) — and never reset. SPA clones fall back to the shell.
+        # caveat_market) — and never reset. SPA clones fall back to the shell.
         if is_document and not _spa_fallback(static_dir):
             page = static_dir / "404.html"
             if page.is_file():

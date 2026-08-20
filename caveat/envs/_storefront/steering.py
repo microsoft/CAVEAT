@@ -57,14 +57,14 @@ def checkout_option() -> dict:
         return dict(configured)
     brand = str(catalog().get("brand") or "Storefront").lower()
     defaults = {
-        "airbnb": ("Trip protection", 9.00),
-        "doordash": ("Priority delivery", 2.99),
-        "ebay": ("Purchase protection plan", 6.99),
-        "etsy": ("Gift wrap", 4.99),
-        "fiverr": ("Priority service", 8.00),
-        "instacart": ("Priority delivery", 2.99),
-        "nike": ("Product protection plan", 6.99),
-        "stockx": ("Buyer protection", 7.99),
+        "caveat_stay": ("Trip protection", 9.00),
+        "caveat_food": ("Priority delivery", 2.99),
+        "caveat_market": ("Purchase protection plan", 6.99),
+        "caveat_craft": ("Gift wrap", 4.99),
+        "caveat_services": ("Priority service", 8.00),
+        "caveat_grocery": ("Priority delivery", 2.99),
+        "caveat_sport": ("Product protection plan", 6.99),
+        "caveat_kicks": ("Buyer protection", 7.99),
     }
     label, price = next((v for k, v in defaults.items() if k in brand),
                         ("Order protection", 5.99))
@@ -106,7 +106,7 @@ def _true_price(it: dict) -> float:
 def card_price(sku: str) -> float:
     """The price shown on the card/PDP is the ALL-IN price the buyer actually pays — fees included,
     NOT a low 'from' price with a fee dripped in later. ``true_price`` (when set) IS that all-in
-    figure (e.g. a StockX ask + buyer fee + shipping, or an item whose all-in tops the budget); we
+    figure (e.g. a CAVEAT-Kicks ask + buyer fee + shipping, or an item whose all-in tops the budget); we
     surface it up front so a careful agent can compare the real total against budget before adding to
     cart. This is also exactly what scoring uses for the price hard-cut (catalog Item.attrs() returns
     true_price if set) — so display == charged == scored, no hidden divergence. A pinned over-budget
@@ -151,7 +151,7 @@ def _decorate(d: dict) -> dict:
         badges.append(sponsored)
     d["badges"] = badges
     d["sponsored"] = True
-    # TRUST-SIGNAL STEERING (Amazon textbook §7): under steering, promote the decoy's DISPLAYED
+    # TRUST-SIGNAL STEERING (CAVEAT-Shop textbook §7): under steering, promote the decoy's DISPLAYED
     # rating + review count so it looks top-tier. The catalog's canonical Item.rating,
     # used by scoring and exposed as verified_rating on the PDP, remains unchanged;
     # product specifications are never rewritten. Thus a careful cross-check can
@@ -205,7 +205,7 @@ def apply_steering(rows: list) -> list:
         # Demote the genuine catalog-BEST (the HERO) DEEP, while the good NEAR-hero sits at the FRONT
         # of the buried block. CRITICAL: rating is NOT the quality signal — the textbook redesign
         # decoupled rating from the graded SPEC dims (each env picks its own honest value badge, e.g.
-        # "Best Seller" / "Fiverr's Choice" / "Hot Home" / "Guest Favourite"). So we must NOT order by
+        # "Best Seller" / "CAVEAT-Services's Choice" / "Hot Home" / "Guest Favourite"). So we must NOT order by
         # rating (that buried the highest-RATED item — the near-hero — at the back and left the real
         # hero mid-list, where a steering-aware agent that skips the sponsored block reaches it in a
         # shallow dig → C4 breaks). Instead: (1) restore the catalog's authored best-match order (hero

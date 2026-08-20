@@ -67,10 +67,10 @@ ACTUAL_RANKS = {
 }
 G0_ROOT = Path(
     "/data/caveat-27b/4e6c4fe10d62d660f85c1063e3c1cecd0aed6e30/"
-    "browser_action_fixed_v7_amazon_grpo_g0_exploratory_recovery/"
+    "browser_action_fixed_v7_caveat_shop_grpo_g0_exploratory_recovery/"
     f"{G0_TRAINER_SOURCE}/trainer_only_r1"
 )
-G0_RECEIPT = G0_ROOT / "amazon_grpo_g0_exploratory_training_receipt_v2.json"
+G0_RECEIPT = G0_ROOT / "caveat_shop_grpo_g0_exploratory_training_receipt_v2.json"
 G0_ADAPTER = G0_ROOT / "weights/step_24/lora_adapters"
 
 
@@ -90,21 +90,21 @@ def _specialized_source() -> str:
             G0_RELEASE_BODY,
         ),
         (
-            "amazon_grpo_step24_trainer_resume_from_shipped_cohort_world8",
-            "amazon_grpo_g0_exploratory_step24_world4",
+            "caveat_shop_grpo_step24_trainer_resume_from_shipped_cohort_world8",
+            "caveat_shop_grpo_g0_exploratory_step24_world4",
         ),
         ("full_frozen_cohort_grpo", "posthoc_single_group_g0_grpo_exploratory"),
         ("same_task_laptop_steered_development_replay", G0_EVAL_LABEL),
         ("same_task_laptop_r00_grpo_development_replay", G0_EVAL_LABEL),
-        ("step24-amazon-grpo-r00", "step24-amazon-grpo-g0-exploratory"),
+        ("step24-caveat_shop-grpo-r00", "step24-caveat_shop-grpo-g0-exploratory"),
         (
-            "browser_action_fixed_v7_amazon_grpo_trainer_recovery",
-            "browser_action_fixed_v7_amazon_grpo_g0_exploratory_recovery",
+            "browser_action_fixed_v7_caveat_shop_grpo_trainer_recovery",
+            "browser_action_fixed_v7_caveat_shop_grpo_g0_exploratory_recovery",
         ),
         ("trainer_only_r7", "trainer_only_r1"),
         (
-            "amazon_grpo_training_receipt.json",
-            "amazon_grpo_g0_exploratory_training_receipt_v2.json",
+            "caveat_shop_grpo_training_receipt.json",
+            "caveat_shop_grpo_g0_exploratory_training_receipt_v2.json",
         ),
         (
             "caveat-27b-v7-grpo-fast-serve-w2",
@@ -128,8 +128,8 @@ def _specialized_source() -> str:
             raise IntegrityError(f"specialization token absent: {old}")
         source = source.replace(old, new)
     source = source.replace(
-        "browser_action_fixed_v7_amazon_grpo_g0_exploratory_recovery/{SOURCE_GIT_SHA}/",
-        "browser_action_fixed_v7_amazon_grpo_g0_exploratory_recovery/{G0_TRAINER_SOURCE}/",
+        "browser_action_fixed_v7_caveat_shop_grpo_g0_exploratory_recovery/{SOURCE_GIT_SHA}/",
+        "browser_action_fixed_v7_caveat_shop_grpo_g0_exploratory_recovery/{G0_TRAINER_SOURCE}/",
     )
     source = source.replace(
         'training_release.get("source", {}).get("git_sha") != SOURCE_GIT_SHA',
@@ -227,7 +227,7 @@ def _training_receipt(path: Path) -> dict[str, Any]:
     if (
         path.resolve() != G0_RECEIPT
         or value.get("schema")
-        != "harness-distill.amazon-grpo-g0-exploratory-training-receipt.v1"
+        != "harness-distill.caveat_shop-grpo-g0-exploratory-training-receipt.v1"
         or value.get("status") != "ok"
         or value.get("scientific_label") != G0_LABEL
         or value.get("artifact_source_git_sha") != G0_SOURCE
@@ -328,7 +328,7 @@ def _training_receipt(path: Path) -> dict[str, Any]:
                 "sha256": "e8ff86dbfcbbe94b581e75862048033b2aa6b391c7b21fd894b02608fd685ab5",
             },
         }
-        or candidate.get("name") != "step24-amazon-grpo-g0-exploratory"
+        or candidate.get("name") != "step24-caveat_shop-grpo-g0-exploratory"
         or candidate.get("update") != 24
         or Path(str(candidate.get("path", ""))).resolve() != G0_ADAPTER
         or not all(type(candidate.get(key)) is int for key in ("files", "bytes"))
@@ -343,7 +343,7 @@ def _serve_release(path: Path) -> dict[str, Any]:
     if (
         value.get("scientific_label") != G0_LABEL
         or value.get("evaluation_label") != G0_EVAL_LABEL
-        or value.get("candidate_name") != "step24-amazon-grpo-g0-exploratory"
+        or value.get("candidate_name") != "step24-caveat_shop-grpo-g0-exploratory"
         or value.get("source_git_sha") != G0_SOURCE
         or value.get("original_trainer_source_git_sha") != G0_TRAINER_SOURCE
         or value.get("selection_performed") is not True

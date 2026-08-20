@@ -86,7 +86,7 @@ def build_quick_contract_data(
                 raise ArtifactError(f"{label}.{key} must be a nonempty string")
             strings[key] = value
         if strings["source"] != "procedural":
-            raise ArtifactError(f"{label}.source must be procedural; Amazon facts are forbidden")
+            raise ArtifactError(f"{label}.source must be procedural; CAVEAT-Shop facts are forbidden")
         if strings["task_id"] in seen:
             raise ArtifactError(f"duplicate quick task_id: {strings['task_id']}")
         seen.add(strings["task_id"])

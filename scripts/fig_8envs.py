@@ -36,8 +36,8 @@ from matplotlib.lines import Line2D
 
 VARIANTS = ["thresholded", "mixed", "graded", "graded3", "graded4"]   # relativeness levels 0..4
 MODELS = [("gpt-5.5-high", "GPT-5.5 (high)"), ("gpt-4.1", "GPT-4.1")]
-ENVS = [("airbnb", "Airbnb"), ("doordash", "DoorDash"), ("ebay", "eBay"), ("etsy", "Etsy"),
-        ("fiverr", "Fiverr"), ("instacart", "Instacart"), ("nike", "Nike"), ("stockx", "StockX")]
+ENVS = [("caveat_stay", "CAVEAT-Stay"), ("caveat_food", "CAVEAT-Food"), ("caveat_market", "CAVEAT-Market"), ("caveat_craft", "CAVEAT-Craft"),
+        ("caveat_services", "CAVEAT-Services"), ("caveat_grocery", "CAVEAT-Grocery"), ("caveat_sport", "CAVEAT-Sport"), ("caveat_kicks", "CAVEAT-Kicks")]
 RESULTS = os.environ.get("PILOT_RESULTS", "results/byenv_v2")
 
 # ------------------------------------------------------------------ data (= pilot_report5.py)
@@ -69,7 +69,7 @@ def load_cells():
             infra += 1
             continue
         done = outcome not in (None, "none", "error", "skipped")
-        rep = Path(tj).parent.parent.name                       # e.g. ebay_r2
+        rep = Path(tj).parent.parent.name                       # e.g. caveat_market_r2
         agg[(env, model, cond, var)].append(
             (rep, float(ps) if (done and isinstance(ps, (int, float))) else 0.0))
     if infra:

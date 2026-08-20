@@ -3,7 +3,7 @@
 
 This follows the audited nine-environment leaderboard exactly: literal unique-
 hero identity (H), relative-preference levels L1--L4 only, and task-pooled over
-five Amazon tasks plus the eight other storefront tasks (n=156 per condition).
+five CAVEAT-Shop tasks plus the eight other storefront tasks (n=156 per condition).
 """
 
 from __future__ import annotations
@@ -44,9 +44,9 @@ def counts() -> dict[str, tuple[int, int]]:
         clone[condition] = sum(int(row["literal_hero"]) for row in rows)
 
     # Audited literal-hero overlay in the generated CAVEAT benchmark report,
-    # also frozen as AMAZON_RELATIVE in the nine-environment suite's plot.py.
-    amazon = {"clean": 59, "steered": 31}
-    return {condition: (amazon[condition] + clone[condition], 156)
+    # also frozen as CAVEAT_SHOP_RELATIVE in the nine-environment suite's plot.py.
+    caveat_shop = {"clean": 59, "steered": 31}
+    return {condition: (caveat_shop[condition] + clone[condition], 156)
             for condition in ("clean", "steered")}
 
 

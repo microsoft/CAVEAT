@@ -4,7 +4,7 @@ Driven by a worklist JSON (built from the 8-env image audit): one entry per prod
 a spec-faithful prompt, a staging path, post-processing mode and the final destination(s).
 
   python scripts/gen_env_product_images.py WORKLIST.json                 # generate + wire all
-  python scripts/gen_env_product_images.py WORKLIST.json --defer stockx,instacart
+  python scripts/gen_env_product_images.py WORKLIST.json --defer caveat_kicks,caveat_grocery
                                           # generate everything, but do NOT copy finals for
                                           # the deferred envs (e.g. mid-remeasure)
   python scripts/gen_env_product_images.py WORKLIST.json --wire-only     # no API calls: copy
@@ -14,8 +14,8 @@ a spec-faithful prompt, a staging path, post-processing mode and the final desti
 Resumable: an entry whose staging PNG exists is not regenerated. Region-pooled at
 2 concurrent per region (TRAPI image rate limit), retries on 429/503 with backoff.
 
-Post modes: jpeg (RGB JPEG q90) · png (as-is) · nike2to1 (alpha-trim the transparent
-cutout, pad to a centered 2:1 landscape canvas — the nike card <img> is h-36 w-64).
+Post modes: jpeg (RGB JPEG q90) · png (as-is) · caveat_sport2to1 (alpha-trim the transparent
+cutout, pad to a centered 2:1 landscape canvas — the caveat_sport card <img> is h-36 w-64).
 """
 import argparse, asyncio, base64, io, json, sys, time
 from pathlib import Path
@@ -41,7 +41,7 @@ def _post(entry: dict) -> None:
         rgb = img.convert("RGB")
         for o in outs:
             rgb.save(o, "JPEG", quality=90)
-    elif mode == "nike2to1":
+    elif mode == "caveat_sport2to1":
         img = img.convert("RGBA")
         box = img.getchannel("A").getbbox() or (0, 0, img.width, img.height)
         cut = img.crop(box)

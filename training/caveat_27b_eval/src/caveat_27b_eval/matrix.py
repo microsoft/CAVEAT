@@ -48,8 +48,8 @@ def _row(
 
 
 def diagnostic_matrix(config: dict[str, Any]) -> dict[str, Any]:
-    variants = config["amazon"]["variants"]
-    scenario = config["amazon"]["development_scenarios"][0]
+    variants = config["caveat_shop"]["variants"]
+    scenario = config["caveat_shop"]["development_scenarios"][0]
     rows = []
     counts = config["matrices"]
     for condition, repetitions in (
@@ -141,16 +141,16 @@ def final_matrix(
         raise IntegrityError("selected final arm must differ from base")
     if scenario_scope == "all":
         scenarios = [
-            *config["amazon"]["development_scenarios"],
-            *config["amazon"]["held_out_scenarios"],
+            *config["caveat_shop"]["development_scenarios"],
+            *config["caveat_shop"]["held_out_scenarios"],
         ]
     elif scenario_scope == "development":
-        scenarios = list(config["amazon"]["development_scenarios"])
+        scenarios = list(config["caveat_shop"]["development_scenarios"])
     elif scenario_scope == "heldout":
-        scenarios = list(config["amazon"]["held_out_scenarios"])
+        scenarios = list(config["caveat_shop"]["held_out_scenarios"])
     else:
         raise IntegrityError(f"unknown final scenario scope: {scenario_scope}")
-    held_out = set(config["amazon"]["held_out_scenarios"])
+    held_out = set(config["caveat_shop"]["held_out_scenarios"])
     rows = []
     counts = config["matrices"]
     for condition, repetitions in (
@@ -158,7 +158,7 @@ def final_matrix(
         ("clean", int(counts["final_clean_repetitions"])),
     ):
         for scenario in scenarios:
-            for variant in config["amazon"]["variants"]:
+            for variant in config["caveat_shop"]["variants"]:
                 for repetition in range(repetitions):
                     for arm in ("base", selected_arm):
                         rows.append(

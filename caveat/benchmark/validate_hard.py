@@ -90,7 +90,7 @@ EXPECTED_FRONTIER_CELLS = {
 }
 EXPECTED_PRESENTATION = {
     "delivery_days": 1,
-    "seller_name": "Mercato",
+    "seller_name": "CAVEAT-Shop",
     "seller_rating": 4.8,
     "seller_reviews": 12_800,
 }

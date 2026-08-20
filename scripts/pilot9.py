@@ -1,8 +1,8 @@
 #!/usr/bin/env python
-"""Browser-use pilot for the 9 non-amazon envs — P* across models × conditions × relativeness variants.
-Uses the generic core.experiment.Runner (NOT amazon's benchmark.run). Resumable (done cells skipped).
+"""Browser-use pilot for the 9 non-caveat_shop envs — P* across models × conditions × relativeness variants.
+Uses the generic core.experiment.Runner (NOT caveat_shop's benchmark.run). Resumable (done cells skipped).
 
-  python scripts/pilot9.py nike instacart ... --repeats 2 --jobs 10 \
+  python scripts/pilot9.py caveat_sport caveat_grocery ... --repeats 2 --jobs 10 \
       --models gpt-5.5#high,gpt-4.1 --variants thresholded,graded,graded4
 """
 import argparse

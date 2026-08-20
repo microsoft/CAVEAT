@@ -1,7 +1,7 @@
 """Product images (gpt-image-1). Hero items (compliant + decoy) get a unique generated
 photo; distractors reuse a small generated generic set per scenario (cost control). Images
 are brand-neutral with no on-image text (so they cannot leak the answer), generated once and
-committed. They are written into the Amazon server's ``backend/images`` dir (served at
+committed. They are written into the CAVEAT-Shop server's ``backend/images`` dir (served at
 ``/images``) and mirrored into the versioned artifact tree.
 """
 

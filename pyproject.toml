@@ -42,7 +42,7 @@ include = ["caveat*"]
 [tool.setuptools.package-data]
 "caveat" = [
     "llm_client.py",
-    "envs/amazon/data/**/*", "envs/amazon/server/**/*", "envs/airbnb/server/**/*",
+    "envs/caveat_shop/data/**/*", "envs/caveat_shop/server/**/*", "envs/caveat_stay/server/**/*",
     "scaffolds/stagehand/*.mjs", "scaffolds/stagehand/*.json", "scaffolds/stagehand/*.md",
     "viewer/static/*",
 ]

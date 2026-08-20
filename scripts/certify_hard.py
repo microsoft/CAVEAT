@@ -44,7 +44,7 @@ from bs4 import BeautifulSoup
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-import caveat.envs.amazon  # noqa: E402,F401
+import caveat.envs.caveat_shop  # noqa: E402,F401
 from caveat.benchmark import registry, serialize  # noqa: E402
 from caveat.benchmark.pool import hard_pstar  # noqa: E402
 from caveat.benchmark.scenarios import SCENARIOS  # noqa: E402
@@ -81,7 +81,7 @@ OPS_NAME_RE = re.compile(
 NUMBER_RE = re.compile(
     r"[-+]?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?")
 FRONTEND_DIST = (
-    ROOT / "caveat/envs/amazon/server/frontend/dist"
+    ROOT / "caveat/envs/caveat_shop/server/frontend/dist"
 )
 FRONTEND_SHA256 = {
     "assets/index-IwcoZ3da.css":
@@ -1114,9 +1114,9 @@ def _ssr_sweep_pages(
             if asin == params.get("best_seller_sku"):
                 expected_badges.add("#1 Best Seller")
             if asin == params.get("choice_sku"):
-                expected_badges.add("Mercato's Choice")
+                expected_badges.add("CAVEAT-Shop's Choice")
             actual_anchor_badges = set(card["badges"]).intersection({
-                "#1 Best Seller", "Mercato's Choice"})
+                "#1 Best Seller", "CAVEAT-Shop's Choice"})
             audit.require(
                 actual_anchor_badges == expected_badges,
                 f"{sid}/{condition}/{asin}: anchor badges="
@@ -1267,10 +1267,10 @@ def _ssr_pdp_truth(
     if asin == params.get("best_seller_sku"):
         expected_badges.add("#1 Best Seller")
     if asin == params.get("choice_sku"):
-        expected_badges.add("Mercato's Choice")
+        expected_badges.add("CAVEAT-Shop's Choice")
     actual_badges = {
         node.get_text(" ", strip=True) for node in soup.select(".badge")
-    }.intersection({"#1 Best Seller", "Mercato's Choice"})
+    }.intersection({"#1 Best Seller", "CAVEAT-Shop's Choice"})
     require(
         actual_badges == expected_badges,
         f"anchor badges={sorted(actual_badges)}, "
@@ -1596,7 +1596,7 @@ def validate_live_assignment(
         registry.benchmark_tasks(sid, variants=["graded"])[0],
         condition=condition,
     )
-    env = ENVIRONMENTS.get("amazon")()
+    env = ENVIRONMENTS.get("caveat_shop")()
     work_dir = Path(tempfile.mkdtemp(prefix=f"truthful-hard-cert-{sid}-"))
     handle = env.start(port, task, work_dir=work_dir)
     try:
@@ -1605,13 +1605,13 @@ def validate_live_assignment(
         token = str(handle.env.get("STOREFRONT_CLIENT_TOKEN") or "")
         audit.require(bool(token), f"{label}: client token is missing")
         audit.require(
-            handle.env.get("AMAZON_SPEC_BUDGET") == "0",
+            handle.env.get("CAVEAT_SHOP_SPEC_BUDGET") == "0",
             f"{label}: silent spec budget is not disabled")
         audit.require(
             handle.env.get("SF_RATE_ENABLED") == "0",
             f"{label}: rate/challenge backstop is not disabled")
         audit.require(
-            handle.env.get("AMAZON_SSR") == "1",
+            handle.env.get("CAVEAT_SHOP_SSR") == "1",
             f"{label}: exact access contract did not force classic SSR")
         for path in (
             "/api/cart",
@@ -1758,7 +1758,7 @@ def _legacy_numeric_root(
     task = dataclasses.replace(
         registry.benchmark_tasks(sid, variants=["graded"])[0],
         condition="clean")
-    env = ENVIRONMENTS.get("amazon")()
+    env = ENVIRONMENTS.get("caveat_shop")()
     handle = env.start(
         port, task, work_dir=Path(tempfile.mkdtemp(prefix="truthful-v3-control-")))
     try:

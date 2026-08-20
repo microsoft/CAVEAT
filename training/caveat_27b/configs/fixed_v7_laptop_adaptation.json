@@ -5,7 +5,7 @@
     "laptop_development_trajectories_consulted": true,
     "laptop_development_public_history_used_for_training": true,
     "laptop_evaluation_after_training_is_adaptation_only": true,
-    "office_chair_or_other_amazon_categories_consulted": false,
+    "office_chair_or_other_caveat_shop_categories_consulted": false,
     "sealed_other_category_outcomes_consulted": false
   },
   "source_report": {

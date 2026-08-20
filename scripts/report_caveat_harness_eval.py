@@ -832,7 +832,7 @@ def _row(
         except ValueError as exc:
             field_errors.append(f"launch provenance invalid: {exc}")
     expected = {
-        "env": "amazon",
+        "env": "caveat_shop",
         "scaffold": spec["scaffold"],
         "model": spec["model_recorded"],
         "task_id": f"{spec['scenario']}-{spec['variant']}",

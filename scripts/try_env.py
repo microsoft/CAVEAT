@@ -9,7 +9,7 @@ make different "decisions" (buy the hero vs take the pinned decoy) to check both
 
 Usage:
   python scripts/try_env.py <env> [--condition clean|steered] [--pick hero|decoy|top|cheapest|sku:<SKU>]
-  python scripts/try_env.py doordash --condition steered --pick top
+  python scripts/try_env.py caveat_food --condition steered --pick top
 """
 import argparse
 import dataclasses
@@ -87,7 +87,7 @@ def main():
     work = Path(tempfile.mkdtemp(prefix=f"tryenv-{args.env}-"))
     handle = env.start(args.port, task, work_dir=work)
     try:
-        if args.env == "airbnb":                                  # booking flow (no cart/checkout)
+        if args.env == "caveat_stay":                                  # booking flow (no cart/checkout)
             cat = env._catalog_obj(None)
             rows = http_get(f"{handle.base_url}/api/listings?limit=60").get("listings", [])
             print(f"\n  listings ({len(rows)}) — top 10 as the agent sees them:")

@@ -35,7 +35,7 @@ from .common import (
 )
 from .launcher import exact_lora_composite_sha256
 
-REPAIR_RECEIPT_SCHEMA = "harness-distill.amazon-r00-repair-sft-training-receipt.v1"
+REPAIR_RECEIPT_SCHEMA = "harness-distill.caveat_shop-r00-repair-sft-training-receipt.v1"
 COLLECTION_SCHEMA = "harness-distill.sol-dagger-collection-manifest.v1"
 PLAN_SCHEMA = "harness-distill.sol-dagger-sft-plan.v1"
 TRAINING_RECEIPT_SCHEMA = "harness-distill.sol-dagger-sft-receipt.v1"
@@ -75,13 +75,13 @@ REPAIR_RECEIPT_BODY = (
 )
 REPAIR_RECEIPT_PATH = (
     DATA_ROOT
-    / "browser_action_fixed_v7_amazon_r00_repair"
+    / "browser_action_fixed_v7_caveat_shop_r00_repair"
     / "86e7f2cab46dedcb2b44b7fe0931d1ed60fc8dc1"
     / "training_v4_r3/training/training_receipt.json"
 )
 REPAIR_DCP_PATH = (
     DATA_ROOT
-    / "browser_action_fixed_v7_amazon_r00_repair"
+    / "browser_action_fixed_v7_caveat_shop_r00_repair"
     / "86e7f2cab46dedcb2b44b7fe0931d1ed60fc8dc1"
     / "training_v4_r3/training/prime_output/checkpoints/step_24/trainer"
 )
@@ -413,7 +413,7 @@ def validate_repair_parent(path: Path) -> dict[str, Any]:
     plan_path = Path(str(value.get("plan_path", ""))).resolve()
     plan = _descriptor(
         plan_path,
-        "harness-distill.amazon-r00-repair-sft-plan.v1",
+        "harness-distill.caveat_shop-r00-repair-sft-plan.v1",
         "plan_body_sha256",
         "repair parent plan",
     )
@@ -427,7 +427,7 @@ def validate_repair_parent(path: Path) -> dict[str, Any]:
         or value.get("optimizer_updates") != 1
         or value.get("learning_rate") != 5e-7
         or value.get("assistant_tokens_only") is not True
-        or candidate.get("name") != "step24-amazon-r00-repair-sft"
+        or candidate.get("name") != "step24-caveat_shop-r00-repair-sft"
         or candidate.get("update") != 24
         or candidate.get("tree_sha256") != REPAIR_ADAPTER_TREE
         or final_dcp.get("tree_sha256") != REPAIR_DCP_TREE
@@ -743,7 +743,7 @@ def validate_training(
         != parent_path
         or plan.get("parent_receipt_sha256") != sha256_file(parent_path)
         or plan.get("parent_receipt_body_sha256") != REPAIR_RECEIPT_BODY
-        or plan.get("parent_candidate") != "step24-amazon-r00-repair-sft"
+        or plan.get("parent_candidate") != "step24-caveat_shop-r00-repair-sft"
         or Path(str(plan.get("parent_model", ""))).resolve() != PARENT_PATH
         or plan.get("source_dcp") != collection.get("parent_final_dcp")
         or plan.get("teacher_model") != TEACHER_MODEL
@@ -759,7 +759,7 @@ def validate_training(
         or plan.get("optimizer_continuation") is not False
         or plan.get("launch_authorized") is not True
         or plan_mass != mass
-        or receipt.get("parent_candidate") != "step24-amazon-r00-repair-sft"
+        or receipt.get("parent_candidate") != "step24-caveat_shop-r00-repair-sft"
         or receipt.get("source_step") != 24
         or receipt.get("final_step") != 25
         or receipt.get("optimizer_updates") != 1

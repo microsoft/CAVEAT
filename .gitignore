@@ -10,7 +10,7 @@ caveat/scaffolds/stagehand/node_modules/
 # stagehand spawns stray windows-path browser-profile dirs + an npm log under its folder; never commit those
 caveat/scaffolds/stagehand/*wsl.localhost*
 caveat/scaffolds/stagehand/npm_install.log
-caveat/envs/airbnb/server/frontend/node_modules/
+caveat/envs/caveat_stay/server/frontend/node_modules/
 runs/llm_cache/
 .DS_Store
 .env
@@ -36,15 +36,15 @@ caveat/envs/*/server/_build/
 # served frontends ship the production bundles, not their source maps
 caveat/envs/*/server/frontend/**/*.map
 
-# doordash / fiverr / nike were built in place under server/frontend/, so that dir still
+# caveat_food / caveat_services / caveat_sport were built in place under server/frontend/, so that dir still
 # holds the harvested source + node_modules around the built output. Only the built output
 # subdir is actually served (frontend/out, /build, /dist) — keep that, ignore the rest.
-caveat/envs/doordash/server/frontend/*
-!caveat/envs/doordash/server/frontend/out
-caveat/envs/nike/server/frontend/*
-!caveat/envs/nike/server/frontend/build
-caveat/envs/fiverr/server/frontend/*
-!caveat/envs/fiverr/server/frontend/dist
+caveat/envs/caveat_food/server/frontend/*
+!caveat/envs/caveat_food/server/frontend/out
+caveat/envs/caveat_sport/server/frontend/*
+!caveat/envs/caveat_sport/server/frontend/build
+caveat/envs/caveat_services/server/frontend/*
+!caveat/envs/caveat_services/server/frontend/dist
 
 # local scratch/testing (image-gen experiments, etc.)
 playground/

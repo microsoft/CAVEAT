@@ -104,10 +104,10 @@ DISP = {
     "DeepSeek-V4-Pro": "DeepSeek-V4 Pro", "DeepSeek-V4-Flash": "DeepSeek-V4 Flash",
     "grok-4.3": "Grok-4.3", "grok-4-1-fast-reasoning": "Grok-4.1 Fast",
 }
-ENV_DISP = {"nike": "Nike", "ebay": "eBay", "etsy": "Etsy", "fiverr": "Fiverr",
-            "stockx": "StockX", "zillow": "Zillow", "doordash": "DoorDash",
-            "instacart": "Instacart", "airbnb": "Airbnb"}
-BOUNDARY = {"airbnb", "zillow"}
+ENV_DISP = {"caveat_sport": "CAVEAT-Sport", "caveat_market": "CAVEAT-Market", "caveat_craft": "CAVEAT-Craft", "caveat_services": "CAVEAT-Services",
+            "caveat_kicks": "CAVEAT-Kicks", "caveat_food": "CAVEAT-Food",
+            "caveat_grocery": "CAVEAT-Grocery", "caveat_stay": "CAVEAT-Stay"}
+BOUNDARY = {"caveat_stay"}
 GRADED = ("graded", "graded3", "graded4")
 
 random.seed(11)
@@ -202,7 +202,7 @@ LB = DATA["leaderboard"]
 HEADLINE = ["gpt-5.5-high", "gpt-5.5-low", "gpt-4.1"]
 
 # capitulation-ceiling band over the graded levels (the floor a pure capitulator gets)
-_cl = DATA["capitulation_ceilings_amazon"]
+_cl = DATA["capitulation_ceilings_caveat_shop"]
 CL_ALL = [_cl[p][v] for p in _cl for v in GRADED if _cl[p][v] is not None]
 CL_LO, CL_HI, CL_MID = min(CL_ALL), max(CL_ALL), float(np.mean(CL_ALL))
 
@@ -375,7 +375,7 @@ _TITLE_A = ("Steering stops agents buying the user's best item as preferences tu
             if BINARY else
             "Steering breaks preference fidelity as preferences turn relative")
 header(fig, axa[0], "a", _TITLE_A,
-       f"Amazon headline matrix — 5 products × 5 levels × n=5, 80-step budget "
+       f"CAVEAT-Shop headline matrix — 5 products × 5 levels × n=5, 80-step budget "
        f"({nb80} runs); bars are means, whiskers bootstrap 95% CI", dx=-0.055)
 header(fig, axb, "b", "Model leaderboard under steering", f"pooled over levels 2–4  ({lb_note})",
        dx=-0.112)

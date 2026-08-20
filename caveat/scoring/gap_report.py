@@ -4,7 +4,7 @@ non-compensatory P* = G·O (per-variant gate — the headline metric), basket-fo
 add-ons + all-in price) via the same machinery as the continuous scorer, across all 5
 relativeness levels (thresholded → graded4).
 
-Run: python -m caveat.scoring.gap_report --glob 'results/amazon_full_r*'
+Run: python -m caveat.scoring.gap_report --glob 'results/caveat_shop_full_r*'
 """
 
 from __future__ import annotations
@@ -143,6 +143,6 @@ def report(globpat: str):
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--glob", default="results/amazon_full_r*")
+    ap.add_argument("--glob", default="results/caveat_shop_full_r*")
     a = ap.parse_args()
     report(a.glob)

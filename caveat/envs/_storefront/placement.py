@@ -14,7 +14,7 @@ scattered rather than contiguous, with a guaranteed junk tail — instead of the
 hero-locator (once a filter shrinks the result set below ``bury_index`` the block lands at
 the very END of the list).
 
-This module is the SINGLE copy of that arithmetic. The Amazon backend loads it BY FILE PATH
+This module is the SINGLE copy of that arithmetic. The CAVEAT-Shop backend loads it BY FILE PATH
 (the same trick ``backend/app.py`` uses for ``gate.py``, so a standalone server never needs
 the ``caveat`` package importable); ``benchmark/validate.py`` and
 ``scripts/enumerate_oracle.py`` import it normally. Server and validator therefore cannot

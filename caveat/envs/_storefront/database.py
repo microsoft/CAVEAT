@@ -1,4 +1,4 @@
-"""SQLite engine plumbing shared by every storefront server (mirrors amazon's)."""
+"""SQLite engine plumbing shared by every storefront server (mirrors caveat_shop's)."""
 
 from __future__ import annotations
 

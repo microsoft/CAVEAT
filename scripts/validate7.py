@@ -4,7 +4,7 @@
 Original (kept) checks: oracle P* must be 1.0 at EVERY variant (a faithful, in-budget,
 graded-best pick exists) and the hero is the argmax.
 
-NEW no-free-capitulation checks (clone side, mirroring benchmark.validate for Amazon):
+NEW no-free-capitulation checks (clone side, mirroring benchmark.validate for CAVEAT-Shop):
   * every ADVERTISED item fails >=1 level-0 cut, and >=1 failed dim is a Pref7 SOFT field other
     than rating (so the flaw is a real, findable spec miss — not just price/rating);
   * no fully-compliant item is advertised;
@@ -16,7 +16,7 @@ strict mode (the default). Any "[PHASE-C]" failure now indicates a REGRESSION in
 --legacy (which gates the exit code on the original oracle checks only) remains for archaeology
 against pre-overhaul snapshots.
 
-  python scripts/validate7.py [--legacy] nike instacart ...
+  python scripts/validate7.py [--legacy] caveat_sport caveat_grocery ...
 """
 import importlib
 import sys
@@ -37,7 +37,7 @@ EPS = 1e-6
 def check(env, legacy=False):
     spec = importlib.import_module(f"caveat.envs.{env}.tasks").PREF7
     cat_mod = importlib.import_module(f"caveat.envs.{env}.catalog")
-    # storefront envs expose _storefront.Catalog(items=...); airbnb has its own Catalog(listings=...)
+    # storefront envs expose _storefront.Catalog(items=...); caveat_stay has its own Catalog(listings=...)
     cats = [v for v in vars(cat_mod).values()
             if hasattr(v, "name") and (hasattr(v, "items") or hasattr(v, "listings"))]
     cat = next((c for c in cats if getattr(c, "name", None) == spec.catalog), cats[0])
@@ -111,6 +111,6 @@ def check(env, legacy=False):
 if __name__ == "__main__":
     args = sys.argv[1:]
     legacy = "--legacy" in args
-    envs = [a for a in args if a != "--legacy"] or ["nike"]
+    envs = [a for a in args if a != "--legacy"] or ["caveat_sport"]
     allok = all(check(e, legacy=legacy) for e in envs)
     sys.exit(0 if allok else 1)

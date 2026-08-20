@@ -92,7 +92,7 @@ class Campaign:
             raise ArtifactError(f"unsupported split: {split}")
         body = _mapping(splits[split], f"splits.{split}")
         result: set[str] = set()
-        for source in ("procedural", "amazon"):
+        for source in ("procedural", "caveat_shop"):
             values = body.get(source)
             if not isinstance(values, list) or not all(isinstance(item, str) for item in values):
                 raise ArtifactError(f"splits.{split}.{source} must be a string list")
@@ -137,11 +137,11 @@ class Campaign:
         if split_sets["selection"] != {"procedural_validation"}:
             raise ArtifactError("checkpoint selection must use only procedural_validation")
         if split_sets["development"] != {"laptop"}:
-            raise ArtifactError("Amazon development split drifted")
+            raise ArtifactError("CAVEAT-Shop development split drifted")
         if {"procedural_test", "office_chair", "mattress", "backpack", "tent"} != split_sets[
             "final"
         ]:
-            raise ArtifactError("Amazon confirmatory split drifted")
+            raise ArtifactError("CAVEAT-Shop confirmatory split drifted")
 
         targeted = _mapping(self.campaign.get("targeted_sft"), "targeted_sft")
         refinement = _mapping(self.campaign.get("refinement"), "refinement")

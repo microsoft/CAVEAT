@@ -156,7 +156,7 @@ class ServerHandle:
 # Environment base
 # --------------------------------------------------------------------------- #
 class Environment(ABC):
-    """Subclass this to add an environment. See caveat/envs/amazon|airbnb."""
+    """Subclass this to add an environment. See caveat/envs/caveat_shop|caveat_stay."""
 
     name: str = "env"
     server_dir: Path = Path()           # dir to run the backend from (contains `backend/`)

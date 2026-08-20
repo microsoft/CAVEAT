@@ -1,4 +1,4 @@
-"""CAVEAT benchmark generation pipeline (Amazon).
+"""CAVEAT benchmark generation pipeline (CAVEAT-Shop).
 
 Deterministic scientific core (``scenarios``, ``pool``, ``preferences``) + LLM dressing
 (``copy_gen``, ``instruction_gen``, ``faithfulness``, ``images``) + serialization/registry.

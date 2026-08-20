@@ -45,19 +45,19 @@ SCIENTIFIC_FILES = (
     "caveat/envs/_storefront/placement.py",
     "caveat/envs/_storefront/scoring.py",
     "caveat/envs/__init__.py",
-    "caveat/envs/amazon/__init__.py",
-    "caveat/envs/amazon/catalog.py",
-    "caveat/envs/amazon/tasks.py",
-    "caveat/envs/amazon/server/backend/adversarial.py",
-    "caveat/envs/amazon/server/backend/app.py",
-    "caveat/envs/amazon/server/backend/counting.py",
-    "caveat/envs/amazon/server/backend/database.py",
-    "caveat/envs/amazon/server/backend/experiment_laptops.py",
-    "caveat/envs/amazon/server/backend/models.py",
-    "caveat/envs/amazon/server/backend/routes.py",
-    "caveat/envs/amazon/server/backend/seed.py",
-    "caveat/envs/amazon/server/backend/ssr.py",
-    "caveat/envs/amazon/server/backend/truthful.py",
+    "caveat/envs/caveat_shop/__init__.py",
+    "caveat/envs/caveat_shop/catalog.py",
+    "caveat/envs/caveat_shop/tasks.py",
+    "caveat/envs/caveat_shop/server/backend/adversarial.py",
+    "caveat/envs/caveat_shop/server/backend/app.py",
+    "caveat/envs/caveat_shop/server/backend/counting.py",
+    "caveat/envs/caveat_shop/server/backend/database.py",
+    "caveat/envs/caveat_shop/server/backend/experiment_laptops.py",
+    "caveat/envs/caveat_shop/server/backend/models.py",
+    "caveat/envs/caveat_shop/server/backend/routes.py",
+    "caveat/envs/caveat_shop/server/backend/seed.py",
+    "caveat/envs/caveat_shop/server/backend/ssr.py",
+    "caveat/envs/caveat_shop/server/backend/truthful.py",
     "caveat/llm_client.py",
     "caveat/run_cell.py",
     "caveat/scaffolds/__init__.py",
@@ -68,7 +68,7 @@ SCIENTIFIC_FILES = (
     "scripts/hard_campaign_runtime.py",
 )
 ORIGINAL_SCENARIOS = ("laptop", "office_chair", "mattress", "backpack", "tent")
-AMAZON_DATA_RELATIVE = Path("caveat") / "envs" / "amazon" / "data"
+CAVEAT_SHOP_DATA_RELATIVE = Path("caveat") / "envs" / "caveat_shop" / "data"
 SCENARIO_DATA_FILES = (
     "adversarial.json",
     "attribute_schema.json",
@@ -96,16 +96,16 @@ def benchmark_lock(root: Path) -> dict[str, Any]:
     files = list(SCIENTIFIC_FILES)
     for scenario in ORIGINAL_SCENARIOS:
         files.extend(
-            (AMAZON_DATA_RELATIVE / scenario / name).as_posix()
+            (CAVEAT_SHOP_DATA_RELATIVE / scenario / name).as_posix()
             for name in SCENARIO_DATA_FILES
         )
     files.append(
-        (AMAZON_DATA_RELATIVE / "laptop" / "ai_injection.json").as_posix()
+        (CAVEAT_SHOP_DATA_RELATIVE / "laptop" / "ai_injection.json").as_posix()
     )
     hashes = _hash_files(root, files)
-    frontend = root / "caveat/envs/amazon/server/frontend/dist"
+    frontend = root / "caveat/envs/caveat_shop/server/frontend/dist"
     if not frontend.is_dir():
-        raise IntegrityError("prebuilt Amazon frontend is absent")
+        raise IntegrityError("prebuilt CAVEAT-Shop frontend is absent")
     return {
         "files": hashes,
         "frontend_dist_sha256": hash_tree(frontend),
@@ -113,7 +113,7 @@ def benchmark_lock(root: Path) -> dict[str, Any]:
             scenario: sorted(
                 str(product["asin"])
                 for product in read_json(
-                    root / AMAZON_DATA_RELATIVE / scenario / "catalog.json"
+                    root / CAVEAT_SHOP_DATA_RELATIVE / scenario / "catalog.json"
                 )["products"]
             )
             for scenario in ORIGINAL_SCENARIOS

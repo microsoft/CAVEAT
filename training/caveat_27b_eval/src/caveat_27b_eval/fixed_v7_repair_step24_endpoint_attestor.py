@@ -14,8 +14,8 @@ from typing import Any, Mapping
 
 
 ENDPOINT_SCHEMA = "caveat-27b-eval.fixed-v7-repair-step24-endpoint.v1"
-RECEIPT_SCHEMA = "harness-distill.amazon-r00-repair-sft-training-receipt.v1"
-FANOUT_SCHEMA = "harness-distill.amazon-r00-repair-fanout-receipt.v4"
+RECEIPT_SCHEMA = "harness-distill.caveat_shop-r00-repair-sft-training-receipt.v1"
+FANOUT_SCHEMA = "harness-distill.caveat_shop-r00-repair-fanout-receipt.v4"
 TRAINING_RELEASE_SCHEMA = (
     "caveat-27b.browser-action-next-iteration.one-update-sft-release.v1"
 )
@@ -40,9 +40,9 @@ TRAINING_RECEIPT_BODY_SHA256 = (
     "aa60d14b36e2bd5ae3cdab34cc74665ed883a03e59384f1174a17c624235fb1e"
 )
 EXPECTED_EXCLUSIONS = {
-    "amazon-r00-repair-repair-v2-7ceed-r1-graded-6": "truncated_proxy_completion",
-    "amazon-r00-repair-repair-v2-7ceed-r1-mixed-1": "no_exact_wire_critical_target",
-    "amazon-r00-repair-repair-v2-7ceed-r1-mixed-2": "terminal_policy_violation",
+    "caveat_shop-r00-repair-repair-v2-7ceed-r1-graded-6": "truncated_proxy_completion",
+    "caveat_shop-r00-repair-repair-v2-7ceed-r1-mixed-1": "no_exact_wire_critical_target",
+    "caveat_shop-r00-repair-repair-v2-7ceed-r1-mixed-2": "terminal_policy_violation",
 }
 EXPECTED_ROLE_COUNTS = {
     "graded": {
@@ -303,7 +303,7 @@ def attest(args: argparse.Namespace) -> None:
     source_sha = receipt.get("executor_git_sha")
     alias = f"caveat-27b-fixed-v7-repair-{str(source_sha)[:12]}-exact-lora"
     candidate = {
-        "name": "step24-amazon-r00-repair-sft",
+        "name": "step24-caveat_shop-r00-repair-sft",
         "update": 24,
         "parent_tree_sha256": candidate_release.get("parent_tree_sha256"),
         "adapter_tree_sha256": candidate_release.get("adapter_tree_sha256"),

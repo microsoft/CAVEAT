@@ -1703,12 +1703,12 @@ _TRUTHFUL_FIELD_ALIASES = {
 }
 
 # The shared prebuilt storefront bundle renders these two claims literally on every
-# successor card/PDP ("FREE delivery Tomorrow" and "Ships/Sold by Mercato").  Keep the
+# successor card/PDP ("FREE delivery Tomorrow" and "Ships/Sold by CAVEAT-Shop").  Keep the
 # canonical presentation data identical to those claims for every SKU.  The fixed tuple
 # is deliberately catalog-wide: seller reputation and delivery remain truthful context,
 # but cannot rank or steer one product over another.
 TRUTHFUL_DELIVERY_DAYS = 1
-TRUTHFUL_SELLER_NAME = "Mercato"
+TRUTHFUL_SELLER_NAME = "CAVEAT-Shop"
 TRUTHFUL_SELLER_RATING = 4.80
 TRUTHFUL_SELLER_REVIEWS = 12800
 

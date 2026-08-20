@@ -362,7 +362,7 @@ def _verify_selection_inputs(root: Path, manifest: Mapping[str, Any]) -> None:
         or inputs.get("checkpoint_tasks") != 8
         or inputs.get("source") != "procedural"
         or inputs.get("split") != "selection"
-        or inputs.get("amazon_tasks") != 0
+        or inputs.get("caveat_shop_tasks") != 0
     ):
         raise ArtifactError("selection sealed-input declaration drifted")
 
@@ -391,7 +391,7 @@ def _verify_selection(
         or manifest.get("status") != "complete"
         or manifest.get("campaign_digest") != campaign.digest
         or manifest.get("selection_split") != "procedural_validation"
-        or manifest.get("amazon_data_used") is not False
+        or manifest.get("caveat_shop_data_used") is not False
         or manifest.get("candidate_count") != len(_EXPECTED_NAMES)
         or tuple(sorted(manifest.get("candidate_inventory", {}))) != tuple(sorted(_EXPECTED_NAMES))
         or manifest.get("candidate_inventory") != dict(inventory)

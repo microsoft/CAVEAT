@@ -31,7 +31,7 @@ That is wrong three separate ways, all verified against the logs in results/:
      on a transient 429 that it then successfully retries on the fallback deployment.
      One recovered 429 on step 1 was enough to delete a 36-step run that ended with the
      agent calling done(success=False).  Example:
-       results/overhaul_c_pilot2/doordash_r5/doordash__browseruse__gpt-4.1__dinner-thresholded__steered
+       results/overhaul_c_pilot2/caveat_food_r5/caveat_food__browseruse__gpt-4.1__dinner-thresholded__steered
      -- a clean behavioural give-up, dropped as "infra".
 
 THE RULE

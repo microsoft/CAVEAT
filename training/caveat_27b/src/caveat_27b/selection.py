@@ -298,7 +298,7 @@ def _validate_completed_selection(
         manifest.get("schema") != SELECTION_SCHEMA
         or manifest.get("campaign_digest") != campaign.digest
         or manifest.get("selection_split") != "procedural_validation"
-        or manifest.get("amazon_scenarios_used") != []
+        or manifest.get("caveat_shop_scenarios_used") != []
         or manifest.get("num_gpus") != num_gpus
         or manifest.get("candidate_count") != len(adapters)
         or manifest.get("rank_order")
@@ -428,7 +428,7 @@ def select_sft_checkpoint(
         "schema": SELECTION_SCHEMA,
         "campaign_digest": campaign.digest,
         "selection_split": "procedural_validation",
-        "amazon_scenarios_used": [],
+        "caveat_shop_scenarios_used": [],
         "num_gpus": num_gpus,
         "candidate_count": len(adapters),
         "rank_order": campaign.campaign["selection_gate"]["rank_order"],

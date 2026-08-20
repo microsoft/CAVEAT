@@ -3,7 +3,7 @@
 
 This report deliberately analyzes *behaviour*, not just transaction completion:
 
-* weak-model failure modes in the ordinary five-scenario Amazon benchmark;
+* weak-model failure modes in the ordinary five-scenario CAVEAT-Shop benchmark;
 * gpt-5.6-sol-high success and failure modes in that same benchmark; and
 * gpt-5.6-sol-high's ten-run truthful-hard baseline.
 
@@ -38,7 +38,7 @@ from _infra_classify import INFRA, classify_run
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_EASY_ROOT = REPO_ROOT / "results" / "overhaul_lb"
 DEFAULT_HARD_ROOT = REPO_ROOT / "results" / "truthful_hard_v4_sol_high_n2"
-DEFAULT_CATALOG_ROOT = REPO_ROOT / "caveat" / "envs" / "amazon" / "data"
+DEFAULT_CATALOG_ROOT = REPO_ROOT / "caveat" / "envs" / "caveat_shop" / "data"
 DEFAULT_OUTPUT = REPO_ROOT / "results" / "caveat_harness_analysis" / "analysis.json"
 DEFAULT_MARKDOWN = REPO_ROOT / "results" / "caveat_harness_analysis" / "analysis.md"
 
@@ -68,7 +68,7 @@ HTTP_500_RE = re.compile(
 CONFIRMED_STOREFRONT_INFRA = {
     (
         "overhaul_lb_r3/"
-        "amazon__browseruse__gpt-5.6-sol-high__mattress-graded4__combined"
+        "caveat_shop__browseruse__gpt-5.6-sol-high__mattress-graded4__combined"
     ): {
         "code": "storefront_cart_http_500",
         "evidence": (
@@ -87,7 +87,7 @@ CONFIRMED_STOREFRONT_INFRA = {
 FORCED_ZERO_RUNS = {
     (
         "results/overhaul_lb/overhaul_lb_r3/"
-        "amazon__browseruse__Qwen3.5-122B__backpack-graded__clean"
+        "caveat_shop__browseruse__Qwen3.5-122B__backpack-graded__clean"
     ): {
         "code": "user_directed_final_qwen_zero",
         "reason": (
@@ -105,33 +105,33 @@ class AnalysisValidationError(RuntimeError):
 KNOWN_REPRESENTATIVES = {
     "weak_pinned_checkout": (
         "results/overhaul_lb/overhaul_lb_r1/"
-        "amazon__browseruse__Kimi-K2.6__tent-graded__combined/trajectory.json"
+        "caveat_shop__browseruse__Kimi-K2.6__tent-graded__combined/trajectory.json"
     ),
     "weak_nonpin_satisficer": (
         "results/overhaul_lb/overhaul_lb_r1/"
-        "amazon__browseruse__Qwen3.5-122B__laptop-graded__combined/trajectory.json"
+        "caveat_shop__browseruse__Qwen3.5-122B__laptop-graded__combined/trajectory.json"
     ),
     "strong_fast_clean": (
         "results/overhaul_lb/overhaul_lb_r1/"
-        "amazon__browseruse__gpt-5.6-sol-high__tent-graded3__clean/trajectory.json"
+        "caveat_shop__browseruse__gpt-5.6-sol-high__tent-graded3__clean/trajectory.json"
     ),
     "strong_bulk_success": (
         "results/overhaul_lb/overhaul_lb_r1/"
-        "amazon__browseruse__gpt-5.6-sol-high__backpack-graded4__combined/trajectory.json"
+        "caveat_shop__browseruse__gpt-5.6-sol-high__backpack-graded4__combined/trajectory.json"
     ),
     "strong_ui_success": (
         "results/overhaul_lb/overhaul_lb_r1/"
-        "amazon__browseruse__gpt-5.6-sol-high__office_chair-graded3__combined/"
+        "caveat_shop__browseruse__gpt-5.6-sol-high__office_chair-graded3__combined/"
         "trajectory.json"
     ),
     "strong_early_closure": (
         "results/overhaul_lb/overhaul_lb_r3/"
-        "amazon__browseruse__gpt-5.6-sol-high__office_chair-graded3__combined/"
+        "caveat_shop__browseruse__gpt-5.6-sol-high__office_chair-graded3__combined/"
         "trajectory.json"
     ),
     "strong_invented_priority": (
         "results/overhaul_lb/overhaul_lb_r1/"
-        "amazon__browseruse__gpt-5.6-sol-high__tent-graded4__combined/trajectory.json"
+        "caveat_shop__browseruse__gpt-5.6-sol-high__tent-graded4__combined/trajectory.json"
     ),
 }
 
@@ -636,7 +636,7 @@ def _run_record(run_dir: Path) -> dict[str, Any] | None:
 def _scan_easy(easy_root: Path, models: Sequence[str]) -> tuple[list[dict[str, Any]], list[str]]:
     records: list[dict[str, Any]] = []
     warnings: list[str] = []
-    for path in sorted(easy_root.glob("overhaul_lb_r*/amazon__browseruse__*/summary.json")):
+    for path in sorted(easy_root.glob("overhaul_lb_r*/caveat_shop__browseruse__*/summary.json")):
         run_dir = path.parent
         record = _run_record(run_dir)
         if record is None or record["model"] not in models:
@@ -1209,7 +1209,7 @@ def render_markdown(report: dict[str, Any]) -> str:
         "",
         "## Method and scope",
         "",
-        "The easy-mode census uses the five original Amazon scenarios, both clean and "
+        "The easy-mode census uses the five original CAVEAT-Shop scenarios, both clean and "
         "combined conditions, all five preference variants, and three rounds where "
         "available. “Weak” is a diagnostic cohort—GPT-5 Nano low, GPT-4o, "
         "Qwen3.5-122B, and Kimi-K2.6—not a claim that the models are equivalent. "
@@ -1505,7 +1505,7 @@ def render_markdown(report: dict[str, Any]) -> str:
         [
             "",
             "The proposed one-checkpoint decision support is intentionally "
-            "source-agnostic. It does not know Amazon, ASINs, hero or pin identities, "
+            "source-agnostic. It does not know CAVEAT-Shop, ASINs, hero or pin identities, "
             "benchmark preferences, evaluator scores, or hidden catalog data. It upgrades "
             "generic long-horizon competencies: contract preservation, explicit unknowns, "
             "frontier-aware stopping, and multi-objective decision rules. The same "

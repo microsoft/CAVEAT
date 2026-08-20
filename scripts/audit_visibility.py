@@ -42,16 +42,16 @@ sys.path.insert(0, str(ROOT))
 # `bullet_points` diff. Disable it here: we are measuring which content is human-visible, not the
 # budget mechanism (that is adv-budget's job, and it is measured behaviourally in the main run).
 import os
-os.environ["AMAZON_SPEC_BUDGET"] = "0"
+os.environ["CAVEAT_SHOP_SPEC_BUDGET"] = "0"
 
-import caveat.envs.amazon  # noqa: F401,E402
+import caveat.envs.caveat_shop  # noqa: F401,E402
 from caveat.benchmark import registry, serialize          # noqa: E402
 from caveat.core.environment import ENVIRONMENTS          # noqa: E402
 
 # Fields the SPA actually renders to a person (ProductCard.tsx / ProductDetail.tsx).
 HUMAN_VISIBLE = {"title", "price", "list_price", "rating", "rating_count", "review_count",
                  "bullet_points", "images", "deal", "sponsored", "ad_label", "is_best_seller",
-                 "is_amazon_choice", "stock_quantity", "availability_status", "bought_past_month",
+                 "is_caveat_shop_choice", "stock_quantity", "availability_status", "bought_past_month",
                  "adv_badge"}
 # Fields that reach the agent but never a human's screen.
 AGENT_ONLY = {"agent_note": "sr-only span (clip 1x1)",
@@ -107,7 +107,7 @@ def main() -> int:
 
     spec = json.loads((serialize.scenario_dir(sc) / "adversarial.json").read_text())
     meta = spec["_meta"]
-    env = ENVIRONMENTS.get("amazon")()
+    env = ENVIRONMENTS.get("caveat_shop")()
     task = registry.benchmark_tasks(sc, variants=["thresholded"])[0]
 
     def boot(cond):

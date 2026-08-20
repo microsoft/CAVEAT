@@ -1,7 +1,7 @@
 """Select a browser-action continuation checkpoint on sealed procedural tasks.
 
 This selector deliberately exercises the wire interface used by the unchanged
-browser-use harness.  It never opens an Amazon task: candidates compile 64
+browser-use harness.  It never opens an CAVEAT-Shop task: candidates compile 64
 procedural contracts and then respond to four adjacent browser-action states
 for each of eight matched procedural checkpoint tasks.
 """
@@ -222,7 +222,7 @@ def _selection_tasks(
             "checkpoint_tasks": len(checkpoints),
             "source": "procedural",
             "split": "selection",
-            "amazon_tasks": 0,
+            "caveat_shop_tasks": 0,
             "leakage_audit": raw_manifest.get("leakage_audit"),
         },
     )
@@ -1186,7 +1186,7 @@ def _manifest_body(
         "status": "complete",
         "campaign_digest": campaign.digest,
         "selection_split": "procedural_validation",
-        "amazon_data_used": False,
+        "caveat_shop_data_used": False,
         "inputs": dict(inputs),
         "training_bindings": dict(bindings),
         "base_model": str(parent),

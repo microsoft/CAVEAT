@@ -4,7 +4,7 @@ Unlike fixed-v5, this curriculum never presents an omniscient catalog as the
 dominant training state.  It teaches short transitions that occur in the live
 browser loop: continue a paginated search, open an unresolved literal href,
 clean a cart, recover the recorded local URL, checkpoint a compact evidence
-ledger, and act only after approval.  Amazon data and outcomes are excluded.
+ledger, and act only after approval.  CAVEAT-Shop data and outcomes are excluded.
 """
 
 from __future__ import annotations
@@ -384,11 +384,11 @@ def _materialize_curriculum(
             "full_catalog_checkpoint_dominance": False,
             "literal_identity_required": True,
             "dirty_cart_cleanup_required": True,
-            "amazon_outcomes_consulted": False,
+            "caveat_shop_outcomes_consulted": False,
             "candidate_sweep": False,
         },
         "assistant_wire_format": "browser-use AgentOutput.action JSON",
-        "heldout_amazon_scenarios_present": False,
+        "heldout_caveat_shop_scenarios_present": False,
         "leakage_audit": leakage,
         "output": {"path": data.name, "sha256": sha256_file(data), "rows": len(rows)},
     }
@@ -668,7 +668,7 @@ def prepare_browser_action_fixed_v6(
             "path": str((training / "prime_output/weights/step_24/lora_adapters").resolve()),
         },
         "selection_performed": False,
-        "amazon_outcomes_consulted": False,
+        "caveat_shop_outcomes_consulted": False,
         "training_policy": {
             "optimizer": "adamw",
             "learning_rate": _LEARNING_RATE,
@@ -729,7 +729,7 @@ def write_browser_action_fixed_v6_receipt(
         or plan.get("source_step20_adapter_receipt_tree_sha256")
         != source["adapter_receipt_tree_sha256"]
         or plan.get("selection_performed") is not False
-        or plan.get("amazon_outcomes_consulted") is not False
+        or plan.get("caveat_shop_outcomes_consulted") is not False
     ):
         raise ArtifactError("fixed-v6 plan binding drifted")
     if (
@@ -858,7 +858,7 @@ def write_browser_action_fixed_v6_receipt(
         "training_policy": plan["training_policy"],
         "candidate": {"name": "step24", **candidate},
         "selection_performed": False,
-        "amazon_outcomes_consulted": False,
+        "caveat_shop_outcomes_consulted": False,
         "original_refinement_unchanged_after_training": True,
     }
     receipt = dict(body)

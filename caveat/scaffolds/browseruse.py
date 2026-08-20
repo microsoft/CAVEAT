@@ -76,8 +76,8 @@ _LOSSLESS_READ_STATE_RECOVERY_MANIFEST_SHA256 = (
 )
 _LOSSLESS_READ_STATE_RECOVERY_RUN_INDEX = 598
 _LOSSLESS_READ_STATE_RECOVERY_RUN_ID = (
-    "instacart_r1/"
-    "instacart__browseruse__Kimi-K2.6__greens-graded4__clean"
+    "caveat_grocery_r1/"
+    "caveat_grocery__browseruse__Kimi-K2.6__greens-graded4__clean"
 )
 _LOSSLESS_READ_STATE_RECOVERY_PRIOR_ATTEMPT = 1
 _LOSSLESS_READ_STATE_RECOVERY_PRIOR_COMPLETION_SHA256 = (

@@ -18,7 +18,7 @@ Secrets (read from the process environment on every request, so tests can flip t
 * ``STOREFRONT_OPS_TOKEN`` — evaluator/ops back-channel via ``X-Storefront-Ops``;
   bypasses the gate AND the rate limiter, and is never counted.
 
-Kill switch: ``AMAZON_API_GATE=0`` or ``STOREFRONT_API_GATE=0`` disables gating and
+Kill switch: ``CAVEAT_SHOP_API_GATE=0`` or ``STOREFRONT_API_GATE=0`` disables gating and
 rate limiting entirely (adversarial cloaking conditions key on raw header absence and
 must see the legacy surface).
 
@@ -67,7 +67,7 @@ SF_RATE_SUSTAINED_MAX=80, SF_CHALLENGE_MIN_DELAY=2, SF_CHALLENGE_TTL=45,
 SF_RATE_ENABLED=1, SF_COUNT_MODE=request|distinct.
 
 This file deliberately imports NOTHING from the surrounding package (env-agnostic;
-the amazon backend loads it by file path so a standalone server never needs the
+the caveat_shop backend loads it by file path so a standalone server never needs the
 ``caveat`` package importable).
 """
 
@@ -141,7 +141,7 @@ def _env_num(name: str, default: float) -> float:
 
 
 def _switch_off() -> bool:
-    return (os.environ.get("AMAZON_API_GATE", "") == "0"
+    return (os.environ.get("CAVEAT_SHOP_API_GATE", "") == "0"
             or os.environ.get("STOREFRONT_API_GATE", "") == "0")
 
 
@@ -337,9 +337,8 @@ def challenge_active() -> bool:
 def _record_hit(weight: int = 1) -> bool:
     """Roll one counted request into all three windows; True if this hit arms a challenge.
 
-    ``weight`` lets a caller count a single request as N units (e.g. zillow's GraphQL
-    GetHome detail op counts as 2, so a scripted detail sweep trips proportionally to
-    the content it pulls, like N separate REST detail reads would)."""
+    ``weight`` lets a caller count a single request as N units, so a request that returns
+    multiple content units can be charged like separate REST detail reads."""
     global _CHALLENGE
     now = time.time()
     sw = _env_num("SF_RATE_SHORT_WINDOW", 10)

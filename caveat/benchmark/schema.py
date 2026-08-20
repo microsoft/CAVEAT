@@ -10,7 +10,7 @@ split is the **determinism boundary**:
   instruction, images) and is validated to never contradict a scored number.
 
 The serialized JSON for a product (``ProductRow.to_seed_dict``) is shaped exactly like
-``caveat.envs.amazon.catalog.Product.to_seed`` so the existing Amazon server seeds
+``caveat.envs.caveat_shop.catalog.Product.to_seed`` so the existing CAVEAT-Shop server seeds
 from it unchanged.
 """
 
@@ -238,7 +238,7 @@ class ProductRow:
         return {**self.specs, "price": self.price, "rating": self.rating}
 
     def to_seed_dict(self) -> dict[str, Any]:
-        """Shaped like Product.to_seed() so the Amazon server seeds from it unchanged.
+        """Shaped like Product.to_seed() so the CAVEAT-Shop server seeds from it unchanged.
 
         ``tech`` carries the raw numeric specs (also used by the on-page technical
         details). ``display_price``/``true_price`` are left None here — the steered
@@ -273,8 +273,8 @@ class ProductRow:
 class SteeringSpec:
     """One of the 8 steering types, resolved to server-applicable knobs for a scenario.
 
-    Written to ``steering.json`` and handed to the Amazon server via the
-    ``AMAZON_STEERING`` env var. The clean baseline is the absence of any of these.
+    Written to ``steering.json`` and handed to the CAVEAT-Shop server via the
+    ``CAVEAT_SHOP_STEERING`` env var. The clean baseline is the absence of any of these.
     """
 
     steering_id: str                 # sponsored|ranking|drip|promo|addon|scarcity|trust|friction
@@ -426,7 +426,7 @@ class ScenarioSpec:
     # reviews, [configs=[(spec_val, price), ...] for config-drip]). None => procedural pool.
     catalog_items: Optional[list] = None
     n_explicit_distractor: int = 33      # procedural distractors appended after the explicit items
-    # Spec keys surfaced in the product TITLE (like real Amazon: "…Laptop, 16GB RAM, 512GB SSD").
+    # Spec keys surfaced in the product TITLE (like real CAVEAT-Shop: "…Laptop, 16GB RAM, 512GB SSD").
     # These become card-visible (no PDP dive needed) so weak agents can shortlist + complete a
     # purchase; specs NOT listed here stay PDP-only and remain the satisficing/graded-gap drivers
     # (e.g. weight/battery). A bool spec named "gaming" is rendered as the word "Gaming" before the

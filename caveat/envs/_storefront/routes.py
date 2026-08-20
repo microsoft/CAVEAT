@@ -29,7 +29,7 @@ def _loads(s, default):
         return default
 
 
-# Card/detail payload split (Amazon parity, Phase C): the LIST/card shape is a strict whitelist —
+# Card/detail payload split (CAVEAT-Shop parity, Phase C): the LIST/card shape is a strict whitelist —
 # identical in clean and steered — and the rich spec-bearing fields live ONLY on the detail payload.
 # ``advertised`` (the internal scoring flag) is never served in either shape; the shopper-visible
 # sponsorship signal is the "sponsored" flag/badge that steering._decorate sets on pinned cards.
@@ -78,7 +78,7 @@ def get_me():
 @router.get("/products")
 def list_products(response: Response, q: Optional[str] = None, category: Optional[str] = None,
                   sort: str = "relevance", limit: int = 24, offset: int = 0):
-    # Amazon-standard card geometry: oversized `limit=100/200` reads were the
+    # CAVEAT-Shop-standard card geometry: oversized `limit=100/200` reads were the
     # common first half of the one-action catalog sweep.  The response remains
     # fully discoverable through stable, exhaustive pages.
     page_size = steering.page_size()
@@ -123,15 +123,15 @@ def list_products(response: Response, q: Optional[str] = None, category: Optiona
 @router.get("/storefront")
 def storefront():
     """Restaurant-grouped, STEERED storefront built at RUNTIME from the seeded catalog — for the
-    doordash clone, so re-seeding + steering reach the (runtime-fetch) frontend live with no rebuild.
+    caveat_food clone, so re-seeding + steering reach the (runtime-fetch) frontend live with no rebuild.
     Returns the clone's ``{restaurantListData, restaurantCarouselsData}`` shape. Empty for envs whose
-    site has no ``restaurants`` metadata (every non-doordash env)."""
+    site has no ``restaurants`` metadata (every non-caveat_food env)."""
     restaurants = (steering.site() or {}).get("restaurants") or {}
     if not restaurants:
         return {"restaurantListData": {}, "restaurantCarouselsData": []}
     # Same card contract as /api/products: menu cards NEVER carry the spec fields (the spec-bearing
     # description / hard-cut flags live only on the /api/products/{sku} detail) — identical in clean
-    # and steered. (doordash-only endpoint.)
+    # and steered. (caveat_food-only endpoint.)
     with _session() as session:
         rows = list(session.exec(select(Item).order_by(Item.position)))
     cards = steering.apply_steering([_card(it) for it in rows])
@@ -164,7 +164,7 @@ def storefront():
             "badges": c.get("badges", [])}
         rl[sid]["storefrontData"]["items"].append(item)
     carousels = [
-        {"carouselName": "Now on DoorDash", "selectedRestaurantIDs": order},
+        {"carouselName": "Now on CAVEAT-Food", "selectedRestaurantIDs": order},
         {"carouselName": "Most Popular Local Restaurants", "selectedRestaurantIDs": order[1:] + order[:1]}]
     return {"restaurantListData": rl, "restaurantCarouselsData": carousels}
 
@@ -231,7 +231,7 @@ def add_to_cart(body: AddToCart):
         # weak agent that double-clicked landed at qty=2 over budget with no card-level decrement control
         # and gave up (outcome=none) — corrupting the STEERED completion measurement. Real storefronts
         # coalesce repeated adds onto one line; mirror that with a set-to-max upsert (env bug fix, not a
-        # scoring/agent change). Matches the amazon env's cart-idempotency fix.
+        # scoring/agent change). Matches the caveat_shop env's cart-idempotency fix.
         qty = max(1, body.quantity)
         existing = session.exec(
             select(CartItem).where(CartItem.cart_id == 1, CartItem.item_id == it.id,

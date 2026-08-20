@@ -48,8 +48,8 @@ def _task(
 def generate_split(config: dict[str, Any]) -> dict[str, Any]:
     seed = int(config["seed"])
     shadow = config["shadow"]
-    variants = list(config["amazon"]["variants"])
-    conditions = list(config["amazon"]["conditions"])
+    variants = list(config["caveat_shop"]["variants"])
+    conditions = list(config["caveat_shop"]["conditions"])
     catalog_sizes = [int(value) for value in shadow["catalog_sizes"]]
     if len(variants) != 4 or conditions != ["clean", "combined"]:
         raise IntegrityError("the frozen shadow balance requires four variants and clean/combined")
@@ -142,7 +142,7 @@ def audit_split(
     for family in train_families | validation_families:
         normalized = normalize_token(family)
         if normalized in normalized_forbidden:
-            raise IntegrityError(f"shadow family overlaps original Amazon category: {family}")
+            raise IntegrityError(f"shadow family overlaps original CAVEAT-Shop category: {family}")
 
     keys = [str(row.get("task_key")) for row in tasks]
     if len(keys) != len(set(keys)):
@@ -157,8 +157,8 @@ def audit_split(
     if split_counts != Counter(train=expected_train, validation=expected_validation):
         raise IntegrityError(f"unexpected split counts: {dict(split_counts)}")
 
-    valid_variants = set(config["amazon"]["variants"])
-    valid_conditions = set(config["amazon"]["conditions"])
+    valid_variants = set(config["caveat_shop"]["variants"])
+    valid_conditions = set(config["caveat_shop"]["conditions"])
     product_ids: dict[str, str] = {}
     materialized_count = 0
     original_benchmark_lock = original_benchmark_lock or {}

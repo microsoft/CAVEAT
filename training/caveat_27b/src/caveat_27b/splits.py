@@ -30,7 +30,7 @@ def _string(row: Mapping[str, Any], key: str, label: str) -> str:
     return value
 
 
-def _amazon_split(campaign: Campaign, scenario: str) -> str:
+def _caveat_shop_split(campaign: Campaign, scenario: str) -> str:
     matches = [
         split
         for split in ("train", "selection", "development", "final")
@@ -38,7 +38,7 @@ def _amazon_split(campaign: Campaign, scenario: str) -> str:
     ]
     if len(matches) != 1:
         raise ArtifactError(
-            f"Amazon scenario is outside or ambiguous across frozen splits: {scenario}"
+            f"CAVEAT-Shop scenario is outside or ambiguous across frozen splits: {scenario}"
         )
     return matches[0]
 
@@ -64,14 +64,14 @@ def freeze_splits(
         if task_id in seen:
             raise ArtifactError(f"duplicate task_id in inventory: {task_id}")
         seen.add(task_id)
-        if source == "amazon":
-            split = _amazon_split(campaign, scenario)
+        if source == "caveat_shop":
+            split = _caveat_shop_split(campaign, scenario)
         elif source == "procedural":
             split = _string(row, "split", label)
             if split not in {"train", "selection", "final"}:
                 raise ArtifactError(f"{label}.split must be train, selection, or final")
         else:
-            raise ArtifactError(f"{label}.source must be amazon or procedural")
+            raise ArtifactError(f"{label}.source must be caveat_shop or procedural")
         membership = {
             "schema": MEMBERSHIP_SCHEMA,
             "task_id": task_id,

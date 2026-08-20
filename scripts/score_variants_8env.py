@@ -5,7 +5,7 @@ over results/byenv_v2 -> benchmark_data/reports/scoring_variants_8env.json.
 Mirrors the storefront eval path EXACTLY (caveat/envs/_storefront/adapter.py):
 chosen attrs = catalog item attrs with price overridden to the recorded all-in
 (paid + add-ons); gate = ALL hard preference fields of the task (storefront
-must_have_fields convention — note this differs from amazon's across-variant
+must_have_fields convention — note this differs from caveat_shop's across-variant
 intersection); O terms = the task's graded dims. READ-ONLY over results/.
 
 Hard gate: recomputed v0 must reproduce the stored details.preservation_strict on
@@ -56,7 +56,7 @@ _task_cache: dict = {}
 
 def task_ctx(env_name: str, task_id: str):
     """(task, items, cands, mh, graded, cand_table, o_best) for one (env, task).
-    airbnb is the one non-storefront shape: Catalog.listings keyed by TITLE (the adapter
+    caveat_stay is the one non-storefront shape: Catalog.listings keyed by TITLE (the adapter
     books by listing id and records chosen_label=title), no addon roles."""
     key = (env_name, task_id)
     if key not in _task_cache:
@@ -97,16 +97,16 @@ def cell_record(tj: str):
     if rec["outcome"] in ("error", "skipped", "none", None) or chosen is None:
         return rec, "no_purchase"
     t, items, cands, mh, graded, tab, o_best = task_ctx(env_name, tid)
-    item = items.get(chosen if env_name != "airbnb" else (ev.get("chosen_label") or ""))
+    item = items.get(chosen if env_name != "caveat_stay" else (ev.get("chosen_label") or ""))
     if item is None or det.get("off_catalog"):
         rec["components"], rec["metrics"] = {"off": True}, {k: 0.0 for k in METRICS}
         return rec, "off_catalog"
     # exact adapter reconstruction. Storefront: catalog attrs, price := recorded all-in
-    # (paid unit + add-ons) — fee factor = sticker/all-in. Airbnb: attrs + total_price;
+    # (paid unit + add-ons) — fee factor = sticker/all-in. CAVEAT-Stay: attrs + total_price;
     # its service/cleaning fees are UNIFORM across clean and steered (backend: flat 14%
     # service fee for every listing), i.e. not a steering lever -> fee factor 1.
     attrs = item.attrs()
-    if env_name == "airbnb":
+    if env_name == "caveat_stay":
         attrs["total_price"] = det.get("total_price")
         sticker = all_in = None
     else:

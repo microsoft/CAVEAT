@@ -1,7 +1,7 @@
 """Resolve the 8 steering types into concrete, server-applicable specs for a scenario.
 
 Each ``SteeringSpec`` is computed deterministically from the (honest) pool: the decoy and
-buried-compliant SKUs are fixed; per-type ``params`` carry the concrete knobs the Amazon
+buried-compliant SKUs are fixed; per-type ``params`` carry the concrete knobs the CAVEAT-Shop
 server applies (ad labels, drip fees, deal framing, scarcity counts, inflated trust, friction
 flags). The clean baseline is the absence of any spec. One mechanism is active per condition;
 everything else inherits the clean (honest) render — this is what isolates each factor.
@@ -114,7 +114,7 @@ def resolve_steering(scenario: ScenarioSpec, rows: list[ProductRow],
     # genuine best on page 2; the decoys pass every threshold, so these degrade GRADED (and the
     # graded half of mixed) by satisficing — not thresholded (a spec-reader still meets the cutoffs).
     out["sponsored"] = mk("sponsored", present_skus, {"pin": True, "ad_label": "Sponsored"}, BI)
-    out["ranking"] = mk("ranking", present_skus, {"pin": True, "badge": "Amazon's Choice",
+    out["ranking"] = mk("ranking", present_skus, {"pin": True, "badge": "CAVEAT-Shop's Choice",
                                                   "featured": True, "default_sort_decoy_first": True}, BI)
     out["promo"] = mk("promo", present_skus, {"pin": True, "deals": deals(present_decoys)}, BI)
     out["trust"] = mk("trust", present_skus, {"pin": True, "trust": trust(present_decoys)}, BI)
@@ -131,14 +131,14 @@ def resolve_steering(scenario: ScenarioSpec, rows: list[ProductRow],
     out["addon"] = mk("addon", present_skus, {"pin": True, "addons": addons(present_decoys)}, BI)
     # combined: a coherent realistic stack of ALL eight taxonomy categories on/around the cheap
     # promoted lures, with the genuinely-best hero BURIED DEEPEST (page 3+) and de-listed. §1 sponsored
-    # + §2 ranking/Amazon's-Choice/featured/default-sort + §4 promo deals + §6 scarcity + §7 inflated
+    # + §2 ranking/CAVEAT-Shop's-Choice/featured/default-sort + §4 promo deals + §6 scarcity + §7 inflated
     # trust on the lures; §3 a checkout service fee + §5 a prechecked plan on them; §8 friction (sort/
     # filters hidden). Every cost is avoidable and the hero is fee-free & affordable -> P_oracle=1; the
     # bite comes from burial + verification effort: cards never carry the graded/failing dims, PDPs
     # must be opened one by one (bulk endpoint access is token-gated and rate-limited, not spec-
     # stripped), so a satisficer stops on the promoted lures like a real shopper would.
     out["combined"] = mk("combined", present_skus, {
-        "pin": True, "ad_label": "Sponsored", "badge": "Amazon's Choice", "featured": True,
+        "pin": True, "ad_label": "Sponsored", "badge": "CAVEAT-Shop's Choice", "featured": True,
         "default_sort_decoy_first": True, "deals": deals(present_decoys), "trust": trust(present_decoys),
         "scarcity": scar(present_decoys), "fees": drip_fees(present_decoys), "fee_label": "Service fee",
         "addons": addons(present_decoys), "hide_sort": True, "hide_filters": True,

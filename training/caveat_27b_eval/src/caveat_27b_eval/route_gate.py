@@ -1,4 +1,4 @@
-"""Four-task non-Amazon semantic gate for CAVEAT-27B exact-LoRA evaluation routes."""
+"""Four-task non-CAVEAT-Shop semantic gate for CAVEAT-27B exact-LoRA evaluation routes."""
 
 from __future__ import annotations
 
@@ -28,7 +28,7 @@ SEALED_TASK_IDS = (
     "task_f51d40486ca687484e67",  # ordinal priorities
     "task_070850362cb8906cf6eb",  # numeric weights
 )
-_AMAZON = {"laptop", "office_chair", "mattress", "backpack", "tent"}
+_CAVEAT_SHOP = {"laptop", "office_chair", "mattress", "backpack", "tent"}
 _RETRYABLE = {408, 429, 500, 502, 503, 504}
 
 
@@ -105,10 +105,10 @@ def _load_tasks(path: Path) -> list[dict[str, Any]]:
         if (
             row.get("schema") != "caveat-27b.contract-shadow-task.v1"
             or row.get("source") != "procedural"
-            or row.get("scenario") in _AMAZON
+            or row.get("scenario") in _CAVEAT_SHOP
         ):
             raise IntegrityError(
-                f"route-gate task is not non-Amazon procedural data: {task_id}"
+                f"route-gate task is not non-CAVEAT-Shop procedural data: {task_id}"
             )
         if not isinstance(row.get("instruction"), str) or not isinstance(
             row.get("gold_contract"), dict
@@ -283,7 +283,7 @@ def run_route_gate(
     return {
         "schema": SCHEMA,
         "diagnostic_only": True,
-        "amazon_tasks_used": [],
+        "caveat_shop_tasks_used": [],
         "arm": arm,
         "model": model,
         "base_url": base_url.rstrip("/"),

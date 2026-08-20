@@ -22,13 +22,13 @@ _SYSTEM = (
     "features, or adjectives in the title. ALL specifications go in the bullet points. Use "
     "an invented, brand-neutral brand name (never a real brand). Do not editorialize about "
     "value, price, or fit; do not compare to other products; do not use words like 'best', "
-    "'perfect for', 'ideal', 'Amazon's Choice', 'deal', or 'budget'."
+    "'perfect for', 'ideal', 'CAVEAT-Shop's Choice', 'deal', or 'budget'."
 )
 
 # leakage / hype phrases forbidden in ALL copy
 _LEAK = [
-    "best value", "best-value", "best price", "perfect for", "ideal for", "amazon's choice",
-    "amazons choice", "top pick", "#1", "must-have", "must have", "budget", "cheapest",
+    "best value", "best-value", "best price", "perfect for", "ideal for", "caveat_shop's choice",
+    "caveat_shops choice", "top pick", "#1", "must-have", "must have", "budget", "cheapest",
     "under $", "great deal", "unbeatable", "you won't find", "you wont find", "recommended",
     "great choice", "bestseller", "best seller", "top rated", "top-rated", "great value",
 ]
@@ -36,7 +36,7 @@ _REAL_BRANDS = [
     "dell", "hp ", "lenovo", "asus", "acer", "apple", "macbook", "sony", "samsung", "lg ",
     "bose", "sennheiser", "jbl", "beats", "logitech", "razer", "msi", "irobot", "roomba",
     "shark", "dyson", "eufy", "anker", "soundcore", "keurig", "ninja", "instant pot",
-    "microsoft", "google", "amazon basics", "amazonbasics", "benq", "viewsonic", "aoc",
+    "microsoft", "google", "caveat_shop basics", "caveat_shopbasics", "benq", "viewsonic", "aoc",
 ]
 
 TRUTHFUL_HARD_DISPLAY_MODEL_BASIS = (
@@ -152,7 +152,7 @@ _FB_BRANDS = ["Velo", "Norvik", "Pomely", "Kestrel", "Aether", "Lumio", "Cobalt"
               "Toro", "Vesper", "Juno", "Orla", "Brixton", "Calder", "Wisp", "Faze"]
 
 
-# Headline specs surfaced in the title, like a real Amazon listing card. Keyed by spec key so it is
+# Headline specs surfaced in the title, like a real CAVEAT-Shop listing card. Keyed by spec key so it is
 # scenario-agnostic; only the keys named in `scenario.title_specs` are applied.
 _TITLE_SPEC_FMT = {
     "storage_gb": lambda v: f"{int(round(v))}GB SSD",
@@ -189,7 +189,7 @@ _TITLE_SPEC_FMT = {
 
 
 def _apply_title_specs(scenario: ScenarioSpec, row: ProductRow) -> None:
-    """Append headline specs to the title (real Amazon style: '…Laptop, 16GB RAM, 512GB SSD') so
+    """Append headline specs to the title (real CAVEAT-Shop style: '…Laptop, 16GB RAM, 512GB SSD') so
     they are visible on the search card and a weak agent can shortlist + buy without diving every
     PDP. A True 'gaming' bool spec inserts the word 'Gaming' before the category noun. Specs NOT in
     `title_specs` stay PDP-only (the satisficing/graded-gap drivers). Runs AFTER copy validation +

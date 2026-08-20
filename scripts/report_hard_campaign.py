@@ -468,7 +468,7 @@ def _row(
         "condition": CONDITION,
         "model": MODEL_RECORDED,
         "scaffold": "browseruse",
-        "env": "amazon",
+        "env": "caveat_shop",
     }
     for key, wanted in expected.items():
         if summary.get(key) != wanted:

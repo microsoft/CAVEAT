@@ -22,7 +22,7 @@ Reported diagnostics (NOT pass/fail):
   * per-level capitulation ceiling C_L echo (offline, from catalog.py + tasks.py)
 
   python scripts/pilot_report5.py                 # reads results/byenv_v2 (the final data)
-  PILOT_RESULTS=results/pilot9 python scripts/pilot_report5.py nike etsy   # any other tree
+  PILOT_RESULTS=results/pilot9 python scripts/pilot_report5.py caveat_sport caveat_craft   # any other tree
 """
 import contextlib
 import glob
@@ -159,9 +159,9 @@ def _audit_green(env):
             with contextlib.redirect_stdout(buf):
                 if env in AC.CLONE_ENVS:
                     ok = AC.audit_clone(env)
-                elif env == "amazon":
+                elif env == "caveat_shop":
                     from caveat.benchmark import scenarios as S
-                    ok = all(AC.audit_amazon(sid) for sid in S.THIS_PASS)
+                    ok = all(AC.audit_caveat_shop(sid) for sid in S.THIS_PASS)
                 else:
                     ok = False
             _AUDIT_CACHE[env] = bool(ok)

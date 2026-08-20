@@ -24,8 +24,8 @@ from matplotlib.lines import Line2D
 METRIC = os.environ.get("METRIC", "vgeoF")
 VARIANTS = ["thresholded", "mixed", "graded", "graded3", "graded4"]
 MODELS = [("gpt-5.5-high", "GPT-5.5 (high)"), ("gpt-4.1", "GPT-4.1")]
-ENVS = [("airbnb", "Airbnb"), ("doordash", "DoorDash"), ("ebay", "eBay"), ("etsy", "Etsy"),
-        ("fiverr", "Fiverr"), ("instacart", "Instacart"), ("nike", "Nike"), ("stockx", "StockX")]
+ENVS = [("caveat_stay", "CAVEAT-Stay"), ("caveat_food", "CAVEAT-Food"), ("caveat_market", "CAVEAT-Market"), ("caveat_craft", "CAVEAT-Craft"),
+        ("caveat_services", "CAVEAT-Services"), ("caveat_grocery", "CAVEAT-Grocery"), ("caveat_sport", "CAVEAT-Sport"), ("caveat_kicks", "CAVEAT-Kicks")]
 
 
 def load_cells():

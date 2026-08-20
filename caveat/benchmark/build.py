@@ -20,8 +20,8 @@ from .preferences import build_preferences
 from .scenarios import SCENARIOS
 from .steering import resolve_steering
 
-# the Amazon server image dir (served at /images) — generated photos are written here
-AMAZON_IMAGE_DIR = (Path(__file__).resolve().parents[1] / "envs" / "amazon" / "server"
+# the CAVEAT-Shop server image dir (served at /images) — generated photos are written here
+CAVEAT_SHOP_IMAGE_DIR = (Path(__file__).resolve().parents[1] / "envs" / "caveat_shop" / "server"
                     / "backend" / "images")
 
 # category fallbacks (existing committed PNGs) when running --no-images
@@ -116,7 +116,7 @@ async def build_scenario(scenario_id: str, *, seed: int = 7, root: Optional[Path
         print(f"[{scenario_id}] reusing truthful shared category images ...")
     elif with_images:
         print(f"[{scenario_id}] generating images (gpt-image-1) ...")
-        await generate_images(scenario, rows, image_dir=AMAZON_IMAGE_DIR,
+        await generate_images(scenario, rows, image_dir=CAVEAT_SHOP_IMAGE_DIR,
                              mirror_dir=serialize.scenario_dir(scenario_id, root) / "images",
                              force=force_images)
     else:

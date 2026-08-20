@@ -179,7 +179,7 @@ def _curriculum_leakage_audit(rows: list[dict[str, Any]]) -> dict[str, Any]:
     """Scan learned state while exempting only browser-use's immutable prefix.
 
     The stock browser-use prompt itself contains generic examples that name an
-    Amazon category.  It is already identically present in every benchmark
+    CAVEAT-Shop category.  It is already identically present in every benchmark
     evaluation. Exempt only the byte-identical prefix before the CAVEAT-Harness
     protocol, while scanning the dynamic contract, public state, and targets.
     """
@@ -470,7 +470,7 @@ def materialize_browser_action_curriculum(
         "counts": dict(sorted(counts.items())),
         "assistant_wire_format": "browser-use AgentOutput.action JSON",
         "native_function_call_targets": 0,
-        "heldout_amazon_scenarios_present": False,
+        "heldout_caveat_shop_scenarios_present": False,
         "leakage_audit": leakage,
         "output": {"path": data.name, "sha256": sha256_file(data), "rows": len(rows)},
     }

@@ -6,11 +6,11 @@ Unlike try_env.py (which makes a scripted pick), this just spins the server up a
 live API by hand across many calls — so the per-session rate-gate state in the server is real
 (counted list/detail reads roll the Robot-Check windows), and the steering is experienced
 exactly as a browser-use agent would. (The legacy per-session spec budget is GONE — detail
-endpoints always serve the full record; AIRBNB_SPEC_BUDGET is a deprecated no-op.)
+endpoints always serve the full record; CAVEAT_STAY_SPEC_BUDGET is a deprecated no-op.)
 
-  python scripts/serve_env.py instacart --condition steered --variant graded4 --port 8801
+  python scripts/serve_env.py caveat_grocery --condition steered --variant graded4 --port 8801
   # then:  curl localhost:8801/api/products?limit=60   ...   curl -XPOST .../api/checkout -d '{"sku":"..."}'
-  # score: python scripts/score_env.py instacart --condition steered --variant graded4 --port 8801
+  # score: python scripts/score_env.py caveat_grocery --condition steered --variant graded4 --port 8801
 """
 import argparse
 import os
@@ -54,17 +54,17 @@ def main():
     task = dataclasses.replace(pick_task(tasks, a.variant), condition=a.condition)
     meta = getattr(task, "metadata", None) or {}
     tx = getattr(env, "transaction", "order")
-    if a.env == "airbnb":
+    if a.env == "caveat_stay":
         tx = "booking"
     work = Path(tempfile.mkdtemp(prefix=f"serve-{a.env}-"))
     handle = env.start(a.port, task, work_dir=work)
 
     detail_note = "(always the full record; reads are rate-gate counted)"
-    if a.env == "airbnb":
+    if a.env == "caveat_stay":
         api = {"list": "GET /api/listings?limit=60", "detail": f"GET /api/listings/{{id}}  {detail_note}",
                "transact": "POST /api/bookings  body {listing_id,check_in,check_out,num_guests}",
                "readback": "GET /api/bookings"}
-    elif a.env == "doordash":
+    elif a.env == "caveat_food":
         api = {"list": "GET /api/products?limit=60  (or restaurant-grouped GET /api/storefront)",
                "detail": f"GET /api/products/{{sku}}  {detail_note}",
                "transact": "POST /api/checkout  body {sku}", "readback": "GET /api/orders"}

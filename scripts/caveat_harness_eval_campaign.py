@@ -3,7 +3,7 @@
 
 The measured matrix is intentionally exact:
 
-* gpt-5.6-terra-low, five original Amazon scenarios, graded/combined, n=3;
+* gpt-5.6-terra-low, five original CAVEAT-Shop scenarios, graded/combined, n=3;
 * gpt-5.6-terra-low, the same scenarios, graded/clean, n=1;
 * GPT-5.6-sol high, five canonical hard scenarios, graded/combined, n=2;
 * fresh ``browseruse`` and ``caveat-harness`` arms in every stratum.
@@ -33,9 +33,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT_DIR = Path(__file__).resolve().parent
-AMAZON_DATA_RELATIVE = Path("caveat") / "envs" / "amazon" / "data"
-AMAZON_DATA_ROOT = ROOT / AMAZON_DATA_RELATIVE
-FROZEN_AMAZON_DATA_RELATIVE = Path("frozen_inputs") / AMAZON_DATA_RELATIVE
+CAVEAT_SHOP_DATA_RELATIVE = Path("caveat") / "envs" / "caveat_shop" / "data"
+CAVEAT_SHOP_DATA_ROOT = ROOT / CAVEAT_SHOP_DATA_RELATIVE
+FROZEN_CAVEAT_SHOP_DATA_RELATIVE = Path("frozen_inputs") / CAVEAT_SHOP_DATA_RELATIVE
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(SCRIPT_DIR))
 
@@ -1726,12 +1726,12 @@ def _original_artifact_manifest(repo_root: Path) -> dict[str, dict]:
         repo_root
         / "caveat"
         / "envs"
-        / "amazon"
+        / "caveat_shop"
         / "server"
         / "_catalogs"
     )
     for scenario in EASY_SCENARIOS:
-        source = repo_root / AMAZON_DATA_RELATIVE / scenario
+        source = repo_root / CAVEAT_SHOP_DATA_RELATIVE / scenario
         if not source.is_dir():
             raise ValueError(
                 f"original benchmark artifact root is missing: {source}"
@@ -1822,7 +1822,7 @@ def _validate_lockdiff(
         "/_catalogs/" in path for path in current_artifacts
     )
     benchmark_count = sum(
-        path.startswith(f"{AMAZON_DATA_RELATIVE.as_posix()}/")
+        path.startswith(f"{CAVEAT_SHOP_DATA_RELATIVE.as_posix()}/")
         for path in current_artifacts
     )
     if (catalog_count, benchmark_count) != (55, 50):
@@ -1866,7 +1866,7 @@ def _validate_lockdiff(
         repo_root
         / "caveat"
         / "envs"
-        / "amazon"
+        / "caveat_shop"
         / "server"
         / "frontend"
         / "dist"
@@ -2134,7 +2134,7 @@ def build_schedule(
                 )
                 run_name = f"{campaign_id}_{run_id}"
                 result_dir = (
-                    f"amazon__{scaffold}__{block_spec['model_recorded']}__"
+                    f"caveat_shop__{scaffold}__{block_spec['model_recorded']}__"
                     f"{scenario}-{VARIANT}__{block_spec['condition']}"
                 )
                 rows.append({
@@ -2856,7 +2856,7 @@ def _validate_refill_coexistence_record(
 
 def _artifact_roots() -> tuple[Path, ...]:
     return tuple(
-        AMAZON_DATA_ROOT / scenario
+        CAVEAT_SHOP_DATA_ROOT / scenario
         for scenario in (*EASY_SCENARIOS, *HARD_SCENARIOS)
     )
 
@@ -2967,7 +2967,7 @@ def prepare_campaign(
         limit_contract=limit_contract,
     )
     artifacts = {}
-    frozen_root = campaign_dir / FROZEN_AMAZON_DATA_RELATIVE
+    frozen_root = campaign_dir / FROZEN_CAVEAT_SHOP_DATA_RELATIVE
     if frozen_root.exists():
         raise SystemExit(
             "partial frozen input tree exists; preserve it and choose a new "
@@ -3107,7 +3107,7 @@ def prepare_campaign(
         },
         "artifacts": artifacts,
         "frozen_artifact_root": (
-            FROZEN_AMAZON_DATA_RELATIVE.as_posix()
+            FROZEN_CAVEAT_SHOP_DATA_RELATIVE.as_posix()
         ),
         "frozen_artifact_inventory": frozen_inventory,
         "frozen_artifact_inventory_sha256": _inventory_sha(
@@ -3262,7 +3262,7 @@ def verify_campaign(campaign_dir: Path, *, quiet: bool = False) -> dict:
         "frozen artifact snapshot",
     )
     for scenario, record in manifest["artifacts"].items():
-        current = AMAZON_DATA_ROOT / scenario
+        current = CAVEAT_SHOP_DATA_ROOT / scenario
         _verify_inventory(current, record["files"], f"runtime {scenario}")
         _verify_inventory(
             frozen_root / scenario,
@@ -4089,15 +4089,15 @@ def _smoke_order_evidence(
 ) -> dict:
     """Independently prove the selected item in one exact placed order."""
 
-    databases = sorted(run_dir.glob("amazon_*.db"))
+    databases = sorted(run_dir.glob("caveat_shop_*.db"))
     if (
         len(databases) != 1
         or databases[0].is_symlink()
         or not databases[0].is_file()
-        or re.fullmatch(r"amazon_[0-9]+\.db", databases[0].name) is None
+        or re.fullmatch(r"caveat_shop_[0-9]+\.db", databases[0].name) is None
     ):
         raise ValueError(
-            "smoke must contain exactly one regular amazon_<port>.db"
+            "smoke must contain exactly one regular caveat_shop_<port>.db"
         )
     database = databases[0]
     required_columns = {
@@ -4278,7 +4278,7 @@ def _validate_smoke_run(
     except Exception as exc:  # noqa: BLE001
         raise ValueError(f"smoke JSON is unreadable: {exc}") from exc
     expected = {
-        "env": "amazon",
+        "env": "caveat_shop",
         "scaffold": spec["scaffold"],
         "model": spec["model_recorded"],
         "task_id": f"{spec['scenario']}-{spec['variant']}",
@@ -4903,7 +4903,7 @@ def _verify_smoke_launch_evidence(
             f"{smoke_name} launch paths/port are malformed"
         ) from exc
     result_name = (
-        f"amazon__{spec['scaffold']}__{spec['model_recorded']}__"
+        f"caveat_shop__{spec['scaffold']}__{spec['model_recorded']}__"
         f"{spec['scenario']}-{spec['variant']}__{spec['condition']}"
     )
     if (
@@ -5331,7 +5331,7 @@ def launch_smoke(
     )
     experiment_dir = results_root / run_name
     result_name = (
-        f"amazon__{spec['scaffold']}__{spec['model_recorded']}__"
+        f"caveat_shop__{spec['scaffold']}__{spec['model_recorded']}__"
         f"{spec['scenario']}-{spec['variant']}__{spec['condition']}"
     )
     run_dir = experiment_dir / result_name

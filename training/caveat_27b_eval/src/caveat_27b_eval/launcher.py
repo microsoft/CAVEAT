@@ -942,7 +942,7 @@ def render_run_bundle(
     if matrix.get("campaign_id") != config["campaign_id"]:
         raise IntegrityError("matrix and campaign identities differ")
     if matrix["kind"] not in {"diagnostic", "final"}:
-        raise IntegrityError("run bundles are supported only for canonical Amazon eval matrices")
+        raise IntegrityError("run bundles are supported only for canonical CAVEAT-Shop eval matrices")
     arms = {row["arm"] for row in matrix["runs"]}
     missing = sorted(arms - set(model_specs))
     if missing:

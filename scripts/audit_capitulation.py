@@ -2,7 +2,7 @@
 """STANDING REGRESSION LOCK — the capitulation-ceiling audit.
 
 Recomputes C_L (the max unified strict P* any PINNED lure can reach, per relativeness level) for:
-  * the 5 Amazon products, from the COMMITTED caveat/envs/amazon/data/<sid>/pool.json +
+  * the 5 CAVEAT-Shop products, from the COMMITTED caveat/envs/caveat_shop/data/<sid>/pool.json +
     steering.json (combined-steering pins), and
   * the harvested-clone envs, from their catalog.py + tasks.py (advertised items), when importable.
 
@@ -82,15 +82,15 @@ def _print_table(levels, names, tab):
               f"the verdict below uses every pin)")
 
 
-def audit_amazon(sid: str, *, allow_missing: bool = False) -> bool:
-    """C_L for one Amazon product from the committed pool.json + steering.json."""
+def audit_caveat_shop(sid: str, *, allow_missing: bool = False) -> bool:
+    """C_L for one CAVEAT-Shop product from the committed pool.json + steering.json."""
     try:
         rows = serialize.load_pool(sid)
         steering = serialize.load_steering(sid)
     except Exception as e:  # noqa: BLE001
         # A REGISTERED scenario whose artifacts are missing is a build failure, not a skip:
         # reporting PASS here is exactly how an unbuilt hard scenario would sail through.
-        print(f"== amazon/{sid}: {'SKIP' if allow_missing else 'FAIL'} "
+        print(f"== caveat_shop/{sid}: {'SKIP' if allow_missing else 'FAIL'} "
               f"(artifacts unreadable: {e})")
         return allow_missing
     spec = S.get(sid)
@@ -113,7 +113,7 @@ def audit_amazon(sid: str, *, allow_missing: bool = False) -> bool:
     serving = dict(getattr(spec, "serving", None) or {})
     ceiling = float(serving.get("ceiling", HARD_TIER_CEILING)) if serving else CEILING
     tier = "HARD" if serving else "bench5"
-    print(f"== amazon/{sid}  ({len(rows)} products, {len(pins)} combined pins, hero={hero}) "
+    print(f"== caveat_shop/{sid}  ({len(rows)} products, {len(pins)} combined pins, hero={hero}) "
           f"[{tier} tier, ceiling {ceiling}]")
     _print_table(levels, ([hero] if hero else []) + pins, tab)
     print("   C_L: " + "  ".join(f"{lv}={C[lv]:.4f}" for lv in levels))
@@ -129,8 +129,8 @@ def audit_amazon(sid: str, *, allow_missing: bool = False) -> bool:
     return True
 
 
-CLONE_ENVS = ("nike", "instacart", "doordash", "ebay", "etsy", "fiverr", "stockx",
-              "zillow", "airbnb")
+CLONE_ENVS = ("caveat_sport", "caveat_grocery", "caveat_food", "caveat_market", "caveat_craft", "caveat_services", "caveat_kicks",
+              "caveat_stay")
 
 
 def audit_clone(env: str) -> bool:
@@ -234,7 +234,7 @@ def main():
           f"{HARD_TIER_CEILING} on the hard tier); spread<={SPREAD} (L2-4)")
     print(f"# auditing: {', '.join(sids)}\n")
     for sid in sids:
-        ok &= audit_amazon(sid, allow_missing=a.allow_missing)
+        ok &= audit_caveat_shop(sid, allow_missing=a.allow_missing)
         print()
     if a.clones:
         for env in CLONE_ENVS:

@@ -5,14 +5,14 @@ Quick start (Python)::
 
     import caveat.envs, caveat.scaffolds          # register plugins
     from caveat import Experiment, Runner
-    from caveat.envs.amazon import LAPTOP
+    from caveat.envs.caveat_shop import LAPTOP
 
     exp = Experiment(name="laptops", scaffolds=["browseruse"],
                      models=["gpt-5.5", "gpt-4.1"], tasks=[LAPTOP],
                      conditions=["clean", "steered"])
     Runner(results_dir="results").run(exp, jobs=4)
 
-Or from the CLI::  ``caveat run --env amazon --scaffolds browseruse``  then
+Or from the CLI::  ``caveat run --env caveat_shop --scaffolds browseruse``  then
 ``caveat view``.
 """
 

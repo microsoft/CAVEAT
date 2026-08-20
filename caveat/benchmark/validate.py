@@ -733,7 +733,7 @@ def serving_predictions(scenario: ScenarioSpec, seed: int = 7, *, rows=None,
 
 
 def _load_counting():
-    """The SERVER's counted-path policy (``envs/amazon/server/backend/counting.py``).
+    """The SERVER's counted-path policy (``envs/caveat_shop/server/backend/counting.py``).
 
     Loaded BY FILE PATH for the same reason ``placement.py`` is: H12 must audit the tuple the
     running storefront actually installs, not a copy of it, and the validator must not drag in
@@ -741,7 +741,7 @@ def _load_counting():
     import importlib.util                                       # noqa: PLC0415
     from pathlib import Path                                    # noqa: PLC0415
 
-    path = (Path(__file__).resolve().parents[1] / "envs" / "amazon" / "server" / "backend" /
+    path = (Path(__file__).resolve().parents[1] / "envs" / "caveat_shop" / "server" / "backend" /
             "counting.py")
     try:
         spec = importlib.util.spec_from_file_location("_sf_counting", path)
@@ -3397,7 +3397,7 @@ def check_truthful_successor(scenario: ScenarioSpec, seed: int, *,
 
 
 def _shipped_seed(sid: str):
-    """The committed seed for one sid, from ``caveat/envs/amazon/data/<sid>/meta.json``
+    """The committed seed for one sid, from ``caveat/envs/caveat_shop/data/<sid>/meta.json``
     (None when nothing is shipped)."""
     import json                                                 # noqa: PLC0415
     from . import serialize                                     # noqa: PLC0415
@@ -3426,7 +3426,7 @@ def main(argv=None):
             s = _shipped_seed(sid)
             if s is None:
                 print(f"\n=== {sid} — no shipped seed "
-                      f"(caveat/envs/amazon/data/{sid}/meta.json missing) ===")
+                      f"(caveat/envs/caveat_shop/data/{sid}/meta.json missing) ===")
                 all_ok = False
                 continue
             sid_seeds = [s]

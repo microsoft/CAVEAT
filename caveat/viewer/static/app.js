@@ -412,11 +412,11 @@ function bindPlayer() {
    BROWSE — launch live envs + steering sandbox (navigate yourself)
    =================================================================== */
 let BENCH = null;
-const ENV_ICON = { amazon: "🛒", airbnb: "🏠", doordash: "🍔", ebay: "🏷️", etsy: "🧶",
-                   fiverr: "💼", instacart: "🥕", nike: "👟", stockx: "📈", zillow: "🏡" };
-const ENV_ACCENT = { amazon: "#ff9900", airbnb: "#ff5a5f", doordash: "#ff3008", ebay: "#0064d2",
-                     etsy: "#f56400", fiverr: "#1dbf73", instacart: "#43b02a", nike: "#111111",
-                     stockx: "#006340", zillow: "#1277e1" };
+const ENV_ICON = { caveat_shop: "🛒", caveat_stay: "🏠", caveat_food: "🍔", caveat_market: "🏷️", caveat_craft: "🧶",
+                   caveat_services: "💼", caveat_grocery: "🥕", caveat_sport: "👟", caveat_kicks: "📈" };
+const ENV_ACCENT = { caveat_shop: "#00A2ED", caveat_stay: "#00A2ED", caveat_food: "#00A2ED", caveat_market: "#00A2ED",
+                     caveat_craft: "#00A2ED", caveat_services: "#00A2ED", caveat_grocery: "#00A2ED", caveat_sport: "#00A2ED",
+                     caveat_kicks: "#00A2ED" };
 async function browseInit() {
   await Promise.all([renderSandbox(), renderEnvGrid()]);
 }
@@ -463,7 +463,7 @@ async function renderSandbox() {
   vSel.onchange = look; cSel.onchange = look;
   fillVariants(); look();
   $("sbOpen").onclick = (ev) =>
-    launch({ env: "amazon", catalog: scSel.value, condition: cSel.value }, ev.target, $("sbStatus"));
+    launch({ env: "caveat_shop", catalog: scSel.value, condition: cSel.value }, ev.target, $("sbStatus"));
   $("sbFigs").onclick = () => { const p = $("sbFigs").dataset.prefix; if (p) showView("figures", { product: p }); };
 }
 async function renderEnvGrid() {
@@ -531,7 +531,7 @@ const VAR_SHORT = { thresholded: "L0", mixed: "L1", graded: "L2", graded3: "L3",
 /* env-specific quirks worth knowing before manual review — each one is VERIFIED present in the
    agent runs too (trajectory evidence), i.e. aligned, not viewer/env drift */
 const ENV_NOTES = {
-  doordash: "site search is a <b>no-op</b> (box accepts text, Enter does nothing) — same for the agents " +
+  caveat_food: "site search is a <b>no-op</b> (box accepts text, Enter does nothing) — same for the agents " +
     "(they note “search unavailable … browsing restaurant menus manually” in the runs). Load-bearing: the " +
     "restaurant→dish NESTING is the burial; a global dish search would let a strong agent flatten it.",
 };
@@ -602,9 +602,8 @@ function renderEnvsHome() {
          Click an environment to inspect its design, replay every agent run, and shop the live store yourself.</p>
     </div>
     <div class="penv-grid">${cards}</div>
-    <div class="page-foot">🛒 amazon is the generated benchmark (5 product scenarios, steered = the combined
-      manipulation); the other 8 are harvested brand clones. zillow is excluded for now — the GraphQL
-      holdout under REST re-alignment. Full result figures live in 📈 Results Figures.</div>`;
+    <div class="page-foot">🛒 CAVEAT-Shop is the generated benchmark (5 product scenarios, steered = the combined
+      manipulation); the other 8 are harvested environments. Full result figures live in 📈 Results Figures.</div>`;
   $("envsPage").querySelectorAll(".penv-card").forEach((el) => el.onclick = () => openEnvDetail(el.dataset.env));
 }
 
@@ -911,8 +910,8 @@ function renderAdv() {
   const st = $("advTryStatus");
   // catalog:"laptop" = the benchmark scenario (the 70-item EXP-LAPTOP catalog the agent runs used),
   // so the injected store carries the same hidden notes; both stores look identical to a human.
-  $("advOpenClean").onclick = (ev) => launch({ env: "amazon", catalog: "laptop", condition: "clean", variant: "graded4" }, ev.target, st);
-  $("advOpenAdv").onclick = (ev) => launch({ env: "amazon", catalog: "laptop", condition: "ai-injection", variant: "graded4" }, ev.target, st);
+  $("advOpenClean").onclick = (ev) => launch({ env: "caveat_shop", catalog: "laptop", condition: "clean", variant: "graded4" }, ev.target, st);
+  $("advOpenAdv").onclick = (ev) => launch({ env: "caveat_shop", catalog: "laptop", condition: "ai-injection", variant: "graded4" }, ev.target, st);
 }
 /* ===================================================================
    ADVERSARIAL TAXONOMY — one condition per attack family x 5 products

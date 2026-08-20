@@ -2,7 +2,7 @@
   "schema_version": 1,
   "campaign_id": "caveat_27b_v1",
   "seed": 35270011,
-  "environment": "amazon",
+  "environment": "caveat_shop",
   "scaffold": "caveat-harness",
   "expected_harness_file_sha256": {
     "caveat/scaffolds/browseruse.py": "f4c50c56c7f29ac122d06629e0b8c7d9cd3c4008f0077a959b3f777729f8e9c3",
@@ -14,7 +14,7 @@
     "revision": "fc05daec18b0a78c049392ed2e771dde82bdf654",
     "trapi_diagnostic_name": "Qwen/Qwen3.5-27B"
   },
-  "amazon": {
+  "caveat_shop": {
     "development_scenarios": ["laptop"],
     "held_out_scenarios": ["office_chair", "mattress", "backpack", "tent"],
     "variants": ["mixed", "graded", "graded3", "graded4"],

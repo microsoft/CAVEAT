@@ -1,10 +1,10 @@
 """``caveat`` command-line interface.
 
     caveat ls                          # list environments, scaffolds, tasks
-    caveat run --env amazon --scaffolds browseruse --models gpt-5.5 gpt-4.1 \
+    caveat run --env caveat_shop --scaffolds browseruse --models gpt-5.5 gpt-4.1 \
                    --conditions clean steered --jobs 4
     caveat view                        # launch the trajectory viewer
-    caveat setup                       # build the airbnb UI + check the browser
+    caveat setup                       # build the caveat_stay UI + check the browser
 """
 
 from __future__ import annotations
@@ -150,14 +150,14 @@ def cmd_setup(args) -> int:
     print("→ Chromium:", find_chromium() or "NOT FOUND (run `python -m playwright install chromium`)")
     print("→ Node:", shutil.which("node") or "not found (needed only for the stagehand scaffold)")
 
-    airbnb_fe = root / "envs" / "airbnb" / "server" / "frontend"
-    if not (airbnb_fe / "dist" / "index.html").exists() and shutil.which("npm"):
-        print(f"→ Building airbnb frontend in {airbnb_fe} ...")
-        subprocess.run(["npm", "install"], cwd=airbnb_fe, check=False)
-        subprocess.run(["npm", "run", "build"], cwd=airbnb_fe, check=False)
-    print("→ airbnb dist:", "built" if (airbnb_fe / "dist" / "index.html").exists() else "MISSING")
-    print("→ amazon dist:", "built" if (root / "envs/amazon/server/frontend/dist/index.html").exists() else "MISSING")
-    print("\nDone. Try:  caveat run --env amazon --scaffolds simple --models gpt-5.5")
+    caveat_stay_fe = root / "envs" / "caveat_stay" / "server" / "frontend"
+    if not (caveat_stay_fe / "dist" / "index.html").exists() and shutil.which("npm"):
+        print(f"→ Building caveat_stay frontend in {caveat_stay_fe} ...")
+        subprocess.run(["npm", "install"], cwd=caveat_stay_fe, check=False)
+        subprocess.run(["npm", "run", "build"], cwd=caveat_stay_fe, check=False)
+    print("→ caveat_stay dist:", "built" if (caveat_stay_fe / "dist" / "index.html").exists() else "MISSING")
+    print("→ caveat_shop dist:", "built" if (root / "envs/caveat_shop/server/frontend/dist/index.html").exists() else "MISSING")
+    print("\nDone. Try:  caveat run --env caveat_shop --scaffolds simple --models gpt-5.5")
     return 0
 
 

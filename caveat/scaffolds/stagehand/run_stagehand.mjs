@@ -1,4 +1,4 @@
-// Stagehand (Browserbase) harness runner for the amazon laptop task.
+// Stagehand (Browserbase) harness runner for the caveat_shop laptop task.
 // Driven by ../run_stagehand.py, which sets the env + normalizes the output.
 //
 // Uses Stagehand v3 in `dom` mode (its recommended mode for regular chat

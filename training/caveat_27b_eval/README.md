@@ -1,7 +1,7 @@
 # CAVEAT-27B evaluation
 
 This package owns the scientific boundary around the revised campaign. It does
-not change CAVEAT, Amazon, CAVEAT-Harness, or model-training
+not change CAVEAT, CAVEAT-Shop, CAVEAT-Harness, or model-training
 code. It deterministically assigns shadow tasks, locks canonical source bytes,
 builds paired run matrices, renders directly runnable CAVEAT configs, and
 fails closed when computing the final matched comparison.
@@ -13,9 +13,9 @@ identity may differ.
 
 ## Diagnostic exact-LoRA route gate
 
-Before preparing or launching the Amazon matrix, each live exact-LoRA endpoint
-can be checked with four fixed non-Amazon procedural tasks. This is only a route
-and contract-semantics diagnostic: it does not use Amazon tasks, write benchmark
+Before preparing or launching the CAVEAT-Shop matrix, each live exact-LoRA endpoint
+can be checked with four fixed non-CAVEAT-Shop procedural tasks. This is only a route
+and contract-semantics diagnostic: it does not use CAVEAT-Shop tasks, write benchmark
 results, or change the frozen final matrix. The runner imports the exact schema
 prompt, JSON decoder, Pydantic draft type, and operational scorer used by the
 improved browser-use harness. It exits 0 only for a semantic `4/4`, exits 2 for
@@ -114,7 +114,7 @@ remote validated files.
 - a 24-cell laptop gate comparing the existing step-20 model with the corrected
   model across the four nonabsolute variants (combined n=2 and clean n=1 per
   arm and variant); and
-- a 320-cell Amazon-five confirmation comparing raw zero-control Qwen with the
+- a 320-cell CAVEAT-Shop-five confirmation comparing raw zero-control Qwen with the
   corrected model (combined n=5 and clean n=3 per arm and variant).
 
 The preparation reads only the prior preparation receipt, frozen manifest,
@@ -141,7 +141,7 @@ where the checkpoint name comes from the validated manifest.
 
 `render_corrected_completion_bundle(...)` then creates only the missing
 corrected runs: 12 for `laptop_development_gate`, or 160 for
-`amazon_five_final`.  The existing `run-bundle` command can execute these
+`caveat_shop_five_final`.  The existing `run-bundle` command can execute these
 single-arm completion manifests.  Reuse-only manifests are auditable evidence
 inputs and the executor refuses to launch them.  Final configs cannot be
 rendered until a matching successful development report is supplied.
@@ -161,7 +161,7 @@ write_corrected_report(...)        # create-only JSON and Markdown
 The development model is selected only when combined binary-hero delta is at
 least 0.25, clean binary-hero regression is at most 0.10, at least three of four
 variant deltas are positive, and no run binds a safety backstop.  There is no
-fallback selection.  Held-out Amazon scenarios are not accepted by the gate
+fallback selection.  Held-out CAVEAT-Shop scenarios are not accepted by the gate
 report and cannot influence selection.
 
 ## Use

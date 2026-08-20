@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create-only, outcome-blind CAVEAT-27B fixed-v7 Amazon candidate evaluation.
+"""Create-only, outcome-blind CAVEAT-27B fixed-v7 CAVEAT-Shop candidate evaluation.
 
 The evaluation reuses the exact raw and step-20 controls frozen by the fixed-v6
 prospective protocol.  Both fresh candidate category bundles are rendered and
@@ -105,9 +105,9 @@ EXPECTED_ROLE_VARIANT_COUNTS = {
     },
 }
 EXPECTED_EXCLUDED_SEQUENCE_REASONS = {
-    "amazon-r00-repair-repair-v2-7ceed-r1-graded-6": "truncated_proxy_completion",
-    "amazon-r00-repair-repair-v2-7ceed-r1-mixed-1": "no_exact_wire_critical_target",
-    "amazon-r00-repair-repair-v2-7ceed-r1-mixed-2": "terminal_policy_violation",
+    "caveat_shop-r00-repair-repair-v2-7ceed-r1-graded-6": "truncated_proxy_completion",
+    "caveat_shop-r00-repair-repair-v2-7ceed-r1-mixed-1": "no_exact_wire_critical_target",
+    "caveat_shop-r00-repair-repair-v2-7ceed-r1-mixed-2": "terminal_policy_violation",
 }
 
 SYNTHESIS_ANALYSIS_SPEC = {
@@ -206,7 +206,7 @@ def valid_repair_fanout(receipt: Mapping[str, Any]) -> bool:
         for row in excluded
     }
     return (
-        receipt.get("schema") == "harness-distill.amazon-r00-repair-fanout-receipt.v4"
+        receipt.get("schema") == "harness-distill.caveat_shop-r00-repair-fanout-receipt.v4"
         and receipt.get("status") == "complete"
         and receipt.get("scientific_label")
         == "same_task_laptop_r00_pooled_exact_target_repair_fanout"
@@ -282,11 +282,11 @@ ARTIFACT_BODY_FIELDS = {
         "release_sha256",
     ),
     "training_receipt": (
-        "harness-distill.amazon-r00-repair-sft-training-receipt.v1",
+        "harness-distill.caveat_shop-r00-repair-sft-training-receipt.v1",
         "receipt_body_sha256",
     ),
     "fanout_receipt": (
-        "harness-distill.amazon-r00-repair-fanout-receipt.v4",
+        "harness-distill.caveat_shop-r00-repair-fanout-receipt.v4",
         "receipt_body_sha256",
     ),
     "serve_release_descriptor": (
@@ -337,7 +337,7 @@ def _read_labels(path: Path) -> dict[str, Any]:
     if (
         value.get("schema") != "caveat-27b-eval.fixed-v7-labels.v1"
         or value.get("frozen_before_v7_training_or_inference") is not True
-        or value.get("candidate_selection_from_amazon_outcomes") is not False
+        or value.get("candidate_selection_from_caveat_shop_outcomes") is not False
         or value.get("laptop", {}).get("label") != LABELS["laptop"]
         or value.get("office_chair", {}).get("label") != LABELS["office_chair"]
         or value.get("laptop", {}).get("conditions") != CONDITIONS
@@ -490,7 +490,7 @@ def freeze(arguments: argparse.Namespace) -> None:
             "path": str(arguments.endpoint_receipt.resolve()),
             "schema": ENDPOINT_SCHEMA,
             "base_url": EXPECTED_MODEL_BASE_URL,
-            "candidate_name": "step24-amazon-r00-repair-sft",
+            "candidate_name": "step24-caveat_shop-r00-repair-sft",
             "candidate_update": 24,
         },
         "candidate": {
@@ -500,7 +500,7 @@ def freeze(arguments: argparse.Namespace) -> None:
             "candidate_retraining_between_categories": False,
         },
         "common_contract": {
-            "environment": "amazon",
+            "environment": "caveat_shop",
             "scaffold": "caveat-harness",
             "variants": list(VARIANTS),
             "conditions": CONDITIONS,
@@ -658,7 +658,7 @@ def audit_endpoint(path: Path) -> dict[str, Any]:
         or training_receipt.get("learning_rate") != 5e-7
         or training_receipt.get("assistant_tokens_only") is not True
         or training_receipt.get("candidate", {}).get("name")
-        != "step24-amazon-r00-repair-sft"
+        != "step24-caveat_shop-r00-repair-sft"
         or training_receipt.get("candidate", {}).get("update") != 24
         or training_receipt.get("candidate", {}).get("tree_sha256")
         != "49e66d189603142232d0e4f1b3549d32b783ebed5fa4d3efd0e04af3197a5508"
@@ -690,7 +690,7 @@ def audit_endpoint(path: Path) -> dict[str, Any]:
         or release_fanout.get("execution_count") != 16
         or release_fanout.get("valid_replay_count") != 13
         or release_fanout.get("excluded_execution_count") != 3
-        or release_candidate.get("name") != "step24-amazon-r00-repair-sft"
+        or release_candidate.get("name") != "step24-caveat_shop-r00-repair-sft"
         or release_candidate.get("update") != 24
         or serve_release.get("scientific_flags")
         != {
@@ -719,7 +719,7 @@ def audit_endpoint(path: Path) -> dict[str, Any]:
         dtype=candidate["dtype"],
     )
     if (
-        candidate.get("name") != "step24-amazon-r00-repair-sft"
+        candidate.get("name") != "step24-caveat_shop-r00-repair-sft"
         or candidate.get("update") != 24
         or candidate.get("dtype") != "bfloat16"
         or candidate.get("composite_sha256") != expected_composite
@@ -921,7 +921,7 @@ def _render_category(
             results_root
             / category
             / (
-                "amazon__caveat-harness__fixed_v7__"
+                "caveat_shop__caveat-harness__fixed_v7__"
                 f"{category}-{cell[1]}__{cell[2]}__{run_id.replace('::', '-')}"
             )
         )
