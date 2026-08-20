@@ -242,7 +242,14 @@ def mount_static(app: FastAPI, static_path: Path):
             # look like a live docs endpoint to a probing agent.
             if full_path in ("docs", "redoc", "openapi.json"):
                 return PlainTextResponse("Not Found", status_code=404)
-            file_path = static_dir / full_path
+            static_root = os.path.realpath(static_dir)
+            file_path = os.path.realpath(os.path.join(static_root, full_path))
+            if (
+                file_path != static_root
+                and not file_path.startswith(static_root + os.sep)
+            ):
+                return PlainTextResponse("Not Found", status_code=404)
+            file_path = Path(file_path)
             if (full_path and full_path != "index.html"
                     and file_path.exists() and file_path.is_file()):
                 return FileResponse(file_path)

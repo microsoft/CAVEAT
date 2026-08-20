@@ -246,7 +246,7 @@
     }
 
     function c(e) {
-        return e.replace(/([=!:$\/()])/g, "\\$1")
+        return e.replace(/([=!:$\/()\\])/g, "\\$1")
     }
 
     function s(e, t) {

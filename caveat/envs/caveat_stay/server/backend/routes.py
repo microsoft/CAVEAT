@@ -1,4 +1,3 @@
-import hashlib
 import math
 import secrets
 from datetime import datetime, date, timezone
@@ -10,6 +9,7 @@ from sqlalchemy import case
 from sqlmodel import Session, select, or_, func
 
 from backend.database import get_session
+from backend.security import hash_password, verify_password
 from backend.models import (
     User, Listing, ListingImage, Category, ListingCategory,
     Amenity, ListingAmenity, Booking, Review,
@@ -150,10 +150,6 @@ class ResetRequest(BaseModel):
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
-
-def _hash_password(password: str) -> str:
-    return hashlib.sha256(password.encode()).hexdigest()
-
 
 def _recalculate_listing_rating(session: Session, listing_id: int):
     """Recalculate avg_rating and review_count for a listing."""
@@ -360,7 +356,7 @@ def register(body: UserRegister, session: Session = Depends(get_session)):
     user = User(
         email=body.email,
         name=body.name,
-        password_hash=_hash_password(body.password),
+        password_hash=hash_password(body.password),
         member_since=datetime.now(timezone.utc),
     )
     session.add(user)
@@ -377,7 +373,7 @@ def login(body: UserLogin, session: Session = Depends(get_session)):
     user = session.exec(
         select(User).where(User.email == body.email)
     ).first()
-    if not user or user.password_hash != _hash_password(body.password):
+    if not user or not verify_password(body.password, user.password_hash):
         raise HTTPException(status_code=401, detail="Invalid email or password")
     set_default_user_id(user.id)
     return _user_to_dict(user)
@@ -2308,15 +2304,46 @@ def seed_database_endpoint(_admin=Depends(require_admin_key)):
 @router.get("/images/proxy")
 def proxy_image(url: str):
     """Proxy external images to avoid CORS/network issues."""
-    from urllib.parse import urlparse
-    allowed_domains = {"a0.muscache.com", "images.unsplash.com", "source.unsplash.com", "pravatar.cc"}
-    parsed = urlparse(url)
-    if parsed.hostname not in allowed_domains:
-        raise HTTPException(status_code=403, detail="Domain not allowed")
+    from urllib.parse import urlsplit, urlunsplit
 
     try:
-        resp = req_lib.get(url, timeout=10, stream=True)
+        parsed = urlsplit(url)
+        port = parsed.port
+    except ValueError:
+        raise HTTPException(status_code=403, detail="Domain not allowed") from None
+    if (
+        parsed.scheme not in {"http", "https"}
+        or parsed.username is not None
+        or parsed.password is not None
+        or port is not None
+    ):
+        raise HTTPException(status_code=403, detail="Domain not allowed")
+
+    # Choose the origin from server-owned constants. Only the path and query are
+    # retained from the request, so callers cannot redirect the server to a new host.
+    if parsed.hostname == "a0.muscache.com":
+        origin = "a0.muscache.com"
+    elif parsed.hostname == "images.unsplash.com":
+        origin = "images.unsplash.com"
+    elif parsed.hostname == "source.unsplash.com":
+        origin = "source.unsplash.com"
+    elif parsed.hostname == "pravatar.cc":
+        origin = "pravatar.cc"
+    else:
+        raise HTTPException(status_code=403, detail="Domain not allowed")
+
+    safe_url = urlunsplit(("https", origin, parsed.path or "/", parsed.query, ""))
+
+    try:
+        resp = req_lib.get(
+            safe_url,
+            timeout=10,
+            stream=True,
+            allow_redirects=False,
+        )
         resp.raise_for_status()
+        if resp.is_redirect:
+            raise HTTPException(status_code=404, detail="Image not found")
         content_type = resp.headers.get("content-type", "image/jpeg")
         return Response(content=resp.content, media_type=content_type)
     except Exception:

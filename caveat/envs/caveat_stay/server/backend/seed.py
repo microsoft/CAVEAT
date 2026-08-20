@@ -2,7 +2,6 @@
 
 import argparse
 import csv
-import hashlib
 import html as html_mod
 import json
 import os
@@ -14,6 +13,7 @@ from datetime import datetime, timedelta, date
 from sqlmodel import Session, delete, select
 
 from backend.database import get_engine, init_db, set_db_path
+from backend.security import hash_password
 from backend.models import (
     User, Listing, ListingImage, Category, ListingCategory,
     Amenity, ListingAmenity, Booking, Review,
@@ -21,10 +21,6 @@ from backend.models import (
     Neighbourhood, HelpArticle, SupportTicket, SearchHistory,
     MessageThread, Message, Notification, BlockedDate, ReservationShare,
 )
-
-
-def hash_password(password: str) -> str:
-    return hashlib.sha256(password.encode()).hexdigest()
 
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')

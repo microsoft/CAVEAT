@@ -1,7 +1,6 @@
 """Database seed script for CAVEAT-Shop mockup application."""
 
 import json
-import hashlib
 import random
 import secrets
 from datetime import datetime, timedelta, date
@@ -9,6 +8,7 @@ from pathlib import Path
 from sqlmodel import Session
 
 from backend.database import get_engine, init_db
+from backend.security import hash_password
 from backend.models import (
     User,
     UserSession,
@@ -39,10 +39,6 @@ from backend.models import (
     Message,
     ShoppingPreference,
 )
-
-
-def hash_password(password: str) -> str:
-    return hashlib.sha256(password.encode()).hexdigest()
 
 
 def seed_database():

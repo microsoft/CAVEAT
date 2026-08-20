@@ -2,7 +2,6 @@
 
 import json
 import os
-import hashlib
 import secrets
 import random
 import string
@@ -29,6 +28,7 @@ def _relevance_score(q: str):
     return expr
 
 from backend.database import get_session
+from backend.security import hash_password, verify_password
 from backend.models import (
     User,
     UserSession,
@@ -318,10 +318,6 @@ class PreferencesUpdate(BaseModel):
 # ============================================================================
 
 active_sessions: dict[str, int] = {}
-
-
-def hash_password(password: str) -> str:
-    return hashlib.sha256(password.encode()).hexdigest()
 
 
 def get_current_user_id(session_token: Optional[str] = Cookie(None)) -> int:
@@ -725,7 +721,7 @@ def register(
 @router.post("/auth/login")
 def login(data: UserLogin, response: Response, session: Session = Depends(get_session)):
     user = session.exec(select(User).where(User.email == data.email)).first()
-    if not user or user.password_hash != hash_password(data.password):
+    if not user or not verify_password(data.password, user.password_hash):
         raise HTTPException(status_code=401, detail="Invalid email or password")
 
     token = secrets.token_hex(32)
@@ -930,7 +926,7 @@ def change_password(
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
 
-    if user.password_hash != hash_password(data.current_password):
+    if not verify_password(data.current_password, user.password_hash):
         raise HTTPException(status_code=400, detail="Current password is incorrect")
 
     user.password_hash = hash_password(data.new_password)

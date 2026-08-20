@@ -186,10 +186,9 @@ p{
     // drops them on the store page.
     function signup() {
         var email = document.querySelector('.emailBox').value.trim();
-        var password = document.querySelector('.passwordBox').value;
         if (email) {
             var arr = JSON.parse(localStorage.getItem('signupDatabase') || '[]');
-            arr.push({ email: email, password: password });
+            arr.push({ email: email });
             localStorage.setItem('signupDatabase', JSON.stringify(arr));
             localStorage.setItem('ic_user', email);
         }

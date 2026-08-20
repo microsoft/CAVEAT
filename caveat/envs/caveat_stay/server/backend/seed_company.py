@@ -2,7 +2,6 @@
 
 import argparse
 import csv
-import hashlib
 import os
 import random
 from datetime import datetime, timedelta, date
@@ -10,6 +9,7 @@ from datetime import datetime, timedelta, date
 from sqlmodel import SQLModel, Session, delete, select
 
 from backend.database import get_engine, init_db, set_db_path
+from backend.security import hash_password
 from backend.models import (
     User, Listing, ListingImage, Category, ListingCategory,
     Amenity, ListingAmenity, Booking, Review,
@@ -18,10 +18,6 @@ from backend.models import (
     MessageThread, Message, Notification,
     ReservationShare, BlockedDate
 )
-
-
-def hash_password(password: str) -> str:
-    return hashlib.sha256(password.encode()).hexdigest()
 
 
 # --- Static Data ---
