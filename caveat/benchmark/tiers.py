@@ -32,7 +32,7 @@ STOREFRONT_ENVIRONMENTS = (
 ALL_ENVIRONMENTS = ("caveat_shop", *STOREFRONT_ENVIRONMENTS)
 
 STANDARD_SHOP_VARIANTS = ("mixed", "graded", "graded3", "graded4")
-STANDARD_STOREFRONT_VARIANTS = ("thresholded", "mixed", "graded", "graded3", "graded4")
+STANDARD_STOREFRONT_VARIANTS = ("mixed", "graded", "graded3", "graded4")
 HARD_VARIANTS = ("graded",)
 
 # These repetitions reproduce the released evaluation protocols.  A smaller
@@ -94,7 +94,7 @@ def tier_groups(
             TierGroup(
                 "shop",
                 tasks,
-                ("combined",),
+                ("clean", "combined") if tier == CAVEAT_STANDARD else ("combined",),
             )
         )
     if tier == CAVEAT_STANDARD:

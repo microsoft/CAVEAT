@@ -22,6 +22,7 @@ from .tiers import (
     SHOP_HARD_SCENARIOS,
     SHOP_STANDARD_SCENARIOS,
     STANDARD_SHOP_VARIANTS,
+    STANDARD_STOREFRONT_VARIANTS,
     STOREFRONT_ENVIRONMENTS,
     TIER_NAMES,
 )
@@ -206,7 +207,7 @@ def validate(scenarios: Iterable[str] | None = None) -> list[dict[str, Any]]:
 
 def validate_storefront_environment(environment: str) -> dict[str, Any]:
     """Validate one non-shop environment's binary optimal-selection oracle."""
-    from ..envs._storefront.tasks7 import VARIANTS7, project
+    from ..envs._storefront.tasks7 import project
 
     spec = importlib.import_module(f"caveat.envs.{environment}.tasks").PREF7
     catalog_module = importlib.import_module(f"caveat.envs.{environment}.catalog")
@@ -229,7 +230,7 @@ def validate_storefront_environment(environment: str) -> dict[str, Any]:
     optimal_by_variant: dict[str, list[str]] = {}
     shared_relative_winner: set[int] | None = None
 
-    for variant in VARIANTS7:
+    for variant in STANDARD_STOREFRONT_VARIANTS:
         preferences, graded = project(spec, variant)
         winners = optimal_indices(candidates, preferences, graded)
         optimal_by_variant[variant] = sorted(
