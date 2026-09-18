@@ -1,11 +1,15 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Database seed script for CAVEAT-Shop mockup application."""
 
 import json
 import random
+import re
 import secrets
 from datetime import datetime, timedelta, date
 from pathlib import Path
-from sqlmodel import Session
+from sqlmodel import Session, select
 
 from backend.database import get_engine, init_db
 from backend.security import hash_password
@@ -229,20 +233,6 @@ def seed_database():
         with departments_path.open("r") as f:
             departments_data = json.load(f)
 
-        # departments_data = [
-        #     {"name": "Electronics", "slug": "electronics", "display_order": 1},
-        #     {"name": "Computers", "slug": "computers", "display_order": 2},
-        #     {"name": "Home & Kitchen", "slug": "home-kitchen", "display_order": 3},
-        #     {"name": "Clothing", "slug": "clothing", "display_order": 4},
-        #     {"name": "Books", "slug": "books", "display_order": 5},
-        #     {
-        #         "name": "Sports & Outdoors",
-        #         "slug": "sports-outdoors",
-        #         "display_order": 6,
-        #     },
-        #     {"name": "Beauty", "slug": "beauty", "display_order": 7},
-        #     {"name": "Toys & Games", "slug": "toys-games", "display_order": 8},
-        # ]
         for dept_data in departments_data:
             session.add(Department(**dept_data))
         session.commit()
@@ -251,52 +241,11 @@ def seed_database():
         # Create Categories
         # =====================================================================
         categories_data = [
-            {"department_id": 1, "name": "Smartphones", "slug": "smartphones"},
-            {"department_id": 1, "name": "Headphones", "slug": "headphones"},
-            {"department_id": 1, "name": "TVs", "slug": "tvs"},
-            {"department_id": 1, "name": "Cameras", "slug": "cameras"},
-            {"department_id": 2, "name": "Laptops", "slug": "laptops"},
-            {"department_id": 2, "name": "Monitors", "slug": "monitors"},
-            {
-                "department_id": 2,
-                "name": "Computer Accessories",
-                "slug": "computer-accessories",
-            },
-            {
-                "department_id": 3,
-                "name": "Kitchen Appliances",
-                "slug": "kitchen-appliances",
-            },
-            {"department_id": 3, "name": "Furniture", "slug": "furniture"},
-            {"department_id": 3, "name": "Bedding", "slug": "bedding"},
-            {"department_id": 4, "name": "Men's Clothing", "slug": "mens-clothing"},
-            {"department_id": 4, "name": "Women's Clothing", "slug": "womens-clothing"},
-            {"department_id": 5, "name": "Fiction", "slug": "fiction"},
-            {"department_id": 5, "name": "Non-Fiction", "slug": "non-fiction"},
-            # Sports & Outdoors (department_id: 6)
-            {
-                "department_id": 6,
-                "name": "Exercise & Fitness",
-                "slug": "exercise-fitness",
-            },
-            {
-                "department_id": 6,
-                "name": "Outdoor Recreation",
-                "slug": "outdoor-recreation",
-            },
-            {
-                "department_id": 6,
-                "name": "Sports Equipment",
-                "slug": "sports-equipment",
-            },
-            # Beauty (department_id: 7)
-            {"department_id": 7, "name": "Skincare", "slug": "skincare"},
-            {"department_id": 7, "name": "Makeup", "slug": "makeup"},
-            {"department_id": 7, "name": "Hair Care", "slug": "hair-care"},
-            # Toys & Games (department_id: 8)
-            {"department_id": 8, "name": "Board Games", "slug": "board-games"},
-            {"department_id": 8, "name": "Action Figures", "slug": "action-figures"},
-            {"department_id": 8, "name": "Building Toys", "slug": "building-toys"},
+            {"department_id": 1, "name": "Laptops", "slug": "laptops"},
+            {"department_id": 2, "name": "Office Chairs", "slug": "home-office"},
+            {"department_id": 3, "name": "Mattresses", "slug": "home-bedroom"},
+            {"department_id": 4, "name": "Backpacks", "slug": "travel-gear"},
+            {"department_id": 5, "name": "Tents", "slug": "outdoors"},
         ]
         for cat_data in categories_data:
             session.add(Category(**cat_data))
@@ -305,30 +254,7 @@ def seed_database():
         # =====================================================================
         # Create Brands
         # =====================================================================
-        brands_data = [
-            {"name": "Apple", "slug": "apple", "is_verified": True},
-            {"name": "Samsung", "slug": "samsung", "is_verified": True},
-            {"name": "Sony", "slug": "sony", "is_verified": True},
-            {"name": "LG", "slug": "lg", "is_verified": True},
-            {"name": "Dell", "slug": "dell", "is_verified": True},
-            {"name": "HP", "slug": "hp", "is_verified": True},
-            {"name": "Bose", "slug": "bose", "is_verified": True},
-            {"name": "CAVEAT-Sport", "slug": "caveat_sport", "is_verified": True},
-            {"name": "Instant Pot", "slug": "instant-pot", "is_verified": True},
-            {"name": "CAVEAT-Shop Basics", "slug": "caveat_shopbasics", "is_verified": True},
-            # Sports & Outdoors brands
-            {"name": "Bowflex", "slug": "bowflex", "is_verified": True},
-            {"name": "Coleman", "slug": "coleman", "is_verified": True},
-            {"name": "Wilson", "slug": "wilson", "is_verified": True},
-            # Beauty brands
-            {"name": "CeraVe", "slug": "cerave", "is_verified": True},
-            {"name": "Maybelline", "slug": "maybelline", "is_verified": True},
-            {"name": "Olaplex", "slug": "olaplex", "is_verified": True},
-            # Toys & Games brands
-            {"name": "Hasbro", "slug": "hasbro", "is_verified": True},
-            {"name": "LEGO", "slug": "lego", "is_verified": True},
-            {"name": "Funko", "slug": "funko", "is_verified": True},
-        ]
+        brands_data = []
         for brand_data in brands_data:
             session.add(Brand(**brand_data))
         session.commit()
@@ -369,9 +295,51 @@ def seed_database():
         # =====================================================================
         # Create Products
         # =====================================================================
-        products_path = Path(__file__).resolve().parent / "products.json"
-        with products_path.open("r") as f:
-            products_data = json.load(f)
+        from backend.experiment_laptops import _catalog
+
+        benchmark_catalog = _catalog()
+        category = session.exec(
+            select(Category).where(
+                Category.slug == benchmark_catalog.get("category_slug", "laptops")
+            )
+        ).first()
+        if category is None:
+            category = session.exec(select(Category)).first()
+        seller = session.exec(select(Seller)).first()
+        products_data = []
+        for source in benchmark_catalog.get("products", []):
+            tech = source.get("tech", {})
+            weight_kg = tech.get("weight_kg")
+            products_data.append(
+                {
+                    "asin": source["asin"],
+                    "title": source["title"],
+                    "slug": re.sub(
+                        r"[^a-z0-9]+", "-", source["title"].lower()
+                    ).strip("-")[:80],
+                    "brand_id": None,
+                    "category_id": category.id,
+                    "seller_id": seller.id,
+                    "price": source["price"],
+                    "list_price": source.get("list_price"),
+                    "description_html": source.get("description", ""),
+                    "bullet_points": source.get("bullets", []),
+                    "stock_quantity": int(source.get("stock", 100) or 100),
+                    "images": [
+                        f"/images/{source.get('image', 'laptop-generic.png')}"
+                    ],
+                    "rating": source.get("rating", 4.5),
+                    "rating_count": source.get("reviews", 0),
+                    "review_count": source.get("reviews", 0),
+                    "bought_past_month": source.get("bought", 0),
+                    "weight_pounds": (
+                        round(float(weight_kg) * 2.205, 1)
+                        if weight_kg is not None
+                        else None
+                    ),
+                    "technical_details": json.dumps(tech),
+                }
+            )
 
         for product_data in products_data:
             product_data["images"] = json.dumps(product_data.get("images", []))
@@ -2159,7 +2127,7 @@ def seed_database():
                 "user_id": 1,
                 "type": "deal_alert",
                 "title": "Deal on item in your list",
-                "message": 'Samsung 65" OLED 4K Smart TV is now $400 off!',
+                "message": "An item on your list is now on sale!",
                 "link": "/dp/B0BDJMKHF3",
                 "is_read": True,
             },
@@ -2276,7 +2244,7 @@ def seed_database():
                 "user_id": 1,
                 "sender_type": "caveat_shop",
                 "subject": "Return request approved",
-                "body": "Your return request for Sony WH-1000XM5 Wireless Headphones from order #112-7777777-8888888 has been approved. Please ship the item back within 7 days using the prepaid shipping label we've provided. Once we receive and inspect the item, your refund will be processed within 3-5 business days.",
+                "body": "Your return request from order #112-7777777-8888888 has been approved. Please ship the item back within 7 days using the prepaid shipping label we've provided. Once we receive and inspect the item, your refund will be processed within 3-5 business days.",
                 "related_order_id": 4,
                 "is_read": False,
             },
@@ -2284,7 +2252,7 @@ def seed_database():
                 "user_id": 1,
                 "sender_type": "caveat_shop",
                 "subject": "Your refund has been processed",
-                "body": "We've processed your refund of $299.99 for the Bose SoundLink Revolve+ Speaker from order #112-2222222-3333333. The refund should appear on your original payment method within 5-7 business days.",
+                "body": "We've processed your refund of $299.99 from order #112-2222222-3333333. The refund should appear on your original payment method within 5-7 business days.",
                 "related_order_id": 5,
                 "is_read": True,
             },
@@ -2313,17 +2281,16 @@ def seed_database():
             )
         session.commit()
 
-        # --- preference-preservation experiment add-on (opt-in) ---
-        import os as _os
+        # Replace the transient relational fixtures with the selected benchmark
+        # catalog. Without an explicit scenario, experiment_laptops uses the
+        # standard laptop catalog as the standalone default.
+        from backend.experiment_laptops import seed_laptops
 
-        if _os.environ.get("CAVEAT_SHOP_EXPERIMENT") == "laptops":
-            from backend.experiment_laptops import seed_laptops
-
-            seed_laptops(session)
-            # Start from an empty cart so the agent's final choice is unambiguous.
-            for _item in session.query(CartItem).all():
-                session.delete(_item)
-            session.commit()
+        seed_laptops(session)
+        # Start from an empty cart so the agent's final choice is unambiguous.
+        for _item in session.query(CartItem).all():
+            session.delete(_item)
+        session.commit()
 
         print("Database seeded successfully!")
 

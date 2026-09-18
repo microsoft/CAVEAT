@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """uvicorn entry: serves /api + the real CAVEAT-Grocery static site (frontend/) on one origin."""
 
 from pathlib import Path

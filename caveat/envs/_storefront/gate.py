@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Session-scoped storefront gate + rate-based anti-bot (env-agnostic).
 
 Real marketplaces expose no public shopper JSON API: the SPA's XHR surface is

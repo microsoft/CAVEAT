@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """CAVEAT's binary optimal-selection metric."""
 
 from .optimal_selection import (  # noqa: F401

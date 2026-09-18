@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """CAVEAT-Food environment — the REAL harvested Next.js clone (static-exported) served by
 our FastAPI, with its data wired to our generic /api. Browse restaurants -> dish ->
 add to cart -> checkout -> order placed; we read back the order and score the dish.

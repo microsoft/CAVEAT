@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """uvicorn entry: generic /api + the caveat_craft compat endpoints (/caveat_craft/*) + the real CAVEAT-Craft
 (CAVEAT-Craft) webpack bundle, one origin."""
 

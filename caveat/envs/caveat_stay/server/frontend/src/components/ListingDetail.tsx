@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FiHeart, FiMessageSquare, FiChevronLeft, FiChevronRight, FiPlus } from 'react-icons/fi';

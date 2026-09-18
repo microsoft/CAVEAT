@@ -129,4 +129,30 @@ caveat/                 benchmark runtime
 └── scoring/            optimal-selection rate
 ```
 
-The project is licensed under the [MIT License](LICENSE). Report security vulnerabilities using [SECURITY.md](SECURITY.md), not a public issue.
+## Contributing
+
+Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for setup,
+development checks, and Microsoft Contributor License Agreement requirements.
+This project has adopted the
+[Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
+
+## Security and privacy
+
+Report security vulnerabilities using [SECURITY.md](SECURITY.md), not a public
+issue. See [PRIVACY.md](PRIVACY.md) for data collection and telemetry
+information.
+
+## Trademarks
+
+This project may contain trademarks or logos for projects, products, or
+services. Authorized use of Microsoft trademarks or logos is subject to and
+must follow
+[Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks).
+Use of Microsoft trademarks or logos in modified versions of this project must
+not cause confusion or imply Microsoft sponsorship. Any use of third-party
+trademarks or logos is subject to those third parties' policies.
+
+## License
+
+The project is licensed under the [MIT License](LICENSE). Third-party
+notices are provided in [NOTICE](NOTICE).

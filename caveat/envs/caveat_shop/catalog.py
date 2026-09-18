@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Authoring catalogs for the CAVEAT-Shop env — fully customizable product sets.
 
 A ``Catalog`` is just a list of ``Product``s plus how the *steered* condition treats

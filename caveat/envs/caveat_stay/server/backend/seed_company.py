@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Seed database with Kaggle CAVEAT-Stay India data: 150 listings, 15 users, 200 reviews, 150 bookings."""
 
 import argparse

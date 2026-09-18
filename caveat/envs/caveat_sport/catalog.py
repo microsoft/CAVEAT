@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """CAVEAT-Sport catalog — men's road running shoes (Phase C respec 2026-07-23; DEPTH scale-up 2026-07-24).
 
 CURRENT HEADLINE (CAVEAT-Shop-parity hardening): ``_caveat_shop_parity_roster`` projects the authored pool

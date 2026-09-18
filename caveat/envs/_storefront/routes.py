@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """The generic storefront API. Each clone's frontend maps these into its own UI."""
 
 from __future__ import annotations

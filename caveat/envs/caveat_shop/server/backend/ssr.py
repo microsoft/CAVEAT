@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Classic server-rendered storefront.
 
 The historical explicit ``-ssr`` transport control retains its old behavior.  The

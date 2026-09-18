@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """CAVEAT-Kicks task — unified 7-preference (3 hard + 4 graded) × 5-variant spec.
 
 The budget is scored on the ALL-IN price (ask + CAVEAT-Kicks buyer fee + shipping = each item's

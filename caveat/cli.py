@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Run, validate, and score the CAVEAT benchmark."""
 
 from __future__ import annotations

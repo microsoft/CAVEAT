@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import React, { useState } from 'react';
 import { FiCheck } from 'react-icons/fi';
 import type { AmenityItem } from '../types';

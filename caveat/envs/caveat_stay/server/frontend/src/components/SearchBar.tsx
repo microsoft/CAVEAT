@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiSearch, FiMinus, FiPlus, FiMapPin, FiClock, FiX } from 'react-icons/fi';

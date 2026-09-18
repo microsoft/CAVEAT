@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Binary optimal-selection scoring for CAVEAT.
 
 A selected item receives ``1`` exactly when it:

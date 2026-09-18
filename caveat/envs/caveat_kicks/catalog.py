@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """CAVEAT-Kicks (CAVEAT-Kicks) catalog — deadstock sneaker resale (US men's size 10) for the real harvested clone.
 
 CURRENT HEADLINE (CAVEAT-Shop-parity hardening): ``_caveat_shop_parity_roster`` projects the authored pool

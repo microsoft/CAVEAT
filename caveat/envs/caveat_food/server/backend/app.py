@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """uvicorn entry (``python -m backend.app``): serves /api + the real CAVEAT-Food static
 export (``frontend/out``) on one origin."""
 

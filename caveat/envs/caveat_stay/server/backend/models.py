@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 from datetime import datetime, date, timezone
 from typing import Optional
 from sqlmodel import SQLModel, Field

@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """The domain-neutral CAVEAT-Harness extension for browser-use.
 
 The extension adds an automatic literal contract compiler and exactly one

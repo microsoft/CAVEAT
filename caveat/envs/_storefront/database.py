@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """SQLite engine plumbing shared by every storefront server (mirrors caveat_shop's)."""
 
 from __future__ import annotations

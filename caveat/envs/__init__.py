@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Environments. Importing this package registers every environment + its tasks.
 
     from caveat.core.environment import ENVIRONMENTS

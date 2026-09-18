@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { api } from '../api';
@@ -197,34 +200,6 @@ export function OrderConfirmation({ user }: OrderConfirmationProps) {
               <Link to="/gp/prime" className="btn-primary w-full text-sm block text-center">Try Prime FREE</Link>
             </div>
 
-            {/* Recommendations */}
-            <div className="bg-white rounded border p-4">
-              <h3 className="font-bold mb-3">You might also like</h3>
-              <div className="space-y-3">
-                <Link to="/dp/B09G9FPHY6" className="flex gap-2 hover:bg-gray-50 p-2 rounded">
-                  <img
-                    src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=60&h=60&fit=crop"
-                    alt="Headphones"
-                    className="w-12 h-12 object-contain"
-                  />
-                  <div className="flex-1">
-                    <p className="text-sm text-[var(--link-color)] line-clamp-2">Sony WH-1000XM5</p>
-                    <p className="text-sm font-bold">$348.00</p>
-                  </div>
-                </Link>
-                <Link to="/dp/B08N5WRWNW" className="flex gap-2 hover:bg-gray-50 p-2 rounded">
-                  <img
-                    src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=60&h=60&fit=crop"
-                    alt="Cable"
-                    className="w-12 h-12 object-contain"
-                  />
-                  <div className="flex-1">
-                    <p className="text-sm text-[var(--link-color)] line-clamp-2">USB-C Cable 2-Pack</p>
-                    <p className="text-sm font-bold">$9.99</p>
-                  </div>
-                </Link>
-              </div>
-            </div>
           </div>
         </div>
       </div>

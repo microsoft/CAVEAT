@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Tasks = a natural-language instruction paired with structured user preferences.
 
 The instruction is what the agent reads. The preferences are a small declarative

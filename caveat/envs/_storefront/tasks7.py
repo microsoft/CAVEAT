@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Unified 7-preference × 5-variant task builder for the harvested-clone envs.
 
 Every non-caveat_shop env declares ONE ``Pref7`` scenario: exactly **3 always-absolute must-haves** + **4

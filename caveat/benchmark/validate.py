@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Validate the committed CAVEAT benchmark and its binary scoring contract.
 
 The validator is intentionally artifact-based: the shipped data is the benchmark.

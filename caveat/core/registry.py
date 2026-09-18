@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Tiny decorator-based registry used for environments and scaffolds.
 
     from caveat.core.registry import Registry

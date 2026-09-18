@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Schemas for the committed CAVEAT benchmark artifacts.
 
 Everything the pipeline produces is described by the dataclasses here. The guiding

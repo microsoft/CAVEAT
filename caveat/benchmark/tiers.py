@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Canonical CAVEAT tier definitions.
 
 The two tiers intentionally have different matrices.  CAVEAT-Standard combines

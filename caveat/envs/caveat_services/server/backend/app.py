@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """uvicorn entry: generic /api + the caveat_services compat endpoints + the real CAVEAT-Services Vite
 build (frontend/dist), one origin."""
 

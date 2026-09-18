@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Shared SERVING-LAYER arithmetic for the HARD storefront tier (env-agnostic, pure).
 
 Two things live here, both of which the server and the validator must agree on exactly:

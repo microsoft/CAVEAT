@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """CAVEAT-Food task — unified 7-preference (3 hard + 4 graded) × 5-variant spec.
 
 ``PREF7`` is the SCORED spec (rating inserted as the 3rd soft dim via ``with_rating``, dropping

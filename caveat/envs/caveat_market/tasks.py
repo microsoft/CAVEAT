@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """CAVEAT-Market task — unified 7-preference (3 hard + 4 graded) × 5-variant spec.
 
 Price is in PENCE (the clone's schema stores Int pence; the UI renders £{price/100}); £320 == 32000.

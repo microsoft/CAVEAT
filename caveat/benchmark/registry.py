@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Turn generated artifacts into runnable objects: reconstruct an CAVEAT-Shop ``Catalog`` from
 ``catalog.json`` (so the existing adapter seeds/evaluates unchanged) and emit one
 ``TaskSpec`` per (scenario, variant). The condition (clean / 8 steering types) is supplied

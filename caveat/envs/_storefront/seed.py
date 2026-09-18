@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Seed a fresh DB from the catalog the adapter wrote: one auto-logged-in user, an
 empty cart, and the catalog items (card price baked in). No sample orders/leads, so
 the agent's transaction is the only one read back. ``reset_database`` re-seeds on a

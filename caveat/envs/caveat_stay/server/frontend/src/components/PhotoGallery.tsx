@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import React, { useState } from 'react';
 import { FiX } from 'react-icons/fi';
 import type { ListingImage } from '../types';

@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """CAVEAT-Services compat router — serves the exact endpoints the harvested CAVEAT-Services clone's
 react-query hooks call (``/api/gigs``, ``/api/gigs/single/{id}``, ``/api/users/{id}``),
 re-shaping our generic catalog + steering into the clone's gig/user JSON. This lets

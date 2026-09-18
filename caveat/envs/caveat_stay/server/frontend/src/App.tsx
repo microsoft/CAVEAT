@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import type { User, ToastMessage, Currency, SearchFilters } from './types';

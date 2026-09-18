@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """CAVEAT-Services environment — the real harvested Vite/React CAVEAT-Services clone served by our
 FastAPI. Browse gigs -> gig detail -> continue -> confirm order; we read back the
 placed order and score the gig (price, delivery time, seller rating)."""

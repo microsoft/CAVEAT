@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import React, { useEffect, useState, useCallback } from 'react';
 import { FiX } from 'react-icons/fi';
 import { format, parseISO, differenceInYears } from 'date-fns';

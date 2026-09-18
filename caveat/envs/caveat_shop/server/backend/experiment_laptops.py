@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Catalog-driven steering hook for the CAVEAT-Shop env.
 
 The website layout/logic is unchanged — only the *data* is swapped and *presented*
@@ -64,7 +67,8 @@ def _catalog() -> dict:
     path = os.environ.get("CAVEAT_SHOP_EXPERIMENT_CATALOG")
     if path and os.path.exists(path):
         return json.loads(open(path).read())
-    return {"category_slug": "laptops", "bury_index": 6, "products": []}
+    default_path = Path(__file__).parents[2] / "data" / "laptop" / "catalog.json"
+    return json.loads(default_path.read_text())
 
 
 def _products() -> list[dict]:

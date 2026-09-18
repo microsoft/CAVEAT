@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Truth-preserving presentation and merchandising for the truthful hard tier.
 
 This module is deliberately data-gated.  It is inert unless the served catalog has a

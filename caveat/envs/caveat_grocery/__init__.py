@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """CAVEAT-Grocery environment — the real harvested CAVEAT-Grocery static site served by our
 FastAPI. Browse produce -> add to cart -> checkout -> order placed; we read back the
 placed order and score the product (organic, price). The agent starts on the branded

@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Database tables for the shared storefront backend (small on purpose)."""
 
 from __future__ import annotations

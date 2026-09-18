@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """CAVEAT-Food CAVEAT-Shop-parity catalog for vegetarian mains.
 
 The active shopper projection is 74 rows: six advertised pins, four qualifying

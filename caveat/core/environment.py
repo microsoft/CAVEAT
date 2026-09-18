@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Environment base class + the FastAPI-subprocess plumbing both envs share.
 
 An environment is a small web app (FastAPI backend + built SPA) that an agent

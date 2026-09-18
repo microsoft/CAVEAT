@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Read/write CAVEAT-Shop's versioned CAVEAT artifacts from its environment package."""
 
 from __future__ import annotations

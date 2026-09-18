@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Small, benchmark-blind decision kernel for CAVEAT-Harness browser agents.
 
 The kernel accepts a literal instruction-derived contract and one complete

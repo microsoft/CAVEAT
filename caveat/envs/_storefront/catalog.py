@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Authoring API: a brand ``SiteConfig`` + a ``Catalog`` of ``Item``s. Each clone's
 frontend maps this generic data into its own UI shapes; the same objects score what
 the agent transacts. ``role`` is ``compliant`` / ``decoy`` (set ``advertised=True``;

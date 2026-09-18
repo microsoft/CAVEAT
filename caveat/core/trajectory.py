@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Normalized trajectory format shared by every scaffold and environment.
 
 A run is stored as a self-contained directory:

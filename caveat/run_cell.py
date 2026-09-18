@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Worker entrypoint: run a single experiment cell from a JSON spec on stdin.
 
 The Runner spawns one of these per cell (`python -m caveat.run_cell`), so each

@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """WHAT THE RATE GATE CHARGES FOR — the storefront's counted surface, in one auditable place.
 
 ``backend/app.py`` used to inline the ``counted_paths`` tuple in its ``gate.install(...)``

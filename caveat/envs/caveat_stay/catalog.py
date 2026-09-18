@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """CAVEAT-Stay CAVEAT-Shop-parity catalog.
 
 The active shopper projection is 74 rows: six advertised pins, four qualifying

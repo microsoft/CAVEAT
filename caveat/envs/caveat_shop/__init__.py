@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """CAVEAT-Shop environment adapter — a mock storefront the agent shops in.
 
 Search → product detail → add to cart → (one-click) checkout → order placed.

@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """CAVEAT-Sport environment — the real harvested CAVEAT-Sport (CRA + Redux) store served by our
 FastAPI. Browse shoes -> add to bag -> check out; we read back the placed order and
 score the shoe (running vs lifestyle, price)."""

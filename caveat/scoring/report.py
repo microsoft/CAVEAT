@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Aggregate CAVEAT results using only optimal-selection rate.
 
 Usage::

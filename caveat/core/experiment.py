@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Experiments = a matrix of (environment × scaffold × model × task × condition),
 run in parallel and written to disk in the shared trajectory format.
 

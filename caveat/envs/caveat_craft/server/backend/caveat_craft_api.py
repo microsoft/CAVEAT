@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """CAVEAT-Craft (CAVEAT-Craft) compat router — serves the exact endpoints + JSON shapes the harvested
 Rails/Redux clone's ``$.ajax`` calls expect (products keyed by id, categories, shops,
 users, reviews, cart_items), re-shaping our catalog + steering. Integer product ids map

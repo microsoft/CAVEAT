@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import React, { useState, useRef, useEffect } from 'react';
 import { FiGlobe } from 'react-icons/fi';
 import { useAppContext } from '../App';

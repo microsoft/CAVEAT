@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import React, { useEffect, useState } from 'react';
 import { FiSearch, FiChevronDown, FiChevronUp, FiPlus, FiClock } from 'react-icons/fi';
 import { Calendar, User, CreditCard, Shield, Home } from 'lucide-react';

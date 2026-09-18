@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Shared, invisible backend engine for the harvested-clone marketplace envs.
 
 Each new env (caveat_food, caveat_market, …) vendors its OWN real frontend clone (so each LOOKS

@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """CAVEAT-Kicks (CAVEAT-Kicks) environment — the real harvested React+Redux+Rails clone: webpack
 bundle + compiled SCSS, data rewired to our /caveat_kicks compat API, purchase written
 through to our generic order. Browse sneakers -> sneaker -> buy a size-10 listing; we

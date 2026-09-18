@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { getListings } from '../api';
 import type { ListingsResponse } from '../types';

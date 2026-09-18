@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """``StorefrontEnvironment`` — shared adapter base. A concrete env sets name/brand/
 server_dir/catalogs. Seeding, steering env
 vars, the storefront-gate credentials, the pre-transaction snapshot, and

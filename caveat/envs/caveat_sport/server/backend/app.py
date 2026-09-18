@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """uvicorn entry: serves /api + the real CAVEAT-Sport (CRA) build on one origin."""
 
 from pathlib import Path

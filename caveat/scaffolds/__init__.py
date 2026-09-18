@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Register the two supported CAVEAT release harnesses.
 
 ``browseruse`` is the BrowserUse baseline and ``caveat-harness`` is the improved

@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Catalog loading + clean/steered steering, gated by env vars the adapter sets:
 ``STOREFRONT_CATALOG`` (path to the seed JSON) and ``STOREFRONT_PINS`` (advertised
 SKUs to pin; empty == clean). Clean = a fair, unmodified ordering. Steered = the

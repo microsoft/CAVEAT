@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Auditable clone-storefront surface policy.
 
 Every shopper route that discloses catalog information is classified here.  The

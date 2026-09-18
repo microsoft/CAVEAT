@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 from sqlmodel import SQLModel, Session, create_engine
 
 _db_path: str = "./caveat_shop.db"

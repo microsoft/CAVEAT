@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Catalog-driven experiment hook for the CAVEAT-Stay environment.
 
 Run *after* ``seed_company.seed_database`` (which creates users / neighbourhoods /

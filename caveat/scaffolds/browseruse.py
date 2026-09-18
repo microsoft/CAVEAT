@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """browser-use scaffold (https://github.com/browser-use/browser-use).
 
 A popular CDP-based web agent. We point its ``ChatOpenAI`` at the model's

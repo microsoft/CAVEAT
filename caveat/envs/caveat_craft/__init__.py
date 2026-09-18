@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """CAVEAT-Craft (CAVEAT-Craft) environment — the real harvested React+Redux+Rails clone: webpack
 bundle + compiled SCSS, data rewired to our /caveat_craft compat API, cart written through to
 our generic cart. Browse a category -> item -> add to cart -> proceed to checkout; we

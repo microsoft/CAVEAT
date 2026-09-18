@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """CAVEAT-Market environment — the real harvested Next.js 13 app-router clone (CAVEAT-Market UI + Tailwind),
 statically exported and wired to our backend. The clone's pages already fetch /api/* at
 runtime and keep the cart in localStorage; we re-point those fetches at a /caveat_market compat

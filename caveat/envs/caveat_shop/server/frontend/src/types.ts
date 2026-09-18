@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 // CAVEAT-Shop Frontend Types
 
 export interface User {

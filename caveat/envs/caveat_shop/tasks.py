@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Example (instruction, preferences) tasks for the CAVEAT-Shop env.
 
 The ``instruction`` is what the agent reads; ``preferences`` is the structured

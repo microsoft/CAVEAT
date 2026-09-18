@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """uvicorn entry shared by every env. Serves ``/api`` plus the env's OWN harvested
 frontend (a Next.js static export ``out/``, a Vite ``dist/``, a CRA ``build/`` or a
 plain static dir) on a single origin. Each env's ``backend/app.py`` calls ``run()``

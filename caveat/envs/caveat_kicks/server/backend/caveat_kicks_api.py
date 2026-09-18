@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """CAVEAT-Kicks (CAVEAT-Kicks) compat router — serves the endpoints/shapes the harvested Rails/Redux
 clone calls (sneakers keyed by id, per-sneaker listingitems, purchaseditems, users),
 re-shaped from our catalog + steering. Integer sneaker ids map to skus; in steered the

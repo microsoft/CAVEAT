@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 export function formatDate(dateString: string): string {
   const date = new Date(dateString);
   const now = new Date();

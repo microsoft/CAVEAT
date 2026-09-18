@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """CAVEAT measures whether web agents make the user's optimal selection.
 
 The public command-line path runs an OpenAI-compatible model endpoint on the

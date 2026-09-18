@@ -1,0 +1,66 @@
+CAVEAT
+Copyright (c) Microsoft Corporation.
+
+This project incorporates or depends on third-party open source software.
+Copyright and license notices embedded in vendored and generated files are
+retained and apply to those portions.
+
+## Python runtime and development dependencies
+
+Apache License 2.0:
+
+- OpenAI Python
+- Requests
+- python-multipart
+- Playwright for Python
+
+MIT License:
+
+- PyYAML
+- FastAPI
+- SQLModel
+- python-jose
+- browser-use
+- Ruff
+- setuptools
+
+BSD-style licenses:
+
+- Pillow (HPND)
+- Uvicorn (BSD-3-Clause)
+- Passlib (BSD)
+- Pint (BSD-3-Clause)
+
+## Frontend dependencies
+
+MIT License:
+
+- React and React DOM
+- React Router
+- date-fns
+- React Icons
+- Vite and @vitejs/plugin-react
+- Tailwind CSS
+- PostCSS
+- Autoprefixer
+- React type definitions
+- jQuery
+
+Apache License 2.0:
+
+- TypeScript
+
+ISC License:
+
+- Lucide
+
+Font Awesome Free is distributed under the CC BY 4.0 license for icons, the
+SIL Open Font License 1.1 for fonts, and the MIT License for code.
+
+Additional transitive JavaScript packages and their declared licenses are
+enumerated in the committed package-lock.json files. Generated JavaScript
+bundles preserve their upstream copyright and license notices, including the
+companion \*.LICENSE.txt files where produced by the build tool.
+
+The licenses listed above apply only to their respective third-party
+components. CAVEAT itself is licensed under the MIT License; see LICENSE.

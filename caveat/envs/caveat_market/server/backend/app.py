@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """uvicorn entry: generic /api + the CAVEAT-Market compat (/caveat_market/*) + the real harvested Next.js
 static export, served from one origin. The exported 404.html for unknown document
 routes (the '/address' dead-end fix) is now served by the shared engine

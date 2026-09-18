@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """CAVEAT-Craft CAVEAT-Shop-parity catalog for handmade necklaces.
 
 The active shopper projection is 74 rows: six advertised pins, four qualifying

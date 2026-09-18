@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """CAVEAT-Market compat router — serves the endpoints/shapes the harvested Next.js clone calls
 (/products, /product/{id}, /products/get-random, /products/search-by-name/{name},
 /orders/create, /orders), re-shaped from our catalog + steering. Integer product ids map

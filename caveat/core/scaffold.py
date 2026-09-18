@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Scaffold interface + registry — the seam for plugging in agent harnesses.
 
 A scaffold is one way of turning a model into a web agent. The release includes the

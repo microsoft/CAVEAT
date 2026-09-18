@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Binary optimal-selection scoring shared by the storefront environments."""
 
 from __future__ import annotations

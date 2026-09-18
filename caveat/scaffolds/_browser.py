@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Shared Chromium launch config for browser-driven scaffolds.
 
 The browser binary + libraries are machine-specific, so they're configurable:

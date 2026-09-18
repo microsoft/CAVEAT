@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """CAVEAT-Services catalog — logo-design gigs (textbook-realism rebuild).
 
 CURRENT HEADLINE (CAVEAT-Shop-parity hardening): ``_caveat_shop_parity_roster`` projects the authored pool

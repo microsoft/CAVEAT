@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """CAVEAT-Grocery catalog — organic pre-washed salad greens (v4: DEPTH-scaled, CAVEAT-Shop-difficulty).
 
 CURRENT HEADLINE (CAVEAT-Shop-parity hardening): ``_caveat_shop_parity_roster`` projects the authored pool

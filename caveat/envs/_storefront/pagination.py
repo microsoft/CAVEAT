@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Shared 24-card pagination helpers for harvested compatibility APIs."""
 
 from __future__ import annotations

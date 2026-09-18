@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """CAVEAT-Stay environment adapter — a mock stays site the agent books in.
 
 Browse/search → listing detail → reserve (single-step booking). The agent is

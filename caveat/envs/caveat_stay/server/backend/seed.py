@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Seed database with real Boston CAVEAT-Stay data from InsideCaveatStay CSV files."""
 
 import argparse

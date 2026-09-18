@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """OpenAI-compatible model configuration shared by every CAVEAT harness.
 
 Models may be supplied as a name or as a mapping.  Endpoint credentials support

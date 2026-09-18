@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """CAVEAT-Sport task — unified 7-preference (3 hard + 4 graded) × 5-variant spec.
 
 A road-marathon runner wants men's road running shoes within a $130 total budget, and — among those —

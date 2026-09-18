@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """uvicorn entry: generic /api + the caveat_kicks compat (/caveat_kicks/*) + the real CAVEAT-Kicks
 webpack bundle, one origin."""
 

@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import React from 'react';
 import { FiX, FiCheckCircle, FiAlertCircle, FiInfo } from 'react-icons/fi';
 import type { ToastMessage } from '../types';

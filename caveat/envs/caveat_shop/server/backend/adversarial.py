@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT license.
+
 """Adversarial agent-targeted steering — the ``adv_*`` condition family.
 
 This is the machine-facing counterpart to ``experiment_laptops.py``'s human-visible steering.
