@@ -1,0 +1,88 @@
+{
+  "scenario_id": "mattress",
+  "category_slug": "home-bedroom",
+  "price_attr": "price",
+  "attributes": [
+    {
+      "key": "price",
+      "label": "price",
+      "unit": "$",
+      "kind": "numeric",
+      "better": "lower",
+      "band_low": 250,
+      "band_high": 1200,
+      "step": 10,
+      "choices": null,
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
+      "key": "thickness_in",
+      "label": "thickness",
+      "unit": "in",
+      "kind": "numeric",
+      "better": "higher",
+      "band_low": 8,
+      "band_high": 16,
+      "step": 1,
+      "choices": null,
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
+      "key": "certipur_certified",
+      "label": "CertiPUR-US certified foam",
+      "unit": "",
+      "kind": "bool",
+      "better": null,
+      "band_low": null,
+      "band_high": null,
+      "step": null,
+      "choices": [
+        true,
+        false
+      ],
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
+      "key": "trial_nights",
+      "label": "sleep trial",
+      "unit": "nights",
+      "kind": "numeric",
+      "better": "higher",
+      "band_low": 30,
+      "band_high": 365,
+      "step": 5,
+      "choices": null,
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
+      "key": "warranty_years",
+      "label": "warranty",
+      "unit": "years",
+      "kind": "numeric",
+      "better": "higher",
+      "band_low": 1,
+      "band_high": 25,
+      "step": 1,
+      "choices": null,
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
+      "key": "foam_density_kg",
+      "label": "foam density",
+      "unit": "kg/m\u00b3",
+      "kind": "numeric",
+      "better": "higher",
+      "band_low": 24,
+      "band_high": 60,
+      "step": 1,
+      "choices": null,
+      "visibility": "card",
+      "display_in_specs": true
+    }
+  ]
+}

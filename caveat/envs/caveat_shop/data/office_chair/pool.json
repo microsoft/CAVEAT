@@ -1,0 +1,2623 @@
+[
+  {
+    "asin": "EXP-OFFICECHAIR-01",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 375.0,
+      "adjustable_lumbar": false,
+      "warranty_years": 2.5,
+      "recline_degrees": 100.0,
+      "cushion_mm": 50.0
+    },
+    "price": 189.99,
+    "list_price": 208,
+    "rating": 3.9,
+    "reviews": 404,
+    "bought": 141,
+    "stock": 61,
+    "fail_reasons": [
+      "warranty_years__min",
+      "rating__min",
+      "adjustable_lumbar"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-0.png",
+    "image_tier": "stock",
+    "title": "Orla 43 Chair, holds 375 lb",
+    "bullets": [
+      "Weight Capacity: 375.0lb",
+      "Warranty: 2.5years",
+      "Recline Range: 100.0\u00b0",
+      "Seat Cushion Thickness: 50.0mm"
+    ],
+    "description": "A office chair with weight capacity: 375.0lb, warranty: 2.5years, recline range: 100.0\u00b0.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-02",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 335.0,
+      "adjustable_lumbar": false,
+      "warranty_years": 6.5,
+      "recline_degrees": 105.0,
+      "cushion_mm": 65.0
+    },
+    "price": 264.99,
+    "list_price": 313,
+    "rating": 4.1,
+    "reviews": 1883,
+    "bought": 625,
+    "stock": 180,
+    "fail_reasons": [
+      "adjustable_lumbar"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-0.png",
+    "image_tier": "stock",
+    "title": "Wisp 30 Chair, holds 335 lb",
+    "bullets": [
+      "Weight Capacity: 335.0lb",
+      "Warranty: 6.5years",
+      "Recline Range: 105.0\u00b0",
+      "Seat Cushion Thickness: 65.0mm"
+    ],
+    "description": "A office chair with weight capacity: 335.0lb, warranty: 6.5years, recline range: 105.0\u00b0.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-03",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 330.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 6.0,
+      "recline_degrees": 105.0,
+      "cushion_mm": 45.0
+    },
+    "price": 309.99,
+    "list_price": 339,
+    "rating": 4.1,
+    "reviews": 655,
+    "bought": 1336,
+    "stock": 166,
+    "fail_reasons": [
+      "cushion_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-1.png",
+    "image_tier": "stock",
+    "title": "Toro 40 Chair, adjustable lumbar, holds 330 lb",
+    "bullets": [
+      "Weight Capacity: 330.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 6.0years",
+      "Recline Range: 105.0\u00b0",
+      "Seat Cushion Thickness: 45.0mm"
+    ],
+    "description": "A office chair with weight capacity: 330.0lb, adjustable lumbar support, warranty: 6.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-04",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 270.0,
+      "adjustable_lumbar": false,
+      "warranty_years": 5.5,
+      "recline_degrees": 110.0,
+      "cushion_mm": 65.0
+    },
+    "price": 209.99,
+    "list_price": 232,
+    "rating": 3.9,
+    "reviews": 1180,
+    "bought": 151,
+    "stock": 142,
+    "fail_reasons": [
+      "weight_capacity_lbs__min",
+      "rating__min",
+      "adjustable_lumbar"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-1.png",
+    "image_tier": "stock",
+    "title": "Brixton 28 Chair, holds 270 lb",
+    "bullets": [
+      "Weight Capacity: 270.0lb",
+      "Warranty: 5.5years",
+      "Recline Range: 110.0\u00b0",
+      "Seat Cushion Thickness: 65.0mm"
+    ],
+    "description": "A office chair with weight capacity: 270.0lb, warranty: 5.5years, recline range: 110.0\u00b0.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-05",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 270.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 6.0,
+      "recline_degrees": 100.0,
+      "cushion_mm": 50.0
+    },
+    "price": 269.99,
+    "list_price": 319,
+    "rating": 3.8,
+    "reviews": 1646,
+    "bought": 1599,
+    "stock": 117,
+    "fail_reasons": [
+      "weight_capacity_lbs__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-0.png",
+    "image_tier": "stock",
+    "title": "Velo 48 Chair, adjustable lumbar, holds 270 lb",
+    "bullets": [
+      "Weight Capacity: 270.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 6.0years",
+      "Recline Range: 100.0\u00b0",
+      "Seat Cushion Thickness: 50.0mm"
+    ],
+    "description": "A office chair with weight capacity: 270.0lb, adjustable lumbar support, warranty: 6.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-06",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 305.0,
+      "adjustable_lumbar": false,
+      "warranty_years": 4.5,
+      "recline_degrees": 120.0,
+      "cushion_mm": 50.0
+    },
+    "price": 284.99,
+    "list_price": 328,
+    "rating": 3.8,
+    "reviews": 1125,
+    "bought": 2314,
+    "stock": 160,
+    "fail_reasons": [
+      "rating__min",
+      "adjustable_lumbar"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-1.png",
+    "image_tier": "stock",
+    "title": "Marlo 23 Chair, holds 305 lb",
+    "bullets": [
+      "Weight Capacity: 305.0lb",
+      "Warranty: 4.5years",
+      "Recline Range: 120.0\u00b0",
+      "Seat Cushion Thickness: 50.0mm"
+    ],
+    "description": "A office chair with weight capacity: 305.0lb, warranty: 4.5years, recline range: 120.0\u00b0.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-07",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 345.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 4.5,
+      "recline_degrees": 115.0,
+      "cushion_mm": 70.0
+    },
+    "price": 569.99,
+    "list_price": 661,
+    "rating": 3.8,
+    "reviews": 232,
+    "bought": 874,
+    "stock": 44,
+    "fail_reasons": [
+      "price__lt",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-1.png",
+    "image_tier": "stock",
+    "title": "Cobalt 38 Chair, adjustable lumbar, holds 345 lb",
+    "bullets": [
+      "Weight Capacity: 345.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 4.5years",
+      "Recline Range: 115.0\u00b0",
+      "Seat Cushion Thickness: 70.0mm"
+    ],
+    "description": "A office chair with weight capacity: 345.0lb, adjustable lumbar support, warranty: 4.5years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-08",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 320.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 5.0,
+      "recline_degrees": 95.0,
+      "cushion_mm": 45.0
+    },
+    "price": 194.99,
+    "list_price": 212,
+    "rating": 3.9,
+    "reviews": 601,
+    "bought": 2604,
+    "stock": 114,
+    "fail_reasons": [
+      "recline_degrees__min",
+      "rating__min",
+      "cushion_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-2.png",
+    "image_tier": "stock",
+    "title": "Calder 29 Chair, adjustable lumbar, holds 320 lb",
+    "bullets": [
+      "Weight Capacity: 320.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 5.0years",
+      "Recline Range: 95.0\u00b0",
+      "Seat Cushion Thickness: 45.0mm"
+    ],
+    "description": "A office chair with weight capacity: 320.0lb, adjustable lumbar support, warranty: 5.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-09",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 325.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 4.0,
+      "recline_degrees": 105.0,
+      "cushion_mm": 55.0
+    },
+    "price": 634.99,
+    "list_price": 717,
+    "rating": 4.1,
+    "reviews": 390,
+    "bought": 2012,
+    "stock": 155,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-1.png",
+    "image_tier": "stock",
+    "title": "Pomely 50 Chair, adjustable lumbar, holds 325 lb",
+    "bullets": [
+      "Weight Capacity: 325.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 4.0years",
+      "Recline Range: 105.0\u00b0",
+      "Seat Cushion Thickness: 55.0mm"
+    ],
+    "description": "A office chair with weight capacity: 325.0lb, adjustable lumbar support, warranty: 4.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-10",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 270.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 4.5,
+      "recline_degrees": 105.0,
+      "cushion_mm": 60.0
+    },
+    "price": 414.99,
+    "list_price": 471,
+    "rating": 4.0,
+    "reviews": 1179,
+    "bought": 152,
+    "stock": 163,
+    "fail_reasons": [
+      "price__lt",
+      "weight_capacity_lbs__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-2.png",
+    "image_tier": "stock",
+    "title": "Aether 20 Chair, adjustable lumbar, holds 270 lb",
+    "bullets": [
+      "Weight Capacity: 270.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 4.5years",
+      "Recline Range: 105.0\u00b0",
+      "Seat Cushion Thickness: 60.0mm"
+    ],
+    "description": "A office chair with weight capacity: 270.0lb, adjustable lumbar support, warranty: 4.5years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-11",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 340.0,
+      "adjustable_lumbar": false,
+      "warranty_years": 6.0,
+      "recline_degrees": 95.0,
+      "cushion_mm": 70.0
+    },
+    "price": 269.99,
+    "list_price": 285,
+    "rating": 3.9,
+    "reviews": 2269,
+    "bought": 1624,
+    "stock": 171,
+    "fail_reasons": [
+      "recline_degrees__min",
+      "rating__min",
+      "adjustable_lumbar"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-1.png",
+    "image_tier": "stock",
+    "title": "Norvik 49 Chair, holds 340 lb",
+    "bullets": [
+      "Weight Capacity: 340.0lb",
+      "Warranty: 6.0years",
+      "Recline Range: 95.0\u00b0",
+      "Seat Cushion Thickness: 70.0mm"
+    ],
+    "description": "A office chair with weight capacity: 340.0lb, warranty: 6.0years, recline range: 95.0\u00b0.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-12",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 270.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 5.5,
+      "recline_degrees": 120.0,
+      "cushion_mm": 55.0
+    },
+    "price": 304.99,
+    "list_price": 345,
+    "rating": 3.9,
+    "reviews": 143,
+    "bought": 720,
+    "stock": 116,
+    "fail_reasons": [
+      "weight_capacity_lbs__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-3.png",
+    "image_tier": "stock",
+    "title": "Kestrel 51 Chair, adjustable lumbar, holds 270 lb",
+    "bullets": [
+      "Weight Capacity: 270.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 5.5years",
+      "Recline Range: 120.0\u00b0",
+      "Seat Cushion Thickness: 55.0mm"
+    ],
+    "description": "A office chair with weight capacity: 270.0lb, adjustable lumbar support, warranty: 5.5years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-13",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 360.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 6.0,
+      "recline_degrees": 110.0,
+      "cushion_mm": 70.0
+    },
+    "price": 464.99,
+    "list_price": 522,
+    "rating": 4.0,
+    "reviews": 1640,
+    "bought": 182,
+    "stock": 134,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-2.png",
+    "image_tier": "stock",
+    "title": "Vesper 41 Chair, adjustable lumbar, holds 360 lb",
+    "bullets": [
+      "Weight Capacity: 360.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 6.0years",
+      "Recline Range: 110.0\u00b0",
+      "Seat Cushion Thickness: 70.0mm"
+    ],
+    "description": "A office chair with weight capacity: 360.0lb, adjustable lumbar support, warranty: 6.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-14",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 310.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 5.5,
+      "recline_degrees": 105.0,
+      "cushion_mm": 70.0
+    },
+    "price": 494.99,
+    "list_price": 534,
+    "rating": 3.9,
+    "reviews": 2010,
+    "bought": 333,
+    "stock": 106,
+    "fail_reasons": [
+      "price__lt",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-0.png",
+    "image_tier": "stock",
+    "title": "Juno 58 Chair, adjustable lumbar, holds 310 lb",
+    "bullets": [
+      "Weight Capacity: 310.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 5.5years",
+      "Recline Range: 105.0\u00b0",
+      "Seat Cushion Thickness: 70.0mm"
+    ],
+    "description": "A office chair with weight capacity: 310.0lb, adjustable lumbar support, warranty: 5.5years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-15",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 365.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 2.5,
+      "recline_degrees": 120.0,
+      "cushion_mm": 55.0
+    },
+    "price": 259.99,
+    "list_price": 276,
+    "rating": 3.8,
+    "reviews": 1315,
+    "bought": 1829,
+    "stock": 40,
+    "fail_reasons": [
+      "warranty_years__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-3.png",
+    "image_tier": "stock",
+    "title": "Velo 32 Chair, adjustable lumbar, holds 365 lb",
+    "bullets": [
+      "Weight Capacity: 365.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 2.5years",
+      "Recline Range: 120.0\u00b0",
+      "Seat Cushion Thickness: 55.0mm"
+    ],
+    "description": "A office chair with weight capacity: 365.0lb, adjustable lumbar support, warranty: 2.5years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-16",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 305.0,
+      "adjustable_lumbar": false,
+      "warranty_years": 5.5,
+      "recline_degrees": 95.0,
+      "cushion_mm": 65.0
+    },
+    "price": 224.99,
+    "list_price": 266,
+    "rating": 3.9,
+    "reviews": 2182,
+    "bought": 1382,
+    "stock": 107,
+    "fail_reasons": [
+      "recline_degrees__min",
+      "rating__min",
+      "adjustable_lumbar"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-1.png",
+    "image_tier": "stock",
+    "title": "Lumio 69 Chair, holds 305 lb",
+    "bullets": [
+      "Weight Capacity: 305.0lb",
+      "Warranty: 5.5years",
+      "Recline Range: 95.0\u00b0",
+      "Seat Cushion Thickness: 65.0mm"
+    ],
+    "description": "A office chair with weight capacity: 305.0lb, warranty: 5.5years, recline range: 95.0\u00b0.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-17",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 370.0,
+      "adjustable_lumbar": false,
+      "warranty_years": 6.0,
+      "recline_degrees": 120.0,
+      "cushion_mm": 65.0
+    },
+    "price": 314.99,
+    "list_price": 332,
+    "rating": 3.9,
+    "reviews": 552,
+    "bought": 1813,
+    "stock": 46,
+    "fail_reasons": [
+      "rating__min",
+      "adjustable_lumbar"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-2.png",
+    "image_tier": "stock",
+    "title": "Aether 68 Chair, holds 370 lb",
+    "bullets": [
+      "Weight Capacity: 370.0lb",
+      "Warranty: 6.0years",
+      "Recline Range: 120.0\u00b0",
+      "Seat Cushion Thickness: 65.0mm"
+    ],
+    "description": "A office chair with weight capacity: 370.0lb, warranty: 6.0years, recline range: 120.0\u00b0.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-18",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 365.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 5.0,
+      "recline_degrees": 95.0,
+      "cushion_mm": 55.0
+    },
+    "price": 239.99,
+    "list_price": 257,
+    "rating": 4.0,
+    "reviews": 717,
+    "bought": 1445,
+    "stock": 199,
+    "fail_reasons": [
+      "recline_degrees__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-1.png",
+    "image_tier": "stock",
+    "title": "Norvik 33 Chair, adjustable lumbar, holds 365 lb",
+    "bullets": [
+      "Weight Capacity: 365.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 5.0years",
+      "Recline Range: 95.0\u00b0",
+      "Seat Cushion Thickness: 55.0mm"
+    ],
+    "description": "A office chair with weight capacity: 365.0lb, adjustable lumbar support, warranty: 5.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-19",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "weight_capacity_lbs": 270,
+      "adjustable_lumbar": true,
+      "warranty_years": 3,
+      "recline_degrees": 105,
+      "cushion_mm": 45
+    },
+    "price": 274.99,
+    "list_price": 315,
+    "rating": 4.0,
+    "reviews": 4600,
+    "bought": 9200,
+    "stock": 119,
+    "fail_reasons": [
+      "weight_capacity_lbs__min",
+      "cushion_mm__min"
+    ],
+    "decoy_kind": "spec_capacity",
+    "variants": [],
+    "image": "office_chair-generic-0.png",
+    "image_tier": "stock",
+    "title": "Vesper 09 Chair, adjustable lumbar, holds 270 lb",
+    "bullets": [
+      "Weight Capacity: 270lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 3years",
+      "Recline Range: 105\u00b0",
+      "Seat Cushion Thickness: 45mm"
+    ],
+    "description": "A office chair with weight capacity: 270lb, adjustable lumbar support, warranty: 3years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-20",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 340.0,
+      "adjustable_lumbar": false,
+      "warranty_years": 5.0,
+      "recline_degrees": 110.0,
+      "cushion_mm": 45.0
+    },
+    "price": 184.99,
+    "list_price": 220,
+    "rating": 3.9,
+    "reviews": 1420,
+    "bought": 242,
+    "stock": 79,
+    "fail_reasons": [
+      "rating__min",
+      "cushion_mm__min",
+      "adjustable_lumbar"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-2.png",
+    "image_tier": "stock",
+    "title": "Wisp 14 Chair, holds 340 lb",
+    "bullets": [
+      "Weight Capacity: 340.0lb",
+      "Warranty: 5.0years",
+      "Recline Range: 110.0\u00b0",
+      "Seat Cushion Thickness: 45.0mm"
+    ],
+    "description": "A office chair with weight capacity: 340.0lb, warranty: 5.0years, recline range: 110.0\u00b0.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-21",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 345.0,
+      "adjustable_lumbar": false,
+      "warranty_years": 5.0,
+      "recline_degrees": 115.0,
+      "cushion_mm": 70.0
+    },
+    "price": 179.99,
+    "list_price": 212,
+    "rating": 3.9,
+    "reviews": 1402,
+    "bought": 164,
+    "stock": 136,
+    "fail_reasons": [
+      "rating__min",
+      "adjustable_lumbar"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-2.png",
+    "image_tier": "stock",
+    "title": "Lumio 53 Chair, holds 345 lb",
+    "bullets": [
+      "Weight Capacity: 345.0lb",
+      "Warranty: 5.0years",
+      "Recline Range: 115.0\u00b0",
+      "Seat Cushion Thickness: 70.0mm"
+    ],
+    "description": "A office chair with weight capacity: 345.0lb, warranty: 5.0years, recline range: 115.0\u00b0.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-22",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 385.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 6.0,
+      "recline_degrees": 125.0,
+      "cushion_mm": 60.0
+    },
+    "price": 549.99,
+    "list_price": 660,
+    "rating": 3.9,
+    "reviews": 2587,
+    "bought": 2289,
+    "stock": 175,
+    "fail_reasons": [
+      "price__lt",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-0.png",
+    "image_tier": "stock",
+    "title": "Brixton 60 Chair, adjustable lumbar, holds 385 lb",
+    "bullets": [
+      "Weight Capacity: 385.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 6.0years",
+      "Recline Range: 125.0\u00b0",
+      "Seat Cushion Thickness: 60.0mm"
+    ],
+    "description": "A office chair with weight capacity: 385.0lb, adjustable lumbar support, warranty: 6.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-23",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 350.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 4.0,
+      "recline_degrees": 95.0,
+      "cushion_mm": 65.0
+    },
+    "price": 509.99,
+    "list_price": 594,
+    "rating": 3.9,
+    "reviews": 1013,
+    "bought": 1353,
+    "stock": 84,
+    "fail_reasons": [
+      "price__lt",
+      "recline_degrees__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-3.png",
+    "image_tier": "stock",
+    "title": "Wisp 46 Chair, adjustable lumbar, holds 350 lb",
+    "bullets": [
+      "Weight Capacity: 350.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 4.0years",
+      "Recline Range: 95.0\u00b0",
+      "Seat Cushion Thickness: 65.0mm"
+    ],
+    "description": "A office chair with weight capacity: 350.0lb, adjustable lumbar support, warranty: 4.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-24",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 340.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 5.0,
+      "recline_degrees": 110.0,
+      "cushion_mm": 60.0
+    },
+    "price": 389.99,
+    "list_price": 417,
+    "rating": 4.1,
+    "reviews": 1329,
+    "bought": 2243,
+    "stock": 143,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-2.png",
+    "image_tier": "stock",
+    "title": "Toro 56 Chair, adjustable lumbar, holds 340 lb",
+    "bullets": [
+      "Weight Capacity: 340.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 5.0years",
+      "Recline Range: 110.0\u00b0",
+      "Seat Cushion Thickness: 60.0mm"
+    ],
+    "description": "A office chair with weight capacity: 340.0lb, adjustable lumbar support, warranty: 5.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-25",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 345.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 4.0,
+      "recline_degrees": 95.0,
+      "cushion_mm": 75.0
+    },
+    "price": 584.99,
+    "list_price": 639,
+    "rating": 3.9,
+    "reviews": 1984,
+    "bought": 1368,
+    "stock": 56,
+    "fail_reasons": [
+      "price__lt",
+      "recline_degrees__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-3.png",
+    "image_tier": "stock",
+    "title": "Juno 26 Chair, adjustable lumbar, holds 345 lb",
+    "bullets": [
+      "Weight Capacity: 345.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 4.0years",
+      "Recline Range: 95.0\u00b0",
+      "Seat Cushion Thickness: 75.0mm"
+    ],
+    "description": "A office chair with weight capacity: 345.0lb, adjustable lumbar support, warranty: 4.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-26",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 300,
+      "adjustable_lumbar": true,
+      "warranty_years": 12,
+      "recline_degrees": 120,
+      "cushion_mm": 75
+    },
+    "price": 389.99,
+    "list_price": 480,
+    "rating": 4.4,
+    "reviews": 2600,
+    "bought": 5200,
+    "stock": 141,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "dsort_warranty",
+    "variants": [],
+    "image": "office_chair-generic.png",
+    "image_tier": "stock",
+    "title": "Juno 26 M26 Chair, adjustable lumbar, holds 300 lb",
+    "bullets": [
+      "Weight Capacity: 300lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 12years",
+      "Recline Range: 120\u00b0",
+      "Seat Cushion Thickness: 75mm"
+    ],
+    "description": "A office chair with weight capacity: 300lb, adjustable lumbar support, warranty: 12years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-27",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 270.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 3.5,
+      "recline_degrees": 120.0,
+      "cushion_mm": 65.0
+    },
+    "price": 319.99,
+    "list_price": 366,
+    "rating": 3.8,
+    "reviews": 2350,
+    "bought": 2317,
+    "stock": 44,
+    "fail_reasons": [
+      "weight_capacity_lbs__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-3.png",
+    "image_tier": "stock",
+    "title": "Cobalt 22 Chair, adjustable lumbar, holds 270 lb",
+    "bullets": [
+      "Weight Capacity: 270.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 3.5years",
+      "Recline Range: 120.0\u00b0",
+      "Seat Cushion Thickness: 65.0mm"
+    ],
+    "description": "A office chair with weight capacity: 270.0lb, adjustable lumbar support, warranty: 3.5years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-28",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 345.0,
+      "adjustable_lumbar": false,
+      "warranty_years": 6.0,
+      "recline_degrees": 100.0,
+      "cushion_mm": 75.0
+    },
+    "price": 329.99,
+    "list_price": 358,
+    "rating": 4.1,
+    "reviews": 2339,
+    "bought": 2586,
+    "stock": 80,
+    "fail_reasons": [
+      "adjustable_lumbar"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-2.png",
+    "image_tier": "stock",
+    "title": "Brixton 12 Chair, holds 345 lb",
+    "bullets": [
+      "Weight Capacity: 345.0lb",
+      "Warranty: 6.0years",
+      "Recline Range: 100.0\u00b0",
+      "Seat Cushion Thickness: 75.0mm"
+    ],
+    "description": "A office chair with weight capacity: 345.0lb, warranty: 6.0years, recline range: 100.0\u00b0.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-29",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 310.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 6.0,
+      "recline_degrees": 100.0,
+      "cushion_mm": 45.0
+    },
+    "price": 324.99,
+    "list_price": 344,
+    "rating": 3.8,
+    "reviews": 1253,
+    "bought": 2112,
+    "stock": 150,
+    "fail_reasons": [
+      "rating__min",
+      "cushion_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-1.png",
+    "image_tier": "stock",
+    "title": "Kestrel 19 Chair, adjustable lumbar, holds 310 lb",
+    "bullets": [
+      "Weight Capacity: 310.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 6.0years",
+      "Recline Range: 100.0\u00b0",
+      "Seat Cushion Thickness: 45.0mm"
+    ],
+    "description": "A office chair with weight capacity: 310.0lb, adjustable lumbar support, warranty: 6.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-30",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "weight_capacity_lbs": 280,
+      "adjustable_lumbar": true,
+      "warranty_years": 6,
+      "recline_degrees": 95,
+      "cushion_mm": 55
+    },
+    "price": 269.99,
+    "list_price": 341,
+    "rating": 4.1,
+    "reviews": 5300,
+    "bought": 10600,
+    "stock": 108,
+    "fail_reasons": [
+      "recline_degrees__min"
+    ],
+    "decoy_kind": "floor",
+    "variants": [],
+    "image": "office_chair-generic-0.png",
+    "image_tier": "stock",
+    "title": "Lumio 05 Chair, adjustable lumbar, holds 280 lb",
+    "bullets": [
+      "Weight Capacity: 280lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 6years",
+      "Recline Range: 95\u00b0",
+      "Seat Cushion Thickness: 55mm"
+    ],
+    "description": "A office chair with weight capacity: 280lb, adjustable lumbar support, warranty: 6years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-31",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 365.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 5.0,
+      "recline_degrees": 105.0,
+      "cushion_mm": 45.0
+    },
+    "price": 544.99,
+    "list_price": 605,
+    "rating": 4.0,
+    "reviews": 1193,
+    "bought": 2055,
+    "stock": 169,
+    "fail_reasons": [
+      "price__lt",
+      "cushion_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-3.png",
+    "image_tier": "stock",
+    "title": "Cobalt 54 Chair, adjustable lumbar, holds 365 lb",
+    "bullets": [
+      "Weight Capacity: 365.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 5.0years",
+      "Recline Range: 105.0\u00b0",
+      "Seat Cushion Thickness: 45.0mm"
+    ],
+    "description": "A office chair with weight capacity: 365.0lb, adjustable lumbar support, warranty: 5.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-32",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 270.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 3.5,
+      "recline_degrees": 95.0,
+      "cushion_mm": 65.0
+    },
+    "price": 184.99,
+    "list_price": 203,
+    "rating": 4.0,
+    "reviews": 382,
+    "bought": 2222,
+    "stock": 91,
+    "fail_reasons": [
+      "weight_capacity_lbs__min",
+      "recline_degrees__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-2.png",
+    "image_tier": "stock",
+    "title": "Aether 52 Chair, adjustable lumbar, holds 270 lb",
+    "bullets": [
+      "Weight Capacity: 270.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 3.5years",
+      "Recline Range: 95.0\u00b0",
+      "Seat Cushion Thickness: 65.0mm"
+    ],
+    "description": "A office chair with weight capacity: 270.0lb, adjustable lumbar support, warranty: 3.5years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-33",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 345.0,
+      "adjustable_lumbar": false,
+      "warranty_years": 6.0,
+      "recline_degrees": 125.0,
+      "cushion_mm": 70.0
+    },
+    "price": 219.99,
+    "list_price": 245,
+    "rating": 3.9,
+    "reviews": 699,
+    "bought": 1094,
+    "stock": 143,
+    "fail_reasons": [
+      "rating__min",
+      "adjustable_lumbar"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-1.png",
+    "image_tier": "stock",
+    "title": "Lumio 37 Chair, holds 345 lb",
+    "bullets": [
+      "Weight Capacity: 345.0lb",
+      "Warranty: 6.0years",
+      "Recline Range: 125.0\u00b0",
+      "Seat Cushion Thickness: 70.0mm"
+    ],
+    "description": "A office chair with weight capacity: 345.0lb, warranty: 6.0years, recline range: 125.0\u00b0.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-34",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 310.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 5.5,
+      "recline_degrees": 95.0,
+      "cushion_mm": 60.0
+    },
+    "price": 184.99,
+    "list_price": 195,
+    "rating": 4.1,
+    "reviews": 812,
+    "bought": 1239,
+    "stock": 32,
+    "fail_reasons": [
+      "recline_degrees__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-2.png",
+    "image_tier": "stock",
+    "title": "Juno 42 Chair, adjustable lumbar, holds 310 lb",
+    "bullets": [
+      "Weight Capacity: 310.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 5.5years",
+      "Recline Range: 95.0\u00b0",
+      "Seat Cushion Thickness: 60.0mm"
+    ],
+    "description": "A office chair with weight capacity: 310.0lb, adjustable lumbar support, warranty: 5.5years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-35",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 290,
+      "adjustable_lumbar": true,
+      "warranty_years": 6,
+      "recline_degrees": 125,
+      "cushion_mm": 70
+    },
+    "price": 419.99,
+    "list_price": 519,
+    "rating": 4.8,
+    "reviews": 1800,
+    "bought": 3600,
+    "stock": 63,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "dsort_rating",
+    "variants": [],
+    "image": "office_chair-generic.png",
+    "image_tier": "stock",
+    "title": "Kestrel 35 Chair, adjustable lumbar, holds 290 lb",
+    "bullets": [
+      "Weight Capacity: 290lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 6years",
+      "Recline Range: 125\u00b0",
+      "Seat Cushion Thickness: 70mm"
+    ],
+    "description": "A office chair with weight capacity: 290lb, adjustable lumbar support, warranty: 6years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-36",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 330.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 5.0,
+      "recline_degrees": 95.0,
+      "cushion_mm": 60.0
+    },
+    "price": 384.99,
+    "list_price": 461,
+    "rating": 3.9,
+    "reviews": 953,
+    "bought": 474,
+    "stock": 150,
+    "fail_reasons": [
+      "price__lt",
+      "recline_degrees__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-3.png",
+    "image_tier": "stock",
+    "title": "Faze 31 Chair, adjustable lumbar, holds 330 lb",
+    "bullets": [
+      "Weight Capacity: 330.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 5.0years",
+      "Recline Range: 95.0\u00b0",
+      "Seat Cushion Thickness: 60.0mm"
+    ],
+    "description": "A office chair with weight capacity: 330.0lb, adjustable lumbar support, warranty: 5.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-37",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "weight_capacity_lbs": 280,
+      "adjustable_lumbar": true,
+      "warranty_years": 2.5,
+      "recline_degrees": 140,
+      "cushion_mm": 65
+    },
+    "price": 289.99,
+    "list_price": 360,
+    "rating": 4.3,
+    "reviews": 4200,
+    "bought": 8400,
+    "stock": 129,
+    "fail_reasons": [
+      "warranty_years__min"
+    ],
+    "decoy_kind": "floor",
+    "variants": [],
+    "image": "office_chair-generic-3.png",
+    "image_tier": "stock",
+    "title": "Toro 08 Chair, adjustable lumbar, holds 280 lb",
+    "bullets": [
+      "Weight Capacity: 280lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 2.5years",
+      "Recline Range: 140\u00b0",
+      "Seat Cushion Thickness: 65mm"
+    ],
+    "description": "A office chair with weight capacity: 280lb, adjustable lumbar support, warranty: 2.5years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-38",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 270.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 2.5,
+      "recline_degrees": 100.0,
+      "cushion_mm": 65.0
+    },
+    "price": 194.99,
+    "list_price": 226,
+    "rating": 4.1,
+    "reviews": 1671,
+    "bought": 1796,
+    "stock": 189,
+    "fail_reasons": [
+      "weight_capacity_lbs__min",
+      "warranty_years__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-3.png",
+    "image_tier": "stock",
+    "title": "Norvik 65 Chair, adjustable lumbar, holds 270 lb",
+    "bullets": [
+      "Weight Capacity: 270.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 2.5years",
+      "Recline Range: 100.0\u00b0",
+      "Seat Cushion Thickness: 65.0mm"
+    ],
+    "description": "A office chair with weight capacity: 270.0lb, adjustable lumbar support, warranty: 2.5years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-39",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 315.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 4.5,
+      "recline_degrees": 120.0,
+      "cushion_mm": 70.0
+    },
+    "price": 534.99,
+    "list_price": 596,
+    "rating": 4.1,
+    "reviews": 2199,
+    "bought": 1151,
+    "stock": 75,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-2.png",
+    "image_tier": "stock",
+    "title": "Pomely 18 Chair, adjustable lumbar, holds 315 lb",
+    "bullets": [
+      "Weight Capacity: 315.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 4.5years",
+      "Recline Range: 120.0\u00b0",
+      "Seat Cushion Thickness: 70.0mm"
+    ],
+    "description": "A office chair with weight capacity: 315.0lb, adjustable lumbar support, warranty: 4.5years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-40",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 335.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 5.5,
+      "recline_degrees": 120.0,
+      "cushion_mm": 55.0
+    },
+    "price": 574.99,
+    "list_price": 654,
+    "rating": 4.1,
+    "reviews": 1187,
+    "bought": 1535,
+    "stock": 127,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-0.png",
+    "image_tier": "stock",
+    "title": "Faze 63 Chair, adjustable lumbar, holds 335 lb",
+    "bullets": [
+      "Weight Capacity: 335.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 5.5years",
+      "Recline Range: 120.0\u00b0",
+      "Seat Cushion Thickness: 55.0mm"
+    ],
+    "description": "A office chair with weight capacity: 335.0lb, adjustable lumbar support, warranty: 5.5years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-41",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 310.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 5.0,
+      "recline_degrees": 115.0,
+      "cushion_mm": 45.0
+    },
+    "price": 324.99,
+    "list_price": 345,
+    "rating": 4.1,
+    "reviews": 1560,
+    "bought": 1412,
+    "stock": 193,
+    "fail_reasons": [
+      "cushion_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-1.png",
+    "image_tier": "stock",
+    "title": "Pomely 34 Chair, adjustable lumbar, holds 310 lb",
+    "bullets": [
+      "Weight Capacity: 310.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 5.0years",
+      "Recline Range: 115.0\u00b0",
+      "Seat Cushion Thickness: 45.0mm"
+    ],
+    "description": "A office chair with weight capacity: 310.0lb, adjustable lumbar support, warranty: 5.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-42",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 270.0,
+      "adjustable_lumbar": false,
+      "warranty_years": 4.5,
+      "recline_degrees": 125.0,
+      "cushion_mm": 55.0
+    },
+    "price": 199.99,
+    "list_price": 219,
+    "rating": 3.8,
+    "reviews": 158,
+    "bought": 2705,
+    "stock": 172,
+    "fail_reasons": [
+      "weight_capacity_lbs__min",
+      "rating__min",
+      "adjustable_lumbar"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-1.png",
+    "image_tier": "stock",
+    "title": "Pomely 66 Chair, holds 270 lb",
+    "bullets": [
+      "Weight Capacity: 270.0lb",
+      "Warranty: 4.5years",
+      "Recline Range: 125.0\u00b0",
+      "Seat Cushion Thickness: 55.0mm"
+    ],
+    "description": "A office chair with weight capacity: 270.0lb, warranty: 4.5years, recline range: 125.0\u00b0.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-43",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 370.0,
+      "adjustable_lumbar": false,
+      "warranty_years": 4.0,
+      "recline_degrees": 125.0,
+      "cushion_mm": 45.0
+    },
+    "price": 319.99,
+    "list_price": 351,
+    "rating": 4.1,
+    "reviews": 2285,
+    "bought": 1184,
+    "stock": 26,
+    "fail_reasons": [
+      "cushion_mm__min",
+      "adjustable_lumbar"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-3.png",
+    "image_tier": "stock",
+    "title": "Lumio 21 Chair, holds 370 lb",
+    "bullets": [
+      "Weight Capacity: 370.0lb",
+      "Warranty: 4.0years",
+      "Recline Range: 125.0\u00b0",
+      "Seat Cushion Thickness: 45.0mm"
+    ],
+    "description": "A office chair with weight capacity: 370.0lb, warranty: 4.0years, recline range: 125.0\u00b0.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-44",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 290,
+      "adjustable_lumbar": true,
+      "warranty_years": 7,
+      "recline_degrees": 135,
+      "cushion_mm": 90
+    },
+    "price": 334.99,
+    "list_price": 424,
+    "rating": 4.4,
+    "reviews": 4800,
+    "bought": 9600,
+    "stock": 82,
+    "fail_reasons": [],
+    "decoy_kind": "tier3",
+    "variants": [],
+    "image": "office_chair-generic-0.png",
+    "image_tier": "stock",
+    "title": "Kestrel 03 Chair, adjustable lumbar, holds 290 lb",
+    "bullets": [
+      "Weight Capacity: 290lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 7years",
+      "Recline Range: 135\u00b0",
+      "Seat Cushion Thickness: 90mm"
+    ],
+    "description": "A office chair with weight capacity: 290lb, adjustable lumbar support, warranty: 7years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-45",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 295.0,
+      "adjustable_lumbar": false,
+      "warranty_years": 5.5,
+      "recline_degrees": 110.0,
+      "cushion_mm": 45.0
+    },
+    "price": 194.99,
+    "list_price": 232,
+    "rating": 3.9,
+    "reviews": 2524,
+    "bought": 2826,
+    "stock": 130,
+    "fail_reasons": [
+      "rating__min",
+      "cushion_mm__min",
+      "adjustable_lumbar"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-3.png",
+    "image_tier": "stock",
+    "title": "Calder 45 Chair, holds 295 lb",
+    "bullets": [
+      "Weight Capacity: 295.0lb",
+      "Warranty: 5.5years",
+      "Recline Range: 110.0\u00b0",
+      "Seat Cushion Thickness: 45.0mm"
+    ],
+    "description": "A office chair with weight capacity: 295.0lb, warranty: 5.5years, recline range: 110.0\u00b0.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-46",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 260,
+      "adjustable_lumbar": true,
+      "warranty_years": 5,
+      "recline_degrees": 165,
+      "cushion_mm": 70
+    },
+    "price": 299.99,
+    "list_price": 361,
+    "rating": 4.5,
+    "reviews": 2100,
+    "bought": 4200,
+    "stock": 140,
+    "fail_reasons": [
+      "weight_capacity_lbs__min"
+    ],
+    "decoy_kind": "dsort_recline",
+    "variants": [],
+    "image": "office_chair-generic.png",
+    "image_tier": "stock",
+    "title": "Wisp 46 M46 Chair, adjustable lumbar, holds 260 lb",
+    "bullets": [
+      "Weight Capacity: 260lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 5years",
+      "Recline Range: 165\u00b0",
+      "Seat Cushion Thickness: 70mm"
+    ],
+    "description": "A office chair with weight capacity: 260lb, adjustable lumbar support, warranty: 5years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-47",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 385.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 4.5,
+      "recline_degrees": 120.0,
+      "cushion_mm": 45.0
+    },
+    "price": 254.99,
+    "list_price": 277,
+    "rating": 4.0,
+    "reviews": 566,
+    "bought": 1601,
+    "stock": 169,
+    "fail_reasons": [
+      "cushion_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-1.png",
+    "image_tier": "stock",
+    "title": "Velo 64 Chair, adjustable lumbar, holds 385 lb",
+    "bullets": [
+      "Weight Capacity: 385.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 4.5years",
+      "Recline Range: 120.0\u00b0",
+      "Seat Cushion Thickness: 45.0mm"
+    ],
+    "description": "A office chair with weight capacity: 385.0lb, adjustable lumbar support, warranty: 4.5years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-48",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 375.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 2.5,
+      "recline_degrees": 115.0,
+      "cushion_mm": 70.0
+    },
+    "price": 414.99,
+    "list_price": 479,
+    "rating": 4.0,
+    "reviews": 1234,
+    "bought": 176,
+    "stock": 175,
+    "fail_reasons": [
+      "price__lt",
+      "warranty_years__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-2.png",
+    "image_tier": "stock",
+    "title": "Calder 61 Chair, adjustable lumbar, holds 375 lb",
+    "bullets": [
+      "Weight Capacity: 375.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 2.5years",
+      "Recline Range: 115.0\u00b0",
+      "Seat Cushion Thickness: 70.0mm"
+    ],
+    "description": "A office chair with weight capacity: 375.0lb, adjustable lumbar support, warranty: 2.5years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-49",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 310.0,
+      "adjustable_lumbar": false,
+      "warranty_years": 4.0,
+      "recline_degrees": 115.0,
+      "cushion_mm": 65.0
+    },
+    "price": 299.99,
+    "list_price": 358,
+    "rating": 3.9,
+    "reviews": 2054,
+    "bought": 630,
+    "stock": 68,
+    "fail_reasons": [
+      "rating__min",
+      "adjustable_lumbar"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-0.png",
+    "image_tier": "stock",
+    "title": "Toro 24 Chair, holds 310 lb",
+    "bullets": [
+      "Weight Capacity: 310.0lb",
+      "Warranty: 4.0years",
+      "Recline Range: 115.0\u00b0",
+      "Seat Cushion Thickness: 65.0mm"
+    ],
+    "description": "A office chair with weight capacity: 310.0lb, warranty: 4.0years, recline range: 115.0\u00b0.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-50",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 270.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 6.0,
+      "recline_degrees": 120.0,
+      "cushion_mm": 60.0
+    },
+    "price": 294.99,
+    "list_price": 317,
+    "rating": 3.9,
+    "reviews": 2376,
+    "bought": 2359,
+    "stock": 151,
+    "fail_reasons": [
+      "weight_capacity_lbs__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-1.png",
+    "image_tier": "stock",
+    "title": "Norvik 17 Chair, adjustable lumbar, holds 270 lb",
+    "bullets": [
+      "Weight Capacity: 270.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 6.0years",
+      "Recline Range: 120.0\u00b0",
+      "Seat Cushion Thickness: 60.0mm"
+    ],
+    "description": "A office chair with weight capacity: 270.0lb, adjustable lumbar support, warranty: 6.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-51",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 300,
+      "adjustable_lumbar": true,
+      "warranty_years": 10,
+      "recline_degrees": 155,
+      "cushion_mm": 110
+    },
+    "price": 319.99,
+    "list_price": 374,
+    "rating": 4.7,
+    "reviews": 8600,
+    "bought": 17200,
+    "stock": 125,
+    "fail_reasons": [],
+    "decoy_kind": "hero",
+    "variants": [],
+    "image": "office_chair-generic-2.png",
+    "image_tier": "stock",
+    "title": "Norvik 01 Chair, adjustable lumbar, holds 300 lb",
+    "bullets": [
+      "Weight Capacity: 300lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 10years",
+      "Recline Range: 155\u00b0",
+      "Seat Cushion Thickness: 110mm"
+    ],
+    "description": "A office chair with weight capacity: 300lb, adjustable lumbar support, warranty: 10years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-52",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 270.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 5.5,
+      "recline_degrees": 115.0,
+      "cushion_mm": 70.0
+    },
+    "price": 384.99,
+    "list_price": 456,
+    "rating": 4.1,
+    "reviews": 1130,
+    "bought": 1111,
+    "stock": 112,
+    "fail_reasons": [
+      "price__lt",
+      "weight_capacity_lbs__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-0.png",
+    "image_tier": "stock",
+    "title": "Brixton 44 Chair, adjustable lumbar, holds 270 lb",
+    "bullets": [
+      "Weight Capacity: 270.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 5.5years",
+      "Recline Range: 115.0\u00b0",
+      "Seat Cushion Thickness: 70.0mm"
+    ],
+    "description": "A office chair with weight capacity: 270.0lb, adjustable lumbar support, warranty: 5.5years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-53",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "weight_capacity_lbs": 290,
+      "adjustable_lumbar": true,
+      "warranty_years": 2,
+      "recline_degrees": 120,
+      "cushion_mm": 70
+    },
+    "price": 339.99,
+    "list_price": 391,
+    "rating": 4.0,
+    "reviews": 4400,
+    "bought": 8800,
+    "stock": 103,
+    "fail_reasons": [
+      "warranty_years__min"
+    ],
+    "decoy_kind": "spec_warranty",
+    "variants": [],
+    "image": "office_chair-generic.png",
+    "image_tier": "stock",
+    "title": "Lumio 53 M53 Chair, adjustable lumbar, holds 290 lb",
+    "bullets": [
+      "Weight Capacity: 290lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 2years",
+      "Recline Range: 120\u00b0",
+      "Seat Cushion Thickness: 70mm"
+    ],
+    "description": "A office chair with weight capacity: 290lb, adjustable lumbar support, warranty: 2years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-54",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 375.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 5.5,
+      "recline_degrees": 120.0,
+      "cushion_mm": 55.0
+    },
+    "price": 534.99,
+    "list_price": 601,
+    "rating": 3.8,
+    "reviews": 1842,
+    "bought": 1092,
+    "stock": 37,
+    "fail_reasons": [
+      "price__lt",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-2.png",
+    "image_tier": "stock",
+    "title": "Faze 15 Chair, adjustable lumbar, holds 375 lb",
+    "bullets": [
+      "Weight Capacity: 375.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 5.5years",
+      "Recline Range: 120.0\u00b0",
+      "Seat Cushion Thickness: 55.0mm"
+    ],
+    "description": "A office chair with weight capacity: 375.0lb, adjustable lumbar support, warranty: 5.5years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-55",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "weight_capacity_lbs": 275,
+      "adjustable_lumbar": true,
+      "warranty_years": 5,
+      "recline_degrees": 130,
+      "cushion_mm": 45
+    },
+    "price": 284.99,
+    "list_price": 339,
+    "rating": 4.2,
+    "reviews": 3800,
+    "bought": 7600,
+    "stock": 90,
+    "fail_reasons": [
+      "cushion_mm__min"
+    ],
+    "decoy_kind": "floor",
+    "variants": [],
+    "image": "office_chair-generic-3.png",
+    "image_tier": "stock",
+    "title": "Cobalt 06 Chair, adjustable lumbar, holds 275 lb",
+    "bullets": [
+      "Weight Capacity: 275lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 5years",
+      "Recline Range: 130\u00b0",
+      "Seat Cushion Thickness: 45mm"
+    ],
+    "description": "A office chair with weight capacity: 275lb, adjustable lumbar support, warranty: 5years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-56",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 350.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 4.0,
+      "recline_degrees": 95.0,
+      "cushion_mm": 70.0
+    },
+    "price": 324.99,
+    "list_price": 385,
+    "rating": 4.0,
+    "reviews": 1015,
+    "bought": 1883,
+    "stock": 200,
+    "fail_reasons": [
+      "recline_degrees__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-0.png",
+    "image_tier": "stock",
+    "title": "Marlo 39 Chair, adjustable lumbar, holds 350 lb",
+    "bullets": [
+      "Weight Capacity: 350.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 4.0years",
+      "Recline Range: 95.0\u00b0",
+      "Seat Cushion Thickness: 70.0mm"
+    ],
+    "description": "A office chair with weight capacity: 350.0lb, adjustable lumbar support, warranty: 4.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-57",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 315.0,
+      "adjustable_lumbar": false,
+      "warranty_years": 2.5,
+      "recline_degrees": 115.0,
+      "cushion_mm": 60.0
+    },
+    "price": 329.99,
+    "list_price": 368,
+    "rating": 3.8,
+    "reviews": 654,
+    "bought": 1992,
+    "stock": 155,
+    "fail_reasons": [
+      "warranty_years__min",
+      "rating__min",
+      "adjustable_lumbar"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-1.png",
+    "image_tier": "stock",
+    "title": "Vesper 57 Chair, holds 315 lb",
+    "bullets": [
+      "Weight Capacity: 315.0lb",
+      "Warranty: 2.5years",
+      "Recline Range: 115.0\u00b0",
+      "Seat Cushion Thickness: 60.0mm"
+    ],
+    "description": "A office chair with weight capacity: 315.0lb, warranty: 2.5years, recline range: 115.0\u00b0.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-58",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 370.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 2.5,
+      "recline_degrees": 110.0,
+      "cushion_mm": 45.0
+    },
+    "price": 279.99,
+    "list_price": 300,
+    "rating": 3.9,
+    "reviews": 1314,
+    "bought": 1231,
+    "stock": 27,
+    "fail_reasons": [
+      "warranty_years__min",
+      "rating__min",
+      "cushion_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-0.png",
+    "image_tier": "stock",
+    "title": "Calder 13 Chair, adjustable lumbar, holds 370 lb",
+    "bullets": [
+      "Weight Capacity: 370.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 2.5years",
+      "Recline Range: 110.0\u00b0",
+      "Seat Cushion Thickness: 45.0mm"
+    ],
+    "description": "A office chair with weight capacity: 370.0lb, adjustable lumbar support, warranty: 2.5years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-59",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 305.0,
+      "adjustable_lumbar": false,
+      "warranty_years": 3.5,
+      "recline_degrees": 115.0,
+      "cushion_mm": 60.0
+    },
+    "price": 309.99,
+    "list_price": 338,
+    "rating": 3.9,
+    "reviews": 1784,
+    "bought": 1676,
+    "stock": 100,
+    "fail_reasons": [
+      "rating__min",
+      "adjustable_lumbar"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-3.png",
+    "image_tier": "stock",
+    "title": "Orla 59 Chair, holds 305 lb",
+    "bullets": [
+      "Weight Capacity: 305.0lb",
+      "Warranty: 3.5years",
+      "Recline Range: 115.0\u00b0",
+      "Seat Cushion Thickness: 60.0mm"
+    ],
+    "description": "A office chair with weight capacity: 305.0lb, warranty: 3.5years, recline range: 115.0\u00b0.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-60",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 270.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 3.5,
+      "recline_degrees": 110.0,
+      "cushion_mm": 45.0
+    },
+    "price": 239.99,
+    "list_price": 255,
+    "rating": 3.9,
+    "reviews": 1834,
+    "bought": 1312,
+    "stock": 151,
+    "fail_reasons": [
+      "weight_capacity_lbs__min",
+      "rating__min",
+      "cushion_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-0.png",
+    "image_tier": "stock",
+    "title": "Orla 11 Chair, adjustable lumbar, holds 270 lb",
+    "bullets": [
+      "Weight Capacity: 270.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 3.5years",
+      "Recline Range: 110.0\u00b0",
+      "Seat Cushion Thickness: 45.0mm"
+    ],
+    "description": "A office chair with weight capacity: 270.0lb, adjustable lumbar support, warranty: 3.5years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-61",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 270.0,
+      "adjustable_lumbar": false,
+      "warranty_years": 5.0,
+      "recline_degrees": 105.0,
+      "cushion_mm": 50.0
+    },
+    "price": 299.99,
+    "list_price": 317,
+    "rating": 3.9,
+    "reviews": 1204,
+    "bought": 2658,
+    "stock": 133,
+    "fail_reasons": [
+      "weight_capacity_lbs__min",
+      "rating__min",
+      "adjustable_lumbar"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-0.png",
+    "image_tier": "stock",
+    "title": "Kestrel 35 M61 Chair, holds 270 lb",
+    "bullets": [
+      "Weight Capacity: 270.0lb",
+      "Warranty: 5.0years",
+      "Recline Range: 105.0\u00b0",
+      "Seat Cushion Thickness: 50.0mm"
+    ],
+    "description": "A office chair with weight capacity: 270.0lb, warranty: 5.0years, recline range: 105.0\u00b0.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-62",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 350.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 5.5,
+      "recline_degrees": 95.0,
+      "cushion_mm": 70.0
+    },
+    "price": 199.99,
+    "list_price": 239,
+    "rating": 3.8,
+    "reviews": 2388,
+    "bought": 858,
+    "stock": 165,
+    "fail_reasons": [
+      "recline_degrees__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-1.png",
+    "image_tier": "stock",
+    "title": "Faze 47 Chair, adjustable lumbar, holds 350 lb",
+    "bullets": [
+      "Weight Capacity: 350.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 5.5years",
+      "Recline Range: 95.0\u00b0",
+      "Seat Cushion Thickness: 70.0mm"
+    ],
+    "description": "A office chair with weight capacity: 350.0lb, adjustable lumbar support, warranty: 5.5years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-63",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 350.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 2.5,
+      "recline_degrees": 105.0,
+      "cushion_mm": 70.0
+    },
+    "price": 299.99,
+    "list_price": 358,
+    "rating": 4.0,
+    "reviews": 408,
+    "bought": 2599,
+    "stock": 31,
+    "fail_reasons": [
+      "warranty_years__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-0.png",
+    "image_tier": "stock",
+    "title": "Aether 36 Chair, adjustable lumbar, holds 350 lb",
+    "bullets": [
+      "Weight Capacity: 350.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 2.5years",
+      "Recline Range: 105.0\u00b0",
+      "Seat Cushion Thickness: 70.0mm"
+    ],
+    "description": "A office chair with weight capacity: 350.0lb, adjustable lumbar support, warranty: 2.5years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-64",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 300,
+      "adjustable_lumbar": false,
+      "warranty_years": 5,
+      "recline_degrees": 130,
+      "cushion_mm": 120
+    },
+    "price": 309.99,
+    "list_price": 379,
+    "rating": 4.5,
+    "reviews": 3400,
+    "bought": 6800,
+    "stock": 117,
+    "fail_reasons": [
+      "adjustable_lumbar"
+    ],
+    "decoy_kind": "dsort_cushion",
+    "variants": [],
+    "image": "office_chair-generic.png",
+    "image_tier": "stock",
+    "title": "Velo 64 M64 Chair, holds 300 lb",
+    "bullets": [
+      "Weight Capacity: 300lb",
+      "Warranty: 5years",
+      "Recline Range: 130\u00b0",
+      "Seat Cushion Thickness: 120mm"
+    ],
+    "description": "A office chair with weight capacity: 300lb, warranty: 5years, recline range: 130\u00b0.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-65",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 295.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 4.0,
+      "recline_degrees": 120.0,
+      "cushion_mm": 65.0
+    },
+    "price": 559.99,
+    "list_price": 654,
+    "rating": 3.8,
+    "reviews": 1194,
+    "bought": 2874,
+    "stock": 126,
+    "fail_reasons": [
+      "price__lt",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-3.png",
+    "image_tier": "stock",
+    "title": "Velo 16 Chair, adjustable lumbar, holds 295 lb",
+    "bullets": [
+      "Weight Capacity: 295.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 4.0years",
+      "Recline Range: 120.0\u00b0",
+      "Seat Cushion Thickness: 65.0mm"
+    ],
+    "description": "A office chair with weight capacity: 295.0lb, adjustable lumbar support, warranty: 4.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-66",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 360.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 5.5,
+      "recline_degrees": 95.0,
+      "cushion_mm": 70.0
+    },
+    "price": 179.99,
+    "list_price": 211,
+    "rating": 4.1,
+    "reviews": 1730,
+    "bought": 1067,
+    "stock": 174,
+    "fail_reasons": [
+      "recline_degrees__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-0.png",
+    "image_tier": "stock",
+    "title": "Vesper 25 Chair, adjustable lumbar, holds 360 lb",
+    "bullets": [
+      "Weight Capacity: 360.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 5.5years",
+      "Recline Range: 95.0\u00b0",
+      "Seat Cushion Thickness: 70.0mm"
+    ],
+    "description": "A office chair with weight capacity: 360.0lb, adjustable lumbar support, warranty: 5.5years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-67",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 335.0,
+      "adjustable_lumbar": false,
+      "warranty_years": 5.5,
+      "recline_degrees": 115.0,
+      "cushion_mm": 45.0
+    },
+    "price": 229.99,
+    "list_price": 246,
+    "rating": 4.0,
+    "reviews": 656,
+    "bought": 2898,
+    "stock": 30,
+    "fail_reasons": [
+      "cushion_mm__min",
+      "adjustable_lumbar"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-2.png",
+    "image_tier": "stock",
+    "title": "Wisp 62 Chair, holds 335 lb",
+    "bullets": [
+      "Weight Capacity: 335.0lb",
+      "Warranty: 5.5years",
+      "Recline Range: 115.0\u00b0",
+      "Seat Cushion Thickness: 45.0mm"
+    ],
+    "description": "A office chair with weight capacity: 335.0lb, warranty: 5.5years, recline range: 115.0\u00b0.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-68",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 325.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 6.0,
+      "recline_degrees": 105.0,
+      "cushion_mm": 55.0
+    },
+    "price": 424.99,
+    "list_price": 475,
+    "rating": 3.9,
+    "reviews": 2510,
+    "bought": 1541,
+    "stock": 47,
+    "fail_reasons": [
+      "price__lt",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-3.png",
+    "image_tier": "stock",
+    "title": "Kestrel 67 Chair, adjustable lumbar, holds 325 lb",
+    "bullets": [
+      "Weight Capacity: 325.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 6.0years",
+      "Recline Range: 105.0\u00b0",
+      "Seat Cushion Thickness: 55.0mm"
+    ],
+    "description": "A office chair with weight capacity: 325.0lb, adjustable lumbar support, warranty: 6.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-69",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 335.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 6.5,
+      "recline_degrees": 100.0,
+      "cushion_mm": 45.0
+    },
+    "price": 229.99,
+    "list_price": 253,
+    "rating": 4.1,
+    "reviews": 1308,
+    "bought": 2934,
+    "stock": 47,
+    "fail_reasons": [
+      "cushion_mm__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-2.png",
+    "image_tier": "stock",
+    "title": "Marlo 55 Chair, adjustable lumbar, holds 335 lb",
+    "bullets": [
+      "Weight Capacity: 335.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 6.5years",
+      "Recline Range: 100.0\u00b0",
+      "Seat Cushion Thickness: 45.0mm"
+    ],
+    "description": "A office chair with weight capacity: 335.0lb, adjustable lumbar support, warranty: 6.5years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-70",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 270.0,
+      "adjustable_lumbar": true,
+      "warranty_years": 5.5,
+      "recline_degrees": 95.0,
+      "cushion_mm": 70.0
+    },
+    "price": 294.99,
+    "list_price": 333,
+    "rating": 4.1,
+    "reviews": 794,
+    "bought": 2007,
+    "stock": 139,
+    "fail_reasons": [
+      "weight_capacity_lbs__min",
+      "recline_degrees__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-3.png",
+    "image_tier": "stock",
+    "title": "Juno 10 Chair, adjustable lumbar, holds 270 lb",
+    "bullets": [
+      "Weight Capacity: 270.0lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 5.5years",
+      "Recline Range: 95.0\u00b0",
+      "Seat Cushion Thickness: 70.0mm"
+    ],
+    "description": "A office chair with weight capacity: 270.0lb, adjustable lumbar support, warranty: 5.5years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-71",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 355.0,
+      "adjustable_lumbar": false,
+      "warranty_years": 5.0,
+      "recline_degrees": 110.0,
+      "cushion_mm": 70.0
+    },
+    "price": 224.99,
+    "list_price": 241,
+    "rating": 3.8,
+    "reviews": 2210,
+    "bought": 2275,
+    "stock": 181,
+    "fail_reasons": [
+      "rating__min",
+      "adjustable_lumbar"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "office_chair-generic-3.png",
+    "image_tier": "stock",
+    "title": "Orla 27 Chair, holds 355 lb",
+    "bullets": [
+      "Weight Capacity: 355.0lb",
+      "Warranty: 5.0years",
+      "Recline Range: 110.0\u00b0",
+      "Seat Cushion Thickness: 70.0mm"
+    ],
+    "description": "A office chair with weight capacity: 355.0lb, warranty: 5.0years, recline range: 110.0\u00b0.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-72",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "weight_capacity_lbs": 285,
+      "adjustable_lumbar": true,
+      "warranty_years": 4,
+      "recline_degrees": 95,
+      "cushion_mm": 60
+    },
+    "price": 264.99,
+    "list_price": 327,
+    "rating": 4.4,
+    "reviews": 3100,
+    "bought": 6200,
+    "stock": 79,
+    "fail_reasons": [
+      "recline_degrees__min"
+    ],
+    "decoy_kind": "floor",
+    "variants": [],
+    "image": "office_chair-generic-2.png",
+    "image_tier": "stock",
+    "title": "Marlo 07 Chair, adjustable lumbar, holds 285 lb",
+    "bullets": [
+      "Weight Capacity: 285lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 4years",
+      "Recline Range: 95\u00b0",
+      "Seat Cushion Thickness: 60mm"
+    ],
+    "description": "A office chair with weight capacity: 285lb, adjustable lumbar support, warranty: 4years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-73",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 285,
+      "adjustable_lumbar": true,
+      "warranty_years": 4,
+      "recline_degrees": 115,
+      "cushion_mm": 105
+    },
+    "price": 279.99,
+    "list_price": 315,
+    "rating": 4.2,
+    "reviews": 4400,
+    "bought": 8800,
+    "stock": 70,
+    "fail_reasons": [],
+    "decoy_kind": "tier4",
+    "variants": [],
+    "image": "office_chair-generic-0.png",
+    "image_tier": "stock",
+    "title": "Aether 04 Chair, adjustable lumbar, holds 285 lb",
+    "bullets": [
+      "Weight Capacity: 285lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 4years",
+      "Recline Range: 115\u00b0",
+      "Seat Cushion Thickness: 105mm"
+    ],
+    "description": "A office chair with weight capacity: 285lb, adjustable lumbar support, warranty: 4years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-OFFICECHAIR-74",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "weight_capacity_lbs": 295,
+      "adjustable_lumbar": true,
+      "warranty_years": 8,
+      "recline_degrees": 145,
+      "cushion_mm": 95
+    },
+    "price": 304.99,
+    "list_price": 393,
+    "rating": 4.55,
+    "reviews": 5200,
+    "bought": 10400,
+    "stock": 55,
+    "fail_reasons": [],
+    "decoy_kind": "tier2",
+    "variants": [],
+    "image": "office_chair-generic-1.png",
+    "image_tier": "stock",
+    "title": "Pomely 02 Chair, adjustable lumbar, holds 295 lb",
+    "bullets": [
+      "Weight Capacity: 295lb",
+      "Adjustable Lumbar Support",
+      "Warranty: 8years",
+      "Recline Range: 145\u00b0",
+      "Seat Cushion Thickness: 95mm"
+    ],
+    "description": "A office chair with weight capacity: 295lb, adjustable lumbar support, warranty: 8years.",
+    "copy_status": "ok"
+  }
+]

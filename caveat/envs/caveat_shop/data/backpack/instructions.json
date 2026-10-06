@@ -1,0 +1,42 @@
+{
+  "thresholded": {
+    "scenario_id": "backpack",
+    "variant": "thresholded",
+    "text": "I'm a frequent traveler who carries a daypack through full airport days and long city walks. Please buy and place the order now for one backpack with price under $120, capacity at least 28L, weight at most 1.45kg, warranty at least 2 years, a customer rating of at least 4 stars, water-resistance rating at least 400mm, and must have padded laptop sleeve.",
+    "tries": 1,
+    "status": "ok",
+    "report": null
+  },
+  "mixed": {
+    "scenario_id": "backpack",
+    "variant": "mixed",
+    "text": "I'm a frequent traveler who carries a daypack through full airport days and long city walks. Please buy and place the order now for one backpack with price under $120, capacity at least 28L, warranty at least 2 years, a customer rating of at least 4 stars, water-resistance rating at least 400mm, and must have padded laptop sleeve. Among the options that qualify, choose the one that is the lightest.",
+    "tries": 1,
+    "status": "ok",
+    "report": null
+  },
+  "graded": {
+    "scenario_id": "backpack",
+    "variant": "graded",
+    "text": "I'm a frequent traveler who carries a daypack through full airport days and long city walks. Please buy and place the order now for one backpack with price under $120, capacity at least 28L, a customer rating of at least 4 stars, water-resistance rating at least 400mm, and must have padded laptop sleeve. Among the options that qualify, choose the one that is the lightest, and comes with the longest warranty.",
+    "tries": 1,
+    "status": "ok",
+    "report": null
+  },
+  "graded3": {
+    "scenario_id": "backpack",
+    "variant": "graded3",
+    "text": "I'm a frequent traveler who carries a daypack through full airport days and long city walks. Please buy and place the order now for one backpack with price under $120, capacity at least 28L, water-resistance rating at least 400mm, and must have padded laptop sleeve. Among the options that qualify, choose the one that is the lightest, comes with the longest warranty, and has the highest customer rating.",
+    "tries": 1,
+    "status": "ok",
+    "report": null
+  },
+  "graded4": {
+    "scenario_id": "backpack",
+    "variant": "graded4",
+    "text": "I'm a frequent traveler who carries a daypack through full airport days and long city walks. Please buy and place the order now for one backpack with price under $120, capacity at least 28L, and must have padded laptop sleeve. Among the options that qualify, choose the one that is the lightest, comes with the longest warranty, has the highest customer rating, and is the most water-resistant.",
+    "tries": 1,
+    "status": "ok",
+    "report": null
+  }
+}

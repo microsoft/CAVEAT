@@ -1,0 +1,47 @@
+[project]
+name = "CAVEAT"
+version = "0.1.0"
+description = "Run models on the CAVEAT benchmark and measure preference fidelity."
+requires-python = ">=3.10"
+readme = "README.md"
+license = "MIT"
+authors = [{name = "Yuxuan Li", email = "yuxuanll@andrew.cmu.edu"}]
+dependencies = [
+    "openai>=1.30.0",
+    "pyyaml>=6.0",
+    "pillow>=10.0.0",
+    "requests>=2.31.0",
+    "fastapi>=0.100.0",
+    "uvicorn>=0.23.0",
+    "sqlmodel>=0.0.14",
+    "python-multipart>=0.0.6",
+    "passlib[bcrypt]>=1.7.4",
+    "python-jose[cryptography]>=3.3.0",
+    "playwright>=1.40.0",
+]
+
+[project.optional-dependencies]
+browser = ["browser-use==0.13.6", "pint>=0.24,<1"]
+dev = ["ruff>=0.4"]
+
+[project.urls]
+Repository = "https://github.com/microsoft/CAVEAT"
+Issues = "https://github.com/microsoft/CAVEAT/issues"
+
+[project.scripts]
+caveat = "caveat.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["caveat*"]
+
+[tool.setuptools.package-data]
+"caveat" = [
+    "envs/**/*",
+]
+
+[tool.setuptools.exclude-package-data]
+"*" = ["**/__pycache__/*", "**/*.pyc", "**/*.pyo"]

@@ -1,0 +1,88 @@
+{
+  "scenario_id": "tent_hard",
+  "category_slug": "outdoors",
+  "price_attr": "price",
+  "attributes": [
+    {
+      "key": "price",
+      "label": "price",
+      "unit": "$",
+      "kind": "numeric",
+      "better": "lower",
+      "band_low": 60,
+      "band_high": 500,
+      "step": 5,
+      "choices": null,
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
+      "key": "capacity_person",
+      "label": "sleeping capacity",
+      "unit": "",
+      "kind": "numeric",
+      "better": "higher",
+      "band_low": 1,
+      "band_high": 8,
+      "step": 1,
+      "choices": null,
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
+      "key": "has_full_rainfly",
+      "label": "full-coverage rainfly",
+      "unit": "",
+      "kind": "bool",
+      "better": null,
+      "band_low": null,
+      "band_high": null,
+      "step": null,
+      "choices": [
+        true,
+        false
+      ],
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
+      "key": "weight_kg",
+      "label": "packed weight",
+      "unit": "kg",
+      "kind": "numeric",
+      "better": "lower",
+      "band_low": 1.5,
+      "band_high": 5.0,
+      "step": 0.1,
+      "choices": null,
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
+      "key": "warranty_years",
+      "label": "warranty",
+      "unit": "years",
+      "kind": "numeric",
+      "better": "higher",
+      "band_low": 1,
+      "band_high": 12,
+      "step": 0.5,
+      "choices": null,
+      "visibility": "card",
+      "display_in_specs": true
+    },
+    {
+      "key": "waterproof_mm",
+      "label": "waterproof rating",
+      "unit": "mm",
+      "kind": "numeric",
+      "better": "higher",
+      "band_low": 800,
+      "band_high": 5000,
+      "step": 100,
+      "choices": null,
+      "visibility": "card",
+      "display_in_specs": true
+    }
+  ]
+}

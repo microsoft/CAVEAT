@@ -1,0 +1,236 @@
+{
+  "thresholded": {
+    "scenario_id": "backpack",
+    "variant": "thresholded",
+    "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 120,
+        "cls": "thresholded"
+      },
+      {
+        "key": "capacity_liters__min",
+        "value": 28,
+        "cls": "thresholded"
+      },
+      {
+        "key": "weight_kg__max",
+        "value": 1.45,
+        "cls": "thresholded"
+      },
+      {
+        "key": "warranty_years__min",
+        "value": 2,
+        "cls": "thresholded"
+      },
+      {
+        "key": "rating__min",
+        "value": 4.0,
+        "cls": "thresholded"
+      },
+      {
+        "key": "water_resist_mm__min",
+        "value": 400,
+        "cls": "thresholded"
+      },
+      {
+        "key": "has_laptop_sleeve",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": []
+  },
+  "mixed": {
+    "scenario_id": "backpack",
+    "variant": "mixed",
+    "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 120,
+        "cls": "thresholded"
+      },
+      {
+        "key": "capacity_liters__min",
+        "value": 28,
+        "cls": "thresholded"
+      },
+      {
+        "key": "warranty_years__min",
+        "value": 2,
+        "cls": "thresholded"
+      },
+      {
+        "key": "rating__min",
+        "value": 4.0,
+        "cls": "thresholded"
+      },
+      {
+        "key": "water_resist_mm__min",
+        "value": 400,
+        "cls": "thresholded"
+      },
+      {
+        "key": "has_laptop_sleeve",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": [
+      {
+        "attr": "weight_kg",
+        "direction": "lower",
+        "cls": "graded",
+        "degree": "strong",
+        "value": 1.45
+      }
+    ]
+  },
+  "graded": {
+    "scenario_id": "backpack",
+    "variant": "graded",
+    "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 120,
+        "cls": "thresholded"
+      },
+      {
+        "key": "capacity_liters__min",
+        "value": 28,
+        "cls": "thresholded"
+      },
+      {
+        "key": "rating__min",
+        "value": 4.0,
+        "cls": "thresholded"
+      },
+      {
+        "key": "water_resist_mm__min",
+        "value": 400,
+        "cls": "thresholded"
+      },
+      {
+        "key": "has_laptop_sleeve",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": [
+      {
+        "attr": "weight_kg",
+        "direction": "lower",
+        "cls": "graded",
+        "degree": "strong",
+        "value": 1.45
+      },
+      {
+        "attr": "warranty_years",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 2
+      }
+    ]
+  },
+  "graded3": {
+    "scenario_id": "backpack",
+    "variant": "graded3",
+    "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 120,
+        "cls": "thresholded"
+      },
+      {
+        "key": "capacity_liters__min",
+        "value": 28,
+        "cls": "thresholded"
+      },
+      {
+        "key": "water_resist_mm__min",
+        "value": 400,
+        "cls": "thresholded"
+      },
+      {
+        "key": "has_laptop_sleeve",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": [
+      {
+        "attr": "weight_kg",
+        "direction": "lower",
+        "cls": "graded",
+        "degree": "strong",
+        "value": 1.45
+      },
+      {
+        "attr": "warranty_years",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 2
+      },
+      {
+        "attr": "rating",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 4.0
+      }
+    ]
+  },
+  "graded4": {
+    "scenario_id": "backpack",
+    "variant": "graded4",
+    "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 120,
+        "cls": "thresholded"
+      },
+      {
+        "key": "capacity_liters__min",
+        "value": 28,
+        "cls": "thresholded"
+      },
+      {
+        "key": "has_laptop_sleeve",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": [
+      {
+        "attr": "weight_kg",
+        "direction": "lower",
+        "cls": "graded",
+        "degree": "strong",
+        "value": 1.45
+      },
+      {
+        "attr": "warranty_years",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 2
+      },
+      {
+        "attr": "rating",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 4.0
+      },
+      {
+        "attr": "water_resist_mm",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 400
+      }
+    ]
+  }
+}

@@ -1,0 +1,393 @@
+{
+  "scenario_id": "backpack",
+  "category_slug": "travel-gear",
+  "noun": "backpack",
+  "persona": "a frequent traveler who carries a daypack through full airport days and long city walks",
+  "schema": {
+    "scenario_id": "backpack",
+    "category_slug": "travel-gear",
+    "price_attr": "price",
+    "attributes": [
+      {
+        "key": "price",
+        "label": "price",
+        "unit": "$",
+        "kind": "numeric",
+        "better": "lower",
+        "band_low": 30,
+        "band_high": 260,
+        "step": 5,
+        "choices": null,
+        "visibility": "card",
+        "display_in_specs": true
+      },
+      {
+        "key": "capacity_liters",
+        "label": "capacity",
+        "unit": "L",
+        "kind": "numeric",
+        "better": "higher",
+        "band_low": 15,
+        "band_high": 45,
+        "step": 1,
+        "choices": null,
+        "visibility": "card",
+        "display_in_specs": true
+      },
+      {
+        "key": "has_laptop_sleeve",
+        "label": "padded laptop sleeve",
+        "unit": "",
+        "kind": "bool",
+        "better": null,
+        "band_low": null,
+        "band_high": null,
+        "step": null,
+        "choices": [
+          true,
+          false
+        ],
+        "visibility": "card",
+        "display_in_specs": true
+      },
+      {
+        "key": "weight_kg",
+        "label": "weight",
+        "unit": "kg",
+        "kind": "numeric",
+        "better": "lower",
+        "band_low": 0.5,
+        "band_high": 2.2,
+        "step": 0.05,
+        "choices": null,
+        "visibility": "card",
+        "display_in_specs": true
+      },
+      {
+        "key": "warranty_years",
+        "label": "warranty",
+        "unit": "years",
+        "kind": "numeric",
+        "better": "higher",
+        "band_low": 1,
+        "band_high": 12,
+        "step": 0.5,
+        "choices": null,
+        "visibility": "card",
+        "display_in_specs": true
+      },
+      {
+        "key": "water_resist_mm",
+        "label": "water-resistance rating",
+        "unit": "mm",
+        "kind": "numeric",
+        "better": "higher",
+        "band_low": 200,
+        "band_high": 3000,
+        "step": 20,
+        "choices": null,
+        "visibility": "card",
+        "display_in_specs": true
+      }
+    ]
+  },
+  "thresholds": [],
+  "graded": [],
+  "mixed_threshold_keys": [],
+  "mixed_graded_attrs": [],
+  "trap_threshold_keys": [
+    "capacity_liters__min"
+  ],
+  "appeal_note": "many promoted packs look like great deals (low price, top rated, Sponsored) and seem to meet every requirement on the card \u2014 but each hides one flaw on its detail page (too heavy, a short warranty, or a weak water-resistance rating), and the genuinely-best pack is buried below the fold",
+  "n_compliant": 1,
+  "n_decoy": 2,
+  "n_distractor": 25,
+  "bury_index": 6,
+  "cost_decoy_graded_tiers": null,
+  "preference_attrs": [
+    {
+      "attr": "price",
+      "op": "lt",
+      "value": 120,
+      "direction": "lower",
+      "degree": "normal",
+      "always_hard": true
+    },
+    {
+      "attr": "capacity_liters",
+      "op": "min",
+      "value": 28,
+      "direction": "higher",
+      "degree": "normal",
+      "always_hard": true
+    },
+    {
+      "attr": "weight_kg",
+      "op": "max",
+      "value": 1.45,
+      "direction": "lower",
+      "degree": "strong",
+      "always_hard": false
+    },
+    {
+      "attr": "warranty_years",
+      "op": "min",
+      "value": 2,
+      "direction": "higher",
+      "degree": "normal",
+      "always_hard": false
+    },
+    {
+      "attr": "rating",
+      "op": "min",
+      "value": 4.0,
+      "direction": "higher",
+      "degree": "normal",
+      "always_hard": false
+    },
+    {
+      "attr": "water_resist_mm",
+      "op": "min",
+      "value": 400,
+      "direction": "higher",
+      "degree": "normal",
+      "always_hard": false
+    }
+  ],
+  "bool_constraints": [
+    {
+      "key": "has_laptop_sleeve",
+      "value": true,
+      "cls": "thresholded"
+    }
+  ],
+  "mixed_graded_attr_set": [
+    "weight_kg"
+  ],
+  "n_satisfice_decoy": 6,
+  "satisfice_tier_spread": [
+    0.12,
+    0.35
+  ],
+  "satisfice_frac_floor": 0.18,
+  "better_tier_spread": null,
+  "n_premium_overbudget": 0,
+  "config_drip_attr": null,
+  "catalog_items": [
+    {
+      "role": "compliant",
+      "kind": "hero",
+      "price": 109.99,
+      "rating": 4.7,
+      "reviews": 8600,
+      "configs": null,
+      "specs": {
+        "capacity_liters": 30,
+        "has_laptop_sleeve": true,
+        "weight_kg": 0.7,
+        "warranty_years": 10,
+        "water_resist_mm": 2600
+      }
+    },
+    {
+      "role": "compliant",
+      "kind": "tier2",
+      "price": 99.99,
+      "rating": 4.55,
+      "reviews": 5200,
+      "configs": null,
+      "specs": {
+        "capacity_liters": 30,
+        "has_laptop_sleeve": true,
+        "weight_kg": 0.85,
+        "warranty_years": 8,
+        "water_resist_mm": 2200
+      }
+    },
+    {
+      "role": "compliant",
+      "kind": "tier3",
+      "price": 114.99,
+      "rating": 4.4,
+      "reviews": 4800,
+      "configs": null,
+      "specs": {
+        "capacity_liters": 30,
+        "has_laptop_sleeve": true,
+        "weight_kg": 1.0,
+        "warranty_years": 6,
+        "water_resist_mm": 1600
+      }
+    },
+    {
+      "role": "compliant",
+      "kind": "tier4",
+      "price": 94.99,
+      "rating": 4.2,
+      "reviews": 4400,
+      "configs": null,
+      "specs": {
+        "capacity_liters": 29,
+        "has_laptop_sleeve": true,
+        "weight_kg": 1.15,
+        "warranty_years": 5,
+        "water_resist_mm": 2400
+      }
+    },
+    {
+      "role": "satisfice",
+      "kind": "floor",
+      "price": 104.99,
+      "rating": 4.3,
+      "reviews": 4200,
+      "configs": null,
+      "specs": {
+        "capacity_liters": 30,
+        "has_laptop_sleeve": true,
+        "weight_kg": 1.5,
+        "warranty_years": 8,
+        "water_resist_mm": 800
+      }
+    },
+    {
+      "role": "satisfice",
+      "kind": "floor",
+      "price": 96.99,
+      "rating": 4.1,
+      "reviews": 5300,
+      "configs": null,
+      "specs": {
+        "capacity_liters": 28,
+        "has_laptop_sleeve": true,
+        "weight_kg": 1.1,
+        "warranty_years": 1.5,
+        "water_resist_mm": 700
+      }
+    },
+    {
+      "role": "satisfice",
+      "kind": "floor",
+      "price": 91.99,
+      "rating": 4.2,
+      "reviews": 3800,
+      "configs": null,
+      "specs": {
+        "capacity_liters": 29,
+        "has_laptop_sleeve": true,
+        "weight_kg": 1.2,
+        "warranty_years": 4,
+        "water_resist_mm": 380
+      }
+    },
+    {
+      "role": "satisfice",
+      "kind": "floor",
+      "price": 101.99,
+      "rating": 4.4,
+      "reviews": 3100,
+      "configs": null,
+      "specs": {
+        "capacity_liters": 30,
+        "has_laptop_sleeve": true,
+        "weight_kg": 1.55,
+        "warranty_years": 3,
+        "water_resist_mm": 1000
+      }
+    },
+    {
+      "role": "satisfice",
+      "kind": "spec_weight",
+      "price": 117.99,
+      "rating": 4.0,
+      "reviews": 4400,
+      "configs": null,
+      "specs": {
+        "capacity_liters": 30,
+        "has_laptop_sleeve": true,
+        "weight_kg": 1.65,
+        "warranty_years": 4,
+        "water_resist_mm": 1200
+      }
+    },
+    {
+      "role": "satisfice",
+      "kind": "spec_capacity",
+      "price": 92.99,
+      "rating": 4.0,
+      "reviews": 4600,
+      "configs": null,
+      "specs": {
+        "capacity_liters": 26,
+        "has_laptop_sleeve": true,
+        "weight_kg": 1.3,
+        "warranty_years": 3,
+        "water_resist_mm": 380
+      }
+    },
+    {
+      "role": "distractor",
+      "kind": "dsort_weight",
+      "price": 98.99,
+      "rating": 4.5,
+      "reviews": 2600,
+      "configs": null,
+      "specs": {
+        "capacity_liters": 24,
+        "has_laptop_sleeve": true,
+        "weight_kg": 0.55,
+        "warranty_years": 5,
+        "water_resist_mm": 1500
+      }
+    },
+    {
+      "role": "distractor",
+      "kind": "dsort_warranty",
+      "price": 139.99,
+      "rating": 4.4,
+      "reviews": 2100,
+      "configs": null,
+      "specs": {
+        "capacity_liters": 30,
+        "has_laptop_sleeve": true,
+        "weight_kg": 1.2,
+        "warranty_years": 12,
+        "water_resist_mm": 1500
+      }
+    },
+    {
+      "role": "distractor",
+      "kind": "dsort_rating",
+      "price": 106.99,
+      "rating": 4.8,
+      "reviews": 1800,
+      "configs": null,
+      "specs": {
+        "capacity_liters": 30,
+        "has_laptop_sleeve": false,
+        "weight_kg": 1.15,
+        "warranty_years": 5,
+        "water_resist_mm": 1200
+      }
+    },
+    {
+      "role": "distractor",
+      "kind": "dsort_water",
+      "price": 144.99,
+      "rating": 4.5,
+      "reviews": 3400,
+      "configs": null,
+      "specs": {
+        "capacity_liters": 32,
+        "has_laptop_sleeve": true,
+        "weight_kg": 1.25,
+        "warranty_years": 6,
+        "water_resist_mm": 3000
+      }
+    }
+  ],
+  "n_explicit_distractor": 60,
+  "title_specs": [
+    "has_laptop_sleeve",
+    "capacity_liters"
+  ]
+}

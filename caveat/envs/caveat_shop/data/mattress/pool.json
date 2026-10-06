@@ -1,0 +1,2614 @@
+[
+  {
+    "asin": "EXP-MATTRESS-01",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 9.0,
+      "certipur_certified": true,
+      "trial_nights": 95.0,
+      "warranty_years": 12.0,
+      "foam_density_kg": 41.0
+    },
+    "price": 509.99,
+    "list_price": 576,
+    "rating": 4.1,
+    "reviews": 1011,
+    "bought": 380,
+    "stock": 65,
+    "fail_reasons": [
+      "thickness_in__min",
+      "trial_nights__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-2.png",
+    "image_tier": "stock",
+    "title": "Brixton 28 Mattress, CertiPUR-US foam, 9-inch",
+    "bullets": [
+      "Thickness: 9.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 95.0nights",
+      "Warranty: 12.0years",
+      "Foam Density: 41.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 9.0in, certipur-us certified foam, sleep trial: 95.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-02",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 15.0,
+      "certipur_certified": true,
+      "trial_nights": 130.0,
+      "warranty_years": 12.0,
+      "foam_density_kg": 29.0
+    },
+    "price": 799.99,
+    "list_price": 870,
+    "rating": 4.0,
+    "reviews": 1879,
+    "bought": 237,
+    "stock": 163,
+    "fail_reasons": [
+      "price__lt",
+      "foam_density_kg__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-2.png",
+    "image_tier": "stock",
+    "title": "Velo 64 Mattress, CertiPUR-US foam, 15-inch",
+    "bullets": [
+      "Thickness: 15.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 130.0nights",
+      "Warranty: 12.0years",
+      "Foam Density: 29.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 15.0in, certipur-us certified foam, sleep trial: 130.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-03",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 9.0,
+      "certipur_certified": true,
+      "trial_nights": 190.0,
+      "warranty_years": 13.0,
+      "foam_density_kg": 38.0
+    },
+    "price": 459.99,
+    "list_price": 546,
+    "rating": 4.1,
+    "reviews": 1196,
+    "bought": 1229,
+    "stock": 36,
+    "fail_reasons": [
+      "thickness_in__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-0.png",
+    "image_tier": "stock",
+    "title": "Kestrel 67 Mattress, CertiPUR-US foam, 9-inch",
+    "bullets": [
+      "Thickness: 9.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 190.0nights",
+      "Warranty: 13.0years",
+      "Foam Density: 38.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 9.0in, certipur-us certified foam, sleep trial: 190.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-04",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 15.0,
+      "certipur_certified": true,
+      "trial_nights": 95.0,
+      "warranty_years": 10.0,
+      "foam_density_kg": 32.0
+    },
+    "price": 579.99,
+    "list_price": 645,
+    "rating": 3.8,
+    "reviews": 949,
+    "bought": 2227,
+    "stock": 162,
+    "fail_reasons": [
+      "trial_nights__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-1.png",
+    "image_tier": "stock",
+    "title": "Wisp 14 Mattress, CertiPUR-US foam, 15-inch",
+    "bullets": [
+      "Thickness: 15.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 95.0nights",
+      "Warranty: 10.0years",
+      "Foam Density: 32.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 15.0in, certipur-us certified foam, sleep trial: 95.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-05",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 9.0,
+      "certipur_certified": true,
+      "trial_nights": 115.0,
+      "warranty_years": 13.0,
+      "foam_density_kg": 36.0
+    },
+    "price": 959.99,
+    "list_price": 1111,
+    "rating": 4.1,
+    "reviews": 1885,
+    "bought": 1634,
+    "stock": 82,
+    "fail_reasons": [
+      "price__lt",
+      "thickness_in__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-2.png",
+    "image_tier": "stock",
+    "title": "Orla 27 Mattress, CertiPUR-US foam, 9-inch",
+    "bullets": [
+      "Thickness: 9.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 115.0nights",
+      "Warranty: 13.0years",
+      "Foam Density: 36.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 9.0in, certipur-us certified foam, sleep trial: 115.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-06",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 9,
+      "certipur_certified": true,
+      "trial_nights": 180,
+      "warranty_years": 25,
+      "foam_density_kg": 40
+    },
+    "price": 589.99,
+    "list_price": 682,
+    "rating": 4.5,
+    "reviews": 2100,
+    "bought": 4200,
+    "stock": 150,
+    "fail_reasons": [
+      "thickness_in__min"
+    ],
+    "decoy_kind": "dsort_warranty",
+    "variants": [],
+    "image": "mattress-generic.png",
+    "image_tier": "stock",
+    "title": "Cobalt 06 Mattress, CertiPUR-US foam, 9-inch",
+    "bullets": [
+      "Thickness: 9in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 180nights",
+      "Warranty: 25years",
+      "Foam Density: 40kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 9in, certipur-us certified foam, sleep trial: 180nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-07",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 9.0,
+      "certipur_certified": true,
+      "trial_nights": 190.0,
+      "warranty_years": 13.0,
+      "foam_density_kg": 32.0
+    },
+    "price": 539.99,
+    "list_price": 605,
+    "rating": 3.9,
+    "reviews": 1615,
+    "bought": 2072,
+    "stock": 61,
+    "fail_reasons": [
+      "thickness_in__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-0.png",
+    "image_tier": "stock",
+    "title": "Juno 58 Mattress, CertiPUR-US foam, 9-inch",
+    "bullets": [
+      "Thickness: 9.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 190.0nights",
+      "Warranty: 13.0years",
+      "Foam Density: 32.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 9.0in, certipur-us certified foam, sleep trial: 190.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-08",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 12.0,
+      "certipur_certified": true,
+      "trial_nights": 145.0,
+      "warranty_years": 15.0,
+      "foam_density_kg": 33.0
+    },
+    "price": 1139.99,
+    "list_price": 1317,
+    "rating": 4.1,
+    "reviews": 2280,
+    "bought": 2912,
+    "stock": 159,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-2.png",
+    "image_tier": "stock",
+    "title": "Brixton 60 Mattress, CertiPUR-US foam, 12-inch",
+    "bullets": [
+      "Thickness: 12.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 145.0nights",
+      "Warranty: 15.0years",
+      "Foam Density: 33.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 12.0in, certipur-us certified foam, sleep trial: 145.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-09",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 13.0,
+      "certipur_certified": true,
+      "trial_nights": 195.0,
+      "warranty_years": 15.0,
+      "foam_density_kg": 29.0
+    },
+    "price": 499.99,
+    "list_price": 541,
+    "rating": 3.9,
+    "reviews": 2385,
+    "bought": 2143,
+    "stock": 158,
+    "fail_reasons": [
+      "rating__min",
+      "foam_density_kg__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-1.png",
+    "image_tier": "stock",
+    "title": "Orla 43 Mattress, CertiPUR-US foam, 13-inch",
+    "bullets": [
+      "Thickness: 13.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 195.0nights",
+      "Warranty: 15.0years",
+      "Foam Density: 29.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 13.0in, certipur-us certified foam, sleep trial: 195.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-10",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 9.0,
+      "certipur_certified": true,
+      "trial_nights": 180.0,
+      "warranty_years": 13.0,
+      "foam_density_kg": 29.0
+    },
+    "price": 419.99,
+    "list_price": 492,
+    "rating": 3.8,
+    "reviews": 2119,
+    "bought": 649,
+    "stock": 111,
+    "fail_reasons": [
+      "thickness_in__min",
+      "rating__min",
+      "foam_density_kg__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-0.png",
+    "image_tier": "stock",
+    "title": "Orla 11 Mattress, CertiPUR-US foam, 9-inch",
+    "bullets": [
+      "Thickness: 9.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 180.0nights",
+      "Warranty: 13.0years",
+      "Foam Density: 29.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 9.0in, certipur-us certified foam, sleep trial: 180.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-11",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 14.0,
+      "certipur_certified": true,
+      "trial_nights": 180.0,
+      "warranty_years": 13.0,
+      "foam_density_kg": 29.0
+    },
+    "price": 529.99,
+    "list_price": 603,
+    "rating": 4.0,
+    "reviews": 1649,
+    "bought": 2295,
+    "stock": 114,
+    "fail_reasons": [
+      "foam_density_kg__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-2.png",
+    "image_tier": "stock",
+    "title": "Lumio 53 Mattress, CertiPUR-US foam, 14-inch",
+    "bullets": [
+      "Thickness: 14.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 180.0nights",
+      "Warranty: 13.0years",
+      "Foam Density: 29.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 14.0in, certipur-us certified foam, sleep trial: 180.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-12",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 9.0,
+      "certipur_certified": true,
+      "trial_nights": 185.0,
+      "warranty_years": 12.0,
+      "foam_density_kg": 31.0
+    },
+    "price": 649.99,
+    "list_price": 729,
+    "rating": 3.9,
+    "reviews": 1783,
+    "bought": 2915,
+    "stock": 27,
+    "fail_reasons": [
+      "thickness_in__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-2.png",
+    "image_tier": "stock",
+    "title": "Brixton 12 Mattress, CertiPUR-US foam, 9-inch",
+    "bullets": [
+      "Thickness: 9.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 185.0nights",
+      "Warranty: 12.0years",
+      "Foam Density: 31.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 9.0in, certipur-us certified foam, sleep trial: 185.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-13",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 12.0,
+      "certipur_certified": true,
+      "trial_nights": 95.0,
+      "warranty_years": 12.0,
+      "foam_density_kg": 34.0
+    },
+    "price": 399.99,
+    "list_price": 471,
+    "rating": 4.1,
+    "reviews": 1616,
+    "bought": 1207,
+    "stock": 55,
+    "fail_reasons": [
+      "trial_nights__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-0.png",
+    "image_tier": "stock",
+    "title": "Calder 45 Mattress, CertiPUR-US foam, 12-inch",
+    "bullets": [
+      "Thickness: 12.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 95.0nights",
+      "Warranty: 12.0years",
+      "Foam Density: 34.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 12.0in, certipur-us certified foam, sleep trial: 95.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-14",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 15.0,
+      "certipur_certified": true,
+      "trial_nights": 95.0,
+      "warranty_years": 15.0,
+      "foam_density_kg": 40.0
+    },
+    "price": 669.99,
+    "list_price": 803,
+    "rating": 4.1,
+    "reviews": 1360,
+    "bought": 2664,
+    "stock": 142,
+    "fail_reasons": [
+      "trial_nights__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-1.png",
+    "image_tier": "stock",
+    "title": "Aether 36 Mattress, CertiPUR-US foam, 15-inch",
+    "bullets": [
+      "Thickness: 15.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 95.0nights",
+      "Warranty: 15.0years",
+      "Foam Density: 40.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 15.0in, certipur-us certified foam, sleep trial: 95.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-15",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 9.0,
+      "certipur_certified": true,
+      "trial_nights": 125.0,
+      "warranty_years": 9.0,
+      "foam_density_kg": 36.0
+    },
+    "price": 479.99,
+    "list_price": 554,
+    "rating": 4.1,
+    "reviews": 1575,
+    "bought": 2331,
+    "stock": 136,
+    "fail_reasons": [
+      "thickness_in__min",
+      "warranty_years__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-1.png",
+    "image_tier": "stock",
+    "title": "Kestrel 35 Mattress, CertiPUR-US foam, 9-inch",
+    "bullets": [
+      "Thickness: 9.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 125.0nights",
+      "Warranty: 9.0years",
+      "Foam Density: 36.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 9.0in, certipur-us certified foam, sleep trial: 125.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-16",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 14.0,
+      "certipur_certified": true,
+      "trial_nights": 190.0,
+      "warranty_years": 12.0,
+      "foam_density_kg": 39.0
+    },
+    "price": 1279.99,
+    "list_price": 1368,
+    "rating": 4.1,
+    "reviews": 2507,
+    "bought": 1370,
+    "stock": 155,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-1.png",
+    "image_tier": "stock",
+    "title": "Lumio 69 Mattress, CertiPUR-US foam, 14-inch",
+    "bullets": [
+      "Thickness: 14.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 190.0nights",
+      "Warranty: 12.0years",
+      "Foam Density: 39.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 14.0in, certipur-us certified foam, sleep trial: 190.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-17",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 12.0,
+      "certipur_certified": true,
+      "trial_nights": 95.0,
+      "warranty_years": 14.0,
+      "foam_density_kg": 41.0
+    },
+    "price": 409.99,
+    "list_price": 467,
+    "rating": 3.9,
+    "reviews": 2515,
+    "bought": 2914,
+    "stock": 105,
+    "fail_reasons": [
+      "trial_nights__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-1.png",
+    "image_tier": "stock",
+    "title": "Marlo 23 Mattress, CertiPUR-US foam, 12-inch",
+    "bullets": [
+      "Thickness: 12.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 95.0nights",
+      "Warranty: 14.0years",
+      "Foam Density: 41.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 12.0in, certipur-us certified foam, sleep trial: 95.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-18",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "thickness_in": 10,
+      "certipur_certified": true,
+      "trial_nights": 160,
+      "warranty_years": 12,
+      "foam_density_kg": 28
+    },
+    "price": 539.99,
+    "list_price": 628,
+    "rating": 4.2,
+    "reviews": 3800,
+    "bought": 7600,
+    "stock": 96,
+    "fail_reasons": [
+      "foam_density_kg__min"
+    ],
+    "decoy_kind": "floor",
+    "variants": [],
+    "image": "mattress-generic-2.png",
+    "image_tier": "stock",
+    "title": "Lumio 05 Mattress, CertiPUR-US foam, 10-inch",
+    "bullets": [
+      "Thickness: 10in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 160nights",
+      "Warranty: 12years",
+      "Foam Density: 28kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 10in, certipur-us certified foam, sleep trial: 160nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-19",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 12,
+      "certipur_certified": true,
+      "trial_nights": 290,
+      "warranty_years": 17,
+      "foam_density_kg": 46
+    },
+    "price": 599.99,
+    "list_price": 725,
+    "rating": 4.55,
+    "reviews": 5200,
+    "bought": 10400,
+    "stock": 40,
+    "fail_reasons": [],
+    "decoy_kind": "tier2",
+    "variants": [],
+    "image": "mattress-generic-0.png",
+    "image_tier": "stock",
+    "title": "Pomely 02 Mattress, CertiPUR-US foam, 12-inch",
+    "bullets": [
+      "Thickness: 12in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 290nights",
+      "Warranty: 17years",
+      "Foam Density: 46kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 12in, certipur-us certified foam, sleep trial: 290nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-20",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 12,
+      "certipur_certified": false,
+      "trial_nights": 160,
+      "warranty_years": 13,
+      "foam_density_kg": 60
+    },
+    "price": 619.99,
+    "list_price": 797,
+    "rating": 4.5,
+    "reviews": 3400,
+    "bought": 6800,
+    "stock": 105,
+    "fail_reasons": [
+      "certipur_certified"
+    ],
+    "decoy_kind": "dsort_density",
+    "variants": [],
+    "image": "mattress-generic.png",
+    "image_tier": "stock",
+    "title": "Aether 20 Mattress, 12-inch",
+    "bullets": [
+      "Thickness: 12in",
+      "Sleep Trial: 160nights",
+      "Warranty: 13years",
+      "Foam Density: 60kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 12in, sleep trial: 160nights, warranty: 13years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-21",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 9.0,
+      "certipur_certified": true,
+      "trial_nights": 120.0,
+      "warranty_years": 13.0,
+      "foam_density_kg": 41.0
+    },
+    "price": 549.99,
+    "list_price": 638,
+    "rating": 4.1,
+    "reviews": 2269,
+    "bought": 1955,
+    "stock": 160,
+    "fail_reasons": [
+      "thickness_in__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-2.png",
+    "image_tier": "stock",
+    "title": "Vesper 25 Mattress, CertiPUR-US foam, 9-inch",
+    "bullets": [
+      "Thickness: 9.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 120.0nights",
+      "Warranty: 13.0years",
+      "Foam Density: 41.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 9.0in, certipur-us certified foam, sleep trial: 120.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-22",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "thickness_in": 10,
+      "certipur_certified": true,
+      "trial_nights": 200,
+      "warranty_years": 9,
+      "foam_density_kg": 33
+    },
+    "price": 549.99,
+    "list_price": 640,
+    "rating": 4.1,
+    "reviews": 5300,
+    "bought": 10600,
+    "stock": 53,
+    "fail_reasons": [
+      "warranty_years__min"
+    ],
+    "decoy_kind": "floor",
+    "variants": [],
+    "image": "mattress-generic-2.png",
+    "image_tier": "stock",
+    "title": "Marlo 07 Mattress, CertiPUR-US foam, 10-inch",
+    "bullets": [
+      "Thickness: 10in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 200nights",
+      "Warranty: 9years",
+      "Foam Density: 33kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 10in, certipur-us certified foam, sleep trial: 200nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-23",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 11,
+      "certipur_certified": true,
+      "trial_nights": 250,
+      "warranty_years": 15,
+      "foam_density_kg": 42
+    },
+    "price": 659.99,
+    "list_price": 782,
+    "rating": 4.4,
+    "reviews": 4800,
+    "bought": 9600,
+    "stock": 78,
+    "fail_reasons": [],
+    "decoy_kind": "tier3",
+    "variants": [],
+    "image": "mattress-generic-2.png",
+    "image_tier": "stock",
+    "title": "Kestrel 03 Mattress, CertiPUR-US foam, 11-inch",
+    "bullets": [
+      "Thickness: 11in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 250nights",
+      "Warranty: 15years",
+      "Foam Density: 42kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 11in, certipur-us certified foam, sleep trial: 250nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-24",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 12,
+      "certipur_certified": true,
+      "trial_nights": 365,
+      "warranty_years": 12,
+      "foam_density_kg": 38
+    },
+    "price": 749.99,
+    "list_price": 872,
+    "rating": 4.4,
+    "reviews": 2600,
+    "bought": 5200,
+    "stock": 132,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "dsort_trial",
+    "variants": [],
+    "image": "mattress-generic.png",
+    "image_tier": "stock",
+    "title": "Toro 24 Mattress, CertiPUR-US foam, 12-inch",
+    "bullets": [
+      "Thickness: 12in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 365nights",
+      "Warranty: 12years",
+      "Foam Density: 38kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 12in, certipur-us certified foam, sleep trial: 365nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-25",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "thickness_in": 11,
+      "certipur_certified": true,
+      "trial_nights": 85,
+      "warranty_years": 11,
+      "foam_density_kg": 38
+    },
+    "price": 679.99,
+    "list_price": 785,
+    "rating": 4.0,
+    "reviews": 4400,
+    "bought": 8800,
+    "stock": 105,
+    "fail_reasons": [
+      "trial_nights__min"
+    ],
+    "decoy_kind": "spec_trial",
+    "variants": [],
+    "image": "mattress-generic.png",
+    "image_tier": "stock",
+    "title": "Vesper 25 M25 Mattress, CertiPUR-US foam, 11-inch",
+    "bullets": [
+      "Thickness: 11in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 85nights",
+      "Warranty: 11years",
+      "Foam Density: 38kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 11in, certipur-us certified foam, sleep trial: 85nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-26",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 15.0,
+      "certipur_certified": false,
+      "trial_nights": 185.0,
+      "warranty_years": 11.0,
+      "foam_density_kg": 38.0
+    },
+    "price": 589.99,
+    "list_price": 677,
+    "rating": 3.9,
+    "reviews": 2361,
+    "bought": 837,
+    "stock": 168,
+    "fail_reasons": [
+      "rating__min",
+      "certipur_certified"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-0.png",
+    "image_tier": "stock",
+    "title": "Cobalt 38 Mattress, 15-inch",
+    "bullets": [
+      "Thickness: 15.0in",
+      "Sleep Trial: 185.0nights",
+      "Warranty: 11.0years",
+      "Foam Density: 38.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 15.0in, sleep trial: 185.0nights, warranty: 11.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-27",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 9.0,
+      "certipur_certified": true,
+      "trial_nights": 110.0,
+      "warranty_years": 9.0,
+      "foam_density_kg": 39.0
+    },
+    "price": 389.99,
+    "list_price": 433,
+    "rating": 4.0,
+    "reviews": 2315,
+    "bought": 497,
+    "stock": 166,
+    "fail_reasons": [
+      "thickness_in__min",
+      "warranty_years__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-2.png",
+    "image_tier": "stock",
+    "title": "Juno 10 Mattress, CertiPUR-US foam, 9-inch",
+    "bullets": [
+      "Thickness: 9.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 110.0nights",
+      "Warranty: 9.0years",
+      "Foam Density: 39.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 9.0in, certipur-us certified foam, sleep trial: 110.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-28",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 12.0,
+      "certipur_certified": true,
+      "trial_nights": 155.0,
+      "warranty_years": 14.0,
+      "foam_density_kg": 29.0
+    },
+    "price": 419.99,
+    "list_price": 484,
+    "rating": 3.9,
+    "reviews": 433,
+    "bought": 1961,
+    "stock": 22,
+    "fail_reasons": [
+      "rating__min",
+      "foam_density_kg__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-1.png",
+    "image_tier": "stock",
+    "title": "Calder 29 Mattress, CertiPUR-US foam, 12-inch",
+    "bullets": [
+      "Thickness: 12.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 155.0nights",
+      "Warranty: 14.0years",
+      "Foam Density: 29.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 12.0in, certipur-us certified foam, sleep trial: 155.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-29",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 12.0,
+      "certipur_certified": false,
+      "trial_nights": 95.0,
+      "warranty_years": 14.0,
+      "foam_density_kg": 31.0
+    },
+    "price": 629.99,
+    "list_price": 722,
+    "rating": 4.0,
+    "reviews": 1377,
+    "bought": 2920,
+    "stock": 176,
+    "fail_reasons": [
+      "trial_nights__min",
+      "certipur_certified"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-1.png",
+    "image_tier": "stock",
+    "title": "Wisp 46 Mattress, 12-inch",
+    "bullets": [
+      "Thickness: 12.0in",
+      "Sleep Trial: 95.0nights",
+      "Warranty: 14.0years",
+      "Foam Density: 31.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 12.0in, sleep trial: 95.0nights, warranty: 14.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-30",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 13.0,
+      "certipur_certified": true,
+      "trial_nights": 175.0,
+      "warranty_years": 13.0,
+      "foam_density_kg": 29.0
+    },
+    "price": 469.99,
+    "list_price": 541,
+    "rating": 3.9,
+    "reviews": 1718,
+    "bought": 1103,
+    "stock": 190,
+    "fail_reasons": [
+      "rating__min",
+      "foam_density_kg__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-0.png",
+    "image_tier": "stock",
+    "title": "Marlo 55 Mattress, CertiPUR-US foam, 13-inch",
+    "bullets": [
+      "Thickness: 13.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 175.0nights",
+      "Warranty: 13.0years",
+      "Foam Density: 29.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 13.0in, certipur-us certified foam, sleep trial: 175.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-31",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "thickness_in": 9,
+      "certipur_certified": true,
+      "trial_nights": 130,
+      "warranty_years": 10,
+      "foam_density_kg": 28
+    },
+    "price": 534.99,
+    "list_price": 654,
+    "rating": 4.0,
+    "reviews": 4600,
+    "bought": 9200,
+    "stock": 122,
+    "fail_reasons": [
+      "thickness_in__min",
+      "foam_density_kg__min"
+    ],
+    "decoy_kind": "spec_thickness",
+    "variants": [],
+    "image": "mattress-generic-1.png",
+    "image_tier": "stock",
+    "title": "Vesper 09 Mattress, CertiPUR-US foam, 9-inch",
+    "bullets": [
+      "Thickness: 9in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 130nights",
+      "Warranty: 10years",
+      "Foam Density: 28kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 9in, certipur-us certified foam, sleep trial: 130nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-32",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "thickness_in": 11,
+      "certipur_certified": true,
+      "trial_nights": 95,
+      "warranty_years": 17,
+      "foam_density_kg": 34
+    },
+    "price": 574.99,
+    "list_price": 722,
+    "rating": 4.3,
+    "reviews": 4200,
+    "bought": 8400,
+    "stock": 42,
+    "fail_reasons": [
+      "trial_nights__min"
+    ],
+    "decoy_kind": "floor",
+    "variants": [],
+    "image": "mattress-generic-0.png",
+    "image_tier": "stock",
+    "title": "Cobalt 06 M32 Mattress, CertiPUR-US foam, 11-inch",
+    "bullets": [
+      "Thickness: 11in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 95nights",
+      "Warranty: 17years",
+      "Foam Density: 34kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 11in, certipur-us certified foam, sleep trial: 95nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-33",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 12,
+      "certipur_certified": true,
+      "trial_nights": 330,
+      "warranty_years": 20,
+      "foam_density_kg": 52
+    },
+    "price": 639.99,
+    "list_price": 747,
+    "rating": 4.7,
+    "reviews": 9100,
+    "bought": 18200,
+    "stock": 85,
+    "fail_reasons": [],
+    "decoy_kind": "hero",
+    "variants": [],
+    "image": "mattress-generic-0.png",
+    "image_tier": "stock",
+    "title": "Norvik 01 Mattress, CertiPUR-US foam, 12-inch",
+    "bullets": [
+      "Thickness: 12in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 330nights",
+      "Warranty: 20years",
+      "Foam Density: 52kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 12in, certipur-us certified foam, sleep trial: 330nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-34",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 9.0,
+      "certipur_certified": true,
+      "trial_nights": 175.0,
+      "warranty_years": 14.0,
+      "foam_density_kg": 34.0
+    },
+    "price": 389.99,
+    "list_price": 412,
+    "rating": 4.0,
+    "reviews": 1758,
+    "bought": 1176,
+    "stock": 41,
+    "fail_reasons": [
+      "thickness_in__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-2.png",
+    "image_tier": "stock",
+    "title": "Pomely 34 Mattress, CertiPUR-US foam, 9-inch",
+    "bullets": [
+      "Thickness: 9.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 175.0nights",
+      "Warranty: 14.0years",
+      "Foam Density: 34.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 9.0in, certipur-us certified foam, sleep trial: 175.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-35",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 12.0,
+      "certipur_certified": false,
+      "trial_nights": 95.0,
+      "warranty_years": 14.0,
+      "foam_density_kg": 36.0
+    },
+    "price": 409.99,
+    "list_price": 431,
+    "rating": 4.1,
+    "reviews": 1809,
+    "bought": 363,
+    "stock": 94,
+    "fail_reasons": [
+      "trial_nights__min",
+      "certipur_certified"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-2.png",
+    "image_tier": "stock",
+    "title": "Faze 63 Mattress, 12-inch",
+    "bullets": [
+      "Thickness: 12.0in",
+      "Sleep Trial: 95.0nights",
+      "Warranty: 14.0years",
+      "Foam Density: 36.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 12.0in, sleep trial: 95.0nights, warranty: 14.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-36",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 9.0,
+      "certipur_certified": true,
+      "trial_nights": 170.0,
+      "warranty_years": 11.0,
+      "foam_density_kg": 35.0
+    },
+    "price": 669.99,
+    "list_price": 779,
+    "rating": 4.0,
+    "reviews": 1609,
+    "bought": 1711,
+    "stock": 54,
+    "fail_reasons": [
+      "thickness_in__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-2.png",
+    "image_tier": "stock",
+    "title": "Calder 61 Mattress, CertiPUR-US foam, 9-inch",
+    "bullets": [
+      "Thickness: 9.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 170.0nights",
+      "Warranty: 11.0years",
+      "Foam Density: 35.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 9.0in, certipur-us certified foam, sleep trial: 170.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-37",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 9.0,
+      "certipur_certified": true,
+      "trial_nights": 120.0,
+      "warranty_years": 15.0,
+      "foam_density_kg": 38.0
+    },
+    "price": 379.99,
+    "list_price": 446,
+    "rating": 4.1,
+    "reviews": 639,
+    "bought": 2817,
+    "stock": 117,
+    "fail_reasons": [
+      "thickness_in__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-0.png",
+    "image_tier": "stock",
+    "title": "Pomely 66 Mattress, CertiPUR-US foam, 9-inch",
+    "bullets": [
+      "Thickness: 9.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 120.0nights",
+      "Warranty: 15.0years",
+      "Foam Density: 38.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 9.0in, certipur-us certified foam, sleep trial: 120.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-38",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 13.0,
+      "certipur_certified": true,
+      "trial_nights": 95.0,
+      "warranty_years": 13.0,
+      "foam_density_kg": 38.0
+    },
+    "price": 459.99,
+    "list_price": 523,
+    "rating": 4.1,
+    "reviews": 1021,
+    "bought": 1090,
+    "stock": 79,
+    "fail_reasons": [
+      "trial_nights__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-2.png",
+    "image_tier": "stock",
+    "title": "Brixton 44 Mattress, CertiPUR-US foam, 13-inch",
+    "bullets": [
+      "Thickness: 13.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 95.0nights",
+      "Warranty: 13.0years",
+      "Foam Density: 38.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 13.0in, certipur-us certified foam, sleep trial: 95.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-39",
+    "role": "satisfice",
+    "advertised": true,
+    "specs": {
+      "thickness_in": 10,
+      "certipur_certified": true,
+      "trial_nights": 150,
+      "warranty_years": 9,
+      "foam_density_kg": 36
+    },
+    "price": 529.99,
+    "list_price": 660,
+    "rating": 4.4,
+    "reviews": 3000,
+    "bought": 6000,
+    "stock": 147,
+    "fail_reasons": [
+      "warranty_years__min"
+    ],
+    "decoy_kind": "floor",
+    "variants": [],
+    "image": "mattress-generic-0.png",
+    "image_tier": "stock",
+    "title": "Toro 08 Mattress, CertiPUR-US foam, 10-inch",
+    "bullets": [
+      "Thickness: 10in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 150nights",
+      "Warranty: 9years",
+      "Foam Density: 36kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 10in, certipur-us certified foam, sleep trial: 150nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-40",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 11.0,
+      "certipur_certified": true,
+      "trial_nights": 115.0,
+      "warranty_years": 15.0,
+      "foam_density_kg": 29.0
+    },
+    "price": 539.99,
+    "list_price": 616,
+    "rating": 3.9,
+    "reviews": 2543,
+    "bought": 1958,
+    "stock": 127,
+    "fail_reasons": [
+      "rating__min",
+      "foam_density_kg__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-0.png",
+    "image_tier": "stock",
+    "title": "Kestrel 51 Mattress, CertiPUR-US foam, 11-inch",
+    "bullets": [
+      "Thickness: 11.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 115.0nights",
+      "Warranty: 15.0years",
+      "Foam Density: 29.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 11.0in, certipur-us certified foam, sleep trial: 115.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-41",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 13.0,
+      "certipur_certified": true,
+      "trial_nights": 140.0,
+      "warranty_years": 13.0,
+      "foam_density_kg": 29.0
+    },
+    "price": 569.99,
+    "list_price": 615,
+    "rating": 3.9,
+    "reviews": 283,
+    "bought": 727,
+    "stock": 81,
+    "fail_reasons": [
+      "rating__min",
+      "foam_density_kg__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-1.png",
+    "image_tier": "stock",
+    "title": "Calder 13 Mattress, CertiPUR-US foam, 13-inch",
+    "bullets": [
+      "Thickness: 13.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 140.0nights",
+      "Warranty: 13.0years",
+      "Foam Density: 29.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 13.0in, certipur-us certified foam, sleep trial: 140.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-42",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 14.0,
+      "certipur_certified": false,
+      "trial_nights": 165.0,
+      "warranty_years": 14.0,
+      "foam_density_kg": 38.0
+    },
+    "price": 559.99,
+    "list_price": 628,
+    "rating": 4.1,
+    "reviews": 2056,
+    "bought": 2648,
+    "stock": 142,
+    "fail_reasons": [
+      "certipur_certified"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-0.png",
+    "image_tier": "stock",
+    "title": "Cobalt 22 Mattress, 14-inch",
+    "bullets": [
+      "Thickness: 14.0in",
+      "Sleep Trial: 165.0nights",
+      "Warranty: 14.0years",
+      "Foam Density: 38.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 14.0in, sleep trial: 165.0nights, warranty: 14.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-43",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 11,
+      "certipur_certified": true,
+      "trial_nights": 150,
+      "warranty_years": 12,
+      "foam_density_kg": 36
+    },
+    "price": 799.99,
+    "list_price": 896,
+    "rating": 4.8,
+    "reviews": 1800,
+    "bought": 3600,
+    "stock": 53,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "dsort_rating",
+    "variants": [],
+    "image": "mattress-generic.png",
+    "image_tier": "stock",
+    "title": "Orla 43 M43 Mattress, CertiPUR-US foam, 11-inch",
+    "bullets": [
+      "Thickness: 11in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 150nights",
+      "Warranty: 12years",
+      "Foam Density: 36kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 11in, certipur-us certified foam, sleep trial: 150nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-44",
+    "role": "compliant",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 11,
+      "certipur_certified": true,
+      "trial_nights": 180,
+      "warranty_years": 12,
+      "foam_density_kg": 48
+    },
+    "price": 559.99,
+    "list_price": 677,
+    "rating": 4.2,
+    "reviews": 4400,
+    "bought": 8800,
+    "stock": 89,
+    "fail_reasons": [],
+    "decoy_kind": "tier4",
+    "variants": [],
+    "image": "mattress-generic-2.png",
+    "image_tier": "stock",
+    "title": "Aether 04 Mattress, CertiPUR-US foam, 11-inch",
+    "bullets": [
+      "Thickness: 11in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 180nights",
+      "Warranty: 12years",
+      "Foam Density: 48kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 11in, certipur-us certified foam, sleep trial: 180nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-45",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 9.0,
+      "certipur_certified": true,
+      "trial_nights": 170.0,
+      "warranty_years": 9.0,
+      "foam_density_kg": 37.0
+    },
+    "price": 619.99,
+    "list_price": 722,
+    "rating": 4.0,
+    "reviews": 784,
+    "bought": 2843,
+    "stock": 78,
+    "fail_reasons": [
+      "thickness_in__min",
+      "warranty_years__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-2.png",
+    "image_tier": "stock",
+    "title": "Cobalt 54 Mattress, CertiPUR-US foam, 9-inch",
+    "bullets": [
+      "Thickness: 9.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 170.0nights",
+      "Warranty: 9.0years",
+      "Foam Density: 37.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 9.0in, certipur-us certified foam, sleep trial: 170.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-46",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 15.0,
+      "certipur_certified": true,
+      "trial_nights": 190.0,
+      "warranty_years": 15.0,
+      "foam_density_kg": 29.0
+    },
+    "price": 439.99,
+    "list_price": 482,
+    "rating": 4.1,
+    "reviews": 2008,
+    "bought": 854,
+    "stock": 56,
+    "fail_reasons": [
+      "foam_density_kg__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-2.png",
+    "image_tier": "stock",
+    "title": "Faze 15 Mattress, CertiPUR-US foam, 15-inch",
+    "bullets": [
+      "Thickness: 15.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 190.0nights",
+      "Warranty: 15.0years",
+      "Foam Density: 29.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 15.0in, certipur-us certified foam, sleep trial: 190.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-47",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 13.0,
+      "certipur_certified": true,
+      "trial_nights": 120.0,
+      "warranty_years": 9.0,
+      "foam_density_kg": 33.0
+    },
+    "price": 509.99,
+    "list_price": 594,
+    "rating": 4.0,
+    "reviews": 2192,
+    "bought": 2977,
+    "stock": 142,
+    "fail_reasons": [
+      "warranty_years__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-0.png",
+    "image_tier": "stock",
+    "title": "Lumio 21 Mattress, CertiPUR-US foam, 13-inch",
+    "bullets": [
+      "Thickness: 13.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 120.0nights",
+      "Warranty: 9.0years",
+      "Foam Density: 33.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 13.0in, certipur-us certified foam, sleep trial: 120.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-48",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 11.0,
+      "certipur_certified": true,
+      "trial_nights": 180.0,
+      "warranty_years": 13.0,
+      "foam_density_kg": 32.0
+    },
+    "price": 779.99,
+    "list_price": 821,
+    "rating": 4.1,
+    "reviews": 555,
+    "bought": 2184,
+    "stock": 114,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-1.png",
+    "image_tier": "stock",
+    "title": "Toro 56 Mattress, CertiPUR-US foam, 11-inch",
+    "bullets": [
+      "Thickness: 11.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 180.0nights",
+      "Warranty: 13.0years",
+      "Foam Density: 32.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 11.0in, certipur-us certified foam, sleep trial: 180.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-49",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 9.0,
+      "certipur_certified": true,
+      "trial_nights": 190.0,
+      "warranty_years": 11.0,
+      "foam_density_kg": 37.0
+    },
+    "price": 529.99,
+    "list_price": 595,
+    "rating": 4.1,
+    "reviews": 2158,
+    "bought": 2188,
+    "stock": 161,
+    "fail_reasons": [
+      "thickness_in__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-0.png",
+    "image_tier": "stock",
+    "title": "Pomely 18 Mattress, CertiPUR-US foam, 9-inch",
+    "bullets": [
+      "Thickness: 9.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 190.0nights",
+      "Warranty: 11.0years",
+      "Foam Density: 37.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 9.0in, certipur-us certified foam, sleep trial: 190.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-50",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 12.0,
+      "certipur_certified": false,
+      "trial_nights": 185.0,
+      "warranty_years": 11.0,
+      "foam_density_kg": 39.0
+    },
+    "price": 809.99,
+    "list_price": 903,
+    "rating": 4.0,
+    "reviews": 1402,
+    "bought": 146,
+    "stock": 96,
+    "fail_reasons": [
+      "price__lt",
+      "certipur_certified"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-2.png",
+    "image_tier": "stock",
+    "title": "Pomely 50 Mattress, 12-inch",
+    "bullets": [
+      "Thickness: 12.0in",
+      "Sleep Trial: 185.0nights",
+      "Warranty: 11.0years",
+      "Foam Density: 39.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 12.0in, sleep trial: 185.0nights, warranty: 11.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-51",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 15.0,
+      "certipur_certified": true,
+      "trial_nights": 180.0,
+      "warranty_years": 11.0,
+      "foam_density_kg": 32.0
+    },
+    "price": 1129.99,
+    "list_price": 1238,
+    "rating": 3.9,
+    "reviews": 1359,
+    "bought": 1739,
+    "stock": 77,
+    "fail_reasons": [
+      "price__lt",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-2.png",
+    "image_tier": "stock",
+    "title": "Wisp 30 Mattress, CertiPUR-US foam, 15-inch",
+    "bullets": [
+      "Thickness: 15.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 180.0nights",
+      "Warranty: 11.0years",
+      "Foam Density: 32.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 15.0in, certipur-us certified foam, sleep trial: 180.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-52",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 9.0,
+      "certipur_certified": true,
+      "trial_nights": 135.0,
+      "warranty_years": 9.0,
+      "foam_density_kg": 39.0
+    },
+    "price": 609.99,
+    "list_price": 673,
+    "rating": 4.1,
+    "reviews": 1399,
+    "bought": 1486,
+    "stock": 114,
+    "fail_reasons": [
+      "thickness_in__min",
+      "warranty_years__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-0.png",
+    "image_tier": "stock",
+    "title": "Norvik 33 Mattress, CertiPUR-US foam, 9-inch",
+    "bullets": [
+      "Thickness: 9.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 135.0nights",
+      "Warranty: 9.0years",
+      "Foam Density: 39.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 9.0in, certipur-us certified foam, sleep trial: 135.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-53",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 11.0,
+      "certipur_certified": false,
+      "trial_nights": 140.0,
+      "warranty_years": 12.0,
+      "foam_density_kg": 32.0
+    },
+    "price": 639.99,
+    "list_price": 693,
+    "rating": 3.9,
+    "reviews": 695,
+    "bought": 411,
+    "stock": 97,
+    "fail_reasons": [
+      "rating__min",
+      "certipur_certified"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-1.png",
+    "image_tier": "stock",
+    "title": "Kestrel 19 Mattress, 11-inch",
+    "bullets": [
+      "Thickness: 11.0in",
+      "Sleep Trial: 140.0nights",
+      "Warranty: 12.0years",
+      "Foam Density: 32.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 11.0in, sleep trial: 140.0nights, warranty: 12.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-54",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 15.0,
+      "certipur_certified": true,
+      "trial_nights": 150.0,
+      "warranty_years": 9.0,
+      "foam_density_kg": 35.0
+    },
+    "price": 619.99,
+    "list_price": 654,
+    "rating": 4.1,
+    "reviews": 120,
+    "bought": 1295,
+    "stock": 37,
+    "fail_reasons": [
+      "warranty_years__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-2.png",
+    "image_tier": "stock",
+    "title": "Faze 47 Mattress, CertiPUR-US foam, 15-inch",
+    "bullets": [
+      "Thickness: 15.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 150.0nights",
+      "Warranty: 9.0years",
+      "Foam Density: 35.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 15.0in, certipur-us certified foam, sleep trial: 150.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-55",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 11.0,
+      "certipur_certified": false,
+      "trial_nights": 140.0,
+      "warranty_years": 12.0,
+      "foam_density_kg": 29.0
+    },
+    "price": 499.99,
+    "list_price": 591,
+    "rating": 4.0,
+    "reviews": 978,
+    "bought": 1166,
+    "stock": 52,
+    "fail_reasons": [
+      "foam_density_kg__min",
+      "certipur_certified"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-0.png",
+    "image_tier": "stock",
+    "title": "Toro 24 M55 Mattress, 11-inch",
+    "bullets": [
+      "Thickness: 11.0in",
+      "Sleep Trial: 140.0nights",
+      "Warranty: 12.0years",
+      "Foam Density: 29.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 11.0in, sleep trial: 140.0nights, warranty: 12.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-56",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 9.0,
+      "certipur_certified": true,
+      "trial_nights": 190.0,
+      "warranty_years": 15.0,
+      "foam_density_kg": 40.0
+    },
+    "price": 429.99,
+    "list_price": 482,
+    "rating": 4.1,
+    "reviews": 1616,
+    "bought": 2846,
+    "stock": 109,
+    "fail_reasons": [
+      "thickness_in__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-1.png",
+    "image_tier": "stock",
+    "title": "Vesper 41 Mattress, CertiPUR-US foam, 9-inch",
+    "bullets": [
+      "Thickness: 9.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 190.0nights",
+      "Warranty: 15.0years",
+      "Foam Density: 40.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 9.0in, certipur-us certified foam, sleep trial: 190.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-57",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 13.0,
+      "certipur_certified": true,
+      "trial_nights": 120.0,
+      "warranty_years": 9.0,
+      "foam_density_kg": 35.0
+    },
+    "price": 1199.99,
+    "list_price": 1350,
+    "rating": 3.9,
+    "reviews": 2191,
+    "bought": 104,
+    "stock": 116,
+    "fail_reasons": [
+      "price__lt",
+      "warranty_years__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-0.png",
+    "image_tier": "stock",
+    "title": "Norvik 49 Mattress, CertiPUR-US foam, 13-inch",
+    "bullets": [
+      "Thickness: 13.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 120.0nights",
+      "Warranty: 9.0years",
+      "Foam Density: 35.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 13.0in, certipur-us certified foam, sleep trial: 120.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-58",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 12.0,
+      "certipur_certified": true,
+      "trial_nights": 135.0,
+      "warranty_years": 15.0,
+      "foam_density_kg": 40.0
+    },
+    "price": 919.99,
+    "list_price": 1030,
+    "rating": 4.1,
+    "reviews": 1447,
+    "bought": 559,
+    "stock": 91,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-1.png",
+    "image_tier": "stock",
+    "title": "Wisp 62 Mattress, CertiPUR-US foam, 12-inch",
+    "bullets": [
+      "Thickness: 12.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 135.0nights",
+      "Warranty: 15.0years",
+      "Foam Density: 40.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 12.0in, certipur-us certified foam, sleep trial: 135.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-59",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 15.0,
+      "certipur_certified": true,
+      "trial_nights": 95.0,
+      "warranty_years": 9.0,
+      "foam_density_kg": 33.0
+    },
+    "price": 579.99,
+    "list_price": 658,
+    "rating": 4.1,
+    "reviews": 1841,
+    "bought": 1391,
+    "stock": 130,
+    "fail_reasons": [
+      "trial_nights__min",
+      "warranty_years__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-0.png",
+    "image_tier": "stock",
+    "title": "Juno 26 Mattress, CertiPUR-US foam, 15-inch",
+    "bullets": [
+      "Thickness: 15.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 95.0nights",
+      "Warranty: 9.0years",
+      "Foam Density: 33.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 15.0in, certipur-us certified foam, sleep trial: 95.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-60",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 14.0,
+      "certipur_certified": true,
+      "trial_nights": 180.0,
+      "warranty_years": 14.0,
+      "foam_density_kg": 29.0
+    },
+    "price": 509.99,
+    "list_price": 609,
+    "rating": 4.0,
+    "reviews": 1640,
+    "bought": 724,
+    "stock": 80,
+    "fail_reasons": [
+      "foam_density_kg__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-0.png",
+    "image_tier": "stock",
+    "title": "Norvik 65 Mattress, CertiPUR-US foam, 14-inch",
+    "bullets": [
+      "Thickness: 14.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 180.0nights",
+      "Warranty: 14.0years",
+      "Foam Density: 29.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 14.0in, certipur-us certified foam, sleep trial: 180.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-61",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 9.0,
+      "certipur_certified": true,
+      "trial_nights": 130.0,
+      "warranty_years": 12.0,
+      "foam_density_kg": 35.0
+    },
+    "price": 469.99,
+    "list_price": 516,
+    "rating": 4.0,
+    "reviews": 696,
+    "bought": 1341,
+    "stock": 161,
+    "fail_reasons": [
+      "thickness_in__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-1.png",
+    "image_tier": "stock",
+    "title": "Norvik 17 Mattress, CertiPUR-US foam, 9-inch",
+    "bullets": [
+      "Thickness: 9.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 130.0nights",
+      "Warranty: 12.0years",
+      "Foam Density: 35.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 9.0in, certipur-us certified foam, sleep trial: 130.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-62",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 11.0,
+      "certipur_certified": true,
+      "trial_nights": 170.0,
+      "warranty_years": 9.0,
+      "foam_density_kg": 41.0
+    },
+    "price": 599.99,
+    "list_price": 639,
+    "rating": 4.1,
+    "reviews": 880,
+    "bought": 2959,
+    "stock": 178,
+    "fail_reasons": [
+      "warranty_years__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-0.png",
+    "image_tier": "stock",
+    "title": "Vesper 57 Mattress, CertiPUR-US foam, 11-inch",
+    "bullets": [
+      "Thickness: 11.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 170.0nights",
+      "Warranty: 9.0years",
+      "Foam Density: 41.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 11.0in, certipur-us certified foam, sleep trial: 170.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-63",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 9.0,
+      "certipur_certified": true,
+      "trial_nights": 145.0,
+      "warranty_years": 14.0,
+      "foam_density_kg": 35.0
+    },
+    "price": 359.99,
+    "list_price": 388,
+    "rating": 4.1,
+    "reviews": 1005,
+    "bought": 1163,
+    "stock": 49,
+    "fail_reasons": [
+      "thickness_in__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-2.png",
+    "image_tier": "stock",
+    "title": "Lumio 37 Mattress, CertiPUR-US foam, 9-inch",
+    "bullets": [
+      "Thickness: 9.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 145.0nights",
+      "Warranty: 14.0years",
+      "Foam Density: 35.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 9.0in, certipur-us certified foam, sleep trial: 145.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-64",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 9.0,
+      "certipur_certified": true,
+      "trial_nights": 95.0,
+      "warranty_years": 15.0,
+      "foam_density_kg": 39.0
+    },
+    "price": 489.99,
+    "list_price": 530,
+    "rating": 3.9,
+    "reviews": 1892,
+    "bought": 1204,
+    "stock": 90,
+    "fail_reasons": [
+      "thickness_in__min",
+      "trial_nights__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-1.png",
+    "image_tier": "stock",
+    "title": "Aether 68 Mattress, CertiPUR-US foam, 9-inch",
+    "bullets": [
+      "Thickness: 9.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 95.0nights",
+      "Warranty: 15.0years",
+      "Foam Density: 39.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 9.0in, certipur-us certified foam, sleep trial: 95.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-65",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 9.0,
+      "certipur_certified": true,
+      "trial_nights": 185.0,
+      "warranty_years": 9.0,
+      "foam_density_kg": 37.0
+    },
+    "price": 449.99,
+    "list_price": 492,
+    "rating": 3.8,
+    "reviews": 1809,
+    "bought": 590,
+    "stock": 115,
+    "fail_reasons": [
+      "thickness_in__min",
+      "warranty_years__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-0.png",
+    "image_tier": "stock",
+    "title": "Aether 52 Mattress, CertiPUR-US foam, 9-inch",
+    "bullets": [
+      "Thickness: 9.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 185.0nights",
+      "Warranty: 9.0years",
+      "Foam Density: 37.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 9.0in, certipur-us certified foam, sleep trial: 185.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-66",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 13.0,
+      "certipur_certified": false,
+      "trial_nights": 145.0,
+      "warranty_years": 12.0,
+      "foam_density_kg": 31.0
+    },
+    "price": 429.99,
+    "list_price": 500,
+    "rating": 3.9,
+    "reviews": 732,
+    "bought": 427,
+    "stock": 178,
+    "fail_reasons": [
+      "rating__min",
+      "certipur_certified"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-1.png",
+    "image_tier": "stock",
+    "title": "Juno 42 Mattress, 13-inch",
+    "bullets": [
+      "Thickness: 13.0in",
+      "Sleep Trial: 145.0nights",
+      "Warranty: 12.0years",
+      "Foam Density: 31.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 13.0in, sleep trial: 145.0nights, warranty: 12.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-67",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 11.0,
+      "certipur_certified": false,
+      "trial_nights": 160.0,
+      "warranty_years": 14.0,
+      "foam_density_kg": 41.0
+    },
+    "price": 1119.99,
+    "list_price": 1248,
+    "rating": 4.0,
+    "reviews": 1305,
+    "bought": 111,
+    "stock": 84,
+    "fail_reasons": [
+      "price__lt",
+      "certipur_certified"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-1.png",
+    "image_tier": "stock",
+    "title": "Marlo 39 Mattress, 11-inch",
+    "bullets": [
+      "Thickness: 11.0in",
+      "Sleep Trial: 160.0nights",
+      "Warranty: 14.0years",
+      "Foam Density: 41.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 11.0in, sleep trial: 160.0nights, warranty: 14.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-68",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 13.0,
+      "certipur_certified": false,
+      "trial_nights": 115.0,
+      "warranty_years": 11.0,
+      "foam_density_kg": 29.0
+    },
+    "price": 359.99,
+    "list_price": 427,
+    "rating": 4.1,
+    "reviews": 1729,
+    "bought": 1840,
+    "stock": 155,
+    "fail_reasons": [
+      "foam_density_kg__min",
+      "certipur_certified"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-1.png",
+    "image_tier": "stock",
+    "title": "Faze 31 Mattress, 13-inch",
+    "bullets": [
+      "Thickness: 13.0in",
+      "Sleep Trial: 115.0nights",
+      "Warranty: 11.0years",
+      "Foam Density: 29.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 13.0in, sleep trial: 115.0nights, warranty: 11.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-69",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 15.0,
+      "certipur_certified": false,
+      "trial_nights": 190.0,
+      "warranty_years": 9.0,
+      "foam_density_kg": 35.0
+    },
+    "price": 479.99,
+    "list_price": 537,
+    "rating": 4.0,
+    "reviews": 833,
+    "bought": 2099,
+    "stock": 45,
+    "fail_reasons": [
+      "warranty_years__min",
+      "certipur_certified"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-0.png",
+    "image_tier": "stock",
+    "title": "Toro 40 Mattress, 15-inch",
+    "bullets": [
+      "Thickness: 15.0in",
+      "Sleep Trial: 190.0nights",
+      "Warranty: 9.0years",
+      "Foam Density: 35.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 15.0in, sleep trial: 190.0nights, warranty: 9.0years.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-70",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 9.0,
+      "certipur_certified": true,
+      "trial_nights": 195.0,
+      "warranty_years": 9.0,
+      "foam_density_kg": 33.0
+    },
+    "price": 639.99,
+    "list_price": 740,
+    "rating": 4.0,
+    "reviews": 1137,
+    "bought": 377,
+    "stock": 164,
+    "fail_reasons": [
+      "thickness_in__min",
+      "warranty_years__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-1.png",
+    "image_tier": "stock",
+    "title": "Velo 16 Mattress, CertiPUR-US foam, 9-inch",
+    "bullets": [
+      "Thickness: 9.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 195.0nights",
+      "Warranty: 9.0years",
+      "Foam Density: 33.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 9.0in, certipur-us certified foam, sleep trial: 195.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-71",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 12.0,
+      "certipur_certified": true,
+      "trial_nights": 95.0,
+      "warranty_years": 12.0,
+      "foam_density_kg": 29.0
+    },
+    "price": 359.99,
+    "list_price": 381,
+    "rating": 3.9,
+    "reviews": 2297,
+    "bought": 2109,
+    "stock": 197,
+    "fail_reasons": [
+      "trial_nights__min",
+      "rating__min",
+      "foam_density_kg__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-1.png",
+    "image_tier": "stock",
+    "title": "Velo 48 Mattress, CertiPUR-US foam, 12-inch",
+    "bullets": [
+      "Thickness: 12.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 95.0nights",
+      "Warranty: 12.0years",
+      "Foam Density: 29.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 12.0in, certipur-us certified foam, sleep trial: 95.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-72",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 11.0,
+      "certipur_certified": true,
+      "trial_nights": 95.0,
+      "warranty_years": 15.0,
+      "foam_density_kg": 31.0
+    },
+    "price": 389.99,
+    "list_price": 416,
+    "rating": 3.8,
+    "reviews": 1752,
+    "bought": 1618,
+    "stock": 84,
+    "fail_reasons": [
+      "trial_nights__min",
+      "rating__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-1.png",
+    "image_tier": "stock",
+    "title": "Orla 59 Mattress, CertiPUR-US foam, 11-inch",
+    "bullets": [
+      "Thickness: 11.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 95.0nights",
+      "Warranty: 15.0years",
+      "Foam Density: 31.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 11.0in, certipur-us certified foam, sleep trial: 95.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-73",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 15.0,
+      "certipur_certified": true,
+      "trial_nights": 120.0,
+      "warranty_years": 9.0,
+      "foam_density_kg": 32.0
+    },
+    "price": 1179.99,
+    "list_price": 1349,
+    "rating": 4.0,
+    "reviews": 1880,
+    "bought": 2308,
+    "stock": 156,
+    "fail_reasons": [
+      "price__lt",
+      "warranty_years__min"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-2.png",
+    "image_tier": "stock",
+    "title": "Aether 20 M73 Mattress, CertiPUR-US foam, 15-inch",
+    "bullets": [
+      "Thickness: 15.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 120.0nights",
+      "Warranty: 9.0years",
+      "Foam Density: 32.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 15.0in, certipur-us certified foam, sleep trial: 120.0nights.",
+    "copy_status": "ok"
+  },
+  {
+    "asin": "EXP-MATTRESS-74",
+    "role": "distractor",
+    "advertised": false,
+    "specs": {
+      "thickness_in": 13.0,
+      "certipur_certified": true,
+      "trial_nights": 165.0,
+      "warranty_years": 15.0,
+      "foam_density_kg": 39.0
+    },
+    "price": 759.99,
+    "list_price": 816,
+    "rating": 4.0,
+    "reviews": 1166,
+    "bought": 2159,
+    "stock": 101,
+    "fail_reasons": [
+      "price__lt"
+    ],
+    "decoy_kind": "",
+    "variants": [],
+    "image": "mattress-generic-1.png",
+    "image_tier": "stock",
+    "title": "Velo 32 Mattress, CertiPUR-US foam, 13-inch",
+    "bullets": [
+      "Thickness: 13.0in",
+      "Certipur-Us Certified Foam",
+      "Sleep Trial: 165.0nights",
+      "Warranty: 15.0years",
+      "Foam Density: 39.0kg/m\u00b3"
+    ],
+    "description": "A mattress with thickness: 13.0in, certipur-us certified foam, sleep trial: 165.0nights.",
+    "copy_status": "ok"
+  }
+]

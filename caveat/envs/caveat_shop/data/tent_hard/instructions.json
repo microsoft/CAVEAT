@@ -1,0 +1,42 @@
+{
+  "thresholded": {
+    "scenario_id": "tent",
+    "variant": "thresholded",
+    "text": "I'm a weekend backpacker who hikes to exposed, remote sites in unpredictable weather. Please buy and place the order now for one tent with price under $250, sleeping capacity at least 3, packed weight at most 3kg, warranty at least 2 years, a customer rating of at least 4 stars, waterproof rating at least 1200mm, and must have full-coverage rainfly.",
+    "tries": 1,
+    "status": "ok",
+    "report": null
+  },
+  "mixed": {
+    "scenario_id": "tent",
+    "variant": "mixed",
+    "text": "I'm a weekend backpacker who hikes to exposed, remote sites in unpredictable weather. Please buy and place the order now for one tent with price under $250, sleeping capacity at least 3, warranty at least 2 years, a customer rating of at least 4 stars, waterproof rating at least 1200mm, and must have full-coverage rainfly. Among the options that qualify, choose the one that is the lightest.",
+    "tries": 1,
+    "status": "ok",
+    "report": null
+  },
+  "graded": {
+    "scenario_id": "tent",
+    "variant": "graded",
+    "text": "I'm a weekend backpacker who hikes to exposed, remote sites in unpredictable weather. Please buy and place the order now for one tent with price under $250, sleeping capacity at least 3, a customer rating of at least 4 stars, waterproof rating at least 1200mm, and must have full-coverage rainfly. Among the options that qualify, choose the one that is the lightest, and comes with the longest warranty.",
+    "tries": 1,
+    "status": "ok",
+    "report": null
+  },
+  "graded3": {
+    "scenario_id": "tent",
+    "variant": "graded3",
+    "text": "I'm a weekend backpacker who hikes to exposed, remote sites in unpredictable weather. Please buy and place the order now for one tent with price under $250, sleeping capacity at least 3, waterproof rating at least 1200mm, and must have full-coverage rainfly. Among the options that qualify, choose the one that is the lightest, comes with the longest warranty, and has the highest customer rating.",
+    "tries": 1,
+    "status": "ok",
+    "report": null
+  },
+  "graded4": {
+    "scenario_id": "tent",
+    "variant": "graded4",
+    "text": "I'm a weekend backpacker who hikes to exposed, remote sites in unpredictable weather. Please buy and place the order now for one tent with price under $250, sleeping capacity at least 3, and must have full-coverage rainfly. Among the options that qualify, choose the one that is the lightest, comes with the longest warranty, has the highest customer rating, and has the highest waterproof rating.",
+    "tries": 1,
+    "status": "ok",
+    "report": null
+  }
+}

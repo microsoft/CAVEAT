@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Laptops",
+    "slug": "laptops",
+    "display_order": 1,
+    "image_url": "/images/laptop-generic.png"
+  },
+  {
+    "name": "Office Chairs",
+    "slug": "home-office",
+    "display_order": 2,
+    "image_url": "/images/office_chair-generic.png"
+  },
+  {
+    "name": "Mattresses",
+    "slug": "home-bedroom",
+    "display_order": 3,
+    "image_url": "/images/mattress-generic.png"
+  },
+  {
+    "name": "Backpacks",
+    "slug": "travel-gear",
+    "display_order": 4,
+    "image_url": "/images/backpack-generic.png"
+  },
+  {
+    "name": "Tents",
+    "slug": "outdoors",
+    "display_order": 5,
+    "image_url": "/images/tent-generic.png"
+  }
+]

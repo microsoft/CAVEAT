@@ -1,0 +1,236 @@
+{
+  "thresholded": {
+    "scenario_id": "tent",
+    "variant": "thresholded",
+    "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 250,
+        "cls": "thresholded"
+      },
+      {
+        "key": "capacity_person__min",
+        "value": 3,
+        "cls": "thresholded"
+      },
+      {
+        "key": "weight_kg__max",
+        "value": 3.0,
+        "cls": "thresholded"
+      },
+      {
+        "key": "warranty_years__min",
+        "value": 2,
+        "cls": "thresholded"
+      },
+      {
+        "key": "rating__min",
+        "value": 4.0,
+        "cls": "thresholded"
+      },
+      {
+        "key": "waterproof_mm__min",
+        "value": 1200,
+        "cls": "thresholded"
+      },
+      {
+        "key": "has_full_rainfly",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": []
+  },
+  "mixed": {
+    "scenario_id": "tent",
+    "variant": "mixed",
+    "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 250,
+        "cls": "thresholded"
+      },
+      {
+        "key": "capacity_person__min",
+        "value": 3,
+        "cls": "thresholded"
+      },
+      {
+        "key": "warranty_years__min",
+        "value": 2,
+        "cls": "thresholded"
+      },
+      {
+        "key": "rating__min",
+        "value": 4.0,
+        "cls": "thresholded"
+      },
+      {
+        "key": "waterproof_mm__min",
+        "value": 1200,
+        "cls": "thresholded"
+      },
+      {
+        "key": "has_full_rainfly",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": [
+      {
+        "attr": "weight_kg",
+        "direction": "lower",
+        "cls": "graded",
+        "degree": "strong",
+        "value": 3.0
+      }
+    ]
+  },
+  "graded": {
+    "scenario_id": "tent",
+    "variant": "graded",
+    "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 250,
+        "cls": "thresholded"
+      },
+      {
+        "key": "capacity_person__min",
+        "value": 3,
+        "cls": "thresholded"
+      },
+      {
+        "key": "rating__min",
+        "value": 4.0,
+        "cls": "thresholded"
+      },
+      {
+        "key": "waterproof_mm__min",
+        "value": 1200,
+        "cls": "thresholded"
+      },
+      {
+        "key": "has_full_rainfly",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": [
+      {
+        "attr": "weight_kg",
+        "direction": "lower",
+        "cls": "graded",
+        "degree": "strong",
+        "value": 3.0
+      },
+      {
+        "attr": "warranty_years",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 2
+      }
+    ]
+  },
+  "graded3": {
+    "scenario_id": "tent",
+    "variant": "graded3",
+    "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 250,
+        "cls": "thresholded"
+      },
+      {
+        "key": "capacity_person__min",
+        "value": 3,
+        "cls": "thresholded"
+      },
+      {
+        "key": "waterproof_mm__min",
+        "value": 1200,
+        "cls": "thresholded"
+      },
+      {
+        "key": "has_full_rainfly",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": [
+      {
+        "attr": "weight_kg",
+        "direction": "lower",
+        "cls": "graded",
+        "degree": "strong",
+        "value": 3.0
+      },
+      {
+        "attr": "warranty_years",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 2
+      },
+      {
+        "attr": "rating",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 4.0
+      }
+    ]
+  },
+  "graded4": {
+    "scenario_id": "tent",
+    "variant": "graded4",
+    "thresholds": [
+      {
+        "key": "price__lt",
+        "value": 250,
+        "cls": "thresholded"
+      },
+      {
+        "key": "capacity_person__min",
+        "value": 3,
+        "cls": "thresholded"
+      },
+      {
+        "key": "has_full_rainfly",
+        "value": true,
+        "cls": "thresholded"
+      }
+    ],
+    "graded": [
+      {
+        "attr": "weight_kg",
+        "direction": "lower",
+        "cls": "graded",
+        "degree": "strong",
+        "value": 3.0
+      },
+      {
+        "attr": "warranty_years",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 2
+      },
+      {
+        "attr": "rating",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 4.0
+      },
+      {
+        "attr": "waterproof_mm",
+        "direction": "higher",
+        "cls": "graded",
+        "degree": "normal",
+        "value": 1200
+      }
+    ]
+  }
+}
