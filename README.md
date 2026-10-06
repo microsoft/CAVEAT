@@ -156,3 +156,19 @@ trademarks or logos is subject to those third parties' policies.
 
 The project is licensed under the [MIT License](LICENSE). Third-party
 notices are provided in [NOTICE](NOTICE).
+
+## Citation
+
+Read the paper: [CAVEAT: Towards Robust Computer-Use Agents in Incentive-Misaligned Environments](https://arxiv.org/abs/2609.27273).
+
+```bibtex
+@misc{li2026caveatrobustcomputeruseagents,
+      title={CAVEAT: Towards Robust Computer-Use Agents in Incentive-Misaligned Environments},
+      author={Yuxuan Li and Will Epperson and Wesley Deng and Zezhou Huang},
+      year={2026},
+      eprint={2609.27273},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2609.27273},
+}
+```
